@@ -76,20 +76,6 @@ function mostrarform(flag)
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").show();
 		detalles=0;
-
-
-
-		if ($('#detalles tbody tr').length == 0) {
-
-			alert('no hay nada');
-			 // $('#tipo_impuesto').attr('readonly', true);
-			 // $('#tipo_impuesto').prop( "disabled", true );
-		}else {
-
-			alert('cambia la cosa');
-				 // $('#tipo_impuesto').prop( "disabled", false );
-		}
-
 	}
 	else
 	{

@@ -8,43 +8,28 @@ if (strlen(session_id()) < 1)
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>SISTEMA CONTABLE</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-<!--     <link rel="stylesheet" href="../public/css/font-awesome.css"> -->
     <link rel="stylesheet" href="../public/css/font-awesome.css">
     <link rel="stylesheet" href="../public/fontawesome5/css/all.css">
-   <!--  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.1.0/css/all.css"> -->
-    <!-- Theme style -->
     <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
+    <link rel="stylesheet" href="../public/css/ionicons.min.css">
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
     <link rel="shortcut icon" href="../public/img/apple-touch-icon.png">
+    <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">
     <link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet"/>
     <link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet"/>
 
-    <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.css">
-    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
-   <!--=====================================
-  PLUGINS DE CSS
-  ======================================-->
-
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
-
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../public/css/ionicons.min.css">
-    <!-- DataTables -->
-  <link rel="stylesheet" href="../public/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   </head>
+
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
