@@ -15,7 +15,12 @@ if ($_SESSION['admonoc']==1)
 ?>
 <!--Contenido-->
 
+<style media="screen">
+.table-sortable tbody tr {
+  cursor: move;
+}
 
+</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Main content -->
@@ -81,22 +86,10 @@ if ($_SESSION['admonoc']==1)
                   <!-- Custom Tabs -->
                   <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                      <li class="active"><a href="#tab_1" data-toggle="tab">Tab 1</a></li>
-                      <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
-                      <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
-                      <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                          Dropdown <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                          <li role="presentation" class="divider"></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                        </ul>
-                      </li>
-                      <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                      <li class="active"><a href="#tab_1" data-toggle="tab">Crear Orden / Solicitud</a></li>
+                      <li><a href="#tab_2" data-toggle="tab">Ingreso Facturas</a></li>
+                      <li><a href="#tab_3" data-toggle="tab">Comprobante de Pago</a></li>
+
                     </ul>
                     <div class="tab-content">
                       <div class="tab-pane active" id="tab_1">
@@ -237,6 +230,57 @@ if ($_SESSION['admonoc']==1)
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_2">
+                  <div class="container">
+                      <div class="row clearfix">
+                      	<div class="col-md-12 table-responsive">
+                  			<table class="table table-bordered table-hover table-sortable" id="tab_logic">
+                  				<thead>
+                  					<tr >
+                  						<th class="text-center">
+                  							N° Facturas
+                  						</th>
+                  						<th class="text-center">
+                  							Fecha
+                  						</th>
+                  						<th class="text-center">
+                  							Valor
+                  						</th>
+                      					<th class="text-center">
+                  							Opciones
+                  						</th>
+                          				<th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+                  						</th>
+                  					</tr>
+                  				</thead>
+                  				<tbody>
+                      				<tr id='addr0' data-id="0" class="hidden">
+                  						<td data-name="name">
+                  						    <input type="text" name='name0'  placeholder='Name' class="form-control"/>
+                  						</td>
+                  						<td data-name="mail">
+                  						    <input type="text" name='mail0' placeholder='Email' class="form-control"/>
+                  						</td>
+                  						<td data-name="desc">
+                  						    <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
+                  						</td>
+                      					<td data-name="sel">
+                  						    <select name="sel0">
+                          				        <option value"">Select Option</option>
+                      					        <option value"1">Option 1</option>
+                          				        <option value"2">Option 2</option>
+                          				        <option value"3">Option 3</option>
+                  						    </select>
+                  						</td>
+                                          <td data-name="del">
+                                              <button nam"del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
+                                          </td>
+                  					</tr>
+                  				</tbody>
+                  			</table>
+                  		</div>
+                  	</div>
+                  	<a id="add_row" class="btn btn-default pull-right">Add Row</a>
+                  </div>
 
                 </div>
                 <!-- /.tab-pane -->
@@ -255,7 +299,7 @@ if ($_SESSION['admonoc']==1)
 
           <!-- /.box-body -->
           <div class="box-footer">
-            Footer
+
           </div>
           <!-- /.box-footer-->
       </div>
@@ -332,6 +376,8 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/administrar_ordenes.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <?php
 }
 ob_end_flush();
