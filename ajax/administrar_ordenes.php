@@ -21,13 +21,18 @@ $subtotal=isset($_POST["subtotales"])? limpiarCadena($_POST["subtotales"]):"";
 $descuento_total=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
 $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
 
+$num_factura=isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
+$fecha_factura=isset($_POST["fecha_factura"])? limpiarCadena($_POST["fecha_factura"]):"";
+$valor_factura=isset($_POST["valor_factura"])? limpiarCadena($_POST["valor_factura"]):"";
+
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
 		if (empty($idadministrar_ordenes)){
 
 			  $rspta=$admin_ord->insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
-        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],$_POST["precio_unitario"]);
+        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],$_POST["precio_unitario"],
+        $num_factura,$fecha_factura,$valor_factura);
 
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
 		}

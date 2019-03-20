@@ -15,12 +15,6 @@ if ($_SESSION['admonoc']==1)
 ?>
 <!--Contenido-->
 
-<style media="screen">
-.table-sortable tbody tr {
-  cursor: move;
-}
-
-</style>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Main content -->
@@ -231,56 +225,34 @@ if ($_SESSION['admonoc']==1)
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_2">
                   <div class="container">
-                      <div class="row clearfix">
-                      	<div class="col-md-12 table-responsive">
-                  			<table class="table table-bordered table-hover table-sortable" id="tab_logic">
-                  				<thead>
-                  					<tr >
-                  						<th class="text-center">
-                  							N° Facturas
-                  						</th>
-                  						<th class="text-center">
-                  							Fecha
-                  						</th>
-                  						<th class="text-center">
-                  							Valor
-                  						</th>
-                      					<th class="text-center">
-                  							Opciones
-                  						</th>
-                          				<th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
-                  						</th>
-                  					</tr>
-                  				</thead>
-                  				<tbody>
-                      				<tr id='addr0' data-id="0" class="hidden">
-                  						<td data-name="name">
-                  						    <input type="text" name='name0'  placeholder='Name' class="form-control"/>
-                  						</td>
-                  						<td data-name="mail">
-                  						    <input type="text" name='mail0' placeholder='Email' class="form-control"/>
-                  						</td>
-                  						<td data-name="desc">
-                  						    <textarea name="desc0" placeholder="Description" class="form-control"></textarea>
-                  						</td>
-                      					<td data-name="sel">
-                  						    <select name="sel0">
-                          				        <option value"">Select Option</option>
-                      					        <option value"1">Option 1</option>
-                          				        <option value"2">Option 2</option>
-                          				        <option value"3">Option 3</option>
-                  						    </select>
-                  						</td>
-                                          <td data-name="del">
-                                              <button nam"del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>
-                                          </td>
-                  					</tr>
-                  				</tbody>
-                  			</table>
-                  		</div>
-                  	</div>
-                  	<a id="add_row" class="btn btn-default pull-right">Add Row</a>
+                    <div class="row">
+                      <div class="col-lg-10 col-sm-10 col-md-10 col-xs-12">
+                        <table id="detallesfactura" class="table table-striped table-bordered table-condensed table-hover">
+                          <thead>
+                            <th>Nª Factura</th>
+                            <th>Fecha</th>
+                            <th>Valor</th>
+                            <th>Opciones</th>
+                          </thead>
+                          <tbody>
+                          </tbody>
+
+                          <tfoot>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tfoot>
+                        </table>
+                      </div>
+
+                      <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+                        <button class="btn btn-primary" onclick="agregarfilafactura();" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>
+                      </div>
+                    </div>
                   </div>
+
+
 
                 </div>
                 <!-- /.tab-pane -->
@@ -376,8 +348,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/administrar_ordenes.js"></script>
-<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
 <?php
 }
 ob_end_flush();

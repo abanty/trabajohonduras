@@ -3,102 +3,6 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
-	$(document).ready(function() {
-	    $("#add_row").on("click", function() {
-	        // Dynamic Rows Code
-
-	        // Get max row id and set new id
-	        var newid = 0;
-	        $.each($("#tab_logic tr"), function() {
-	            if (parseInt($(this).data("id")) > newid) {
-	                newid = parseInt($(this).data("id"));
-	            }
-	        });
-	        newid++;
-
-	        var tr = $("<tr></tr>", {
-	            id: "addr"+newid,
-	            "data-id": newid
-	        });
-
-	        // loop through each td and create new elements with name of newid
-	        $.each($("#tab_logic tbody tr:nth(0) td"), function() {
-	            var cur_td = $(this);
-
-	            var children = cur_td.children();
-
-	            // add new td and element if it has a nane
-	            if ($(this).data("name") != undefined) {
-	                var td = $("<td></td>", {
-	                    "data-name": $(cur_td).data("name")
-	                });
-
-	                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-	                c.attr("name", $(cur_td).data("name") + newid);
-	                c.appendTo($(td));
-	                td.appendTo($(tr));
-	            } else {
-	                var td = $("<td></td>", {
-	                    'text': $('#tab_logic tr').length
-	                }).appendTo($(tr));
-	            }
-	        });
-
-	        // add delete button and td
-	        /*
-	        $("<td></td>").append(
-	            $("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
-	                .click(function() {
-	                    $(this).closest("tr").remove();
-	                })
-	        ).appendTo($(tr));
-	        */
-
-	        // add the new row
-	        $(tr).appendTo($('#tab_logic'));
-
-	        $(tr).find("td button.row-remove").on("click", function() {
-	             $(this).closest("tr").remove();
-	        });
-	});
-
-
-	    // Sortable Code
-	    var fixHelperModified = function(e, tr) {
-	        var $originals = tr.children();
-	        var $helper = tr.clone();
-
-	        $helper.children().each(function(index) {
-	            $(this).width($originals.eq(index).width())
-	        });
-
-	        return $helper;
-	    };
-
-	    $(".table-sortable tbody").sortable({
-	        helper: fixHelperModified
-	    }).disableSelection();
-
-	    $(".table-sortable thead").disableSelection();
-
-
-
-	    $("#add_row").trigger("click");
-	});
-
-
-	function calculateRow(row) {
-	    var price = +row.find('input[name^="price"]').val();
-
-	}
-
-	function calculateGrandTotal() {
-	    var grandTotal = 0;
-	    $("table.order-list").find('input[name^="price"]').each(function () {
-	        grandTotal += +$(this).val();
-	    });
-	    $("#grandtotal").text(grandTotal.toFixed(2));
-	}
 
 	mostrarform(false);
 	listar();
@@ -324,13 +228,14 @@ var impuesto=12.5;
 var cont=0;
 var detalles=0;
 
+var detalles_factura=0;
+
+
 $("#btnGuardar").hide();
 
 
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   {
-
-
 		var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
   	var cantidad = 1;
   	var unidad = "";
@@ -367,6 +272,31 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
     	// alert("Insuficiente Saldo para realizar una transacción");
     }
   }
+
+
+
+	function agregarfilafactura()
+	  {
+			var num_factura = "";
+			var fecha_factura = Date.now();
+			var valor_factura = 0;
+
+
+			var filafactura = '<tr class="filafactura" id="filafactura'+cont+'">'+
+				'<td><input type="number" class="form-control input-sm" size="5" name="num_factura" id="" value="'+num_factura+'"></td>'+
+				'<td><input type="date" class="form-control input-sm" name="fecha_factura" id="" value="'+fecha_factura+'"></td>'+
+				'<td><input type="number" step=".01"  class="form-control input-sm" name="valor_factura" id="valor_factura" value="'+valor_factura+'"></td>'+
+				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetallefac('+cont+')">X</button></td>'+
+				'</tr>';
+
+	    	cont++;
+
+	    	detalles_factura=detalles_factura+1;
+
+	    	$('#detallesfactura').append(filafactura);
+
+
+	  }
 
 	/*---------------------------------------------------*
 	|FUNCION PARA LIMPIAR CAMPOS DETALLE VENTA AL INICIAR|
