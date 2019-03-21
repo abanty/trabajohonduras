@@ -277,15 +277,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 	function agregarfilafactura()
 	  {
-			var num_factura = "";
-			var fecha_factura = Date.now();
-			var valor_factura = 0;
-
 
 			var filafactura = '<tr class="filafactura" id="filafactura'+cont+'">'+
-				'<td><input type="number" class="form-control input-sm" size="5" name="num_factura" id="" value="'+num_factura+'"></td>'+
-				'<td><input type="date" class="form-control input-sm" name="fecha_factura" id="" value="'+fecha_factura+'"></td>'+
-				'<td><input type="number" step=".01"  class="form-control input-sm" name="valor_factura" id="valor_factura" value="'+valor_factura+'"></td>'+
+				'<td><input type="number" class="form-control input-sm" size="5" name="num_factura" id="" value=""></td>'+
+				'<td><input type="date" class="form-control input-sm" name="fecha_factura" id="" value=""></td>'+
+				'<td><input type="number" step=".01"  class="form-control input-sm" name="valor_factura" id="valor_factura" value=""></td>'+
 				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetallefac('+cont+')">X</button></td>'+
 				'</tr>';
 

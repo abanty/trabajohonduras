@@ -32,7 +32,7 @@ switch ($_GET["op"]){
 
 			  $rspta=$admin_ord->insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
         $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],$_POST["precio_unitario"],
-        $num_factura,$fecha_factura,$valor_factura);
+        $num_factura,$fecha_factura,$valor_factura,$num_factura,$fecha_factura,$valor_factura);
 
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
 		}

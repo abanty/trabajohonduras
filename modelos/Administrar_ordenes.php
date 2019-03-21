@@ -21,8 +21,6 @@ Class Administrar_ordenes
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-
-
 		$num_elementos=0;
 		$sw=true;
 
@@ -36,13 +34,16 @@ Class Administrar_ordenes
 			$num_elementos=$num_elementos + 1;
 		}
 
-				$sqlfac = "INSERT INTO factura_orden(idadministrar_ordenes,num_factura,fecha_factura,valor_factura,estado)
-				VALUES ('$idadministrar_ordenesnew','$num_factura','$fecha_factura','$valor_factura','Valido')";
-				ejecutarConsulta($sqlfac);
-
+		$sqlfac = "INSERT INTO factura_orden(idadministrar_ordenes,num_factura,fecha_factura,valor_factura)
+		VALUES ('$idadministrar_ordenesnew','$num_factura','$fecha_factura','$valor_factura')";
+		ejecutarConsulta($sqlfac);
 
 		return $sw;
 	}
+
+
+
+
 
 
 	//Implementamos un método para anular la venta
