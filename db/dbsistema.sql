@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2019 a las 22:35:50
--- Versión del servidor: 10.1.24-MariaDB
--- Versión de PHP: 7.1.6
+-- Tiempo de generación: 22-03-2019 a las 00:30:00
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,8 +51,7 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
-(1, 11, 1, 2, '001', '0001', 'Insumos', 'Una breve descripción de algún productos', '0.125', '2019-03-16', '225.02', '1800.15', '200.00', '2025.17', 'Aceptado'),
-(2, 11, 1, 2, '001', '0002', 'Materiales', 'Una descripción cualquier', '0.125', '2019-03-16', '138.44', '1107.50', '20.00', '1245.94', 'Aceptado');
+(1, 11, 1, 1, '001', '0001', 'materiales', 'grfdgfdgfd', '0.125', '2019-03-21', '97.50', '780.00', '20.00', '877.50', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -393,7 +392,36 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (2, 1, 2, 'LPA', 17, 'Un producto A2', '21.11'),
 (3, 1, 3, 'SOU', 21, 'Un producto A3', '11.25'),
 (4, 1, 4, 'CIAL', 33, 'Un producto A4', '32.41'),
-(5, 2, 1, '', 25, '', '45.10');
+(5, 2, 1, '', 25, '', '45.10'),
+(6, 3, 1, '', 20, '', '20.00'),
+(8, 5, 2, 'CAE', 20, 'descripcion', '20.00'),
+(9, 6, 1, 'dfg', 50, 'hgfd', '50.00'),
+(10, 7, 1, 'fg', 20, 'gf', '20.00'),
+(11, 1, 4, '20', 20, 'ghgf', '20.00'),
+(12, 2, 3, 'hgfh', 40, 'fgfdgfd', '40.00'),
+(13, 1, 1, 'dfgd', 20, 'jhnhjjhi', '20.00'),
+(14, 1, 1, 'tyu', 10, 'huytt', '10.00'),
+(15, 1, 3, 'AER', 50, 'nada', '10.00'),
+(16, 1, 1, 'rew', 1, 'rew', '1.00'),
+(17, 2, 3, 'hgfhgf', 20, 'gyhf', '20.00'),
+(18, 1, 1, 'asd', 10, 'jkljhkl', '20.00'),
+(19, 2, 1, 'CAE', 50, '4hjk', '50.00'),
+(20, 1, 1, 'CAE', 20, 'lo mejor de me', '20.00'),
+(21, 1, 1, 'CAE', 50, '', '50.00'),
+(22, 1, 3, 'CAE', 20, 'ygtr', '20.00'),
+(23, 1, 2, 'dfgd', 10, 'gfdg', '10.00'),
+(24, 2, 1, 'dfgd', 20, 'hfghgf', '20.00'),
+(25, 1, 1, 'gfdd', 11, 'hgfhgf', '11.00'),
+(26, 1, 1, 'dfgd', 10, '', '20.00'),
+(27, 1, 2, 'dfgd', 20, '', '20.00'),
+(28, 1, 1, 'CAE', 24, '', '24.00'),
+(29, 1, 1, 'hgfhfg', 20, 'ghfhf', '20.00'),
+(30, 1, 1, 'gfd', 10, 'fgfdg', '10.00'),
+(31, 1, 4, 'gtgfd', 10, 'gfd', '20.00'),
+(32, 2, 2, 'CAE', 20, 'hghfh', '20.00'),
+(33, 2, 2, 'CAE', 10, 'fhgfhgfhgf', '20.00'),
+(34, 1, 2, 'dfgd', 20, '', '20.00'),
+(35, 1, 3, 'CAE', 20, '', '20.00');
 
 -- --------------------------------------------------------
 
@@ -420,6 +448,28 @@ INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasba
 (32, 25, 1, 58, '156.00'),
 (38, 31, 1, 699, '156.00'),
 (40, 33, 1, 5454, '1000000.00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `factura_orden`
+--
+
+CREATE TABLE `factura_orden` (
+  `idfactura_orden` int(11) NOT NULL,
+  `idadministrar_ordenes` int(11) NOT NULL,
+  `num_factura` int(11) NOT NULL,
+  `fecha_factura` datetime NOT NULL,
+  `valor_factura` decimal(11,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `factura_orden`
+--
+
+INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
+(1, 1, 15555, '0000-00-00 00:00:00', '0.00'),
+(2, 1, 14444, '0000-00-00 00:00:00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -1012,6 +1062,12 @@ ALTER TABLE `dtransf_ctaspg`
   ADD KEY `idctasbancarias` (`idctasbancarias`);
 
 --
+-- Indices de la tabla `factura_orden`
+--
+ALTER TABLE `factura_orden`
+  ADD PRIMARY KEY (`idfactura_orden`);
+
+--
 -- Indices de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
@@ -1083,92 +1139,116 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `bancos`
 --
 ALTER TABLE `bancos`
   MODIFY `idbancos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
 --
 -- AUTO_INCREMENT de la tabla `combustibles`
 --
 ALTER TABLE `combustibles`
   MODIFY `idcombustibles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `compromisos`
 --
 ALTER TABLE `compromisos`
   MODIFY `idcompromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
 --
 ALTER TABLE `crear_acuerdo`
   MODIFY `idcrear_acuerdo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_compromisos`
 --
 ALTER TABLE `detalle_compromisos`
   MODIFY `iddetalle_compromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_crear_acuerdo`
 --
 ALTER TABLE `detalle_crear_acuerdo`
   MODIFY `iddetalle_crear_orden` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
   MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
   MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT de la tabla `factura_orden`
+--
+ALTER TABLE `factura_orden`
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
   MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `presupuesto_disponible`
 --
 ALTER TABLE `presupuesto_disponible`
   MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
   MODIFY `idproveedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
   MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
   MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
   MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- Restricciones para tablas volcadas
 --
