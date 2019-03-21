@@ -12,7 +12,7 @@ Class Administrar_ordenes
 
 	//Implementamos un método para insertar registros
 	public function insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,
-	$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario,$num_factura,$fecha_factura,$valor_factura)
+	$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario,$num_factura)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_impuesto,fecha_hora,impuesto,
 		subtotal,descuento_total,monto_total,estado)
@@ -22,7 +22,9 @@ Class Administrar_ordenes
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
 		$num_elementos=0;
+		$num_elementos_fact=0;
 		$sw=true;
+
 
 		while ($num_elementos < count($idpresupuesto_disponible))
 		{
@@ -34,9 +36,16 @@ Class Administrar_ordenes
 			$num_elementos=$num_elementos + 1;
 		}
 
-		$sqlfac = "INSERT INTO factura_orden(idadministrar_ordenes,num_factura,fecha_factura,valor_factura)
-		VALUES ('$idadministrar_ordenesnew','$num_factura','$fecha_factura','$valor_factura')";
-		ejecutarConsulta($sqlfac);
+
+while ($num_elementos_fact < count($num_factura))
+		{
+			$sqlfac = "INSERT INTO factura_orden(idadministrar_ordenes,num_factura,fecha_factura,valor_factura)
+			VALUES ('$idadministrar_ordenesnew','$num_factura[$num_elementos_fact]','$fecha_factura[$num_elementos_fact]','$valor_factura[$num_elementos_fact]')";
+
+			ejecutarConsulta($sqlfac) or $sw = false;
+			$num_elementos_fact=$num_elementos_fact + 1;
+		}
+
 
 		return $sw;
 	}

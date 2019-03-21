@@ -226,7 +226,7 @@ if ($_SESSION['admonoc']==1)
                 <div class="tab-pane" id="tab_2">
                   <div class="container">
                     <div class="row">
-                      <div class="col-lg-10 col-sm-10 col-md-10 col-xs-12">
+                      <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
                         <table id="detallesfactura" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
                             <th>Nª Factura</th>
@@ -237,10 +237,10 @@ if ($_SESSION['admonoc']==1)
                           <tbody>
                           </tbody>
 
-                            <td><input type="number" form="formulario" class="form-control input-sm" size="5" name="num_factura" id="" value=""></td>
+                            <!-- <td><input type="number" form="formulario" class="form-control input-sm" size="5" name="num_factura" id="" value=""></td>
                             <td><input type="date" form="formulario" class="form-control input-sm" size="5" name="fecha_factura" id="" value=""></td>
                             <td><input type="number" form="formulario" step=".01" class="form-control input-sm" size="5" name="valor_factura" id="" value=""></td>
-                            <td style="text-align:center;"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar </button></td>
+                            <td style="text-align:center;"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar </button></td> -->
                           <tfoot>
                             <th></th>
                             <th></th>
@@ -250,8 +250,8 @@ if ($_SESSION['admonoc']==1)
                         </table>
                       </div>
 
-                      <div class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-                        <button class="btn btn-primary" onclick="agregarfilafactura();" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>
+                      <div id="here_inside" class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
+
                       </div>
                     </div>
                   </div>

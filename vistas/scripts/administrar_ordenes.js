@@ -4,6 +4,10 @@ var tabla;
 function init(){
 
 
+	$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
+					$("#here_inside").html(r);
+	});
+
 	mostrarform(false);
 	listar();
 
@@ -226,6 +230,8 @@ function anular(idadministrar_ordenes)
 var impuesto=15;
 var impuesto=12.5;
 var cont=0;
+
+var cont_factura=1;
 var detalles=0;
 
 var detalles_factura=0;
@@ -275,17 +281,19 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 
 
-	function agregarfilafactura()
+	function agregarfilafactura(num_factura)
 	  {
+			var fecha_factura = Date.now();
+			var valor_factura = 0;
 
-			var filafactura = '<tr class="filafactura" id="filafactura'+cont+'">'+
-				'<td><input type="number" class="form-control input-sm" size="5" name="num_factura" id="" value=""></td>'+
-				'<td><input type="date" class="form-control input-sm" name="fecha_factura" id="" value=""></td>'+
-				'<td><input type="number" step=".01"  class="form-control input-sm" name="valor_factura" id="valor_factura" value=""></td>'+
-				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetallefac('+cont+')">X</button></td>'+
+				var filafactura = '<tr class="filafactura" id="filafactura'+cont_factura+'">'+
+				'<td><input type="number" form="formulario" class="form-control input-sm" size="5" name="num_factura[]" id="" value="'+num_factura+'"></td>'+
+				'<td><input type="date" form="formulario" class="form-control input-sm" name="fecha_factura[]" id="" value="'+fecha_factura+'"></td>'+
+				'<td><input type="number" form="formulario" step=".01"  class="form-control input-sm" name="valor_factura[]" id="" value="'+valor_factura+'"></td>'+
+				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetallefac('+cont_factura+')">X</button></td>'+
 				'</tr>';
 
-	    	cont++;
+	    	cont_factura++;
 
 	    	detalles_factura=detalles_factura+1;
 
