@@ -161,6 +161,8 @@ if ($_SESSION['admonoc']==1)
                                 <th>Precio Unitario</th>
                                 <th>Subtotal</th>
                               </thead>
+                              <tbody id="msg">
+                              </tbody>
                               <tbody>
                               </tbody>
 

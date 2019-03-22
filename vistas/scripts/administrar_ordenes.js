@@ -66,10 +66,11 @@ function limpiar()
 //Función mostrar formulario
 function mostrarform(flag)
 {
+
 	limpiar();
 	if (flag)
 	{
-
+		evaluar();
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
@@ -407,10 +408,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   	if (detalles>0)
     {
       $("#btnGuardar").show();
+			$("#detalles tbody#msg").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>').remove();
     }
     else
     {
-			// alert("no hay ningun registro")
+			$("#detalles tbody#msg").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 
       $("#btnGuardar").hide();
       cont=0;
