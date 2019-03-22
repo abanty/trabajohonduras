@@ -235,17 +235,15 @@ if ($_SESSION['admonoc']==1)
                             <th>Opciones</th>
                           </thead>
                           <tbody>
-                          </tbody>
 
-                            <!-- <td><input type="number" form="formulario" class="form-control input-sm" size="5" name="num_factura" id="" value=""></td>
-                            <td><input type="date" form="formulario" class="form-control input-sm" size="5" name="fecha_factura" id="" value=""></td>
-                            <td><input type="number" form="formulario" step=".01" class="form-control input-sm" size="5" name="valor_factura" id="" value=""></td>
-                            <td style="text-align:center;"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Eliminar </button></td> -->
+                          </tbody>
                           <tfoot>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <tr style="height:20px;">
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                            </tr>
                           </tfoot>
                         </table>
                       </div>

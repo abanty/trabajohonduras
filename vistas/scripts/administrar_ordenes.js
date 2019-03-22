@@ -4,6 +4,7 @@ var tabla;
 function init(){
 
 
+
 	$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
 					$("#here_inside").html(r);
 	});
@@ -68,13 +69,14 @@ function mostrarform(flag)
 	limpiar();
 	if (flag)
 	{
+
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
 		listarPresupuesto_disponible();
 
-		$("#btnGuardar").hide();
+		// $("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").show();
 		detalles=0;
@@ -200,7 +202,7 @@ function mostrar(idadministrar_ordenes)
 		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
 
 		//Ocultar y mostrar los botones
-		$("#btnGuardar").hide();
+		// $("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").hide();
  	});
@@ -237,7 +239,7 @@ var detalles=0;
 var detalles_factura=0;
 
 
-$("#btnGuardar").hide();
+// $("#btnGuardar").hide();
 
 
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
@@ -283,7 +285,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 	function agregarfilafactura()
 	  {
-
 			var now = new Date();
 			var day = ("0" + now.getDate()).slice(-2);
 			var month = ("0" + (now.getMonth() + 1)).slice(-2);
@@ -293,19 +294,18 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 			var num_factura = "";
 			var valor_factura = parseFloat(Math.round(0 * 100) / 100).toFixed(2);
 
-				var filafactura = '<tr class="filafactura" id="filafactura'+cont_factura+'">'+
-				'<td><input type="number" form="formulario" class="form-control input-sm" size="5" name="num_factura[]" id="" value="'+num_factura+'"></td>'+
-				'<td><input type="date" form="formulario" class="form-control input-sm" name="fecha_factura[]" id="" value="'+fecha_factura+'"></td>'+
-				'<td><input type="number" form="formulario" step=".01"  class="form-control input-sm" name="valor_factura[]" id="" value="'+valor_factura+'"></td>'+
-				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle_factura('+cont_factura+')">X</button></td>'+
-				'</tr>';
+			var filafactura = '<tr class="filafactura" id="filafactura'+cont_factura+'">'+
+			'<td><input type="number" class="form-control input-sm" form="formulario" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" size="5" name="num_factura[]" id="" value="'+num_factura+'"></td>'+
+			'<td><input type="date" class="form-control input-sm" form="formulario" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="fecha_factura[]" id="" value="'+fecha_factura+'"></td>'+
+			'<td><input type="number" class="form-control input-sm" form="formulario" step=".01" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="valor_factura[]" id="" value="'+valor_factura+'"></td>'+
+			'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle_factura('+cont_factura+')">X</button></td>'+
+			'</tr>';
 
-	    	cont_factura++;
+    	cont_factura++;
 
-	    	detalles_factura=detalles_factura+1;
+    	detalles_factura=detalles_factura+1;
 
-	    	$('#detallesfactura').append(filafactura);
-
+    	$('#detallesfactura').append(filafactura);
 
 	  }
 
@@ -410,6 +410,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
     }
     else
     {
+			// alert("no hay ningun registro")
+
       $("#btnGuardar").hide();
       cont=0;
     }

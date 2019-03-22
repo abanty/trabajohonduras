@@ -32,9 +32,9 @@ switch ($_GET["op"]){
 
 		if (empty($idadministrar_ordenes)){
 
-      $some = isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
+      $variable_factura= isset($_POST["num_factura"]);
 
-      if (count($some)>0) {
+      if ($variable_factura){
 
         $rspta=$admin_ord->insertar_mas_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
         $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
@@ -44,8 +44,6 @@ switch ($_GET["op"]){
         $rspta=$admin_ord->insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
         $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
         ,$_POST["precio_unitario"]);
-
-
       }
 
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
