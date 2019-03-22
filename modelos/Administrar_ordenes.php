@@ -11,7 +11,7 @@ Class Administrar_ordenes
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,
+	public function insertar_mas_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,
 	$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario,$num_factura,$fecha_factura,$valor_factura)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_impuesto,fecha_hora,impuesto,
@@ -36,14 +36,42 @@ Class Administrar_ordenes
 			$num_elementos=$num_elementos + 1;
 		}
 
-
-while ($num_elementos_fact < count($num_factura))
-		{
+		while ($num_elementos_fact < count($num_factura))
+   {
 			$sqlfac = "INSERT INTO factura_orden(idadministrar_ordenes,num_factura,fecha_factura,valor_factura)
 			VALUES ('$idadministrar_ordenesnew','$num_factura[$num_elementos_fact]','$fecha_factura[$num_elementos_fact]','$valor_factura[$num_elementos_fact]')";
-
 			ejecutarConsulta($sqlfac) or $sw = false;
 			$num_elementos_fact=$num_elementos_fact + 1;
+		}
+
+
+		return $sw;
+	}
+
+
+	//Implementamos un método para insertar registros
+	public function insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,
+	$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario)
+	{
+		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_impuesto,fecha_hora,impuesto,
+		subtotal,descuento_total,monto_total,estado)
+		VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_impuesto','$fecha_hora',
+		'$impuesto','$subtotal','$descuento_total','$monto_total','Aceptado')";
+
+		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
+
+		$num_elementos=0;
+		$num_elementos_fact=0;
+		$sw=true;
+
+		while ($num_elementos < count($idpresupuesto_disponible))
+		{
+			$sql_detalle = "INSERT INTO detalle_orden(idadministrar_ordenes,idpresupuesto_disponible,unidad,cantidad,descripcion,precio_unitario)
+			VALUES ('$idadministrar_ordenesnew','$idpresupuesto_disponible[$num_elementos]','$unidad[$num_elementos]','$cantidad[$num_elementos]',
+			'$descripcion[$num_elementos]','$precio_unitario[$num_elementos]')";
+
+			ejecutarConsulta($sql_detalle) or $sw = false;
+			$num_elementos=$num_elementos + 1;
 		}
 
 

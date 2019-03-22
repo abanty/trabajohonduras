@@ -20,23 +20,37 @@ $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
 $subtotal=isset($_POST["subtotales"])? limpiarCadena($_POST["subtotales"]):"";
 $descuento_total=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
 $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
-// $idadministrar_ordenes_fact = isset($_POST["contador"])? limpiarCadena($_POST["contador"]):"";
-// $num_factura=isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
-// $fecha_factura=isset($_POST["fecha_factura"])? limpiarCadena($_POST["fecha_factura"]):"";
-// $valor_factura=isset($_POST["valor_factura"])? limpiarCadena($_POST["valor_factura"]):"";
+
+
+// $num_factura = isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
+// $fecha_factura = isset($_POST["fecha_factura"])? limpiarCadena($_POST["fecha_factura"]):"";
+// $valor_factura = isset($_POST["valor_factura"])? limpiarCadena($_POST["valor_factura"]):"";
+
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
 		if (empty($idadministrar_ordenes)){
 
-			  $rspta=$admin_ord->insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
-        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],$_POST["precio_unitario"],
-        $_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
+      $some = isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
+
+      if (count($some)>0) {
+
+        $rspta=$admin_ord->insertar_mas_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
+        ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
+
+      }else {
+        $rspta=$admin_ord->insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
+        ,$_POST["precio_unitario"]);
+
+
+      }
 
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
-		}
-		else {
+
+  	}else {
 
 
 		}
@@ -95,9 +109,7 @@ switch ($_GET["op"]){
 	// break;
 
  case 'button_add':
-$counting= 1;
- echo '<button class="btn btn-warning" onclick="agregarfilafactura('.$counting.')" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>';
-
+      echo '<button class="btn btn-warning" onclick="agregarfilafactura()" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>';
  break;
 
 	case 'listar':
@@ -108,7 +120,6 @@ $counting= 1;
  		while ($reg=$rspta->fetch_object()){
 
  				$url='../reportes/OrdenCompra.php?id=';
-
 
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.

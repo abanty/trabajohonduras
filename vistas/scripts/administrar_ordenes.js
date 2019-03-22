@@ -231,7 +231,7 @@ var impuesto=15;
 var impuesto=12.5;
 var cont=0;
 
-var cont_factura=1;
+var cont_factura=0;
 var detalles=0;
 
 var detalles_factura=0;
@@ -281,16 +281,23 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 
 
-	function agregarfilafactura(num_factura)
+	function agregarfilafactura()
 	  {
-			var fecha_factura = Date.now();
-			var valor_factura = 0;
+
+			var now = new Date();
+			var day = ("0" + now.getDate()).slice(-2);
+			var month = ("0" + (now.getMonth() + 1)).slice(-2);
+			var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+			var fecha_factura = today;
+			var num_factura = "";
+			var valor_factura = parseFloat(Math.round(0 * 100) / 100).toFixed(2);
 
 				var filafactura = '<tr class="filafactura" id="filafactura'+cont_factura+'">'+
 				'<td><input type="number" form="formulario" class="form-control input-sm" size="5" name="num_factura[]" id="" value="'+num_factura+'"></td>'+
 				'<td><input type="date" form="formulario" class="form-control input-sm" name="fecha_factura[]" id="" value="'+fecha_factura+'"></td>'+
 				'<td><input type="number" form="formulario" step=".01"  class="form-control input-sm" name="valor_factura[]" id="" value="'+valor_factura+'"></td>'+
-				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetallefac('+cont_factura+')">X</button></td>'+
+				'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle_factura('+cont_factura+')">X</button></td>'+
 				'</tr>';
 
 	    	cont_factura++;
@@ -396,13 +403,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   }
 
 
-
-
-
-
-
-
-
   function evaluar(){
   	if (detalles>0)
     {
@@ -421,5 +421,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   	detalles=detalles-1;
   	evaluar();
   }
+
+
+	function eliminarDetalle_factura(indice_factura){
+		$("#filafactura" + indice_factura).remove();
+		detalles_factura=detalles_factura-1;
+	}
 
 init();
