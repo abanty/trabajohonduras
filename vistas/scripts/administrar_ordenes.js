@@ -28,6 +28,16 @@ function init(){
 	            $("#idprograma").html(r);
 	            $('#idprograma').selectpicker('refresh');
 	});
+
+
+//Seleccionamos un numero de cuenta contactenado con el nombtre del banco
+	$.post("../ajax/administrar_ordenes.php?op=select_cta_banco", function(r){
+	            $("#idbancos").html(r);
+	            $('#idbancos').selectpicker('refresh');
+	});
+
+
+
 }
 
 
@@ -36,6 +46,9 @@ function init(){
 //-----------------------------
 function limpiar()
 {
+
+	$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
 	$("#idadministrar_ordenes").val("");
 	$("#num_orden").val("");
 	$("#num_comprobante").val("");
@@ -46,8 +59,14 @@ function limpiar()
 	$("#idprograma").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Programa'});
 	$("#idproveedores").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Proveedor'});
 	$("#tipo_impuesto").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Impuesto'});
+	$("#tipopago").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Tipo'});
+	$("#idbancos").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige Cuenta de banco'});
+
+
 
 	$(".filas").remove();
+	$(".filafactura").remove();
+
 	$("#sub_total").html("L. 0.00");
 	$("#montototal").html("L. 0.00");
 
@@ -70,7 +89,6 @@ function mostrarform(flag)
 	limpiar();
 	if (flag)
 	{
-		evaluar();
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
@@ -159,6 +177,7 @@ function listarPresupuesto_disponible()
 
 function guardaryeditar(e)
 {
+
 	e.preventDefault(); //No se activará la acción predeterminada del evento
 	//$("#btnGuardar").prop("disabled",true);
 	var formData = new FormData($("#formulario")[0]);
@@ -170,9 +189,16 @@ function guardaryeditar(e)
 	    contentType: false,
 	    processData: false,
 
+
+			beforeSend: function(xhr){
+					 mostrarform(false);
+		       $('#preloader').show();  // #info must be defined somehwere
+		   },
 	    success: function(datos)
 	    {
-	          bootbox.alert(datos);
+
+						 $('#preloader').hide();
+					    bootbox.alert(datos);
 	          mostrarform(false);
 	          listar();
 	    }
@@ -240,7 +266,7 @@ var detalles=0;
 var detalles_factura=0;
 
 
-// $("#btnGuardar").hide();
+$("#btnGuardar").hide();
 
 
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
@@ -263,7 +289,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
     	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()"  step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
 			'<td style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
-    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
+    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
     	cont++;
     	detalles=detalles+1;
@@ -307,6 +333,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
     	detalles_factura=detalles_factura+1;
 
     	$('#detallesfactura').append(filafactura);
+
+			evaluar_factura();
 
 	  }
 
@@ -408,16 +436,28 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   	if (detalles>0)
     {
       $("#btnGuardar").show();
-			$("#detalles tbody#msg").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>').remove();
+			$("#mynewtd").remove();
     }
     else
     {
-			$("#detalles tbody#msg").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-
+			$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
       $("#btnGuardar").hide();
       cont=0;
     }
   }
+
+	function evaluar_factura(){
+		if (detalles_factura>0)
+		{
+			$("#mynewtd_factura").remove();
+		}
+		else
+		{
+		$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
+
+			cont_factura=0;
+		}
+	}
 
   function eliminarDetalle(indice){
   	$("#fila" + indice).remove();
@@ -430,6 +470,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 	function eliminarDetalle_factura(indice_factura){
 		$("#filafactura" + indice_factura).remove();
 		detalles_factura=detalles_factura-1;
+		evaluar_factura();
 	}
 
 init();

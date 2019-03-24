@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -50,13 +50,21 @@ Class Bancos
 	public function listar()
 	{
 		$sql="SELECT * FROM bancos";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
 	//Implementar un método para listar los registros y mostrar en el select
 	public function select()
 	{
 		$sql="SELECT * FROM bancos where condicion=1";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
+	}
+
+	public function select_ctas_bancos()
+	{
+		$sql="SELECT b.idbancos, b.nombre_banco, cta.numctapg
+		FROM bancos b
+		INNER JOIN ctasbancarias cta on cta.idbancos = b.idbancos  where b.condicion=1";
+		return ejecutarConsulta($sql);
 	}
 
 }

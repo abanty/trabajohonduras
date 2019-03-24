@@ -22,6 +22,15 @@ $descuento_total=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuen
 $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
 
 
+// VARIABLES FUNCION Comprobante
+
+$idbancos=isset($_POST["idbancos"])? limpiarCadena($_POST["idbancos"]):"";
+$tipopago=isset($_POST["tipopago"])? limpiarCadena($_POST["tipopago"]):"";
+$num_transferencia=isset($_POST["num_transferencia"])? limpiarCadena($_POST["num_transferencia"]):"";
+$debitos=isset($_POST["debitos"])? limpiarCadena($_POST["debitos"]):"";
+$creditos=isset($_POST["creditos"])? limpiarCadena($_POST["creditos"]):"";
+$contabilidad=isset($_POST["contabilidad"])? limpiarCadena($_POST["contabilidad"]):"";
+
 // $num_factura = isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
 // $fecha_factura = isset($_POST["fecha_factura"])? limpiarCadena($_POST["fecha_factura"]):"";
 // $valor_factura = isset($_POST["valor_factura"])? limpiarCadena($_POST["valor_factura"]):"";
@@ -34,17 +43,30 @@ switch ($_GET["op"]){
 
       $variable_factura= isset($_POST["num_factura"]);
 
-      if ($variable_factura){
+      if ($variable_factura && $contabilidad){
 
-        $rspta=$admin_ord->insertar_mas_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
-        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-        ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
+        $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+               $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
+               ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],$idbancos,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
-      }else {
-        $rspta=$admin_ord->insertar($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
-        $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-        ,$_POST["precio_unitario"]);
-      }
+          }elseif ($variable_factura) {
+
+            $rspta=$admin_ord->insertar_orden_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+            $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
+            ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
+
+                }elseif ($contabilidad) {
+
+                  $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+                   $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
+                   ,$_POST["precio_unitario"],$idbancos,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
+
+                          }else {
+
+                            $rspta=$admin_ord->insertar_orden($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+                                  $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
+                                  ,$_POST["precio_unitario"]);
+                          }
 
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
 
@@ -159,6 +181,20 @@ switch ($_GET["op"]){
 				}
 
 	break;
+
+  case "select_cta_banco":
+		require_once "../modelos/Bancos.php";
+		$bancos = new Bancos();
+
+		$rspta = $bancos->select_ctas_bancos();
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<option value=' . $reg->idbancos. '>' . $reg->nombre_banco . ' - ' . $reg->numctapg . '</option>';
+				}
+
+	break;
+
 
 	break;
 	case "selectPrograma":

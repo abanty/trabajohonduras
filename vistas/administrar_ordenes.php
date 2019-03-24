@@ -15,8 +15,27 @@ if ($_SESSION['admonoc']==1)
 ?>
 <!--Contenido-->
 
+
+<style media="screen">
+
+
+#preloader{
+  background: #000000d9;
+  position: fixed;
+  z-index: 121;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  display: none;
+}
+
+</style>
+
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+
   <!-- Main content -->
   <section class="content-header">
     <h1>
@@ -76,7 +95,9 @@ if ($_SESSION['admonoc']==1)
           </div>
 
           <div class="box-body" id="formularioregistros">
+
             <div class="col-md-12">
+
                   <!-- Custom Tabs -->
                   <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
@@ -140,12 +161,12 @@ if ($_SESSION['admonoc']==1)
                           </div>
 
 
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center;">
-                            <hr>
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; padding:20px;">
+
                             <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Objeto Gasto</button>
                             </a>
-                            <hr>
+
                           </div>
 
 
@@ -161,8 +182,7 @@ if ($_SESSION['admonoc']==1)
                                 <th>Precio Unitario</th>
                                 <th>Subtotal</th>
                               </thead>
-                              <tbody id="msg">
-                              </tbody>
+
                               <tbody>
                               </tbody>
 
@@ -261,6 +281,49 @@ if ($_SESSION['admonoc']==1)
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_3">
+
+
+                <br>
+                <div class="row container">
+
+                    <div class="form-group  col-md-4">
+                        <label class="control-label" for="debitos">Debitos:</label>
+                        <input type="text" class="form-control input-sm" form="formulario" name="debitos" id="debitos" style="text-transform: uppercase;" placeholder="Ingresa un debito">
+                    </div>
+
+                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                      <label>Tipo de Pago(*):</label>
+                      <select class="form-control select-picker" form="formulario" name="tipopago" id="tipopago" data-live-search="true">
+                        <option value="">Deposito</option>
+                        <option value="">Cheque</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-3" id="contenedorNumeroCuenta">
+                        <label class="control-label" for="NumeroCuenta">Numero de Cuenta</label>
+                        <input type="number" class="form-control input-sm" form="formulario" id="num_transferencia" name="num_transferencia" placeholder="Ingresa Numero de cuenta">
+                    </div>
+                </div>
+
+                <div class="row container">
+                    <div class="form-group  col-md-4">
+                        <label class="control-label" for="contabilidad">Contabilidad</label>
+                        <input type="text" class="form-control input-sm" form="formulario" id="contabilidad" name="contabilidad" style="text-transform: uppercase;" placeholder="Ingresa estado">
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                      <label>Cuenta de banco a debitar(*):</label>
+                      <select id="idbancos" name="idbancos" class="form-control selectpicker" form="formulario" data-live-search="true"></select>
+                    </div>
+
+                </div>
+
+                <div class="row container">
+                    <div class="form-group  col-md-4">
+                        <label class="control-label" for="creditos">Creditos</label>
+                        <input type="text" class="form-control input-sm" form="formulario" style="text-transform: uppercase;"  id="creditos" name="creditos"  placeholder="Ingresa Creditos">
+                    </div>
+                </div>
 
                 </div>
                 <!-- /.tab-pane -->
