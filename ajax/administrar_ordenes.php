@@ -143,9 +143,22 @@ switch ($_GET["op"]){
 
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-close"></i></button>':
+ 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
  					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>').
- 					'<a target="_blank" href="'.$url.$reg->idadministrar_ordenes.'"> <button class="btn btn-info btn-sm"><i class="fas fa-print"></i></button></a>',
+
+          '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown open">
+              <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
+                <i class="fas fa-print" aria-hidden="true"></i>
+              </a>
+                <ul class="dropdown-menu">
+                  <li><a target="_blank" href="'.$url.$reg->idadministrar_ordenes.'">Solicitud de compra</a></li>
+                  <li><a target="_blank" href="">Orden de compra</a></li>
+                  <li><a target="_blank" href="">Comprobante de pago</a></li>
+                </ul>
+          </li>',
+
+
+          // '<a target="_blank" href="'.$url.$reg->idadministrar_ordenes.'"> <button class="btn btn-info btn-sm"><i class="fas fa-print"></i></button></a>',
  				"1"=>$reg->fecha,
  				"2"=>$reg->proveedor,
  				"3"=>$reg->usuario,

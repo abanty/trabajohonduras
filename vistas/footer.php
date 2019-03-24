@@ -12,6 +12,7 @@
     <!-- AdminLTE App -->
     <script src="../public/js/app.min.js"></script>
     <script type="text/javascript"   src="../public/js/sweetalert2.js"></script>
+    <script src="../public/js/waves.js"></script>
     <!-- DATATABLES -->
     <script src="../public/datatables/jquery.dataTables.min.js"></script>
     <script src="../public/datatables/dataTables.buttons.min.js"></script>

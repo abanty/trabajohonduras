@@ -11,9 +11,16 @@ if (strlen(session_id()) < 1)
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../public/css/font-awesome.css">
     <link rel="stylesheet" href="../public/fontawesome5/css/all.css">
+    <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
     <link rel="stylesheet" href="../public/css/spinner.css">
+    <!-- Waves Effect Css -->
+    <link href="../public/css/waves.css" rel="stylesheet" />
+
+
     <link rel="stylesheet" href="../public/css/ionicons.min.css">
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
     <link rel="shortcut icon" href="../public/img/apple-touch-icon.png">
