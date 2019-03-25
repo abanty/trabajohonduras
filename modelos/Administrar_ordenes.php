@@ -176,53 +176,53 @@ Class Administrar_ordenes
 	}
 
 
-	//Implementar un método para mostrar los datos de un registro a modificar
-	public function mostrar($idadministrar_ordenes)
+	// -------------------------------------------
+	// METODO PARA MOSTRAR REGISTROS DE LA ORDEN:|
+	// -------------------------------------------
+	public function mostrar_orden($idadministrar_ordenes)
 	{
-		$sql="
-		SELECT
-		v.idadministrar_ordenes,
-		DATE(v.fecha_hora) as fecha,
-		v.idproveedores,
-		p.casa_comercial as proveedor,
-		u.idusuario,
-		u.nombre as usuario,
-		w.idprograma,
-		w.codigop as codigo,
-		v.num_orden,
-		v.num_comprobante,
-		v.tipo_impuesto,
-		v.monto_total,
-		v.impuesto,
-		v.estado
-		FROM orden_compra v
-		INNER JOIN proveedores p ON
-		v.idproveedores=p.idproveedores
-		INNER JOIN usuario u ON
-		 v.idusuario=u.idusuario
-		INNER JOIN programa w ON
-		 v.idprograma=w.idprograma
-		 WHERE v.idadministrar_ordenes='$idadministrar_ordenes'";
+		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
+		ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,
+		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idbancos, cb.tipo_pago,
+		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad
+									FROM administrar_ordenes ao
+									INNER JOIN proveedores p ON
+									ao.idproveedores=p.idproveedores
+									INNER JOIN usuario u ON
+									ao.idusuario=u.idusuario
+									INNER JOIN programa w ON
+									ao.idprograma=w.idprograma
+									INNER JOIN contabilidad cb ON
+									cb.idadministrar_ordenes = ao.idadministrar_ordenes
+		 			WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
 
-public function listarDetalle($idadministrar_ordenes)
-{
-	$sql="
-	SELECT
-	dv.idadministrar_ordenes,
-	dv.idpresupuesto_disponible,
-	a.codigo,
-	dv.unidad,
-	dv.cantidad,
-	dv.descripcion,
-	dv.precio_unitario,
-	dv.descuento,
-	(dv.cantidad*dv.precio_unitario-dv.descuento) as subtotal
-	 FROM detalle_orden dv inner join Presupuesto_disponible a on dv.
-	 idpresupuesto_disponible=a.idpresupuesto_disponible where dv.idadministrar_ordenes='$idadministrar_ordenes'";
-	return ejecutarConsulta($sql);
+
+
+	// ---------------------------------------------
+	// METODO PARA LISTAR LOS DETALLES DE LA ORDEN:|
+	// ---------------------------------------------
+	public function listarDetalle_orden($idadministrar_ordenes)
+	{
+		$sql="SELECT dor.iddetalle_orden, dor.idadministrar_ordenes, dor.idpresupuesto_disponible, dor.unidad, dor.cantidad, dor.descripcion,
+		dor.precio_unitario, pd.nombre_objeto, pd.grupo, pd.subgrupo, pd.codigo, pd.presupuesto_anual, pd.fondos_disponibles, pd.condicion
+		FROM detalle_orden dor INNER JOIN presupuesto_disponible pd ON pd.idpresupuesto_disponible = dor.idpresupuesto_disponible
+		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes'";
+		return ejecutarConsulta($sql);
 	}
+
+	
+	// ---------------------------------------------
+	// METODO PARA LISTAR LAS FACTURAS DE LA ORDEN:|
+	// ---------------------------------------------
+	public function listarFactura_orden($idadministrar_ordenes)
+	{
+		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes, fo.num_factura, fo.fecha_factura, fo.valor_factura
+		FROM factura_orden fo INNER JOIN administrar_ordenes ao ON fo.idadministrar_ordenes = ao.idadministrar_ordenes
+		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
+		return ejecutarConsulta($sql);
+		}
 
 	//Implementar un método para listar los registros
 	public function listarOrden()

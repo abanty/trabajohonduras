@@ -81,55 +81,55 @@ switch ($_GET["op"]){
  		echo $rspta ? "Orden de compra anulada" : "Orden de compra no se puede anular";
 	break;
 
-	case 'mostrar':
-		$rspta=$admin_ord->mostrar($idadministrar_ordenes);
+	case 'mostrar_orden_edit':
+		$rspta=$admin_ord->mostrar_orden($idadministrar_ordenes);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
 
-	// case 'listarDetalle':
-	// 	//Recibimos el idingreso
-	// 	$id=$_GET['id'];
 
-	// 	$rspta = $administrar_ordenes->listarDetalle($id);
-	// 	$total=0;
-	// 	echo '<thead style="background-color:#A9D0F5">
- //                                    <th>Opciones</th>
- //                                    <th>Objeto_gasto</th>
- //                                    <th>Unidad</th>
- //                                    <th>Cantidad</th>
- //                                    <th>Descripcion</th>
- //                                    <th>Precio Unitario</th>
- //                                    <th>Descuento</th>
- //                                    <th>Subtotal</th>
- //                                </thead>';
 
-	// 	while ($reg = $rspta->fetch_object())
-	// 			{
-	// 				echo '<tr class="filas"><td></td>
-	// 				<td>'.$reg->codigo.'</td>
-	// 				<td>'.$reg->unidad.'</td>
-	// 				<td>'.$reg->cantidad.'</td>
-	// 				<td>'.$reg->descripcion.'</td>
-	// 				<td>'.$reg->precio_unitario.'</td>
-	// 				<td>'.$reg->descuento.'</td>
-	// 				<td>'.$reg->subtotal.'</td></tr>';
-	// 				$total=$total+($reg->precio_unitario*$reg->cantidad-$reg->descuento);
-	// 			}
-	// 	echo '<tfoot>
- //                                    <th>TOTAL</th>
- //                                    <th></th>
- //                                    <th></th>
- //                                    <th></th>
- //                                    <th></th>
- //                                    <th></th>
- //                                    <th></th>
- //                                    <th><h4 id="total">L.'.$total.'</h4><input type="hidden" name="total_administrar_ordenes" id="total_administrar_ordenes"></th>
- //                                </tfoot>';
-	// break;
+	case 'listar_Orden_Detalle':
+		//Recibimos el idingreso
+		$id=$_GET['id'];
+
+		$rspta = $admin_ord->listarDetalle_orden($id);
+		$total=0;
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<tr class="filas"><td style="width: 80px; text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+					<td style="width: 106px;">'.$reg->codigo.'</td>
+          <td style="width: 95px;">'.$reg->unidad.'</td>
+        	<td style="width: 108px;">'.$reg->cantidad.'</td>
+					<td style="width: 377px;">'.$reg->descripcion.'</td>
+					<td style="width: 162px;">'.$reg->precio_unitario.'</td>
+					<td style="width: 214px;">'.$reg->precio_unitario * $reg->cantidad.'</td></tr>';
+				}
+
+	break;
+
+
+  case 'listar_Orden_Facturas':
+    //Recibimos el idingreso
+    $id=$_GET['id'];
+
+    $rspta = $admin_ord->listarFactura_orden($id);
+    $total=0;
+
+    while ($reg = $rspta->fetch_object())
+        {
+          echo '<tr class="filafactura">
+          <td style="width: 224px;">'.$reg->num_factura.'</td>
+          <td style="width: 205px;">'.$reg->fecha_factura.'</td>
+          <td style="width: 225px;">'.$reg->valor_factura.'</td>
+          <td style="width: 95px; text-align:center;"><i class="fas fa-check" style="color: green;"></i></td></tr>';
+        }
+
+  break;
 
  case 'button_add':
-      echo '<button class="btn btn-warning" onclick="agregarfilafactura()" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>';
+      echo '<button class="btn btn-warning" id="btnaddfact" onclick="agregarfilafactura()" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>';
  break;
 
 	case 'listar':
@@ -139,26 +139,25 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
 
- 				$url='../reportes/OrdenCompra.php?id=';
+ 				// $urlsolicitud='../reportes/OrdenCompra.php?id=';
+        $urlorden='../reportes/OrdenCompra.php?id=';
+        $urlcomprobante='../reportes/Comprobante_orden.php?id=';
 
  			$data[]=array(
- 				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
+ 				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
- 					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>').
+ 					'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>').
 
-          '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown open">
+          '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
               <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
                 <i class="fas fa-print" aria-hidden="true"></i>
               </a>
-                <ul class="dropdown-menu">
-                  <li><a target="_blank" href="'.$url.$reg->idadministrar_ordenes.'">Solicitud de compra</a></li>
-                  <li><a target="_blank" href="">Orden de compra</a></li>
-                  <li><a target="_blank" href="">Comprobante de pago</a></li>
+                <ul class="dropdown-menu">              
+                  <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+                  <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
                 </ul>
           </li>',
 
-
-          // '<a target="_blank" href="'.$url.$reg->idadministrar_ordenes.'"> <button class="btn btn-info btn-sm"><i class="fas fa-print"></i></button></a>',
  				"1"=>$reg->fecha,
  				"2"=>$reg->proveedor,
  				"3"=>$reg->usuario,

@@ -207,35 +207,56 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(idadministrar_ordenes)
+function orden_mostrar(idadministrar_ordenes)
 {
-	$.post("../ajax/administrar_ordenes.php?op=mostrar",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
+	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
 		data = JSON.parse(data);
 		mostrarform(true);
 
-		$("#idprograma").val(data.idprograma);
-		$("#idprograma").selectpicker('refresh');
-		$("#idproveedores").val(data.idproveedores);
-		$("#idproveedores").selectpicker('refresh');
+		$("#idprograma").val(data.idprograma).selectpicker('refresh');
+		$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
+		$("#tipo_impuesto").val(data.tipo_impuesto).selectpicker('refresh');
 
-		$("#tipo_impuesto").val(data.tipo_impuesto);
-		$("#tipo_impuesto").selectpicker('refresh');
-
+		$("#titulo_orden").val(data.titulo_orden);
 		$("#num_orden").val(data.num_orden);
 		$("#num_comprobante").val(data.num_comprobante);
+		$("#descripcion_orden").val(data.descripcion_orden);
 		$("#fecha_hora").val(data.fecha);
+
+		// FOOTER DETAIL
+		$("#subtotales").val(data.subtotal);
+		$("#descuento_total").val(data.descuento_total);
 		$("#impuesto").val(data.impuesto);
+		$("#monto_total").val(data.monto_total);
+
+
 		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
 
+		//DETALLE COMPROBANTE
+		$("#debitos").val(data.debitos);
+		$("#tipopago").val(data.tipo_pago).selectpicker('refresh');
+		$("#num_transferencia").val(data.numero_transferencia);
+		$("#contabilidad").val(data.contabilidad);
+		$("#creditos").val(data.creditos);
+
+		$("#idbancos").val(data.idbancos).selectpicker('refresh');
+
 		//Ocultar y mostrar los botones
-		// $("#btnGuardar").hide();
+		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").hide();
+		$("#btnaddfact").hide();
+
+
  	});
 
- 	$.post("../ajax/administrar_ordenes.php?op=listarDetalle&id="+idadministrar_ordenes,function(r){
-	        $("#detalles").html(r);
+ 	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
+				  $("#detalles tbody").html(r);
+	});
+
+	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Facturas&id="+idadministrar_ordenes,function(r){
+				  $("#detallesfactura tbody").html(r);
 	});
 }
 
