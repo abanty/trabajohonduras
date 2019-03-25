@@ -558,7 +558,7 @@ function addLine2( $ligne, $tab )
 {
 	global $colonnes, $format;
 
-	$ordonnee     = 30;
+	$ordonnee     = 82;
 	$maxSize      = $ligne;
 
 	reset( $colonnes );

@@ -53,7 +53,7 @@ $cols=array( "Factura"=>21,
             );
 $pdf->addCols( $cols);
 
-$pdf->addLineFormat( $cols);
+// $pdf->addLineFormat( $cols);
 
 
 
@@ -67,7 +67,7 @@ $cols2=array( "Factura"=>21,
             );
 $pdf->addCols2( $cols2);
 
-$pdf->addLineFormat( $cols2);
+// $pdf->addLineFormat( $cols2);
 
 
 
@@ -75,10 +75,12 @@ $pdf->addLineFormat( $cols2);
 $y= 85;
 
 
-$y2= 55;
+$y2= 85;
 // listarFactura_orden
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
+
+$rsptad2 = $venta->administrar_ordenes_detalle($_GET["id"]);
 // $regd->codigo
 // $regd->cantidad
 // $regd->precio_unitario
@@ -93,15 +95,15 @@ while ($regd = $rsptad->fetch_object()) {
 }
 
 
-while ($regd2 = $rsptad->fetch_object()) {
-  $line2 = array( "Factura"=> "Tratos",
-                "Fecha"=> "30/03/2019",
-                "Valor"=> "250 000.00",
-            );
+while ($regd2 = $rsptad2->fetch_object()) {
+  $line2 = array( "Factura"=> "    //",
+                "Fecha"=> "    //",
+                "Valor"=> "      //",
+                );
 
             $size2 = $pdf->addLine2( $y2, $line2 );
-            $y2   += $size2 + 5;
-}
+            $y2   += $size2 + 0;
+  }
 
 //Convertimos el total en letras
 require_once "Letras.php";
