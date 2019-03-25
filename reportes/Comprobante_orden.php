@@ -47,40 +47,60 @@ $pdf->titulos_encabezados(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decod
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->programa),utf8_decode($regv->proveedor));
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
-$cols=array( "Cod"=>14,
-             "Unidad"=>15,
-             "Cantidad"=>17,
-             "Descripcion"=>81,
-             "P.Unitario"=>25,
-             "SubTotal"=>22,
-             "Total"=>22);
+$cols=array( "Factura"=>21,
+             "Fecha"=>20,
+             "Valor"=>25,
+            );
 $pdf->addCols( $cols);
-$cols=array( "Cod"=>"L",
-             "Unidad"=>"C",
-             "Cantidad"=>"C",
-            "Descripcion"=>"C",
-             "P.Unitario"=>"C",
-             "SubTotal"=>"C",
-           "Total"=>"C");
+
 $pdf->addLineFormat( $cols);
-$pdf->addLineFormat($cols);
+
+
+
+// SEGUNDA COLUMNA DETALLES Factura
+
+
+
+$cols2=array( "Factura"=>21,
+             "Fecha"=>20,
+             "Valor"=>25,
+            );
+$pdf->addCols2( $cols2);
+
+$pdf->addLineFormat( $cols2);
+
+
+
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 129;
+$y= 85;
+
+
+$y2= 55;
 // listarFactura_orden
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
-
+// $regd->codigo
+// $regd->cantidad
+// $regd->precio_unitario
 while ($regd = $rsptad->fetch_object()) {
-  $line = array( "Cod"=> "$regd->codigo",
-                "Unidad"=> utf8_decode("$regd->unidad"),
-                "Cantidad"=> "$regd->cantidad",
-                "Descripcion" => utf8_decode("$regd->descripcion"),
-                "P.Unitario"=> "$regd->precio_unitario",
-                "SubTotal"=> "$regd->subtot");
-                // ,
-                // "Total"=> "$regv->monto_total"
+  $line = array( "Factura"=> "Acuerdos",
+                "Fecha"=> "24/03/2019",
+                "Valor"=> "180 000.00",
+            );
+
             $size = $pdf->addLine( $y, $line );
-            $y   += $size + 2;
+            $y   += $size + 0;
+}
+
+
+while ($regd2 = $rsptad->fetch_object()) {
+  $line2 = array( "Factura"=> "Tratos",
+                "Fecha"=> "30/03/2019",
+                "Valor"=> "250 000.00",
+            );
+
+            $size2 = $pdf->addLine2( $y2, $line2 );
+            $y2   += $size2 + 5;
 }
 
 //Convertimos el total en letras

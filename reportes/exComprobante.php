@@ -441,28 +441,56 @@ function addCols( $tab )
 {
 	global $colonnes;
 
-	$r1  = 9.7;
-	$r2  = $this->w - ($r1 * 25) ;
-	$y1  = 150.5;
+	$r1  = 5;
+	$r2  = $this->w - ($r1 * 12) ;
+	$y1  = 160.5;
 	$y2  = $this->h - 100 - $y1;
 
-	$this->SetXY( $r1, $y1 );
-	$this->SetLineWidth(0.7);
-	$this->Rect( $r1, $y1, 196.5, $y2, "DO");
+	// $this->SetFillColor(0, 255, 0);
+
 
 	// $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
 	$colX = $r1;
 	$colonnes = $tab;
 	// $this->SetTextColor(255,255,255);
-	$this->SetFont( "Arial", "B", 9.7);
+	$this->SetFont( "Arial", "B", 8);
 	while ( list( $lib, $pos ) = each ($tab) )
 	{
-		$this->SetXY( $colX+0.2, $y1+0.3 );
-		$this->Cell( $pos, 4.5, $lib, 0, 1, "C",true);
+		$this->SetXY( $colX+5, $y1-81 );
+		$this->Cell( $pos, 5, $lib, 0, 1, "C",false);
 		$colX += $pos;
 		// $this->Line( $colX, $y1, $colX, $y1+$y2);
 	}
-	$this->SetFont( "Arial", "", 9);
+	$this->SetFont( "Arial", "", 8);
+}
+
+
+
+function addCols2( $tab )
+{
+	global $colonnes;
+
+	$r1  = 5;
+	$r2  = $this->w - ($r1 * 12) ;
+	$y1  = 160.5;
+	$y2  = $this->h - 100 - $y1;
+
+	// $this->SetFillColor(0, 255, 0);
+
+
+	// $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
+	$colX = $r1;
+	$colonnes = $tab;
+	// $this->SetTextColor(255,255,255);
+	$this->SetFont( "Arial", "B", 8);
+	while ( list( $lib, $pos ) = each ($tab) )
+	{
+		$this->SetXY( $colX+72, $y1-81 );
+		$this->Cell( $pos, 5, $lib, 0, 1, "C",false);
+		$colX += $pos;
+		// $this->Line( $colX, $y1, $colX, $y1+$y2);
+	}
+	$this->SetFont( "Arial", "", 8);
 }
 
 function addLineFormat( $tab )
@@ -505,7 +533,7 @@ function addLine( $ligne, $tab )
 {
 	global $colonnes, $format;
 
-	$ordonnee     = 10;
+	$ordonnee     = 13.5;
 	$maxSize      = $ligne;
 
 	reset( $colonnes );
@@ -524,6 +552,35 @@ function addLine( $ligne, $tab )
 	}
 	return ( $maxSize - $ligne );
 }
+
+
+function addLine2( $ligne, $tab )
+{
+	global $colonnes, $format;
+
+	$ordonnee     = 30;
+	$maxSize      = $ligne;
+
+	reset( $colonnes );
+	while ( list( $lib, $pos ) = each ($colonnes) )
+	{
+		$longCell  = $pos -2;
+		$texte     = $tab[ $lib ];
+		$length    = $this->GetStringWidth( $texte );
+		$tailleTexte = $this->sizeOfText( $texte, $length );
+		$formText  = $format[ $lib ];
+		$this->SetXY( $ordonnee, $ligne-1);
+		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
+		if ( $maxSize < ($this->GetY()  ) )
+			$maxSize = $this->GetY() ;
+		$ordonnee += $pos;
+	}
+	return ( $maxSize - $ligne );
+}
+
+
+
+
 
 function addRemarque($remarque)
 {
