@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-03-2019 a las 00:30:00
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Tiempo de generación: 25-03-2019 a las 18:48:14
+-- Versión del servidor: 10.1.24-MariaDB
+-- Versión de PHP: 7.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,7 +51,7 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
-(1, 11, 1, 1, '001', '0001', 'materiales', 'grfdgfdgfd', '0.125', '2019-03-21', '97.50', '780.00', '20.00', '877.50', 'Aceptado');
+(1, 10, 1, 3, '001', '0001', 'Materiales', 'breve', '0.125', '2019-03-24', '0.25', '2.00', '1.00', '2.25', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -235,6 +235,25 @@ INSERT INTO `configuracion` (`ConfiguracionID`, `Nombre`, `Cargo`, `Descripcion`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `contabilidad`
+--
+
+CREATE TABLE `contabilidad` (
+  `idcontabilidad` int(11) NOT NULL,
+  `idadministrar_ordenes` int(11) NOT NULL,
+  `idbancos` int(11) NOT NULL,
+  `tipo_pago` varchar(25) NOT NULL,
+  `numero_transferencia` int(11) NOT NULL,
+  `debitos` varchar(75) NOT NULL,
+  `creditos` varchar(75) NOT NULL,
+  `contabilidad` varchar(25) NOT NULL,
+  `fechacreacion` datetime DEFAULT NULL,
+  `fecha_actualizacion` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `crear_acuerdo`
 --
 
@@ -259,6 +278,7 @@ CREATE TABLE `crear_acuerdo` (
 
 CREATE TABLE `ctasbancarias` (
   `idctasbancarias` int(11) NOT NULL,
+  `idbancos` int(11) NOT NULL,
   `cuentapg` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `bancopg` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `tipoctapg` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
@@ -271,12 +291,12 @@ CREATE TABLE `ctasbancarias` (
 -- Volcado de datos para la tabla `ctasbancarias`
 --
 
-INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9600312.00', 1),
-(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '-20502997.00', 1),
-(3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '-10003092.52', 1),
-(4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '4542460.48', 1),
-(5, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '-1000000.00', 1);
+INSERT INTO `ctasbancarias` (`idctasbancarias`, `idbancos`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
+(1, 22, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9600312.00', 1),
+(2, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '-20502997.00', 1),
+(3, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '-10003092.52', 1),
+(4, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '4542460.48', 1),
+(5, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '-1000000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -388,40 +408,9 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, 'CEA', 10, 'Un producto A1', '33.55'),
-(2, 1, 2, 'LPA', 17, 'Un producto A2', '21.11'),
-(3, 1, 3, 'SOU', 21, 'Un producto A3', '11.25'),
-(4, 1, 4, 'CIAL', 33, 'Un producto A4', '32.41'),
-(5, 2, 1, '', 25, '', '45.10'),
-(6, 3, 1, '', 20, '', '20.00'),
-(8, 5, 2, 'CAE', 20, 'descripcion', '20.00'),
-(9, 6, 1, 'dfg', 50, 'hgfd', '50.00'),
-(10, 7, 1, 'fg', 20, 'gf', '20.00'),
-(11, 1, 4, '20', 20, 'ghgf', '20.00'),
-(12, 2, 3, 'hgfh', 40, 'fgfdgfd', '40.00'),
-(13, 1, 1, 'dfgd', 20, 'jhnhjjhi', '20.00'),
-(14, 1, 1, 'tyu', 10, 'huytt', '10.00'),
-(15, 1, 3, 'AER', 50, 'nada', '10.00'),
-(16, 1, 1, 'rew', 1, 'rew', '1.00'),
-(17, 2, 3, 'hgfhgf', 20, 'gyhf', '20.00'),
-(18, 1, 1, 'asd', 10, 'jkljhkl', '20.00'),
-(19, 2, 1, 'CAE', 50, '4hjk', '50.00'),
-(20, 1, 1, 'CAE', 20, 'lo mejor de me', '20.00'),
-(21, 1, 1, 'CAE', 50, '', '50.00'),
-(22, 1, 3, 'CAE', 20, 'ygtr', '20.00'),
-(23, 1, 2, 'dfgd', 10, 'gfdg', '10.00'),
-(24, 2, 1, 'dfgd', 20, 'hfghgf', '20.00'),
-(25, 1, 1, 'gfdd', 11, 'hgfhgf', '11.00'),
-(26, 1, 1, 'dfgd', 10, '', '20.00'),
-(27, 1, 2, 'dfgd', 20, '', '20.00'),
-(28, 1, 1, 'CAE', 24, '', '24.00'),
-(29, 1, 1, 'hgfhfg', 20, 'ghfhf', '20.00'),
-(30, 1, 1, 'gfd', 10, 'fgfdg', '10.00'),
-(31, 1, 4, 'gtgfd', 10, 'gfd', '20.00'),
-(32, 2, 2, 'CAE', 20, 'hghfh', '20.00'),
-(33, 2, 2, 'CAE', 10, 'fhgfhgfhgf', '20.00'),
-(34, 1, 2, 'dfgd', 20, '', '20.00'),
-(35, 1, 3, 'CAE', 20, '', '20.00');
+(1, 1, 1, '', 1, '', '1.00'),
+(2, 1, 2, '', 1, '', '1.00'),
+(3, 1, 3, '', 1, '', '1.00');
 
 -- --------------------------------------------------------
 
@@ -468,8 +457,10 @@ CREATE TABLE `factura_orden` (
 --
 
 INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
-(1, 1, 15555, '0000-00-00 00:00:00', '0.00'),
-(2, 1, 14444, '0000-00-00 00:00:00', '0.00');
+(1, 1, 111111, '2019-03-24 00:00:00', '0.00'),
+(2, 1, 22222, '2019-03-24 00:00:00', '0.00'),
+(3, 1, 33333, '2019-03-24 00:00:00', '0.00'),
+(4, 1, 44444, '2019-03-24 00:00:00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -1009,6 +1000,14 @@ ALTER TABLE `configuracion`
   ADD PRIMARY KEY (`ConfiguracionID`);
 
 --
+-- Indices de la tabla `contabilidad`
+--
+ALTER TABLE `contabilidad`
+  ADD PRIMARY KEY (`idcontabilidad`),
+  ADD KEY `orden_contabilidad` (`idadministrar_ordenes`),
+  ADD KEY `orden_bancos` (`idbancos`);
+
+--
 -- Indices de la tabla `crear_acuerdo`
 --
 ALTER TABLE `crear_acuerdo`
@@ -1021,7 +1020,8 @@ ALTER TABLE `crear_acuerdo`
 -- Indices de la tabla `ctasbancarias`
 --
 ALTER TABLE `ctasbancarias`
-  ADD PRIMARY KEY (`idctasbancarias`);
+  ADD PRIMARY KEY (`idctasbancarias`),
+  ADD KEY `cta_banco` (`idbancos`);
 
 --
 -- Indices de la tabla `detalle_compromisos`
@@ -1065,7 +1065,8 @@ ALTER TABLE `dtransf_ctaspg`
 -- Indices de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  ADD PRIMARY KEY (`idfactura_orden`);
+  ADD PRIMARY KEY (`idfactura_orden`),
+  ADD KEY `orden_factura` (`idadministrar_ordenes`);
 
 --
 -- Indices de la tabla `ingreso`
@@ -1140,115 +1141,101 @@ ALTER TABLE `usuario_permiso`
 --
 ALTER TABLE `administrar_ordenes`
   MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `bancos`
 --
 ALTER TABLE `bancos`
   MODIFY `idbancos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
-
 --
 -- AUTO_INCREMENT de la tabla `combustibles`
 --
 ALTER TABLE `combustibles`
   MODIFY `idcombustibles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `compromisos`
 --
 ALTER TABLE `compromisos`
   MODIFY `idcompromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
+--
+-- AUTO_INCREMENT de la tabla `contabilidad`
+--
+ALTER TABLE `contabilidad`
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
 --
 ALTER TABLE `crear_acuerdo`
   MODIFY `idcrear_acuerdo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `detalle_compromisos`
 --
 ALTER TABLE `detalle_compromisos`
   MODIFY `iddetalle_compromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
 --
 -- AUTO_INCREMENT de la tabla `detalle_crear_acuerdo`
 --
 ALTER TABLE `detalle_crear_acuerdo`
   MODIFY `iddetalle_crear_orden` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
   MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
   MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
   MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT de la tabla `presupuesto_disponible`
 --
 ALTER TABLE `presupuesto_disponible`
   MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
-
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
   MODIFY `idproveedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
-
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
   MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
   MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
   MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -1269,12 +1256,25 @@ ALTER TABLE `compromisos`
   ADD CONSTRAINT `fk_compromisos_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `contabilidad`
+--
+ALTER TABLE `contabilidad`
+  ADD CONSTRAINT `orden_bancos` FOREIGN KEY (`idbancos`) REFERENCES `bancos` (`idbancos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `orden_contabilidad` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `crear_acuerdo`
 --
 ALTER TABLE `crear_acuerdo`
   ADD CONSTRAINT `fk_crear_acuerdo_programa` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_crear_acuerdo_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_crear_acuerdo_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `ctasbancarias`
+--
+ALTER TABLE `ctasbancarias`
+  ADD CONSTRAINT `cta_banco` FOREIGN KEY (`idbancos`) REFERENCES `bancos` (`idbancos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `detalle_compromisos`
@@ -1291,13 +1291,6 @@ ALTER TABLE `detalle_crear_acuerdo`
   ADD CONSTRAINT `fk_detalle_crear_orden_crear_acuerdo` FOREIGN KEY (`idcrear_acuerdo`) REFERENCES `crear_acuerdo` (`idcrear_acuerdo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `detalle_orden`
---
-ALTER TABLE `detalle_orden`
-  ADD CONSTRAINT `admin_ord` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `pred_disp` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
@@ -1305,30 +1298,10 @@ ALTER TABLE `dtransf_ctaspg`
   ADD CONSTRAINT `fk_dtransf_ctaspg_transferidoctaspg` FOREIGN KEY (`idtransferidoctaspg`) REFERENCES `transferidoctaspg` (`idtransferidoctaspg`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `ingreso`
+-- Filtros para la tabla `factura_orden`
 --
-ALTER TABLE `ingreso`
-  ADD CONSTRAINT `fk_ingreso_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `transferenciabch`
---
-ALTER TABLE `transferenciabch`
-  ADD CONSTRAINT `fk_transferenciabch_ctasbancarias` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_transferenciabch_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `transferidoctaspg`
---
-ALTER TABLE `transferidoctaspg`
-  ADD CONSTRAINT `fk_transferidoctaspg_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuario_permiso`
---
-ALTER TABLE `usuario_permiso`
-  ADD CONSTRAINT `fk_usuario_permiso_permiso` FOREIGN KEY (`idpermiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_permiso_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `factura_orden`
+  ADD CONSTRAINT `orden_factura` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
