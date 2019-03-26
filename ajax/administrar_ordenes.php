@@ -24,7 +24,7 @@ $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):
 
 // VARIABLES FUNCION Comprobante
 
-$idbancos=isset($_POST["idbancos"])? limpiarCadena($_POST["idbancos"]):"";
+$idctasbancarias=isset($_POST["idctasbancarias"])? limpiarCadena($_POST["idctasbancarias"]):"";
 $tipopago=isset($_POST["tipopago"])? limpiarCadena($_POST["tipopago"]):"";
 $num_transferencia=isset($_POST["num_transferencia"])? limpiarCadena($_POST["num_transferencia"]):"";
 $debitos=isset($_POST["debitos"])? limpiarCadena($_POST["debitos"]):"";
@@ -47,7 +47,7 @@ switch ($_GET["op"]){
 
         $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
                $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-               ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],$idbancos,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
+               ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
           }elseif ($variable_factura) {
 
@@ -59,7 +59,7 @@ switch ($_GET["op"]){
 
                   $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
                    $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-                   ,$_POST["precio_unitario"],$idbancos,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
+                   ,$_POST["precio_unitario"],$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
                           }else {
 
@@ -143,11 +143,10 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
-      // <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
-      // <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
- 				// $urlsolicitud='../reportes/OrdenCompra.php?id=';
-        // $urlorden='../reportes/OrdenCompra.php?id=';
-        // $urlcomprobante='../reportes/Comprobante_orden.php?id=';
+
+ 				$urlsolicitud='../reportes/OrdenCompra.php?id=';
+        $urlorden='../reportes/OrdenCompra.php?id=';
+        $urlcomprobante='../reportes/Comprobante_orden.php?id=';
 
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
@@ -159,7 +158,8 @@ switch ($_GET["op"]){
                 <i class="fas fa-print" aria-hidden="true"></i>
               </a>
                 <ul class="dropdown-menu">
-
+                 <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+                 <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
                 </ul>
           </li>',
 
@@ -200,14 +200,14 @@ switch ($_GET["op"]){
 	break;
 
   case "select_cta_banco":
-		require_once "../modelos/Bancos.php";
-		$bancos = new Bancos();
+		require_once "../modelos/Ctasbancarias.php";
+		$ctasbancos = new Ctasbancarias();
 
-		$rspta = $bancos->select_ctas_bancos();
+		$rspta = $ctasbancos->select_ctas_bancarias();
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idbancos. '>' . $reg->nombre_banco . ' - ' . $reg->numctapg . '</option>';
+					echo '<option value=' . $reg->idctasbancarias. '>' . $reg->idctasbancarias . ' - ' . $reg->numctapg . '</option>';
 				}
 
 	break;

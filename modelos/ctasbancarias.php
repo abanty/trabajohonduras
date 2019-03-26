@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -33,11 +33,11 @@ Class Ctasbancarias
 	//Implementamos un método para editar registros
 	public function editar($idctasbancarias,$cuentapg,$bancopg,$tipoctapg,$numctapg,$fondos_disponibles)
 	{
-		$sql="UPDATE 
-		ctasbancarias SET 
+		$sql="UPDATE
+		ctasbancarias SET
 		cuentapg='$cuentapg',
 		bancopg='$bancopg',
-		tipoctapg='$tipoctapg', 
+		tipoctapg='$tipoctapg',
 		numctapg='$numctapg',
 		fondos_disponibles='$fondos_disponibles'
 		WHERE idctasbancarias='$idctasbancarias'";
@@ -76,7 +76,7 @@ Class Ctasbancarias
 		numctapg,
 		FORMAT(fondos_disponibles,2) AS fondos_disponibles,
 		condicion FROM ctasbancarias";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
 	//Implementar un método para listar los registros y mostrar en el select
 	public function listarActivos()
@@ -89,8 +89,19 @@ Class Ctasbancarias
 		numctapg,
 		fondos_disponibles,
 		condicion FROM ctasbancarias where condicion=1";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
+
+
+	public function select_ctas_bancarias()
+	{
+		$sql="SELECT idctasbancarias, cuentapg,bancopg, tipoctapg, numctapg, fondos_disponibles,condicion
+		FROM ctasbancarias
+		WHERE condicion=1";
+		return ejecutarConsulta($sql);
+	}
+
+
 }
 
 ?>

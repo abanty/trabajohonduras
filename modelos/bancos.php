@@ -59,14 +59,6 @@ Class Bancos
 		return ejecutarConsulta($sql);
 	}
 
-	public function select_ctas_bancos()
-	{
-		$sql="SELECT b.idbancos, b.nombre_banco, cta.numctapg
-		FROM bancos b
-		INNER JOIN ctasbancarias cta on cta.idbancos = b.idbancos  where b.condicion=1";
-		return ejecutarConsulta($sql);
-	}
-
 }
 
 ?>

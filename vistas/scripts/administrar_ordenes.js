@@ -3,8 +3,6 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
-
-
 	$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
 					$("#here_inside").html(r);
 	});
@@ -32,63 +30,76 @@ function init(){
 
 //Seleccionamos un numero de cuenta contactenado con el nombtre del banco
 	$.post("../ajax/administrar_ordenes.php?op=select_cta_banco", function(r){
-	            $("#idbancos").html(r);
-	            $('#idbancos').selectpicker('refresh');
+	            $("#idctasbancarias").html(r);
+	            $('#idctasbancarias').selectpicker('refresh');
 	});
 
 
-
 }
-
 
 //-----------------------------
 // FUNCION PARA LIMPIAR CAMPOS |
 //-----------------------------
 function limpiar()
 {
+	fechanow();
 
 	$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
-	$("#idadministrar_ordenes").val("");
-	$("#num_orden").val("");
-	$("#num_comprobante").val("");
-	$("#descripcion_orden").text("");
-	$("#descuento_total").val("0.00000");
+	$("#idadministrar_ordenes").val('');
+	$("#num_orden").val('');
+	$("#titulo_orden").val('');
+	$("#num_comprobante").val('');
+	$("#descripcion_orden").val('');
+
+	$("#tipo_impuesto").selectpicker('val',"");
+	$("#tipo_impuesto").selectpicker('refresh');
+	$("#idprograma").selectpicker('val',"");
+	$("#idprograma").selectpicker('refresh');
+	$("#idproveedores").selectpicker('val',"");
+	$("#idproveedores").selectpicker('refresh');
+
+	$("#descuento_total").val('0.00000');
 	$("#impuesto").val("0.00000");
 
-	$("#idprograma").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Programa'});
-	$("#idproveedores").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Proveedor'});
-	$("#tipo_impuesto").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Impuesto'});
-	$("#tipopago").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige un Tipo'});
-	$("#idbancos").val("").selectpicker({style: "btn-default btn-sm", title: 'Elige Cuenta de banco'});
 
+	// LIMPIAR CAMPOS CONTABILIDAD
+	$("#creditos").val('');
+	$("#debitos").val('');
+	$("#contabilidad").val('');
+	$("#num_transferencia").val('');
 
+	$("#idctasbancarias").selectpicker('val',"");
+	$("#idctasbancarias").selectpicker('refresh');
+	$("#tipopago").selectpicker('val',"");
+	$("#tipopago").selectpicker('refresh');
+	$("#btnaddfact").show();
 
 	$(".filas").remove();
 	$(".filafactura").remove();
 
 	$("#sub_total").html("L. 0.00");
 	$("#montototal").html("L. 0.00");
+}
 
-	//Obtenemos la fecha actual
+
+function fechanow(){
+	// Obtenemos la fecha actual
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 
 	$('#fecha_hora').val(today);
-
-  //Marcamos el primer tipo_documento
-	$("#tipo_impuesto").selectpicker('refresh');
 }
 
 //Función mostrar formulario
 function mostrarform(flag)
 {
-
-	limpiar();
+limpiar();
 	if (flag)
 	{
+		$('#tipo_impuesto').prop('disabled', true);
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		//$("#btnGuardar").prop("disabled",false);
@@ -251,7 +262,7 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#contabilidad").val(data.contabilidad);
 		$("#creditos").val(data.creditos);
 
-		$("#idbancos").val(data.idbancos).selectpicker('refresh');
+		// $("#idctabancarias").val(data.idctabancarias).selectpicker('refresh');
 
 
 
@@ -474,11 +485,16 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   function evaluar(){
   	if (detalles>0)
     {
+			$('#tipo_impuesto').prop('disabled', false);
+
+				// $('#tipo_impuesto').prop('disabled', false);
+
       $("#btnGuardar").show();
 			$("#mynewtd").remove();
     }
     else
     {
+			$('#tipo_impuesto').prop('disabled', true);
 			$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
       $("#btnGuardar").hide();
       cont=0;

@@ -15,7 +15,7 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	public function insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
 	$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
-	$precio_unitario,$idbancos,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
+	$precio_unitario,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,
 											tipo_impuesto,fecha_hora,impuesto,subtotal,descuento_total,monto_total,estado)
@@ -38,8 +38,8 @@ Class Administrar_ordenes
 			$num_elementos=$num_elementos + 1;
 		}
 
-		$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,idbancos,tipo_pago,numero_transferencia,debitos,creditos,contabilidad)
-		VALUES ('$idadministrar_ordenesnew','$idbancos','$tipopago','$num_transferencia','$debitos','$creditos','$contabilidad')";
+		$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,idctasbancarias,tipo_pago,numero_transferencia,debitos,creditos,contabilidad)
+		VALUES ('$idadministrar_ordenesnew','$idctasbancarias','$tipopago','$num_transferencia','$debitos','$creditos','$contabilidad')";
 		ejecutarConsulta($sql_comprobante);
 
 		return $sw;
@@ -93,7 +93,7 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	public function insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
 	$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
-	$precio_unitario,$num_factura,$fecha_factura,$valor_factura,$idbancos,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
+	$precio_unitario,$num_factura,$fecha_factura,$valor_factura,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,
 											tipo_impuesto,fecha_hora,impuesto,subtotal,descuento_total,monto_total,estado)
@@ -125,8 +125,8 @@ Class Administrar_ordenes
 			$num_elementos_fact=$num_elementos_fact + 1;
 		}
 
-		$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,idbancos,tipo_pago,numero_transferencia,debitos,creditos,contabilidad)
-		VALUES ('$idadministrar_ordenesnew','$idbancos','$tipopago','$num_transferencia','$debitos','$creditos','$contabilidad')";
+		$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,idctasbancarias,tipo_pago,numero_transferencia,debitos,creditos,contabilidad)
+		VALUES ('$idadministrar_ordenesnew','$idctasbancarias','$tipopago','$num_transferencia','$debitos','$creditos','$contabilidad')";
 		ejecutarConsulta($sql_comprobante);
 
 
@@ -183,7 +183,7 @@ Class Administrar_ordenes
 	{
 		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
 		ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,
-		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idbancos, cb.tipo_pago,
+		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctabancarias, cb.tipo_pago,
 		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad
 									FROM administrar_ordenes ao
 									LEFT JOIN proveedores p ON

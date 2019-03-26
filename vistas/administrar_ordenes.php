@@ -130,7 +130,7 @@ if ($_SESSION['admonoc']==1)
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo impuesto(*):</label>
-                            <select class="form-control select-picker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" required>
+                            <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">
                               <option value="0.15">ISV(15%)</option>
                               <option value="0.125">ISR(12.5%)</option>
                             </select>
@@ -138,7 +138,7 @@ if ($_SESSION['admonoc']==1)
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label>Programa(*):</label>
-                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true"></select>
+                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
                           </div>
 
 
@@ -151,7 +151,7 @@ if ($_SESSION['admonoc']==1)
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Proveedor(*):</label>
-                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true"></select>
+                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proveedor"></select>
                           </div>
 
 
@@ -293,7 +293,7 @@ if ($_SESSION['admonoc']==1)
 
                     <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                       <label>Tipo de Pago(*):</label>
-                      <select class="form-control select-picker" form="formulario" name="tipopago" id="tipopago" data-live-search="true">
+                      <select class="form-control selectpicker" form="formulario" name="tipopago" id="tipopago" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Tipo">
                         <option value="Deposito">Deposito</option>
                         <option value="Cheque">Cheque</option>
                       </select>
@@ -313,7 +313,7 @@ if ($_SESSION['admonoc']==1)
 
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                       <label>Cuenta de banco a debitar(*):</label>
-                      <select id="idbancos" name="idbancos" class="form-control selectpicker" form="formulario" data-live-search="true"></select>
+                      <select class="form-control selectpicker" form="formulario" id="idctasbancarias" name="idctasbancarias" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige Cuenta de banco"></select>
                     </div>
 
                 </div>
