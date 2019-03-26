@@ -3,6 +3,12 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
+	fechanow();
+
+	$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
+	$("#tipo_impuesto_div").hide();
+
 	$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
 					$("#here_inside").html(r);
 	});
@@ -96,13 +102,11 @@ function fechanow(){
 //Función mostrar formulario
 function mostrarform(flag)
 {
-limpiar();
 	if (flag)
 	{
-		$('#tipo_impuesto').prop('disabled', true);
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
-		//$("#btnGuardar").prop("disabled",false);
+		// $("#tipo_impuesto_div").show();
 		$("#btnagregar").hide();
 		listarPresupuesto_disponible();
 
@@ -122,6 +126,7 @@ limpiar();
 //Función cancelarform
 function cancelarform()
 {
+	$("#tipo_impuesto_div").hide();
 	limpiar();
 	mostrarform(false);
 }
@@ -195,12 +200,10 @@ function listarPresupuesto_disponible()
 
 
 //Función para guardar o editar
-
 function guardaryeditar(e)
 {
 
 	e.preventDefault(); //No se activará la acción predeterminada del evento
-	//$("#btnGuardar").prop("disabled",true);
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
@@ -231,8 +234,8 @@ function guardaryeditar(e)
 
 function orden_mostrar(idadministrar_ordenes)
 {
+		$("#tipo_impuesto_div").show();
 
-	// mostrar_comprob(idadministrar_ordenes);
 	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
 		data = JSON.parse(data);
@@ -250,9 +253,11 @@ function orden_mostrar(idadministrar_ordenes)
 
 		// FOOTER DETAIL
 		$("#subtotales").val(data.subtotal);
+		$("#sub_total").text(data.subtotal);
 		$("#descuento_total").val(data.descuento_total);
 		$("#impuesto").val(data.impuesto);
 		$("#monto_total").val(data.monto_total);
+		$("#montototal").text(data.monto_total);
 
 
 		//DETALLE COMPROBANTE
@@ -262,20 +267,14 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#contabilidad").val(data.contabilidad);
 		$("#creditos").val(data.creditos);
 
-		// $("#idctabancarias").val(data.idctabancarias).selectpicker('refresh');
-
-
-
+		$("#idctasbancarias").val(data.idctasbancarias).selectpicker('refresh');
 		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
-
 
 		//Ocultar y mostrar los botones
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").hide();
 		$("#btnaddfact").hide();
-
-
  	});
 
 
@@ -467,35 +466,31 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 		 $("#impuesto").val(impuesto_impuesto);
 		 $("#subtotales").val(sub_sub_total);
 		 // $("#subtotal").val(newsubtotal);
+	 	}
 
-	}
-
-	$("#sub_total").html("L. " + sub_sub_total);
-
-	$("#montototal").html("L. " + total_total);
-
-
-
-
-	$("#monto_total").val(total_total);
+		$("#sub_total").html("L. " + sub_sub_total);
+		$("#montototal").html("L. " + total_total);
+		$("#monto_total").val(total_total);
     evaluar();
+
   }
 
 
   function evaluar(){
   	if (detalles>0)
     {
-			$('#tipo_impuesto').prop('disabled', false);
-
-				// $('#tipo_impuesto').prop('disabled', false);
-
+			$("#tipo_impuesto_div").show();
       $("#btnGuardar").show();
 			$("#mynewtd").remove();
     }
     else
     {
-			$('#tipo_impuesto').prop('disabled', true);
 			$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+			$("#impuesto").val("0.00000");
+			$("#sub_total").text("L. 0.00");
+			$("#montototal").text("L. 0.00");
+
+			$("#tipo_impuesto_div").hide();
       $("#btnGuardar").hide();
       cont=0;
     }

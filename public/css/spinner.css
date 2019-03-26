@@ -870,3 +870,8 @@
     transform: rotateZ(-24deg);
   }
 }
+
+
+a:focus, a:hover {
+    text-decoration: none !important;
+}

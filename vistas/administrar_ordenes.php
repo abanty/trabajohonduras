@@ -61,7 +61,7 @@ if ($_SESSION['admonoc']==1)
 
           <div class="box-body" id="listadoregistros">
             <div class="panel-body table-responsive">
-              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width: 1268px;">
+              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
                 <thead style="background-color:#d2d6de">
                   <th>Opciones</th>
                   <th>Fecha</th>
@@ -99,9 +99,9 @@ if ($_SESSION['admonoc']==1)
             <div class="col-md-12">
 
                   <!-- Custom Tabs -->
-                  <div class="nav-tabs-custom">
+                  <div class="nav-tabs-custom" id="mistabs">
                     <ul class="nav nav-tabs">
-                      <li class="active"><a href="#tab_1" data-toggle="tab">Crear Orden / Solicitud</a></li>
+                      <li class="active"><a href="#tab_1" data-toggle="tab" id="tabprincipal">Crear Orden / Solicitud</a></li>
                       <li><a href="#tab_2" data-toggle="tab">Ingreso Facturas</a></li>
                       <li><a href="#tab_3" data-toggle="tab">Comprobante de Pago</a></li>
 
@@ -128,20 +128,18 @@ if ($_SESSION['admonoc']==1)
                             <input type="text" class="form-control input-sm" name="num_comprobante" id="num_comprobante" maxlength="45" placeholder="Ingrese el # de comprobante">
                           </div>
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label>Programa(*):</label>
+                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
+                          </div>
+
+                          <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo impuesto(*):</label>
                             <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">
                               <option value="0.15">ISV(15%)</option>
                               <option value="0.125">ISR(12.5%)</option>
                             </select>
                           </div>
-
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Programa(*):</label>
-                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
-                          </div>
-
-
 
                           <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <label>Descripcion:</label>
@@ -320,8 +318,14 @@ if ($_SESSION['admonoc']==1)
 
                 <div class="row container">
                     <div class="form-group  col-md-4">
-                        <label class="control-label" for="creditos">Creditos</label>
-                        <input type="text" class="form-control input-sm" form="formulario" style="text-transform: uppercase;"  id="creditos" name="creditos"  placeholder="Ingresa Creditos">
+                        <label class="control-label" for="contabilidad">Contabilidad</label>
+                        <input type="text" class="form-control input-sm" form="formulario" id="contabilidad" name="contabilidad" style="text-transform: uppercase;" placeholder="Ingresa estado">
+                    </div>
+               </div>
+               <hr>
+                <div class="row container">
+                    <div class="form-group  col-md-4">
+                      <a type="button" id="changetab" onclick='$("#tabprincipal").trigger("click")'>  <i style="font-size:35px;" class="fas fa-arrow-alt-circle-left"></i> <span style="position: absolute; margin-top: 8px; margin-left: 3px;">  Regresa</span></a>
                     </div>
                 </div>
 

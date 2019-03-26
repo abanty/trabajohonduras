@@ -207,7 +207,7 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idctasbancarias. '>' . $reg->idctasbancarias . ' - ' . $reg->numctapg . '</option>';
+					echo '<option value=' . $reg->idctasbancarias. '>' . $reg->bancopg . ' - ' . $reg->numctapg . '</option>';
 				}
 
 	break;

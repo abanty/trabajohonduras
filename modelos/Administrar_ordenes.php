@@ -183,7 +183,7 @@ Class Administrar_ordenes
 	{
 		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
 		ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,
-		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctabancarias, cb.tipo_pago,
+		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
 		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad
 									FROM administrar_ordenes ao
 									LEFT JOIN proveedores p ON
