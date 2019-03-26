@@ -318,14 +318,46 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->Cell(63,18,'',1,1,'L',0);
 	// FIN 3 COLUMNAS
 
-
+	// 2 COLUMNAS LUGAR Y FECHA
 	$this->SetXY(10,114.6);
 	$this->Cell(99,5,'',1,0,'L',0);
 	$this->Cell(98,5,'',1,1,'L',0);
 
-	$this->Cell(67,5,'',1,0,'L',0);
-	$this->Cell(67,5,'',1,0,'L',0);
-	$this->Cell(63,5,'',1,0,'L',0);
+// 3 COLUMNAS CLASIFICACION - CONTABILIDAD TITULO 11 - RAMO DE DEFENSA
+	$this->Cell(67,6.5,utf8_decode('CLASIFICACIÓN'),0,0,'L',0);
+	$this->Cell(67,6.5,utf8_decode('CONTABILIDAD TÍTULO 11'),0,0,'C',0);
+	$this->Cell(63,6.5,'RAMO DE DEFENSA',0,1,'R',0);
+
+
+// TABLA DETALLE CABECERA
+	$this->Cell(23,5,'Programa',1,0,'C',0);
+	$this->Cell(13,5,'Grupo',1,0,'C',0);
+	$this->Cell(20,5,'Subgrupo',1,0,'C',0);
+	$this->Cell(22,5,'No. Objeto',1,0,'C',0);
+	$this->Cell(35,5,'INTERIORES',1,0,'C',0);
+	$this->Cell(35,5,'VALOR',1,0,'C',0);
+	$this->Cell(49,5,'CUENTA DE BALANCE',1,1,'C',0);
+
+
+// TABLA DETALLE ORDER - PROGRAMA ETC
+	$this->Cell(23,38.5,'',1,0,'C',0);
+	$this->Cell(13,38.5,'',1,0,'C',0);
+	$this->Cell(20,38.5,'',1,0,'C',0);
+	$this->Cell(22,38.5,'',1,0,'C',0);
+	$this->Cell(35,38.5,'',1,0,'C',0);
+	$this->Cell(35,38.5,'',1,0,'C',0);
+	$this->Cell(49,38.5,'',1,1,'C',0);
+
+
+	// DETALLE - DEBITOS - CREDITOS
+	$this->Cell(148,55,'',1,0,'C',0);
+	$this->Cell(49,55,'',1,1,'C',0);
+
+
+	// FOOTER DE LA TABLA
+	$this->Cell(62,15,'',1,0,'C',0);
+	$this->Cell(73,15,'',1,0,'C',0);
+	$this->Cell(62,15,'',1,1,'C',0);
 
 
 
@@ -340,7 +372,6 @@ function addClientAdresse( $cliente,$domicilio,$email )
 
 	$this->SetXY(110,115);
 	$this->MultiCell( 60, 4, utf8_decode("Fecha "));
-
 
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY(145,85);
@@ -360,14 +391,9 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->SetXY(150,110);
 	$this->MultiCell( 60, 4, utf8_decode("Pagador General de las FF .AA."));
 
-
-
-
-
 	$this->SetXY( $r1+0.5, $y1);
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->MultiCell( 60, 4, utf8_decode("Pagando al Sr. (a)"));
-
 
 	$this->SetXY( $r1+1, $y1+5.5);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -376,7 +402,6 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->SetXY( $r1+138, $y1+5.5);
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->MultiCell( 50, 4, utf8_decode("Cheque N°: " ));
-
 
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -390,7 +415,6 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->MultiCell( 220, 4, utf8_decode("Lps ."));
 
-
 	$this->SetXY( $r1+35, $y1+16);
 	$this->SetFont( "Arial", "", 8.5);
 	$this->MultiCell( 220, 4, utf8_decode('180 000.00'));
@@ -402,6 +426,53 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->SetXY( $r1+4, $y1+28);
 	$this->SetFont( "Arial", "B", 7.5);
 	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
+
+	$this->SetFont( "Arial", "B", 10);
+	$this->SetXY(11,171);
+	$this->MultiCell( 60, 4, utf8_decode("CMDCIA GRAL. "."\n"."FNH"));
+
+
+	// DEBITOS Y Creditos
+
+	$this->SetFont( "Arial", "B", 10);
+	$this->SetXY(167,171);
+	$this->MultiCell( 60, 4, utf8_decode("D  E  B  I  T  O  S"));
+
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY(160,177);
+	$this->MultiCell( 60, 4, utf8_decode("GASTOS DE FUNCIONAMIENTO"));
+
+	$this->SetFont( "Arial", "B", 10);
+	$this->SetXY(165,197);
+	$this->MultiCell( 60, 4, utf8_decode("C  R  E  D  I  T  O  S"));
+
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY(160,203);
+	$this->MultiCell( 60, 4, utf8_decode("CAJAS Y BANCOS"));
+
+	$this->SetFont( "Arial", "B", 8.5);
+	$this->SetXY(11,226);
+	$this->MultiCell( 60, 4, utf8_decode("Responsable"));
+
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY(12,231.5);
+	$this->MultiCell( 60, 4, utf8_decode("HECTOR MERCADAL"));
+
+	$this->SetFont( "Arial", "B", 8.5);
+	$this->SetXY(74,226);
+	$this->MultiCell( 60, 4, utf8_decode("Responsable"));
+
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY(74,231.5);
+	$this->MultiCell( 60, 4, utf8_decode("NINGUNO"));
+
+	$this->SetFont( "Arial", "B", 8.5);
+	$this->SetXY(147,226);
+	$this->MultiCell( 60, 4, utf8_decode("Recibí conforme"));
+
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY(147,231.5);
+	$this->MultiCell( 60, 4, utf8_decode(""));
 
 
 }
@@ -649,45 +720,47 @@ function addRemarque($remarque)
 
 function addCadreEurosFrancs($impuesto)
 {
-	$r1  = $this->w - 70;
-	$r2  = $r1 + 60;
-	$y1  = $this->h - 40;
+	$r1  = $this->w - 125;
+	$r2  = $r1 + 10;
+	$y1  = $this->h - 80;
 	$y2  = $y1+20;
 
-	$this->SetFont( "Arial", "B",9);
-	$this->SetXY( $r1, $y1-25 );
-	$this->Cell(20,4, "SubTotal Lps   :", 0, 0, "L");
+	$this->SetFont( "Arial", "B",8);
+	$this->SetXY( $r1, $y1-28 );
+	$this->Cell(20,4, "SUBTOTAL L.", 0, 0, "L");
 
-	$this->SetFont( "Arial", "B",9);
-	$this->SetXY( $r1-2.8, $y1-21 );
-	$this->Cell(20,4, "Descuento Lps   :", 0, 0, "L");
+	$this->SetFont( "Arial", "B",8);
+	$this->SetXY( $r1-2.2, $y1-22 );
+	$this->Cell(20,4, "DESCUENTO L.", 0, 0, "L");
 
-	$this->SetFont( "Arial", "B",9);
-	$this->SetXY( $r1, $y1-16.5 );
-	$this->Cell(20,4, "SubTotal Lps   :", 0, 0, "L");
+	$this->SetFont( "Arial", "B",8);
+	$this->SetXY( $r1, $y1-16 );
+	$this->Cell(20,4, "SUBTOTAL L.", 0, 0, "L");
 
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY( $r1-18, $y1-11.5 );
-	$this->Cell(20,4, $impuesto, 0, 0, "L");
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY( $r1-18, $y1-11.5 );
+	// $this->Cell(20,4, $impuesto, 0, 0, "L");
 
-	$this->SetFont( "Arial", "B", 9);
-	$this->SetXY( $r1-0.6, $y1-11.8 );
-	$this->Cell(20,4, "Impuesto Lps   :", 0, 0, "L");
+	$this->SetFont( "Arial", "B", 8);
+	$this->SetXY( $r1-4.5, $y1-10 );
+	$this->Cell(20,4, "IMPUESTO S/V L.", 0, 0, "L");
 
-	$this->SetXY( $r1+6, $y1-6 );
-	$this->Cell(20,4, "Total Lps   :", 0, 0, "L");
+	$this->SetFont( "Arial", "B", 8);
+	$this->SetXY( $r1+0.8, $y1-4 );
+	$this->Cell(20,4, "IMPUESTO L.", 0, 0, "L");
+
+	$this->SetXY( $r1+6.5, $y1+2 );
+	$this->Cell(20,4, "TOTAL L.", 0, 0, "L");
 
 
+	$this->SetXY( $r1-6, $y1+8 );
+	$this->Cell(20,4, "RETENCION ISV L." , 0, 0, "L");
 
-	$this->SetFont( "Arial", "I", 9);
-    $this->SetLineWidth(0.1);
-	$this->Rect( 150, 252, 40, 0, "D");
+	$this->SetXY( $r1-7, $y1+14 );
+	$this->Cell(20,4, "RETENCION LSR L." , 0, 0, "L");
 
-	$this->SetXY( $r1+5.4, $y1+15 );
-	$this->Cell(12,0, "Comandante General de la" , 0, 0, "L");
-
-	$this->SetXY( $r1+5.4, $y1+19 );
-	$this->Cell(12,0, "Fuerza Naval de Honduras" , 0, 0, "L");
+	$this->SetXY( $r1-5.5, $y1+20 );
+	$this->Cell(20,4, "NETO A PAGAR L." , 0, 0, "L");
 
 
 }
@@ -697,10 +770,10 @@ function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
 {
 	$this->SetFont('Arial','',8);
 
-	$re  = $this->w - 40;
-	$rf  = $this->w - 9;
-	$y1  = $this->h - 70;
-	$this->SetFont( "Arial", "", 9.5);
+	$re  = $this->w - 80;
+	$rf  = $this->w - 0;
+	$y1  = $this->h - 113;
+	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+5 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $st), '', '', 'L');
 	$this->SetXY( $re, $y1+10 );
@@ -709,7 +782,7 @@ function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $stdesc), '', '', 'L');
 	$this->SetXY( $re, $y1+19 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $imp), '', '', 'L');
-	$this->SetFont( "Arial", "U", 10);
+	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+24 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'L');
 

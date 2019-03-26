@@ -81,10 +81,15 @@ switch ($_GET["op"]){
  		echo $rspta ? "Orden de compra anulada" : "Orden de compra no se puede anular";
 	break;
 
+
+
 	case 'mostrar_orden_edit':
+
 		$rspta=$admin_ord->mostrar_orden($idadministrar_ordenes);
+
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
+
 	break;
 
 
@@ -138,10 +143,11 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
-
+      // <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+      // <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
  				// $urlsolicitud='../reportes/OrdenCompra.php?id=';
-        $urlorden='../reportes/OrdenCompra.php?id=';
-        $urlcomprobante='../reportes/Comprobante_orden.php?id=';
+        // $urlorden='../reportes/OrdenCompra.php?id=';
+        // $urlcomprobante='../reportes/Comprobante_orden.php?id=';
 
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
@@ -152,9 +158,8 @@ switch ($_GET["op"]){
               <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
                 <i class="fas fa-print" aria-hidden="true"></i>
               </a>
-                <ul class="dropdown-menu">              
-                  <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
-                  <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
+                <ul class="dropdown-menu">
+
                 </ul>
           </li>',
 

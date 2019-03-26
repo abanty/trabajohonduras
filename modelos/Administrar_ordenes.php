@@ -186,17 +186,18 @@ Class Administrar_ordenes
 		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idbancos, cb.tipo_pago,
 		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad
 									FROM administrar_ordenes ao
-									INNER JOIN proveedores p ON
+									LEFT JOIN proveedores p ON
 									ao.idproveedores=p.idproveedores
-									INNER JOIN usuario u ON
+									LEFT JOIN usuario u ON
 									ao.idusuario=u.idusuario
-									INNER JOIN programa w ON
+									LEFT JOIN programa w ON
 									ao.idprograma=w.idprograma
-									INNER JOIN contabilidad cb ON
+									LEFT JOIN contabilidad cb ON
 									cb.idadministrar_ordenes = ao.idadministrar_ordenes
 		 			WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
+
 
 
 
@@ -212,7 +213,7 @@ Class Administrar_ordenes
 		return ejecutarConsulta($sql);
 	}
 
-	
+
 	// ---------------------------------------------
 	// METODO PARA LISTAR LAS FACTURAS DE LA ORDEN:|
 	// ---------------------------------------------

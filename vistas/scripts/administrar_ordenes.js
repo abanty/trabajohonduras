@@ -129,6 +129,14 @@ function listar()
 		            'csvHtml5',
 		            'pdf'
 		        ],
+
+     columnDefs: [
+			          { width: 120, targets: 0 }
+			          // { width: 150, targets: 1 }
+			      ],
+
+
+
 		"ajax":
 				{
 					url: '../ajax/administrar_ordenes.php?op=listar',
@@ -138,6 +146,8 @@ function listar()
 						console.log(e.responseText);
 					}
 				},
+		scrollCollapse: true,
+		"sPaginationType": "full_numbers", //barra de paginacion
 		"bDestroy": true,
 		"iDisplayLength": 5,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
@@ -207,8 +217,11 @@ function guardaryeditar(e)
 	limpiar();
 }
 
+
 function orden_mostrar(idadministrar_ordenes)
 {
+
+	// mostrar_comprob(idadministrar_ordenes);
 	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
 		data = JSON.parse(data);
@@ -231,8 +244,6 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#monto_total").val(data.monto_total);
 
 
-		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
-
 		//DETALLE COMPROBANTE
 		$("#debitos").val(data.debitos);
 		$("#tipopago").val(data.tipo_pago).selectpicker('refresh');
@@ -242,6 +253,11 @@ function orden_mostrar(idadministrar_ordenes)
 
 		$("#idbancos").val(data.idbancos).selectpicker('refresh');
 
+
+
+		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
+
+
 		//Ocultar y mostrar los botones
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
@@ -250,6 +266,8 @@ function orden_mostrar(idadministrar_ordenes)
 
 
  	});
+
+
 
  	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
 				  $("#detalles tbody").html(r);
