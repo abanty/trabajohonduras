@@ -61,7 +61,7 @@ if ($_SESSION['admonoc']==1)
 
           <div class="box-body" id="listadoregistros">
             <div class="panel-body table-responsive">
-              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="115%">
                 <thead style="background-color:#d2d6de">
                   <th>Opciones</th>
                   <th>Fecha</th>

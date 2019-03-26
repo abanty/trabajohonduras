@@ -309,9 +309,59 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->Ln(3);
 
 	$this->Cell(197,15,'',1,1,'L',0);
+
+	//3 COLUMNAS DEl CUERPO
 	$this->Cell(67,35,'',1,0,'L',0);
 	$this->Cell(67,35,'',1,0,'L',0);
-	$this->Cell(63,35,'',1,0,'L',0);
+	$this->Cell(63,35,'',1,1,'L',0);
+	$this->SetXY(144,90);
+	$this->Cell(63,18,'',1,1,'L',0);
+	// FIN 3 COLUMNAS
+
+
+	$this->SetXY(10,114.6);
+	$this->Cell(99,5,'',1,0,'L',0);
+	$this->Cell(98,5,'',1,1,'L',0);
+
+	$this->Cell(67,5,'',1,0,'L',0);
+	$this->Cell(67,5,'',1,0,'L',0);
+	$this->Cell(63,5,'',1,0,'L',0);
+
+
+
+	// DATOS FOOTER TEXTOS
+	// TEXTOS PDF
+	$this->SetFont( "Arial", "B", 8);
+	$this->SetXY(145,80);
+	$this->MultiCell( 60, 4, utf8_decode("Orden de Compra (u) otras referencias"));
+
+	$this->SetXY(10,115);
+	$this->MultiCell( 60, 4, utf8_decode("Lugar. "));
+
+	$this->SetXY(110,115);
+	$this->MultiCell( 60, 4, utf8_decode("Fecha "));
+
+
+	$this->SetFont( "Arial", "", 8);
+	$this->SetXY(145,85);
+	$this->MultiCell( 60, 4, utf8_decode("ACUERDO #  195  C/P # 1092"));
+
+	$this->SetXY(20,115);
+	$this->MultiCell( 60, 4, utf8_decode("TEGUCIGALPA, M.D.C. "));
+
+	$this->SetXY(120,115);
+	$this->MultiCell( 60, 4, utf8_decode("05/29/2018 "));
+
+	$this->SetFont( "Arial", "B", 8);
+	$this->SetXY(145,92);
+	$this->MultiCell( 60, 4, utf8_decode("Firma"));
+
+	$this->SetFont( "Arial", "B", 8);
+	$this->SetXY(150,110);
+	$this->MultiCell( 60, 4, utf8_decode("Pagador General de las FF .AA."));
+
+
+
 
 
 	$this->SetXY( $r1+0.5, $y1);
