@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2019 a las 18:48:14
+-- Tiempo de generación: 26-03-2019 a las 18:43:08
 -- Versión del servidor: 10.1.24-MariaDB
 -- Versión de PHP: 7.1.6
 
@@ -45,13 +45,6 @@ CREATE TABLE `administrar_ordenes` (
   `monto_total` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `administrar_ordenes`
---
-
-INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
-(1, 10, 1, 3, '001', '0001', 'Materiales', 'breve', '0.125', '2019-03-24', '0.25', '2.00', '1.00', '2.25', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -240,13 +233,13 @@ INSERT INTO `configuracion` (`ConfiguracionID`, `Nombre`, `Cargo`, `Descripcion`
 
 CREATE TABLE `contabilidad` (
   `idcontabilidad` int(11) NOT NULL,
-  `idadministrar_ordenes` int(11) NOT NULL,
-  `idbancos` int(11) NOT NULL,
-  `tipo_pago` varchar(25) NOT NULL,
-  `numero_transferencia` int(11) NOT NULL,
-  `debitos` varchar(75) NOT NULL,
-  `creditos` varchar(75) NOT NULL,
-  `contabilidad` varchar(25) NOT NULL,
+  `idadministrar_ordenes` int(11) DEFAULT NULL,
+  `idctabancarias` int(11) DEFAULT NULL,
+  `tipo_pago` varchar(25) DEFAULT NULL,
+  `numero_transferencia` int(11) DEFAULT NULL,
+  `debitos` varchar(75) DEFAULT NULL,
+  `creditos` varchar(75) DEFAULT NULL,
+  `contabilidad` varchar(25) DEFAULT NULL,
   `fechacreacion` datetime DEFAULT NULL,
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -278,7 +271,6 @@ CREATE TABLE `crear_acuerdo` (
 
 CREATE TABLE `ctasbancarias` (
   `idctasbancarias` int(11) NOT NULL,
-  `idbancos` int(11) NOT NULL,
   `cuentapg` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `bancopg` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `tipoctapg` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
@@ -291,12 +283,12 @@ CREATE TABLE `ctasbancarias` (
 -- Volcado de datos para la tabla `ctasbancarias`
 --
 
-INSERT INTO `ctasbancarias` (`idctasbancarias`, `idbancos`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 22, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9600312.00', 1),
-(2, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '-20502997.00', 1),
-(3, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '-10003092.52', 1),
-(4, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '4542460.48', 1),
-(5, 17, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '-1000000.00', 1);
+INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9600312.00', 1),
+(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '-20502997.00', 1),
+(3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '-10003092.52', 1),
+(4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '4542460.48', 1),
+(5, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '-1000000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -403,15 +395,6 @@ CREATE TABLE `detalle_orden` (
   `precio_unitario` decimal(11,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `detalle_orden`
---
-
-INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, '', 1, '', '1.00'),
-(2, 1, 2, '', 1, '', '1.00'),
-(3, 1, 3, '', 1, '', '1.00');
-
 -- --------------------------------------------------------
 
 --
@@ -451,16 +434,6 @@ CREATE TABLE `factura_orden` (
   `fecha_factura` datetime NOT NULL,
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `factura_orden`
---
-
-INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
-(1, 1, 111111, '2019-03-24 00:00:00', '0.00'),
-(2, 1, 22222, '2019-03-24 00:00:00', '0.00'),
-(3, 1, 33333, '2019-03-24 00:00:00', '0.00'),
-(4, 1, 44444, '2019-03-24 00:00:00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -1005,7 +978,7 @@ ALTER TABLE `configuracion`
 ALTER TABLE `contabilidad`
   ADD PRIMARY KEY (`idcontabilidad`),
   ADD KEY `orden_contabilidad` (`idadministrar_ordenes`),
-  ADD KEY `orden_bancos` (`idbancos`);
+  ADD KEY `cta_bancaria_orden` (`idctabancarias`);
 
 --
 -- Indices de la tabla `crear_acuerdo`
@@ -1020,8 +993,7 @@ ALTER TABLE `crear_acuerdo`
 -- Indices de la tabla `ctasbancarias`
 --
 ALTER TABLE `ctasbancarias`
-  ADD PRIMARY KEY (`idctasbancarias`),
-  ADD KEY `cta_banco` (`idbancos`);
+  ADD PRIMARY KEY (`idctasbancarias`);
 
 --
 -- Indices de la tabla `detalle_compromisos`
@@ -1140,7 +1112,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `bancos`
 --
@@ -1160,7 +1132,7 @@ ALTER TABLE `compromisos`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
 --
@@ -1185,7 +1157,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
@@ -1195,7 +1167,7 @@ ALTER TABLE `dtransf_ctaspg`
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
@@ -1259,7 +1231,7 @@ ALTER TABLE `compromisos`
 -- Filtros para la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  ADD CONSTRAINT `orden_bancos` FOREIGN KEY (`idbancos`) REFERENCES `bancos` (`idbancos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cta_bancaria_orden` FOREIGN KEY (`idctabancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `orden_contabilidad` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1269,12 +1241,6 @@ ALTER TABLE `crear_acuerdo`
   ADD CONSTRAINT `fk_crear_acuerdo_programa` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_crear_acuerdo_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_crear_acuerdo_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `ctasbancarias`
---
-ALTER TABLE `ctasbancarias`
-  ADD CONSTRAINT `cta_banco` FOREIGN KEY (`idbancos`) REFERENCES `bancos` (`idbancos`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `detalle_compromisos`
