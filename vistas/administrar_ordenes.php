@@ -26,7 +26,7 @@ if ($_SESSION['admonoc']==1)
   width: 100%;
   text-align: center;
   height: 100%;
-  display: none;
+  
 }
 
 </style>
