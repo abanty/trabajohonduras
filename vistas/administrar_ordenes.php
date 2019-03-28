@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //Activamos el almacenamiento en el buffer
 ob_start();
 session_start();
@@ -26,7 +26,7 @@ if ($_SESSION['admonoc']==1)
   width: 100%;
   text-align: center;
   height: 100%;
-  
+  display: none;
 }
 
 </style>
@@ -316,12 +316,12 @@ if ($_SESSION['admonoc']==1)
 
                 </div>
 
-                <div class="row container">
+              <div class="row container">
                     <div class="form-group  col-md-4">
-                        <label class="control-label" for="contabilidad">Contabilidad</label>
-                        <input type="text" class="form-control input-sm" form="formulario" id="contabilidad" name="contabilidad" style="text-transform: uppercase;" placeholder="Ingresa estado">
+                        <label class="control-label" for="creditos">Creditos</label>
+                        <input type="text" class="form-control input-sm" form="formulario" style="text-transform: uppercase;"  id="creditos" name="creditos"  placeholder="Ingresa Creditos">
                     </div>
-               </div>
+                </div>
                <hr>
                 <div class="row container">
                     <div class="form-group  col-md-4">

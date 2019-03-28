@@ -1,0 +1,76 @@
+[26-Mar-2019 22:39:58 UTC] PHP Warning:  require_once(../modelos/Ctasbancarias.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/administrar_ordenes.php on line 203
+[26-Mar-2019 22:39:58 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/Ctasbancarias.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/administrar_ordenes.php on line 203
+[26-Mar-2019 22:39:58 UTC] PHP Warning:  require_once(../modelos/Programa.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/administrar_ordenes.php on line 218
+[26-Mar-2019 22:39:58 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/Programa.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/administrar_ordenes.php on line 218
+[26-Mar-2019 22:51:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home/augumtx59qfu/public_html/config/Conexion.php:28
+Stack trace:
+#0 /home/augumtx59qfu/public_html/modelos/Administrar_ordenes.php(198): ejecutarConsultaSimpleFila('SELECT\tao.idadm...')
+#1 /home/augumtx59qfu/public_html/ajax/administrar_ordenes.php(88): Administrar_ordenes->mostrar_orden('1')
+#2 {main}
+  thrown in /home/augumtx59qfu/public_html/config/Conexion.php on line 28
+[26-Mar-2019 22:58:12 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home/augumtx59qfu/public_html/config/Conexion.php:28
+Stack trace:
+#0 /home/augumtx59qfu/public_html/modelos/Administrar_ordenes.php(198): ejecutarConsultaSimpleFila('SELECT\tao.idadm...')
+#1 /home/augumtx59qfu/public_html/ajax/administrar_ordenes.php(88): Administrar_ordenes->mostrar_orden('1')
+#2 {main}
+  thrown in /home/augumtx59qfu/public_html/config/Conexion.php on line 28
+[27-Mar-2019 01:16:37 UTC] PHP Warning:  require_once(../modelos/ctasbancarias.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/transferidoctaspg.php on line 119
+[27-Mar-2019 01:16:37 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/ctasbancarias.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/transferidoctaspg.php on line 119
+[27-Mar-2019 01:18:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/ingreso.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/ingreso.php on line 114
+[27-Mar-2019 01:19:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/ingreso.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/ingreso.php on line 114
+[27-Mar-2019 01:19:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/ingreso.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/ingreso.php on line 114
+[27-Mar-2019 01:20:21 UTC] PHP Warning:  require_once(../modelos/programa.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/compromisos.php on line 119
+[27-Mar-2019 01:20:21 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/programa.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/compromisos.php on line 119
+[27-Mar-2019 01:20:21 UTC] PHP Warning:  require_once(../modelos/proveedores.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/compromisos.php on line 107
+[27-Mar-2019 01:20:21 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/proveedores.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/compromisos.php on line 107
+[27-Mar-2019 01:20:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/compromisos.php:135
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/compromisos.php on line 135
+[27-Mar-2019 01:21:51 UTC] PHP Warning:  require_once(../modelos/ctasbancarias.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/transferenciabch.php on line 102
+[27-Mar-2019 01:21:51 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/ctasbancarias.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/transferenciabch.php on line 102
+[27-Mar-2019 01:21:51 UTC] PHP Warning:  require_once(../modelos/proveedores.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/transferenciabch.php on line 115
+[27-Mar-2019 01:21:51 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/proveedores.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/transferenciabch.php on line 115
+[27-Mar-2019 02:02:59 UTC] PHP Warning:  require_once(../modelos/programa.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/programa.php on line 2
+[27-Mar-2019 02:02:59 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/programa.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/programa.php on line 2
+[27-Mar-2019 02:03:40 UTC] PHP Warning:  require_once(../modelos/programa.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/programa.php on line 2
+[27-Mar-2019 02:03:40 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/programa.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/programa.php on line 2
+[27-Mar-2019 02:18:20 UTC] PHP Warning:  require_once(../modelos/programa.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 135
+[27-Mar-2019 02:18:20 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/programa.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 135
+[27-Mar-2019 02:18:20 UTC] PHP Warning:  require_once(../modelos/proveedores.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 123
+[27-Mar-2019 02:18:20 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/proveedores.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 123
+[27-Mar-2019 02:18:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php:151
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 151
+[27-Mar-2019 02:18:25 UTC] PHP Warning:  require_once(../modelos/programa.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 135
+[27-Mar-2019 02:18:25 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/programa.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 135
+[27-Mar-2019 02:18:25 UTC] PHP Warning:  require_once(../modelos/proveedores.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 123
+[27-Mar-2019 02:18:25 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/proveedores.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 123
+[27-Mar-2019 02:18:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php:151
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 151
+[27-Mar-2019 02:29:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/ingreso.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/ingreso.php on line 114
+[27-Mar-2019 02:30:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/ingreso.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/ingreso.php on line 114
+[27-Mar-2019 02:34:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Presupuesto_disponible::listarActivos() in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php:151
+Stack trace:
+#0 {main}
+  thrown in /home/augumtx59qfu/public_html/ajax/crear_acuerdo.php on line 151
+[27-Mar-2019 02:42:54 UTC] PHP Warning:  require_once(../modelos/ctasbancarias.php): failed to open stream: No such file or directory in /home/augumtx59qfu/public_html/ajax/transferidoctaspg.php on line 119
+[27-Mar-2019 02:42:54 UTC] PHP Fatal error:  require_once(): Failed opening required '../modelos/ctasbancarias.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/augumtx59qfu/public_html/ajax/transferidoctaspg.php on line 119
