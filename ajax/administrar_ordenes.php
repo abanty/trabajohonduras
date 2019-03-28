@@ -162,7 +162,6 @@ switch ($_GET["op"]){
                  <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
                 </ul>
           </li>',
-
  				"1"=>$reg->fecha,
  				"2"=>$reg->proveedor,
  				"3"=>$reg->usuario,
@@ -170,7 +169,6 @@ switch ($_GET["op"]){
   			"5"=>$reg->num_orden,
  				"6"=>$reg->num_comprobante,
  				"7"=>$reg->monto_total,
-
  				"8"=>$reg->impuesto,
  				"9"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'

@@ -37,14 +37,14 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" href="../public/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   </head>
-   <div id="preloader">
-  <div class="spinner">
-    <div class="spinner-circle spinner-circle-outer"></div>
-    <div class="spinner-circle-off spinner-circle-inner"></div>
-    <div class="spinner-circle spinner-circle-single-1"></div>
-    <div class="spinner-circle spinner-circle-single-2"></div>
-    <div class="text">Insertando datos...</div>
-  </div>
+   <div id="preloader" style="display:none;">
+      <div class="spinner">
+        <div class="spinner-circle spinner-circle-outer"></div>
+        <div class="spinner-circle-off spinner-circle-inner"></div>
+        <div class="spinner-circle spinner-circle-single-1"></div>
+        <div class="spinner-circle spinner-circle-single-2"></div>
+        <div class="text">Insertando datos...</div>
+      </div>
     </div>
   <!-- <div id="preloader">
     <center>
