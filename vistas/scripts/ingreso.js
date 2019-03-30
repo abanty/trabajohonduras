@@ -7,8 +7,8 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
-	});	
+		guardaryeditar(e);
+	});
 }
 
 //Función limpiar
@@ -29,7 +29,7 @@ function limpiar()
     $('#fecha_hora').val(today);
 
 
-}	
+}
 
 //Función mostrar formulario
 function mostrarform(flag)
@@ -58,7 +58,7 @@ function mostrarform(flag)
 		$("#btnagregar").show();
 	}
 
-}	
+}
 
 
 //Función cancelarform
@@ -76,7 +76,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -86,9 +86,9 @@ function listar()
 				{
 					url: '../ajax/ingreso.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -108,16 +108,16 @@ function listarPresupuesto_disponible()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 
 		        ],
 		"ajax":
 				{
-					url: '../ajax/ingreso.php?op=listarPresupuesto_disponible',
+					url: '../ajax/ingreso.php?op=listar_Presupuesto_disponible',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -143,8 +143,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          listar();
 	    }
@@ -157,7 +157,7 @@ function mostrar(idingreso)
 {
 	$.post("../ajax/ingreso.php?op=mostrar",{idingreso : idingreso}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 
@@ -186,7 +186,7 @@ function anular(idingreso)
         	$.post("../ajax/ingreso.php?op=anular", {idingreso : idingreso}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -260,7 +260,7 @@ $("#total_importe").val(total);
     }
     else
     {
-      $("#btnGuardar").hide(); 
+      $("#btnGuardar").hide();
       cont=0;
     }
   }
@@ -271,6 +271,6 @@ $("#total_importe").val(total);
   	detalles=detalles-1;
   	evaluar();
   }
-  
+
 
 init();

@@ -11,44 +11,18 @@ Class Presupuesto_disponible
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar(
-		$nombre_objeto,
-		$grupo,
-		$subgrupo,
-		$codigo,
-		$presupuesto_anual,
-		$fondos_disponibles)
+	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo,$presupuesto_anual,$fondos_disponibles)
 	{
-		$sql="INSERT INTO presupuesto_disponible (
-		nombre_objeto,
-		grupo,
-		subgrupo,
-		codigo,
-		presupuesto_anual,
-		fondos_disponibles,
-		condicion)
-		VALUES (
-		'$nombre_objeto',
-		'$grupo',
-		'$subgrupo',
-		'$codigo',
-		'$presupuesto_anual',
-		'$fondos_disponibles',
-		'1')";
+		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,presupuesto_anual,fondos_disponibles,condicion)
+		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','$presupuesto_anual','$fondos_disponibles','1')";
 		return ejecutarConsulta($sql);
 	}
 
 	//Implementamos un método para editar registros
 	public function editar($idpresupuesto_disponible,$nombre_objeto,$grupo,$subgrupo,$codigo,$presupuesto_anual,$fondos_disponibles)
 	{
-$sql="UPDATE
- presupuesto_disponible SET
- nombre_objeto='$nombre_objeto',
- grupo='$grupo',
- subgrupo='$subgrupo',
- codigo='$codigo',
- presupuesto_anual='$presupuesto_anual',
- fondos_disponibles='$fondos_disponibles' WHERE idpresupuesto_disponible='$idpresupuesto_disponible'";
+		$sql="UPDATE presupuesto_disponible SET nombre_objeto='$nombre_objeto', grupo='$grupo', subgrupo='$subgrupo', codigo='$codigo',
+		presupuesto_anual='$presupuesto_anual', fondos_disponibles='$fondos_disponibles' WHERE idpresupuesto_disponible='$idpresupuesto_disponible'";
 		return ejecutarConsulta($sql);
 	}
 
@@ -77,15 +51,9 @@ $sql="UPDATE
 //Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT
-		idpresupuesto_disponible,
-		nombre_objeto,
-		codigo,
-		grupo,
-		subgrupo,
-		FORMAT( presupuesto_anual, 2) as presupuesto_anual,
-		FORMAT( fondos_disponibles, 2) as fondos_disponibles,
-		condicion FROM presupuesto_disponible";
+		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo,subgrupo,FORMAT( presupuesto_anual, 2) as presupuesto_anual,
+		FORMAT( fondos_disponibles, 2) as fondos_disponibles,	condicion
+		FROM presupuesto_disponible";
 		return ejecutarConsulta($sql);
 	}
 
@@ -95,7 +63,9 @@ $sql="UPDATE
 		$sql="SELECT idpresupuesto_disponible, nombre_objeto,	grupo, subgrupo, codigo,
 		FORMAT( presupuesto_anual, 2) as presupuesto_anual,
 		FORMAT( fondos_disponibles, 2) as fondos_disponibles,
-		condicion FROM presupuesto_disponible  WHERE condicion='1'";
+		condicion
+		FROM presupuesto_disponible
+		WHERE condicion='1'";
 		return ejecutarConsulta($sql);
 	}
 	//Implementar un método para listar los registros activos, su último precio y el stock (vamos a unir con el último registro de la tabla detalle_ingreso)

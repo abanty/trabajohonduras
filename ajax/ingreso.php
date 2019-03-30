@@ -1,5 +1,5 @@
-<?php 
-if (strlen(session_id()) < 1) 
+<?php
+if (strlen(session_id()) < 1)
   session_start();
 
 require_once "../modelos/Ingreso.php";
@@ -8,28 +8,20 @@ $ingreso=new Ingreso();
 
 $idingreso=isset($_POST["idingreso"])? limpiarCadena($_POST["idingreso"]):"";
 $idusuario=$_SESSION["idusuario"];
-$numf01=isset($_POST["numf01"])? limpiarCadena($_POST["numf01"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
+$numf01=isset($_POST["numf01"])? limpiarCadena($_POST["numf01"]):"";
 $total_importe=isset($_POST["total_importe"])? limpiarCadena($_POST["total_importe"]):"";
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idingreso)){
-			$rspta=$ingreso->insertar(
-		$idusuario,
-		$numf01,
-		$fecha_hora,
-		$total_importe,
-		$_POST["idingreso"],
-		$_POST["idpresupuesto_disponible"],
-		$_POST["monto"]);
-
+			$rspta=$ingreso->insertar($idusuario,$fecha_hora,$numf01,$total_importe,$_POST["idpresupuesto_disponible"],$_POST["monto"]);
 			echo $rspta ? "Ingreso registrado" : "No se pudieron registrar los datos o el numero F01 ya existe.";
 		}
 		else {
 		}
 	break;
- 
+
 	case 'anular':
 		$rspta=$ingreso->anular($idingreso);
  		echo $rspta ? "Ingreso anulado" : "Ingreso no se puede anular";
@@ -72,7 +64,7 @@ case 'listarDetalle':
                                     <th>TOTAL</th>
                                     <th></th>
                                     <th></th>
-                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="total_importe" id="total_importe" step"0.02"> 
+                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="total_importe" id="total_importe" step"0.02">
                                 </tfoot>';
 	break;
 
@@ -89,7 +81,7 @@ case 'listarDetalle':
  				"0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger" onclick="anular('.$reg->idingreso.')"><i class="fas fa-times"></i></button>':
  					'<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><i class="fas fa-eye"></i></button>',
- 				
+
  				"1"=>$reg->fecha,
  				"2"=>$reg->usuario,
  				"3"=>$reg->numf01,
@@ -107,11 +99,11 @@ case 'listarDetalle':
 
 	break;
 
-	case 'listarPresupuesto_disponible':
+	case 'listar_Presupuesto_disponible':
 		require_once "../modelos/Presupuesto_disponible.php";
-		$presupuesto_disponible=new Presupuesto_disponible();
+		$predis=new Presupuesto_disponible();
 
-		$rspta=$presupuesto_disponible->listarActivos();
+		$rspta=$predis->listarPresupuestoActivos();
  		//Vamos a declarar un array
  		$data= Array();
 
@@ -120,7 +112,7 @@ case 'listarDetalle':
  				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\')"><span class="fas fa-plus-circle"></span></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
- 				"3"=>$reg->fondos_disponibles,
+ 				"3"=>$reg->fondos_disponibles
  				);
  		}
  		$results = array(

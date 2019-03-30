@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -11,79 +11,32 @@ Class Ingreso
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar(
-
-		$idusuario,
-		$numf01,
-		$fecha_hora,
-		$total_importe,
-
-
-		$idingreso,
-		$idpresupuesto_disponible,
-		$monto)
+	public function insertar($idusuario,$fecha_hora,$numf01,$total_importe,$idpresupuesto_disponible,$monto)
 	{
-		$sql="INSERT INTO ingreso (
-		idusuario,
-		numf01,
-		fecha_hora,
-		total_importe,
-		estado)
-		VALUES (
-		'$idusuario',
-		'$numf01',
-		'$fecha_hora',
-		'$total_importe',
-		'Aceptado')";
+		$sql="INSERT INTO ingreso (idusuario, fecha_hora,	numf01,	total_importe,	estado)
+		VALUES ('$idusuario','$fecha_hora','$numf01','$total_importe','Aceptado')";
 		//return ejecutarConsulta($sql);
 		$idingresonew=ejecutarConsulta_retornarID($sql);
 
 		$num_elementos=0;
 		$sw=true;
 
-		// $total = (int)$total_importe;
-		// $idpresupuesto = (int)$idpresupuesto_disponible;
-
-
-
-		if($idingresonew!=0){
-
 		while ($num_elementos < count($idpresupuesto_disponible))
 		{
-			$idpresupuesto = (int)$idpresupuesto_disponible[$num_elementos];
-
-			$sql= " UPDATE presupuesto_disponible
-					SET `fondos_disponibles` = (fondos_disponibles + '$monto[$num_elementos]')
-					WHERE `idpresupuesto_disponible` = $idpresupuesto_disponible[$num_elementos]";
-			ejecutarConsulta($sql);
-
-			$sql_detalle = "INSERT INTO detalle_ingreso(
-			idingreso, 
-			idpresupuesto_disponible,
-			monto) 
-			VALUES (
-			'$idingresonew', 
-			'$idpresupuesto_disponible[$num_elementos]',
-			'$monto[$num_elementos]')";
+			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,monto)
+			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$monto[$num_elementos]')";
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
-		}return $sw;
+		}
 
-
-			
-	}else
-	{
-		return false;
+		return $sw;
 	}
 
-		
-	}
 
-	 
 	//Implementamos un método para anular categorías
 	public function anular($idingreso)
 	{
-		$sql="UPDATE presupuesto_disponible as a INNER JOIN detalle_ingreso b 
+		$sql="UPDATE presupuesto_disponible as a INNER JOIN detalle_ingreso b
 			on a.idpresupuesto_disponible = b.idpresupuesto_disponible
 			INNER JOIN ingreso c on c.idingreso=b.idingreso
 			SET a.fondos_disponibles = (a.fondos_disponibles-b.monto)
@@ -108,12 +61,12 @@ Class Ingreso
 		u.nombre as usuario,
 		i.numf01,
 		FORMAT(i.total_importe, 2) as total_importe,
-		
-		i.estado 
+
+		i.estado
 
 
-		FROM ingreso i 	INNER JOIN usuario u ON 
-		i.idusuario=u.idusuario 
+		FROM ingreso i 	INNER JOIN usuario u ON
+		i.idusuario=u.idusuario
 		WHERE i.idingreso='$idingreso'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
@@ -122,16 +75,16 @@ Class Ingreso
 	public function listarDetalle($idingreso)
 	{
 		$sql="
-		SELECT 
+		SELECT
 		di.idingreso,
 		di.idpresupuesto_disponible,
 		a.nombre_objeto,
 		a.codigo,
 		di.monto as monto
-		FROM detalle_ingreso di INNER JOIN presupuesto_disponible a on 
-		di.idpresupuesto_disponible=a.idpresupuesto_disponible 
+		FROM detalle_ingreso di INNER JOIN presupuesto_disponible a on
+		di.idpresupuesto_disponible=a.idpresupuesto_disponible
 		where di.idingreso='$idingreso'";
-		return ejecutarConsulta($sql);	
+		return ejecutarConsulta($sql);
 	}
 
 
@@ -139,23 +92,23 @@ Class Ingreso
 	public function listar()
 	{
 		$sql="
-		SELECT 
+		SELECT
 		i.idingreso,
 		DATE(i.fecha_hora) as fecha,
 
 		u.nombre as usuario,
 		i.numf01,
 		FORMAT(i.total_importe, 2) as total_importe,
-		i.estado 
+		i.estado
 
 
-		FROM ingreso i 	INNER JOIN usuario u ON 
-		i.idusuario=u.idusuario 
+		FROM ingreso i 	INNER JOIN usuario u ON
+		i.idusuario=u.idusuario
 		ORDER BY i.idingreso desc";
 
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
-	
+
 }
 
 ?>
