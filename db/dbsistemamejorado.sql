@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-03-2019 a las 18:43:08
--- Versión del servidor: 10.1.24-MariaDB
--- Versión de PHP: 7.1.6
+-- Tiempo de generación: 08-04-2019 a las 18:21:10
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -198,7 +198,7 @@ INSERT INTO `compromisos` (`idcompromisos`, `idprograma`, `idproveedores`, `fech
 (32, 6, 11, '2019-02-12', '1000-01-1457888', '31357.17', 0),
 (33, 3, 13, '2019-02-12', '01457845781258', '500.00', 0),
 (34, 12, 138, '2019-02-13', '000-001-01-00019218', '1143300.00', 0),
-(35, 5, 21, '2019-02-13', '0001555443212', '688.50', 0),
+(35, 5, 21, '2019-02-13', '0001555443212', '688.50', 1),
 (36, 1, 9, '2019-02-20', '1015-1025-1000000', '20001545.52', 1),
 (37, 1, 9, '2019-02-24', '778', '0.00', 1),
 (38, 1, 9, '2019-02-24', '1111', '150.00', 1),
@@ -234,7 +234,7 @@ INSERT INTO `configuracion` (`ConfiguracionID`, `Nombre`, `Cargo`, `Descripcion`
 CREATE TABLE `contabilidad` (
   `idcontabilidad` int(11) NOT NULL,
   `idadministrar_ordenes` int(11) DEFAULT NULL,
-  `idctabancarias` int(11) DEFAULT NULL,
+  `idctasbancarias` int(11) DEFAULT NULL,
   `tipo_pago` varchar(25) DEFAULT NULL,
   `numero_transferencia` int(11) DEFAULT NULL,
   `debitos` varchar(75) DEFAULT NULL,
@@ -284,11 +284,11 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9600312.00', 1),
-(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '-20502997.00', 1),
-(3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '-10003092.52', 1),
-(4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '4542460.48', 1),
-(5, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '-1000000.00', 1);
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '0.00', 1),
+(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '0.00', 1),
+(3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
+(4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
+(5, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -320,11 +320,11 @@ INSERT INTO `detalle_compromisos` (`iddetalle_compromisos`, `idcompromisos`, `id
 (38, 33, 24, '100.00', 0),
 (39, 33, 25, '100.00', 0),
 (40, 34, 64, '1143300.00', 0),
-(41, 35, 1, '110.00', 0),
-(42, 35, 2, '145.00', 0),
-(43, 35, 3, '145.00', 0),
-(44, 35, 4, '111.50', 0),
-(45, 35, 5, '177.00', 0),
+(41, 35, 1, '110.00', 1),
+(42, 35, 2, '145.00', 1),
+(43, 35, 3, '145.00', 1),
+(44, 35, 4, '111.50', 1),
+(45, 35, 5, '177.00', 1),
 (46, 36, 1, '10000000.00', 1),
 (47, 36, 2, '1545.52', 1),
 (48, 36, 3, '10000000.00', 1),
@@ -361,23 +361,15 @@ CREATE TABLE `detalle_ingreso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `detalle_ingreso`
+-- Disparadores `detalle_ingreso`
 --
-
-INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
-(1, 1, 1, '136.00'),
-(2, 1, 2, '163.00'),
-(3, 2, 5, '60000.00'),
-(4, 3, 1, '100.25'),
-(5, 3, 6, '100.25'),
-(6, 3, 6, '100.25'),
-(7, 4, 2, '60000.00'),
-(8, 5, 1, '100.25'),
-(9, 5, 2, '100.25'),
-(10, 5, 3, '100.25'),
-(11, 5, 4, '100.25'),
-(12, 5, 5, '100.25'),
-(13, 6, 3, '100000.00');
+DELIMITER $$
+CREATE TRIGGER `tr_actualizar_disponible` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN
+    UPDATE presupuesto_disponible SET fondos_disponibles = fondos_disponibles + NEW.monto
+    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -395,6 +387,17 @@ CREATE TABLE `detalle_orden` (
   `precio_unitario` decimal(11,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Disparadores `detalle_orden`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_actualizar_presupuesto_anual` AFTER INSERT ON `detalle_orden` FOR EACH ROW BEGIN
+    UPDATE presupuesto_disponible SET presupuesto_anual = presupuesto_anual - NEW.cantidad * NEW.precio_unitario
+    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -409,18 +412,6 @@ CREATE TABLE `dtransf_ctaspg` (
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- Volcado de datos para la tabla `dtransf_ctaspg`
---
-
-INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasbancarias`, `num_precompromiso`, `valor`) VALUES
-(29, 24, 1, 455555, '10000000.00'),
-(30, 24, 4, 44444, '10000000.00'),
-(31, 24, 5, 11111, '10000000.00'),
-(32, 25, 1, 58, '156.00'),
-(38, 31, 1, 699, '156.00'),
-(40, 33, 1, 5454, '1000000.00');
-
 -- --------------------------------------------------------
 
 --
@@ -430,8 +421,8 @@ INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasba
 CREATE TABLE `factura_orden` (
   `idfactura_orden` int(11) NOT NULL,
   `idadministrar_ordenes` int(11) NOT NULL,
-  `num_factura` int(11) NOT NULL,
-  `fecha_factura` datetime NOT NULL,
+  `num_factura` varchar(11) NOT NULL,
+  `fecha_factura` date NOT NULL,
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -455,12 +446,8 @@ CREATE TABLE `ingreso` (
 --
 
 INSERT INTO `ingreso` (`idingreso`, `idusuario`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
-(1, 1, '2019-02-10 00:00:00', 36, '299.00', 'Aceptado'),
-(2, 1, '2019-02-10 00:00:00', 1014555, '60000.00', 'Aceptado'),
-(3, 1, '2019-02-13 00:00:00', 2544, '300.75', 'Aceptado'),
-(4, 1, '2019-02-14 00:00:00', 211, '60000.00', 'Aceptado'),
-(5, 3, '2019-02-14 00:00:00', 1325, '501.25', 'Aceptado'),
-(6, 1, '2019-02-25 00:00:00', 777, '100000.00', 'Aceptado');
+(1, 1, '2019-01-09 00:00:00', 777, '12000000.00', 'Aceptado'),
+(2, 1, '2019-02-12 00:00:00', 770, '12000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -511,96 +498,8 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Basicos', 11, 1112, '11100', '350000.00', '300.25', 1),
-(2, 'Adicionales', 0, 0, '11400', '1000.00', '100.25', 1),
-(3, 'Decimotercer Mes', 0, 0, '11510', '17500.00', '100100.25', 1),
-(4, 'Decimocuarto Mes', 0, 0, '11520', '15450.30', '100.25', 1),
-(5, 'Complementos', 0, 0, '11600', '0.00', '100.25', 1),
-(6, 'Contribuciones al Instituto de Prevision Militar - Cuota Patronal', 0, 0, '11731', '0.00', '0.00', 1),
-(7, 'Contribuciones al Instituto de Prevision Militar - Regimen de Riesgos Especiales', 0, 0, '11732', '0.00', '0.00', 1),
-(8, 'Contribuciones al Instituto de Prevision Militar - Reserva Laboral', 0, 0, '11733', '0.00', '0.00', 1),
-(9, 'Beneficios y Compensaciones', 0, 0, '16100', '0.00', '0.00', 1),
-(10, 'Energia Electrica', 0, 0, '21100', '0.00', '0.00', 1),
-(11, 'agua', 0, 0, '21200', '0.00', '0.00', 1),
-(12, 'Correo Postal', 0, 0, '21410', '0.00', '0.00', 1),
-(13, 'Telefonia Fija', 0, 0, '21420', '0.00', '0.00', 1),
-(14, 'Alquiler de Equipos de Transporte, Traccion y Elevacion', 0, 0, '22220', '0.00', '0.00', 1),
-(15, 'Alquiler de Tierras y Terrenos', 0, 0, '22300', '0.00', '0.00', 1),
-(16, 'Otros Alquileres', 0, 0, '22900', '0.00', '0.00', 1),
-(17, 'Mantenimiento y Reparacion de Edificios y Locales', 0, 0, '23100', '0.00', '0.00', 1),
-(18, 'Mantenimiento y Reparacion de Equipos y Medios de Transporte', 0, 0, '23200', '0.00', '0.00', 1),
-(19, 'Mantenimiento y Reparacion de Equipos Sanitarios y de Laboratorio', 0, 0, '23330', '0.00', '0.00', 1),
-(20, 'Mantenimiento y Reparacion de Equipo para Computacion', 0, 0, '23350', '0.00', '0.00', 1),
-(21, 'Mantenimiento y Reparacion de Equipo de Oficina y Muebles', 0, 0, '23360', '0.00', '0.00', 1),
-(22, 'Mantenimiento y Reparacion de Otros Equipos', 0, 0, '23390', '0.00', '0.00', 1),
-(23, 'Mantenimiento y Reparacion de Obras Civiles e Instalaciones Varias', 0, 0, '23400', '0.00', '0.00', 1),
-(24, 'Limpieza, Aseo y Fumigacion', 0, 0, '23500', '0.00', '0.00', 1),
-(25, 'Servicios de Capacitacion', 0, 0, '24500', '0.00', '0.00', 1),
-(26, 'Servicios de Informatica y Sistemas Computarizados', 0, 0, '24600', '0.00', '0.00', 1),
-(27, 'Servicios de Consultoria de Gestion Administrativa, Financiera y Actividades Conexas', 0, 0, '24710', '0.00', '0.00', 1),
-(28, 'Servicio de Transporte', 0, 0, '25100', '0.00', '0.00', 1),
-(29, 'Servicio de Imprenta, Publicaciones y Reproducciones', 0, 0, '25300', '0.00', '0.00', 1),
-(30, 'Primas y Gastos de Seguro', 0, 0, '25400', '0.00', '0.00', 1),
-(31, 'Comisiones y Gastos Bancarios', 0, 0, '25500', '0.00', '0.00', 1),
-(32, 'Publicidad y Propaganda', 0, 0, '25600', '0.00', '0.00', 1),
-(33, 'Servicio de Internet', 0, 0, '25700', '0.00', '0.00', 1),
-(34, 'Otros Servicios Comerciales y Financieros', 0, 0, '25900', '0.00', '0.00', 1),
-(35, 'Pasajes Nacionales', 0, 0, '26110', '0.00', '0.00', 1),
-(36, 'Pasajes al Exterior', 0, 0, '26120', '0.00', '0.00', 1),
-(37, 'Viaticos Nacionales', 0, 0, '26210', '0.00', '0.00', 1),
-(38, 'Viaticos al Exterior', 0, 0, '26220', '0.00', '0.00', 1),
-(39, 'Gastos Juridicos', 0, 0, '27500', '0.00', '0.00', 1),
-(40, 'Impuesto sobre Venta- 12%', 0, 0, '27114', '0.00', '0.00', 1),
-(41, 'Impuesto sobre Venta- 15%', 0, 0, '27115', '0.00', '0.00', 1),
-(42, 'Ceremonial y Protocolo', 0, 0, '29100', '0.00', '0.00', 1),
-(43, 'Alimentos y Bebidas para Personas', 0, 0, '31100', '0.00', '0.00', 1),
-(44, 'Madera, Corcho y sus Manufacturas', 0, 0, '31500', '0.00', '0.00', 1),
-(45, 'Hilados y Telas', 0, 0, '32100', '0.00', '0.00', 1),
-(46, 'Confecciones Textiles', 0, 0, '32200', '0.00', '0.00', 1),
-(47, 'Prendas de Vestir', 0, 0, '32310', '0.00', '0.00', 1),
-(48, 'Calzados', 0, 0, '32400', '0.00', '0.00', 1),
-(49, 'Papel de Escritorio', 0, 0, '33100', '0.00', '0.00', 1),
-(50, 'Papel para Computacion', 0, 0, '33200', '0.00', '0.00', 1),
-(51, 'Productos de Artes Graficas', 0, 0, '33300', '0.00', '0.00', 1),
-(52, 'Productos de Papel y Carton', 0, 0, '33400', '0.00', '0.00', 1),
-(53, 'Libros, Revistas y Periodicos', 0, 0, '33500', '0.00', '0.00', 1),
-(54, 'Textos de Enseñanza', 0, 0, '33600', '0.00', '0.00', 1),
-(55, 'Cueros y Pieles', 0, 0, '34100', '0.00', '0.00', 1),
-(56, 'Articulos de Cuero', 0, 0, '34200', '0.00', '0.00', 1),
-(57, 'Articulos de Caucho', 0, 0, '34300', '0.00', '0.00', 1),
-(58, 'Llantas y Camaras de Aire', 0, 0, '34400', '0.00', '0.00', 1),
-(59, 'Productos Quimicos', 0, 0, '35100', '0.00', '0.00', 1),
-(60, 'Productos Farmaceuticos y Medicinales Varios', 0, 0, '35210', '0.00', '0.00', 1),
-(61, 'Insecticidas, Fumigantes y Otros', 0, 0, '35400', '0.00', '0.00', 1),
-(62, 'Tintas, Pinturas y Colorantes', 0, 0, '35500', '0.00', '0.00', 1),
-(63, 'Gasolina', 0, 0, '35610', '0.00', '0.00', 1),
-(64, 'Diesel', 0, 0, '35620', '0.00', '0.00', 1),
-(65, 'Aceites y Grasas Lubricantes', 0, 0, '35650', '0.00', '0.00', 1),
-(66, 'Productos de Material Plastico', 0, 0, '35800', '0.00', '0.00', 1),
-(67, 'Productos Quimicos de Uso Personal', 0, 0, '35930', '0.00', '0.00', 1),
-(68, 'Productos Ferrosos', 0, 0, '36100', '0.00', '0.00', 1),
-(69, 'Productos no Ferrosos', 0, 0, '36200', '0.00', '0.00', 1),
-(70, 'Estructuras Metalicas Acabadas', 0, 0, '36300', '0.00', '0.00', 1),
-(71, 'Herramientas Menores', 0, 0, '36400', '0.00', '0.00', 1),
-(72, 'Material de Guerra y Seguridad', 0, 0, '36500', '0.00', '0.00', 1),
-(73, 'Accesorios de Metal', 0, 0, '36920', '0.00', '0.00', 1),
-(74, 'Elementos de Ferreter?a', 0, 0, '36930', '0.00', '0.00', 1),
-(75, 'Productos de Vidrio', 0, 0, '37200', '0.00', '0.00', 1),
-(76, 'Productos de Loza y Porcelana', 0, 0, '37300', '0.00', '0.00', 1),
-(77, 'Productos de Cemento, Asbesto y Yeso', 0, 0, '37400', '0.00', '0.00', 1),
-(78, 'Cemento, Cal y Yeso', 0, 0, '37500', '0.00', '0.00', 1),
-(79, 'Piedra, Arcilla y Arena', 0, 0, '38400', '0.00', '0.00', 1),
-(80, 'Elementos de Limpieza y Aseo Personal', 0, 0, '39100', '0.00', '0.00', 1),
-(81, 'Utiles de Escritorio, Oficina y Enseñanza', 0, 0, '39200', '0.00', '0.00', 1),
-(82, 'Utiles y Materiales Electricos', 0, 0, '39300', '0.00', '0.00', 1),
-(83, 'Utensilios de Cocina y Comedor', 0, 0, '39400', '0.00', '0.00', 1),
-(84, 'Instrumental Medico Quirurgico Menor', 0, 0, '39510', '0.00', '0.00', 1),
-(85, 'Repuestos y Accesorios', 0, 0, '39600', '0.00', '0.00', 1),
-(86, 'Repuestos y Accesorios Fondos Propios', 0, 0, '39600', '0.00', '0.00', 1),
-(87, 'Embarcaciones Maritimas', 0, 0, '42330', '0.00', '0.00', 1),
-(88, 'Becas Nacionales', 0, 0, '51211', '0.00', '0.00', 1),
-(89, 'Becas Externas', 0, 0, '51212', '0.00', '0.00', 1),
-(90, 'Otros Gastos', 0, 0, '51230', '0.00', '0.00', 1);
+(1, 'Sueldos Básicos', 11, 1112, '11100', '1000.00', '0.00', 1),
+(2, 'Adicionales', 11, 400, '11400', '2000.00', '0.00', 1);
 
 -- --------------------------------------------------------
 
@@ -832,18 +731,6 @@ CREATE TABLE `transferenciabch` (
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `transferenciabch`
---
-
-INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
-(1, 9, 1, '2019-02-10', '36', '366', '56.00', 'asdfsadfasd', 1),
-(2, 10, 1, '2019-02-13', '23ENE', '1007', '10000.00', 'GUGQfjhgFJHfgjhfgfgfj', 1),
-(3, 9, 1, '2019-02-24', '77', '44', '777.00', '7', 1),
-(13, 9, 2, '2019-02-24', '698', '689', '500000.00', '65', 1),
-(15, 10, 5, '2019-02-27', '6565', '5454', '11000000.00', 'jhhghg', 1),
-(16, 40, 4, '2019-02-27', '5555', '5455', '5454544.00', 'pago de factura numero 5454545454, articulos y repuestos de xxxxxxx', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -859,17 +746,6 @@ CREATE TABLE `transferidoctaspg` (
   `valor_transferido` decimal(12,2) NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `transferidoctaspg`
---
-
-INSERT INTO `transferidoctaspg` (`idtransferidoctaspg`, `idusuario`, `fecha_hora`, `numexpediente`, `numtransferencia`, `valor_transferido`, `estado`) VALUES
-(24, 3, '2019-02-14', '', '777777', '30000000.00', 'Aceptado'),
-(25, 1, '2019-02-24', '589', '689', '156.00', 'Aceptado'),
-(28, 1, '2019-02-24', '785', '78', '1878.00', 'Aceptado'),
-(31, 1, '2019-02-24', '699', '699', '156.00', 'Aceptado'),
-(33, 1, '2019-02-27', '455', '4545', '1000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -978,7 +854,7 @@ ALTER TABLE `configuracion`
 ALTER TABLE `contabilidad`
   ADD PRIMARY KEY (`idcontabilidad`),
   ADD KEY `orden_contabilidad` (`idadministrar_ordenes`),
-  ADD KEY `cta_bancaria_orden` (`idctabancarias`);
+  ADD KEY `cta_bancaria_orden` (`idctasbancarias`);
 
 --
 -- Indices de la tabla `crear_acuerdo`
@@ -1015,7 +891,9 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- Indices de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  ADD PRIMARY KEY (`iddetalle_ingreso`);
+  ADD PRIMARY KEY (`iddetalle_ingreso`),
+  ADD KEY `idingreso_detalle` (`idingreso`),
+  ADD KEY `idpredis_detalle` (`idpresupuesto_disponible`);
 
 --
 -- Indices de la tabla `detalle_orden`
@@ -1045,8 +923,7 @@ ALTER TABLE `factura_orden`
 --
 ALTER TABLE `ingreso`
   ADD PRIMARY KEY (`idingreso`),
-  ADD UNIQUE KEY `f01` (`numf01`),
-  ADD KEY `idusuario` (`idusuario`);
+  ADD KEY `idusuario_ingreso` (`idusuario`);
 
 --
 -- Indices de la tabla `permiso`
@@ -1058,9 +935,7 @@ ALTER TABLE `permiso`
 -- Indices de la tabla `presupuesto_disponible`
 --
 ALTER TABLE `presupuesto_disponible`
-  ADD PRIMARY KEY (`idpresupuesto_disponible`),
-  ADD KEY `nombre_objeto` (`nombre_objeto`),
-  ADD KEY `codigo` (`codigo`);
+  ADD PRIMARY KEY (`idpresupuesto_disponible`);
 
 --
 -- Indices de la tabla `programa`
@@ -1113,101 +988,121 @@ ALTER TABLE `usuario_permiso`
 --
 ALTER TABLE `administrar_ordenes`
   MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `bancos`
 --
 ALTER TABLE `bancos`
   MODIFY `idbancos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
 --
 -- AUTO_INCREMENT de la tabla `combustibles`
 --
 ALTER TABLE `combustibles`
   MODIFY `idcombustibles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT de la tabla `compromisos`
 --
 ALTER TABLE `compromisos`
   MODIFY `idcompromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
 --
 ALTER TABLE `crear_acuerdo`
   MODIFY `idcrear_acuerdo` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_compromisos`
 --
 ALTER TABLE `detalle_compromisos`
   MODIFY `iddetalle_compromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_crear_acuerdo`
 --
 ALTER TABLE `detalle_crear_acuerdo`
   MODIFY `iddetalle_crear_orden` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
   MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
-  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
   MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
   MODIFY `idpermiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `presupuesto_disponible`
 --
 ALTER TABLE `presupuesto_disponible`
-  MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
   MODIFY `idproveedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
-  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
-  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario_permiso`
 --
 ALTER TABLE `usuario_permiso`
   MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -1231,7 +1126,7 @@ ALTER TABLE `compromisos`
 -- Filtros para la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  ADD CONSTRAINT `cta_bancaria_orden` FOREIGN KEY (`idctabancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cta_bancaria_orden` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `orden_contabilidad` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1243,13 +1138,6 @@ ALTER TABLE `crear_acuerdo`
   ADD CONSTRAINT `fk_crear_acuerdo_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `detalle_compromisos`
---
-ALTER TABLE `detalle_compromisos`
-  ADD CONSTRAINT `detalle_compromisos_compromisos` FOREIGN KEY (`idcompromisos`) REFERENCES `compromisos` (`idcompromisos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `detalle_compromisos_presupuesto_disponible` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `detalle_crear_acuerdo`
 --
 ALTER TABLE `detalle_crear_acuerdo`
@@ -1257,17 +1145,17 @@ ALTER TABLE `detalle_crear_acuerdo`
   ADD CONSTRAINT `fk_detalle_crear_orden_crear_acuerdo` FOREIGN KEY (`idcrear_acuerdo`) REFERENCES `crear_acuerdo` (`idcrear_acuerdo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `dtransf_ctaspg`
+-- Filtros para la tabla `detalle_orden`
 --
-ALTER TABLE `dtransf_ctaspg`
-  ADD CONSTRAINT `fk_dtransf_ctaspg_ctasbancarias` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_dtransf_ctaspg_transferidoctaspg` FOREIGN KEY (`idtransferidoctaspg`) REFERENCES `transferidoctaspg` (`idtransferidoctaspg`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `detalle_orden`
+  ADD CONSTRAINT `admin_ord` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `pred_disp` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  ADD CONSTRAINT `orden_factura` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `factura_idorden` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
