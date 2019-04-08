@@ -321,13 +321,25 @@ $("#btnGuardar").hide();
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   {
 
+							// Array.prototype.contains = function(needle) {
+							// 		for (i in this) {
+							// if (this[i] == needle) return true;
+							// }
+							// return false;
+							// }
+							//
+							// if (contains.contains(idpresupuesto_disponible)) {
+							//
+							// }
 
 
-							var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
-					  	var cantidad = 1;
-					  	var unidad = "";
-					  	var descripcion = "";
-					  	var precio_unitario = 1;
+							// else {
+
+									var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
+							  	var cantidad = 1;
+							  	var unidad = "";
+							  	var descripcion = "";
+							  	var precio_unitario = 1;
 
 					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
 					    {
@@ -348,6 +360,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 
+								contains.push(idpresupuesto_disponible);
+									alert(contains);
+
 					    	modificarSubototales();
 					    }
 					    else
@@ -359,6 +374,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 								}).catch(swal.noop);
 					    	// alert("Insuficiente Saldo para realizar una transacción");
 					    }
+
+								// }
 
   }
 
@@ -409,7 +426,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 	}
 
 
-
+	var contains = [];
  function modificarSubototales()
   {
 
