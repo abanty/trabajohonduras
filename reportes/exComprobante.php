@@ -284,7 +284,7 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse( $cliente,$domicilio,$email )
+function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,$programa,$usuario,$norden)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
@@ -293,12 +293,12 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->SetXY( 37,35.5);
 	$this->SetFont( "Arial", "B", 8.5);
   $this->SetLineWidth(0.4);
-	$this->Cell(170,5.5,strtoupper($cliente),1,1,'L',0);
+	$this->Cell(170,5.5,strtoupper($proveedor),1,1,'L',0);
 
 	$this->SetXY( 37, 41);
 	$this->SetFont( "Arial", "", 8);
-	$this->Cell(110,5.5,strtoupper('                      '.$email),1,0,'L',0);
-	$this->Cell(60,5.5,utf8_decode('                          0001'),1,1,'L',0);
+	$this->Cell(110,5.5,strtoupper('                      '.$banco),1,0,'L',0);
+	$this->Cell(60,5.5,utf8_decode('                          '.$numerotransferencia),1,1,'L',0);
 
 
 	$this->SetXY( 37,46.5);
@@ -311,9 +311,9 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->Cell(197,15,'',1,1,'L',0);
 
 	//3 COLUMNAS DEl CUERPO
-	$this->Cell(67,35,'',1,0,'L',0);
-	$this->Cell(67,35,'',1,0,'L',0);
-	$this->Cell(63,35,'',1,1,'L',0);
+	$this->Cell(67,35,'',1,0,'L',0); //Detalle de facturas
+	$this->Cell(67,35,'',1,0,'L',0); //Detalle de facturas
+	$this->Cell(63,35,'',1,1,'L',0); //3 filas ORDEN / FIRMA / PAGADOR GENERAL
 	$this->SetXY(144,90);
 	$this->Cell(63,18,'',1,1,'L',0);
 	// FIN 3 COLUMNAS
@@ -326,15 +326,15 @@ function addClientAdresse( $cliente,$domicilio,$email )
 // 3 COLUMNAS CLASIFICACION - CONTABILIDAD TITULO 11 - RAMO DE DEFENSA
 	$this->Cell(67,6.5,utf8_decode('CLASIFICACIÓN'),0,0,'L',0);
 	$this->Cell(67,6.5,utf8_decode('CONTABILIDAD TÍTULO 11'),0,0,'C',0);
-	$this->Cell(63,6.5,'RAMO DE DEFENSA',0,1,'R',0);
+	$this->Cell(63,6.5,'RAMA DE DEFENSA',0,1,'R',0);
 
 
 // TABLA DETALLE CABECERA
 	$this->Cell(23,5,'Programa',1,0,'C',0);
-	$this->Cell(13,5,'Grupo',1,0,'C',0);
-	$this->Cell(20,5,'Subgrupo',1,0,'C',0);
-	$this->Cell(22,5,'No. Objeto',1,0,'C',0);
-	$this->Cell(35,5,'INTERIORES',1,0,'C',0);
+	$this->Cell(13,5,'',1,0,'C',0);
+	$this->Cell(20,5,'',1,0,'C',0);
+	$this->Cell(22,5,'',1,0,'C',0);
+	$this->Cell(35,5,'',1,0,'C',0);
 	$this->Cell(35,5,'VALOR',1,0,'C',0);
 	$this->Cell(49,5,'CUENTA DE BALANCE',1,1,'C',0);
 
@@ -375,7 +375,7 @@ function addClientAdresse( $cliente,$domicilio,$email )
 
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY(145,85);
-	$this->MultiCell( 60, 4, utf8_decode("ACUERDO #  195  C/P # 1092"));
+	$this->MultiCell( 60, 4, utf8_decode("O/C # ".$norden));
 
 	$this->SetXY(20,115);
 	$this->MultiCell( 60, 4, utf8_decode("TEGUCIGALPA, M.D.C. "));
@@ -401,7 +401,17 @@ function addClientAdresse( $cliente,$domicilio,$email )
 
 	$this->SetXY( $r1+138, $y1+5.5);
 	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 50, 4, utf8_decode("Cheque N°: " ));
+	$this->MultiCell( 50, 4, utf8_decode($tipopago." N°: " ));
+
+	//UBICACION CADENA PROGRAMA
+	$this->SetXY( $r1+4, $y1+95);
+	$this->SetFont( "Arial", "B", 8.5);
+	$this->MultiCell( 50, 4, str_replace("-","",$programa));
+
+	//UBICACION CADENA MONTO SUBTOTAL
+	$this->SetXY( $r1+119, $y1+129);
+	$this->SetFont( "Arial", "B", 8.5);
+	$this->MultiCell( 50, 4,$monto);
 
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -413,11 +423,11 @@ function addClientAdresse( $cliente,$domicilio,$email )
 
 	$this->SetXY( $r1+28, $y1+16);
 	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 220, 4, utf8_decode("Lps ."));
+	$this->MultiCell( 220, 4, utf8_decode("Lps . " ));
 
-	$this->SetXY( $r1+35, $y1+16);
+	$this->SetXY( $r1+36, $y1+16);
 	$this->SetFont( "Arial", "", 8.5);
-	$this->MultiCell( 220, 4, utf8_decode('180 000.00'));
+	$this->MultiCell( 220, 4, utf8_decode($monto));
 
 	$this->SetXY( $r1, $y1+24);
 	$this->SetFont( "Arial", "", 7.5);
@@ -456,7 +466,7 @@ function addClientAdresse( $cliente,$domicilio,$email )
 
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY(12,231.5);
-	$this->MultiCell( 60, 4, utf8_decode("HECTOR MERCADAL"));
+	$this->MultiCell( 60, 4, strtoupper(utf8_decode($usuario)));
 
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->SetXY(74,226);
@@ -464,7 +474,7 @@ function addClientAdresse( $cliente,$domicilio,$email )
 
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY(74,231.5);
-	$this->MultiCell( 60, 4, utf8_decode("NINGUNO"));
+	$this->MultiCell( 60, 4, utf8_decode($usuario));
 
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->SetXY(147,226);
@@ -614,6 +624,29 @@ function addCols2( $tab )
 	$this->SetFont( "Arial", "", 8);
 }
 
+
+function addCols3( $tab )
+{
+	global $colonnes;
+
+	$r1  = 0;
+	$r2  = $this->w - ($r1 * 12) ;
+	$y1  = 156;
+	$y2  = $this->h - 50 - $y1;
+
+	$colX = $r1;
+	$colonnes = $tab;
+	$this->SetFont( "Arial", "B", 8.5);
+	while ( list( $lib, $pos ) = each ($tab) )
+	{
+		$this->SetXY( $colX+33, $y1-30 );
+		$this->Cell( $pos, 5, $lib, 0, 1, "C",false);
+		$colX += $pos;
+	}
+	$this->SetFont( "Arial", "", 8);
+}
+
+
 function addLineFormat( $tab )
 {
 	global $format, $colonnes;
@@ -702,6 +735,32 @@ function addLine2( $ligne, $tab )
 
 
 
+function addLine3( $ligne, $tab )
+{
+	global $colonnes, $format;
+
+	$ordonnee     = 34;
+	$maxSize      = $ligne;
+
+	reset( $colonnes );
+	while ( list( $lib, $pos ) = each ($colonnes) )
+	{
+		$longCell  = $pos -4;
+		$texte     = $tab[ $lib ];
+		$length    = $this->GetStringWidth( $texte );
+		$tailleTexte = $this->sizeOfText( $texte, $length );
+		$formText  = $format[ $lib ];
+		$this->SetXY( $ordonnee, $ligne-1);
+		$this->MultiCell( $longCell, 3.7 , $texte, 0, $formText);
+		if ( $maxSize < ($this->GetY()  ) )
+			$maxSize = $this->GetY() ;
+		$ordonnee += $pos;
+	}
+	return ( $maxSize - $ligne );
+}
+
+
+
 
 function addRemarque($remarque)
 {
@@ -766,24 +825,27 @@ function addCadreEurosFrancs($impuesto)
 }
 
 
-function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
+function addTVAs( $subtotalorigen, $descuento,$stdesc,$imp,$total,$moneda )
 {
 	$this->SetFont('Arial','',8);
 
-	$re  = $this->w - 80;
+	$re  = $this->w - 88;
 	$rf  = $this->w - 0;
 	$y1  = $this->h - 113;
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $st), '', '', 'L');
-	$this->SetXY( $re, $y1+10 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $dt), '', '', 'L');
-	$this->SetXY( $re, $y1+14.8 );
+	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $subtotalorigen), '', '', 'L');
+	$this->SetXY( $re, $y1+11 );
+	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $descuento), '', '', 'L');
+	$this->SetXY( $re, $y1+17 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $stdesc), '', '', 'L');
-	$this->SetXY( $re, $y1+19 );
+	$this->SetXY( $re, $y1+23 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $imp), '', '', 'L');
 	$this->SetFont( "Arial", "", 8);
-	$this->SetXY( $re, $y1+24 );
+	$this->SetXY( $re, $y1+35 );
+	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'L');
+	$this->SetFont( "Arial", "B", 9);
+	$this->SetXY( $re, $y1+53 );
 	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'L');
 
 }

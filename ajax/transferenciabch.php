@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "../modelos/Transferenciabch.php";
 
 $transferenciabch=new transferenciabch();
@@ -21,7 +21,7 @@ switch ($_GET["op"]){
 		$idproveedores,
 		$idctasbancarias,
 		$fecha_hora,
-		$serie_transf, 
+		$serie_transf,
 		$num_transf,
 		$monto_acreditar,
 		$descripcion);
@@ -64,7 +64,7 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
 
  				$url='../extensiones/tcpdf/pdf/solicitudbch.php?id=';
- 			
+
 
  			$data[]=array(
  				"0"=>($reg->condicion)?
@@ -72,18 +72,18 @@ switch ($_GET["op"]){
  					' <button class="btn btn-danger" onclick="eliminar('.$reg->idtransferenciabch.')"><i class="fas fa-trash"></i></button>'.
  					//' <button class="btn btn-info" onclick = "print('.$reg->idtransferenciabch.')"> <i class="fas fa-print"> </i></button>'.
  					'<a target="_blank" href="'.$url.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg->idtransferenciabch.')"><i class="fas fa-times"></i></button>':
+ 					' <button class="btn btn-success" onclick="desactivar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
 					' <button class="btn btn-primary" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>',
-					
+
 
  				"1"=>$reg->fecha,
  				"2"=>$reg->casa_comercial,
  				"3"=>$reg->serie_transf.'-'.$reg->num_transf,
  				"4"=>$reg->monto_acreditar,
- 				
- 				"5"=>($reg->condicion)?'<span class="label bg-green label-bs">Activado</span>':
- 				'<span class="label bg-red ">Desactivado</span>'
+
+ 				"5"=>($reg->condicion)?'<span class="label bg-yellow label-bs">Pendiente</span>':
+ 				'<span class="label bg-green ">Pagado</span>'
  				);
  		}
  		$results = array(
@@ -96,7 +96,7 @@ switch ($_GET["op"]){
 	break;
 
 
-	
+
 
 	case "selectCtasbancarias":
 		require_once "../modelos/ctasbancarias.php";

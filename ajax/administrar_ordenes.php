@@ -148,6 +148,8 @@ switch ($_GET["op"]){
         $urlorden='../reportes/OrdenCompra.php?id=';
         $urlcomprobante='../reportes/Comprobante_orden.php?id=';
 
+        $ejemplo='../reportes/ejemplo.php';
+
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
@@ -160,6 +162,7 @@ switch ($_GET["op"]){
                 <ul class="dropdown-menu">
                  <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
                  <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
+                 <li><a target="_blank" href="'.$ejemplo.'">ejemplo demo</a></li>
                 </ul>
           </li>',
  				"1"=>$reg->fecha,

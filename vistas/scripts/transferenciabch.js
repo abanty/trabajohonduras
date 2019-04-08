@@ -7,7 +7,7 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
+		guardaryeditar(e);
 	})
 	//Cargamos los items al select categoria
 	$.post("../ajax/transferenciabch.php?op=selectCtasbancarias", function(r){
@@ -23,7 +23,7 @@ function init(){
 
 	});
 
-	
+
 }
 
 //Función limpiar
@@ -47,7 +47,7 @@ function limpiar()
 function mostrarform(flag)
 {
 	limpiar();
-	if (flag) 
+	if (flag)
 	{
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
@@ -80,7 +80,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -90,9 +90,9 @@ function listar()
 				{
 					url: '../ajax/transferenciabch.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -117,8 +117,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          tabla.ajax.reload();
 	    }
@@ -131,7 +131,7 @@ function mostrar(idtransferenciabch)
 {
 	$.post("../ajax/transferenciabch.php?op=mostrar",{idtransferenciabch : idtransferenciabch}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 		$("#btnGuardar").hide();
@@ -157,13 +157,13 @@ function mostrar(idtransferenciabch)
 //Función para desactivar registros
 function desactivar(idtransferenciabch)
 {
-	bootbox.confirm("¿Está Seguro de desactivar el Transferencia?", function(result){
+	bootbox.confirm("¿Está Seguro de validar la Transferencia?", function(result){
 		if(result)
         {
         	$.post("../ajax/transferenciabch.php?op=desactivar", {idtransferenciabch : idtransferenciabch}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -177,7 +177,7 @@ function activar(idtransferenciabch)
         	$.post("../ajax/transferenciabch.php?op=activar", {idtransferenciabch : idtransferenciabch}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -193,7 +193,7 @@ function eliminar(idtransferenciabch)
         	$.post("../ajax/transferenciabch.php?op=eliminar", {idtransferenciabch : idtransferenciabch}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }

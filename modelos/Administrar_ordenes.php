@@ -223,7 +223,29 @@ Class Administrar_ordenes
 		FROM factura_orden fo INNER JOIN administrar_ordenes ao ON fo.idadministrar_ordenes = ao.idadministrar_ordenes
 		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
-		}
+	}
+
+	// ---------------------------------------------------------------
+	// METODO PARA LISTAR LAS FACTURAS DE LA ORDEN 10 PRIMERAS FILAS:|
+	// ---------------------------------------------------------------
+	public function listarFactura_orden_10firts($idadministrar_ordenes)
+	{
+		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes, fo.num_factura, fo.fecha_factura, fo.valor_factura
+		FROM factura_orden fo INNER JOIN administrar_ordenes ao ON fo.idadministrar_ordenes = ao.idadministrar_ordenes
+		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes' limit 10";
+		return ejecutarConsulta($sql);
+	}
+
+	// ----------------------------------------------------------------
+	// METODO PARA LISTAR LAS FACTURAS DE LA ORDEN SIGUIENTE 10 FILAS:|
+	// ----------------------------------------------------------------
+	public function listarFactura_orden_10next($idadministrar_ordenes)
+	{
+		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes, fo.num_factura, fo.fecha_factura, fo.valor_factura
+		FROM factura_orden fo INNER JOIN administrar_ordenes ao ON fo.idadministrar_ordenes = ao.idadministrar_ordenes
+		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes' limit 10,10";
+		return ejecutarConsulta($sql);
+	}
 
 	//Implementar un método para listar los registros
 	public function listarOrden()
@@ -251,11 +273,38 @@ Class Administrar_ordenes
 		return ejecutarConsulta($sql);
 	}
 
+
+	// ---------------------------------------------------
+	// METODO PARA MOSTRAR DATOS DPF COMPROBANTE DE PAGO |
+	// ---------------------------------------------------
+	public function mostrar_datos_comprobante($idadministrar_ordenes)
+	{
+		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
+		ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,(ao.subtotal+ao.descuento_total) as subtotal_origen,
+		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
+		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad, cts.bancopg as banco
+		FROM administrar_ordenes ao
+		LEFT JOIN proveedores p ON
+		ao.idproveedores=p.idproveedores
+		LEFT JOIN usuario u ON
+		ao.idusuario=u.idusuario
+		LEFT JOIN programa w ON
+		ao.idprograma=w.idprograma
+		LEFT JOIN contabilidad cb ON
+		cb.idadministrar_ordenes = ao.idadministrar_ordenes
+    LEFT JOIN ctasbancarias cts ON
+    cb.idctasbancarias = cts.idctasbancarias
+		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
+		return ejecutarConsulta($sql);
+	}
+
+
 	public function administrar_ordenes_detalle($idadministrar_ordenes){
-		$sql="SELECT dp.nombre_objeto as objeto, dp.codigo,
-		do.unidad, do.cantidad,	do.descripcion, do.precio_unitario, (do.cantidad*do.precio_unitario) as subtot
-	FROM detalle_orden do INNER JOIN presupuesto_disponible dp ON
-		do.idpresupuesto_disponible=dp.idpresupuesto_disponible WHERE do.idadministrar_ordenes='$idadministrar_ordenes'";
+		$sql="SELECT dp.nombre_objeto as objeto, dp.codigo,dp.grupo,dp.subgrupo,
+		dor.unidad, dor.cantidad,	dor.descripcion, dor.precio_unitario, (dor.cantidad*dor.precio_unitario) as subtot
+		FROM detalle_orden dor INNER JOIN presupuesto_disponible dp ON
+		dor.idpresupuesto_disponible=dp.idpresupuesto_disponible
+		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
 	}
 
