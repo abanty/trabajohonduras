@@ -330,12 +330,15 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 							return false;
 							}
 
-							// if (contains.contains(codigo)) {
-							//
-							// 		// var total=0;
-							// 		// for(var i in precio_unitario) { total += precio_unitario[i]; }
-							// 		// 	alert(total);
-							// }
+							if (contains.contains(idpresupuesto_disponible)) {
+
+								// var xx = contains.length;
+								// alert(xx);
+
+									// var total=0;
+									// for(var i in precio_unitario) { total += precio_unitario[i]; }
+									// 	alert(total);
+							}
 
 
 							// else {
@@ -431,7 +434,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 	    }
 	}
 
-
+var array = [];
  function modificarSubototales()
   {
 
@@ -444,13 +447,29 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 		var cod = document.getElementsByName("idpresupuesto_disponible[]");
 		var presu = document.getElementsByName("presupuesto_disponible[]");
 
-
+// 		var data = [{"Clicks":210,"Company":"A","_id":{"CompanyID":5}},{"Clicks":35,"Company":"C","_id":{"CompanyID":3}},{"Clicks":15,"Company":"B","_id":{"CompanyID":2}},{"Clicks":13,"Company":"A","_id":{"CompanyID":5}}];
+// var result = [];
+//
+// data.forEach(function(obj) {
+//   var id = obj._id.CompanyID
+//   if(!this[id]) result.push(this[id] = obj);
+//   else this[id].Clicks += obj.Clicks;
+// }, Object.create(null));
+//
+// console.log(result);
 // alert(cant.length);
 
-
+// if (contains.contains(code.value)) {
+//
+// 	alert('exoisto');
+//
+// 		// var total=0;
+// 		// for(var i in precio_unitario) { total += precio_unitario[i]; }
+// 		// 	alert(total);
+// }
+alert(pre.length);
 
     for (var i = 0; i <cant.length; i++) {
-
 
 
     	var canti=cant[i];
@@ -463,19 +482,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 			// }
 
-			if (contains.contains(code.value)) {
-
-				alert('exoisto');
-
-					// var total=0;
-					// for(var i in precio_unitario) { total += precio_unitario[i]; }
-					// 	alert(total);
-			}
-
+			// array.push(preci.value);
 
 				subt.value=(canti.value*preci.value);
 
-			if ((totalprecio > presdis.value)||(subt.value > presdis.value)) {
+			if (subt.value > presdis.value) {
 				swal({
 					type: 'warning',
 					title: 'Oops...',
@@ -489,7 +500,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
     		document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
     }
 
-
+		// alert(array);
 
 		//
 		// totalprecio=+subt.value;
