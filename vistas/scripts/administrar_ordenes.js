@@ -317,19 +317,24 @@ var detalles_factura=0;
 
 $("#btnGuardar").hide();
 
-
+var contains = [];
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   {
 
-							// Array.prototype.contains = function(needle) {
-							// 		for (i in this) {
-							// if (this[i] == needle) return true;
-							// }
-							// return false;
-							// }
+
+
+							Array.prototype.contains = function(needle) {
+									for (i in this) {
+							if (this[i] == needle) return true;
+							}
+							return false;
+							}
+
+							// if (contains.contains(codigo)) {
 							//
-							// if (contains.contains(idpresupuesto_disponible)) {
-							//
+							// 		// var total=0;
+							// 		// for(var i in precio_unitario) { total += precio_unitario[i]; }
+							// 		// 	alert(total);
 							// }
 
 
@@ -343,7 +348,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
 					    {
-					    var subtotal=cantidad*precio_unitario;
+					    var subtotal= cantidad*precio_unitario;
 							var fila='<tr class="filas" id="fila'+cont+'">'+
 					    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
 					    	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
@@ -355,13 +360,14 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 								'<td style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
 								// '<td style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
 								'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
+								// '<td><button type="button" onclick="conteo('+idpresupuesto_disponible+')" class="btn btn-warning btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
 					    	'</tr>';
 					    	cont++;
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 
 								contains.push(idpresupuesto_disponible);
-									alert(contains);
+									// alert(contains);
 
 					    	modificarSubototales();
 					    }
@@ -426,7 +432,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 	}
 
 
-	var contains = [];
  function modificarSubototales()
   {
 
@@ -440,7 +445,14 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 		var presu = document.getElementsByName("presupuesto_disponible[]");
 
 
+// alert(cant.length);
+
+
+
     for (var i = 0; i <cant.length; i++) {
+
+
+
     	var canti=cant[i];
     	var preci=pre[i];
     	var subt=sub[i];
@@ -450,6 +462,15 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 			// if (code.value==1) {
 
 			// }
+
+			if (contains.contains(code.value)) {
+
+				alert('exoisto');
+
+					// var total=0;
+					// for(var i in precio_unitario) { total += precio_unitario[i]; }
+					// 	alert(total);
+			}
 
 
 				subt.value=(canti.value*preci.value);
@@ -478,7 +499,46 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 		// alert(totalprecio)
     calcularTotales();
   }
+	// var contains = [];
 
+// 	function checkAdult(age) {
+//   return age > 1;
+// }
+
+
+  // function conteo(idpresupuesto_disponible){
+	//
+	// 	// alert(idpresupuesto_disponible);
+  // 	 var subx = document.getElementsByName("subtotal");
+	// 	 	var codx = document.getElementsByName("idpresupuesto_disponible[]");
+	// 	 var totalx = 0.0;
+	//
+	// 	 // if (idpresupuesto_disponible==1) {
+	// 		// 	 	var algo = idpresupuesto_disponible.length;
+	// 		// 		alert(algo);
+	// 		// }
+	//
+	//
+	// 			for (var i = 0; i <codx.length; i++) {
+	// 				var codex = codx[i];
+	//
+	//
+	// 				contains.push(codex.value);
+	// 					// if (idpresupuesto_disponible = 1) {
+	// 					// 	 break;}
+	// 						// totalx += document.getElementsByName("subtotal")[i].value;
+	//
+	// 						// newsubtotal = totalx;
+	// 						// alert(codx.length);
+	//
+	//
+	//
+	//
+	// 			}
+	// 			alert(contains.filter(checkAdult));
+	//
+	//
+	// }
 
   function calcularTotales(){
 
