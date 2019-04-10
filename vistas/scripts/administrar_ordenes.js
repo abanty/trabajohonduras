@@ -318,6 +318,7 @@ var detalles_factura=0;
 $("#btnGuardar").hide();
 
 var contains = [];
+var array = [];
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   {
 
@@ -351,28 +352,31 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
 					    {
+								// array = [];
 					    var subtotal= cantidad*precio_unitario;
 							var fila='<tr class="filas" id="fila'+cont+'">'+
 					    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
 					    	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
 								'<td><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
-								'<td><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+								'<td><input type="number" class="form-control input-sm" onchange="" onkeyup="" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								'<td><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
-					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()"  step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
+					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="" onkeyup=""  step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
 					    	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
 								'<td style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
 								// '<td style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
 								'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
-								// '<td><button type="button" onclick="conteo('+idpresupuesto_disponible+')" class="btn btn-warning btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
+								'<td><button type="button" onclick="conteo('+idpresupuesto_disponible+')" class="btn btn-warning btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
 					    	'</tr>';
 					    	cont++;
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 
-								contains.push(idpresupuesto_disponible);
+
+								 array.push({idpre : idpresupuesto_disponible, subt : subtotal });
+								// contains.push(idpresupuesto_disponible);
 									// alert(contains);
 
-					    	modificarSubototales();
+					    	// modificarSubototales();
 					    }
 					    else
 					    {
@@ -434,7 +438,12 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 	    }
 	}
 
-var array = [];
+	function conteo(idpresupuesto_disponible)
+	 {
+		 console.log(array);
+	 }
+
+
  function modificarSubototales()
   {
 
@@ -455,13 +464,12 @@ var array = [];
 			var presdis=presu[i];
 
 
-array.push(preci.value);
+
 
 			// array.push(preci.value);
-console.log(array);
 				subt.value=(canti.value*preci.value);
 
-			if ((subt.value > presdis.value) || (xxx > presdis.value)) {
+			if (subt.value > presdis.value) {
 				swal({
 					type: 'warning',
 					title: 'Oops...',
@@ -475,7 +483,19 @@ console.log(array);
     		document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
     }
 
-    calcularTotales();
+// 		var map = array.reduce(function (map, e) {
+//   map[e.idpre] = +e.precu + (map[e.idpre] || 0)
+//   return map
+// }, {})
+//
+// var result = Object.keys(map).map(function (k) {
+//   return { idpre: k, precu: map[k] }
+// })
+//
+// console.log(result)
+		// console.log(array);
+
+    // calcularTotales();
   }
 
 
