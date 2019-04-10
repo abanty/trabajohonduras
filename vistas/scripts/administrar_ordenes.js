@@ -347,7 +347,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 							  	var cantidad = 1;
 							  	var unidad = "";
 							  	var descripcion = "";
-							  	var precio_unitario = 1;
+							  	var precio_unitario = 0;
 
 					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
 					    {
@@ -467,7 +467,7 @@ var array = [];
 // 		// for(var i in precio_unitario) { total += precio_unitario[i]; }
 // 		// 	alert(total);
 // }
-alert(pre.length);
+// alert(pre.length);
 
     for (var i = 0; i <cant.length; i++) {
 
@@ -481,12 +481,12 @@ alert(pre.length);
 			// if (code.value==1) {
 
 			// }
-
+			var xxx = presdis.value - preci.value;
 			// array.push(preci.value);
-
+console.log(xxx);
 				subt.value=(canti.value*preci.value);
 
-			if (subt.value > presdis.value) {
+			if ((subt.value > presdis.value) || (xxx > presdis.value)) {
 				swal({
 					type: 'warning',
 					title: 'Oops...',
