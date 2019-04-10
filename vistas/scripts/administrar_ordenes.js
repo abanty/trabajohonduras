@@ -438,36 +438,12 @@ var array = [];
  function modificarSubototales()
   {
 
-
-
 		var totalprecio = 0;
   	var cant = document.getElementsByName("cantidad[]");
   	var pre = document.getElementsByName("precio_unitario[]");
     var sub = document.getElementsByName("subtotal");
 		var cod = document.getElementsByName("idpresupuesto_disponible[]");
 		var presu = document.getElementsByName("presupuesto_disponible[]");
-
-// 		var data = [{"Clicks":210,"Company":"A","_id":{"CompanyID":5}},{"Clicks":35,"Company":"C","_id":{"CompanyID":3}},{"Clicks":15,"Company":"B","_id":{"CompanyID":2}},{"Clicks":13,"Company":"A","_id":{"CompanyID":5}}];
-// var result = [];
-//
-// data.forEach(function(obj) {
-//   var id = obj._id.CompanyID
-//   if(!this[id]) result.push(this[id] = obj);
-//   else this[id].Clicks += obj.Clicks;
-// }, Object.create(null));
-//
-// console.log(result);
-// alert(cant.length);
-
-// if (contains.contains(code.value)) {
-//
-// 	alert('exoisto');
-//
-// 		// var total=0;
-// 		// for(var i in precio_unitario) { total += precio_unitario[i]; }
-// 		// 	alert(total);
-// }
-// alert(pre.length);
 
     for (var i = 0; i <cant.length; i++) {
 
@@ -478,12 +454,11 @@ var array = [];
 			var code=cod[i];
 			var presdis=presu[i];
 
-			// if (code.value==1) {
 
-			// }
-			var xxx = presdis.value - preci.value;
+array.push(preci.value);
+
 			// array.push(preci.value);
-console.log(xxx);
+console.log(array);
 				subt.value=(canti.value*preci.value);
 
 			if ((subt.value > presdis.value) || (xxx > presdis.value)) {
@@ -500,56 +475,10 @@ console.log(xxx);
     		document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
     }
 
-		// alert(array);
-
-		//
-		// totalprecio=+subt.value;
-		//
-		//
-		//
-		// alert(totalprecio)
     calcularTotales();
   }
-	// var contains = [];
-
-// 	function checkAdult(age) {
-//   return age > 1;
-// }
 
 
-  // function conteo(idpresupuesto_disponible){
-	//
-	// 	// alert(idpresupuesto_disponible);
-  // 	 var subx = document.getElementsByName("subtotal");
-	// 	 	var codx = document.getElementsByName("idpresupuesto_disponible[]");
-	// 	 var totalx = 0.0;
-	//
-	// 	 // if (idpresupuesto_disponible==1) {
-	// 		// 	 	var algo = idpresupuesto_disponible.length;
-	// 		// 		alert(algo);
-	// 		// }
-	//
-	//
-	// 			for (var i = 0; i <codx.length; i++) {
-	// 				var codex = codx[i];
-	//
-	//
-	// 				contains.push(codex.value);
-	// 					// if (idpresupuesto_disponible = 1) {
-	// 					// 	 break;}
-	// 						// totalx += document.getElementsByName("subtotal")[i].value;
-	//
-	// 						// newsubtotal = totalx;
-	// 						// alert(codx.length);
-	//
-	//
-	//
-	//
-	// 			}
-	// 			alert(contains.filter(checkAdult));
-	//
-	//
-	// }
 
   function calcularTotales(){
 
