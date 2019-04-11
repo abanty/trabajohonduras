@@ -162,7 +162,6 @@ switch ($_GET["op"]){
                 <ul class="dropdown-menu">
                  <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
                  <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
-                 <li><a target="_blank" href="'.$ejemplo.'">ejemplo demo</a></li>
                 </ul>
           </li>',
  				"1"=>$reg->fecha,

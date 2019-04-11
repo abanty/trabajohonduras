@@ -319,9 +319,7 @@ $("#btnGuardar").hide();
 
 var contains = [];
 var array = [];
-function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
-  {
-
+function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 
 							Array.prototype.contains = function(needle) {
@@ -333,14 +331,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 
 							if (contains.contains(idpresupuesto_disponible)) {
 
-								// var xx = contains.length;
-								// alert(xx);
 
-									// var total=0;
-									// for(var i in precio_unitario) { total += precio_unitario[i]; }
-									// 	alert(total);
 							}
-
 
 							// else {
 
@@ -358,25 +350,22 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 					    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
 					    	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
 								'<td><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
-								'<td><input type="number" class="form-control input-sm" onchange="" onkeyup="" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+								'<td><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								'<td><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
-					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="" onkeyup=""  step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
+					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()"  step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
 					    	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
 								'<td style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
-								// '<td style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
+								'<td style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
 								'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
-								'<td><button type="button" onclick="conteo('+idpresupuesto_disponible+')" class="btn btn-warning btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
+								// '<td><button type="button" onclick="conteo('+idpresupuesto_disponible+')" class="btn btn-warning btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
 					    	'</tr>';
 					    	cont++;
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 
+								contains.push(idpresupuesto_disponible);
 
-								 array.push({idpre : idpresupuesto_disponible, subt : subtotal });
-								// contains.push(idpresupuesto_disponible);
-									// alert(contains);
-
-					    	// modificarSubototales();
+					    	modificarSubototales();
 					    }
 					    else
 					    {
@@ -385,14 +374,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 									title: 'Oops...',
 									text: 'Insuficiente Saldo para realizar una transacción',
 								}).catch(swal.noop);
-					    	// alert("Insuficiente Saldo para realizar una transacción");
 					    }
-
-								// }
-
+					// }
   }
-
-
 
 	function agregarfilafactura()
 	  {
@@ -438,36 +422,40 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 	    }
 	}
 
-	function conteo(idpresupuesto_disponible)
-	 {
-		 console.log(array);
-	 }
+	// function conteo(idpresupuesto_disponible)
+	//  {
+	// 	 console.log(array);
+	//  }
 
 
  function modificarSubototales()
   {
-
+		array= [];
 		var totalprecio = 0;
+		var idpre = document.getElementsByName("idpresupuesto_disponible[]");
   	var cant = document.getElementsByName("cantidad[]");
   	var pre = document.getElementsByName("precio_unitario[]");
     var sub = document.getElementsByName("subtotal");
-		var cod = document.getElementsByName("idpresupuesto_disponible[]");
+		var cod = document.getElementsByName("codigo[]");
 		var presu = document.getElementsByName("presupuesto_disponible[]");
 
     for (var i = 0; i <cant.length; i++) {
 
-
+			var idprec=idpre[i];
     	var canti=cant[i];
     	var preci=pre[i];
     	var subt=sub[i];
 			var code=cod[i];
 			var presdis=presu[i];
 
-
-
-
-			// array.push(preci.value);
 				subt.value=(canti.value*preci.value);
+
+				array.push({idpre : idprec.value, precu: subt.value });
+
+				if (array[i].precu > 10) {
+					 return myArray[i];
+			 }
+
 
 			if (subt.value > presdis.value) {
 				swal({
@@ -481,21 +469,24 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
 			}
 
     		document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
+
+				var map = array.reduce(function (map, e) {
+			map[e.idpre] = +e.precu + (map[e.idpre] || 0)
+			return map
+		}, {})
+
+		var result = Object.keys(map).map(function (k) {
+			return { idpre: k, precu: map[k] }
+		})
+
+				console.log(result);
     }
 
-// 		var map = array.reduce(function (map, e) {
-//   map[e.idpre] = +e.precu + (map[e.idpre] || 0)
-//   return map
-// }, {})
-//
-// var result = Object.keys(map).map(function (k) {
-//   return { idpre: k, precu: map[k] }
-// })
-//
-// console.log(result)
-		// console.log(array);
 
-    // calcularTotales();
+
+
+
+    calcularTotales();
   }
 
 
@@ -574,6 +565,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible)
   	calcularTotales();
   	detalles=detalles-1;
   	evaluar();
+		modificarSubototales();
   }
 
 
