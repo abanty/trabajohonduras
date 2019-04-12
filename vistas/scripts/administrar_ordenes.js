@@ -319,6 +319,7 @@ $("#btnGuardar").hide();
 
 var contains = [];
 var array = [];
+var array1 = [];
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 
@@ -431,6 +432,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
  function modificarSubototales()
   {
 		array= [];
+		array1= [];
 		var totalprecio = 0;
 		var idpre = document.getElementsByName("idpresupuesto_disponible[]");
   	var cant = document.getElementsByName("cantidad[]");
@@ -450,11 +452,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 				subt.value=(canti.value*preci.value);
 
-				array.push({idpre : idprec.value, precu: subt.value });
-
-				if (array[i].precu > 10) {
-					 return myArray[i];
-			 }
+				array.push({montodisponible:idprec.value, subtotales:subt.value});
+				array1.push({montodisponible1:idprec.value, subtotales1:presdis.value});
 
 
 			if (subt.value > presdis.value) {
@@ -471,15 +470,25 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
     		document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 
 				var map = array.reduce(function (map, e) {
-			map[e.idpre] = +e.precu + (map[e.idpre] || 0)
+			map[e.montodisponible] = +e.subtotales + (map[e.montodisponible] || 0)
 			return map
 		}, {})
 
+		var map1 = array1.reduce(function (map1, e1) {
+	map1[e1.montodisponible1] = e1.subtotales1
+	return map1
+}, {})
+
 		var result = Object.keys(map).map(function (k) {
-			return { idpre: k, precu: map[k] }
+			return { montodisponible: k, subtotales: map[k]}
+		})
+
+		var result1 = Object.keys(map1).map(function (k1) {
+			return { montodisponible1: k1, subtotales1: map1[k1]}
 		})
 
 				console.log(result);
+					console.log(result1);
     }
 
 
