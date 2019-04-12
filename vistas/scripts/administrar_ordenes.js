@@ -423,12 +423,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	    }
 	}
 
-	// function conteo(idpresupuesto_disponible)
-	//  {
-	// 	 console.log(array);
-	//  }
-
-
+	var cx;
  function modificarSubototales()
   {
 		array= [];
@@ -450,50 +445,37 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 			var code=cod[i];
 			var presdis=presu[i];
 
-				subt.value=(canti.value*preci.value);
+			subt.value=(canti.value*preci.value);
 
-				array.push({montodisponible:idprec.value, subtotales:subt.value});
-				array1.push({montodisponible1:idprec.value, subtotales1:presdis.value});
-
-
-			if (subt.value > presdis.value) {
-				swal({
-					type: 'warning',
-					title: 'Oops...',
-					text: 'Insuficiente Saldo para realizar una transacción',
-				}).catch(swal.noop);
-
-				preci.value = 0;
-				subt.value = 0;
-			}
-
-    		document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
+				array.push({montodisponible:presdis.value, subtotales:subt.value});
 
 				var map = array.reduce(function (map, e) {
-			map[e.montodisponible] = +e.subtotales + (map[e.montodisponible] || 0)
-			return map
-		}, {})
+					map[e.montodisponible] = +e.subtotales + (map[e.montodisponible] || 0)
+					return map
+				}, {})
 
-		var map1 = array1.reduce(function (map1, e1) {
-	map1[e1.montodisponible1] = e1.subtotales1
-	return map1
-}, {})
+				var result = Object.keys(map).map(function (k) {
+					return { montodisponible: k*1, subtotales: map[k]}
+				})
 
-		var result = Object.keys(map).map(function (k) {
-			return { montodisponible: k, subtotales: map[k]}
-		})
+				var resultx = result.filter(function(v, i) {
+					if ((v["subtotales"] > v["montodisponible"])) {
+							swal({
+								type: 'warning',
+								title: 'Oops...',
+								text: 'Insuficiente Saldo para realizar una transacción',
+							}).catch(swal.noop);
 
-		var result1 = Object.keys(map1).map(function (k1) {
-			return { montodisponible1: k1, subtotales1: map1[k1]}
-		})
-
-				console.log(result);
-					console.log(result1);
-    }
+								preci.style.color="#CC0000";
 
 
+					}
+				})
 
+				console.log(resultx);
 
+				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
+		}
 
     calcularTotales();
   }
