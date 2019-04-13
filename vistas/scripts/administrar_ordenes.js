@@ -469,10 +469,12 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								preci.style.color="#CC0000";
 
 
+					}else {
+							preci.style.color="#1000cc";
 					}
 				})
 
-				console.log(resultx);
+				console.log(result);
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
