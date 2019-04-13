@@ -317,25 +317,10 @@ var detalles_factura=0;
 
 $("#btnGuardar").hide();
 
-var contains = [];
+
 var array = [];
-var array1 = [];
+var contenido = 0;
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
-
-
-							Array.prototype.contains = function(needle) {
-									for (i in this) {
-							if (this[i] == needle) return true;
-							}
-							return false;
-							}
-
-							if (contains.contains(idpresupuesto_disponible)) {
-
-
-							}
-
-							// else {
 
 									var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
 							  	var cantidad = 1;
@@ -345,7 +330,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
 					    {
-								// array = [];
 					    var subtotal= cantidad*precio_unitario;
 							var fila='<tr class="filas" id="fila'+cont+'">'+
 					    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
@@ -353,19 +337,15 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								'<td><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
 								'<td><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								'<td><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
-					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()"  step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
+					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getvalue('+cont+')" step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
 					    	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
 								'<td style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
 								'<td style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
 								'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
-								// '<td><button type="button" onclick="conteo('+idpresupuesto_disponible+')" class="btn btn-warning btn-sm"><i class="fab fa-rev fa-lg"></i></button></td>'+
 					    	'</tr>';
 					    	cont++;
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
-
-								contains.push(idpresupuesto_disponible);
-
 					    	modificarSubototales();
 					    }
 					    else
@@ -376,8 +356,13 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 									text: 'Insuficiente Saldo para realizar una transacción',
 								}).catch(swal.noop);
 					    }
-					// }
   }
+
+	function getvalue(asd) {
+
+		contenido = asd;
+   console.log(contenido);
+}
 
 	function agregarfilafactura()
 	  {
@@ -411,6 +396,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	|FUNCION PARA LIMPIAR CAMPOS DETALLE VENTA AL INICIAR|
 	.---------------------------------------------------*/
 	window.onInputFocus = function(e) {
+
+
 	    var elm = $(e.target);
 	    elm.data('orig-value', elm.val());
 	    elm.val('');
@@ -423,11 +410,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	    }
 	}
 
-	var cx;
+
  function modificarSubototales()
   {
 		array= [];
-		array1= [];
 		var totalprecio = 0;
 		var idpre = document.getElementsByName("idpresupuesto_disponible[]");
   	var cant = document.getElementsByName("cantidad[]");
@@ -440,12 +426,16 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 			var idprec=idpre[i];
     	var canti=cant[i];
-    	var preci=pre[i];
+    	var precic=pre[contenido];
+			var preci=pre[i];
     	var subt=sub[i];
+			var subtc=sub[contenido];
 			var code=cod[i];
 			var presdis=presu[i];
 
 			subt.value=(canti.value*preci.value);
+
+
 
 				array.push({montodisponible:presdis.value, subtotales:subt.value});
 
@@ -466,20 +456,20 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								text: 'Insuficiente Saldo para realizar una transacción',
 							}).catch(swal.noop);
 
-								preci.style.color="#CC0000";
-
-
+							precic.value = 0;
+							subtc.value = 0;
 					}else {
-							preci.style.color="#1000cc";
+
 					}
 				})
-
-				console.log(result);
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
 
     calcularTotales();
+
+		console.log(result);
+
   }
 
 
