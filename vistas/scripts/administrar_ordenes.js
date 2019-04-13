@@ -337,7 +337,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								'<td><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
 								'<td><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								'<td><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
-					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getvalue('+cont+')" step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
+					    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getvalue('+detalles+')" step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
 					    	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
 								'<td style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
 								'<td style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
@@ -435,8 +435,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 			subt.value=(canti.value*preci.value);
 
-
-
 				array.push({montodisponible:presdis.value, subtotales:subt.value});
 
 				var map = array.reduce(function (map, e) {
@@ -459,17 +457,12 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							precic.value = 0;
 							subtc.value = 0;
 					}else {
-
 					}
 				})
-
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
-
     calcularTotales();
-
-		console.log(result);
-
+		// console.log(result);
   }
 
 
@@ -487,8 +480,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		newsubtotal = total - desc;
 
- // alert(newsubtotal);
-
 		newsubtotal_imp = newsubtotal * tipo_imp;
 
 		new_total = newsubtotal_imp + newsubtotal;
@@ -499,7 +490,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		 $("#impuesto").val(impuesto_impuesto);
 		 $("#subtotales").val(sub_sub_total);
-		 // $("#subtotal").val(newsubtotal);
 	 	}
 
 		$("#sub_total").html("L. " + sub_sub_total);
@@ -547,6 +537,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   	$("#fila" + indice).remove();
   	calcularTotales();
   	detalles=detalles-1;
+		// console.log(detalles);
   	evaluar();
 		modificarSubototales();
   }
