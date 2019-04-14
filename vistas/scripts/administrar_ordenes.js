@@ -546,7 +546,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   	detalles=detalles-1;
 		// console.log(detalles);
   	evaluar();
-		modificarSubototales();
   }
 
 
