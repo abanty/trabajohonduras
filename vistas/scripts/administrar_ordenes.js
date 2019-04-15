@@ -343,9 +343,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 					    	modificarSubototales();
-								console.log(fila);
-
-
+							
 					    }
 					    else
 					    {
