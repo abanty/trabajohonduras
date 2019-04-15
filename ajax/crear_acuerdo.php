@@ -1,5 +1,5 @@
-<?php 
-if (strlen(session_id()) < 1) 
+<?php
+if (strlen(session_id()) < 1)
   session_start();
 
 require_once "../modelos/Crear_acuerdo.php";
@@ -38,7 +38,7 @@ switch ($_GET["op"]){
 		else {
 		}
 	break;
- 
+
 	case 'anular':
 		$rspta=$crear_acuerdo->anular($idcrear_acuerdo);
  		echo $rspta ? "Documento Anulado anulado" : "Documento Anulado no se puede anular";
@@ -81,7 +81,7 @@ case 'listarDetalle':
                                     <th>TOTAL</th>
                                     <th></th>
                                     <th></th>
-                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="total_importe" id="total_importe" step"0.02"> 
+                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="total_importe" id="total_importe" step"0.02">
                                 </tfoot>';
 	break;
 
@@ -98,12 +98,12 @@ case 'listarDetalle':
  				"0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idcrear_acuerdo.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger" onclick="anular('.$reg->idcrear_acuerdo.')"><i class="fas fa-times"></i></button>':
  					'<button class="btn btn-warning" onclick="mostrar('.$reg->idcrear_acuerdo.')"><i class="fas fa-eye"></i></button>',
- 				
+
  				"1"=>$reg->fecha,
- 				"2"=>$reg->tipo_documento, 
+ 				"2"=>$reg->tipo_documento,
  				"3"=>$reg->numdocumento,
  				"4"=>$reg->numcomprobante,
- 				"5"=>$reg->proveedor,						
+ 				"5"=>$reg->proveedor,
  				"6"=>$reg->unidad,
  				"7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
@@ -148,7 +148,7 @@ case 'listarDetalle':
 		require_once "../modelos/Presupuesto_disponible.php";
 		$presupuesto_disponible=new Presupuesto_disponible();
 
-		$rspta=$presupuesto_disponible->listarActivos();
+		$rspta=$presupuesto_disponible->listarPresupuestoActivos();
  		//Vamos a declarar un array
  		$data= Array();
 

@@ -7,8 +7,8 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
-	});	
+		guardaryeditar(e);
+	});
 }
 
 
@@ -16,14 +16,14 @@ function init(){
 	$.post("../ajax/crear_acuerdo.php?op=selectPrograma", function(r){
 	            $("#idprograma").html(r);
 	            $('#idprograma').selectpicker('refresh');
-	});	
+	});
 
 			//Cargamos los items al select categoria
 	$.post("../ajax/crear_acuerdo.php?op=selectProveedores", function(r){
 	            $("#idproveedores").html(r);
 	            $('#idproveedores').selectpicker('refresh');
 });
-	
+
 
 //Función limpiar
 function limpiar()
@@ -49,7 +49,7 @@ function limpiar()
     $('#fecha_hora').val(today);
 
 
-}	
+}
 
 //Función mostrar formulario
 function mostrarform(flag)
@@ -78,7 +78,7 @@ function mostrarform(flag)
 		$("#btnagregar").show();
 	}
 
-}	
+}
 
 
 //Función cancelarform
@@ -96,7 +96,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -106,9 +106,9 @@ function listar()
 				{
 					url: '../ajax/crear_acuerdo.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -128,16 +128,16 @@ function listarPresupuesto_disponible()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 
 		        ],
 		"ajax":
 				{
 					url: '../ajax/crear_acuerdo.php?op=listarPresupuesto_disponible',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -163,8 +163,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          listar();
 	    }
@@ -177,7 +177,7 @@ function mostrar(idcrear_acuerdo)
 {
 	$.post("../ajax/crear_acuerdo.php?op=mostrar",{idcrear_acuerdo : idcrear_acuerdo}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 
@@ -188,7 +188,7 @@ function mostrar(idcrear_acuerdo)
 		$("#idproveedores").val(data.idproveedores);
 		$("#idproveedores").selectpicker('refresh');
 		$("#idprograma").val(data.programa);
-		$("#idprograma").selectpicker('refresh');	
+		$("#idprograma").selectpicker('refresh');
 		$("#idcrear_acuerdo").val(data.idcrear_acuerdo);
 
 		//Ocultar y mostrar los botones
@@ -212,7 +212,7 @@ function anular(idcrear_acuerdo)
         	$.post("../ajax/crear_acuerdo.php?op=anular", {idcrear_acuerdo : idcrear_acuerdo}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -286,7 +286,7 @@ $("#total_importe").val(total);
     }
     else
     {
-      $("#btnGuardar").hide(); 
+      $("#btnGuardar").hide();
       cont=0;
     }
   }
@@ -297,6 +297,6 @@ $("#total_importe").val(total);
   	detalles=detalles-1;
   	evaluar();
   }
-  
+
 
 init();

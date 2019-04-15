@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "../modelos/Compromisos.php";
 
 $compromisos=new Compromisos();
@@ -24,8 +24,8 @@ switch ($_GET["op"]){
 		$numfactura,
 		$total_compra,
 				$_POST["idpresupuesto_disponible"],
-				$_POST["valor"]);			
-			echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar"; 
+				$_POST["valor"]);
+			echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar";
 		}
 		else {
 		// 	$rspta=$compromisos->editar(
@@ -83,7 +83,7 @@ switch ($_GET["op"]){
  					' <button class="btn btn-danger" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-times"></i></button>':
 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 					' <button class="btn btn-primary" onclick="pendiente('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>',
- 		
+
  				"1"=>$reg->fecha,
  				"2"=>$reg->programa,
  				"3"=>$reg->proveedor,
@@ -100,7 +100,7 @@ switch ($_GET["op"]){
  			"aaData"=>$data);
  		echo json_encode($results);
 
-	break; 
+	break;
 
 
 	case "selectProveedores":
@@ -132,7 +132,7 @@ switch ($_GET["op"]){
 		require_once "../modelos/Presupuesto_disponible.php";
 		$presupuesto_disponible=new Presupuesto_disponible();
 
-		$rspta=$presupuesto_disponible->listarActivos();
+		$rspta=$presupuesto_disponible->listarPresupuestoActivos();
  		//Vamos a declarar un array
  		$data= Array();
 
