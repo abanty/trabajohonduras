@@ -308,18 +308,14 @@ function anular(idadministrar_ordenes)
 var impuesto=15;
 var impuesto=12.5;
 var cont=0;
-
 var cont_factura=0;
 var detalles=0;
-
 var detalles_factura=0;
-
-
 $("#btnGuardar").hide();
-
-
 var array = [];
 var contenido = 0;
+
+
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 									var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
@@ -347,6 +343,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 					    	modificarSubototales();
+								console.log(fila);
+
+
 					    }
 					    else
 					    {
@@ -360,7 +359,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 	function  getId(element) {
     contenido = element.parentNode.parentNode.rowIndex - 1;
-		console.log(contenido);
+		// console.log(contenido);
 	}
 
 

@@ -33,7 +33,7 @@ switch ($_GET["op"]){
 
 		case 'desactivar':
 		$rspta=$transferenciabch->desactivar($idtransferenciabch);
- 		echo $rspta ? "Transferencia Desactivado" : "Transferencia no se puede desactivar";
+ 		echo $rspta ? "Transferencia Validada" : "Transferencia no se puede Validar";
 	break;
 
 	case 'activar':
@@ -54,6 +54,12 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
+	case 'verpresupuestodisponible':
+		$rspta=$transferenciabch->obtenerpresupuesto($idtransferenciabch);
+		//Codificar el resultado utilizando json
+		echo json_encode($rspta);
+	break;
+
 
 
 	case 'listar':
@@ -70,11 +76,11 @@ switch ($_GET["op"]){
  				"0"=>($reg->condicion)?
  				'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
  					' <button class="btn btn-danger" onclick="eliminar('.$reg->idtransferenciabch.')"><i class="fas fa-trash"></i></button>'.
- 					//' <button class="btn btn-info" onclick = "print('.$reg->idtransferenciabch.')"> <i class="fas fa-print"> </i></button>'.
  					'<a target="_blank" href="'.$url.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
- 					' <button class="btn btn-success" onclick="desactivar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
+ 					' <button class="btn btn-success" onclick="validar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
-					' <button class="btn btn-primary" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>',
+					' <button class="btn btn-primary" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>'.
+					'<a target="_blank" href="'.$url.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>',
 
 
  				"1"=>$reg->fecha,

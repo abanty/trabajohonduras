@@ -15,10 +15,10 @@ if ($_SESSION['siafi']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             Administrar Transferencias del Banco Central
           </h1>
           <ol class="breadcrumb">
@@ -49,7 +49,7 @@ if ($_SESSION['siafi']==1)
                             <th>Estado</th>
 
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
@@ -58,12 +58,12 @@ if ($_SESSION['siafi']==1)
                             <th>No. Transferencia</th>
                             <th>Monto Pagado</th>
                             <th>Estado</th>
-                            </tfoot>                            
+                            </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
-                          
+
                           <div class="row">
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
@@ -82,36 +82,36 @@ if ($_SESSION['siafi']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                           <label>Numero de Transferencia:(*):</label>
                           <input type="text" class="form-control" name="num_transf" id="num_transf" maxlength="50" placeholder="Nombre" required>
-                          </div> 
+                          </div>
 
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre Cta Debitar:(*):</label>
-                            <select id="idctasbancarias" name="idctasbancarias" class="form-control selectpicker" data-live-search="true" required></select>
+                            <select id="idctasbancarias" name="idctasbancarias" class="form-control selectpicker" data-live-search="true" title="Elegir una cuenta" required></select>
                           </div>
-             
+
 
                         <hr>
-                      
+
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Casa Comercial:</label>
                             <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" required></select>
-                          </div>         
+                          </div>
 
-                         
+
                            <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Monto a Pagar(*):</label>
-                            <input type="text" step='0.01' class="form-control" name="monto_acreditar" id="monto_acreditar" required>
-                          </div> 
+                            <input type="text" step='0.01' class="form-control" onchange="verpres()" onkeyup="verpres()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="monto_acreditar" id="monto_acreditar" required>
+                          </div>
 
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Sinopsis(*):</label>
                            <textarea class="form-control  col-lg-5" rows="3" id="descripcion" name="descripcion"placeholder="Descripcion" required pattern="^[a-zA-Z0-9_áéíóúñ°\s]{0,200}$"></textarea>
-                           </div> 
-                           </h1>   
+                           </div>
+                           </h1>
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
-                            
+
 
                             <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>
@@ -134,7 +134,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/transferenciabch.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>

@@ -9,6 +9,10 @@ function init(){
 	{
 		guardaryeditar(e);
 	})
+
+	$('#idctasbancarias').change(function() {
+      verpres();
+	});
 	//Cargamos los items al select categoria
 	$.post("../ajax/transferenciabch.php?op=selectCtasbancarias", function(r){
 	            $("#idctasbancarias").html(r);
@@ -25,6 +29,49 @@ function init(){
 
 
 }
+
+function verpres()
+{
+
+	idx = $("#idctasbancarias").val();
+	xd = $('#monto_acreditar').val();
+	$.post("../ajax/transferenciabch.php?op=verpresupuestodisponible",{idtransferenciabch : idx}, function(data, status)
+	{
+		data = JSON.parse(data);
+		var b = data.fondos_disponibles * 1;
+
+		if (xd > b ) {
+			$('#monto_acreditar').val('0');
+			swal({
+				type: 'warning',
+				title: 'Oops...',
+				text: 'Insuficiente Saldo para realizar una transacción',
+			}).catch(swal.noop);
+		}else {
+
+		}
+ 	})
+
+}
+
+/*---------------------------------------------------*
+|FUNCION PARA LIMPIAR CAMPOS DETALLE VENTA AL INICIAR|
+.---------------------------------------------------*/
+window.onInputFocus = function(e) {
+
+
+		var elm = $(e.target);
+		elm.data('orig-value', elm.val());
+		elm.val('');
+}
+
+window.onInputBlur = function(e) {
+		var elm = $(e.target);
+		if (!elm.val()) {
+				elm.val(elm.data('orig-value'));
+		}
+}
+
 
 //Función limpiar
 function limpiar()
@@ -155,9 +202,9 @@ function mostrar(idtransferenciabch)
 }
 
 //Función para desactivar registros
-function desactivar(idtransferenciabch)
+function validar(idtransferenciabch)
 {
-	bootbox.confirm("¿Está Seguro de validar la Transferencia?", function(result){
+	bootbox.confirm("¿ Está seguro de validar la transferencia ?", function(result){
 		if(result)
         {
         	$.post("../ajax/transferenciabch.php?op=desactivar", {idtransferenciabch : idtransferenciabch}, function(e){
@@ -171,7 +218,7 @@ function desactivar(idtransferenciabch)
 //Función para activar registros
 function activar(idtransferenciabch)
 {
-	bootbox.confirm("¿Está Seguro de activar el Transferencia?", function(result){
+	bootbox.confirm("¿ Está seguro de activar el transferencia ?", function(result){
 		if(result)
         {
         	$.post("../ajax/transferenciabch.php?op=activar", {idtransferenciabch : idtransferenciabch}, function(e){

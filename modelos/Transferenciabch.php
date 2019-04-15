@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -18,7 +18,7 @@ Class Transferenciabch
 		$serie_transf,
 		$num_transf,
 		$monto_acreditar,
-		$descripcion)	
+		$descripcion)
 
 
 	{
@@ -70,7 +70,7 @@ Class Transferenciabch
 	// 	WHERE idtransferenciabch='$idtransferenciabch'";
 	// 	$monto = ejecutarConsultaSimpleFila($sql);
 
-	// 	$implo = implode ( $monto );	
+	// 	$implo = implode ( $monto );
 
 	// 	if($monto_acreditar == $implo){
 	// 		// return var_dump($implo);
@@ -78,8 +78,8 @@ Class Transferenciabch
 	// 		 idproveedores='$idproveedores',
 	// 		 idctasbancarias='$idctasbancarias',
 	// 		 fecha_hora='$fecha_hora',
-	// 		 serie_transf='$serie_transf', 
-	// 		 num_transf='$num_transf', 
+	// 		 serie_transf='$serie_transf',
+	// 		 num_transf='$num_transf',
 	// 		 descripcion='$descripcion'
 	// 		 WHERE idtransferenciabch='$idtransferenciabch'";
 	// 		 return ejecutarConsulta($sql);
@@ -89,9 +89,9 @@ Class Transferenciabch
 	// 	 idproveedores='$idproveedores',
 	// 	 idctasbancarias='$idctasbancarias',
 	// 	 fecha_hora='$fecha_hora',
-	// 	 serie_transf='$serie_transf', 
-	// 	 num_transf='$num_transf', 
-	// 	 monto_acreditar='$monto_acreditar', 
+	// 	 serie_transf='$serie_transf',
+	// 	 num_transf='$num_transf',
+	// 	 monto_acreditar='$monto_acreditar',
 	// 	 descripcion='$descripcion'
 	// 	 WHERE idtransferenciabch='$idtransferenciabch'";
 	// 	  ejecutarConsulta($sql);
@@ -103,7 +103,7 @@ Class Transferenciabch
 
 	// 	return ejecutarConsulta($sql);
 	// 	}
-		
+
 	// }
 
 	//Implementamos un método para eliminar categorías
@@ -145,7 +145,7 @@ Class Transferenciabch
 
 	public function mostrar($idtransferenciabch)
 	{
-		$sql="SELECT 
+		$sql="SELECT
 		a.idtransferenciabch,
 		a.idproveedores,
 		a.idctasbancarias,
@@ -166,7 +166,7 @@ Class Transferenciabch
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT 
+		$sql="SELECT
 		a.idtransferenciabch,
 		a.idproveedores,
 		a.idctasbancarias,
@@ -181,13 +181,20 @@ Class Transferenciabch
 		FORMAT(a.monto_acreditar,2) as monto_acreditar,
 		a.descripcion,
 		a.condicion FROM transferenciabch a INNER JOIN ctasbancarias b ON a.idctasbancarias=b.idctasbancarias INNER JOIN proveedores c ON a.idproveedores=c.idproveedores ORDER BY a.idtransferenciabch desc";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
+	}
+
+
+	public function obtenerpresupuesto($idpresupuesto)
+	{
+		$sql="SELECT	fondos_disponibles FROM ctasbancarias WHERE idctasbancarias = $idpresupuesto";
+		return ejecutarConsultaSimpleFila($sql);
 	}
 
 		//Implementar un método para listar los registros activos
 	// public function listarActivos()
 	// {
-	// 	$sql="SELECT 
+	// 	$sql="SELECT
 	// 	a.idtransferenciabch,
 	// 	a.idproveedores,
 	// 	a.idctasbancarias,
@@ -203,13 +210,13 @@ Class Transferenciabch
 	// 	FORMAT(a.monto_acreditar,2) as monto_acreditar,
 	// 	a.descripcion,
 	// 	a.condicion FROM transferenciabch a INNER JOIN ctasbancarias b ON a.idctasbancarias=b.idctasbancarias INNER JOIN proveedores c ON a.idproveedores=c.idproveedores WHERE a.condicion='1'";
-	// 	return ejecutarConsulta($sql);		
+	// 	return ejecutarConsulta($sql);
 	// }
 
 
-	
+
 	// public function transferenciabchcabecera($idtransferenciabch){
-	// 	$sql="SELECT 
+	// 	$sql="SELECT
 	// 	a.idtransferenciabch,
 	// 	a.idproveedores,
 	// 	a.idctasbancarias,
@@ -231,7 +238,7 @@ Class Transferenciabch
 
 	// public function ventadetalle($idventa){
 	// 	$sql="
-	// 	SELECT 
+	// 	SELECT
 	// 	a.nombre as articulo,
 	// 	a.codigo,
 	// 	d.cantidad,
@@ -239,7 +246,7 @@ Class Transferenciabch
 	// 	d.descuento,(d.cantidad*d.precio_venta-d.descuento) as subtotal FROM detalle_venta d INNER JOIN articulo a ON d.idarticulo=a.idarticulo WHERE d.idventa='$idventa'";
 	// 	return ejecutarConsulta($sql);
 	// }
-	
+
 		// public function sumar_a_ctas ($valor, $idcta){
 		// 	$sql = "UPDATE ctasbancarias SET fondos_disponibles = (fondos_disponibles+60000) WHERE idctasbancarias = 1";
 		// 	return ejecutarConsulta($sql);
