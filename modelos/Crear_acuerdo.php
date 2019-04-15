@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -21,9 +21,6 @@ Class Crear_acuerdo
 		$numdocumento,
 		$numcomprobante,
 		$total_importe,
-
-
-
 		$idcrear_acuerdo,
 		$idpresupuesto_disponible,
 		$monto)
@@ -45,7 +42,7 @@ Class Crear_acuerdo
 		'$fecha_hora',
 		'$numdocumento',
 		'$numcomprobante',
-		'$total_importe',		
+		'$total_importe',
 		'Aceptado')";
 		//return ejecutarConsulta($sql);
 		$idcrear_acuerdonew=ejecutarConsulta_retornarID($sql);
@@ -70,11 +67,11 @@ Class Crear_acuerdo
 			ejecutarConsulta($sql);
 
 			$sql_detalle = "INSERT INTO detalle_crear_acuerdo(
-			idcrear_acuerdo, 
+			idcrear_acuerdo,
 			idpresupuesto_disponible,
-			monto) 
+			monto)
 			VALUES (
-			'$idcrear_acuerdonew', 
+			'$idcrear_acuerdonew',
 			'$idpresupuesto_disponible[$num_elementos]',
 			'$monto[$num_elementos]')";
 			ejecutarConsulta($sql_detalle) or $sw = false;
@@ -82,20 +79,20 @@ Class Crear_acuerdo
 		}return $sw;
 
 
-			
+
 	}else
 	{
 		return false;
 	}
 
-		
+
 	}
 
-	 
+
 	//Implementamos un método para anular categorías
 	public function anular($idcrear_acuerdo)
 	{
-		$sql="UPDATE presupuesto_disponible as a INNER JOIN detalle_crear_acuerdo b 
+		$sql="UPDATE presupuesto_disponible as a INNER JOIN detalle_crear_acuerdo b
 			on a.idpresupuesto_disponible = b.idpresupuesto_disponible
 			INNER JOIN crear_acuerdo c on c.idcrear_acuerdo=b.idcrear_acuerdo
 			SET a.fondos_disponibles = (a.fondos_disponibles-b.monto)
@@ -118,19 +115,19 @@ Class Crear_acuerdo
 		i.idcrear_acuerdo,
 		DATE(i.fecha_hora) as fecha,
 		u.nombre as usuario,
-		
+
 		i.tipo_documento,
 		i.numdocumento,
 		i.numcomprobante,
 		l.casa_comercial as proveedor,
 		w.nombrep as unidad,
 		FORMAT(i.total_importe, 2) as total_importe,
-		
-		i.estado 
+
+		i.estado
 
 
-		FROM crear_acuerdo i 	INNER JOIN usuario u ON 
-		i.idusuario=u.idusuario 
+		FROM crear_acuerdo i 	INNER JOIN usuario u ON
+		i.idusuario=u.idusuario
 		INNER JOIN proveedores l ON i.idproveedores=l.idproveedores
 		INNER JOIN programa w ON i.idprograma=w.idprograma
 		WHERE i.idcrear_acuerdo='$idcrear_acuerdo'";
@@ -141,16 +138,16 @@ Class Crear_acuerdo
 	public function listarDetalle($idcrear_acuerdo)
 	{
 		$sql="
-		SELECT 
+		SELECT
 		di.idcrear_acuerdo,
 		di.idpresupuesto_disponible,
 		a.nombre_objeto,
 		a.codigo,
 		di.monto as monto
-		FROM detalle_crear_acuerdo di INNER JOIN presupuesto_disponible a on 
-		di.idpresupuesto_disponible=a.idpresupuesto_disponible 
+		FROM detalle_crear_acuerdo di INNER JOIN presupuesto_disponible a on
+		di.idpresupuesto_disponible=a.idpresupuesto_disponible
 		where di.idcrear_acuerdo='$idcrear_acuerdo'";
-		return ejecutarConsulta($sql);	
+		return ejecutarConsulta($sql);
 	}
 
 
@@ -162,26 +159,26 @@ Class Crear_acuerdo
 		i.idcrear_acuerdo,
 		DATE(i.fecha_hora) as fecha,
 		u.nombre as usuario,
-		
+
 		i.tipo_documento,
 		i.numdocumento,
 		i.numcomprobante,
 		l.casa_comercial as proveedor,
 		w.nombrep as unidad,
 		FORMAT(i.total_importe, 2) as total_importe,
-		
-		i.estado 
+
+		i.estado
 
 
-		FROM crear_acuerdo i 	INNER JOIN usuario u ON 
-		i.idusuario=u.idusuario 
+		FROM crear_acuerdo i 	INNER JOIN usuario u ON
+		i.idusuario=u.idusuario
 		INNER JOIN proveedores l ON i.idproveedores=l.idproveedores
 		INNER JOIN programa w ON i.idprograma=w.idprograma
 		ORDER BY i.idcrear_acuerdo desc";
 
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
-	
+
 }
 
 ?>
