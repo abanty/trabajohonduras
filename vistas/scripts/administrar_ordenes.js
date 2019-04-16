@@ -343,7 +343,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 					    	detalles=detalles+1;
 					    	$('#detalles').append(fila);
 					    	modificarSubototales();
-							
+
 					    }
 					    else
 					    {
@@ -420,7 +420,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var presu = document.getElementsByName("presupuesto_disponible[]");
 
     for (var i = 0; i <cant.length; i++) {
-
 			var idprec=idpre[i];
     	var canti=cant[i];
     	var precic=pre[contenido];
@@ -430,11 +429,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 			var code=cod[i];
 			var presdis=presu[i];
 
-				if (precic.value > 0) {
+			if (preci.value > 0) {
 					precic.style.background = '#fff';
 					precic.style.color = '#000000';
 				  precic.style.fontWeight="bold";
-				}
+			}
 
 				subt.value=(canti.value*preci.value);
 
@@ -444,6 +443,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 					map[e.montodisponible] = +e.subtotales + (map[e.montodisponible] || 0)
 					return map
 				}, {})
+
+
 
 				var result = Object.keys(map).map(function (k) {
 					return { montodisponible: k*1, subtotales: map[k]}
@@ -466,6 +467,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
+			console.log(result);
     calcularTotales();
   }
 
