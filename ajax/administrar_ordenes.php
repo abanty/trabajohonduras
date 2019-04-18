@@ -14,6 +14,7 @@ $num_orden=isset($_POST["num_orden"])? limpiarCadena($_POST["num_orden"]):"";
 $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
 $titulo_orden =isset($_POST["titulo_orden"])? limpiarCadena($_POST["titulo_orden"]):"";
 $descripcion_orden=isset($_POST["descripcion_orden"])? limpiarCadena($_POST["descripcion_orden"]):"";
+$tipo_documento=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
 $tipo_impuesto=isset($_POST["tipo_impuesto"])? limpiarCadena($_POST["tipo_impuesto"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
@@ -45,25 +46,25 @@ switch ($_GET["op"]){
 
       if ($variable_factura && $contabilidad){
 
-        $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+        $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
                $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
                ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
           }elseif ($variable_factura) {
 
-            $rspta=$admin_ord->insertar_orden_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+            $rspta=$admin_ord->insertar_orden_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
             $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
             ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
 
                 }elseif ($contabilidad) {
 
-                  $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+                  $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
                    $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
                    ,$_POST["precio_unitario"],$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
                           }else {
 
-                            $rspta=$admin_ord->insertar_orden($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,
+                            $rspta=$admin_ord->insertar_orden($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
                                   $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
                                   ,$_POST["precio_unitario"]);
                           }

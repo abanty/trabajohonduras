@@ -64,6 +64,9 @@ function limpiar()
 	$("#idprograma").selectpicker('refresh');
 	$("#idproveedores").selectpicker('val',"");
 	$("#idproveedores").selectpicker('refresh');
+	
+	$("#tipo_documento").selectpicker('val',"");
+	$("#tipo_documento").selectpicker('refresh');
 
 	$("#descuento_total").val('0.00000');
 	$("#impuesto").val("0.00000");

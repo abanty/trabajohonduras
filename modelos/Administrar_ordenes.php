@@ -13,13 +13,13 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
-	public function insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
+	public function insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
 	$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
 	$precio_unitario,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
-		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,
+		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
 											tipo_impuesto,fecha_hora,impuesto,subtotal,descuento_total,monto_total,estado)
-											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden',
+											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$tipo_impuesto','$fecha_hora','$impuesto','$subtotal','$descuento_total','$monto_total','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
@@ -49,13 +49,13 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
-	public function insertar_orden_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
+	public function insertar_orden_factura($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
 	$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
 	$precio_unitario,$num_factura,$fecha_factura,$valor_factura)
 	{
-		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,
+		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
 											tipo_impuesto,fecha_hora,impuesto,subtotal,descuento_total,monto_total,estado)
-											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden',
+											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$tipo_impuesto','$fecha_hora','$impuesto','$subtotal','$descuento_total','$monto_total','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
@@ -91,13 +91,13 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
-	public function insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
+	public function insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
 	$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
 	$precio_unitario,$num_factura,$fecha_factura,$valor_factura,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
-		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,
+		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento
 											tipo_impuesto,fecha_hora,impuesto,subtotal,descuento_total,monto_total,estado)
-											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden',
+											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$tipo_impuesto','$fecha_hora','$impuesto','$subtotal','$descuento_total','$monto_total','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
@@ -137,12 +137,12 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
-	public function insertar_orden($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,
+	public function insertar_orden($idproveedores,$idusuario,$idprograma,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,
 	$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario)
 	{
-		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_impuesto,fecha_hora,impuesto,
+		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,tipo_impuesto,fecha_hora,impuesto,
 		subtotal,descuento_total,monto_total,estado)
-		VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_impuesto','$fecha_hora',
+		VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento','$tipo_impuesto','$fecha_hora',
 		'$impuesto','$subtotal','$descuento_total','$monto_total','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
