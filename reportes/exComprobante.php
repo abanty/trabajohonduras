@@ -284,7 +284,7 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,$programa,$usuario,$norden)
+function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,$programa,$usuario,$norden,$motivopago)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
@@ -409,9 +409,9 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->MultiCell( 50, 4, str_replace("-","",$programa));
 
 	//UBICACION CADENA MONTO SUBTOTAL
-	$this->SetXY( $r1+119, $y1+129);
+	$this->SetXY( $r1+114, $y1+129.5);
 	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 50, 4,$monto);
+	$this->MultiCell( 35, 4,$monto,0,"R");
 
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -427,7 +427,7 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 
 	$this->SetXY( $r1+36, $y1+16);
 	$this->SetFont( "Arial", "", 8.5);
-	$this->MultiCell( 220, 4, utf8_decode($monto));
+	$this->MultiCell( 32, 4, utf8_decode($monto),0);
 
 	$this->SetXY( $r1, $y1+24);
 	$this->SetFont( "Arial", "", 7.5);
@@ -436,7 +436,9 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->SetXY( $r1+4, $y1+28);
 	$this->SetFont( "Arial", "B", 7.5);
 	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
-
+	$this->SetFont( "Arial", "", 7.5);
+	$this->SetXY( $r1+27, $y1+28.5);
+	$this->MultiCell( 150, 7, utf8_decode(''.$motivopago));
 	$this->SetFont( "Arial", "B", 10);
 	$this->SetXY(11,171);
 	$this->MultiCell( 60, 4, utf8_decode("CMDCIA GRAL. "."\n"."FNH"));
@@ -745,13 +747,13 @@ function addLine3( $ligne, $tab )
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
-		$longCell  = $pos -4;
+		$longCell  = $pos -2;
 		$texte     = $tab[ $lib ];
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
 		$this->SetXY( $ordonnee, $ligne-1);
-		$this->MultiCell( $longCell, 3.7 , $texte, 0, $formText);
+		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -829,24 +831,24 @@ function addTVAs( $subtotalorigen, $descuento,$stdesc,$imp,$total,$moneda )
 {
 	$this->SetFont('Arial','',8);
 
-	$re  = $this->w - 88;
+	$re  = $this->w - 93;
 	$rf  = $this->w - 0;
 	$y1  = $this->h - 113;
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $subtotalorigen), '', '', 'L');
+	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $subtotalorigen), '', '', 'R');
 	$this->SetXY( $re, $y1+11 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $descuento), '', '', 'L');
+	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $descuento), '', '', 'R');
 	$this->SetXY( $re, $y1+17 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $stdesc), '', '', 'L');
+	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $stdesc), '', '', 'R');
 	$this->SetXY( $re, $y1+23 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $imp), '', '', 'L');
+	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $imp), '', '', 'R');
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+35 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'L');
+	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
 	$this->SetFont( "Arial", "B", 9);
 	$this->SetXY( $re, $y1+53 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'L');
+	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
 
 }
 
