@@ -105,7 +105,7 @@ switch ($_GET["op"]){
 
 
 	case "selectCtasbancarias":
-		require_once "../modelos/ctasbancarias.php";
+		require_once "../modelos/Ctasbancarias.php";
 		$cuentapg = new Ctasbancarias();
 
 		$rspta = $cuentapg->listar();
@@ -118,7 +118,7 @@ switch ($_GET["op"]){
 
 
 	case "selectProveedores":
-		require_once "../modelos/proveedores.php";
+		require_once "../modelos/Proveedores.php";
 		$casa_comercial = new proveedores();
 
 		$rspta = $casa_comercial->listar();

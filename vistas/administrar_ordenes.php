@@ -25,7 +25,7 @@ if ($_SESSION['admonoc']==1)
   z-index: 121;
   width: 100%;
   text-align: center;
-  height: 100%;  
+  height: 100%;
 }
 
 </style>
@@ -157,6 +157,15 @@ if ($_SESSION['admonoc']==1)
                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
+                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                            <label>Tipo Documento(*):</label>
+                            <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento" data-style="btn-default btn-sm" data-title="Elige Documento" required>
+                              <option value="Acuerdo">Acuerdo</option>
+                              <option value="Fondo Reintegrable">Fondo Reintegrable</option>
+                              <option value="Fondo Rotatorio">Fondo Rotatorio</option>
+                              <option value="O/C">O/C</option>
+                            </select>
+                          </div>
 
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; padding:20px;">
 

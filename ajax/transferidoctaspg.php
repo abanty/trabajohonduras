@@ -1,7 +1,7 @@
-<?php 
-if (strlen(session_id()) < 1) 
+<?php
+if (strlen(session_id()) < 1)
   session_start();
- 
+
 require_once "../modelos/Transferidoctaspg.php";
 
 $transferidoctaspg=new transferidoctaspg();
@@ -21,7 +21,7 @@ switch ($_GET["op"]){
 		$idusuario,
 		$fecha_hora,
 		$numexpediente,
-		$numtransferencia,		
+		$numtransferencia,
 		$valor_transferido,
 		$_POST["idtransferidoctaspg"],
 		$_POST["idctasbancarias"],
@@ -33,7 +33,7 @@ switch ($_GET["op"]){
 		else {
 		}
 	break;
- 
+
 	case 'anular':
 		$rspta=$transferidoctaspg->anular($idtransferidoctaspg);
  		echo $rspta ? "transferencia anulada" : "La transferencia no se puede anular";
@@ -79,7 +79,7 @@ case 'listarDetalle':
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02"> 
+                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
                                 </tfoot>';
 	break;
 
@@ -96,7 +96,7 @@ case 'listarDetalle':
  				"0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferidoctaspg.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger" onclick="anular('.$reg->idtransferidoctaspg.')"><i class="fas fa-trash"></i></button>':
  					'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferidoctaspg.')"><i class="fas fa-eye"></i></button>',
- 				
+
  				"1"=>$reg->fecha,
  				"2"=>$reg->usuario,
  				"3"=>$reg->numexpediente,
@@ -116,7 +116,7 @@ case 'listarDetalle':
 	break;
 
 	case 'listarCtasbancarias':
-		require_once "../modelos/ctasbancarias.php";
+		require_once "../modelos/Ctasbancarias.php";
 		$ctasbancarias=new Ctasbancarias();
 
 		$rspta=$ctasbancarias->listarActivos();
@@ -129,7 +129,7 @@ case 'listarDetalle':
  				"1"=>$reg->cuentapg,
  				"2"=>$reg->bancopg,
  				"3"=>$reg->tipoctapg,
- 				"4"=>$reg->numctapg, 				
+ 				"4"=>$reg->numctapg,
  				"5"=>$reg->fondos_disponibles,
  				);
  		}
