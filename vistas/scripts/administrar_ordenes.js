@@ -64,7 +64,7 @@ function limpiar()
 	$("#idprograma").selectpicker('refresh');
 	$("#idproveedores").selectpicker('val',"");
 	$("#idproveedores").selectpicker('refresh');
-	
+
 	$("#tipo_documento").selectpicker('val',"");
 	$("#tipo_documento").selectpicker('refresh');
 
@@ -247,6 +247,7 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#idprograma").val(data.idprograma).selectpicker('refresh');
 		$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
 		$("#tipo_impuesto").val(data.tipo_impuesto).selectpicker('refresh');
+		$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
 
 		$("#titulo_orden").val(data.titulo_orden);
 		$("#num_orden").val(data.num_orden);
@@ -433,9 +434,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 			var presdis=presu[i];
 
 			if (preci.value > 0) {
-					precic.style.background = '#fff';
-					precic.style.color = '#000000';
-				  precic.style.fontWeight="bold";
+					preci.style.background = '#fff';
+					preci.style.color = '#000000';
+				  preci.style.fontWeight="bold";
 			}
 
 				subt.value=(canti.value*preci.value);

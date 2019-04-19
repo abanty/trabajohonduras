@@ -95,7 +95,7 @@ Class Administrar_ordenes
 	$tipo_impuesto,$fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
 	$precio_unitario,$num_factura,$fecha_factura,$valor_factura,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
-		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento
+		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
 											tipo_impuesto,fecha_hora,impuesto,subtotal,descuento_total,monto_total,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$tipo_impuesto','$fecha_hora','$impuesto','$subtotal','$descuento_total','$monto_total','Aceptado')";
@@ -182,7 +182,7 @@ Class Administrar_ordenes
 	public function mostrar_orden($idadministrar_ordenes)
 	{
 		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
-		ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,
+		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,
 		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
 		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad
 									FROM administrar_ordenes ao
@@ -263,7 +263,7 @@ Class Administrar_ordenes
 
 	public function administrar_ordenes_cabecera($idadministrar_ordenes){
 		$sql="SELECT ao.idadministrar_ordenes, pro.casa_comercial as proveedor, ao.idproveedores, ao.idusuario, us.nombre as usuario, ao.idprograma, pr.nombrep as programa,
-		ao.num_orden, ao.num_comprobante,ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto,  lower(DATE_FORMAT(ao.fecha_hora,'%e/%c/%Y')) as fecha,ao.impuesto,ao.subtotal,
+		ao.num_orden, ao.num_comprobante,ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, ao.tipo_impuesto,  lower(DATE_FORMAT(ao.fecha_hora,'%e/%c/%Y')) as fecha,ao.impuesto,ao.subtotal,
 		(ao.subtotal+ao.descuento_total) as subtotal_origen,
 		ao.descuento_total, ao.monto_total , ao.estado
  		FROM administrar_ordenes ao INNER JOIN proveedores pro ON ao.idproveedores = pro.idproveedores
@@ -280,7 +280,7 @@ Class Administrar_ordenes
 	public function mostrar_datos_comprobante($idadministrar_ordenes)
 	{
 		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
-		ao.titulo_orden, ao.descripcion_orden, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,(ao.subtotal+ao.descuento_total) as subtotal_origen,
+		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,(ao.subtotal+ao.descuento_total) as subtotal_origen,
 		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
 		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad, cts.bancopg as banco
 		FROM administrar_ordenes ao

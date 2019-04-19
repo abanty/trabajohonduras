@@ -237,13 +237,15 @@ function addDate_MontoGeneral_TituloOrden( $date,$datototal,$titulo_orden )
 	$this->SetFont( "Arial", "B", 9);
 	$this->Cell(10,5, "Solicitamos :", 0, 0, "C");
 
-	$this->SetXY( 192, 45 );
-	$this->SetFont( "Arial", "IU", 9.5);
-	$this->Cell(10,5,"$titulo_orden", 0,0, "C");
+	$this->SetXY( 187, 45 );
+	$this->SetFont( "Arial", "IU", 9);
+	$this->MultiCell( 23, 4, $titulo_orden, 0);
+	// Cell(20,15,"$titulo_orden", 1,0, "C");
 
-	$this->SetXY( 192, 57 );
-	$this->SetFont( "Arial", "", 9.5);
-	$this->Cell(10,5,"$datototal", 0,0, "C");
+// TOTAL EN LA TABLA DETALLE
+	// $this->SetXY( 192, 57 );
+	// $this->SetFont( "Arial", "", 9.5);
+	// $this->Cell(10,5,"$datototal", 0,0, "C");
 }
 
 
@@ -384,12 +386,12 @@ function addCols( $tab )
 
 	$r1  = 9.7;
 	$r2  = $this->w - ($r1 * 2) ;
-	$y1  = 51.5;
-	$y2  = $this->h - 223 - $y1;
+	$y1  =54;
+	$y2  = $this->h - 230 - $y1;
 
 	$this->SetXY( $r1, $y1 );
 	$this->SetLineWidth(0.7);
-	$this->Rect( $r1, $y1, 196.5, $y2, "DO");
+	$this->Rect( $r1, 58.9, 196.5, $y2, "DO");
 
 	// $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
 	$colX = $r1;
@@ -479,7 +481,7 @@ function addRemarque($remarque)
 }
 
 
-function addCadreTVAs($monto)
+function addCadreTVAs($monto,$descripcionorden)
 {
 	$this->SetFont( "Arial", "B", 8);
 	$r1  = 15;
@@ -508,15 +510,15 @@ function addCadreTVAs($monto)
 
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY(55,183);
-	$this->MultiCell(85,4,"NOTA: MATERIALES PARA LA REPARACION DEL BUQUE DE APOYO LOGISTICO ''PUNTA SAL'' ",0);
+	$this->MultiCell(100,4,"NOTA: ".utf8_decode($descripcionorden),0);
 
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(55,194);
-	$this->MultiCell(85,4,"PROYECTO PUNTA SAL",0);
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(55,200);
-	$this->MultiCell(85,4,utf8_decode("PRESUPUESTO AÑO 2019"),0);
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(55,194);
+	// $this->MultiCell(85,4,"PROYECTO PUNTA SAL",0);
+	//
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(55,200);
+	// $this->MultiCell(85,4,utf8_decode("PRESUPUESTO AÑO 2019"),0);
 
 	$this->SetFont( "Arial", "B", 7);
 	$this->SetXY( 20,210);

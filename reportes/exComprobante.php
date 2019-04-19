@@ -284,7 +284,7 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,$programa,$usuario,$norden,$motivopago)
+function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,$programa,$usuario,$norden,$motivopago,$tipodoc)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
@@ -375,7 +375,7 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY(145,85);
-	$this->MultiCell( 60, 4, utf8_decode("O/C # ".$norden));
+	$this->MultiCell( 60, 4, utf8_decode($tipodoc." # ".$norden));
 
 	$this->SetXY(20,115);
 	$this->MultiCell( 60, 4, utf8_decode("TEGUCIGALPA, M.D.C. "));

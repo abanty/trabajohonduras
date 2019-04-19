@@ -39,7 +39,7 @@ $pdf->AddPage();
 $pdf->titulos_encabezados(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4),utf8_decode($tittle5));
 
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->banco),utf8_decode($regv->tipo_pago),$regv->numero_transferencia,$regv->subtotal_origen,
-$regv->codigop,$regv->usuario,$regv->num_orden,$regv->descripcion_orden);
+$regv->codigop,$regv->usuario,$regv->num_orden,$regv->descripcion_orden,$regv->tipo_documento);
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la comprobante
 $cols=array( "Factura"=>21,

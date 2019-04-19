@@ -65,7 +65,7 @@ $cols=array( "Cod"=>"L",
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 59;
+$y= 61;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
@@ -76,7 +76,8 @@ while ($regd = $rsptad->fetch_object()) {
                 "Cantidad"=> "$regd->cantidad",
                 "Descripcion" => utf8_decode("$regd->descripcion"),
                 "P.Unitario"=> "$regd->precio_unitario",
-                "SubTotal"=> "$regd->subtot");
+                "SubTotal"=> "$regd->subtot",
+                "Total"=> "$regd->subtot");
                 // ,
                 // "Total"=> "$regv->monto_total"
             $size = $pdf->addLine( $y, $line );
@@ -87,7 +88,7 @@ while ($regd = $rsptad->fetch_object()) {
 require_once "Letras.php";
 $V=new EnLetras();
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
-$pdf->addCadreTVAs("*** ".$con_letra);
+$pdf->addCadreTVAs("*** ".$con_letra,$regv->descripcion_orden);
 
 //Mostramos el impuesto
 $pdf->addTVAs( $regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
