@@ -16,10 +16,10 @@ if ($_SESSION['admonoc']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             Crear Acuerdos y Fondos Rotatorios
           </h1>
           <ol class="breadcrumb">
@@ -52,7 +52,7 @@ if ($_SESSION['admonoc']==1)
                             <th>Total</th>
                             <th>Estado</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
@@ -63,51 +63,51 @@ if ($_SESSION['admonoc']==1)
                             <th>No.Comprobante</th>
                             <th>Paguese A:</th>
                             <th>Total</th>
-                            <th>Estado</th>                         
-                          </tfoot>                         
+                            <th>Estado</th>
+                          </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Fecha(*):</label>
-                             <input type="hidden" name="idcrear_acuerdo" id="idcrear_acuerdo">             
-                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
+                             <input type="hidden" name="idcrear_acuerdo" id="idcrear_acuerdo">
+                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo Documento(*):</label>
-                            <select class="form-control select-picker" name="tipo_documento" id="tipo_documento" required>
-                              <option value="">Acuerdo</option>
-                              <option value="">Fondo Reintegrable</option>
-                              <option value="">Fondo Rotatorio</option>
+                            <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Documento" required>
+                              <option value="Acuerdo">Acuerdo</option>
+                              <option value="Fondo Reintegrable">Fondo Reintegrable</option>
+                              <option value="Fondo Rotatorio">Fondo Rotatorio</option>
                             </select>
-                          </div>                          
+                          </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>No. Documento(*):</label>
-                            <input type="text" class="form-control" name="numacuerdo" id="numacuerdo" maxlength="25" placeholder="Igrese el numero de Acuerdo" required="">
+                            <input type="text" class="form-control input-sm" name="numdocumento" id="numdocumento" maxlength="25" placeholder="Igrese el numero de Acuerdo" required="">
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>No. Comprobante(*):</label>
-                            <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" maxlength="25" placeholder="Número" required="">
+                            <input type="text" class="form-control input-sm" name="numcomprobante" id="numcomprobante" maxlength="25" placeholder="Número" required="">
                           </div>
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Paguese A.(*):</label>
-                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" ></select>
+                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proovedor"></select>
                           </div>
 
 
                             <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Unidad(*):</label>
-                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" ></select>
+                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige una Unidad"></select>
                           </div>
 
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <a data-toggle="modal" href="#myModal">           
+                            <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Presupuesto</button>
                             </a>
                           </div>
@@ -125,10 +125,10 @@ if ($_SESSION['admonoc']==1)
                                     <th></th>
                                     <th></th>
                                     <th><h4 id="total">L. 0.00</h4><input type="hidden" name="total_importe" id="total_importe" step"0.01">
-                                    </th> 
+                                    </th>
                                 </tfoot>
                                 <tbody>
-                                  
+
                                 </tbody>
                             </table>
                           </div>
@@ -172,7 +172,7 @@ if ($_SESSION['admonoc']==1)
               <th>Fondos Disponibles</th>
           </thead>
           <tbody>
-            
+
           </tbody>
           <tfoot>
             <thead style="background-color:#d2d6de">
@@ -186,10 +186,10 @@ if ($_SESSION['admonoc']==1)
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-      </div>        
+      </div>
     </div>
   </div>
-</div>  
+</div>
 <!--   Fin modal -->
 
 
@@ -203,7 +203,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/crear_acuerdo.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>

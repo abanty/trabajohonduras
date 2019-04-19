@@ -98,13 +98,12 @@ case 'listarDetalle':
  				"0"=>($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idcrear_acuerdo.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger" onclick="anular('.$reg->idcrear_acuerdo.')"><i class="fas fa-times"></i></button>':
  					'<button class="btn btn-warning" onclick="mostrar('.$reg->idcrear_acuerdo.')"><i class="fas fa-eye"></i></button>',
-
  				"1"=>$reg->fecha,
  				"2"=>$reg->tipo_documento,
  				"3"=>$reg->numdocumento,
  				"4"=>$reg->numcomprobante,
  				"5"=>$reg->proveedor,
- 				"6"=>$reg->unidad,
+ 				"6"=>$reg->total_importe,
  				"7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
  				);

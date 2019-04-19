@@ -40,6 +40,7 @@ Class Crear_acuerdo
 		'$idproveedores',
 		'$idprograma',
 		'$fecha_hora',
+		'$tipo_documento',
 		'$numdocumento',
 		'$numcomprobante',
 		'$total_importe',
@@ -52,8 +53,6 @@ Class Crear_acuerdo
 
 		// $total = (int)$total_importe;
 		// $idpresupuesto = (int)$idpresupuesto_disponible;
-
-
 
 		if($idcrear_acuerdonew!=0){
 
@@ -77,8 +76,6 @@ Class Crear_acuerdo
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 		}return $sw;
-
-
 
 	}else
 	{
@@ -106,28 +103,12 @@ Class Crear_acuerdo
 	}
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar($idcrear_acuerdo)
-
-
-
 	{
-		$sql="
-		SELECT
-		i.idcrear_acuerdo,
-		DATE(i.fecha_hora) as fecha,
-		u.nombre as usuario,
-
-		i.tipo_documento,
-		i.numdocumento,
-		i.numcomprobante,
-		l.casa_comercial as proveedor,
-		w.nombrep as unidad,
-		FORMAT(i.total_importe, 2) as total_importe,
-
-		i.estado
-
-
-		FROM crear_acuerdo i 	INNER JOIN usuario u ON
-		i.idusuario=u.idusuario
+		$sql="SELECT i.idcrear_acuerdo,	DATE(i.fecha_hora) as fecha, u.nombre as usuario,
+		i.tipo_documento, i.numdocumento, i.numcomprobante,	l.casa_comercial as proveedor,
+		w.nombrep as unidad, FORMAT(i.total_importe, 2) as total_importe,	i.estado
+		FROM crear_acuerdo i
+		INNER JOIN usuario u ON	i.idusuario=u.idusuario
 		INNER JOIN proveedores l ON i.idproveedores=l.idproveedores
 		INNER JOIN programa w ON i.idprograma=w.idprograma
 		WHERE i.idcrear_acuerdo='$idcrear_acuerdo'";
@@ -154,24 +135,10 @@ Class Crear_acuerdo
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="
-		SELECT
-		i.idcrear_acuerdo,
-		DATE(i.fecha_hora) as fecha,
-		u.nombre as usuario,
-
-		i.tipo_documento,
-		i.numdocumento,
-		i.numcomprobante,
-		l.casa_comercial as proveedor,
-		w.nombrep as unidad,
-		FORMAT(i.total_importe, 2) as total_importe,
-
-		i.estado
-
-
-		FROM crear_acuerdo i 	INNER JOIN usuario u ON
-		i.idusuario=u.idusuario
+		$sql="SELECT i.idcrear_acuerdo,	DATE(i.fecha_hora) as fecha,	u.nombre as usuario, i.tipo_documento, i.numdocumento,
+		i.numcomprobante,	l.casa_comercial as proveedor,	w.nombrep as unidad,	FORMAT(i.total_importe, 2) as total_importe, i.estado
+		FROM crear_acuerdo i
+		INNER JOIN usuario u ON	i.idusuario=u.idusuario
 		INNER JOIN proveedores l ON i.idproveedores=l.idproveedores
 		INNER JOIN programa w ON i.idprograma=w.idprograma
 		ORDER BY i.idcrear_acuerdo desc";
