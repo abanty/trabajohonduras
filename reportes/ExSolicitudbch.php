@@ -232,7 +232,7 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar,$tipoctapg,$num_cuenta,$banco,$descripcion)
+function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar,$tipoctapg,$num_cuenta,$banco,$descripcion,$serie)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
@@ -252,7 +252,7 @@ function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar
 		$this->MultiCell(50,4,"Su Oficina",0,L);
 		$this->SetXY(146.5, 45);
 		$this->SetFont( "Arial", "B", 10.5);
-		$this->MultiCell(50,4,"TRANSF.No. ".$num_trans,0,L);
+		$this->MultiCell(50,4,"TRANSF.No. ".$serie." - ".$num_trans,0,L);
 		$this->SetFont( "Arial", "", 10.8);
 		$this->SetXY(15, 72);
 		$this->MultiCell(50,4,utf8_decode("Estimados Señores"),0,L);

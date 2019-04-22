@@ -37,7 +37,7 @@ $pdf->AddPage();
 $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 
 $pdf->addClientAdresse($regv->fecha_hora, $regv->num_transf, $regv->numctapg, $regv->cuentapg , $regv->monto_acreditar,
-$regv->tp_prov, $regv->num_cuenta, $regv->nombre_banco ,$regv->descripcion);
+$regv->tp_prov, $regv->num_cuenta, $regv->nombre_banco ,$regv->descripcion, $regv->serie_transf);
 
 //Convertimos el total en letras
 require_once "Letras.php";
