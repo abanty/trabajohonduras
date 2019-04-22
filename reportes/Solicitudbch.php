@@ -36,7 +36,10 @@ $pdf->AddPage();
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 
-$pdf->addClientAdresse($regv->fecha_hora, $regv->num_transf, $regv->numctapg, $regv->cuentapg , $regv->monto_acreditar,
+$date = new DateTime($regv->fecha_hora);
+
+
+$pdf->addClientAdresse($date->format('j \of F \of Y'), $regv->num_transf, $regv->numctapg, $regv->cuentapg , $regv->monto_acreditar,
 $regv->tp_prov, $regv->num_cuenta, $regv->nombre_banco ,$regv->descripcion, $regv->serie_transf);
 
 //Convertimos el total en letras
