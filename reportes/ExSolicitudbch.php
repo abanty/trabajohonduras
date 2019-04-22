@@ -232,18 +232,18 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse()
+function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar,$tipoctapg,$num_cuenta,$banco,$descripcion)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
 	$y1     = 36;
-
+// 29 de Enero del 2019
 
 		$this->SetFont( "Arial", "", 10.5);
 		$this->SetXY(8, 38);
 		$this->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
 		$this->SetXY(9, 43);
-		$this->MultiCell(50,4,"29 de Enero del 2019",0,C);
+		$this->MultiCell(50,4,$fecha,0,C);
 		$this->SetXY(15, 53);
 		$this->MultiCell(80,4,"Jefe Departamento de Sistema de Pagos",0,L);
 		$this->SetXY(15, 58);
@@ -252,7 +252,7 @@ function addClientAdresse()
 		$this->MultiCell(50,4,"Su Oficina",0,L);
 		$this->SetXY(146.5, 45);
 		$this->SetFont( "Arial", "B", 10.5);
-		$this->MultiCell(50,4,"TRANSF.No. 29EN019F983",0,L);
+		$this->MultiCell(50,4,"TRANSF.No. ".$num_trans,0,L);
 		$this->SetFont( "Arial", "", 10.8);
 		$this->SetXY(15, 72);
 		$this->MultiCell(50,4,utf8_decode("Estimados Señores"),0,L);
@@ -276,9 +276,9 @@ function addClientAdresse()
 		$this->Cell(60,5,'VALOR EN NUMEROS',1,1,'C',0);
 		$this->SetXY(15, 120);
 		$this->SetFont( "Arial", "B", 10.5);
-		$this->Cell(60,20,'11101-01-000992-8',1,0,'C',0);
+		$this->Cell(60,20,$numctapg,1,0,'C',0);
 		$this->Cell(60,20,'',1,0,'C',0);
-		$this->Cell(60,20,'L. 4,935,600.00',1,1,'C',0);
+		$this->Cell(60,20,'L. '.number_format($monto_acreditar, 2, '.', ','),1,1,'C',0);
 
 		$this->SetXY(15, 145);
 		$this->SetFillColor(184, 215, 232);
@@ -290,11 +290,11 @@ function addClientAdresse()
 		$this->Cell(60,5,'VALOR EN NUMEROS',1,1,'C',0);
 		$this->SetXY(75, 155);
 		$this->SetFont( "Arial", "B", 10.5);
-		$this->Cell(60,5,'BANCO DEL PAIS',1,0,'C',0);
-		$this->Cell(60,5,'L. 4,935,600.00',1,1,'C',0);
+		$this->Cell(60,5,$banco,1,0,'C',0);
+		$this->Cell(60,5,'L. '.number_format($monto_acreditar, 2, '.', ','),1,1,'C',0);
 		$this->SetXY(15, 160);
-		$this->Cell(60,20,'AHORRO',1,0,'C',0);
-		$this->Cell(60,20,'215-990-007-350',1,0,'C',0);
+		$this->Cell(60,20,strtoupper($tipoctapg),1,0,'C',0);
+		$this->Cell(60,20,$num_cuenta,1,0,'C',0);
 		$this->Cell(60,20,'',1,1,'C',0);
 
 		$this->SetXY(15, 185);
@@ -326,11 +326,11 @@ function addClientAdresse()
 
 		// DATOS AISLADO
 		$this->SetXY(15, 195);
-		$this->MultiCell(180,5,'TRASLADO DE FONDO PARA REINTEGRO DE VACANTES DE ALIMENTACION DE MARZO A DICIEMBRE 2018',0,'C',0);
+		$this->MultiCell(180,5,strtoupper($descripcion),0,'C',0);
 
 		$this->SetXY(75, 120);
 		$this->SetFont( "Arial", "B", 10.5);
-		$this->MultiCell(60,5,"FUERZAS ARMADAS DE HONDURAS / FUERZA NAVAL / FUNCIONAMIENTO",0,C);
+		$this->MultiCell(60,5,strtoupper($cuentapg),0,C);
 
 		$this->SetXY(135, 167);
 		$this->MultiCell(60,5,"PAGADURIA FUERZA NAVAL",0,C);

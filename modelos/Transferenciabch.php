@@ -251,5 +251,17 @@ Class Transferenciabch
 		// 	$sql = "UPDATE ctasbancarias SET fondos_disponibles = (fondos_disponibles+60000) WHERE idctasbancarias = 1";
 		// 	return ejecutarConsulta($sql);
 		// }
+
+
+		public function solicitud_transferencias($sol){
+		$sql="SELECT t.idtransferenciabch,t.idproveedores,t.idctasbancarias,t.fecha_hora,t.serie_transf,t.num_transf,t.monto_acreditar,
+		t.descripcion,t.condicion,p.casa_comercial,p.nombre_banco,p.num_cuenta,p.tipo_cuenta as tp_prov,c.cuentapg,c.bancopg,c.tipoctapg,
+		c.numctapg,c.fondos_disponibles
+		FROM transferenciabch t
+		INNER JOIN proveedores p ON t.idproveedores = p.idproveedores
+		INNER JOIN ctasbancarias c ON t.idctasbancarias = c.idctasbancarias
+		WHERE t.idtransferenciabch='$sol'";
+		return ejecutarConsulta($sql);
+		}
 }
 ?>
