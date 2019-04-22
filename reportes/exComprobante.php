@@ -411,7 +411,7 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	//UBICACION CADENA MONTO SUBTOTAL
 	$this->SetXY( $r1+114, $y1+129.5);
 	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 35, 4,$monto,0,"R");
+	$this->MultiCell( 35, 4,number_format($monto, 2, '.', ','),0,"R");
 
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -427,7 +427,7 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 
 	$this->SetXY( $r1+36, $y1+16);
 	$this->SetFont( "Arial", "", 8.5);
-	$this->MultiCell( 32, 4, utf8_decode($monto),0);
+	$this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
 
 	$this->SetXY( $r1, $y1+24);
 	$this->SetFont( "Arial", "", 7.5);
@@ -836,19 +836,19 @@ function addTVAs( $subtotalorigen, $descuento,$stdesc,$imp,$total,$moneda )
 	$y1  = $this->h - 113;
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $subtotalorigen), '', '', 'R');
+	$this->Cell( 34,4, number_format($subtotalorigen, 2, '.', ','), '', '', 'R');
 	$this->SetXY( $re, $y1+11 );
-	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $descuento), '', '', 'R');
+	$this->Cell( 34,4, number_format($descuento, 2, '.', ','), '', '', 'R');
 	$this->SetXY( $re, $y1+17 );
-	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $stdesc), '', '', 'R');
+	$this->Cell( 34,4, number_format($stdesc, 2, '.', ','), '', '', 'R');
 	$this->SetXY( $re, $y1+23 );
-	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $imp), '', '', 'R');
+	$this->Cell( 34,4,number_format($imp, 2, '.', ','), '', '', 'R');
 	$this->SetFont( "Arial", "", 8);
 	$this->SetXY( $re, $y1+35 );
-	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
+	$this->Cell( 34,4, number_format($total, 2, '.', ','), '', '', 'R');
 	$this->SetFont( "Arial", "B", 9);
 	$this->SetXY( $re, $y1+53 );
-	$this->Cell( 34,4, $moneda.sprintf("%0.2F", $total), '', '', 'R');
+	$this->Cell( 34,4, number_format($total, 2, '.', ','), '', '', 'R');
 
 }
 

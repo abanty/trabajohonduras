@@ -73,7 +73,7 @@ $rsptad2 = $comprobante->listarFactura_orden_10next($_GET["id"]);
 while ($regd = $rsptad->fetch_object()) {
   $line = array( "Factura"=> "$regd->num_factura",
                 "Fecha"=> "$regd->fecha_factura",
-                "Valor"=> "$regd->valor_factura",
+                "Valor"=> number_format("$regd->valor_factura", 2, '.', ','),
             );
 
             $size = $pdf->addLine( $y, $line );
@@ -84,7 +84,7 @@ while ($regd = $rsptad->fetch_object()) {
 while ($regd2 = $rsptad2->fetch_object()) {
   $line2 = array( "Factura"=> "$regd2->num_factura",
                 "Fecha"=> "$regd2->fecha_factura",
-                "Valor"=> "$regd2->valor_factura",
+                "Valor"=> number_format("$regd2->valor_factura", 2, '.', ','),
                 );
 
             $size2 = $pdf->addLine2( $y2, $line2 );
@@ -111,7 +111,7 @@ $pdf->addLineFormat( $cols3);
     $line3 = array( "Grupo"=> "$regd3->grupo",
                   "Subgrupo"=> "$regd3->subgrupo",
                   "No. Objeto"=> "$regd3->codigo",
-                  "INTERIORES"=> "$regd3->subtot",
+                  "INTERIORES"=> number_format("$regd3->subtot", 2, '.', ','),
 
                   );
 
@@ -127,7 +127,7 @@ $con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTO
 $pdf->addCadreTVAs("*** ".$con_letra);
 
 //Mostramos el impuesto
-$pdf->addTVAs( $regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
+$pdf->addTVAs($regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
 
 $var="";
 if ($regv->tipo_impuesto="0.15") {
