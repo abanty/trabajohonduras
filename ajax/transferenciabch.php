@@ -69,18 +69,18 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
 
- 				$url='../extensiones/tcpdf/pdf/solicitudbch.php?id=';
+ 				$urlsolicitudbch='../reportes/Solicitudbch.php?id=';
 
 
  			$data[]=array(
  				"0"=>($reg->condicion)?
  				'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
  					' <button class="btn btn-danger" onclick="eliminar('.$reg->idtransferenciabch.')"><i class="fas fa-trash"></i></button>'.
- 					'<a target="_blank" href="'.$url.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
+ 					'<a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
  					' <button class="btn btn-success" onclick="validar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
 					' <button class="btn btn-primary" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>'.
-					'<a target="_blank" href="'.$url.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>',
+					'<a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>',
 
 
  				"1"=>$reg->fecha,

@@ -28,6 +28,121 @@ if ($_SESSION['admonoc']==1)
   height: 100%;
 }
 
+/*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+	@media
+	  only screen
+    and (max-width: 760px), (min-device-width: 768px)
+    and (max-device-width: 1024px)  {
+
+      .content-header>h1 {
+    margin: 0;
+    font-size: 13.8px;
+    font-weight: bold;
+}
+
+    .rowperson{
+        padding: 10px 0% 10px 60% !important;
+    }
+
+      .this{
+            padding: 0px !important;
+      }
+      .thispan{
+            padding: 0px !important;
+      }
+      .thisisdiv{
+        padding-right: 0px;
+        padding-left: 0px;
+      }
+          .col-md-12.thismd12 {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+.nav-tabs-custom>.tab-content {
+    padding: 0px  !important;
+}
+
+
+
+		/* Force table to not be like tables anymore */
+		/* table, thead, tbody, th, td, tr {*/
+
+    #detalles, #det-thead, #det-tbody,#det-thead th, #det-tbody td, #det-tbody tr, #det-thead tr {
+
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		#det-thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+      margin: 0 0 1rem 0;
+		}
+
+    #det-tbody tr {
+      margin: 0 0 1rem 0;
+    }
+
+    #det-thead tr:nth-child(odd) {
+      background: #dcdcdc;
+    }
+
+    #det-tbody tr:nth-child(odd) {
+      background: #dcdcdc;
+    }
+
+    #det-thead tr:nth-child(even) {
+      background: #d3e9fd;
+    }
+
+    #det-tbody tr:nth-child(even) {
+      background: #d3e9fd;
+    }
+
+		#det-tbody td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 40%;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-right: 2%;
+		}
+
+		#det-tbody td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+      top: 4.5px;
+      left: 10px;
+      font-size: 11.5px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+
+    /* #mynewtd */
+    #det-tbody td#mynewtd:nth-of-type(1):before { content: "" !important; }
+
+		/*
+		Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+		*/
+		#det-tbody td:nth-of-type(1):before { content: "Opciones :"; }
+		#det-tbody td:nth-of-type(2):before { content: "Objeto Gasto :"; }
+		#det-tbody td:nth-of-type(3):before { content: "Unidad :"; }
+		#det-tbody td:nth-of-type(4):before { content: "Cantidad :"; }
+		#det-tbody td:nth-of-type(5):before { content: "Descripcion :"; }
+		#det-tbody td:nth-of-type(6):before { content: "Precio Unitario :"; }
+		#det-tbody td:nth-of-type(7):before { content: "Subtotal :"; }
+
+	}
+
 </style>
 
 
@@ -58,8 +173,8 @@ if ($_SESSION['admonoc']==1)
           </div>
 
 
-          <div class="box-body" id="listadoregistros">
-            <div class="panel-body table-responsive">
+          <div class="box-body this" id="listadoregistros">
+            <div class="panel-body table-responsive thispan">
               <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
                 <thead style="background-color:#d2d6de">
                   <th>Opciones</th>
@@ -93,9 +208,9 @@ if ($_SESSION['admonoc']==1)
             </div>
           </div>
 
-          <div class="box-body" id="formularioregistros">
+          <div class="box-body this" id="formularioregistros">
 
-            <div class="col-md-12">
+            <div class="col-md-12 thismd12">
 
                   <!-- Custom Tabs -->
                   <div class="nav-tabs-custom" id="mistabs">
@@ -108,7 +223,7 @@ if ($_SESSION['admonoc']==1)
                     <div class="tab-content">
                       <div class="tab-pane active" id="tab_1">
 
-                        <div class="panel-body" >
+                        <div class="panel-body thispan" >
 
                         <form name="formulario" id="formulario" method="POST">
 
@@ -177,27 +292,29 @@ if ($_SESSION['admonoc']==1)
 
 
 
-                          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
-                              <thead style="background-color:#d2d6de">
-                                <th>Opciones</th>
-                                <th>Objeto Gasto</th>
-                                <th>Unidad</th>
-                                <th>Cantidad</th>
-                                <th>Descripcion</th>
-                                <th>Precio Unitario</th>
-                                <th>Subtotal</th>
-                              </thead>
+                          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 thisisdiv">
 
-                              <tbody>
-                              </tbody>
+
+                        <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table">
+
+                          <thead id="det-thead" role="rowgroup" style="background-color:#d2d6de">
+                            <tr role="row">
+                              <th role="columnheader">Opciones</th>
+                              <th role="columnheader">Objeto Gasto</th>
+                              <th role="columnheader">Unidad</th>
+                              <th role="columnheader">Cantidad</th>
+                              <th role="columnheader">Descripcion</th>
+                              <th role="columnheader">Precio Unitario</th>
+                              <th role="columnheader">Subtotal</th>
+                            </tr>
+                          </thead>
+
+                          <tbody id="det-tbody" role="rowgroup">
+                          </tbody>
+
 
                               <tfoot>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th colspan="5"></th>
                                 <th>TOTAL</th>
                                 <th>
                                   <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
@@ -205,22 +322,14 @@ if ($_SESSION['admonoc']==1)
                               </tfoot>
 
                               <tfoot>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th colspan="5"></th>
                                 <th>TOTAL DESCUENTO</th>
                                 <th><input type="number" onchange="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total"
                                     maxlength="45" placeholder="Ingrese el descuento"></th>
                               </tfoot>
 
                               <tfoot>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th colspan="5"></th>
                                 <th>SUB TOTAL</th>
                                 <th>
                                   <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="subtotales" id="subtotales">
@@ -228,11 +337,7 @@ if ($_SESSION['admonoc']==1)
                               </tfoot>
 
                               <tfoot>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th colspan="5"></th>
                                 <th>IMPUESTO</th>
                                 <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" readonly></th>
                               </tfoot>
