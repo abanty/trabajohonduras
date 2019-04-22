@@ -30,7 +30,8 @@ if (strlen(session_id()) < 1)
     <!-- DATATABLES -->
     <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">
     <link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet"/>
-    <link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet"/>
+    <!-- ../public/datatables/responsive.dataTables.min.css -->
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">

@@ -150,8 +150,9 @@ function listar()
 		        ],
 
      columnDefs: [
-			          { width: 120, targets: 0 }
-			          // { width: 150, targets: 1 }
+			  				{ width: 125, targets: 0 },
+			          { width: 60, targets: 1 },
+								{ width: 190, targets: 2 }
 			      ],
 
 
@@ -196,7 +197,7 @@ function listarPresupuesto_disponible()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 10,//Paginación
+		"iDisplayLength": 8,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }

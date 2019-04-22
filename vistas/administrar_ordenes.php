@@ -175,7 +175,7 @@ if ($_SESSION['admonoc']==1)
 
           <div class="box-body this" id="listadoregistros">
             <div class="panel-body table-responsive thispan">
-              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
+              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover responsive" style="">
                 <thead style="background-color:#d2d6de">
                   <th>Opciones</th>
                   <th>Fecha</th>
@@ -481,7 +481,7 @@ if ($_SESSION['admonoc']==1)
 <!--   Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-  <div class="modal-dialog" style="width: 65% !important;">
+  <div class="modal-dialog" style="">
     <div class="modal-content">
 
       <div class="modal-header" style="background:#3c8dbc; color:white">
@@ -494,7 +494,7 @@ if ($_SESSION['admonoc']==1)
       </div>
 
       <div class="modal-body">
-        <table id="tblpresupuesto_disponible" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+        <table id="tblpresupuesto_disponible" class="table table-striped table-bordered table-condensed table-hover responsive" width="100%">
           <thead>
             <th>Opciones</th>
             <th>Nombre Objeto</th>
