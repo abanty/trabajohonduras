@@ -574,6 +574,7 @@ function addCadreEurosFrancs($impuesto)
 
 function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
 {
+	setlocale(LC_MONETARY, 'en_US');
 	$this->SetFont('Arial','',8);
 
 	$re  = $this->w - 40;
@@ -581,16 +582,16 @@ function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
 	$y1  = $this->h - 70;
 	$this->SetFont( "Arial", "", 9.5);
 	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $st), '', '', 'L');
+	$this->Cell( 17,4, number_format($st, 2, '.', ','), '', '', 'L');
 	$this->SetXY( $re, $y1+10 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $dt), '', '', 'L');
+	$this->Cell( 17,4, number_format($dt, 2, '.', ','), '', '', 'L');
 	$this->SetXY( $re, $y1+14.8 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $stdesc), '', '', 'L');
+	$this->Cell( 17,4, number_format($stdesc, 2, '.', ','), '', '', 'L');
 	$this->SetXY( $re, $y1+19 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $imp), '', '', 'L');
+	$this->Cell( 17,4, number_format($imp, 2, '.', ','), '', '', 'L');
 	$this->SetFont( "Arial", "U", 10);
 	$this->SetXY( $re, $y1+24 );
-	$this->Cell( 17,4, $moneda.sprintf("%0.2F", $total), '', '', 'L');
+	$this->Cell( 17,4, number_format($total, 2, '.', ','), '', '', 'L');
 
 }
 

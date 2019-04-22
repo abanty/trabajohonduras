@@ -75,9 +75,9 @@ while ($regd = $rsptad->fetch_object()) {
                 "Unidad"=> utf8_decode("$regd->unidad"),
                 "Cantidad"=> "$regd->cantidad",
                 "Descripcion" => utf8_decode("$regd->descripcion"),
-                "P.Unitario"=> "$regd->precio_unitario",
-                "SubTotal"=> "$regd->subtot",
-                "Total"=> "$regd->subtot");
+                "P.Unitario"=> number_format("$regd->precio_unitario", 2, '.', ','),
+                "SubTotal"=> number_format("$regd->subtot", 2, '.', ','),
+                "Total"=> number_format("$regd->subtot", 2, '.', ','));
                 // ,
                 // "Total"=> "$regv->monto_total"
             $size = $pdf->addLine( $y, $line );
