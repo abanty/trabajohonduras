@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-04-2019 a las 18:21:10
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Tiempo de generación: 22-04-2019 a las 23:57:19
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `dbsistema`
+-- Base de datos: `dbsistemamejorado`
 --
 
 -- --------------------------------------------------------
@@ -156,27 +156,6 @@ INSERT INTO `bancos` (`idbancos`, `clasificacion`, `nombre_banco`, `referencia`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `combustibles`
---
-
-CREATE TABLE `combustibles` (
-  `idcombustibles` int(11) NOT NULL,
-  `categoria` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `total_compras` varchar(12) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `condicion` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `combustibles`
---
-
-INSERT INTO `combustibles` (`idcombustibles`, `categoria`, `nombre`, `total_compras`, `condicion`) VALUES
-(1, 'Combustible', 'Aceite 2 Tiempos', '250000.25', 1);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `compromisos`
 --
 
@@ -211,19 +190,20 @@ INSERT INTO `compromisos` (`idcompromisos`, `idprograma`, `idproveedores`, `fech
 --
 
 CREATE TABLE `configuracion` (
-  `ConfiguracionID` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `idconfiguracion` int(11) NOT NULL,
+  `rango` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
   `Nombre` varchar(80) CHARACTER SET utf8 NOT NULL,
-  `Cargo` varchar(80) CHARACTER SET utf8 DEFAULT NULL,
-  `Descripcion` varchar(150) CHARACTER SET utf8 DEFAULT NULL
+  `Cargo` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `configuracion`
 --
 
-INSERT INTO `configuracion` (`ConfiguracionID`, `Nombre`, `Cargo`, `Descripcion`) VALUES
-('Comandante', 'EFRAIN MANN HERNÁNDEZ', 'CONTRALMIRANTE F.N.H', ''),
-('Pagador', 'PABLO ANTONIO RODRIGUEZ SAUCEDA', 'CAPITAN DE FRAGATA D.E.M.N', NULL);
+INSERT INTO `configuracion` (`idconfiguracion`, `rango`, `Nombre`, `Cargo`, `condicion`) VALUES
+(1, 'Contralmirante', 'EFRAIN MANN HERNÁNDEZ', 'Comandante General', 1),
+(2, 'Capitan de Fragata C.G.', 'ERNESTO ANTONIO AVILA KATTAN', 'Pagador General ', 1);
 
 -- --------------------------------------------------------
 
@@ -511,6 +491,7 @@ CREATE TABLE `programa` (
   `idprograma` int(11) NOT NULL,
   `codigop` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
   `nombrep` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `cargar` varchar(70) COLLATE utf8mb4_spanish_ci NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -518,21 +499,23 @@ CREATE TABLE `programa` (
 -- Volcado de datos para la tabla `programa`
 --
 
-INSERT INTO `programa` (`idprograma`, `codigop`, `nombrep`, `condicion`) VALUES
-(1, '90-11-03-02', 'BANACORT', 1),
-(2, '90-11-03-03', 'BANAMAP', 1),
-(3, '90-11-03-04', 'BANACAST', 1),
-(4, '90-11-03-05', 'CEN', 1),
-(5, '90-11-03-06', 'ANH', 1),
-(6, '90-11-03-07', '1ER BIM', 1),
-(7, '90-11-03-08', 'BANACAR', 1),
-(8, '90-11-03-9', 'BANAGUA', 1),
-(9, '90-11-03-10', 'ECAMAN', 1),
-(10, '90-11-03-11', 'ESNA', 1),
-(11, '90-11-03-12', '2DO BIM', 0),
-(12, '90-11-03-13', 'CMD GENERAL', 0),
-(13, '90-11-03-14', 'CAN', 0),
-(14, '90-11-03-15', 'C.G.N', 0);
+INSERT INTO `programa` (`idprograma`, `codigop`, `nombrep`, `cargar`, `condicion`) VALUES
+(1, '90-11-03-02', 'BANACORT', 'CARGADO A LA BASE NAVAL DE PUERTO CORTES', 1),
+(2, '90-11-03-03', 'BANAMAP', 'CARGADO A LA BASE NAVAL DE AMAPALA', 1),
+(3, '90-11-03-04', 'BANACAST', 'CARGADO A LA BASE NAVAL DE PUERTO CASTILLA', 1),
+(4, '90-11-03-05', 'CEN', 'CARGADO AL CENTRO DE ESTUDIOS NAVALES', 1),
+(5, '90-11-03-06', 'ANH', 'CARGADO A LA ACADEMIA NAVAL DE HONDURAS', 1),
+(6, '90-11-03-07', '1ER BIM', 'CARGADO AL 1ER BATALLON DE INFANTERIA DE MARINA', 1),
+(7, '90-11-03-08', 'BANACAR', 'CARGADO A LA BASE NAVAL DE CARATASCA', 1),
+(8, '90-11-03-09', 'BANAGUA', 'CARGADO A LA BASE NAVAL DE GUANAJA', 1),
+(9, '90-11-03-10', 'ECAMAN', 'CARGADO A LA ESCUELA DE CAPACITACION DE MANDOS NAVALES', 1),
+(10, '90-11-03-11', 'ESNA', 'CARGADO A LA ESCUADRA NAVAL', 1),
+(11, '90-11-03-12', '2DO BIM', 'CARGADO AL 2DO BATALLON DE INFANTERIA DE MARINA', 1),
+(12, '90-11-03-01', 'CMD GENERAL', 'CARGADO A LA COMANDANCIA GENERAL DE LA FUERZA NAVAL ', 1),
+(13, '90-11-03-14', 'CAN', 'CARGADO AL CENTRO DE ADIESTRAMIENTO NAVAL', 1),
+(14, '90-11-03-15', 'C.G.N', 'CARGADO AL CUARTEL GENERAL NAVAL', 1),
+(15, '90-11-03-13', 'ESCUELA DE BUCEO', 'CARGADO A LA ESCUELA DE BUCEO', 1),
+(16, '90-11-03-16', 'FEN', 'CARGADO AL 1ER BATALLON DE FUERZAS ESPECIALES NAVALES', 1);
 
 -- --------------------------------------------------------
 
@@ -829,12 +812,6 @@ ALTER TABLE `bancos`
   ADD PRIMARY KEY (`idbancos`);
 
 --
--- Indices de la tabla `combustibles`
---
-ALTER TABLE `combustibles`
-  ADD PRIMARY KEY (`idcombustibles`);
-
---
 -- Indices de la tabla `compromisos`
 --
 ALTER TABLE `compromisos`
@@ -846,7 +823,7 @@ ALTER TABLE `compromisos`
 -- Indices de la tabla `configuracion`
 --
 ALTER TABLE `configuracion`
-  ADD PRIMARY KEY (`ConfiguracionID`);
+  ADD PRIMARY KEY (`idconfiguracion`);
 
 --
 -- Indices de la tabla `contabilidad`
@@ -996,16 +973,16 @@ ALTER TABLE `bancos`
   MODIFY `idbancos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
--- AUTO_INCREMENT de la tabla `combustibles`
---
-ALTER TABLE `combustibles`
-  MODIFY `idcombustibles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `compromisos`
 --
 ALTER TABLE `compromisos`
   MODIFY `idcompromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  MODIFY `idconfiguracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `contabilidad`
