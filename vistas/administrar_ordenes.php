@@ -146,7 +146,7 @@ if ($_SESSION['admonoc']==1)
 </style>
 
 
-
+<!--  AQUI COMENTARAS ALGO QUE GUARDARAS EN EL GIT - CONTROL S -->
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
