@@ -69,7 +69,9 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
 
- 				$urlsolicitudbch='../reportes/Solicitudbch.php?id=';
+ 				// $urlsolicitudbch='../reportes/Solicitudbch.php?id=';
+				$urlsolicitudbch='../reportes/Autoajust.php?id=';
+
 
 
  			$data[]=array(
