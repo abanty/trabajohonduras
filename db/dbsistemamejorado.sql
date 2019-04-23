@@ -192,8 +192,8 @@ INSERT INTO `compromisos` (`idcompromisos`, `idprograma`, `idproveedores`, `fech
 CREATE TABLE `configuracion` (
   `idconfiguracion` int(11) NOT NULL,
   `rango` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `Nombre` varchar(80) CHARACTER SET utf8 NOT NULL,
-  `Cargo` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `nombre` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `cargo` varchar(80) CHARACTER SET utf8 NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
