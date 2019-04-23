@@ -146,7 +146,28 @@ if ($_SESSION['admonoc']==1)
 </style>
 
 
-<!--  AQUI COMENTARAS ALGO QUE GUARDARAS EN EL GIT - CONTROL S -->
+
+
+
+
+
+
+<!--  AQUI COMENTARAS ALGO QUE GUARDARAS EN EL GIT - CONTROL S
+
+ESTO PUSE YO RECIEN Y TU LO ABRAS ACTUALIZADO -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 
