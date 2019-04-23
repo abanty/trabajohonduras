@@ -196,7 +196,8 @@ function Parte($x)
          Case 800: $t = "Ochocientos";break;
          Case 900: $t = "Novecientos";break;
          Case 1000: $t = "Mil";break;
-         Case 1000000: $t = "Millón";break;
+         Case 1000000: $t = "MILLÓN";break;
+
       }
 
       If($t == $this->Void)

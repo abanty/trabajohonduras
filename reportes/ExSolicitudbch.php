@@ -259,10 +259,11 @@ function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar
 		$this->SetXY(15, 82);
 		$this->MultiCell(180,4,utf8_decode("Autorizamos  al  Banco  Central  de  Honduras  a  efectuar  la  Transferencia  de  Fondos  de  la  siguiente  manera:"),0,L);
 		$this->SetFont( "Arial", "B", 11);
+
 		//PRIMERA CELDA CON BORDER
 		$this->SetXY(15, 95);
 		$this->SetLineWidth(0.3);
-		$this->MultiCell(180,10,"",1,L);
+		$this->MultiCell(180,10,"",0,L);
 
 		$this->SetXY(15, 110);
 		$this->SetFillColor(184, 215, 232);
@@ -342,9 +343,8 @@ function addCadreTVAs($monto)
 
 	$this->SetFont( "Arial", "B", 10.5);
 	$this->SetXY( 15, 96);
-	$this->MultiCell(180,4, $monto,0,C);
-
-
+	$this->MultiCell(180,4, utf8_decode("DIEZ MILLÓNES MAS CARACTERES DIEZ MIL CIENTO ONCE LEMPIRAS EXACTAS CON QUINCE CENTAVOS (15/100) M.N
+	DIEZ MILLÓNES MAS CARACTERES DIEZ "),1,C);
 
 }
 

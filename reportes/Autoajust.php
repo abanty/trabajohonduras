@@ -1,33 +1,28 @@
 <?php
-require('ExAutoajust.php');
-
-function GenerateWord()
-{
-    //Get a random word
-    $nb=rand(3,10);
-    $w='';
-    for($i=1;$i<=$nb;$i++)
-        $w.=chr(rand(ord('a'),ord('z')));
-    return $w;
-}
-
-function GenerateSentence()
-{
-    //Get a random sentence
-    $nb=rand(1,10);
-    $s='';
-    for($i=1;$i<=$nb;$i++)
-        $s.=GenerateWord().' ';
-    return substr($s,0,-1);
-}
+require('PDF_MC_Table.php');
 
 $pdf=new PDF_MC_Table();
 $pdf->AddPage();
-$pdf->SetFont('Arial','',14);
+$pdf->SetFont('Arial','',12);
+$pdf->SetTopMargin(10);
 //Table with 20 rows and 4 columns
-$pdf->SetWidths(array(30,50,30,40));
+$pdf->SetWidths(array(190,60,60));
+$pdf->setCellMargin(10);
+$pdf->SetTopMargin(10);
+
+
 srand(microtime()*1000000);
-for($i=0;$i<20;$i++)
-    $pdf->Row(array(GenerateSentence(),GenerateSentence(),GenerateSentence(),GenerateSentence()));
+for($i=0;$i<1;$i++)
+    $pdf->Row(array('DIEZ MILLONES MAS CARACTERES DIEZ MIL CIENTO ONCE LEMPIRAS EXACTAS CON QUINCE CENTAVOS (15/100) M.N DIEZ MILLÓNES MAS CARACTERES DIEZ'));
+  
+    $pdf->MultiCell(190,5,"",0,C);
+
+    $pdf->SetWidths(array(190));
+
+    $pdf->Row(array('DEBITESE'));
+    $pdf->SetWidths(array(63.3,63.3,63.3));
+    $pdf->Row(array('sda','asd','dsadsa'));
+
+
 $pdf->Output();
 ?>
