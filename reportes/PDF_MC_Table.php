@@ -27,7 +27,7 @@ function SetAligns($a)
 function Row($data)
 {
 	//Calculate the height of the row
-	$nb=0;
+	$nb=10;
 	for($i=0;$i<count($data);$i++)
 		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
 	$h=5*$nb;
