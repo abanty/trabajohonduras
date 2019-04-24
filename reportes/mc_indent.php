@@ -10,6 +10,7 @@ class PDF extends FPDF {
 
 function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false, $indent=0)
 {
+    // $this->cMargin = 20;
     //Output text with automatic or explicit line breaks
     $cw=&$this->CurrentFont['cw'];
     if($w==0)

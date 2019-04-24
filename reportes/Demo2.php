@@ -1,12 +1,12 @@
 <?php
-require('mc_indent.php');
+require('Mc_indent.php');
 
-$InterLigne = 6;
+$InterLigne = 4;
 
 $pdf=new PDF();
 
 $pdf->AddPage();
-$pdf->SetMargins(30,10,30);
+$pdf->SetMargins(10,10,30);
 $pdf->SetFont('Arial','',11);
 
 $txt = "Cher Pierre";
@@ -14,21 +14,58 @@ $txtLen = $pdf->GetStringWidth($txt);
 $milieu = (210-$txtLen)/2;
 $pdf->SetX($milieu);
 $pdf->Write(5,$txt);
-$pdf->setCellMargin(10);
+// $pdf->setCellMargin(5);
 $pdf->ln(30);
-
-$txt = "Jesus Abasdsadsa .";
-$pdf->MultiCell(0,$InterLigne,$txt,1,'J',0);
-$txt = "";
+$pdf->SetFont( "Arial", "B", 10.8);
+// $pdf->SetXY(10, 20);
+ $pdf->Ln();
+ // MAS CARACTERES DIEZ MIL CIENTO ONCE LEMPIRAS EXACTAS CON QUINCE CENTAVOS (15/100) M.N	DIEZ MILLÓNES MAS CARACTERES DIEZ
+$txt = utf8_decode("\n"."DIEZ MILLÓNES"."\n"." ");
+$pdf->MultiCell(190,$InterLigne,$txt,1,'C',0);
+$txt = "DEBITESE";
 $pdf->SetFillColor(184, 215, 232);
 $pdf->ln(5);
-$pdf->MultiCell(0,$InterLigne,$txt,1,'J',true);
+$pdf->MultiCell(190,6,$txt,1,'C',true);
+$pdf->SetFont( "Arial", "", 10.5);
+$pdf->Cell(63.3,5,'NUMERO DE CUENTA',1,0,'C',0);
+$pdf->Cell(63.3,5,'NOMBRE DE LA CUENTA',1,0,'C',0);
+$pdf->Cell(63.3,5,'VALOR EN NUMEROS',1,1,'C',0);
 
+
+
+
+$txt = utf8_decode("\n"."215-990-007-350"."\n"." ");
+$pdf->setCellMargin(0);
+$pdf->SetFont( "Arial", "B", 10.5);
+$pdf->MultiCell(63.3,$InterLigne,$txt,1,'C',0);
+
+
+$txt = utf8_decode("\n"."PAGADURIA FUERZA NAVAL"."\n"." ");
+// $pdf->SetXY(73.3, 73);
+$pdf->MultiCell(63.3,$InterLigne,$txt,1,'C',0);
+
+$txt = utf8_decode("\n"."L. 1,010,111.15L"."\n"." ");
+// $pdf->SetXY(136.6, 73);
+$pdf->MultiCell(63.3,$InterLigne,$txt,1,'C',0);
+
+
+
+
+
+$txt = "ACREDITESE";
+$pdf->SetFillColor(184, 215, 232);
+$pdf->ln(5);
+$pdf->MultiCell(190,6,$txt,1,'C',true);
 
 $pdf->Output();
 ?>
 
-
+<!-- $y = $pdf->GetY();
+$x = $pdf->GetX();
+$width = 60;
+$pdf->MultiCell($width, 6, 'particular', 1, 'L', FALSE);
+$pdf->SetXY($x + $width, $y);
+$pdf->Cell(40,50, 'quantity', 1, 0, "l"); -->
 
 
 
