@@ -38,15 +38,16 @@ $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 
 $date = new DateTime($regv->fecha_hora);
 
-
-$pdf->addClientAdresse($date->format('j \of F \of Y'), $regv->num_transf, $regv->numctapg, $regv->cuentapg , $regv->monto_acreditar,
-$regv->tp_prov, $regv->num_cuenta, $regv->nombre_banco ,$regv->descripcion, $regv->serie_transf);
-
 //Convertimos el total en letras
 require_once "Letras.php";
 $V=new EnLetras();
-$con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"\n"."LEMPIRAS EXACTAS"));
-$pdf->addCadreTVAs($con_letra);
+$con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS EXACTAS"));
+
+
+// $date->format('j \of F \of Y'), $regv->num_transf, $regv->numctapg, $regv->cuentapg , $regv->monto_acreditar,
+// $regv->tp_prov, $regv->num_cuenta, $regv->nombre_banco ,$regv->descripcion, $regv->serie_transf,
+$pdf->addClientAdresse($con_letra);
+// $pdf->addCadreTVAs($con_letra);
 
 $pdf->Output('Solicitud de Transferencias.pdf','I');
 $pdf->Close();

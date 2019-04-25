@@ -231,19 +231,32 @@ function addPageNumber( $page )
 	$this->Cell(10,5,$page, 0,0, "C");
 }
 
+// function addCadreTVAs($monto)
+// {
+//
+// 	$this->SetFont( "Arial", "B", 10.5);
+// 	$this->SetXY( 15, 96);
+// 	$this->MultiCell(180,4, utf8_decode("DIEZ MILLÓNES MAS CARACTERES DIEZ MIL CIENTO ONCE LEMPIRAS EXACTAS CON QUINCE CENTAVOS (15/100) M.N
+// 	DIEZ MILLÓNES MAS CARACTERES DIEZ "),1,C);
+//
+// }
+
 // Client address
-function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar,$tipoctapg,$num_cuenta,$banco,$descripcion,$serie)
+// $fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar,$tipoctapg,$num_cuenta,$banco,$descripcion,$serie,
+function addClientAdresse($con_letra)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
 	$y1     = 36;
+	$yt = 5;
+	$yx = 5;
 // 29 de Enero del 2019
 
 		$this->SetFont( "Arial", "", 10.5);
 		$this->SetXY(8, 38);
 		$this->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
 		$this->SetXY(9, 43);
-		$this->MultiCell(50,4,$fecha,0,C);
+		$this->MultiCell(50,4,"20/20/20",0,C);
 		$this->SetXY(15, 53);
 		$this->MultiCell(80,4,"Jefe Departamento de Sistema de Pagos",0,L);
 		$this->SetXY(15, 58);
@@ -252,7 +265,7 @@ function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar
 		$this->MultiCell(50,4,"Su Oficina",0,L);
 		$this->SetXY(146.5, 45);
 		$this->SetFont( "Arial", "B", 10.5);
-		$this->MultiCell(50,4,"TRANSF.No. ".$serie." - ".$num_trans,0,L);
+		$this->MultiCell(50,4,"TRANSF.No. 456",0,L);
 		$this->SetFont( "Arial", "", 10.8);
 		$this->SetXY(15, 72);
 		$this->MultiCell(50,4,utf8_decode("Estimados Señores"),0,L);
@@ -260,93 +273,95 @@ function addClientAdresse($fecha,$num_trans,$numctapg,$cuentapg,$monto_acreditar
 		$this->MultiCell(180,4,utf8_decode("Autorizamos  al  Banco  Central  de  Honduras  a  efectuar  la  Transferencia  de  Fondos  de  la  siguiente  manera:"),0,L);
 		$this->SetFont( "Arial", "B", 11);
 
-		//PRIMERA CELDA CON BORDER
-		$this->SetXY(15, 95);
-		$this->SetLineWidth(0.3);
-		$this->MultiCell(180,10,"",0,L);
 
-		$this->SetXY(15, 110);
+			$this->SetXY( 15, 96);
+			$this->MultiCell(180,4, utf8_decode($con_letra."ADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSAADSASDSADSADASDASDSADSA"),1,C);
+			$this->Ln(5);
+		// //PRIMERA CELDA CON BORDER
+		// $this->SetXY(15, 95);
+		// $this->SetLineWidth(0.3);
+		// $this->MultiCell(180,10,"",0,L);
+		//
+		$this->SetX(15);
 		$this->SetFillColor(184, 215, 232);
 	  $this->Cell(180,5,'DEBITESE',1,1,'C',1); //PRIMERA CELDA LARGA DEBITESE
-
-		//3 COLUMNAS DEl CUERPO
-		$this->SetXY(15, 115);
-		$this->SetFont( "Arial", "", 10.5);
+		//
+		// //3 COLUMNAS DEl CUERPO
+		$this->SetX(15);
+		// $this->SetFont( "Arial", "", 10.5);
 		$this->Cell(60,5,'NUMERO DE CUENTA',1,0,'C',0);
 		$this->Cell(60,5,'NOMBRE DE LA CUENTA',1,0,'C',0);
 		$this->Cell(60,5,'VALOR EN NUMEROS',1,1,'C',0);
-		$this->SetXY(15, 120);
-		$this->SetFont( "Arial", "B", 10.5);
-		$this->Cell(60,20,$numctapg,1,0,'C',0);
-		$this->Cell(60,20,'',1,0,'C',0);
-		$this->Cell(60,20,'L. '.number_format($monto_acreditar, 2, '.', ','),1,1,'C',0);
+		$this->SetX(15);
+		$this->MultiCell(60,5,"TRANSFTRAN. 456",1,C);
+		$this->Ln(5);
 
-		$this->SetXY(15, 145);
-		$this->SetFillColor(184, 215, 232);
+		// $this->SetXY(15, 120);
+		// $this->SetFont( "Arial", "B", 10.5);
+		// $this->Cell(60,20,$numctapg,1,0,'C',0);
+		// $this->Cell(60,20,'',1,0,'C',0);
+		// $this->Cell(60,20,'L. '.number_format($monto_acreditar, 2, '.', ','),1,1,'C',0);
+		//
+		// $this->SetXY(15, 145);
+		// $this->SetFillColor(184, 215, 232);
+		$this->SetX(15);
 		$this->Cell(180,5,'ACREDITESE',1,1,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
-		$this->SetXY(15, 150);
-		$this->SetFont( "Arial", "", 10.5);
-		$this->Cell(60,10,'TIPO DE CUENTA',1,0,'C',0);
+		$this->SetX(15);
+		// $this->SetFont( "Arial", "", 10.5);
+		$this->Cell(60,$yx+$yt,'TIPO DE CUENTA',1,0,'C',0);
+
 		$this->Cell(60,5,'NOMBRE DE LA INSTITUCION',1,0,'C',0);
 		$this->Cell(60,5,'VALOR EN NUMEROS',1,1,'C',0);
-		$this->SetXY(75, 155);
-		$this->SetFont( "Arial", "B", 10.5);
-		$this->Cell(60,5,$banco,1,0,'C',0);
-		$this->Cell(60,5,'L. '.number_format($monto_acreditar, 2, '.', ','),1,1,'C',0);
-		$this->SetXY(15, 160);
-		$this->Cell(60,20,strtoupper($tipoctapg),1,0,'C',0);
-		$this->Cell(60,20,$num_cuenta,1,0,'C',0);
-		$this->Cell(60,20,'',1,1,'C',0);
+		$this->SetX(75);
+		// $this->SetFont( "Arial", "B", 10.5);
+		$this->MultiCell(60,$yx,"TRANSFTRANSFANSF.ANSFTRANSFANSF.ANSFTRANSFANSF.ANSFTRANSFANSF.No. 456",1,C);
 
-		$this->SetXY(15, 185);
-		$this->SetFillColor(184, 215, 232);
-		$this->Cell(180,5,'SINOPSIS',1,1,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
-		$this->SetXY(15, 190);
-		$this->SetFillColor(255, 255, 255);
-		$this->SetFont( "Arial", "", 10.5);
-		$this->Cell(180,20,'',1,1,'C',1);
-
-
-		$this->SetXY(15, 215);
-		$this->Cell(180,5,'Atentamente:',0,1,'L',1); //SEGUNDA CELDA LARGA ACREDITESE
-		$this->SetXY(35, 225);
-		$this->Cell(70,5,'Contralmirante:',0,0,'L',1); //SEGUNDA CELDA LARGA ACREDITESE
-		$this->Cell(95,5,'Capitan de Fragata C.G.',0,1,'C',1);
-
-		$this->SetXY(15, 245);
-		$this->SetFont( "Arial", "B", 10.5);
-		$this->Cell(68,5,'EFRAIN MANN HERNANDEZ:',0,0,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
-		$this->Cell(30,5,'',0,0,'C',1);
-		$this->Cell(80,5,'ERNESTO ANTONIO AVILA KATTAN',0,1,'C',1);
-		$this->SetXY(15, 250);
-		$this->SetFont( "Arial", "", 10.5);
-		$this->Cell(68,5,'Comandante General:',0,0,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
-		$this->Cell(30,5,'',0,0,'C',1);
-		$this->Cell(80,5,'Pagador General',0,1,'C',1);
-
-
-		// DATOS AISLADO
-		$this->SetXY(15, 195);
-		$this->MultiCell(180,5,strtoupper($descripcion),0,'C',0);
-
-		$this->SetXY(75, 120);
-		$this->SetFont( "Arial", "B", 10.5);
-		$this->MultiCell(60,5,strtoupper($cuentapg),0,C);
-
-		$this->SetXY(135, 167);
-		$this->MultiCell(60,5,"PAGADURIA FUERZA NAVAL",0,C);
-
-}
-
-function addCadreTVAs($monto)
-{
-
-	$this->SetFont( "Arial", "B", 10.5);
-	$this->SetXY( 15, 96);
-	$this->MultiCell(180,4, utf8_decode("DIEZ MILLÓNES MAS CARACTERES DIEZ MIL CIENTO ONCE LEMPIRAS EXACTAS CON QUINCE CENTAVOS (15/100) M.N
-	DIEZ MILLÓNES MAS CARACTERES DIEZ "),1,C);
+		// $this->Cell(60,5,'L. 456456465456',1,1,'C',0);
+		// $this->SetXY(15, 160);
+		// $this->Cell(60,20,strtoupper($tipoctapg),1,0,'C',0);
+		// $this->Cell(60,20,$num_cuenta,1,0,'C',0);
+		// $this->Cell(60,20,'',1,1,'C',0);
+		//
+		// $this->SetXY(15, 185);
+		// $this->SetFillColor(184, 215, 232);
+		// $this->Cell(180,5,'SINOPSIS',1,1,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
+		// $this->SetXY(15, 190);
+		// $this->SetFillColor(255, 255, 255);
+		// $this->SetFont( "Arial", "", 10.5);
+		// $this->Cell(180,20,'',1,1,'C',1);
+		//
+		//
+		// $this->SetXY(15, 215);
+		// $this->Cell(180,5,'Atentamente:',0,1,'L',1); //SEGUNDA CELDA LARGA ACREDITESE
+		// $this->SetXY(35, 225);
+		// $this->Cell(70,5,'Contralmirante:',0,0,'L',1); //SEGUNDA CELDA LARGA ACREDITESE
+		// $this->Cell(95,5,'Capitan de Fragata C.G.',0,1,'C',1);
+		//
+		// $this->SetXY(15, 245);
+		// $this->SetFont( "Arial", "B", 10.5);
+		// $this->Cell(68,5,'EFRAIN MANN HERNANDEZ:',0,0,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
+		// $this->Cell(30,5,'',0,0,'C',1);
+		// $this->Cell(80,5,'ERNESTO ANTONIO AVILA KATTAN',0,1,'C',1);
+		// $this->SetXY(15, 250);
+		// $this->SetFont( "Arial", "", 10.5);
+		// $this->Cell(68,5,'Comandante General:',0,0,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
+		// $this->Cell(30,5,'',0,0,'C',1);
+		// $this->Cell(80,5,'Pagador General',0,1,'C',1);
+		//
+		//
+		// // DATOS AISLADO
+		// $this->SetXY(15, 195);
+		// $this->MultiCell(180,5,strtoupper($descripcion),0,'C',0);
+		//
+		// $this->SetXY(75, 120);
+		// $this->SetFont( "Arial", "B", 10.5);
+		// $this->MultiCell(60,5,strtoupper($cuentapg),0,C);
+		//
+		// $this->SetXY(135, 167);
+		// $this->MultiCell(60,5,"PAGADURIA FUERZA NAVAL",0,C);
 
 }
+
 
 // Mode of payment
 function addReglement( $mode )
