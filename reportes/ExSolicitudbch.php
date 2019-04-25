@@ -37,6 +37,7 @@ var $colonnes;
 var $format;
 var $angle=0;
 
+
 // private functions
 function RoundedRect($x, $y, $w, $h, $r, $style = '')
 {
@@ -308,13 +309,13 @@ function addClientAdresse($con_letra)
 		$this->Cell(180,5,'ACREDITESE',1,1,'C',1); //SEGUNDA CELDA LARGA ACREDITESE
 		$this->SetX(15);
 		// $this->SetFont( "Arial", "", 10.5);
-		$this->Cell(60,$yx+$yt,'TIPO DE CUENTA',1,0,'C',0);
+		$this->Cell(60,5,'TIPO DE CUENTA',1,0,'C',0);
 
 		$this->Cell(60,5,'NOMBRE DE LA INSTITUCION',1,0,'C',0);
 		$this->Cell(60,5,'VALOR EN NUMEROS',1,1,'C',0);
 		$this->SetX(75);
 		// $this->SetFont( "Arial", "B", 10.5);
-		$this->MultiCell(60,$yx,"TRANSFTRANSFANSF.ANSFTRANSFANSF.ANSFTRANSFANSF.ANSFTRANSFANSF.No. 456",1,C);
+		$this->MultiCellx(60,$yx,"TRANSFTRANSFANSF.ANSFTRANSFANSF.ANSFTRANSFANSF.ANSFTRANSFANSF.No. 456",1,C,);
 
 		// $this->Cell(60,5,'L. 456456465456',1,1,'C',0);
 		// $this->SetXY(15, 160);
