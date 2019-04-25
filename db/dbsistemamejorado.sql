@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-04-2019 a las 23:57:19
+-- Tiempo de generación: 25-04-2019 a las 08:19:50
 -- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -192,8 +192,8 @@ INSERT INTO `compromisos` (`idcompromisos`, `idprograma`, `idproveedores`, `fech
 CREATE TABLE `configuracion` (
   `idconfiguracion` int(11) NOT NULL,
   `rango` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `nombre` varchar(80) CHARACTER SET utf8 NOT NULL,
-  `cargo` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `Nombre` varchar(80) CHARACTER SET utf8 NOT NULL,
+  `Cargo` varchar(80) CHARACTER SET utf8 NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -264,7 +264,7 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '0.00', 1),
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9990000.00', 1),
 (2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '0.00', 1),
 (3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
 (4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
@@ -391,6 +391,13 @@ CREATE TABLE `dtransf_ctaspg` (
   `num_precompromiso` int(11) NOT NULL,
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `dtransf_ctaspg`
+--
+
+INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasbancarias`, `num_precompromiso`, `valor`) VALUES
+(1, 1, 1, 12, '10000000.00');
 
 -- --------------------------------------------------------
 
@@ -699,6 +706,23 @@ INSERT INTO `proveedores` (`idproveedores`, `casa_comercial`, `nombre_banco`, `n
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `retenciones`
+--
+
+CREATE TABLE `retenciones` (
+  `idretenciones` int(11) NOT NULL,
+  `idproveedor` int(11) NOT NULL,
+  `rtn` varchar(25) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `numdocumento` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `fecha_hora` date NOT NULL,
+  `tipo_impuesto` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` varchar(250) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `condicion` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `transferenciabch`
 --
 
@@ -713,6 +737,13 @@ CREATE TABLE `transferenciabch` (
   `descripcion` varchar(250) COLLATE utf8_spanish_ci DEFAULT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `transferenciabch`
+--
+
+INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
+(1, 9, 1, '2019-04-24', '124', '25', '10000.00', 'SFSFSFSF', 0);
 
 -- --------------------------------------------------------
 
@@ -729,6 +760,13 @@ CREATE TABLE `transferidoctaspg` (
   `valor_transferido` decimal(12,2) NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `transferidoctaspg`
+--
+
+INSERT INTO `transferidoctaspg` (`idtransferidoctaspg`, `idusuario`, `fecha_hora`, `numexpediente`, `numtransferencia`, `valor_transferido`, `estado`) VALUES
+(1, 1, '2019-04-24', '012', '14', '10000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -927,6 +965,13 @@ ALTER TABLE `proveedores`
   ADD PRIMARY KEY (`idproveedores`);
 
 --
+-- Indices de la tabla `retenciones`
+--
+ALTER TABLE `retenciones`
+  ADD PRIMARY KEY (`idretenciones`),
+  ADD KEY `idproveedor` (`idproveedor`);
+
+--
 -- Indices de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
@@ -1018,19 +1063,19 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
-  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
@@ -1060,13 +1105,13 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
-  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
-  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
