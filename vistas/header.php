@@ -279,15 +279,15 @@ if (strlen(session_id()) < 1)
 
           <li class="treeview">
           <a href="">
-            <i class="fas fa-folder-plus fa-lg" aria-hidden="true"></i> <span>Doc</span>
+            <i class="fas fa-folder-plus fa-lg" aria-hidden="true"></i> <span>Documentos</span>
 
             <i class="fal fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="combustibles.php"><i class="far fa-dot-circle text-red"></i>Combustible/Lubricantes</a></li>
-            <li><a href="solicitud_combustibles.php"><i class="far fa-dot-circle text-red"></i>Crear Solicitud</a></li>
-            <li><a href="consultas_combustible.php"><i class="far fa-dot-circle text-red"></i>Reportes</a></li>
+            <li><a href="retenciones.php"><i class="far fa-dot-circle text-red"></i>Crear Retencion</a></li>
+            <li><a href="reporte.php"><i class="far fa-dot-circle text-red"></i>Reporte</a></li>
+
 
           </ul>
 
