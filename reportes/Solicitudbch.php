@@ -84,7 +84,7 @@ $pdf->Cell(60,6,utf8_decode('VALOR EN NUMEROS'),1,1,'C',1);
 $texta = "\n".$regv->numctapg."\n"." ";
 $textb = strtoupper("\n".$regv->cuentapg."\n"." ");
 $textc = "\n".number_format($regv->monto_acreditar, 2, '.', ',')."\n"." ";
-$textj = "\n".utf8_decode($regv->descripcion)."\n"." ";
+$textj = "\n".utf8_decode(strtoupper($regv->descripcion))."\n"." ";
 
 $textd = strtoupper($regv->tp_prov);
 $texte = strtoupper($regv->nombre_banco);
@@ -118,7 +118,7 @@ $pdf->SetFillColor(185, 199, 228,1);
 $pdf->Cell(180,6,'SINOPSIS',1,1,'C',1);
 $pdf->SetWidths(array(180));
 $pdf->SetFont('Arial','',9.5);
-$pdf->Rowdefault(array($textj));
+$pdf->Rowdefault2(array($textj));
 
 
 
