@@ -24,7 +24,7 @@ $regv = $rsptac->fetch_object();
 
 //Instanciamos la clase para generar el documento pdf
 $pdf=new PDF_MC_Table('P', 'mm', 'A4');
-
+setlocale(LC_TIME, 'es_ES');
 //Agregamos la primera página al documento pdf
 $pdf->AddPage();
 $pdf->SetMargins(15,10,30);
@@ -36,7 +36,13 @@ $ext_logo1 = "jpg";
 $logo2 = "logo2.jpg";
 $ext_logo2 = "jpg";
 
-$date = new DateTime($regv->fecha_hora);
+// En windows
+setlocale(LC_TIME, 'spanish');
+
+// $date = new DateTime($regv->fecha_hora);
+$date= date('D, j \d\e F \d\e\l Y', strtotime($regv->fecha_hora));
+$inicio = strftime("%d de %B del %Y", strtotime($regv->fecha_hora));
+
 $contactnumtrans = $regv->num_transf.' '.$regv->serie_transf;
 //Seteamos el tipo de letra y creamos el título de la página. No es un encabezado no se repetirá
 
@@ -45,7 +51,7 @@ $pdf->SetFont( "Arial", "", 10.5);
 $pdf->SetXY(8, 38);
 $pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
 $pdf->SetXY(8, 43);
-$pdf->MultiCell(50,4,$date->format('j \of F \of Y'),0,C);
+$pdf->MultiCell(50,4,$inicio,0,C);
 $pdf->SetXY(15, 53);
 $pdf->MultiCell(80,4,"Jefe Departamento de Sistema de Pagos",0,L);
 $pdf->SetXY(15, 58);
