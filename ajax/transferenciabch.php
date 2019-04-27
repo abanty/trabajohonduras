@@ -75,29 +75,25 @@ switch ($_GET["op"]){
 
  			$data[]=array(
  				"0"=>($reg->condicion)?
- 				'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-danger" onclick="eliminar('.$reg->idtransferenciabch.')"><i class="fas fa-trash"></i></button>'.
+ 				'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idtransferenciabch.')"><i class="fas fa-trash"></i></button>'.
 					'<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
 							<a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
 								<i class="fas fa-print" aria-hidden="true"></i>
 							</a>
 								<ul class="dropdown-menu">
 								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
-								 <li><a target="_blank" href="'.$urldemo.$reg->idtransferenciabch.'">DEMO1</a></li>
-								 <li><a target="_blank" href="'.$urldemo2.$reg->idtransferenciabch.'">DEMO2</a></li>
 								</ul>
 					</li>'.
- 					' <button class="btn btn-success" onclick="validar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
-					'<button class="btn btn-warning" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
-					' <button class="btn btn-primary" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>'.
+ 					' <button class="btn btn-success btn-sm" onclick="validar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
+					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
+					' <button class="btn btn-primary btn-sm" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>'.
 					'<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
 							<a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
 								<i class="fas fa-print" aria-hidden="true"></i>
 							</a>
 								<ul class="dropdown-menu">
 								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
-								 <li><a target="_blank" href="'.$urldemo.$reg->idtransferenciabch.'">DEMO1</a></li>
-								 <li><a target="_blank" href="'.$urldemo2.$reg->idtransferenciabch.'">DEMO2</a></li>
 								</ul>
 					</li>',
 
