@@ -6,6 +6,7 @@ $transferenciabch=new transferenciabch();
 $idtransferenciabch=isset($_POST["idtransferenciabch"])? limpiarCadena($_POST["idtransferenciabch"]):"";
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
 $idctasbancarias=isset($_POST["idctasbancarias"])? limpiarCadena($_POST["idctasbancarias"]):"";
+$idconfiguracion=isset($_POST["idconfiguracion"])? limpiarCadena($_POST["idconfiguracion"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $serie_transf=isset($_POST["serie_transf"])? limpiarCadena($_POST["serie_transf"]):"";
 $num_transf=isset($_POST["num_transf"])? limpiarCadena($_POST["num_transf"]):"";
@@ -20,6 +21,7 @@ switch ($_GET["op"]){
 			$rspta=$transferenciabch->insertar(
 		$idproveedores,
 		$idctasbancarias,
+		$idconfiguracion,
 		$fecha_hora,
 		$serie_transf,
 		$num_transf,
@@ -133,13 +135,25 @@ switch ($_GET["op"]){
 
 	case "selectProveedores":
 		require_once "../modelos/Proveedores.php";
-		$casa_comercial = new proveedores();
+		$casa_comercial = new Proveedores();
 
 		$rspta = $casa_comercial->listar();
 
 		while ($reg = $rspta->fetch_object())
 				{
 					echo '<option value=' . $reg->idproveedores. '>' . $reg->casa_comercial . '</option>';
+				}
+	break;
+
+	case "selectResponsables":
+		require_once "../modelos/Configuracion.php";
+		$config = new Configuracion();
+
+		$rspta = $config->select();
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo '<option value=' . $reg->idconfiguracion. '>' . $reg->nombre ."&nbsp;".'('. $reg->cargo .')'. '</option>';
 				}
 	break;
 

@@ -121,29 +121,6 @@ $pdf->SetFont('Arial','',9.5);
 $pdf->Rowdefault2(array($textj));
 
 
-
-
-//Comenzamos a crear las filas de los registros según la consulta mysql
-// require_once "../modelos/Producto.php";
-// $producto = new Producto();
-//
-// $rspta = $producto->listar();
-
-//Table with 20 rows and 4 columns
-// $pdf->SetWidths(array(58,50,30,12,35));
-
-// while($reg= $rspta->fetch_object())
-// {
-//     $nombre = $reg->nombre;
-//     $categoria = $reg->categoria;
-//     $codigo = $reg->codigo;
-//     $stock = $reg->stock;
-//     $descripcion =$reg->nombre;
-//
-//  	$pdf->SetFont('Arial','',10);
-//     $pdf->Row(array(utf8_decode($nombre),utf8_decode($categoria),$codigo,$stock,utf8_decode($descripcion)));
-// }
-
 //Mostramos el documento pdf
 $pdf->Output('Solicitud de Transferencias.pdf','I');
 $pdf->Close();

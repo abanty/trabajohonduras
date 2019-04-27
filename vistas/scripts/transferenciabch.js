@@ -27,6 +27,13 @@ function init(){
 
 	});
 
+	//Cargamos los items al select categoria
+$.post("../ajax/transferenciabch.php?op=selectResponsables", function(r){
+						$("#idconfiguracion").html(r);
+						$('#idconfiguracion').selectpicker('refresh');
+
+});
+
 
 }
 
