@@ -119,9 +119,29 @@ $pdf->Cell(180,6,'SINOPSIS',1,1,'C',1);
 $pdf->SetWidths(array(180));
 $pdf->SetFont('Arial','',9.5);
 $pdf->Rowdefault2(array($textj));
-
-
+$pdf->Ln(5);
+$pdf->SetFillColor(255, 255, 255);
+$pdf->Cell(180,6,'Atentamente ',0,1,'L',1);
 //Mostramos el documento pdf
+$textfirma1 = "Contralmirante" ;
+$textfirma2 =  "Capitan de Fragata C.G";
+$textfirma3 = strtoupper("EFRAIN MANN HERNANDEZ");
+$textfirma4 =  strtoupper("ERNESTO ANTONIO AVILA KATTAN");
+$textfirma5 = "Comandante General";
+$textfirma6 =  "Pagador General";
+
+$pdf->Ln(5);
+$pdf->SetWidths(array(90,90));
+$pdf->SetFont('Arial','',10);
+
+$pdf->Rowdefaultnoline(array($textfirma1,$textfirma2));
+$pdf->Ln(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Rowdefaultnoline(array($textfirma3,$textfirma4));
+$pdf->Ln(1);
+$pdf->SetFont('Arial','',10);
+$pdf->Rowdefaultnoline(array($textfirma5,$textfirma6));
+
 $pdf->Output('Solicitud de Transferencias.pdf','I');
 $pdf->Close();
 
