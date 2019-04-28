@@ -37,6 +37,7 @@ CREATE TABLE `administrar_ordenes` (
   `num_comprobante` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `titulo_orden` varchar(80) NOT NULL,
   `descripcion_orden` varchar(100) NOT NULL,
+  `tipo_documento` varchar(30) NOT NULL,
   `tipo_impuesto` varchar(20) NOT NULL,
   `fecha_hora` date NOT NULL,
   `impuesto` decimal(11,2) NOT NULL,
