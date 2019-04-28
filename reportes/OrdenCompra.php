@@ -111,27 +111,27 @@ $pdf->Ln(-3);
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "SubTotal Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->subtotal_origen, 2, '.', ','),0);
+$pdf->MultiCell(25,4, number_format($regv->subtotal_origen, 2, '.', ','),0,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "Descuento Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->descuento_total, 2, '.', ','),0);
+$pdf->MultiCell(25,4, number_format($regv->descuento_total, 2, '.', ','),0,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "SubTotal Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->subtotal, 2, '.', ','),0);
+$pdf->MultiCell(25,4, number_format($regv->subtotal, 2, '.', ','),0,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "Impuesto Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->impuesto, 2, '.', ','),0);
+$pdf->MultiCell(25,4, number_format($regv->impuesto, 2, '.', ','),0,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "Total Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->monto_total, 2, '.', ','),0);
+$pdf->MultiCell(25,4, number_format($regv->monto_total, 2, '.', ','),0,'R');
 $pdf->Ln(10);
 
 $pdf->SetLineWidth(0.2);
