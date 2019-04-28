@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-04-2019 a las 08:19:50
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 28-04-2019 a las 09:46:28
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -46,6 +46,13 @@ CREATE TABLE `administrar_ordenes` (
   `monto_total` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `administrar_ordenes`
+--
+
+INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
+(1, 10, 1, 1, '001', '0001', 'Recursos para viviendas', 'Matariales para construcciones e edificaciones en el area de aterrizaje', 'O/C', '0.15', '2019-04-27', '2617.50', '17450.00', '10.00', '20067.50', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -225,6 +232,13 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `contabilidad`
+--
+
+INSERT INTO `contabilidad` (`idcontabilidad`, `idadministrar_ordenes`, `idctasbancarias`, `tipo_pago`, `numero_transferencia`, `debitos`, `creditos`, `contabilidad`, `fechacreacion`, `fecha_actualizacion`) VALUES
+(1, 1, 2, 'Deposito', 122254587, 'Gastos de administracion', 'ok', 'ok', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -369,6 +383,15 @@ CREATE TABLE `detalle_orden` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `detalle_orden`
+--
+
+INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
+(4, 1, 1, 'mts', 11, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '1500.00'),
+(5, 1, 2, 'lts', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00'),
+(6, 1, 3, 'margendec', 14, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '50.00');
+
+--
 -- Disparadores `detalle_orden`
 --
 DELIMITER $$
@@ -413,6 +436,14 @@ CREATE TABLE `factura_orden` (
   `fecha_factura` date NOT NULL,
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `factura_orden`
+--
+
+INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
+(2, 1, '00012225', '2019-04-27', '15000.00'),
+(3, 1, '00012226', '2019-04-27', '2500.00');
 
 -- --------------------------------------------------------
 
@@ -486,9 +517,9 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Basicos', 11, 1112, '11100', '350000.00', '300.25', 1),
-(2, 'Adicionales', 0, 0, '11400', '1000.00', '100.25', 1),
-(3, 'Decimotercer Mes', 0, 0, '11510', '17500.00', '100100.25', 1),
+(1, 'Sueldos Basicos', 11, 1112, '11100', '333500.00', '300.25', 1),
+(2, 'Adicionales', 0, 0, '11400', '740.00', '100.25', 1),
+(3, 'Decimotercer Mes', 0, 0, '11510', '16800.00', '100100.25', 1),
 (4, 'Decimocuarto Mes', 0, 0, '11520', '15450.30', '100.25', 1),
 (5, 'Complementos', 0, 0, '11600', '0.00', '100.25', 1),
 (6, 'Contribuciones al Instituto de Prevision Militar - Cuota Patronal', 0, 0, '11731', '0.00', '0.00', 1),
@@ -576,6 +607,7 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (88, 'Becas Nacionales', 0, 0, '51211', '0.00', '0.00', 1),
 (89, 'Becas Externas', 0, 0, '51212', '0.00', '0.00', 1),
 (90, 'Otros Gastos', 0, 0, '51230', '0.00', '0.00', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -831,7 +863,7 @@ CREATE TABLE `transferenciabch` (
 --
 
 INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
-(1, 9, 1, '2019-04-24', '124', '25', '10000.00', 'SFSFSFSF', 0);
+(1, 9, 1, '2019-04-24', '124', '25', '10000.00', 'SFSFSFSF', 1);
 
 -- --------------------------------------------------------
 
@@ -1097,7 +1129,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1121,7 +1153,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
@@ -1151,7 +1183,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1163,7 +1195,7 @@ ALTER TABLE `dtransf_ctaspg`
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
@@ -1181,7 +1213,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `presupuesto_disponible`
 --
 ALTER TABLE `presupuesto_disponible`
-  MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
