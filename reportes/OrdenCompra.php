@@ -84,23 +84,40 @@ while ($regd = $rsptad->fetch_object()) {
             $y   += $size + 2;
 }
 
-//Convertimos el total en letras
+
+// $pdf->SetXY( 55, 169);
+
+
+$pdf->SetFont( "Arial", "B", 8);
+$pdf->Ln(10);
+$pdf->SetX(55);
+$pdf->Cell(80,4, "IMPORTE TOTAL CON LETRA",0,1);
 require_once "Letras.php";
 $V=new EnLetras();
+$pdf->SetFont( "Arial", "", 8);
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
-$pdf->addCadreTVAs("*** ".$con_letra,$regv->descripcion_orden);
+$pdf->SetX(55);
+$pdf->MultiCell(90,4, $con_letra,0);
+$pdf->SetX(55);
+$pdf->MultiCell(95,4, "************************************* U.L **************************************",0);
+$pdf->Ln(1);
+$pdf->SetX(55);
+$pdf->MultiCell(90,3, "NOTA: ".$regv->descripcion_orden,0);
+//Convertimos el total en letras
+
+// $pdf->addCadreTVAs("*** ".$con_letra,$regv->descripcion_orden);
 
 //Mostramos el impuesto
-$pdf->addTVAs( $regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
+// $pdf->addTVAs( $regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
 
-$var="";
-if ($regv->tipo_impuesto="0.15") {
-  $var = "ISV";
-}else {
-  $var = "ISR";
-}
+// $var="";
+// if ($regv->tipo_impuesto="0.15") {
+//   $var = "ISV";
+// }else {
+//   $var = "ISR";
+// }
 
-$pdf->addCadreEurosFrancs("$var"." $regv->tipo_impuesto %");
+// $pdf->addCadreEurosFrancs("$var"." $regv->tipo_impuesto %");
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
 
