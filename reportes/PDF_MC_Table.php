@@ -81,6 +81,46 @@ function Rowdefault($data)
 	$this->Ln($h);
 }
 
+
+function experimentrow($data)
+{
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=4.5*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+
+		// $this->Rect($x,$y,$w,$h,'DO');
+
+
+
+// $this->RoundedRect(60, 30, 68, 46, 5, '13', 'DF');
+		//Print the text
+		$this->SetFillColor(184, 215, 232);
+		$this->MultiCell($w,4.5,$data[$i],0,$a);
+
+		$this->SetXY($x,$y);
+		$this->Cell($w,$h, "", 'LRB', 0, "L");
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+
+	//Go to the next line
+	$this->Ln($h);
+}
+
+
 function Rowdefault2($data)
 {
 	//Calculate the height of the row

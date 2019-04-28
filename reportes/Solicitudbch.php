@@ -74,6 +74,10 @@ $con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS EXACTAS
 
 $pdf->SetFont('Arial','',10);
 $pdf->MultiCell(180,4,"\n".$con_letra."\n"." ",1,C);
+
+
+
+
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',10);
 
@@ -92,11 +96,11 @@ $textb = strtoupper("\n".$regv->cuentapg."\n"." ");
 $textc = "\n".number_format($regv->monto_acreditar, 2, '.', ',')."\n"." ";
 $textj = "\n".utf8_decode(strtoupper($regv->descripcion))."\n"." ";
 
-$textd = strtoupper($regv->tp_prov);
-$texte = strtoupper($regv->nombre_banco);
+$textd = "";
+$texte = strtoupper($regv->nombre_banco."");
 $textf = number_format($regv->monto_acreditar, 2, '.', ',');
 
-$textg = "";
+$textg = strtoupper($regv->tp_prov);
 $texth = $regv->num_cuenta;
 $texti = number_format($regv->monto_acreditar, 2, '.', ',');
 
@@ -111,12 +115,12 @@ $pdf->SetFont('Arial','B',10);
 $pdf->SetFillColor(185, 199, 228,1);
 $pdf->Cell(180,6,'ACREDITESE',1,1,'C',1);
 $pdf->SetFillColor(255, 255, 255);
-$pdf->Cell(60,6,'TIPO CUENTA',1,0,'C',1);
+$pdf->Cell(60,12,'TIPO CUENTA','LT',0,'C',0);
 $pdf->Cell(60,6,utf8_decode('NOMBRE DE LA INSTITUCIÓN'),1,0,'C',1);
 $pdf->Cell(60,6,utf8_decode('VALOR EN NUMEROS'),1,1,'C',1);
 $pdf->SetWidths(array(60,60,60));
 $pdf->SetFont('Arial','',9.5);
-$pdf->Rowdefault(array($textd,$texte,$textf));
+$pdf->experimentrow(array($textd,$texte,$textf));
 $pdf->Rowdefault(array($textg,$texth,$texti));
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',10);
@@ -147,6 +151,11 @@ $pdf->Rowdefaultnoline(array($textfirma3,$textfirma4));
 $pdf->Ln(1);
 $pdf->SetFont('Arial','',10);
 $pdf->Rowdefaultnoline(array($textfirma5,$textfirma6));
+
+// $pdf->SetFillColor(255, 255,255,255);
+// $pdf->SetXY(15, 160 );
+// $pdf->MultiCell(60,4,"AAAAAAAAAAAAARRRRRRRRRRRRRRRRRE",1,C,1);
+
 
 $pdf->Output('Solicitud de Transferencias.pdf','I');
 $pdf->Close();
