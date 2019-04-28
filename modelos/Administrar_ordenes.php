@@ -262,7 +262,7 @@ Class Administrar_ordenes
 	}
 
 	public function administrar_ordenes_cabecera($idadministrar_ordenes){
-		$sql="SELECT ao.idadministrar_ordenes, pro.casa_comercial as proveedor, ao.idproveedores, ao.idusuario, us.nombre as usuario, ao.idprograma, pr.nombrep as programa,
+		$sql="SELECT ao.idadministrar_ordenes, pro.casa_comercial as proveedor, ao.idproveedores, ao.idusuario, us.nombre as usuario, ao.idprograma, pr.nombrep as programa,pr.cargar,
 		ao.num_orden, ao.num_comprobante,ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, ao.tipo_impuesto,  lower(DATE_FORMAT(ao.fecha_hora,'%e/%c/%Y')) as fecha,ao.impuesto,ao.subtotal,
 		(ao.subtotal+ao.descuento_total) as subtotal_origen,
 		ao.descuento_total, ao.monto_total , ao.estado

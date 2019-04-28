@@ -96,9 +96,7 @@ $pdf->Ln(1);
 $pdf->SetX(55);
 $pdf->MultiCell(90,3, "NOTA: ".$regv->descripcion_orden,0);
 $pdf->Ln(15);
-$texta = strtoupper("Cargado a la comandancia general de la fuerza naval");
-$textb = "COMO ANDAS";
-$textc = "BEBE";
+$texta = strtoupper($regv->cargar);
 
 // $pdf->SetX(55);
 $pdf->SetWidths(array(70));
