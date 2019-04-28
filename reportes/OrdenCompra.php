@@ -43,10 +43,10 @@ $pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->ti
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->programa),utf8_decode($regv->proveedor));
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
-$cols=array( "Cod"=>14,
-             "Unidad"=>15,
+$cols=array( "Cod"=>13,
+             "Unidad"=>27,
              "Cantidad"=>17,
-             "Descripcion"=>81,
+             "Descripcion"=>70,
              "P.Unitario"=>25,
              "SubTotal"=>22,
              "Total"=>22);
