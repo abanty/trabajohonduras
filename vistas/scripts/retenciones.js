@@ -10,16 +10,8 @@ function init(){
 		guardaryeditar(e);
 	})
 
-
-	//Cargamos los items al select categoria
-	//Cargamos los items al select cliente
-	$.post("../ajax/compromisos.php?op=selectPrograma", function(r){
-	            $("#idprograma").html(r);
-	            $('#idprograma').selectpicker('refresh');
-	});
-
-			//Cargamos los items al select categoria
-	$.post("../ajax/compromisos.php?op=selectProveedores", function(r){
+	//Cargamos los items al select Proveedor
+	$.post("../ajax/retenciones.php?op=selectProveedores", function(r){
 	            $("#idproveedores").html(r);
 	            $('#idproveedores').selectpicker('refresh');
 });
@@ -29,37 +21,46 @@ function init(){
 //Función limpiar
 function limpiar()
 {
-	// $("#idprograma").val("");
-	// $("#programa").val("");
-	// $("#idproveedores").val("");
-	// $("#casa_comercial").val("");
-	$("#numfactura").val("");
-	$("#total_compra").val("");
-
-	$("#total_compra").val("");
+	$("#rtn").val("");
+	$("#idproveedores").val("");
+  $("#proveedores").val("");
+	$("#numdocumento").val("");
+	$("#tipo_impuesto").val("");
+	$("#descripcion").val("");
+	$("#base_imponible").val("");
+	$("#imp_retenido").val("");
+	$("#total_oc").val("");
 	$(".filas").remove();
 	$("#total").html("0");
 
-		//Obtenemos la fecha actual
+//Obtenemos la fecha actual
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
     $('#fecha_hora').val(today);
+
+
 }
 
 //Función mostrar formulario
 function mostrarform(flag)
 {
-
 	limpiar();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
-		$("#btnGuardar").prop("disabled",false);
+		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
-		listarPresupuesto_disponible();
+		listarCompromisos();
+
+		$("#btnGuardar").hide();
+		$("#btnCancelar").show();
+		detalles=0;
+		$("#btnAgregarArt").show();
+
+
 
 	}
 	else
@@ -67,9 +68,10 @@ function mostrarform(flag)
 		$("#listadoregistros").show();
 		$("#formularioregistros").hide();
 		$("#btnagregar").show();
-
 	}
+
 }
+
 
 //Función cancelarform
 function cancelarform()
@@ -94,7 +96,7 @@ function listar()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/compromisos.php?op=listar',
+					url: '../ajax/retenciones.php?op=listar',
 					type : "get",
 					dataType : "json",
 					error: function(e){
@@ -107,11 +109,13 @@ function listar()
 	}).DataTable();
 }
 
-//Función Listar presupuesto_disponible
 
-function listarPresupuesto_disponible()
+
+//Función Listar listarCompromisos
+
+function listarCompromisos()
 {
-	tabla=$('#tblpresupuesto_disponible').dataTable(
+	tabla=$('#tblcompromisos').dataTable(
 	{
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
@@ -121,7 +125,7 @@ function listarPresupuesto_disponible()
 		        ],
 		"ajax":
 				{
-					url: '../ajax/compromisos.php?op=listarPresupuesto_disponible',
+					url: '../ajax/retenciones.php?op=listarCompromisos',
 					type : "get",
 					dataType : "json",
 					error: function(e){
@@ -129,7 +133,7 @@ function listarPresupuesto_disponible()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 5,//Paginación
+		"iDisplayLength": 10,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
@@ -137,7 +141,6 @@ function listarPresupuesto_disponible()
 
 
 //Función para guardar o editar
-
 function guardaryeditar(e)
 {
 	e.preventDefault(); //No se activará la acción predeterminada del evento
@@ -145,7 +148,7 @@ function guardaryeditar(e)
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
-		url: "../ajax/compromisos.php?op=guardaryeditar",
+		url: "../ajax/retenciones.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -162,67 +165,54 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(idcompromisos)
+function mostrar(idretenciones)
 {
-	$.post("../ajax/compromisos.php?op=mostrar",{idcompromisos : idcompromisos}, function(data, status)
+	$.post("../ajax/retenciones.php?op=mostrar",{idretenciones : idretenciones}, function(data, status)
 	{
 		data = JSON.parse(data);
 		mostrarform(true);
 
 
-		$("#idproveedor").val(data.idproveedor);
-		$("#idproveedor").selectpicker('refresh');
-		$("#idprograma").val(data.idprograma);
-		$("#idprograma").selectpicker('refresh');
+
+		$("#idproveedores").val(data.idproveedores);
+		$("#idproveedores").selectpicker('refresh');
+		$("#rtn").val(data.rtn);
+
+		$("#numdocumento").val(data.numdocumento);
 		$("#fecha_hora").val(data.fecha);
-		$("#numfactura").val(data.numfactura);
- 		$("#idcompromisos").val(data.idcompromisos);
+		$("#tipo_impuesto").selectpicker('refresh');
+		$("#tipo_impuesto").val(data.tipo_impuesto);
+		$("#descripcion").val(data.descripcion);
+		$("#base_imponible").val(data.base_imponible);
+		$("#imp_retenido").val(data.imp_retenido);
+		$("#total_oc").val(data.total_oc);
+		$("#idretenciones").val(data.idretenciones);
 
+		//Ocultar y mostrar los botones
+		$("#Guardar").show();
+		$("#btnGuardar").hide();
+		$("#btnCancelar").show();
+		$("#btnAgregarArt").hide();
+ 	});
 
- 	})
+ 	$.post("../ajax/retenciones.php?op=listarDetalle&id="+idretenciones,function(r){
+	        $("#detalles").html(r);
+	});
 }
 
-//Función para desactivar registros
-function pagado(idcompromisos)
+//Función para anular registros
+function anular(idretenciones)
 {
-	bootbox.confirm("¿Está Seguro de desactivar el Compromiso?", function(result){
+	bootbox.confirm("¿Está Seguro de anular la retencion?", function(result){
 		if(result)
         {
-        	$.post("../ajax/compromisos.php?op=pagado", {idcompromisos : idcompromisos}, function(e){
+        	$.post("../ajax/retenciones.php?op=anular", {idretenciones : idretenciones}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
         	});
         }
 	})
 }
-
-//Función para activar registros
-function pendiente(idcompromisos)
-{
-	bootbox.confirm("¿Está Seguro de activar el Compromiso?", function(result){
-		if(result)
-        {
-        	$.post("../ajax/compromisos.php?op=pendiente", {idcompromisos : idcompromisos}, function(e){
-        		bootbox.alert(e);
-	            tabla.ajax.reload();
-        	});
-        }
-	})
-}
-//Función para eliminar registros
-function eliminar(idcompromisos)
-{
-	bootbox.confirm("¿Está Seguro de eliminar el Compromiso?", function(result){
-		if(result)
-        {
-        	$.post("../ajax/compromisos.php?op=eliminar", {idcompromisos : idcompromisos}, function(e){
-        		bootbox.alert(e);
-	            tabla.ajax.reload();
-        	});
-        }
-	})
-}
-
 
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
@@ -231,12 +221,12 @@ var detalles=0;
 //$("#guardar").hide();
 $("#btnGuardar").hide();
 
-function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
+function agregarDetalle(idcompromisos,compromisos,numfactura)
   {
 
     var valor=0;
 
-    if (idpresupuesto_disponible!="")
+    if (idcompromisos!="")
     {
     	var subtotal=valor;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
@@ -258,52 +248,52 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
   }
 
 
-
- function modificarSubototales()
-  {
-  	var valor = document.getElementsByName("valor[]");
-    var sub = document.getElementsByName("subtotal");
-
-    for (var i = 0; i <valor.length; i++) {
-    	var inpC=valor[i];
-    	var inpS=sub[i];
-
-    	inpS.value=inpC.value*1;
-    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
-    }
-    calcularTotales();
-
-  }
-  function calcularTotales(){
-  	var sub = document.getElementsByName("subtotal");
-  	var total = 0.0;
-
-  	for (var i = 0; i <sub.length; i++) {
-		total += document.getElementsByName("subtotal")[i].value;
-	}
-	$("#total").html("L. " + total);
-$("#total_compra").val(total);
-    evaluar();
-  }
-
-  function evaluar(){
-  	if (detalles>0)
-    {
-      $("#btnGuardar").show();
-    }
-    else
-    {
-      $("#btnGuardar").hide();
-      cont=0;
-    }
-  }
-
-  function eliminarDetalle(indice){
-  	$("#fila" + indice).remove();
-  	calcularTotales();
-  	detalles=detalles-1;
-  	evaluar();
-  }
+//
+//  function modificarSubototales()
+//   {
+//   	var monto = document.getElementsByName("monto[]");
+//     var sub = document.getElementsByName("subtotal");
+//
+//     for (var i = 0; i <monto.length; i++) {
+//     	var inpC=monto[i];
+//     	var inpS=sub[i];
+//
+//     	inpS.value=inpC.value*1;
+//     	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+//     }
+//     calcularTotales();
+//
+//   }
+//   function calcularTotales(){
+//   	var sub = document.getElementsByName("subtotal");
+//   	var total = 0.0;
+//
+//   	for (var i = 0; i <sub.length; i++) {
+// 		total += document.getElementsByName("subtotal")[i].value;
+// 	}
+// 	$("#total").html("L. " + total);
+// $("#total_importe").val(total);
+//     evaluar();
+//   }
+//
+//   function evaluar(){
+//   	if (detalles>0)
+//     {
+//       $("#btnGuardar").show();
+//     }
+//     else
+//     {
+//       $("#btnGuardar").hide();
+//       cont=0;
+//     }
+//   }
+//
+//   function eliminarDetalle(indice){
+//   	$("#fila" + indice).remove();
+//   	calcularTotales();
+//   	detalles=detalles-1;
+//   	evaluar();
+//   }
 
 
 init();

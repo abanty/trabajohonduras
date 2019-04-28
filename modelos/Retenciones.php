@@ -27,7 +27,7 @@ Class Retenciones
 		$valor_base)
 	{
 		$sql="INSERT INTO retenciones (
-		idproveedor,
+		idproveedores,
 		rtn,
 		numdocumento,
 		fecha_hora,
@@ -36,7 +36,7 @@ Class Retenciones
 		base_imponible,
 		imp_retenido,
 		estado)
-		VALUES ('$idproveedor','$rtn','$numdocumento','$fecha_hora','$tipo_impuesto','$descripcion','$base_imponible','$imp_retenido','Aceptado')";
+		VALUES ('$idproveedores','$rtn','$numdocumento','$fecha_hora','$tipo_impuesto','$descripcion','$base_imponible','$imp_retenido','Aceptado')";
 		//return ejecutarConsulta($sql);
 		$idingresonew=ejecutarConsulta_retornarID($sql);
 
@@ -111,7 +111,7 @@ Class Retenciones
 		r.descripcion,
 		r.base_imponible,
 		r.imp_retenido,
-		r.estado FROM retenciones r INNER JOIN proveedores p ON i.idproveedores=p.idproveedores ORDER BY i.idretenciones desc";
+		r.estado FROM retenciones r INNER JOIN proveedores p ON r.idproveedores=p.idproveedores ORDER BY r.idretenciones desc";
 		return ejecutarConsulta($sql);
 	}
 

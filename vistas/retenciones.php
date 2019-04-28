@@ -118,7 +118,7 @@ if ($_SESSION['admonoc']==1)
                             <tr role="row">
                               <th role="columnheader">Opciones</th>
                               <th role="columnheader">N. Facturas</th>
-                              <th role="columnheader">Valor</th>
+                              <th role="columnheader">Valor Base</th>
                               <th role="columnheader">Subtotal</th>
                             </tr>
                           </thead>
@@ -179,7 +179,7 @@ if ($_SESSION['admonoc']==1)
 
          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-          <h4 class="modal-title" style="text-align: center;">AGREGAR RENGLON PRESUPUESTARIO</h4>
+          <h4 class="modal-title" style="text-align: center;">AGREGAR FACTURA</h4>
 
         </div>
 
@@ -189,7 +189,7 @@ if ($_SESSION['admonoc']==1)
               <th>Opciones</th>
                <th>Proveedor</th>
               <th>No. Factura</th>
-              <th>Total</th>
+              <th>Total Compra</th>
           </thead>
           <tbody>
 
@@ -199,7 +199,7 @@ if ($_SESSION['admonoc']==1)
               <th>Opciones</th>
                <th>Proveedor</th>
               <th>No. Factura</th>
-              <th>Total</th>
+              <th>Total Compra</th>
           </tfoot>
         </table>
       </div>
@@ -222,7 +222,7 @@ else
 
 require 'footer.php';
 ?>
-<script type="text/javascript" src="scripts/crear_acuerdo.js"></script>
+<script type="text/javascript" src="scripts/retenciones.js"></script>
 <?php
 }
 ob_end_flush();

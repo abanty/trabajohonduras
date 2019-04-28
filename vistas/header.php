@@ -175,17 +175,16 @@ if (strlen(session_id()) < 1)
 
             '<li class="treeview">
             <a href="#">
-              <i class="fas fa-folder-open fa-lg"></i> <span>ADMON O/C</span>
+              <i class="fas fa-folder-open fa-lg"></i> <span>Administrar Ordenes</span>
 
                 <i class="fal fa-angle-left pull-right"></i>
               </span>
             </a>
 
                <ul class="treeview-menu">
-               <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Administrar Ordenes</a></li>
-              <li><a href="crear_acuerdo.php"><i class="far fa-dot-circle text-blue"></i>Crear Acuerdo</a></li>
-              <li><a href="comprobante-pago"><i class="far fa-dot-circle text-blue"></i>Cotizaciones</a></li>
-              <li><a href="cotizacion"><i class="far fa-dot-circle text-blue"></i>Reportes</a></li>
+               <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Crear Ordenes</a></li>
+              <li><a href="reportes_oc"><i class="far fa-dot-circle text-blue"></i>Reportes O/C</a></li>
+              <li><a href="reportes_oc"><i class="far fa-dot-circle text-blue"></i>Reportes Acuerdos</a></li>
 
 
             </ul>
@@ -279,7 +278,7 @@ if (strlen(session_id()) < 1)
 
           <li class="treeview">
           <a href="">
-            <i class="fas fa-folder-plus fa-lg" aria-hidden="true"></i> <span>Documentos</span>
+            <i class="fas fa-folder-plus fa-lg" aria-hidden="true"></i> <span>Retenciones</span>
 
             <i class="fal fa-angle-left pull-right"></i>
             </span>
@@ -337,7 +336,6 @@ if (strlen(session_id()) < 1)
             </a>
               <ul class="treeview-menu">
               <li><a href="proveedores.php"><i class="far fa-dot-circle text-blue"></i> Proveedores</a></li>
-              <li><a href="bancos.php"><i class="far fa-dot-circle text-blue"></i>Bancos</a></li>
               <li><a href="programa.php"><i class="far fa-dot-circle text-blue"></i>Cargar Programa</a></li>
               <li><a href="configuracion.php"><i class="far fa-dot-circle text-blue"></i>configuracion</a></li>
               <li><a href="ctasbancarias.php"><i class="far fa-dot-circle text-blue"></i>Cuentas Bancarias PG</a></li>
