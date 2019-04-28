@@ -16,8 +16,6 @@ if ($_SESSION['admonoc']==1)
 require('Orden.php');
 
 //Establecemos los datos de la empresa
-// $logo = "logobra.jpg";
-// $ext_logo = "jpg";
 $tittle1 = "SECRETARIA DE ESTADO EN EL DESPACHO DE DEFENSA NACIONAL";
 $tittle2 = "FUERZAS ARMADAS DE HONDURAS";
 $tittle3 = "FUERZA NAVAL DE HONDURAS";
@@ -36,8 +34,6 @@ $pdf->AddPage();
 
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4));
-
-
 
 $pdf->fact_dev("O/C No."," $regv->num_orden-$regv->num_comprobante" );
 // $pdf->temporaire( "ORDER DE COMPRA" );
@@ -84,10 +80,6 @@ while ($regd = $rsptad->fetch_object()) {
             $y   += $size + 2;
 }
 
-
-// $pdf->SetXY( 55, 169);
-
-
 $pdf->SetFont( "Arial", "B", 8);
 $pdf->Ln(10);
 $pdf->SetX(55);
@@ -103,21 +95,50 @@ $pdf->MultiCell(95,4, "************************************* U.L ***************
 $pdf->Ln(1);
 $pdf->SetX(55);
 $pdf->MultiCell(90,3, "NOTA: ".$regv->descripcion_orden,0);
-//Convertimos el total en letras
+$pdf->Ln(15);
+$texta = strtoupper("Cargado a la comandancia general de la fuerza naval");
+$textb = "COMO ANDAS";
+$textc = "BEBE";
 
-// $pdf->addCadreTVAs("*** ".$con_letra,$regv->descripcion_orden);
+// $pdf->SetX(55);
+$pdf->SetWidths(array(70));
 
-//Mostramos el impuesto
-// $pdf->addTVAs( $regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
+$pdf->SetFont('Arial','B',7.5);
+$pdf->SetX(25);
+$pdf->Rowedit(array($texta));
+$pdf->Ln(-3);
 
-// $var="";
-// if ($regv->tipo_impuesto="0.15") {
-//   $var = "ISV";
-// }else {
-//   $var = "ISR";
-// }
+$pdf->SetFont('Arial','B',8.5);
+$pdf->Cell(172,4, "SubTotal Lps  :",0,0,'R');
+$pdf->SetFont('Arial','',8.5);
+$pdf->MultiCell(25,4, number_format($regv->subtotal_origen, 2, '.', ','),0);
 
-// $pdf->addCadreEurosFrancs("$var"." $regv->tipo_impuesto %");
+$pdf->SetFont('Arial','B',8.5);
+$pdf->Cell(172,4, "Descuento Lps  :",0,0,'R');
+$pdf->SetFont('Arial','',8.5);
+$pdf->MultiCell(25,4, number_format($regv->descuento_total, 2, '.', ','),0);
+
+$pdf->SetFont('Arial','B',8.5);
+$pdf->Cell(172,4, "SubTotal Lps  :",0,0,'R');
+$pdf->SetFont('Arial','',8.5);
+$pdf->MultiCell(25,4, number_format($regv->subtotal, 2, '.', ','),0);
+
+$pdf->SetFont('Arial','B',8.5);
+$pdf->Cell(172,4, "Impuesto Lps  :",0,0,'R');
+$pdf->SetFont('Arial','',8.5);
+$pdf->MultiCell(25,4, number_format($regv->impuesto, 2, '.', ','),0);
+
+$pdf->SetFont('Arial','B',8.5);
+$pdf->Cell(172,4, "Total Lps  :",0,0,'R');
+$pdf->SetFont('Arial','',8.5);
+$pdf->MultiCell(25,4, number_format($regv->monto_total, 2, '.', ','),0);
+$pdf->Ln(10);
+
+$pdf->SetLineWidth(0.2);
+$pdf->SetX(160);
+$pdf->SetFont('Arial','I',8.5);
+$pdf->MultiCell(39,4, 'Comandante General de la Fuerza Naval de Honduras','T','L');
+
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
 

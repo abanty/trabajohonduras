@@ -36,7 +36,8 @@ class PDF_Invoice extends FPDF
 var $colonnes;
 var $format;
 var $angle=0;
-
+var $widths;
+var $aligns;
 // private functions
 function RoundedRect($x, $y, $w, $h, $r, $style = '')
 {
@@ -481,119 +482,253 @@ function addRemarque($remarque)
 }
 
 
-function addCadreTVAs($monto,$descripcionorden)
+
+//
+// function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
+// {
+// 	setlocale(LC_MONETARY, 'en_US');
+// 	$this->SetFont('Arial','',8);
+//
+// 	$re  = $this->w - 40;
+// 	$rf  = $this->w - 9;
+// 	$y1  = $this->h - 70;
+// 	$this->SetFont( "Arial", "", 9.5);
+// 	$this->SetXY( $re, $y1+5 );
+// 	$this->Cell( 17,4, number_format($st, 2, '.', ','), '', '', 'L');
+// 	$this->SetXY( $re, $y1+10 );
+// 	$this->Cell( 17,4, number_format($dt, 2, '.', ','), '', '', 'L');
+// 	$this->SetXY( $re, $y1+14.8 );
+// 	$this->Cell( 17,4, number_format($stdesc, 2, '.', ','), '', '', 'L');
+// 	$this->SetXY( $re, $y1+19 );
+// 	$this->Cell( 17,4, number_format($imp, 2, '.', ','), '', '', 'L');
+// 	$this->SetFont( "Arial", "U", 10);
+// 	$this->SetXY( $re, $y1+24 );
+// 	$this->Cell( 17,4, number_format($total, 2, '.', ','), '', '', 'L');
+//
+// }
+
+
+
+//COMEINZA CLASE EXTENDIDA
+
+function SetWidths($w)
 {
-	$this->SetFont( "Arial", "B", 8);
-	$r1  = 15;
-	$r2  = 90;
-	$y1  = 160;
-	$y2  = 10;
-
-	$this->SetXY( 55, 165);
-	$this->Cell(80,4, "IMPORTE TOTAL CON LETRA");
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY( 55, 169);
-	$this->MultiCell(100,4, $monto);
-
-	$this->SetFont( "Arial", "", 10);
-	$this->SetXY( 55,178);
-	$this->MultiCell(95,4, "*****************************",0);
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY( 95,177);
-	$this->MultiCell(95,4, " U.L ",0);
-
-	$this->SetFont( "Arial", "", 10);
-	$this->SetXY( 101,178);
-	$this->MultiCell(95,4, "*****************************",0);
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(55,183);
-	$this->MultiCell(100,4,"NOTA: ".utf8_decode($descripcionorden),0);
-
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(55,194);
-	// $this->MultiCell(85,4,"PROYECTO PUNTA SAL",0);
-	//
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(55,200);
-	// $this->MultiCell(85,4,utf8_decode("PRESUPUESTO AÑO 2019"),0);
-
-	$this->SetFont( "Arial", "B", 7);
-	$this->SetXY( 20,210);
-	$this->MultiCell(65,4, "CARGADO A LA COMANDANCIA GENERAL DE LA FUERZA NAVAL",0);
-
+	//Set the array of column widths
+	$this->widths=$w;
 }
 
-function addCadreEurosFrancs($impuesto)
+function SetCellMargin($margin){
+     // Set cell margin
+     $this->cMargin = $margin;
+ }
+
+function SetAligns($a)
 {
-	$r1  = $this->w - 70;
-	$r2  = $r1 + 60;
-	$y1  = $this->h - 40;
-	$y2  = $y1+20;
+	//Set the array of column alignments
+	$this->aligns=$a;
+}
 
-	$this->SetFont( "Arial", "B",9);
-	$this->SetXY( $r1, $y1-25 );
-	$this->Cell(20,4, "SubTotal Lps   :", 0, 0, "L");
-
-	$this->SetFont( "Arial", "B",9);
-	$this->SetXY( $r1-2.8, $y1-21 );
-	$this->Cell(20,4, "Descuento Lps   :", 0, 0, "L");
-
-	$this->SetFont( "Arial", "B",9);
-	$this->SetXY( $r1, $y1-16.5 );
-	$this->Cell(20,4, "SubTotal Lps   :", 0, 0, "L");
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY( $r1-18, $y1-11.5 );
-	$this->Cell(20,4, $impuesto, 0, 0, "L");
-
-	$this->SetFont( "Arial", "B", 9);
-	$this->SetXY( $r1-0.6, $y1-11.8 );
-	$this->Cell(20,4, "Impuesto Lps   :", 0, 0, "L");
-
-	$this->SetXY( $r1+6, $y1-6 );
-	$this->Cell(20,4, "Total Lps   :", 0, 0, "L");
-
-
-
-	$this->SetFont( "Arial", "I", 9);
-    $this->SetLineWidth(0.1);
-	$this->Rect( 150, 252, 40, 0, "D");
-
-	$this->SetXY( $r1+5.4, $y1+15 );
-	$this->Cell(12,0, "Comandante General de la" , 0, 0, "L");
-
-	$this->SetXY( $r1+5.4, $y1+19 );
-	$this->Cell(12,0, "Fuerza Naval de Honduras" , 0, 0, "L");
-
-
+function Row($data)
+{
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=4*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+		$this->Rect($x,$y,$w,$h);
+		//Print the text
+		$this->MultiCell($w,4,$data[$i],0,$a);
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+	//Go to the next line
+	$this->Ln($h);
 }
 
 
-function addTVAs( $st, $dt,$stdesc,$imp,$total,$moneda )
+function Rowedit($data)
 {
-	setlocale(LC_MONETARY, 'en_US');
-	$this->SetFont('Arial','',8);
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=4*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+		// $this->Rect($x,$y,$w,$h);
+		//Print the text
+		$this->MultiCell($w,4,$data[$i],0,$a);
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+	//Go to the next line
+	$this->Ln($h);
+}
 
-	$re  = $this->w - 40;
-	$rf  = $this->w - 9;
-	$y1  = $this->h - 70;
-	$this->SetFont( "Arial", "", 9.5);
-	$this->SetXY( $re, $y1+5 );
-	$this->Cell( 17,4, number_format($st, 2, '.', ','), '', '', 'L');
-	$this->SetXY( $re, $y1+10 );
-	$this->Cell( 17,4, number_format($dt, 2, '.', ','), '', '', 'L');
-	$this->SetXY( $re, $y1+14.8 );
-	$this->Cell( 17,4, number_format($stdesc, 2, '.', ','), '', '', 'L');
-	$this->SetXY( $re, $y1+19 );
-	$this->Cell( 17,4, number_format($imp, 2, '.', ','), '', '', 'L');
-	$this->SetFont( "Arial", "U", 10);
-	$this->SetXY( $re, $y1+24 );
-	$this->Cell( 17,4, number_format($total, 2, '.', ','), '', '', 'L');
+function Rowdefault($data)
+{
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=6*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+		$this->Rect($x,$y,$w,$h);
+		//Print the text
+		$this->SetFillColor(184, 215, 232);
+		$this->MultiCell($w,6,$data[$i],1,$a);
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+	//Go to the next line
+	$this->Ln($h);
+}
+
+
+
+
+
+
+
+function titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2)
+{
+	$x1 = 37;
+	$y1 = 12;
+
+//LOGO 1
+	$this->Image($logo1 , 20 ,10, 25 , 25 , $ext_logo1);
+// LOGO 2
+	$this->Image($logo2 , 165 ,10, 25 , 23.5 , $ext_logo2);
+
 
 }
+
+function plot_table($widths, $lineheight, $table, $border=1, $aligns=array(), $fills=array(), $links=array()){
+		$func = function($text, $c_width){
+				$len=strlen($text);
+				$twidth = $this->GetStringWidth($text);
+				$split = floor($c_width * $len / $twidth - 0.4 );
+				$w_text = explode( "\n", wordwrap( $text, $split, "\n", true));
+				return $w_text;
+		};
+		foreach ($table as $line){
+				$line = array_map($func, $line, $widths);
+				$maxlines = max(array_map("count", $line));
+				foreach ($line as $key => $cell){
+						$x_axis = $this->getx();
+						$height = $lineheight * $maxlines / count($cell);
+						$len = count($line);
+						$width = (isset($widths[$key]) === TRUE ? $widths[$key] : $widths / count($line));
+						$align = (isset($aligns[$key]) === TRUE ? $aligns[$key] : '');
+						$fill = (isset($fills[$key]) === TRUE ? $fills[$key] : false);
+						$link = (isset($links[$key]) === TRUE ? $links[$key] : '');
+						foreach ($cell as $textline){
+								$this->cell($widths[$key],$height,$textline,0,0,$align,$fill,$link);
+								$height += 2 * $lineheight * $maxlines / count($cell);
+								$this->SetX($x_axis);
+						}
+						if($key == $len - 1){
+								$lbreak=1;
+						}
+						else{
+								$lbreak = 0;
+						}
+						$this->cell($widths[$key],$lineheight * $maxlines, '',$border,$lbreak);
+				}
+		}
+}
+
+function CheckPageBreak($h)
+{
+	//If the height h would cause an overflow, add a new page immediately
+	if($this->GetY()+$h>$this->PageBreakTrigger)
+		$this->AddPage($this->CurOrientation);
+}
+
+function NbLines($w,$txt)
+{
+	//Computes the number of lines a MultiCell of width w will take
+	$cw=&$this->CurrentFont['cw'];
+	if($w==0)
+		$w=$this->w-$this->rMargin-$this->x;
+	$wmax=($w-2*$this->cMargin)*1000/$this->FontSize;
+	$s=str_replace("\r",'',$txt);
+	$nb=strlen($s);
+	if($nb>0 and $s[$nb-1]=="\n")
+		$nb--;
+	$sep=-1;
+	$i=0;
+	$j=0;
+	$l=0;
+	$nl=1;
+	while($i<$nb)
+	{
+		$c=$s[$i];
+		if($c=="\n")
+		{
+			$i++;
+			$sep=-1;
+			$j=$i;
+			$l=0;
+			$nl++;
+			continue;
+		}
+		if($c==' ')
+			$sep=$i;
+		$l+=$cw[$c];
+		if($l>$wmax)
+		{
+			if($sep==-1)
+			{
+				if($i==$j)
+					$i++;
+			}
+			else
+				$i=$sep+1;
+			$sep=-1;
+			$j=$i;
+			$l=0;
+			$nl++;
+		}
+		else
+			$i++;
+	}
+	return $nl;
+}
+
+
+
+
 
 // add a watermark (temporary estimate, DUPLICATA...)
 // call this method first
