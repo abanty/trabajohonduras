@@ -1,3 +1,7 @@
+# trabajohonduras
+
+#CODIGO DE RESPALDO:
+
 <?php
 ob_start();
 if (strlen(session_id()) < 1)
@@ -53,11 +57,11 @@ $pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
 $pdf->SetXY(8, 43);
 $pdf->MultiCell(50,4,$inicio,0,C);
 $pdf->SetXY(15, 53);
-$pdf->MultiCell(80,4,"Jefe Departamento de Sistema de Pagos",0,L);
+$pdf->MultiCell(100,4,"Jefe Departamento de Sistema de Pagos",0,L);
 $pdf->SetXY(15, 58);
-$pdf->MultiCell(50,4,"Banco Central de Honduras",0,L);
+$pdf->MultiCell(100,4,"Banco Central de Honduras",0,L);
 $pdf->SetXY(15, 63);
-$pdf->MultiCell(50,4,"Su Oficina",0,L);
+$pdf->MultiCell(100,4,"Su Oficina",0,L);
 $pdf->SetXY(146.5, 45);
 $pdf->SetFont( "Arial", "B", 10.5);
 $pdf->MultiCell(50,4,"TRANSF.No. ".$contactnumtrans,0,L);
