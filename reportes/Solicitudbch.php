@@ -64,7 +64,7 @@ $pdf->SetXY(15, 63);
 $pdf->MultiCell(100,4,"Su Oficina",0,L);
 $pdf->SetXY(146.5, 45);
 $pdf->SetFont( "Arial", "B", 12);
-$pdf->MultiCell(60,4,"TRANSF.No. ".$contactnumtrans,1,L);
+$pdf->MultiCell(60,4,"TRANSF.No. ".$contactnumtrans,0,L);
 $pdf->SetFont( "Arial", "", 12);
 $pdf->SetXY(15, 72);
 $pdf->MultiCell(50,4,utf8_decode("Estimados Señores"),0,L);
