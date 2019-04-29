@@ -497,7 +497,7 @@ if ($_SESSION['admonoc']==1)
             <th>Opciones</th>
             <th>Nombre Objeto</th>
             <th>Código</th>
-            <th>Valor Disponible</th>
+            <th>Presupuesto Anual</th>
           </thead>
           <tbody>
 
@@ -506,7 +506,7 @@ if ($_SESSION['admonoc']==1)
             <th>Opciones</th>
             <th>Nombre Objeto</th>
             <th>Código</th>
-            <th>Valor Disponible</th>
+            <th>Presupuesto Anual</th>
           </tfoot>
         </table>
       </div>
