@@ -47,11 +47,11 @@ setlocale(LC_TIME, 'spanish');
 $date= date('D, j \d\e F \d\e\l Y', strtotime($regv->fecha_hora));
 $inicio = strftime("%d de %B del %Y", strtotime($regv->fecha_hora));
 
-$contactnumtrans = $regv->num_transf.' '.$regv->serie_transf;
+$contactnumtrans = $regv->num_transf.'-'.$regv->serie_transf;
 //Seteamos el tipo de letra y creamos el título de la página. No es un encabezado no se repetirá
 
 $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
-$pdf->SetFont( "Arial", "", 10.5);
+$pdf->SetFont( "Arial", "", 12);
 $pdf->SetXY(8, 38);
 $pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
 $pdf->SetXY(8, 43);
@@ -63,9 +63,9 @@ $pdf->MultiCell(100,4,"Banco Central de Honduras",0,L);
 $pdf->SetXY(15, 63);
 $pdf->MultiCell(100,4,"Su Oficina",0,L);
 $pdf->SetXY(146.5, 45);
-$pdf->SetFont( "Arial", "B", 10.5);
-$pdf->MultiCell(50,4,"TRANSF.No. ".$contactnumtrans,0,L);
-$pdf->SetFont( "Arial", "", 10.8);
+$pdf->SetFont( "Arial", "B", 12);
+$pdf->MultiCell(60,4,"TRANSF.No. ".$contactnumtrans,1,L);
+$pdf->SetFont( "Arial", "", 12);
 $pdf->SetXY(15, 72);
 $pdf->MultiCell(50,4,utf8_decode("Estimados Señores"),0,L);
 $pdf->SetXY(15, 82);
@@ -76,14 +76,14 @@ require_once "Letras.php";
 $V=new EnLetras();
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"DE LEMPIRAS"));
 
-$pdf->SetFont('Arial','',10);
+$pdf->SetFont('Arial','',12);
 $pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,C);
 
 
 
 
 $pdf->Ln(5);
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','B',12);
 
  $pdf->SetLineWidth(0.01);
 $pdf->SetFillColor(185, 199, 228,1);
@@ -111,11 +111,11 @@ $texti = $regv->casa_comercial."";
 
 $pdf->SetWidths(array(60,60,60));
 
-$pdf->SetFont('Arial','',9.5);
+$pdf->SetFont('Arial','',12);
 $pdf->Row(array($texta,$textb,$textc));
 
 $pdf->Ln(5);
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','B',12);
 $pdf->SetFillColor(185, 199, 228,1);
 $pdf->Cell(180,6,'ACREDITESE',1,1,'C',1);
 $pdf->SetFillColor(255, 255, 255);
@@ -123,15 +123,15 @@ $pdf->Cell(60,12,'TIPO CUENTA','LT',0,'C',0);
 $pdf->Cell(60,6,utf8_decode('NOMBRE DE LA INSTITUCIÓN'),1,0,'C',1);
 $pdf->Cell(60,6,utf8_decode('VALOR EN NUMEROS'),1,1,'C',1);
 $pdf->SetWidths(array(60,60,60));
-$pdf->SetFont('Arial','',9.5);
+$pdf->SetFont('Arial','',12);
 $pdf->experimentrow(array($textd,$texte,$textf));
 $pdf->Rowdefault(array($textg,$texth,$texti));
 $pdf->Ln(5);
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','B',12);
 $pdf->SetFillColor(185, 199, 228,1);
 $pdf->Cell(180,6,'SINOPSIS',1,1,'C',1);
 $pdf->SetWidths(array(180));
-$pdf->SetFont('Arial','',9.5);
+$pdf->SetFont('Arial','',12);
 $pdf->Rowdefault2(array($textj));
 $pdf->Ln(5);
 $pdf->SetFillColor(255, 255, 255);
@@ -146,14 +146,14 @@ $textfirma6 =  "Pagador General";
 
 $pdf->Ln(5);
 $pdf->SetWidths(array(90,90));
-$pdf->SetFont('Arial','',10);
+$pdf->SetFont('Arial','',12);
 
 $pdf->Rowdefaultnoline(array($textfirma1,$textfirma2));
 $pdf->Ln(20);
-$pdf->SetFont('Arial','B',10);
+$pdf->SetFont('Arial','B',12);
 $pdf->Rowdefaultnoline(array($textfirma3,$textfirma4));
 $pdf->Ln(1);
-$pdf->SetFont('Arial','',10);
+$pdf->SetFont('Arial','',12);
 $pdf->Rowdefaultnoline(array($textfirma5,$textfirma6));
 
 // $pdf->SetFillColor(255, 255,255,255);
