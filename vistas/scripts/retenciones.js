@@ -247,52 +247,74 @@ function agregarDetalle(idcompromisos,numfactura)
   }
 
 
-//
-//  function modificarSubototales()
-//   {
-//   	var monto = document.getElementsByName("monto[]");
-//     var sub = document.getElementsByName("subtotal");
-//
-//     for (var i = 0; i <monto.length; i++) {
-//     	var inpC=monto[i];
-//     	var inpS=sub[i];
-//
-//     	inpS.value=inpC.value*1;
-//     	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
-//     }
-//     calcularTotales();
-//
-//   }
-//   function calcularTotales(){
-//   	var sub = document.getElementsByName("subtotal");
-//   	var total = 0.0;
-//
-//   	for (var i = 0; i <sub.length; i++) {
-// 		total += document.getElementsByName("subtotal")[i].value;
-// 	}
-// 	$("#total").html("L. " + total);
-// $("#total_importe").val(total);
-//     evaluar();
-//   }
-//
-//   function evaluar(){
-//   	if (detalles>0)
-//     {
-//       $("#btnGuardar").show();
-//     }
-//     else
-//     {
-//       $("#btnGuardar").hide();
-//       cont=0;
-//     }
-//   }
-//
-//   function eliminarDetalle(indice){
-//   	$("#fila" + indice).remove();
-//   	calcularTotales();
-//   	detalles=detalles-1;
-//   	evaluar();
-//   }
+
+ function modificarSubototales()
+  {
+  	var valor = document.getElementsByName("valor[]");
+    var sub = document.getElementsByName("subtotal");
+
+    for (var i = 0; i <valor.length; i++) {
+    	var inpV=valor[i];
+    	var inpS=sub[i];
+
+    	inpS.value=inpV.value*1;
+    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+    }
+    calcularTotales();
+
+  }
+
+  function calcularTotales(){
+  	var sub = document.getElementsByName("subtotal");
+  	var total = 0.0;
+
+ 		var tipo_imp = $("#tipo_impuesto").val();
+
+  	for (var i = 0; i <sub.length; i++) {
+		total += document.getElementsByName("subtotal")[i].value;
+
+		newsubtotal_imp = total * tipo_imp;
+		new_total = total + newsubtotal_imp;
+
+		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
+		impuesto_impuesto = parseFloat(Math.round(newsubtotal_imp * 100) / 100).toFixed(2);
+
+		 $("#impuesto").val(impuesto_impuesto);
+	}
+
+	$("#sub_total").html("L. " + total);
+	$("#subtotales").val(total);
+
+	$("#montototal").html("L. " + total_total);
+	$("#monto_total").val(total_total);
+
+
+
+
+
+
+
+    evaluar();
+  }
+
+  function evaluar(){
+  	if (detalles>0)
+    {
+      $("#btnGuardar").show();
+    }
+    else
+    {
+      $("#btnGuardar").hide();
+      cont=0;
+    }
+  }
+
+  function eliminarDetalle(indice){
+  	$("#fila" + indice).remove();
+  	calcularTotales();
+  	detalles=detalles-1;
+  	evaluar();
+  }
 
 
 init();
