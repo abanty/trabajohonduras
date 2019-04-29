@@ -1,5 +1,4 @@
 <?php
-
 require_once "../modelos/Retenciones.php";
 
 $retenciones=new Retenciones();
@@ -18,16 +17,8 @@ $total_oc=isset($_POST["total_oc"])? limpiarCadena($_POST["total_oc"]):"";
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
-			$rspta=$retenciones->insertar(
-				$idproveedores,
-				$rtn,
-				$numdocumento,
-				$fecha_hora,
-				$tipo_impuesto,
-				$descripcion,
-				$base_imponible,
-				$imp_retenido,
-		$total_oc,$_POST["idcompromisos"],$_POST["valor_base"]);
+			$rspta=$retenciones->insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
+			$imp_retenido,$total_oc,$_POST["idcompromisos"],$_POST["valorbase"]);
 			echo $rspta ? "Retencion registrada" : "No se pudieron registrar todos los datos de la retencion";
 		}
 		else {
@@ -89,10 +80,10 @@ switch ($_GET["op"]){
  					' <button class="btn btn-danger" onclick="anular('.$reg->idretenciones.')"><i class="fa fa-close"></i></button>':
  					'<button class="btn btn-warning" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>').
  					'<a target="_blank" href="../reportes/exretenciones.php?id='.$reg->idretenciones.'"> <button class="btn btn-info"><i class="fa fa-file"></i></button></a>',
- 				"1"=>$reg->fecha,
- 				"2"=>$reg->proveedor,
- 				"3"=>$reg->rtn,
- 				"4"=>$reg->numdocumento,
+ 				"1"=>$reg->proveedor,
+ 				"2"=>$reg->rtn,
+ 				"3"=>$reg->numdocumento,
+ 				"4"=>$reg->fecha,
         "5"=>$reg->tipo_impuesto,
  				"6"=>$reg->descripcion,
         "7"=>$reg->base_imponible,
@@ -127,7 +118,7 @@ switch ($_GET["op"]){
 		require_once "../modelos/Compromisos.php";
 		$compromisos=new Compromisos();
 
-		$rspta=$compromisos->listarActivos();
+		$rspta=$compromisos->listarCompromisos();
  		//Vamos a declarar un array
  		$data= Array();
 

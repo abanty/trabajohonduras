@@ -112,7 +112,6 @@ function listar()
 
 
 //Función Listar listarCompromisos
-
 function listarCompromisos()
 {
 	tabla=$('#tblcompromisos').dataTable(
@@ -221,7 +220,7 @@ var detalles=0;
 //$("#guardar").hide();
 $("#btnGuardar").hide();
 
-function agregarDetalle(idcompromisos,compromisos,numfactura)
+function agregarDetalle(idcompromisos,numfactura)
   {
 
     var valor=0;
@@ -231,7 +230,7 @@ function agregarDetalle(idcompromisos,compromisos,numfactura)
     	var subtotal=valor;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
+    	'<td><input type="hidden" name="numfactura[]" value="'+numfactura+'">'+numfactura+'</td>'+
     	'<td><input type="text" name="valor[]" value="'+valor+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+

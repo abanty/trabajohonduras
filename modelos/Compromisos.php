@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -11,7 +11,7 @@ Class Compromisos
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar( 
+	public function insertar(
 		$idprograma,
 		$idproveedores,
 		$fecha_hora,
@@ -22,7 +22,7 @@ Class Compromisos
 		$idpresupuesto_disponible,
 		$valor)
 	{
-		$sql="INSERT INTO compromisos ( 
+		$sql="INSERT INTO compromisos (
 		idprograma,
 		idproveedores,
 		fecha_hora,
@@ -56,7 +56,7 @@ Class Compromisos
 			  '$idpresupuesto_disponible[$num_elementos]',
 			  '$valor[$num_elementos]',
 			  '0')";
-			  
+
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 		}
@@ -78,7 +78,7 @@ Class Compromisos
 	// 	 idprograma='$idprograma',
 	// 	 idproveedores='$idproveedores',
 	// 	 fecha_hora='$fecha_hora',
-	// 	 numfactura='$numfactura', 
+	// 	 numfactura='$numfactura',
 	// 	 total_compra='$total_compra'
 	// 	 WHERE idcompromisos='$idcompromisos'";
 	// 	return ejecutarConsulta($sql);
@@ -114,7 +114,7 @@ Class Compromisos
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar($idcompromisos)
 	{
-		$sql="SELECT 
+		$sql="SELECT
 					 q.idcompromisos,
 					 DATE(q.fecha_hora) as fecha,
 					 q.idprograma,
@@ -124,7 +124,7 @@ Class Compromisos
 					 q.numfactura,
 					 q.total_compra,
 					 q.condicion
-			FROM compromisos as q INNER JOIN programa as w 
+			FROM compromisos as q INNER JOIN programa as w
 			ON q.idprograma=w.idprograma
 			INNER JOIN proveedores as e
 			ON q.idproveedores = e.idproveedores WHERE idcompromisos='$idcompromisos'";
@@ -136,23 +136,23 @@ Class Compromisos
 	public function listarDetalle($idcompromisos)
 	{
 		$sql="
-		SELECT 
+		SELECT
 		dc.idcompromisos,
 		dc.idpresupuesto_disponible,
 		r.nombre_objeto,
 		r.codigo,
 		dc.valor as valor
-		FROM detalle_compromisos dc INNER JOIN presupuesto_disponible r ON 
-		dc.idpresupuesto_disponible=r.idpresupuesto_disponible 
+		FROM detalle_compromisos dc INNER JOIN presupuesto_disponible r ON
+		dc.idpresupuesto_disponible=r.idpresupuesto_disponible
 		WHERE dc.idcompromisos='$idcompromisos'";
-		return ejecutarConsulta($sql);	
+		return ejecutarConsulta($sql);
 	}
 
 
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT 
+		$sql="SELECT
 					 q.idcompromisos,
 					 DATE(q.fecha_hora) as fecha,
 					 q.idprograma,
@@ -162,32 +162,37 @@ Class Compromisos
 					 q.numfactura,
 					 FORMAT(q.total_compra,2) as total_compra,
 					 q.condicion
-			FROM compromisos as q INNER JOIN programa as w 
+			FROM compromisos as q INNER JOIN programa as w
 			ON q.idprograma=w.idprograma
 			INNER JOIN proveedores as e
 			ON q.idproveedores = e.idproveedores ORDER BY q.idcompromisos desc";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
 
 	// 	//Implementar un método para listar los registros activos
-	// public function listarActivos()
-	// {
-	// 	$sql="SELECT
-	// 				 a.idcompromisos,
-	// 				 a.idproveedores,
-	// 				 a.idpresupuesto_anual,
-	// 				 c.casa_comercial,
-	// 				 a.numfactura,
-	// 				 b.nombre_objeto,
-	// 				 b.codigo,
-	// 				 a.monto,
-	// 				 a.condicion
-	// 		FROM compromisos as a INNER JOIN presupuesto_anual as b 
-	// 		ON a.idpresupuesto_anual=b.idpresupuesto_anual
-	// 		INNER JOIN proveedores as c
-	// 		ON a.idproveedores = c.idproveedores WHERE a.condicion='1'";
-	// 	return ejecutarConsulta($sql);		
-	// }
+	public function listarCompromisos()
+	{
+		$sql="SELECT
+    c.idcompromisos,
+    c.idprograma,
+    c.idproveedores,
+    c.fecha_hora,
+    c.numfactura,
+    c.total_compra,
+    c.condicion,
+    pgr.codigop,
+    pgr.codigop,
+    pr.casa_comercial as proveedor
+		FROM
+		    compromisos c
+		INNER JOIN programa pgr ON
+		    c.idprograma = pgr.idprograma
+		INNER JOIN proveedores pr ON
+		    c.idproveedores = pr.idproveedores
+		WHERE
+    c.condicion = '1'";
+		return ejecutarConsulta($sql);
+	}
 
 
 
