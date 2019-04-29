@@ -10,10 +10,10 @@ Class Transferenciabch
 
 	}
 
-	public function insertar($idproveedores,$idctasbancarias,$idconfiguracion,$fecha_hora,$serie_transf,$num_transf,$monto_acreditar,$descripcion)
+	public function insertar($idproveedores,$idctasbancarias,$fecha_hora,$serie_transf,$num_transf,$monto_acreditar,$descripcion)
 	{
-		$sql="INSERT INTO transferenciabch (idproveedores,idctasbancarias,idconfiguracion,fecha_hora,serie_transf,num_transf,monto_acreditar,descripcion,
-		condicion)	VALUES ('$idproveedores','$idctasbancarias','$idconfiguracion','$fecha_hora','$serie_transf','$num_transf','$monto_acreditar','$descripcion',
+		$sql="INSERT INTO transferenciabch (idproveedores,idctasbancarias,fecha_hora,serie_transf,num_transf,monto_acreditar,descripcion,
+		condicion)	VALUES ('$idproveedores','$idctasbancarias','$fecha_hora','$serie_transf','$num_transf','$monto_acreditar','$descripcion',
 		'1')";
 		 ejecutarConsulta($sql);
 

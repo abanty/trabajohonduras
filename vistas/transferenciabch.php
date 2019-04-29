@@ -73,21 +73,21 @@ if ($_SESSION['siafi']==1)
                           </div>
 
 
-                            <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Serie:</label>
                             <input type="text" class="form-control" name="serie_transf" id="serie_transf" maxlength="7" placeholder="Serie">
                           </div>
 
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                          <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                           <label>Numero de Transferencia:(*):</label>
                           <input type="text" class="form-control" name="num_transf" id="num_transf" maxlength="50" placeholder="Nombre" required>
                           </div>
 
-                          <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                          <!-- <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
                             <label>Responsable:(*):</label>
                             <select id="idconfiguracion" name="idconfiguracion" class="form-control selectpicker" data-live-search="true" title="Elegir una responsable" required></select>
-                          </div>
+                          </div> -->
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre Cta Debitar:(*):</label>

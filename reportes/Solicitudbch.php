@@ -102,7 +102,7 @@ $textf = number_format($regv->monto_acreditar, 2, '.', ',');
 
 $textg = strtoupper($regv->tp_prov);
 $texth = $regv->num_cuenta;
-$texti = number_format($regv->monto_acreditar, 2, '.', ',');
+$texti = $regv->casa_comercial."";
 
 
 $pdf->SetWidths(array(60,60,60));

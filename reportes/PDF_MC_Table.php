@@ -58,7 +58,7 @@ function Rowdefault($data)
 	$nb=0;
 	for($i=0;$i<count($data);$i++)
 		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-	$h=6*$nb;
+	$h=5*$nb;
 	//Issue a page break first if needed
 	$this->CheckPageBreak($h);
 	//Draw the cells of the row
@@ -73,7 +73,7 @@ function Rowdefault($data)
 		$this->Rect($x,$y,$w,$h);
 		//Print the text
 		$this->SetFillColor(184, 215, 232);
-		$this->MultiCell($w,6,$data[$i],1,$a);
+		$this->MultiCell($w,5,$data[$i],0,$a);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
