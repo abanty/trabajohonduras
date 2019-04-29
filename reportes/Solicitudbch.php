@@ -145,7 +145,7 @@ $pdf->SetWidths(array(90,90));
 $pdf->SetFont('Arial','',10);
 
 $pdf->Rowdefaultnoline(array($textfirma1,$textfirma2));
-$pdf->Ln(10);
+$pdf->Ln(20);
 $pdf->SetFont('Arial','B',10);
 $pdf->Rowdefaultnoline(array($textfirma3,$textfirma4));
 $pdf->Ln(1);
