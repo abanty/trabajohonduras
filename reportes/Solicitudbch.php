@@ -77,7 +77,7 @@ $V=new EnLetras();
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS EXACTAS"));
 
 $pdf->SetFont('Arial','',10);
-$pdf->MultiCell(180,4,"\n".$con_letra."\n"." ",1,C);
+$pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,C);
 
 
 
