@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-04-2019 a las 09:46:28
+-- Tiempo de generación: 29-04-2019 a las 03:32:59
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -279,7 +279,7 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '9990000.00', 1),
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '8490000.00', 1),
 (2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '0.00', 1),
 (3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
 (4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
@@ -387,9 +387,7 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(4, 1, 1, 'mts', 11, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '1500.00'),
-(5, 1, 2, 'lts', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00'),
-(6, 1, 3, 'margendec', 14, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '50.00');
+(5, 1, 2, 'GALONASASO', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00');
 
 --
 -- Disparadores `detalle_orden`
@@ -581,7 +579,7 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (62, 'Tintas, Pinturas y Colorantes', 0, 0, '35500', '0.00', '0.00', 1),
 (63, 'Gasolina', 0, 0, '35610', '0.00', '0.00', 1),
 (64, 'Diesel', 0, 0, '35620', '0.00', '0.00', 1),
-(65, 'Aceites y Grasas Lubricantes', 0, 0, '35650', '0.00', '0.00', 1),
+(65, 'Aceites y Grasas Lubricantes', 0, 0, '35650', '-1500.00', '0.00', 1),
 (66, 'Productos de Material Plastico', 0, 0, '35800', '0.00', '0.00', 1),
 (67, 'Productos Quimicos de Uso Personal', 0, 0, '35930', '0.00', '0.00', 1),
 (68, 'Productos Ferrosos', 0, 0, '36100', '0.00', '0.00', 1),
@@ -863,7 +861,8 @@ CREATE TABLE `transferenciabch` (
 --
 
 INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
-(1, 9, 1, '2019-04-24', '124', '25', '10000.00', 'SFSFSFSF', 1);
+(1, 9, 1, '2019-04-24', '124', '25', '1000000.14', 'SFSFSFSF', 1),
+(2, 14, 1, '2019-04-28', 'ABR01s', '24573', '1500000.00', 'dfsdddddddddddddfds', 1);
 
 -- --------------------------------------------------------
 
@@ -1183,7 +1182,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1225,7 +1224,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
-  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
