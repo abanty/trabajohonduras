@@ -48,6 +48,8 @@ if ($_SESSION['admonoc']==1)
                             <th>No.Documento</th>
                             <th>Fecha</th>
                             <th>Base Retencion</th>
+                            <th>Tipo Impuesto</th>
+                            <th>Descripcion</th>
                             <th>Imp Retenido</th>
                             <th>Estado</th>
                           </thead>
@@ -60,6 +62,8 @@ if ($_SESSION['admonoc']==1)
                             <th>No.Documento</th>
                             <th>Fecha</th>
                             <th>Base Retencion</th>
+                            <th>Tipo Impuesto</th>
+                            <th>Descripcion</th>
                             <th>Imp Retenido</th>
                             <th>Estado</th>
                           </tfoot>

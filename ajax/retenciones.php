@@ -1,6 +1,4 @@
 <?php
-if (strlen(session_id()) < 1)
-  session_start();
 
 require_once "../modelos/Retenciones.php";
 
@@ -47,9 +45,9 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
-	case 'listarDetalle':
-		//Recibimos el idretenciones
-		$id=$_GET['id'];
+	// case 'listarDetalle':
+	// 	//Recibimos el idretenciones
+	// 	$id=$_GET['id'];
 
 	// 	$rspta = $retenciones->listarDetalle($id);
 	// 	$total=0;
@@ -114,9 +112,9 @@ switch ($_GET["op"]){
 
   case "selectProveedores":
 		require_once "../modelos/Proveedores.php";
-		$proveedores = new Proveedores();
+		$casa_comercial = new Proveedores();
 
-		$rspta = $proveedores->select_proveedor();
+		$rspta = $casa_comercial->select_proveedor();
 
 		while ($reg = $rspta->fetch_object())
 				{
@@ -149,12 +147,4 @@ switch ($_GET["op"]){
  		echo json_encode($results);
 	break;
 }
-//Fin de las validaciones de acceso
-}
-else
-{
-  require 'noacceso.php';
-}
-}
-ob_end_flush();
 ?>
