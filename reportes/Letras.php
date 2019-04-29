@@ -60,7 +60,7 @@ function ValorEnLetras($x, $Moneda )
        $s = $s . " Con " . $this->SubValLetra(intval($Frc)) . "Centavos";
        $s = $s . " (" . $Frc . "/100)";
     }
-    return ($Signo . $s . " M.N.");
+    return ($Signo . $s . "");
 
 }
 
