@@ -118,16 +118,16 @@ if ($_SESSION['admonoc']==1)
 
                         <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table">
 
-                          <thead id="det-thead" role="rowgroup" style="background-color:#d2d6de">
-                            <tr role="row">
-                              <th role="columnheader">Opciones</th>
-                              <th role="columnheader">N. Facturas</th>
-                              <th role="columnheader">Valor Base</th>
-                              <th role="columnheader">Subtotal</th>
+                          <thead style="background-color:#d2d6de">
+                            <tr>
+                              <th>Opciones</th>
+                              <th>N. Facturas</th>
+                              <th>Valor Base</th>
+                              <th>Subtotal</th>
                             </tr>
                           </thead>
 
-                          <tbody id="det-tbody" role="rowgroup">
+                          <tbody>
                           </tbody>
 
 
@@ -135,7 +135,7 @@ if ($_SESSION['admonoc']==1)
                                 <th colspan="2"></th>
                                 <th>TOTAL</th>
                                 <th>
-                                  <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                  <h4 id="montototal">L. 0.00</h4><input type="hidden" name="total_oc" id="total_oc">
                                 </th>
                               </tfoot>
 
@@ -144,14 +144,14 @@ if ($_SESSION['admonoc']==1)
                                 <th colspan="2"></th>
                                 <th>BASE IMPONIBLE</th>
                                 <th>
-                                  <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="subtotales" id="subtotales">
+                                  <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="base_imponible" id="base_imponible">
                                 </th>
                               </tfoot>
 
                               <tfoot>
                                 <th colspan="2"></th>
                                 <th>IMPUESTO RETENIDO</th>
-                                <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" readonly></th>
+                                <th><input type="number" step=".01" class="form-control input-sm" name="imp_retenido" id="imp_retenido" maxlength="45" placeholder="Ingrese el impuesto" readonly></th>
                               </tfoot>
 
                             </table>

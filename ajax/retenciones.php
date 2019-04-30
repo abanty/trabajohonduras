@@ -18,7 +18,7 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
 			$rspta=$retenciones->insertar_retenciones($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
-			$imp_retenido,$total_oc,$_POST["idcompromisos"],$_POST["valorbase"]);
+			$imp_retenido,$total_oc,$_POST["idcompromisos"],$_POST["valor_base"]);
 			echo $rspta ? "Retencion registrada" : "No se pudieron registrar todos los datos de la retencion";
 		}
 		else {

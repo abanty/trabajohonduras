@@ -14,20 +14,20 @@ Class Retenciones
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
 	public function insertar_retenciones($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
-	$imp_retenido,$total_oc,$idcompromisos,$valorbase)
+	$imp_retenido,$total_oc,$idcompromisos,$valor_base)
 	{
 		$sql="INSERT INTO retenciones (idproveedores,rtn,numdocumento,fecha_hora,tipo_impuesto,descripcion,base_imponible,imp_retenido,total_oc,estado)
 		VALUES ('$idproveedores','$rtn','$numdocumento','$fecha_hora','$tipo_impuesto','$descripcion','$base_imponible','$imp_retenido','$total_oc','Aceptado')";
+		$idretencionew=ejecutarConsulta_retornarID($sql);
 
-		$idingresonew=ejecutarConsulta_retornarID($sql);
 		$num_elementos=0;
 		$sw=true;
 
 		while ($num_elementos < count($idcompromisos))
 		{
-			$sql_detalle = "INSERT INTO detalle_retenciones(idretenciones,idcompromisos,valorbase)
-			VALUES ('$idingresonew','$idcompromisos[$num_elementos]','$valorbase[$num_elementos])";
-			ejecutarConsulta($sql_detalle) or $sw = false;
+			$sql_reten = "INSERT INTO detalle_retenciones(idretenciones,idcompromisos,valor_base)
+			VALUES ('$idretencionew','$idcompromisos[$num_elementos]','$valor_base[$num_elementos])";
+			ejecutarConsulta($sql_reten) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 		}
 		return $sw;

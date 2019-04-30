@@ -222,16 +222,15 @@ $("#btnGuardar").hide();
 
 function agregarDetalle(idcompromisos,numfactura)
   {
-
-    var valor=0;
+    var valor_base=10;
 
     if (idcompromisos!="")
     {
-    	var subtotal=valor;
+    	var subtotal=valor_base*1;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" name="numfactura[]" value="'+numfactura+'">'+numfactura+'</td>'+
-    	'<td><input type="text" name="valor[]" value="'+valor+'"></td>'+
+    	'<td><input type="hidden" name="idcompromisos[]" value="'+idcompromisos+'">'+numfactura+'</td>'+
+    	'<td><input type="text" name="valor_base[]" value="'+valor_base+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
@@ -250,14 +249,19 @@ function agregarDetalle(idcompromisos,numfactura)
 
  function modificarSubototales()
   {
-  	var valor = document.getElementsByName("valor[]");
+		var idcom = document.getElementsByName("idcompromisos[]");
+  	var valor = document.getElementsByName("valor_base[]");
     var sub = document.getElementsByName("subtotal");
 
-    for (var i = 0; i <valor.length; i++) {
+    for (var i = 0; i <idcom.length; i++) {
+
+			var inpC=idcom[i];
     	var inpV=valor[i];
     	var inpS=sub[i];
 
     	inpS.value=inpV.value*1;
+
+
     	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
     calcularTotales();
@@ -279,20 +283,14 @@ function agregarDetalle(idcompromisos,numfactura)
 		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
 		impuesto_impuesto = parseFloat(Math.round(newsubtotal_imp * 100) / 100).toFixed(2);
 
-		 $("#impuesto").val(impuesto_impuesto);
+		 $("#imp_retenido").val(impuesto_impuesto);
 	}
 
 	$("#sub_total").html("L. " + total);
-	$("#subtotales").val(total);
+	$("#base_imponible").val(total);
 
 	$("#montototal").html("L. " + total_total);
-	$("#monto_total").val(total_total);
-
-
-
-
-
-
+	$("#total_oc").val(total_total);
 
     evaluar();
   }
