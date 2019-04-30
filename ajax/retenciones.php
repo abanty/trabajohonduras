@@ -17,7 +17,7 @@ $total_oc=isset($_POST["total_oc"])? limpiarCadena($_POST["total_oc"]):"";
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
-			$rspta=$retenciones->insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
+			$rspta=$retenciones->insertar_retenciones($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
 			$imp_retenido,$total_oc,$_POST["idcompromisos"],$_POST["valorbase"]);
 			echo $rspta ? "Retencion registrada" : "No se pudieron registrar todos los datos de la retencion";
 		}
