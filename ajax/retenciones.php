@@ -1,7 +1,9 @@
 <?php
+if (strlen(session_id()) < 1)
+  session_start();
 require_once "../modelos/Retenciones.php";
 
-$retenciones=new Retenciones();
+$reten=new Retenciones();
 
 $idretenciones=isset($_POST["idretenciones"])? limpiarCadena($_POST["idretenciones"]):"";
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
@@ -14,24 +16,28 @@ $base_imponible=isset($_POST["base_imponible"])? limpiarCadena($_POST["base_impo
 $imp_retenido=isset($_POST["imp_retenido"])? limpiarCadena($_POST["imp_retenido"]):"";
 $total_oc=isset($_POST["total_oc"])? limpiarCadena($_POST["total_oc"]):"";
 
+
+// $idcompromisos=isset($_POST["idcompromisos"])? limpiarCadena($_POST["idcompromisos"]):"";
+// $valor_base=isset($_POST["valor_base"])? limpiarCadena($_POST["valor_base"]):"";
+
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
-			$rspta=$retenciones->insertar_retenciones($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
-			$imp_retenido,$total_oc,$_POST["idcompromisos"],$_POST["valor_base"]);
-			echo $rspta ? "Retencion registrada" : "No se pudieron registrar todos los datos de la retencion";
-		}
-		else {
+			$rspta=$reten->insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
+			$imp_retenido,$total_oc,$_POST["idcompromisos"]);
+
+			echo $rspta ? "Retencion registrada" : "Retencion no registrada";
+		}else{
 		}
 	break;
 
 	case 'anular':
-		$rspta=$retenciones->anular($idretenciones);
+		$rspta=$reten->anular($idretenciones);
  		echo $rspta ? "retencion anulada" : "La retencion no se puede anular";
 	break;
 
 	case 'mostrar':
-		$rspta=$retenciones->mostrar($idretenciones);
+		$rspta=$reten->mostrar($idretenciones);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
@@ -70,7 +76,7 @@ switch ($_GET["op"]){
 	// break;
 
 	case 'listar':
-		$rspta=$retenciones->listar();
+		$rspta=$reten->listar();
  		//Vamos a declarar un array
  		$data= Array();
 
@@ -124,7 +130,7 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idcompromisos.',\''.$reg->numfactura.'\')"><span class="fa fa-plus"></span></button>',
+ 				"0"=>'<button class="btn btn-warning" onclick="agregarDetallefacturas('.$reg->idcompromisos.',\''.$reg->numfactura.'\')"><span class="fa fa-plus"></span></button>',
  				"1"=>$reg->proveedor,
  				"2"=>$reg->numfactura,
  				"3"=>$reg->total_compra,

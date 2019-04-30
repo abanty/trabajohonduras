@@ -38,7 +38,9 @@ if ($_SESSION['admonoc']==1)
                         </div>
                     </div>
                     <!-- /.box-header -->
+
                     <!-- centro -->
+
                     <div class="panel-body table-responsive" id="listadoregistros">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover"width="100%">
                           <thead style="background-color:#d2d6de">
@@ -70,6 +72,7 @@ if ($_SESSION['admonoc']==1)
                         </table>
                     </div>
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
+
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Proveedor(*):</label>
@@ -116,17 +119,14 @@ if ($_SESSION['admonoc']==1)
                           <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 thisisdiv">
 
 
-                        <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table">
+                        <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
 
                           <thead style="background-color:#d2d6de">
-                            <tr>
                               <th>Opciones</th>
                               <th>N. Facturas</th>
                               <th>Valor Base</th>
                               <th>Subtotal</th>
-                            </tr>
                           </thead>
-
                           <tbody>
                           </tbody>
 
