@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2019 a las 02:01:36
+-- Tiempo de generación: 01-05-2019 a las 05:22:40
 -- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Versión de PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -387,16 +387,19 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 CREATE TABLE `detalle_retenciones` (
   `iddetalle_retenciones` int(11) NOT NULL,
   `idretenciones` int(11) NOT NULL,
-  `idcompromisos` int(11) NOT NULL
+  `idcompromisos` int(11) NOT NULL,
+  `valorbase` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `detalle_retenciones`
 --
 
-INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `idcompromisos`) VALUES
-(1, 1, 2),
-(2, 20, 20);
+INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `idcompromisos`, `valorbase`) VALUES
+(1, 1, 35, '10.00'),
+(2, 1, 36, '5.00'),
+(3, 1, 37, '15.00'),
+(4, 1, 38, '30.00');
 
 -- --------------------------------------------------------
 
@@ -844,8 +847,7 @@ CREATE TABLE `retenciones` (
 --
 
 INSERT INTO `retenciones` (`idretenciones`, `idproveedores`, `rtn`, `numdocumento`, `fecha_hora`, `tipo_impuesto`, `descripcion`, `base_imponible`, `imp_retenido`, `total_oc`, `estado`) VALUES
-(1, 9, 'FG', 'SDFDS', '2019-04-30', '0.125', 'FDSFDS', '300.00', '37.50', '337.50', 'Aceptado'),
-(2, 9, 'DF', 'SFDS', '2019-04-30', '0.125', 'FDSFDS', '100.00', '12.50', '112.50', 'Aceptado');
+(1, 9, '0001', '002', '2019-04-30', '0.15', 'dfdsfsd', '60.00', '9.00', '69.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1050,7 +1052,9 @@ ALTER TABLE `detalle_orden`
 -- Indices de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  ADD PRIMARY KEY (`iddetalle_retenciones`);
+  ADD PRIMARY KEY (`iddetalle_retenciones`),
+  ADD KEY `detalle_retenciones` (`idretenciones`),
+  ADD KEY `detalle_compromisos` (`idcompromisos`);
 
 --
 -- Indices de la tabla `dtransf_ctaspg`
@@ -1203,7 +1207,7 @@ ALTER TABLE `detalle_orden`
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1245,7 +1249,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `retenciones`
 --
 ALTER TABLE `retenciones`
-  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
@@ -1318,6 +1322,13 @@ ALTER TABLE `detalle_crear_acuerdo`
 ALTER TABLE `detalle_orden`
   ADD CONSTRAINT `admin_ord` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pred_disp` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `detalle_retenciones`
+--
+ALTER TABLE `detalle_retenciones`
+  ADD CONSTRAINT `detalle_compromisos` FOREIGN KEY (`idcompromisos`) REFERENCES `compromisos` (`idcompromisos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `detalle_retenciones` FOREIGN KEY (`idretenciones`) REFERENCES `retenciones` (`idretenciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `factura_orden`
