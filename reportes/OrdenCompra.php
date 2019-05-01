@@ -54,10 +54,10 @@ $pdf->addCols( $cols);
 $cols=array( "Cod"=>"L",
              "Unidad"=>"C",
              "Cantidad"=>"C",
-            "Descripcion"=>"C",
-             "P.Unitario"=>"C",
-             "SubTotal"=>"C",
-           "Total"=>"C");
+            "Descripcion"=>"L",
+             "P.Unitario"=>"R",
+             "SubTotal"=>"R",
+           "Total"=>"R");
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
