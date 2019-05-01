@@ -35,7 +35,7 @@ $pdf->AddPage();
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4));
 
-$pdf->fact_dev("O/C No."," $regv->num_orden-$regv->num_comprobante" );
+$pdf->fact_dev("O/C No.",$regv->num_orden.'-'.$regv->num_comprobante );
 // $pdf->temporaire( "ORDER DE COMPRA" );
 $pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->titulo_orden );
 
