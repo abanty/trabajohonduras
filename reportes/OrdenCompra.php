@@ -78,6 +78,11 @@ while ($regd = $rsptad->fetch_object()) {
                 // "Total"=> "$regv->monto_total"
             $size = $pdf->addLine( $y, $line );
             $y   += $size + 2;
+
+            // $line = array( "Cod"=> "$regd->codigo",
+            //               "Total"=> number_format("$regd->subtot", 2, '.', ','));
+            // $size = $pdf->addLine( $y, $line );
+            // $y   += $size + 2;
 }
 
 $pdf->SetFont( "Arial", "B", 8);

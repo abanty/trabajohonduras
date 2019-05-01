@@ -304,7 +304,7 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->MultiCell( 120, 4, utf8_decode("Lugar             :"));
 	$this->SetXY( $r1+25, $y1+3);
 	$this->SetFont( "Arial", "U", 9);
-	$this->MultiCell( 158, 8, strtoupper($domicilio) );
+	$this->MultiCell( 158, 8, strtoupper("tegucigalpa.m.d.c") );
 
 	$this->SetXY( $r1, $y1+10);
 	$this->SetFont( "Arial", "B", 8.5);
