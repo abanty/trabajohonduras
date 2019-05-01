@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2019 a las 02:06:01
+-- Tiempo de generación: 01-05-2019 a las 02:01:36
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -355,17 +355,6 @@ CREATE TABLE `detalle_ingreso` (
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- Disparadores `detalle_ingreso`
---
-DELIMITER $$
-CREATE TRIGGER `tr_actualizar_disponible` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN
-    UPDATE presupuesto_disponible SET fondos_disponibles = fondos_disponibles + NEW.monto
-    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -389,17 +378,6 @@ CREATE TABLE `detalle_orden` (
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
 (5, 1, 2, 'GALONASASO', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00');
 
---
--- Disparadores `detalle_orden`
---
-DELIMITER $$
-CREATE TRIGGER `tr_actualizar_presupuesto_anual` AFTER INSERT ON `detalle_orden` FOR EACH ROW BEGIN
-    UPDATE presupuesto_disponible SET presupuesto_anual = presupuesto_anual - NEW.cantidad * NEW.precio_unitario
-    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -409,9 +387,16 @@ DELIMITER ;
 CREATE TABLE `detalle_retenciones` (
   `iddetalle_retenciones` int(11) NOT NULL,
   `idretenciones` int(11) NOT NULL,
-  `idcompromisos` int(11) NOT NULL,
-  `valorbase` decimal(10,2) NOT NULL
+  `idcompromisos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `detalle_retenciones`
+--
+
+INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `idcompromisos`) VALUES
+(1, 1, 2),
+(2, 20, 20);
 
 -- --------------------------------------------------------
 
@@ -859,7 +844,8 @@ CREATE TABLE `retenciones` (
 --
 
 INSERT INTO `retenciones` (`idretenciones`, `idproveedores`, `rtn`, `numdocumento`, `fecha_hora`, `tipo_impuesto`, `descripcion`, `base_imponible`, `imp_retenido`, `total_oc`, `estado`) VALUES
-(0, 9, '456', '564564', '2019-04-29', '0.15', 'fsdfds', '0.00', '0.00', '0.00', 'Aceptado');
+(1, 9, 'FG', 'SDFDS', '2019-04-30', '0.125', 'FDSFDS', '300.00', '37.50', '337.50', 'Aceptado'),
+(2, 9, 'DF', 'SFDS', '2019-04-30', '0.125', 'FDSFDS', '100.00', '12.50', '112.50', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1064,9 +1050,7 @@ ALTER TABLE `detalle_orden`
 -- Indices de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  ADD PRIMARY KEY (`iddetalle_retenciones`),
-  ADD KEY `reten_idreten` (`idretenciones`),
-  ADD KEY `compro_reten` (`idcompromisos`);
+  ADD PRIMARY KEY (`iddetalle_retenciones`);
 
 --
 -- Indices de la tabla `dtransf_ctaspg`
@@ -1219,7 +1203,7 @@ ALTER TABLE `detalle_orden`
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1256,6 +1240,12 @@ ALTER TABLE `presupuesto_disponible`
 --
 ALTER TABLE `proveedores`
   MODIFY `idproveedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+
+--
+-- AUTO_INCREMENT de la tabla `retenciones`
+--
+ALTER TABLE `retenciones`
+  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
@@ -1328,13 +1318,6 @@ ALTER TABLE `detalle_crear_acuerdo`
 ALTER TABLE `detalle_orden`
   ADD CONSTRAINT `admin_ord` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pred_disp` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `detalle_retenciones`
---
-ALTER TABLE `detalle_retenciones`
-  ADD CONSTRAINT `compro_reten` FOREIGN KEY (`idcompromisos`) REFERENCES `compromisos` (`idcompromisos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `reten_idreten` FOREIGN KEY (`idretenciones`) REFERENCES `retenciones` (`idretenciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `factura_orden`

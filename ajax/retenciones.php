@@ -24,7 +24,7 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
 			$rspta=$reten->insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
-			$imp_retenido,$total_oc,$_POST["idcompromisos"]);
+			$imp_retenido,$total_oc);
 
 			echo $rspta ? "Retencion registrada" : "Retencion no registrada";
 		}else{
