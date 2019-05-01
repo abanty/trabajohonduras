@@ -24,7 +24,7 @@ switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
 			$rspta=$reten->insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
-			$imp_retenido,$total_oc);
+			$imp_retenido,$total_oc,$_POST['idcompromisos'],$_POST['valorbase']);
 
 			echo $rspta ? "Retencion registrada" : "Retencion no registrada";
 		}else{
@@ -82,10 +82,10 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>'.
- 					' <button class="btn btn-danger" onclick="anular('.$reg->idretenciones.')"><i class="fa fa-close"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>').
- 					'<a target="_blank" href="../reportes/exretenciones.php?id='.$reg->idretenciones.'"> <button class="btn btn-info"><i class="fa fa-file"></i></button></a>',
+ 				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idretenciones.')"><i class="fa fa-close"></i></button>':
+ 					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>').
+ 					'<a target="_blank" href="../reportes/exretenciones.php?id='.$reg->idretenciones.'"> <button class="btn btn-info btn-sm"><i class="fa fa-file"></i></button></a>',
  				"1"=>$reg->proveedor,
  				"2"=>$reg->rtn,
  				"3"=>$reg->numdocumento,

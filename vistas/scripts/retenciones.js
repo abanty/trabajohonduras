@@ -224,16 +224,16 @@ $("#btnGuardar").hide();
 function agregarDetallefacturas(idcompromisos,numfactura)
   {
 
-		console.log(idcompromisos,numfactura);
-    // var valor_base=10;
+		// console.log(idcompromisos,numfactura);
+    var valorbase;
 
     if (idcompromisos!="")
     {
-    	var subtotal=1;
+    	var subtotal=valorbase;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
-    	// '<td><input type="text" name="valor_base[]" value="'+valor_base+'"></td>'+
+    	'<td><input type="text" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
+    	'<td><input type="number" step="0.1" name="valorbase[]" value="'+valorbase+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
@@ -253,17 +253,16 @@ function agregarDetallefacturas(idcompromisos,numfactura)
  function modificarSubototales()
   {
 		var idcom = document.getElementsByName("idcompromisos[]");
-  	// var valor = document.getElementsByName("valor_base[]");
+  	var valor = document.getElementsByName("valorbase[]");
     var sub = document.getElementsByName("subtotal");
 
     for (var i = 0; i <idcom.length; i++) {
 
 			var inpC=idcom[i];
-    	// var inpV=valor[i];
+    	var inpV=valor[i];
     	var inpS=sub[i];
 
-    	inpS.value=100;
-			// inpV.value*1;
+    	inpS.value= inpV.value*1;
 
 
     	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
