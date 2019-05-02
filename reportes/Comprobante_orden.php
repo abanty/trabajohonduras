@@ -55,14 +55,9 @@ $cols2=array( "Factura"=>21,
             );
 $pdf->addCols2( $cols2);
 
-
-
-
-// $pdf->addLineFormat( $cols2);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
 $y= 84.2;
 $y2= 84.2;
-$y3=132.4;
 
 //Obtenemos todos los detalles de la comprobante actual
 $rsptad = $comprobante->listarFactura_orden_10firts($_GET["id"]);
@@ -91,27 +86,6 @@ while ($regd2 = $rsptad2->fetch_object()) {
             $y2   += $size2 + 0;
   }
 
-
-
-//
-
-// // DETALLE CONTABILIDAD
-// $cols3=array( "Grupo"=>13,
-//              "Subgrupo"=>20,
-//              "No. Objeto"=>22,
-//              "INTERIORES"=>35,
-//             );
-//
-// $pdf->addCols3( $cols3);
-//
-// $cols3=array( "Grupo"=>"C",
-//              "Subgrupo"=>"C",
-//              "No. Objeto"=>"C",
-//              "INTERIORES"=>"R",
-//             );
-// $pdf->addLineFormat( $cols3);
-
-
 //Convertimos el total en letras
 require_once "Letras.php";
 $V=new EnLetras();
@@ -121,7 +95,6 @@ $pdf->addCadreTVAs("*** ".$con_letra);
 // //Mostramos el impuesto
 // $pdf->addTVAs($regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
 //
-
 $pdf->SetFont( "Arial", "B", 8);
 $pdf->SetXY(10,125);
 $pdf->Cell(23,5, "Programa",1,0,'C');
@@ -150,47 +123,108 @@ while ($regd3 = $rsptad3->fetch_object()) {
             $pdf->Roweditcomprobante(array($text1,$text2,$text3,$text4,$text5,$text6,$text7));
   }
 
-
   $pdf->Cell(23,5, "",'LRB',0);
   $pdf->Cell(13,5, "",'LRB',0);
   $pdf->Cell(20,5, "",'LRB',0);
   $pdf->Cell(22,5, "",'LRB',0);
   $pdf->Cell(35,5, "",'LRB',0);
   $pdf->SetFont( "Arial", "B", 8);
-  $pdf->Cell(35,5, number_format($regv->monto_total, 2, '.', ','),'LRB',0,'R');
+  $pdf->Cell(35,5, number_format($regv->subtotal_origen, 2, '.', ','),'LRB',0,'R');
   $pdf->Cell(49,5, "",'LRB',1);
 
-
-
-  // DETALLE - DEBITOS - CREDITOSs
-  $pdf->Cell(78,5,'CMDCIA GRAL.','TL',0,'L',0);
-  $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'L',0);
-  $pdf->Cell(35,5,'',0,0,'L',0);
-  $pdf->Cell(49,5,'','TRL',1,'L',0);
+  // DETALLE - DEBITOS - CREDITOS
+  // ESPACIO O MARGEN TOP
+  $pdf->Cell(148,2,'','TL',0,'L',0);
+  $pdf->Cell(49,2,'','RL',1,'C',0);
+  // 1er ROW
+  $pdf->Cell(78,5,'CMDCIA GRAL.','L',0,'L',0);
+  $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'R',0);
+  $pdf->Cell(35,5,number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "B", 10);
+  $pdf->Cell(49,5,'D  E  B  I  T  O  S','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 2do ROW
   $pdf->Cell(78,5,'FNH','L',0,'L',0);
-  $pdf->Cell(35,5,'DESCUENTO L.',0,0,'L',0);
-  $pdf->Cell(35,5,'',0,0,'L',0);
-  $pdf->Cell(49,5,'','TRL',1,'L',0);
+  $pdf->Cell(35,5,'DESCUENTO L.',0,0,'R',0);
+  $pdf->Cell(35,5,number_format($regv->descuento_total, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'GASTO DE FUNCIONAMIENTO','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 3ro ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'R',0);
+  $pdf->Cell(35,5,number_format($regv->subtotal, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 4to ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'IMPUESTO S/V L.',0,0,'R',0);
+  $pdf->Cell(35,5,'',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 5to ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'IMPUESTO L.',0,0,'R',0);
+  $pdf->Cell(35,5,$regv->impuesto,0,0,'R',0);
+  $pdf->SetFont( "Arial", "B", 10);
+  $pdf->Cell(49,5,'C  R  E  D  I  T  O  S','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 6to ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'TOTAL L.',0,0,'R',0);
+  $pdf->Cell(35,5,number_format($regv->monto_total, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'CAJAS Y BANCOS','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 7to ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'RETENCION ISV L.',0,0,'R',0);
+  $pdf->Cell(35,5,'',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
+  // 8vo ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'RETENCION LSR L.',0,0,'R',0);
+  $pdf->Cell(35,5,'',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 9);
+  // 9no ROW
+  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(35,5,'NETO A PAGAR L.',0,0,'R',0);
+  $pdf->Cell(35,5,number_format($regv->monto_total, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "B", 8);
 
-// $pdf->MultiCell(197,4, "as",1);
-// $var="";
-// if ($regv->tipo_impuesto="0.15") {
-//   $var = "ISV";
-// }else {
-//   $var = "ISR";
-// }
-//
-// $pdf->addCadreEurosFrancs("$var"." $regv->tipo_impuesto %");
+  $pdf->Cell(65.7,5,'Responsable','RLT',0,'L',0);
+  $pdf->Cell(65.6,5,'Responsable','RLT',0,'L',0);
+  $pdf->Cell(65.7,5,utf8_decode('Recibí conforme'),'RLT',1,'L',0);
+
+  $pdf->SetFont( "Arial", "", 8);
+  $texta = $regv->usuario;
+  $textb = $regv->usuario;
+  $textc = '';
+
+
+  // $pdf->SetCellMargin(array(7,6,7));
+  $pdf->SetWidths(array(65.7,65.6,65.7));
+  $pdf->SetAligns(array('L','L','L'));
+  $pdf->SetBorders(array('RLB','RLB','RLB'));
+  $pdf->Rowdefault(array($texta,$textb,$textc));
+
+  $pdf->MultiCell(197, 4,'','T');
+
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
-
-
 }
 else
 {
   echo 'No tiene permiso para visualizar el reporte';
 }
-
 }
 ob_end_flush();
 ?>

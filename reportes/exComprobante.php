@@ -872,6 +872,12 @@ function SetAligns($a)
 	$this->aligns=$a;
 }
 
+function SetBorders($bb)
+{
+	//Set the array of column alignments
+	$this->borders=$bb;
+}
+
 function Row($data)
 {
 	//Calculate the height of the row
@@ -943,14 +949,15 @@ function Rowdefault($data)
 	{
 		$w=$this->widths[$i];
 		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+		$bb=isset($this->borders[$i]) ? $this->borders[$i] : 0;
 		//Save the current position
 		$x=$this->GetX();
 		$y=$this->GetY();
 		//Draw the border
-		$this->Rect($x,$y,$w,$h);
+		// $this->Rect($x,$y,$w,$h);
 		//Print the text
 		$this->SetFillColor(184, 215, 232);
-		$this->MultiCell($w,6,$data[$i],1,$a);
+		$this->MultiCell($w,6,$data[$i],$bb,$a);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
