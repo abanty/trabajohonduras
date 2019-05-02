@@ -91,33 +91,25 @@ while ($regd2 = $rsptad2->fetch_object()) {
             $y2   += $size2 + 0;
   }
 
-$rsptad3 = $comprobante->administrar_ordenes_detalle($_GET["id"]);
-// DETALLE CONTABILIDAD
-$cols3=array( "Grupo"=>13,
-             "Subgrupo"=>20,
-             "No. Objeto"=>22,
-             "INTERIORES"=>35,
-            );
 
-$pdf->addCols3( $cols3);
 
-$cols3=array( "Grupo"=>"C",
-             "Subgrupo"=>"C",
-             "No. Objeto"=>"C",
-             "INTERIORES"=>"R",
-            );
-$pdf->addLineFormat( $cols3);
-  while ($regd3 = $rsptad3->fetch_object()) {
-    $line3 = array( "Grupo"=> "$regd3->grupo",
-                  "Subgrupo"=> "$regd3->subgrupo",
-                  "No. Objeto"=> "$regd3->codigo",
-                  "INTERIORES"=> number_format("$regd3->subtot", 2, '.', ','),
+//
 
-                  );
-
-              $size3 = $pdf->addLine3( $y3, $line3 );
-              $y3   += $size3 + 0;
-    }
+// // DETALLE CONTABILIDAD
+// $cols3=array( "Grupo"=>13,
+//              "Subgrupo"=>20,
+//              "No. Objeto"=>22,
+//              "INTERIORES"=>35,
+//             );
+//
+// $pdf->addCols3( $cols3);
+//
+// $cols3=array( "Grupo"=>"C",
+//              "Subgrupo"=>"C",
+//              "No. Objeto"=>"C",
+//              "INTERIORES"=>"R",
+//             );
+// $pdf->addLineFormat( $cols3);
 
 
 //Convertimos el total en letras
@@ -125,18 +117,56 @@ require_once "Letras.php";
 $V=new EnLetras();
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
 $pdf->addCadreTVAs("*** ".$con_letra);
+//
+// //Mostramos el impuesto
+// $pdf->addTVAs($regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
+//
 
-//Mostramos el impuesto
-$pdf->addTVAs($regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
+$pdf->SetFont( "Arial", "B", 8);
+$pdf->SetXY(10,125);
+$pdf->Cell(23,5, "Programa",1,0,'C');
+$pdf->Cell(13,5, "Grupo",1,0,'C');
+$pdf->Cell(20,5, "Subgrupo",1,0,'C');
+$pdf->Cell(22,5, utf8_decode("N° Objetos"),1,0,'C');
+$pdf->Cell(35,5, "INTERIORES",1,0,'C');
+$pdf->Cell(35,5, "VALOR",1,0,'C');
+$pdf->Cell(49,5, "CUENTA DE BALANCE",1,1,'C');
+$pdf->SetFont( "Arial", "", 8);
 
-$var="";
-if ($regv->tipo_impuesto="0.15") {
-  $var = "ISV";
-}else {
-  $var = "ISR";
-}
+$rsptad3 = $comprobante->administrar_ordenes_detalle($_GET["id"]);
 
-$pdf->addCadreEurosFrancs("$var"." $regv->tipo_impuesto %");
+while ($regd3 = $rsptad3->fetch_object()) {
+
+            $text1 = '';
+            $text2 = $regd3->grupo;
+            $text3 = $regd3->subgrupo;
+            $text4 = $regd3->codigo;
+            $text5 = $regd3->subtot;
+            $text6 = '';
+            $text7 = '';
+
+            $pdf->SetWidths(array(23,13,20,22,35,35,49));
+            $pdf->SetAligns(array('C','C','C','C','R','R','R'));
+            $pdf->Roweditcomprobante(array($text1,$text2,$text3,$text4,$text5,$text6,$text7));
+  }
+
+
+  $pdf->Cell(23,5, "",'LRB',0);
+  $pdf->Cell(13,5, "",'LRB',0);
+  $pdf->Cell(20,5, "",'LRB',0);
+  $pdf->Cell(22,5, "",'LRB',0);
+  $pdf->Cell(35,5, "",'LRB',0);
+  $pdf->Cell(35,5, "1,100.55",'LRB',0,'R');
+  $pdf->Cell(49,5, "",'LRB',1);
+// $pdf->MultiCell(197,4, "as",1);
+// $var="";
+// if ($regv->tipo_impuesto="0.15") {
+//   $var = "ISV";
+// }else {
+//   $var = "ISR";
+// }
+//
+// $pdf->addCadreEurosFrancs("$var"." $regv->tipo_impuesto %");
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
 

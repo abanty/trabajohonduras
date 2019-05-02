@@ -330,34 +330,34 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 
 
 // TABLA DETALLE CABECERA
-	$this->Cell(23,5,'Programa',1,0,'C',0);
-	$this->Cell(13,5,'',1,0,'C',0);
-	$this->Cell(20,5,'',1,0,'C',0);
-	$this->Cell(22,5,'',1,0,'C',0);
-	$this->Cell(35,5,'',1,0,'C',0);
-	$this->Cell(35,5,'VALOR',1,0,'C',0);
-	$this->Cell(49,5,'CUENTA DE BALANCE',1,1,'C',0);
+	// $this->Cell(23,5,'Programa',1,0,'C',0);
+	// $this->Cell(13,5,'',1,0,'C',0);
+	// $this->Cell(20,5,'',1,0,'C',0);
+	// $this->Cell(22,5,'',1,0,'C',0);
+	// $this->Cell(35,5,'',1,0,'C',0);
+	// $this->Cell(35,5,'VALOR',1,0,'C',0);
+	// $this->Cell(49,5,'CUENTA DE BALANCE',1,1,'C',0);
 
 
 // TABLA DETALLE ORDER - PROGRAMA ETC
-	$this->Cell(23,38.5,'',1,0,'C',0);
-	$this->Cell(13,38.5,'',1,0,'C',0);
-	$this->Cell(20,38.5,'',1,0,'C',0);
-	$this->Cell(22,38.5,'',1,0,'C',0);
-	$this->Cell(35,38.5,'',1,0,'C',0);
-	$this->Cell(35,38.5,'',1,0,'C',0);
-	$this->Cell(49,38.5,'',1,1,'C',0);
+	// $this->Cell(23,38.5,'',1,0,'C',0);
+	// $this->Cell(13,38.5,'',1,0,'C',0);
+	// $this->Cell(20,38.5,'',1,0,'C',0);
+	// $this->Cell(22,38.5,'',1,0,'C',0);
+	// $this->Cell(35,38.5,'',1,0,'C',0);
+	// $this->Cell(35,38.5,'',1,0,'C',0);
+	// $this->Cell(49,38.5,'',1,1,'C',0);
 
 
 	// DETALLE - DEBITOS - CREDITOS
-	$this->Cell(148,55,'',1,0,'C',0);
-	$this->Cell(49,55,'',1,1,'C',0);
+	// $this->Cell(148,55,'',1,0,'C',0);
+	// $this->Cell(49,55,'',1,1,'C',0);
 
 
 	// FOOTER DE LA TABLA
-	$this->Cell(62,15,'',1,0,'C',0);
-	$this->Cell(73,15,'',1,0,'C',0);
-	$this->Cell(62,15,'',1,1,'C',0);
+	// $this->Cell(62,15,'',1,0,'C',0);
+	// $this->Cell(73,15,'',1,0,'C',0);
+	// $this->Cell(62,15,'',1,1,'C',0);
 
 
 
@@ -404,14 +404,14 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->MultiCell( 50, 4, utf8_decode($tipopago." N°: " ));
 
 	//UBICACION CADENA PROGRAMA
-	$this->SetXY( $r1+4, $y1+95);
-	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 50, 4, str_replace("-","",$programa));
+	// $this->SetXY( $r1+4, $y1+95);
+	// $this->SetFont( "Arial", "B", 8.5);
+	// $this->MultiCell( 50, 4, str_replace("-","",$programa));
 
 	//UBICACION CADENA MONTO SUBTOTAL
-	$this->SetXY( $r1+114, $y1+129.5);
-	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 35, 4,number_format($monto, 2, '.', ','),0,"R");
+	// $this->SetXY( $r1+114, $y1+129.5);
+	// $this->SetFont( "Arial", "B", 8.5);
+	// $this->MultiCell( 35, 4,number_format($monto, 2, '.', ','),0,"R");
 
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -425,66 +425,66 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->MultiCell( 220, 4, utf8_decode("Lps . " ));
 
-	$this->SetXY( $r1+36, $y1+16);
-	$this->SetFont( "Arial", "", 8.5);
-	$this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
+	// $this->SetXY( $r1+36, $y1+16);
+	// $this->SetFont( "Arial", "", 8.5);
+	// $this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
 
-	$this->SetXY( $r1, $y1+24);
-	$this->SetFont( "Arial", "", 7.5);
-	$this->MultiCell( 220, 4, utf8_decode('Por lo siguiente:'));
-
+	// $this->SetXY( $r1, $y1+24);
+	// $this->SetFont( "Arial", "", 7.5);
+	// $this->MultiCell( 220, 4, utf8_decode('Por lo siguiente:'));
+	//
 	$this->SetXY( $r1+4, $y1+28);
 	$this->SetFont( "Arial", "B", 7.5);
 	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
 	$this->SetFont( "Arial", "", 7.5);
 	$this->SetXY( $r1+27, $y1+28.5);
 	$this->MultiCell( 150, 7, utf8_decode(''.$motivopago));
-	$this->SetFont( "Arial", "B", 10);
-	$this->SetXY(11,171);
-	$this->MultiCell( 60, 4, utf8_decode("CMDCIA GRAL. "."\n"."FNH"));
+	// $this->SetFont( "Arial", "B", 10);
+	// $this->SetXY(11,171);
+	// $this->MultiCell( 60, 4, utf8_decode("CMDCIA GRAL. "."\n"."FNH"));
 
 
 	// DEBITOS Y Creditos
 
-	$this->SetFont( "Arial", "B", 10);
-	$this->SetXY(167,171);
-	$this->MultiCell( 60, 4, utf8_decode("D  E  B  I  T  O  S"));
+	// $this->SetFont( "Arial", "B", 10);
+	// $this->SetXY(167,171);
+	// $this->MultiCell( 60, 4, utf8_decode("D  E  B  I  T  O  S"));
+	//
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(160,177);
+	// $this->MultiCell( 60, 4, utf8_decode("GASTOS DE FUNCIONAMIENTO"));
+	//
+	// $this->SetFont( "Arial", "B", 10);
+	// $this->SetXY(165,197);
+	// $this->MultiCell( 60, 4, utf8_decode("C  R  E  D  I  T  O  S"));
+	//
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(160,203);
+	// $this->MultiCell( 60, 4, utf8_decode("CAJAS Y BANCOS"));
+	//
+	// $this->SetFont( "Arial", "B", 8.5);
+	// $this->SetXY(11,226);
+	// $this->MultiCell( 60, 4, utf8_decode("Responsable"));
 
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(160,177);
-	$this->MultiCell( 60, 4, utf8_decode("GASTOS DE FUNCIONAMIENTO"));
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(12,231.5);
+	// $this->MultiCell( 60, 4, strtoupper(utf8_decode($usuario)));
 
-	$this->SetFont( "Arial", "B", 10);
-	$this->SetXY(165,197);
-	$this->MultiCell( 60, 4, utf8_decode("C  R  E  D  I  T  O  S"));
+	// $this->SetFont( "Arial", "B", 8.5);
+	// $this->SetXY(74,226);
+	// $this->MultiCell( 60, 4, utf8_decode("Responsable"));
 
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(160,203);
-	$this->MultiCell( 60, 4, utf8_decode("CAJAS Y BANCOS"));
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(74,231.5);
+	// $this->MultiCell( 60, 4, utf8_decode($usuario));
 
-	$this->SetFont( "Arial", "B", 8.5);
-	$this->SetXY(11,226);
-	$this->MultiCell( 60, 4, utf8_decode("Responsable"));
+	// $this->SetFont( "Arial", "B", 8.5);
+	// $this->SetXY(147,226);
+	// $this->MultiCell( 60, 4, utf8_decode("Recibí conforme"));
 
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(12,231.5);
-	$this->MultiCell( 60, 4, strtoupper(utf8_decode($usuario)));
-
-	$this->SetFont( "Arial", "B", 8.5);
-	$this->SetXY(74,226);
-	$this->MultiCell( 60, 4, utf8_decode("Responsable"));
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(74,231.5);
-	$this->MultiCell( 60, 4, utf8_decode($usuario));
-
-	$this->SetFont( "Arial", "B", 8.5);
-	$this->SetXY(147,226);
-	$this->MultiCell( 60, 4, utf8_decode("Recibí conforme"));
-
-	$this->SetFont( "Arial", "", 8);
-	$this->SetXY(147,231.5);
-	$this->MultiCell( 60, 4, utf8_decode(""));
+	// $this->SetFont( "Arial", "", 8);
+	// $this->SetXY(147,231.5);
+	// $this->MultiCell( 60, 4, utf8_decode(""));
 
 
 }
@@ -850,6 +850,205 @@ function addTVAs( $subtotalorigen, $descuento,$stdesc,$imp,$total,$moneda )
 	$this->SetXY( $re, $y1+53 );
 	$this->Cell( 34,4, number_format($total, 2, '.', ','), '', '', 'R');
 
+}
+
+
+//COMEINZA CLASE EXTENDIDA
+
+function SetWidths($w)
+{
+	//Set the array of column widths
+	$this->widths=$w;
+}
+
+function SetCellMargin($margin){
+     // Set cell margin
+     $this->cMargin = $margin;
+ }
+
+function SetAligns($a)
+{
+	//Set the array of column alignments
+	$this->aligns=$a;
+}
+
+function Row($data)
+{
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=5*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+		$this->Rect($x,$y,$w,$h);
+		//Print the text
+		$this->MultiCell($w,5,$data[$i],0,$a);
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+	//Go to the next line
+	$this->Ln($h);
+}
+
+
+function Roweditcomprobante($data)
+{
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=4*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+		// $this->Rect($x,$y,$w,$h);
+		//Print the text
+		$this->MultiCell($w,4,$data[$i],'LR',$a);
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+	//Go to the next line
+	$this->Ln($h);
+}
+
+function Rowdefault($data)
+{
+	//Calculate the height of the row
+	$nb=0;
+	for($i=0;$i<count($data);$i++)
+		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+	$h=6*$nb;
+	//Issue a page break first if needed
+	$this->CheckPageBreak($h);
+	//Draw the cells of the row
+	for($i=0;$i<count($data);$i++)
+	{
+		$w=$this->widths[$i];
+		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'C';
+		//Save the current position
+		$x=$this->GetX();
+		$y=$this->GetY();
+		//Draw the border
+		$this->Rect($x,$y,$w,$h);
+		//Print the text
+		$this->SetFillColor(184, 215, 232);
+		$this->MultiCell($w,6,$data[$i],1,$a);
+		//Put the position to the right of the cell
+		$this->SetXY($x+$w,$y);
+	}
+	//Go to the next line
+	$this->Ln($h);
+}
+
+function plot_table($widths, $lineheight, $table, $border=1, $aligns=array(), $fills=array(), $links=array()){
+		$func = function($text, $c_width){
+				$len=strlen($text);
+				$twidth = $this->GetStringWidth($text);
+				$split = floor($c_width * $len / $twidth - 0.4 );
+				$w_text = explode( "\n", wordwrap( $text, $split, "\n", true));
+				return $w_text;
+		};
+		foreach ($table as $line){
+				$line = array_map($func, $line, $widths);
+				$maxlines = max(array_map("count", $line));
+				foreach ($line as $key => $cell){
+						$x_axis = $this->getx();
+						$height = $lineheight * $maxlines / count($cell);
+						$len = count($line);
+						$width = (isset($widths[$key]) === TRUE ? $widths[$key] : $widths / count($line));
+						$align = (isset($aligns[$key]) === TRUE ? $aligns[$key] : '');
+						$fill = (isset($fills[$key]) === TRUE ? $fills[$key] : false);
+						$link = (isset($links[$key]) === TRUE ? $links[$key] : '');
+						foreach ($cell as $textline){
+								$this->cell($widths[$key],$height,$textline,0,0,$align,$fill,$link);
+								$height += 2 * $lineheight * $maxlines / count($cell);
+								$this->SetX($x_axis);
+						}
+						if($key == $len - 1){
+								$lbreak=1;
+						}
+						else{
+								$lbreak = 0;
+						}
+						$this->cell($widths[$key],$lineheight * $maxlines, '',$border,$lbreak);
+				}
+		}
+}
+
+function CheckPageBreak($h)
+{
+	//If the height h would cause an overflow, add a new page immediately
+	if($this->GetY()+$h>$this->PageBreakTrigger)
+		$this->AddPage($this->CurOrientation);
+}
+
+function NbLines($w,$txt)
+{
+	//Computes the number of lines a MultiCell of width w will take
+	$cw=&$this->CurrentFont['cw'];
+	if($w==0)
+		$w=$this->w-$this->rMargin-$this->x;
+	$wmax=($w-2*$this->cMargin)*1000/$this->FontSize;
+	$s=str_replace("\r",'',$txt);
+	$nb=strlen($s);
+	if($nb>0 and $s[$nb-1]=="\n")
+		$nb--;
+	$sep=-1;
+	$i=0;
+	$j=0;
+	$l=0;
+	$nl=1;
+	while($i<$nb)
+	{
+		$c=$s[$i];
+		if($c=="\n")
+		{
+			$i++;
+			$sep=-1;
+			$j=$i;
+			$l=0;
+			$nl++;
+			continue;
+		}
+		if($c==' ')
+			$sep=$i;
+		$l+=$cw[$c];
+		if($l>$wmax)
+		{
+			if($sep==-1)
+			{
+				if($i==$j)
+					$i++;
+			}
+			else
+				$i=$sep+1;
+			$sep=-1;
+			$j=$i;
+			$l=0;
+			$nl++;
+		}
+		else
+			$i++;
+	}
+	return $nl;
 }
 
 // add a watermark (temporary estimate, DUPLICATA...)
