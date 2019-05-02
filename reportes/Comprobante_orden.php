@@ -133,16 +133,16 @@ $pdf->Cell(35,5, "VALOR",1,0,'C');
 $pdf->Cell(49,5, "CUENTA DE BALANCE",1,1,'C');
 $pdf->SetFont( "Arial", "", 8);
 
-$rsptad3 = $comprobante->administrar_ordenes_detalle($_GET["id"]);
+$rsptad3 = $comprobante->administrar_ordenes_detalle_grouping($_GET["id"]);
 
 while ($regd3 = $rsptad3->fetch_object()) {
 
             $text1 = '';
             $text2 = $regd3->grupo;
             $text3 = $regd3->subgrupo;
-            $text4 = $regd3->codigo;
-            $text5 = $regd3->subtot;
-            $text6 = '';
+            $text4 = $regd3->cod;
+            $text5 = number_format($regd3->subtot, 2, '.', ',');
+            $text6 = number_format($regd3->total, 2, '.', ',');
             $text7 = '';
 
             $pdf->SetWidths(array(23,13,20,22,35,35,49));
@@ -156,8 +156,22 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->Cell(20,5, "",'LRB',0);
   $pdf->Cell(22,5, "",'LRB',0);
   $pdf->Cell(35,5, "",'LRB',0);
-  $pdf->Cell(35,5, "1,100.55",'LRB',0,'R');
+  $pdf->SetFont( "Arial", "B", 8);
+  $pdf->Cell(35,5, number_format($regv->monto_total, 2, '.', ','),'LRB',0,'R');
   $pdf->Cell(49,5, "",'LRB',1);
+
+
+
+  // DETALLE - DEBITOS - CREDITOSs
+  $pdf->Cell(78,5,'CMDCIA GRAL.','TL',0,'L',0);
+  $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'L',0);
+  $pdf->Cell(35,5,'',0,0,'L',0);
+  $pdf->Cell(49,5,'','TRL',1,'L',0);
+  $pdf->Cell(78,5,'FNH','L',0,'L',0);
+  $pdf->Cell(35,5,'DESCUENTO L.',0,0,'L',0);
+  $pdf->Cell(35,5,'',0,0,'L',0);
+  $pdf->Cell(49,5,'','TRL',1,'L',0);
+
 // $pdf->MultiCell(197,4, "as",1);
 // $var="";
 // if ($regv->tipo_impuesto="0.15") {
