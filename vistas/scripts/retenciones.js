@@ -232,7 +232,7 @@ function agregarDetallefacturas(idcompromisos,numfactura)
     	var subtotal=valorbase;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hide" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
+    	'<td><input type="hidden" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
     	'<td><input type="number" step="0.1" name="valorbase[]" value="'+valorbase+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
