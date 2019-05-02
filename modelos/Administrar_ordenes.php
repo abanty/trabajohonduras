@@ -308,5 +308,24 @@ Class Administrar_ordenes
 		return ejecutarConsulta($sql);
 	}
 
+
+
+	public function administrar_ordenes_detalle_grouping($idadministrar_ordenes){
+		$sql="SELECT p.idpresupuesto_disponible,p.codigo as cod, ''  as uni ,'' as cant,'' as descripcion,'' as precu, '' as subtot,SUM((de.cantidad*de.precio_unitario)) as total
+		FROM detalle_orden de
+		INNER JOIN presupuesto_disponible p
+		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
+		GROUP BY de.idpresupuesto_disponible
+		UNION ALL
+		SELECT p.idpresupuesto_disponible,'' as cod,de.unidad as uni, de.cantidad as cant,de.descripcion as descripcion,de.precio_unitario as precu,de.precio_unitario as subtot,'' as total
+		FROM detalle_orden de
+		INNER JOIN presupuesto_disponible p
+		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
+		order by idpresupuesto_disponible,descripcion";
+		return ejecutarConsulta($sql);
+	}
+
 }
 ?>

@@ -460,7 +460,7 @@ function addLine( $ligne, $tab )
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
-		$this->SetXY( $ordonnee, $ligne-1);
+		$this->SetXY( $ordonnee, $ligne-2);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;

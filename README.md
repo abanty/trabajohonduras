@@ -173,3 +173,29 @@ else
 }
 ob_end_flush();
 ?>
+
+
+
+SELECT
+
+	YEAR(OrderDate) AS OrderYear,
+	NULL AS OrderMonth, --Dummy Column
+	SUM(SubTotal) AS Incomes
+
+FROM Sales.SalesOrderHeader
+
+GROUP BY YEAR(OrderDate)
+
+UNION ALL
+
+SELECT
+
+	YEAR(OrderDate) AS OrderYear,
+	MONTH(OrderDate) AS OrderMonth,
+	SUM(SubTotal) AS Incomes
+
+FROM Sales.SalesOrderHeader
+
+GROUP BY YEAR(OrderDate), MONTH(OrderDate)
+
+ORDER BY OrderYear, OrderMonth;
