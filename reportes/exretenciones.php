@@ -135,7 +135,7 @@ $pdf->SetFont('Arial','',11);
 $pdf->Rowdefault2(array($textj));
 $pdf->Ln(5);
 $pdf->SetFillColor(255, 255, 255);
-$pdf->Cell(180,6,'Atentamente: ',0,1,'L',1);
+$pdf->Cell(180,6,'Atentamente ',0,1,'L',1);
 //Mostramos el documento pdf
 $textfirma1 = "Contralmirante" ;
 $textfirma2 =  "Capitan de Fragata C.G";
