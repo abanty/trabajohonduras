@@ -67,6 +67,7 @@ $y= 63;
 $rsptad = $venta->administrar_ordenes_detalle_grouping($_GET["id"]);
 
 while ($regd = $rsptad->fetch_object()) {
+
   $line = array( "Cod"=> "$regd->cod",
                 "Unidad"=> utf8_decode("$regd->uni"),
                 "Cantidad"=> "$regd->cant",

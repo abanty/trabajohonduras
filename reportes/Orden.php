@@ -311,7 +311,7 @@ function addClientAdresse( $cliente,$domicilio,$email )
 	$this->MultiCell( 220, 4, utf8_decode("Suministre A  :"));
 	$this->SetXY( $r1+25, $y1+8);
 	$this->SetFont( "Arial", "U", 9);
-	$this->MultiCell( 158, 8, strtoupper($cliente) );
+	$this->MultiCell( 158, 8, strtoupper('FUERZA NAVAL DE HONDURAS') );
 
 }
 
@@ -460,6 +460,7 @@ function addLine( $ligne, $tab )
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
+		// $this->SetFont( "Arial", "U", 8.5);
 		$this->SetXY( $ordonnee, $ligne-2);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
