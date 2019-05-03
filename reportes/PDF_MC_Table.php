@@ -194,6 +194,19 @@ function titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2)
 
 }
 
+function titulos_encabezadosentrec($logo1,$ext_logo1,$logo2,$ext_logo2)
+{
+	$x1 = 37;
+	$y1 = 12;
+
+//LOGO 1
+	$this->Image($logo1 , 20 ,10, 25 , 25 , $ext_logo1);
+// LOGO 2
+	$this->Image($logo2 , 140 ,10, 62 , 23.5 , $ext_logo2);
+
+
+}
+
 function plot_table($widths, $lineheight, $table, $border=1, $aligns=array(), $fills=array(), $links=array()){
 		$func = function($text, $c_width){
 				$len=strlen($text);

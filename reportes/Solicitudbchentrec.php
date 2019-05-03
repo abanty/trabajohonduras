@@ -50,7 +50,7 @@ $inicio = strftime("%d de %B del %Y", strtotime($regv->fecha_hora));
 $contactnumtrans = $regv->serie_transf.'-'.$regv->num_transf;
 //Seteamos el tipo de letra y creamos el título de la página. No es un encabezado no se repetirá
 
-$pdf->titulos_encabezados($logo2,$ext_logo2,$logo3,$ext_logo3);
+$pdf->titulos_encabezadosentrec($logo2,$ext_logo2,$logo3,$ext_logo3);
 $pdf->SetFont( "Arial", "", 11);
 $pdf->SetXY(8, 38);
 $pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
