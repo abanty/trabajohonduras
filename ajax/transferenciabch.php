@@ -70,6 +70,7 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
 
  				$urlsolicitudbch='../reportes/Solicitudbch.php?id=';
+				$urlsolicitudbchentrec='../reportes/Solicitudbchentrec.php?id=';
 				$urldemo='../reportes/Autoajust.php?id=';
 				$urldemo2='../reportes/Demo2.php?id=';
 
@@ -94,6 +95,7 @@ switch ($_GET["op"]){
 							</a>
 								<ul class="dropdown-menu">
 								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
+								 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabchentrec.'">Orden de compra</a></li>
 								</ul>
 					</li>',
 
