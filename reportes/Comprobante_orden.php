@@ -106,16 +106,17 @@ $pdf->Cell(35,5, "VALOR",1,0,'C');
 $pdf->Cell(49,5, "CUENTA DE BALANCE",1,1,'C');
 $pdf->SetFont( "Arial", "", 8);
 
-$rsptad3 = $comprobante->administrar_ordenes_detalle_grouping($_GET["id"]);
+$rsptad3 = $comprobante->administrar_ordenes_detalle_sum($_GET["id"]);
 
 while ($regd3 = $rsptad3->fetch_object()) {
 
             $text1 = '';
             $text2 = $regd3->grupo;
             $text3 = $regd3->subgrupo;
-            $text4 = $regd3->cod;
-            $text5 = number_format($regd3->subtot, 2, '.', ',');
-            $text6 = number_format($regd3->total, 2, '.', ',');
+            $text4 = $regd3->codigo;
+            $text5 = number_format($regd3->total, 2, '.', ',');
+            $text6 = '';
+            // number_format($regd3->total, 2, '.', ',');
             $text7 = '';
 
             $pdf->SetWidths(array(23,13,20,22,35,35,49));
