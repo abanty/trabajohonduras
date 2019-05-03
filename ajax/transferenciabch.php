@@ -71,6 +71,7 @@ switch ($_GET["op"]){
 
  				$urlsolicitudbch='../reportes/Solicitudbch.php?id=';
 				$urlsolicitudbchentrec='../reportes/Solicitudbchentrec.php?id=';
+
 				$urldemo='../reportes/Autoajust.php?id=';
 				$urldemo2='../reportes/Demo2.php?id=';
 
@@ -84,6 +85,8 @@ switch ($_GET["op"]){
 							</a>
 								<ul class="dropdown-menu">
 								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
+								 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabch.'">Transferencia entre c </a></li>
+
 								</ul>
 					</li>'.
  					' <button class="btn btn-success btn-sm" onclick="validar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
@@ -95,7 +98,8 @@ switch ($_GET["op"]){
 							</a>
 								<ul class="dropdown-menu">
 								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
-								 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabchentrec.'">Orden de compra</a></li>
+								 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabch.'">Transf entre c</a></li>
+
 								</ul>
 					</li>',
 

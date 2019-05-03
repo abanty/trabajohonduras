@@ -35,10 +35,10 @@ $pdf->SetMargins(15,10,30);
 
 //Seteamos el inicio del margen superior en 25 pixeles
 $y_axis_initial = 0;
-$logo1 = "logo1.jpg";
-$ext_logo1 = "jpg";
-$logo3 = "logo3.png";
-$ext_logo3 = "png";
+$logo2 = "logo2.jpg";
+$ext_logo2 = "jpg";
+$logo3 = "logo3.jpg";
+$ext_logo3 = "jpg";
 
 // En windows
 setlocale(LC_TIME, 'spanish');
@@ -50,7 +50,7 @@ $inicio = strftime("%d de %B del %Y", strtotime($regv->fecha_hora));
 $contactnumtrans = $regv->serie_transf.'-'.$regv->num_transf;
 //Seteamos el tipo de letra y creamos el título de la página. No es un encabezado no se repetirá
 
-$pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
+$pdf->titulos_encabezados($logo2,$ext_logo2,$logo3,$ext_logo3);
 $pdf->SetFont( "Arial", "", 11);
 $pdf->SetXY(8, 38);
 $pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
