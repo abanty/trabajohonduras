@@ -284,7 +284,8 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,$programa,$usuario,$norden,$motivopago,$tipodoc)
+function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$monto,
+$programa,$usuario,$norden,$motivopago,$tipodoc,$fecha)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
@@ -328,39 +329,6 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->Cell(67,6.5,utf8_decode('CONTABILIDAD TÍTULO 11'),0,0,'C',0);
 	$this->Cell(63,6.5,'RAMA DE DEFENSA',0,1,'R',0);
 
-
-// TABLA DETALLE CABECERA
-	// $this->Cell(23,5,'Programa',1,0,'C',0);
-	// $this->Cell(13,5,'',1,0,'C',0);
-	// $this->Cell(20,5,'',1,0,'C',0);
-	// $this->Cell(22,5,'',1,0,'C',0);
-	// $this->Cell(35,5,'',1,0,'C',0);
-	// $this->Cell(35,5,'VALOR',1,0,'C',0);
-	// $this->Cell(49,5,'CUENTA DE BALANCE',1,1,'C',0);
-
-
-// TABLA DETALLE ORDER - PROGRAMA ETC
-	// $this->Cell(23,38.5,'',1,0,'C',0);
-	// $this->Cell(13,38.5,'',1,0,'C',0);
-	// $this->Cell(20,38.5,'',1,0,'C',0);
-	// $this->Cell(22,38.5,'',1,0,'C',0);
-	// $this->Cell(35,38.5,'',1,0,'C',0);
-	// $this->Cell(35,38.5,'',1,0,'C',0);
-	// $this->Cell(49,38.5,'',1,1,'C',0);
-
-
-	// DETALLE - DEBITOS - CREDITOS
-	// $this->Cell(148,55,'',1,0,'C',0);
-	// $this->Cell(49,55,'',1,1,'C',0);
-
-
-	// FOOTER DE LA TABLA
-	// $this->Cell(62,15,'',1,0,'C',0);
-	// $this->Cell(73,15,'',1,0,'C',0);
-	// $this->Cell(62,15,'',1,1,'C',0);
-
-
-
 	// DATOS FOOTER TEXTOS
 	// TEXTOS PDF
 	$this->SetFont( "Arial", "B", 8);
@@ -381,7 +349,7 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->MultiCell( 60, 4, utf8_decode("TEGUCIGALPA, M.D.C. "));
 
 	$this->SetXY(120,115);
-	$this->MultiCell( 60, 4, utf8_decode("05/29/2018 "));
+	$this->MultiCell( 60, 4, $fecha);
 
 	$this->SetFont( "Arial", "B", 8);
 	$this->SetXY(145,92);
@@ -403,16 +371,6 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->MultiCell( 50, 4, utf8_decode($tipopago." N°: " ));
 
-	//UBICACION CADENA PROGRAMA
-	// $this->SetXY( $r1+4, $y1+95);
-	// $this->SetFont( "Arial", "B", 8.5);
-	// $this->MultiCell( 50, 4, str_replace("-","",$programa));
-
-	//UBICACION CADENA MONTO SUBTOTAL
-	// $this->SetXY( $r1+114, $y1+129.5);
-	// $this->SetFont( "Arial", "B", 8.5);
-	// $this->MultiCell( 35, 4,number_format($monto, 2, '.', ','),0,"R");
-
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
 	$this->MultiCell( 220, 4, utf8_decode("La cantidad de:"));
@@ -423,69 +381,18 @@ function addClientAdresse( $proveedor,$banco,$tipopago,$numerotransferencia,$mon
 
 	$this->SetXY( $r1+28, $y1+16);
 	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 220, 4, utf8_decode("Lps . " ));
+	$this->MultiCell( 40, 4, "Lps. ",0);
 
-	// $this->SetXY( $r1+36, $y1+16);
-	// $this->SetFont( "Arial", "", 8.5);
-	// $this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
+	$this->SetXY( $r1+36, $y1+16);
+	$this->SetFont( "Arial", "", 8.5);
+	$this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
 
-	// $this->SetXY( $r1, $y1+24);
-	// $this->SetFont( "Arial", "", 7.5);
-	// $this->MultiCell( 220, 4, utf8_decode('Por lo siguiente:'));
-	//
 	$this->SetXY( $r1+4, $y1+28);
 	$this->SetFont( "Arial", "B", 7.5);
 	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
 	$this->SetFont( "Arial", "", 7.5);
 	$this->SetXY( $r1+27, $y1+28.5);
 	$this->MultiCell( 150, 7, utf8_decode(''.$motivopago));
-	// $this->SetFont( "Arial", "B", 10);
-	// $this->SetXY(11,171);
-	// $this->MultiCell( 60, 4, utf8_decode("CMDCIA GRAL. "."\n"."FNH"));
-
-
-	// DEBITOS Y Creditos
-
-	// $this->SetFont( "Arial", "B", 10);
-	// $this->SetXY(167,171);
-	// $this->MultiCell( 60, 4, utf8_decode("D  E  B  I  T  O  S"));
-	//
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(160,177);
-	// $this->MultiCell( 60, 4, utf8_decode("GASTOS DE FUNCIONAMIENTO"));
-	//
-	// $this->SetFont( "Arial", "B", 10);
-	// $this->SetXY(165,197);
-	// $this->MultiCell( 60, 4, utf8_decode("C  R  E  D  I  T  O  S"));
-	//
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(160,203);
-	// $this->MultiCell( 60, 4, utf8_decode("CAJAS Y BANCOS"));
-	//
-	// $this->SetFont( "Arial", "B", 8.5);
-	// $this->SetXY(11,226);
-	// $this->MultiCell( 60, 4, utf8_decode("Responsable"));
-
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(12,231.5);
-	// $this->MultiCell( 60, 4, strtoupper(utf8_decode($usuario)));
-
-	// $this->SetFont( "Arial", "B", 8.5);
-	// $this->SetXY(74,226);
-	// $this->MultiCell( 60, 4, utf8_decode("Responsable"));
-
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(74,231.5);
-	// $this->MultiCell( 60, 4, utf8_decode($usuario));
-
-	// $this->SetFont( "Arial", "B", 8.5);
-	// $this->SetXY(147,226);
-	// $this->MultiCell( 60, 4, utf8_decode("Recibí conforme"));
-
-	// $this->SetFont( "Arial", "", 8);
-	// $this->SetXY(147,231.5);
-	// $this->MultiCell( 60, 4, utf8_decode(""));
-
 
 }
 

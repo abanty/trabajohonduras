@@ -39,7 +39,7 @@ $pdf->AddPage();
 $pdf->titulos_encabezados(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4),utf8_decode($tittle5));
 
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->banco),utf8_decode($regv->tipo_pago),$regv->numero_transferencia,$regv->subtotal_origen,
-$regv->codigop,$regv->usuario,$regv->num_orden,$regv->descripcion_orden,$regv->tipo_documento);
+$regv->codigop,$regv->usuario,$regv->num_orden,$regv->descripcion_orden,$regv->tipo_documento,$regv->fecha);
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la comprobante
 $cols=array( "Factura"=>21,
@@ -64,6 +64,22 @@ $rsptad = $comprobante->listarFactura_orden_10firts($_GET["id"]);
 
 $rsptad2 = $comprobante->listarFactura_orden_10next($_GET["id"]);
 
+
+
+// for ($i=0; $i < 10; $i++) {
+//   $n_fact = '//';
+//   $fec_fac = '//';
+//   $valfact = '//';
+//
+// $linemine = array( "Factura"=> "$n_fact",
+//                 "Fecha"=> "$fec_fac",
+//                 "Valor"=> "$valfact"
+//             );
+//
+// $size = $pdf->addLine( $y, $linemine );
+// $y   += $size + 0;
+//
+// }
 
 while ($regd = $rsptad->fetch_object()) {
   $line = array( "Factura"=> "$regd->num_factura",
@@ -119,20 +135,24 @@ while ($regd3 = $rsptad3->fetch_object()) {
             // number_format($regd3->total, 2, '.', ',');
             $text7 = '';
 
+
             $pdf->SetWidths(array(23,13,20,22,35,35,49));
             $pdf->SetAligns(array('C','C','C','C','R','R','R'));
-            $pdf->Roweditcomprobante(array($text1,$text2,$text3,$text4,$text5,$text6,$text7));
+            $data = array($text1,$regd3->grupo,$regd3->subgrupo,$regd3->codigo, number_format($regd3->total, 2, '.', ','),$text6,$text7);
+
+            $pdf->Roweditcomprobante($data);
+
   }
 
-  $pdf->Cell(23,5, "",'LRB',0);
-  $pdf->Cell(13,5, "",'LRB',0);
-  $pdf->Cell(20,5, "",'LRB',0);
-  $pdf->Cell(22,5, "",'LRB',0);
-  $pdf->Cell(35,5, "",'LRB',0);
+  $pdf->Cell(23,-4, "",0,0);
+  $pdf->Cell(13,-4, "",0,0);
+  $pdf->Cell(20,-4, "",0,0);
+  $pdf->Cell(22,-4, "",0,0);
+  $pdf->Cell(35,-4, "",0,0);
   $pdf->SetFont( "Arial", "B", 8);
-  $pdf->Cell(35,5, number_format($regv->subtotal_origen, 2, '.', ','),'LRB',0,'R');
-  $pdf->Cell(49,5, "",'LRB',1);
-
+  $pdf->Cell(35,-4,number_format($regv->subtotal_origen."", 2, '.', ','),0,0,'R');
+  $pdf->Cell(49,-4, "",'T',1);
+  $pdf->Ln(4);
   // DETALLE - DEBITOS - CREDITOS
   // ESPACIO O MARGEN TOP
   $pdf->Cell(148,2,'','TL',0,'L',0);
@@ -218,6 +238,8 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->Rowdefault(array($texta,$textb,$textc));
 
   $pdf->MultiCell(197, 4,'','T');
+  $pdf->SetY(130);
+  $pdf->Cell(23,5, $regv->codigop,0,1,'C');
 
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
