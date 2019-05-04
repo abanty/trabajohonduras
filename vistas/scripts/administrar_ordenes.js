@@ -353,7 +353,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								/*DESCRIPCION*/
 								'<td role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
 								/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
-								'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" value="'+precio_unitario+'"></td>'+
+								'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
 								/*SUB TOTAL*/
 								'<td role="cell"><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
 								/*CAMPO OCULTO PRESUPUESTO_DISPONIBLE*/
@@ -461,8 +461,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 			var precic_unit_valor = parseFloat(newprecic.replace(/,/g, ''));
 			var preci_unit_valor = parseFloat(newpreci.replace(/,/g, ''));
 
-			console.log(preci_unit_valor);
-
 			if (preci_unit_valor > 0) {
 					preci.style.background = '#fff';
 					preci.style.color = '#000000';
@@ -486,15 +484,33 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 				var resultx = result.filter(function(v, i) {
 					if ((v["subtotales"] > v["montodisponible"])) {
-							swal({
-								type: 'warning',
-								title: 'Oops...',
-								text: 'Insuficiente Saldo para realizar una transacción',
+							// swal({
+							// 	type: 'warning',
+							// 	title: 'Oops...',
+							// 	text: 'Insuficiente Saldo para realizar una transacción',
+							// }).catch(swal.noop);
+						swal({
+							  title: 'Insuficiente Saldo presupuestal',
+								text: '¿desea Omitir la restriccion?'
+							  type: 'error',
+							  showCancelButton: true,
+							  confirmButtonColor: '#d33',
+								allowOutsideClick: false,
+							  cancelButtonColor: '#282c34',
+								confirmButtonText: 'NO',
+  							cancelButtonText: 'SI',
+								reverseButtons: true
+							}).then((resultado) => {
+							  if (resultado) {
+									precic.style.color = '#dd4b39';
+									precic.style.background = '#ffdfdf';
+									precic.value = 0;
+									subtc.value =  0;
+							  }
+
 							}).catch(swal.noop);
+
 							precic.style.color = '#dd4b39';
-							precic.style.background = '#ffdfdf';
-							precic_unit_valor = 0;
-							subtc.value =  0;
 							document.getElementsByName("subtotal")[contenido].innerHTML = "Lps. " + parseFloat(Math.round(subtc.value * 100) / 100).toFixed(2);
 					}
 				})
