@@ -190,7 +190,6 @@ switch ($_GET["op"]){
 
 	break;
 
-	break;
 	case "selectProveedores":
 		require_once "../modelos/Proveedores.php";
 		$proveedores = new Proveedores();
@@ -217,8 +216,6 @@ switch ($_GET["op"]){
 
 	break;
 
-
-	break;
 
 	case "selectPrograma":
 		require_once "../modelos/Programa.php";
