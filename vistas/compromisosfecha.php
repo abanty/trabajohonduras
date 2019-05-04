@@ -16,7 +16,7 @@ if ($_SESSION['compromisosp']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -49,7 +49,7 @@ if ($_SESSION['compromisosp']==1)
                             <th>Valor</th>
                             <th>Estado</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot  style="background-color:#d2d6de">
                             <th>Fecha</th>
@@ -63,7 +63,7 @@ if ($_SESSION['compromisosp']==1)
                           </tfoot >
                         </table>
                     </div>
-                    
+
                     <!--Fin centro -->
                   </div><!-- /.box -->
               </div><!-- /.col -->
@@ -82,9 +82,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/compromisosfecha.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>
-
-

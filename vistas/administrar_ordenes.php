@@ -279,7 +279,10 @@ if ($_SESSION['admonoc']==1)
                               <option value="O/C">O/C</option>
                             </select>
                           </div>
-
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                            <label>Unidad de Superficie (*):</label>
+                            <select id="iduuss" name="iduuss" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un unidad"></select>
+                          </div>
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; padding:20px;">
 
                             <a data-toggle="modal" href="#myModal">

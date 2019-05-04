@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2019 a las 05:22:40
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.4
+-- Tiempo de generación: 04-05-2019 a las 06:08:40
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,6 +33,7 @@ CREATE TABLE `administrar_ordenes` (
   `idproveedores` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `idprograma` int(11) NOT NULL,
+  `iduuss` int(11) NOT NULL,
   `num_orden` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `num_comprobante` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `titulo_orden` varchar(80) NOT NULL,
@@ -51,8 +52,9 @@ CREATE TABLE `administrar_ordenes` (
 -- Volcado de datos para la tabla `administrar_ordenes`
 --
 
-INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
-(1, 10, 1, 1, '001', '0001', 'Recursos para viviendas', 'Matariales para construcciones e edificaciones en el area de aterrizaje', 'O/C', '0.15', '2019-04-27', '2617.50', '17450.00', '10.00', '20067.50', 'Aceptado');
+INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
+(1, 10, 1, 1, 0, '001', '0001', 'Recursos para viviendas', 'Matariales para construcciones e edificaciones en el area de aterrizaje', 'O/C', '0.15', '2019-04-27', '2617.50', '17450.00', '10.00', '20067.50', 'Aceptado'),
+(2, 26, 1, 5, 0, '257', '2578', 'Materiales', 'pago de luz', 'O/C', '', '2019-05-02', '0.00', '6200.00', '0.00', '6200.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -355,6 +357,13 @@ CREATE TABLE `detalle_ingreso` (
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `detalle_ingreso`
+--
+
+INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
+(1, 3, 2, '1000000.00');
+
 -- --------------------------------------------------------
 
 --
@@ -376,7 +385,11 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(5, 1, 2, 'GALONASASO', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00');
+(5, 1, 2, 'GALONASASO', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00'),
+(6, 2, 1, 'GALON', 1000, 'diesel', '2.00'),
+(7, 2, 1, 'GALON', 1000, 'diesel', '2.00'),
+(8, 2, 1, 'GALON', 1000, 'diesel', '2.00'),
+(9, 2, 1, 'GALON', 100, 'diesel', '2.00');
 
 -- --------------------------------------------------------
 
@@ -399,7 +412,9 @@ INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `id
 (1, 1, 35, '10.00'),
 (2, 1, 36, '5.00'),
 (3, 1, 37, '15.00'),
-(4, 1, 38, '30.00');
+(4, 1, 38, '30.00'),
+(5, 2, 35, '45780.00'),
+(6, 2, 36, '4570.00');
 
 -- --------------------------------------------------------
 
@@ -442,7 +457,8 @@ CREATE TABLE `factura_orden` (
 
 INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
 (2, 1, '00012225', '2019-04-27', '15000.00'),
-(3, 1, '00012226', '2019-04-27', '2500.00');
+(3, 1, '00012226', '2019-04-27', '2500.00'),
+(4, 2, '777', '2019-05-02', '6200.00');
 
 -- --------------------------------------------------------
 
@@ -465,7 +481,8 @@ CREATE TABLE `ingreso` (
 
 INSERT INTO `ingreso` (`idingreso`, `idusuario`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
 (1, 1, '2019-01-09 00:00:00', 777, '12000000.00', 'Aceptado'),
-(2, 1, '2019-02-12 00:00:00', 770, '12000000.00', 'Aceptado');
+(2, 1, '2019-02-12 00:00:00', 770, '12000000.00', 'Aceptado'),
+(3, 1, '2019-05-03 00:00:00', 4545, '1000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -847,7 +864,8 @@ CREATE TABLE `retenciones` (
 --
 
 INSERT INTO `retenciones` (`idretenciones`, `idproveedores`, `rtn`, `numdocumento`, `fecha_hora`, `tipo_impuesto`, `descripcion`, `base_imponible`, `imp_retenido`, `total_oc`, `estado`) VALUES
-(1, 9, '0001', '002', '2019-04-30', '0.15', 'dfdsfsd', '60.00', '9.00', '69.00', 'Aceptado');
+(1, 9, '0001', '002', '2019-04-30', '0.15', 'dfdsfsd', '60.00', '9.00', '69.00', 'Aceptado'),
+(2, 10, '1503198501083', '544', '2019-04-30', '0.15', 'HJGHHJHHSGFHSGHFG', '50350.00', '7552.50', '57902.50', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -960,6 +978,41 @@ INSERT INTO `usuario_permiso` (`idusuario_permiso`, `idusuario`, `idpermiso`) VA
 (15, 3, 4),
 (16, 3, 6);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `uuss`
+--
+
+CREATE TABLE `uuss` (
+  `iduuss` int(11) NOT NULL,
+  `nombreuuss` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `rhfn` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `uuss`
+--
+
+INSERT INTO `uuss` (`iduuss`, `nombreuuss`, `rhfn`) VALUES
+(1, 'UU.RR', ''),
+(2, 'L.P. CHAMELECOM', 'FNH-8501'),
+(3, 'LCM-WURUNTA', 'FNH-7303'),
+(4, 'L.P. TEGUCIGALPA', 'FNH-1071'),
+(5, 'L.P. HONDURAS', 'FNH-1053'),
+(6, 'L.P. GUAYMURAS', 'FNH-1051'),
+(7, 'B.L. PUNTA SAL', ''),
+(8, 'LCW-CAXINAS', 'FNH-1491'),
+(9, 'MOTORES FUERA DE BORDA', ''),
+(10, 'P.O. MORAZAN', 'FNH-1402'),
+(11, 'P.O. LEMPIRA', 'FNH-1401'),
+(12, 'L.P. CHOLUTECA', 'FNH-6505'),
+(13, 'BAL-C ', 'FNH-1611'),
+(14, 'O.P.V. GRAL CABAÑAS', ''),
+(15, 'L.P. GUASCORAN', ''),
+(16, 'B.L. YOJOA II', ''),
+(17, 'B.L. BRUS LAGUNA', '');
+
 --
 -- Índices para tablas volcadas
 --
@@ -971,7 +1024,8 @@ ALTER TABLE `administrar_ordenes`
   ADD PRIMARY KEY (`idadministrar_ordenes`),
   ADD KEY `adm_or_usuarios` (`idusuario`),
   ADD KEY `adm_or_proveedores` (`idproveedores`),
-  ADD KEY `adm_or_programa` (`idprograma`);
+  ADD KEY `adm_or_programa` (`idprograma`),
+  ADD KEY `iduuss` (`iduuss`);
 
 --
 -- Indices de la tabla `bancos`
@@ -1140,6 +1194,12 @@ ALTER TABLE `usuario_permiso`
   ADD KEY `idusuario` (`idusuario`);
 
 --
+-- Indices de la tabla `uuss`
+--
+ALTER TABLE `uuss`
+  ADD PRIMARY KEY (`iduuss`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -1147,7 +1207,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1195,19 +1255,19 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1219,13 +1279,13 @@ ALTER TABLE `dtransf_ctaspg`
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -1249,7 +1309,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `retenciones`
 --
 ALTER TABLE `retenciones`
-  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
@@ -1274,6 +1334,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `usuario_permiso`
   MODIFY `idusuario_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `uuss`
+--
+ALTER TABLE `uuss`
+  MODIFY `iduuss` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas
