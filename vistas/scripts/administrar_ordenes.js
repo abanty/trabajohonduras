@@ -20,14 +20,14 @@ function init(){
 	{
 		guardaryeditar(e);
 	});
-	//Cargamos los items al select cliente
+	//Cargamos los items al select Proveedores
 	$.post("../ajax/administrar_ordenes.php?op=selectProveedores", function(r){
 	            $("#idproveedores").html(r);
 	            $('#idproveedores').selectpicker('refresh');
 	});
 
 
-	//Cargamos los items al select cliente
+	//Cargamos los items al select Progra,a
 	$.post("../ajax/administrar_ordenes.php?op=selectPrograma", function(r){
 	            $("#idprograma").html(r);
 	            $('#idprograma').selectpicker('refresh');
@@ -39,6 +39,13 @@ function init(){
 	            $("#idctasbancarias").html(r);
 	            $('#idctasbancarias').selectpicker('refresh');
 	});
+
+
+	//Seleccionamos nombre de la tabla Uuss
+		$.post("../ajax/administrar_ordenes.php?op=selectUuss", function(r){
+		            $("#iduuss").html(r);
+		            $('#iduuss').selectpicker('refresh');
+		});
 
 
 }
@@ -62,6 +69,8 @@ function limpiar()
 	$("#tipo_impuesto").selectpicker('refresh');
 	$("#idprograma").selectpicker('val',"");
 	$("#idprograma").selectpicker('refresh');
+	$("#iduuss").selectpicker('val',"");
+	$("#iduuss").selectpicker('refresh');
 	$("#idproveedores").selectpicker('val',"");
 	$("#idproveedores").selectpicker('refresh');
 

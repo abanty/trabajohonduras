@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-05-2019 a las 06:08:40
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 04-05-2019 a las 09:26:05
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -53,8 +53,7 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
-(1, 10, 1, 1, 0, '001', '0001', 'Recursos para viviendas', 'Matariales para construcciones e edificaciones en el area de aterrizaje', 'O/C', '0.15', '2019-04-27', '2617.50', '17450.00', '10.00', '20067.50', 'Aceptado'),
-(2, 26, 1, 5, 0, '257', '2578', 'Materiales', 'pago de luz', 'O/C', '', '2019-05-02', '0.00', '6200.00', '0.00', '6200.00', 'Aceptado');
+(1, 9, 1, 1, 15, '001', '0001', 'Materiales', 'sdfdsf', 'Fondo Rotatorio', '0.15', '2019-05-04', '111.00', '740.00', '10.00', '851.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -239,7 +238,8 @@ CREATE TABLE `contabilidad` (
 --
 
 INSERT INTO `contabilidad` (`idcontabilidad`, `idadministrar_ordenes`, `idctasbancarias`, `tipo_pago`, `numero_transferencia`, `debitos`, `creditos`, `contabilidad`, `fechacreacion`, `fecha_actualizacion`) VALUES
-(1, 1, 2, 'Deposito', 122254587, 'Gastos de administracion', 'ok', 'ok', NULL, NULL);
+(1, 1, 1, 'Cheque', 2147483647, 'GASTOS DE ADMINISTRACION', 'CAJAS Y BANCOS', 'OK', NULL, NULL),
+(2, 2, 1, 'Deposito', 1252555874, 'GASTOS DE ADMINISTRACION', 'cajas y bancos', 'ok', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -357,13 +357,6 @@ CREATE TABLE `detalle_ingreso` (
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- Volcado de datos para la tabla `detalle_ingreso`
---
-
-INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
-(1, 3, 2, '1000000.00');
-
 -- --------------------------------------------------------
 
 --
@@ -385,11 +378,19 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(5, 1, 2, 'GALONASASO', 13, 'Matariales para construcciones e edificaciones en el area de aterrizaje', '20.00'),
-(6, 2, 1, 'GALON', 1000, 'diesel', '2.00'),
-(7, 2, 1, 'GALON', 1000, 'diesel', '2.00'),
-(8, 2, 1, 'GALON', 1000, 'diesel', '2.00'),
-(9, 2, 1, 'GALON', 100, 'diesel', '2.00');
+(1, 1, 1, 'metros', 5, 'Vigas para sostén superior techado', '150.55'),
+(2, 1, 2, 'litros', 2, 'Pintura acrílica con esmalte para decorado', '111.11'),
+(3, 1, 3, 'pulgadas', 10, 'Ternos y clavos de acero para paredes con soporte contundente', '112.50'),
+(4, 1, 4, 'galones', 11, 'Galones de gasolina para mezcla decisiva de pegamento', '55.20'),
+(5, 1, 4, 'envases', 21, 'Envases de aerosoles para ambiente', '11.52'),
+(6, 1, 3, 'botellas', 8, 'Botellas de aguas para trabajadores', '225.25'),
+(7, 1, 2, 'pomos', 9, 'Pegamento super fuerte para paredes', '14.40'),
+(8, 1, 3, 'cubetas', 7, 'Pintura moderna con soporte a manchas y rayas', '14.50'),
+(9, 2, 1, 'GALÓN', 10, 'DIESEL', '81.57'),
+(10, 2, 1, 'GALÓN', 10, 'DIESEL', '81.57'),
+(11, 2, 1, 'GALÓN', 10, 'DIESEL', '81.57'),
+(12, 2, 1, 'GALÓN', 10, 'DIESEL', '81.57'),
+(13, 1, 1, 'mts', 5, 'gfdfdsf', '150.00');
 
 -- --------------------------------------------------------
 
@@ -413,8 +414,9 @@ INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `id
 (2, 1, 36, '5.00'),
 (3, 1, 37, '15.00'),
 (4, 1, 38, '30.00'),
-(5, 2, 35, '45780.00'),
-(6, 2, 36, '4570.00');
+(5, 2, 35, '15.00'),
+(6, 2, 36, '34.00'),
+(7, 2, 37, '33.00');
 
 -- --------------------------------------------------------
 
@@ -451,15 +453,6 @@ CREATE TABLE `factura_orden` (
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `factura_orden`
---
-
-INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
-(2, 1, '00012225', '2019-04-27', '15000.00'),
-(3, 1, '00012226', '2019-04-27', '2500.00'),
-(4, 2, '777', '2019-05-02', '6200.00');
-
 -- --------------------------------------------------------
 
 --
@@ -481,8 +474,7 @@ CREATE TABLE `ingreso` (
 
 INSERT INTO `ingreso` (`idingreso`, `idusuario`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
 (1, 1, '2019-01-09 00:00:00', 777, '12000000.00', 'Aceptado'),
-(2, 1, '2019-02-12 00:00:00', 770, '12000000.00', 'Aceptado'),
-(3, 1, '2019-05-03 00:00:00', 4545, '1000000.00', 'Aceptado');
+(2, 1, '2019-02-12 00:00:00', 770, '12000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -865,7 +857,7 @@ CREATE TABLE `retenciones` (
 
 INSERT INTO `retenciones` (`idretenciones`, `idproveedores`, `rtn`, `numdocumento`, `fecha_hora`, `tipo_impuesto`, `descripcion`, `base_imponible`, `imp_retenido`, `total_oc`, `estado`) VALUES
 (1, 9, '0001', '002', '2019-04-30', '0.15', 'dfdsfsd', '60.00', '9.00', '69.00', 'Aceptado'),
-(2, 10, '1503198501083', '544', '2019-04-30', '0.15', 'HJGHHJHHSGFHSGHFG', '50350.00', '7552.50', '57902.50', 'Aceptado');
+(2, 9, '32432', '43243', '2019-05-01', '0.15', 'fdsfdsfsd', '82.00', '12.30', '94.30', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -995,23 +987,24 @@ CREATE TABLE `uuss` (
 --
 
 INSERT INTO `uuss` (`iduuss`, `nombreuuss`, `rhfn`) VALUES
-(1, 'UU.RR', ''),
-(2, 'L.P. CHAMELECOM', 'FNH-8501'),
-(3, 'LCM-WURUNTA', 'FNH-7303'),
-(4, 'L.P. TEGUCIGALPA', 'FNH-1071'),
-(5, 'L.P. HONDURAS', 'FNH-1053'),
-(6, 'L.P. GUAYMURAS', 'FNH-1051'),
-(7, 'B.L. PUNTA SAL', ''),
-(8, 'LCW-CAXINAS', 'FNH-1491'),
-(9, 'MOTORES FUERA DE BORDA', ''),
-(10, 'P.O. MORAZAN', 'FNH-1402'),
-(11, 'P.O. LEMPIRA', 'FNH-1401'),
-(12, 'L.P. CHOLUTECA', 'FNH-6505'),
-(13, 'BAL-C ', 'FNH-1611'),
-(14, 'O.P.V. GRAL CABAÑAS', ''),
-(15, 'L.P. GUASCORAN', ''),
-(16, 'B.L. YOJOA II', ''),
-(17, 'B.L. BRUS LAGUNA', '');
+(1, '-', '-'),
+(2, 'UU.RR', ''),
+(3, 'L.P. CHAMELECOM', 'FNH-8501'),
+(4, 'LCM-WURUNTA', 'FNH-7303'),
+(5, 'L.P. TEGUCIGALPA', 'FNH-1071'),
+(6, 'L.P. HONDURAS', 'FNH-1053'),
+(7, 'L.P. GUAYMURAS', 'FNH-1051'),
+(8, 'B.L. PUNTA SAL', ''),
+(9, 'LCW-CAXINAS', 'FNH-1491'),
+(10, 'MOTORES FUERA DE BORDA', ''),
+(11, 'P.O. MORAZAN', 'FNH-1402'),
+(12, 'P.O. LEMPIRA', 'FNH-1401'),
+(13, 'L.P. CHOLUTECA', 'FNH-6505'),
+(14, 'BAL-C ', 'FNH-1611'),
+(15, 'O.P.V. GRAL CABAÑAS', ''),
+(16, 'L.P. GUASCORAN', ''),
+(17, 'B.L. YOJOA II', ''),
+(18, 'B.L. BRUS LAGUNA', '');
 
 --
 -- Índices para tablas volcadas
@@ -1025,7 +1018,7 @@ ALTER TABLE `administrar_ordenes`
   ADD KEY `adm_or_usuarios` (`idusuario`),
   ADD KEY `adm_or_proveedores` (`idproveedores`),
   ADD KEY `adm_or_programa` (`idprograma`),
-  ADD KEY `iduuss` (`iduuss`);
+  ADD KEY `adm_or_uuss` (`iduuss`);
 
 --
 -- Indices de la tabla `bancos`
@@ -1207,7 +1200,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1231,7 +1224,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
@@ -1255,19 +1248,19 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1279,13 +1272,13 @@ ALTER TABLE `dtransf_ctaspg`
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -1339,7 +1332,7 @@ ALTER TABLE `usuario_permiso`
 -- AUTO_INCREMENT de la tabla `uuss`
 --
 ALTER TABLE `uuss`
-  MODIFY `iduuss` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `iduuss` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas
@@ -1351,7 +1344,8 @@ ALTER TABLE `uuss`
 ALTER TABLE `administrar_ordenes`
   ADD CONSTRAINT `adm_or_programa` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `adm_or_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `adm_or_usuarios` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `adm_or_usuarios` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `adm_or_uuss` FOREIGN KEY (`iduuss`) REFERENCES `uuss` (`iduuss`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `compromisos`

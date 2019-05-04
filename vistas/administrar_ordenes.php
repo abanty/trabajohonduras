@@ -245,7 +245,7 @@ if ($_SESSION['admonoc']==1)
                             <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
                           </div>
 
-                          <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                          <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-4 col-sm-6 col-xs-12">
                             <label>Tipo impuesto(*):</label>
                             <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">
                               <option value="0.15">ISV(15%)</option>
@@ -255,7 +255,7 @@ if ($_SESSION['admonoc']==1)
 
                           <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <label>Descripcion:</label>
-                            <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="4" cols="50"></textarea>
+                            <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="8" cols="50"></textarea>
 
                           </div>
 
@@ -279,16 +279,18 @@ if ($_SESSION['admonoc']==1)
                               <option value="O/C">O/C</option>
                             </select>
                           </div>
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Unidad de Superficie (*):</label>
-                            <select id="iduuss" name="iduuss" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un unidad"></select>
-                          </div>
+
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; padding:20px;">
 
                             <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Objeto Gasto</button>
                             </a>
 
+                          </div>
+
+                          <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <label>Unidad de Superficie (*):</label>
+                            <select id="iduuss" name="iduuss" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un unidad"></select>
                           </div>
 
 
