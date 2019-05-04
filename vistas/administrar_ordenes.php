@@ -244,7 +244,7 @@ if ($_SESSION['admonoc']==1)
                             <label>Programa(*):</label>
                             <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
                           </div>
-
+<!-- <input type="text" class=""  id="currency" name=""> -->
                           <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-4 col-sm-6 col-xs-12">
                             <label>Tipo impuesto(*):</label>
                             <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">

@@ -6,6 +6,7 @@
     </footer>
     <!-- jQuery -->
     <script src="../public/js/jquery-3.1.1.min.js"></script>
+    <script src="../public/maskmoney/jquery.maskMoney.js" type="text/javascript"></script>
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <!-- Bootstrap 3.3.5 -->
     <script src="../public/js/bootstrap.min.js"></script>
