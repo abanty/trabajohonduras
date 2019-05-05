@@ -326,8 +326,6 @@ var cont_factura=0;
 var detalles=0;
 var detalles_factura=0;
 $("#btnGuardar").hide();
-var array = [];
-var contenido = 0;
 
 
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
@@ -338,25 +336,38 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							  	var descripcion = "";
 							  	var precio_unitario = 0;
 									// getvalue('+cont+')
-					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
+					    if (idpresupuesto_disponible!="")
 					    {
 					    var subtotal= cantidad*precio_unitario;
 							var fila='<tr role="row" class="filas" id="fila'+cont+'">'+
-					    	'<td role="cell" class="rowperson"><button type="button" class="btn btn-danger btn-sm" onclick="eliminarDetalle('+cont+')"><i class="fas fa-trash-alt"></i></button></td>'+
-					    	'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
+								/*BOTON ELIMINAR FILAS*/
+								'<td role="cell" class="rowperson"><button type="button" class="btn btn-danger btn-sm" onclick="eliminarDetalle('+cont+')"><i class="fas fa-trash-alt"></i></button></td>'+
+								/*IDPRESUPUESTO Y CODIGO*/
+								'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
+								/*UNIDAD*/
 								'<td role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
-								'<td role="cell"><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+								/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
+								'<td role="cell"><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+								/*DESCRIPCION*/
 								'<td role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
-					    	'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" step=".01" style="width: 140px;" min="0" name="precio_unitario[]" value="'+precio_unitario+'"></td>'+
-					    	'<td role="cell"><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
+								/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
+								'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
+								/*SUB TOTAL*/
+								'<td role="cell"><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
+								/*CAMPO OCULTO PRESUPUESTO_DISPONIBLE*/
 								'<td role="cell" style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
+								/*CAMPO OCULTO CODIGO*/
 								'<td role="cell" style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
-					    	'</tr>';
-					    	cont++;
-					    	detalles=detalles+1;
-					    	$('#detalles').append(fila);
-					    	modificarSubototales();
+							'</tr>';
 
+					    cont++;
+					    detalles=detalles+1;
+							$(function() {
+								$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+							});
+					   	$('#detalles').append(fila);
+
+					   	modificarSubototales();
 					    }
 					    else
 					    {
@@ -423,7 +434,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
  function modificarSubototales()
   {
-		array= [];
 		var totalprecio = 0;
 		var idpre = document.getElementsByName("idpresupuesto_disponible[]");
   	var cant = document.getElementsByName("cantidad[]");
@@ -435,52 +445,24 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
     for (var i = 0; i <cant.length; i++) {
 			var idprec=idpre[i];
     	var canti=cant[i];
-    	var precic=pre[contenido];
 			var preci=pre[i];
     	var subt=sub[i];
-			var subtc=sub[contenido];
 			var code=cod[i];
 			var presdis=presu[i];
 
-			if (preci.value > 0) {
+			var newpreci = preci.value;
+			var preci_unit_valor = parseFloat(newpreci.replace(/,/g, ''));
+
+			if (preci_unit_valor > 0) {
 					preci.style.background = '#fff';
 					preci.style.color = '#000000';
 				  preci.style.fontWeight="bold";
 			}
 
-				subt.value=(canti.value*preci.value);
-
-				array.push({montodisponible:presdis.value, subtotales:subt.value});
-
-				var map = array.reduce(function (map, e) {
-					map[e.montodisponible] = +e.subtotales + (map[e.montodisponible] || 0)
-					return map
-				}, {})
-
-
-
-				var result = Object.keys(map).map(function (k) {
-					return { montodisponible: k*1, subtotales: map[k]}
-				})
-
-				var resultx = result.filter(function(v, i) {
-					if ((v["subtotales"] > v["montodisponible"])) {
-							swal({
-								type: 'warning',
-								title: 'Oops...',
-								text: 'Insuficiente Saldo para realizar una transacción',
-							}).catch(swal.noop);
-							precic.style.color = '#dd4b39';
-							precic.style.background = '#ffdfdf';
-							precic.value = 0;
-							subtc.value =  0;
-							document.getElementsByName("subtotal")[contenido].innerHTML = "Lps. " + parseFloat(Math.round(subtc.value * 100) / 100).toFixed(2);
-					}
-				})
+				subt.value=(canti.value*preci_unit_valor);
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
-			console.log(result);
     calcularTotales();
   }
 
