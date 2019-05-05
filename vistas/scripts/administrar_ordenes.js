@@ -326,8 +326,6 @@ var cont_factura=0;
 var detalles=0;
 var detalles_factura=0;
 $("#btnGuardar").hide();
-var array = [];
-var contenido = 0;
 
 
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
@@ -338,7 +336,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							  	var descripcion = "";
 							  	var precio_unitario = 0;
 									// getvalue('+cont+')
-					    if ((idpresupuesto_disponible!="")&&(presupuestoformat>0))
+					    if (idpresupuesto_disponible!="")
 					    {
 					    var subtotal= cantidad*precio_unitario;
 							var fila='<tr role="row" class="filas" id="fila'+cont+'">'+
@@ -436,7 +434,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
  function modificarSubototales()
   {
-		array= [];
 		var totalprecio = 0;
 		var idpre = document.getElementsByName("idpresupuesto_disponible[]");
   	var cant = document.getElementsByName("cantidad[]");
@@ -448,17 +445,12 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
     for (var i = 0; i <cant.length; i++) {
 			var idprec=idpre[i];
     	var canti=cant[i];
-    	var precic=pre[contenido];
 			var preci=pre[i];
     	var subt=sub[i];
-			var subtc=sub[contenido];
 			var code=cod[i];
 			var presdis=presu[i];
 
-			var newprecic =	precic.value;
 			var newpreci = preci.value;
-
-			var precic_unit_valor = parseFloat(newprecic.replace(/,/g, ''));
 			var preci_unit_valor = parseFloat(newpreci.replace(/,/g, ''));
 
 			if (preci_unit_valor > 0) {
@@ -469,55 +461,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 				subt.value=(canti.value*preci_unit_valor);
 
-				array.push({montodisponible:presdis.value, subtotales:subt.value});
-
-				var map = array.reduce(function (map, e) {
-					map[e.montodisponible] = +e.subtotales + (map[e.montodisponible] || 0)
-					return map
-				}, {})
-
-
-
-				var result = Object.keys(map).map(function (k) {
-					return { montodisponible: k*1, subtotales: map[k]}
-				})
-
-				var resultx = result.filter(function(v, i) {
-					if ((v["subtotales"] > v["montodisponible"])) {
-							// swal({
-							// 	type: 'warning',
-							// 	title: 'Oops...',
-							// 	text: 'Insuficiente Saldo para realizar una transacción',
-							// }).catch(swal.noop);
-						swal({
-							  title: 'Insuficiente Saldo presupuestal',
-								text: '¿Desea Omitir la restriccion?',
-							  type: 'error',
-							  showCancelButton: true,
-							  confirmButtonColor: '#d33',
-								allowOutsideClick: false,
-							  cancelButtonColor: '#282c34',
-								confirmButtonText: 'NO',
-  							cancelButtonText: 'SI',
-								reverseButtons: true
-							}).then((resultado) => {
-							  if (resultado) {
-									precic.style.color = '#dd4b39';
-									precic.style.background = '#ffdfdf';
-									precic.value = 0;
-									subtc.value =  0;
-							  }
-
-							}).catch(swal.noop);
-
-							precic.style.color = '#dd4b39';
-							document.getElementsByName("subtotal")[contenido].innerHTML = "Lps. " + parseFloat(Math.round(subtc.value * 100) / 100).toFixed(2);
-					}
-				})
-
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
-			console.log(contenido+result);
     calcularTotales();
   }
 
