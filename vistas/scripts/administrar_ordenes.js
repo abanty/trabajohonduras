@@ -318,7 +318,7 @@ function anular(idadministrar_ordenes)
 
 
 //Declaración de variables necesarias para trabajar con las compras y
-//sus detalles versionando
+//sus detalles versionando ahora
 var impuesto=15;
 var impuesto=12.5;
 var cont=0;
