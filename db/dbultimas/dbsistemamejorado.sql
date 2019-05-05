@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-05-2019 a las 22:44:55
+-- Tiempo de generación: 06-05-2019 a las 00:23:34
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -356,6 +356,17 @@ CREATE TABLE `detalle_ingreso` (
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Disparadores `detalle_ingreso`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_actualizar_disponible` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN
+    UPDATE presupuesto_disponible SET fondos_disponibles = fondos_disponibles + NEW.monto
+    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 

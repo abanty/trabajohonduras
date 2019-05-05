@@ -250,14 +250,6 @@ if ($_SESSION['admonoc']==1)
                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
-                          <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                            <label>Tipo impuesto(*):</label>
-                            <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">
-                              <option value="0.15">ISV(15%)</option>
-                              <option value="0.125">ISR(12.5%)</option>
-                            </select>
-                          </div>
-
                           <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <label>Descripcion:</label>
                             <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="9" cols="50"></textarea>
@@ -317,9 +309,17 @@ if ($_SESSION['admonoc']==1)
                           <tbody id="det-tbody" role="rowgroup">
                           </tbody>
 
-
+<!--
                               <tfoot>
-                                <th colspan="5"></th>
+                                <th colspan="4"></th>
+                                <th>
+                                  <div class="">
+                                    <input class="form-control input-sm" type="text" name="" id="">
+                                    <span>de</span>
+                                    <input class="form-control input-sm" type="text" name="" id="">
+                                  </div>
+
+                                </th>
                                 <th>TOTAL</th>
                                 <th>
                                   <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
@@ -339,8 +339,7 @@ if ($_SESSION['admonoc']==1)
                                 <th>TOTAL DESCUENTO</th>
                                 <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
                               </tfoot>
-<!-- onblur="onInputBlur(event)" onfocus="onInputFocus(event)" -->
-
+ onblur="onInputBlur(event)" onfocus="onInputFocus(event)"
                               <tfoot>
                                 <th colspan="5"></th>
                                 <th>SUB TOTAL</th>
@@ -353,9 +352,77 @@ if ($_SESSION['admonoc']==1)
                                 <th colspan="5"></th>
                                 <th>IMPUESTO</th>
                                 <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
-                              </tfoot>
+                              </tfoot> -->
 
                             </table>
+                            <div class="col-xs-8">
+                                <div class="table-responsive">
+                                  <table class="table">
+                                    <tbody><tr>
+                                      <th style="width:50%">Subtotal:</th>
+                                      <td>$250.30</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Tax (9.3%)</th>
+                                      <td>$10.34</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Shipping:</th>
+                                      <td>$5.80</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Total:</th>
+                                      <td>$265.24</td>
+                                    </tr>
+                                  </tbody></table>
+                                </div>
+                              </div>
+
+                            <div class="col-xs-2">
+                                <div class="table-responsive">
+                                  <table class="table">
+                                    <tbody><tr>
+                                      <th style="width:50%">Subtotal:</th>
+                                      <td>$250.30</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Tax (9.3%)</th>
+                                      <td>$10.34</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Shipping:</th>
+                                      <td>$5.80</td>
+                                    </tr>
+                                    <tr>
+                                      <th>Total:</th>
+                                      <td>$265.24</td>
+                                    </tr>
+                                  </tbody></table>
+                                </div>
+                              </div>
+                              <div class="col-xs-2">
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <tbody><tr>
+                                        <th style="width:50%">Subtotal:</th>
+                                        <td>$250.30</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Tax (9.3%)</th>
+                                        <td>$10.34</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Shipping:</th>
+                                        <td>$5.80</td>
+                                      </tr>
+                                      <tr>
+                                        <th>Total:</th>
+                                        <td>$265.24</td>
+                                      </tr>
+                                    </tbody></table>
+                                  </div>
+                                </div>
+
                           </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
