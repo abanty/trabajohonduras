@@ -245,6 +245,11 @@ if ($_SESSION['admonoc']==1)
                             <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
                           </div>
 
+                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                            <label>Fecha(*):</label>
+                            <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
+                          </div>
+
                           <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-4 col-sm-6 col-xs-12">
                             <label>Tipo impuesto(*):</label>
                             <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">
@@ -265,10 +270,7 @@ if ($_SESSION['admonoc']==1)
                           </div>
 
 
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Fecha(*):</label>
-                            <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
-                          </div>
+
 
                           <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
                             <label>Tipo Documento(*):</label>

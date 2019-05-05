@@ -11,7 +11,7 @@ else
 {
 require 'header.php';
 
-if ($_SESSION['compromisosp']==1)
+if ($_SESSION['contabilidad']==1)
 {
 ?>
 <!--Contenido-->
@@ -20,7 +20,7 @@ if ($_SESSION['compromisosp']==1)
         <!-- Main content -->
         <section class="content-header">
           <h1>
-            Consultar compromisos por fecha
+            CONSOLIDADO GENERAL POR OBJ GASTO
           </h1>
         </section>
         <section class="content">
@@ -30,45 +30,58 @@ if ($_SESSION['compromisosp']==1)
                    <div class="box box-success">
                     <div class="box-header with-border">
                           <h1 class="box-title"> <a href="../reportes/rpcompromisosp.php" target="_blank"> <button class="btn btn-info">Compromisos Pendientes</button>
-                           <a href="../reportes/rptarticulos.php" target="_blank"> <button class="btn btn-info">Compromisos Pendientes por renglon</button></a></h1>
                         <div class="box-tools pull-right">
                         </div>
 
                     </div>
-                    <!-- /.box-header -->
-                    <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Fecha Inicio</label>
                           <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
                         </div>
-                        <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Fecha Fin</label>
                           <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
                         </div>
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
-                          <thead style="background-color:#d2d6de">
+                        <div class="form-inline col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <label>PROGRAMA</label>
+                          <select name="idcliente" id="idcliente" class="form-control selectpicker" data-live-search="true" required>
+                          </select>
+                          <button class="btn btn-success" onclick="listar()">Mostrar</button>
+                        </div>
+                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
+                          <thead>
                             <th>Fecha</th>
-                            <th>Casa Comercial</th>
-                            <th>Nombre Objeto</th>
+                            <th>Unidad Superficie</th>
+                            <th>Cheque</th>
+                            <th>Proveedor</th>
+                            <th>Descripcion</th>
+                            <th>O/C</th>
+                            <th>C/P</th>
+                            <th>ACDO</th>
+                            <th>Programa</th>
+                            <th>No. Transferencia</th>
                             <th>Codigo</th>
-                            <th>Unidad</th>
-                            <th>No. Factura</th>
-                            <th>Valor</th>
+                            <th>Total</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>
                           </tbody>
-                          <tfoot  style="background-color:#d2d6de">
+                          <tfoot>
                             <th>Fecha</th>
-                            <th>Casa Comercial</th>
-                            <th>Nombre Objeto</th>
+                            <th>Unidad Superficie</th>
+                            <th>Cheque</th>
+                            <th>Proveedor</th>
+                            <th>Descripcion</th>
+                            <th>O/C</th>
+                            <th>C/P</th>
+                            <th>ACDO</th>
+                            <th>Programa</th>
+                            <th>No. Transferencia</th>
                             <th>Codigo</th>
-                            <th>Unidad</th>
-                            <th>No. Factura</th>
-                            <th>Valor</th>
+                            <th>Total</th>
                             <th>Estado</th>
-                          </tfoot >
+                          </tfoot>
                         </table>
                     </div>
 
@@ -89,7 +102,7 @@ else
 
 require 'footer.php';
 ?>
-<script type="text/javascript" src="scripts/compromisosfecha.js"></script>
+<script type="text/javascript" src="scripts/ventasfechacliente.js"></script>
 <?php
 }
 ob_end_flush();

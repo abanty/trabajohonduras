@@ -11,7 +11,7 @@ else
 {
 require 'header.php';
 
-if ($_SESSION['consultav']==1)
+if ($_SESSION['contabilidad']==1)
 {
 ?>
 <!--Contenido-->
