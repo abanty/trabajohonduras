@@ -9,7 +9,7 @@ function init(){
 
 	fechanow();
 
-	$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
 	$("#tipo_impuesto_div").hide();
 
@@ -61,7 +61,7 @@ function limpiar()
 {
 	fechanow();
 
-	$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
 	$("#idadministrar_ordenes").val('');
 	$("#num_orden").val('');
@@ -353,7 +353,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
 								'<td role="cell"><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								/*DESCRIPCION*/
-								'<td role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
+								'<td colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
 								/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
 								'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
 								/*SUB TOTAL*/
@@ -518,7 +518,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
     }
     else
     {
-			$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+			$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 			$("#impuesto").val("0.00000");
 			$("#sub_total").text("L. 0.00");
 			$("#montototal").text("L. 0.00");

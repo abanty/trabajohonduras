@@ -300,48 +300,68 @@ if ($_SESSION['admonoc']==1)
                               <th role="columnheader">Objeto Gasto</th>
                               <th role="columnheader">Unidad</th>
                               <th role="columnheader">Cantidad</th>
-                              <th role="columnheader">Descripcion</th>
+                              <th colspan="4" role="columnheader">Descripcion</th>
                               <th role="columnheader">Precio Unitario</th>
                               <th role="columnheader">Subtotal</th>
                             </tr>
                           </thead>
-
+<!-- onblur="onInputBlur(event)" onfocus="onInputFocus(event)" -->
                           <tbody id="det-tbody" role="rowgroup">
                           </tbody>
 
-<!--
+
+                          <tfoot>
+                            <th colspan="4"></th>
+                            <th>
+                            </th>
+                            <th></th>
+                            <th></th>
+
+                            <th></th>
+
+                              <th>TOTAL</th>
+                            <th>
+                              <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                            </th>
+                          </tfoot>
+
+
+
+
+
+
+
                               <tfoot>
                                 <th colspan="4"></th>
-                                <th>
-                                  <div class="">
-                                    <input class="form-control input-sm" type="text" name="" id="">
-                                    <span>de</span>
-                                    <input class="form-control input-sm" type="text" name="" id="">
-                                  </div>
-
-                                </th>
-                                <th>TOTAL</th>
-                                <th>
-                                  <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
-                                </th>
-                              </tfoot>
-
-                              <tfoot>
-                                <th colspan="5"></th>
-                                <th>SUB TOTAL INICIAL</th>
+                                <th></th>
+                                <th></th>
+                                  <th></th>
+                                <th></th>
+                                <th style="width:10%;">SUB TOTAL INICIAL</th>
                                 <th>
                                   <h4 id="sub_total_inicial">L. 0.00</h4>
                                 </th>
                               </tfoot>
 
+
+
                               <tfoot>
-                                <th colspan="5"></th>
+                                <th colspan="4"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th>TOTAL DESCUENTO</th>
                                 <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
                               </tfoot>
- onblur="onInputBlur(event)" onfocus="onInputFocus(event)"
+
+
                               <tfoot>
-                                <th colspan="5"></th>
+                                <th colspan="4"></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th>SUB TOTAL</th>
                                 <th>
                                   <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="subtotales" id="subtotales">
@@ -349,80 +369,88 @@ if ($_SESSION['admonoc']==1)
                               </tfoot>
 
                               <tfoot>
-                                <th colspan="5"></th>
+                                <th colspan="4"></th>
+                                <th style="width:200px;"></th>
+                                <th style="width:80px;">
+                                  <input class="form-control input-sm" type="number" name="" id="">
+                                </th>
+                                <th style="width:45px;">
+                                  % de
+                                </th>
+                                <th style="width:80px;">
+                                <input class="form-control input-sm" type="text" name="" id="">
+                              </th>
+                                <th>IMS. S/V</th>
+                                <th>
+                                  <input class="form-control input-sm" type="text" name="" id="" readonly>
+                                </th>
+                              </tfoot>
+
+                              <tfoot>
+                                <th colspan="4"></th>
+                                <th></th>
+                                <th><input class="form-control input-sm" type="text" name="" id=""></th>
+                                <th>% de</th>
+                                <th><input class="form-control input-sm" type="text" name="" id=""></th>
                                 <th>IMPUESTO</th>
                                 <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
-                              </tfoot> -->
+                              </tfoot>
+
+                              <tfoot>
+                                <th colspan="4"></th>
+                                <th>
+                                </th>
+                                <th></th>
+                                <th></th>
+
+                                <th></th>
+
+                                  <th>TOTAL</th>
+                                <th>
+                                  <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                </th>
+                              </tfoot>
+
+
+
+                                                        <tfoot>
+                                                          <th colspan="4"></th>
+                                                          <th>
+                                                          </th>
+                                                          <th></th>
+                                                          <th></th>
+
+                                                          <th></th>
+
+                                                            <th>TOTAL</th>
+                                                          <th>
+                                                            <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                                          </th>
+                                                        </tfoot>
+
+
+                                                        <tfoot>
+                                                          <th colspan="4"></th>
+                                                          <th>
+                                                          </th>
+                                                          <th>
+                                                            <input class="form-control input-sm" type="text" name="" id="">
+                                                          </th>
+                                                          <th>
+                                                            % de
+                                                          </th>
+                                                          <th>
+                                                          <input class="form-control input-sm" type="text" name="" id="">
+                                                        </th>
+
+                                                            <th>RETENCION ISR</th>
+                                                          <th>
+                                                            <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                                          </th>
+                                                        </tfoot>
+
 
                             </table>
-                            <div class="col-xs-8">
-                                <div class="table-responsive">
-                                  <table class="table">
-                                    <tbody><tr>
-                                      <th style="width:50%">Subtotal:</th>
-                                      <td>$250.30</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Tax (9.3%)</th>
-                                      <td>$10.34</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Shipping:</th>
-                                      <td>$5.80</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Total:</th>
-                                      <td>$265.24</td>
-                                    </tr>
-                                  </tbody></table>
-                                </div>
-                              </div>
-
-                            <div class="col-xs-2">
-                                <div class="table-responsive">
-                                  <table class="table">
-                                    <tbody><tr>
-                                      <th style="width:50%">Subtotal:</th>
-                                      <td>$250.30</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Tax (9.3%)</th>
-                                      <td>$10.34</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Shipping:</th>
-                                      <td>$5.80</td>
-                                    </tr>
-                                    <tr>
-                                      <th>Total:</th>
-                                      <td>$265.24</td>
-                                    </tr>
-                                  </tbody></table>
-                                </div>
-                              </div>
-                              <div class="col-xs-2">
-                                  <div class="table-responsive">
-                                    <table class="table">
-                                      <tbody><tr>
-                                        <th style="width:50%">Subtotal:</th>
-                                        <td>$250.30</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Tax (9.3%)</th>
-                                        <td>$10.34</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Shipping:</th>
-                                        <td>$5.80</td>
-                                      </tr>
-                                      <tr>
-                                        <th>Total:</th>
-                                        <td>$265.24</td>
-                                      </tr>
-                                    </tbody></table>
-                                  </div>
-                                </div>
-
                           </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
