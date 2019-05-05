@@ -234,7 +234,7 @@ if (strlen(session_id()) < 1)
 
                <ul class="treeview-menu">
               <li><a href="sgralcta.php"><i class="far fa-dot-circle text-blue"></i>S.Gral.Ctas</a></li>
-              <li><a href="consolidadog.php"><i class="far fa-dot-circle text-blue"></i>Consolidado General</a></li>
+              <li><a href="sgeneral.php"><i class="far fa-dot-circle text-blue"></i>Consolidado General</a></li>
               <li><a href="modulo3"><i class="far fa-dot-circle text-blue"></i>Modulo 3</a></li>
               <li><a href="modulo4"><i class="far fa-dot-circle text-blue"></i>Modulo 4</a></li>
 
