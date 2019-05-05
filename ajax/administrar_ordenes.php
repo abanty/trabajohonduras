@@ -256,7 +256,7 @@ switch ($_GET["op"]){
  				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\',\''.$reg->presupuesto_anual.'\')"><span class="fas fa-plus-circle"></span></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
-        "3"=>($reg->presupuesto_anual<'0')?'<span style="font-size:13px;" class="label bg-red">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual
+ 				"3"=>$reg->presupuesto_anual,
  				);
  		}
  		$results = array(
