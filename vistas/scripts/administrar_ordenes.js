@@ -3,6 +3,10 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
+	$(function() {
+		$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
+	});
+
 	fechanow();
 
 	$("#detalles tbody").html('<td id="mynewtd" colspan="7" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
@@ -77,8 +81,8 @@ function limpiar()
 	$("#tipo_documento").selectpicker('val',"");
 	$("#tipo_documento").selectpicker('refresh');
 
-	$("#descuento_total").val('0.00000');
-	$("#impuesto").val("0.00000");
+	// $("#descuento_total").val('0');
+	// $("#impuesto").val("0.00000");
 
 
 	// LIMPIAR CAMPOS CONTABILIDAD
@@ -485,6 +489,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		new_total = newsubtotal_imp + newsubtotal;
 
+
+		subinicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
 		sub_sub_total = parseFloat(Math.round(newsubtotal * 100) / 100).toFixed(2);
 		impuesto_impuesto = parseFloat(Math.round(newsubtotal_imp * 100) / 100).toFixed(2);
@@ -493,9 +499,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		 $("#subtotales").val(sub_sub_total);
 	 	}
 
+		$("#sub_total_inicial").html("L. " + subinicial);
 		$("#sub_total").html("L. " + sub_sub_total);
 		$("#montototal").html("L. " + total_total);
 		$("#monto_total").val(total_total);
+
     evaluar();
 
   }

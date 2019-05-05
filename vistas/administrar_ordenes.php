@@ -328,10 +328,18 @@ if ($_SESSION['admonoc']==1)
 
                               <tfoot>
                                 <th colspan="5"></th>
-                                <th>TOTAL DESCUENTO</th>
-                                <th><input type="number" onchange="modificarSubototales()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total"
-                                    maxlength="45" placeholder="Ingrese el descuento"></th>
+                                <th>SUB TOTAL INICIAL</th>
+                                <th>
+                                  <h4 id="sub_total_inicial">L. 0.00</h4>
+                                </th>
                               </tfoot>
+
+                              <tfoot>
+                                <th colspan="5"></th>
+                                <th>TOTAL DESCUENTO</th>
+                                <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
+                              </tfoot>
+<!-- onblur="onInputBlur(event)" onfocus="onInputFocus(event)" -->
 
                               <tfoot>
                                 <th colspan="5"></th>
@@ -344,7 +352,7 @@ if ($_SESSION['admonoc']==1)
                               <tfoot>
                                 <th colspan="5"></th>
                                 <th>IMPUESTO</th>
-                                <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" readonly></th>
+                                <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                               </tfoot>
 
                             </table>
