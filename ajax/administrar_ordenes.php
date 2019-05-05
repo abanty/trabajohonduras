@@ -241,6 +241,7 @@ switch ($_GET["op"]){
           echo '<option value=' . $reg->iduuss . '>' . $reg->nombre. '</option>';
         }
 
+
   break;
 
 	case 'listarPresupuesto_disponible':
