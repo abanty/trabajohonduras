@@ -244,7 +244,7 @@ if ($_SESSION['admonoc']==1)
                             <label>Programa(*):</label>
                             <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
                           </div>
-<!-- <input type="text" class=""  id="currency" name=""> -->
+
                           <div id="tipo_impuesto_div" class="form-group col-lg-2 col-md-4 col-sm-6 col-xs-12">
                             <label>Tipo impuesto(*):</label>
                             <select class="form-control selectpicker" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="tipo_impuesto" id="tipo_impuesto" data-style="btn-default btn-sm" data-title="Elige Impuesto">
@@ -255,7 +255,7 @@ if ($_SESSION['admonoc']==1)
 
                           <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <label>Descripcion:</label>
-                            <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="8" cols="50"></textarea>
+                            <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="9" cols="50"></textarea>
 
                           </div>
 
@@ -280,10 +280,10 @@ if ($_SESSION['admonoc']==1)
                             </select>
                           </div>
 
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; padding:20px;">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; margin-top: 25px;">
 
                             <a data-toggle="modal" href="#myModal">
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Objeto Gasto</button>
+                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-dollar-sign"></span> Agregar Objeto Gasto</button>
                             </a>
 
                           </div>

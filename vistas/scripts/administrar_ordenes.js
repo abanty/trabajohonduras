@@ -491,7 +491,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							// }).catch(swal.noop);
 						swal({
 							  title: 'Insuficiente Saldo presupuestal',
-								text: '¿desea Omitir la restriccion?'
+								text: '¿Desea Omitir la restriccion?',
 							  type: 'error',
 							  showCancelButton: true,
 							  confirmButtonColor: '#d33',
@@ -517,7 +517,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
 		}
-			// console.log(result);
+			console.log(contenido+result);
     calcularTotales();
   }
 
