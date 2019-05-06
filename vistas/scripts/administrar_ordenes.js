@@ -485,11 +485,20 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		calcularTotales();
 	}
 
+	function CalcularImpuestoISV(){
+		var percentisv = $("#valisv").val();
+		var ofnumberisv = $("#num_of_valisv").val();
+		var resultpercentisv = percentisv / 100;
+		var resultabsoluteisv = parseFloat(Math.round((ofnumberisv * resultpercentisv) * 100) / 100).toFixed(2);
+	$("#retencionisv").val(resultabsoluteisv);
+		calcularTotales();
+	}
+
 	function CalcularImpuestoISR(){
 		var percentisr = $("#valisr").val();
 		var ofnumberisr = $("#num_of_valisr").val();
 		var resultpercentisr = percentisr / 100;
-		var resultabsoluteisr = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
+		var resultabsoluteisr = parseFloat(Math.round((ofnumberisr * resultpercentisr) * 100) / 100).toFixed(2);
 	$("#retencionisr").val(resultabsoluteisr);
 		calcularTotales();
 	}
@@ -501,14 +510,12 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
   	 var sub = document.getElementsByName("subtotal");
   	 var total = 0.0;
-		 var new_total = 0.0;
-
 
 		 var val_imp = $("#impuesto").val();
 		 var val_impsv = $("#impsv").val();
   	 var desc = $("#descuento_total").val();
-
-
+		 var val_isv = $("#retencionisv").val();
+		 var val_isr = $("#retencionisr").val();
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
@@ -517,19 +524,32 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		new_total = (parseFloat(val_imp) + parseFloat(val_impsv)+parseFloat(newsubtotal));
 
+		new_total_minus = new_total - (parseFloat(val_isv) + parseFloat(val_isr))
+
 		console.log(new_total);
 
+inicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
 		sub_sub_total = parseFloat(Math.round(newsubtotal * 100) / 100).toFixed(2);
-
+		total_total_neto = parseFloat(Math.round(new_total_minus * 100) / 100).toFixed(2);
 
 
 
 	 	}
 
+$("#ofnumb").val(sub_sub_total);
+$("#num_of_valisv").val(sub_sub_total);
+
+
+		$("#sub_total_inicial").html("L. " + inicial);
 		$("#sub_total").html("L. " + sub_sub_total);
-		$("#totalneto").html("L. " + total_total);
-		// $("#total_neto").val(total_total);
+		$("#montototal").html("L. " + total_total);
+		$("#totalneto").html("L. " + total_total_neto);
+
+
+
+		$("#monto_total").val(total_total);
+
 		// $("#sub_total_inicial").html("L. " + subinicial);
 
 
