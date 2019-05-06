@@ -156,7 +156,7 @@ if (strlen(session_id()) < 1)
                <ul class="treeview-menu">
               <li><a href="compromisos.php"><i class="far fa-dot-circle text-blue"></i>Compromisos</a></li>
               <li><a href="compromisosfecha.php"><i class="far fa-dot-circle text-blue"></i>Consulta Compromisos</a></li>
-              <li><a href="reportes.php"><i class="far fa-dot-circle text-blue"></i>Reportes</a></li>
+              <li><a href="proveedores.php"><i class="far fa-dot-circle text-blue"></i>Ingresar Proveedor</a></li>
 
 
             </ul>
