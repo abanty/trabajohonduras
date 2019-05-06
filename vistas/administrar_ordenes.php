@@ -353,14 +353,9 @@ if ($_SESSION['admonoc']==1)
 
                               <th>TOTAL NETO</th>
                               <th>
-                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                <h4 id="totalneto">L. 0.00</h4><input type="hidden" name="total_neto" id="total_neto">
                               </th>
                             </tfoot>
-
-
-
-
-
 
 
                             <tfoot>

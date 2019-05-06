@@ -473,6 +473,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var resultpercent = percentsv / 100;
 		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
 	$("#impsv").val(resultabsolute);
+	calcularTotales();
 	}
 
 	function CalcularImpuestosimple(){
@@ -481,6 +482,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var resultpercentimp = percentimp / 100;
 		var resultabsoluteimp = parseFloat(Math.round((ofnumberimp * resultpercentimp) * 100) / 100).toFixed(2);
 	$("#impuesto").val(resultabsoluteimp);
+		calcularTotales();
 	}
 
 	function CalcularImpuestoISR(){
@@ -489,6 +491,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var resultpercentisr = percentisr / 100;
 		var resultabsoluteisr = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
 	$("#retencionisr").val(resultabsoluteisr);
+		calcularTotales();
 	}
 
 
@@ -498,6 +501,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
   	 var sub = document.getElementsByName("subtotal");
   	 var total = 0.0;
+		 var new_total = 0.0;
 
 
 		 var val_imp = $("#impuesto").val();
@@ -511,24 +515,23 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		newsubtotal = total - desc;
 
-		newsubtotal_imp = newsubtotal + val_impsv + val_imp;
+		new_total = (parseFloat(val_imp) + parseFloat(val_impsv)+parseFloat(newsubtotal));
 
-		new_total = newsubtotal_imp + newsubtotal;
+		console.log(new_total);
 
-
-		subinicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
 		sub_sub_total = parseFloat(Math.round(newsubtotal * 100) / 100).toFixed(2);
-		impuesto_impuesto = parseFloat(Math.round(newsubtotal_imp * 100) / 100).toFixed(2);
 
-		 $("#impuesto").val(impuesto_impuesto);
-		 $("#subtotales").val(sub_sub_total);
+
+
+
 	 	}
 
-		$("#sub_total_inicial").html("L. " + subinicial);
 		$("#sub_total").html("L. " + sub_sub_total);
-		$("#montototal").html("L. " + total_total);
-		$("#monto_total").val(total_total);
+		$("#totalneto").html("L. " + total_total);
+		// $("#total_neto").val(total_total);
+		// $("#sub_total_inicial").html("L. " + subinicial);
+
 
     evaluar();
 
