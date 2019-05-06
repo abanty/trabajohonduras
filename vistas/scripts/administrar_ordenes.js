@@ -483,7 +483,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	$("#impsv").val(resultabsolute);
 	}
 
-	function calcularimpuestoSV(){
+	function calcularimpuestoISR(){
 		var percentsv = $("#valsv").val();
 		var ofnumber = $("#ofnumb").val();
 		var resultpercent = percentsv / 100;

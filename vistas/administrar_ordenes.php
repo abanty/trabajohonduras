@@ -17,6 +17,14 @@ if ($_SESSION['admonoc']==1)
 
 
 <style media="screen">
+#detalles tfoot{
+  font-size: 11px;
+}
+
+#detalles tfoot th{
+  vertical-align: middle;
+}
+
   #preloader {
     background: #000000d9;
     position: fixed;
@@ -343,7 +351,7 @@ if ($_SESSION['admonoc']==1)
 
                               <th></th>
 
-                              <th>TOTAL</th>
+                              <th>TOTAL NETO</th>
                               <th>
                                 <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
                               </th>
@@ -361,9 +369,9 @@ if ($_SESSION['admonoc']==1)
                               <th></th>
                               <th></th>
                               <th></th>
-                              <th style="width:10%;">SUB TOTAL INICIAL</th>
+                              <th>SUB TOTAL INICIAL</th>
                               <th>
-                                <h4 id="sub_total_inicial">L. 0.00</h4>
+                                <h5 id="sub_total_inicial">L. 0.00</h5>
                               </th>
                             </tfoot>
 
@@ -388,26 +396,18 @@ if ($_SESSION['admonoc']==1)
                               <th></th>
                               <th>SUB TOTAL</th>
                               <th>
-                                <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="subtotales" id="subtotales">
+                                <h5 id="sub_total">L. 0.00</h5><input type="hidden" name="subtotales" id="subtotales">
                               </th>
                             </tfoot>
 
                             <tfoot>
                               <th colspan="4"></th>
                               <th style="width:200px;"></th>
-                              <th style="width:80px;">
-                                <input type="number" class="form-control input-sm" name="" id="valsv" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()" >
-                              </th>
-                              <th style="width:45px;">
-                                % de
-                              </th>
-                              <th style="width:80px;">
-                                <input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()">
-                              </th>
-                              <th>IMP. S/V</th>
-                              <th>
-                                <input class="form-control input-sm" type="text" name="" id="impsv" readonly>
-                              </th>
+                              <th style="width:80px;"><input type="number" class="form-control input-sm" name="" id="valsv" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()"></th>
+                              <th style="width:45px;">% de</th>
+                              <th style="width:80px;"><input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()"></th>
+                              <th style="width:140px;">IMP. S/V</th>
+                              <th style="width:200px;"><input class="form-control input-sm" type="text" name="" id="impsv" readonly></th>
                             </tfoot>
 
                             <tfoot>
@@ -431,7 +431,7 @@ if ($_SESSION['admonoc']==1)
 
                               <th>TOTAL</th>
                               <th>
-                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                <h5 id="montototal">L. 0.00</h5><input type="hidden" name="monto_total" id="monto_total">
                               </th>
                             </tfoot>
 
@@ -448,7 +448,7 @@ if ($_SESSION['admonoc']==1)
 
                               <th>RETENCION ISV</th>
                               <th>
-                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                <h5 id="montototal">L. 0.00</h5><input type="hidden" name="monto_total" id="monto_total">
                               </th>
                             </tfoot>
 
@@ -469,7 +469,7 @@ if ($_SESSION['admonoc']==1)
 
                               <th>RETENCION ISR</th>
                               <th>
-                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                                <h5 id="montototal">L. 0.00</h5><input type="hidden" name="monto_total" id="monto_total">
                               </th>
                             </tfoot>
 
