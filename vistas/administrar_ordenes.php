@@ -403,19 +403,19 @@ if ($_SESSION['admonoc']==1)
                             <tfoot>
                               <th colspan="4"></th>
                               <th style="width:200px;"></th>
-                              <th style="width:80px;"><input type="number" class="form-control input-sm" name="" id="valsv" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()"></th>
+                              <th style="width:80px;"><input type="number" class="form-control input-sm" name="" id="valsv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
                               <th style="width:45px;">% de</th>
-                              <th style="width:80px;"><input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()"></th>
+                              <th style="width:80px;"><input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
                               <th style="width:140px;">IMP. S/V</th>
-                              <th style="width:200px;"><input class="form-control input-sm" type="text" name="" id="impsv" readonly></th>
+                              <th style="width:200px;"><input class="form-control input-sm" type="text" name="" id="impsv" value="0.00" readonly></th>
                             </tfoot>
 
                             <tfoot>
                               <th colspan="4"></th>
                               <th></th>
-                              <th><input class="form-control input-sm" type="text" name="" id=""></th>
+                              <th><input class="form-control input-sm" type="text" name="" id="valimp" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
                               <th>% de</th>
-                              <th><input class="form-control input-sm" type="text" name="" id=""></th>
+                              <th><input class="form-control input-sm" type="text" name="" id="ofnum_imp" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
                               <th>IMPUESTO</th>
                               <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                             </tfoot>
@@ -455,22 +455,12 @@ if ($_SESSION['admonoc']==1)
 
                             <tfoot>
                               <th colspan="4"></th>
-                              <th>
-                              </th>
-                              <th>
-                                <input class="form-control input-sm" type="text" name="" id="">
-                              </th>
-                              <th>
-                                % de
-                              </th>
-                              <th>
-                                <input class="form-control input-sm" type="text" name="" id="">
-                              </th>
-
+                              <th></th>
+                              <th><input class="form-control input-sm" type="text" name="valisr" id="valisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
+                              <th>% de</th>
+                              <th><input class="form-control input-sm" type="text" name="num_of_valisr" id="num_of_valisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
                               <th>RETENCION ISR</th>
-                              <th>
-                                <h5 id="montototal">L. 0.00</h5><input type="hidden" name="monto_total" id="monto_total">
-                              </th>
+                              <th><input type="number" step=".01" class="form-control input-sm" name="retencionisr" id="retencionisr" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                             </tfoot>
 
 

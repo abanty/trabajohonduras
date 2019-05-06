@@ -475,20 +475,20 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	$("#impsv").val(resultabsolute);
 	}
 
-	function calcularimpuestosimple(){
-		var percentsv = $("#valsv").val();
-		var ofnumber = $("#ofnumb").val();
-		var resultpercent = percentsv / 100;
-		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
-	$("#impsv").val(resultabsolute);
+	function CalcularImpuestosimple(){
+		var percentimp = $("#valimp").val();
+		var ofnumberimp = $("#ofnum_imp").val();
+		var resultpercentimp = percentimp / 100;
+		var resultabsoluteimp = parseFloat(Math.round((ofnumberimp * resultpercentimp) * 100) / 100).toFixed(2);
+	$("#impuesto").val(resultabsoluteimp);
 	}
 
-	function calcularimpuestoISR(){
-		var percentsv = $("#valsv").val();
-		var ofnumber = $("#ofnumb").val();
-		var resultpercent = percentsv / 100;
-		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
-	$("#impsv").val(resultabsolute);
+	function CalcularImpuestoISR(){
+		var percentisr = $("#valisr").val();
+		var ofnumberisr = $("#num_of_valisr").val();
+		var resultpercentisr = percentisr / 100;
+		var resultabsoluteisr = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
+	$("#retencionisr").val(resultabsoluteisr);
 	}
 
 
@@ -500,21 +500,18 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   	 var total = 0.0;
 
 
-		 var tipo_imp = $("#impsv").val();
-
-
-
-
-
+		 var val_imp = $("#impuesto").val();
+		 var val_impsv = $("#impsv").val();
   	 var desc = $("#descuento_total").val();
-		 var tipo_imp = $("#impsv").val();
+
+
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
 
 		newsubtotal = total - desc;
 
-		newsubtotal_imp = newsubtotal * tipo_imp;
+		newsubtotal_imp = newsubtotal + val_impsv + val_imp;
 
 		new_total = newsubtotal_imp + newsubtotal;
 
