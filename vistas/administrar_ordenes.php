@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //Activamos el almacenamiento en el buffer
 ob_start();
 session_start();
@@ -17,71 +17,76 @@ if ($_SESSION['admonoc']==1)
 
 
 <style media="screen">
+  #preloader {
+    background: #000000d9;
+    position: fixed;
+    z-index: 121;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+  }
 
-
-#preloader{
-  background: #000000d9;
-  position: fixed;
-  z-index: 121;
-  width: 100%;
-  text-align: center;
-  height: 100%;
-}
-
-/*
+  /*
 	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
 	*/
-	@media
-	  only screen
-    and (max-width: 760px), (min-device-width: 768px)
-    and (max-device-width: 1024px)  {
+  @media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
 
-      .content-header>h1 {
-    margin: 0;
-    font-size: 13.8px;
-    font-weight: bold;
-}
-
-    .rowperson{
-        padding: 10px 0% 10px 60% !important;
+    .content-header>h1 {
+      margin: 0;
+      font-size: 13.8px;
+      font-weight: bold;
     }
 
-      .this{
-            padding: 0px !important;
-      }
-      .thispan{
-            padding: 0px !important;
-      }
-      .thisisdiv{
-        padding-right: 0px;
-        padding-left: 0px;
-      }
-          .col-md-12.thismd12 {
-        padding-right: 5px;
-        padding-left: 5px;
+    .rowperson {
+      padding: 10px 0% 10px 60% !important;
     }
 
-.nav-tabs-custom>.tab-content {
-    padding: 0px  !important;
-}
+    .this {
+      padding: 0px !important;
+    }
+
+    .thispan {
+      padding: 0px !important;
+    }
+
+    .thisisdiv {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+
+    .col-md-12.thismd12 {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .nav-tabs-custom>.tab-content {
+      padding: 0px !important;
+    }
 
 
 
-		/* Force table to not be like tables anymore */
-		/* table, thead, tbody, th, td, tr {*/
+    /* Force table to not be like tables anymore */
+    /* table, thead, tbody, th, td, tr {*/
 
-    #detalles, #det-thead, #det-tbody,#det-thead th, #det-tbody td, #det-tbody tr, #det-thead tr {
+    #detalles,
+    #det-thead,
+    #det-tbody,
+    #det-thead th,
+    #det-tbody td,
+    #det-tbody tr,
+    #det-thead tr {
 
-			display: block;
-		}
+      display: block;
+    }
 
-		/* Hide table headers (but not display: none;, for accessibility) */
-		#det-thead tr {
-			position: absolute;
-			top: -9999px;
-			left: -9999px;
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #det-thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
       margin: 0 0 1rem 0;
-		}
+    }
 
     #det-tbody tr {
       margin: 0 0 1rem 0;
@@ -103,46 +108,67 @@ if ($_SESSION['admonoc']==1)
       background: #d3e9fd;
     }
 
-		#det-tbody td {
-			/* Behave  like a "row" */
-			border: none;
-			border-bottom: 1px solid #eee;
-			position: relative;
-			padding-left: 40%;
+    #det-tbody td {
+      /* Behave  like a "row" */
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 40%;
       padding-top: 4px;
       padding-bottom: 4px;
       padding-right: 2%;
-		}
+    }
 
-		#det-tbody td:before {
-			/* Now like a table header */
-			position: absolute;
-			/* Top/left values mimic padding */
+    #det-tbody td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
       top: 4.5px;
       left: 10px;
       font-size: 11.5px;
-			width: 45%;
-			padding-right: 10px;
-			white-space: nowrap;
-		}
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
 
     /* #mynewtd */
-    #det-tbody td#mynewtd:nth-of-type(1):before { content: "" !important; }
+    #det-tbody td#mynewtd:nth-of-type(1):before {
+      content: "" !important;
+    }
 
-		/*
+    /*
 		Label the data
     You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
 		*/
-		#det-tbody td:nth-of-type(1):before { content: "Opciones :"; }
-		#det-tbody td:nth-of-type(2):before { content: "Objeto Gasto :"; }
-		#det-tbody td:nth-of-type(3):before { content: "Unidad :"; }
-		#det-tbody td:nth-of-type(4):before { content: "Cantidad :"; }
-		#det-tbody td:nth-of-type(5):before { content: "Descripcion :"; }
-		#det-tbody td:nth-of-type(6):before { content: "Precio Unitario :"; }
-		#det-tbody td:nth-of-type(7):before { content: "Subtotal :"; }
+    #det-tbody td:nth-of-type(1):before {
+      content: "Opciones :";
+    }
 
-	}
+    #det-tbody td:nth-of-type(2):before {
+      content: "Objeto Gasto :";
+    }
 
+    #det-tbody td:nth-of-type(3):before {
+      content: "Unidad :";
+    }
+
+    #det-tbody td:nth-of-type(4):before {
+      content: "Cantidad :";
+    }
+
+    #det-tbody td:nth-of-type(5):before {
+      content: "Descripcion :";
+    }
+
+    #det-tbody td:nth-of-type(6):before {
+      content: "Precio Unitario :";
+    }
+
+    #det-tbody td:nth-of-type(7):before {
+      content: "Subtotal :";
+    }
+
+  }
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -210,120 +236,118 @@ if ($_SESSION['admonoc']==1)
 
             <div class="col-md-12 thismd12">
 
-                  <!-- Custom Tabs -->
-                  <div class="nav-tabs-custom" id="mistabs">
-                    <ul class="nav nav-tabs">
-                      <li class="active"><a href="#tab_1" data-toggle="tab" id="tabprincipal">Crear Orden / Solicitud</a></li>
-                      <li><a href="#tab_2" data-toggle="tab">Ingreso Facturas</a></li>
-                      <li><a href="#tab_3" data-toggle="tab">Comprobante de Pago</a></li>
+              <!-- Custom Tabs -->
+              <div class="nav-tabs-custom" id="mistabs">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#tab_1" data-toggle="tab" id="tabprincipal">Crear Orden / Solicitud</a></li>
+                  <li><a href="#tab_2" data-toggle="tab">Ingreso Facturas</a></li>
+                  <li><a href="#tab_3" data-toggle="tab">Comprobante de Pago</a></li>
 
-                    </ul>
-                    <div class="tab-content">
-                      <div class="tab-pane active" id="tab_1">
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1">
 
-                        <div class="panel-body thispan" >
+                    <div class="panel-body thispan">
 
-                        <form name="formulario" id="formulario" method="POST">
+                      <form name="formulario" id="formulario" method="POST">
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Solicitud(*):</label>
-                            <input type="text" class="form-control input-sm" name="titulo_orden" id="titulo_orden" maxlength="45" placeholder="Ingrese un titulo">
-                          </div>
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                          <label>Solicitud(*):</label>
+                          <input type="text" class="form-control input-sm" name="titulo_orden" id="titulo_orden" maxlength="45" placeholder="Ingrese un titulo">
+                        </div>
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>No. Orden(*):</label>
-                            <input type="hidden" name="idadministrar_ordenes" id="idadministrar_ordenes">
-                            <input type="text" class="form-control input-sm" name="num_orden" id="num_orden" maxlength="45" placeholder="Ingrese el # de orden">
-                          </div>
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>No. Comprobante (*):</label>
-                            <input type="text" class="form-control input-sm" name="num_comprobante" id="num_comprobante" maxlength="45" placeholder="Ingrese el # de comprobante">
-                          </div>
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                          <label>No. Orden(*):</label>
+                          <input type="hidden" name="idadministrar_ordenes" id="idadministrar_ordenes">
+                          <input type="text" class="form-control input-sm" name="num_orden" id="num_orden" maxlength="45" placeholder="Ingrese el # de orden">
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>No. Comprobante (*):</label>
+                          <input type="text" class="form-control input-sm" name="num_comprobante" id="num_comprobante" maxlength="45" placeholder="Ingrese el # de comprobante">
+                        </div>
 
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Programa(*):</label>
-                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
-                          </div>
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>Programa(*):</label>
+                          <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
+                        </div>
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Fecha(*):</label>
-                            <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
-                          </div>
+                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                          <label>Fecha(*):</label>
+                          <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
+                        </div>
 
-                          <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                            <label>Descripcion:</label>
-                            <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="9" cols="50"></textarea>
+                        <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                          <label>Descripcion:</label>
+                          <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="9" cols="50"></textarea>
 
-                          </div>
+                        </div>
 
-                          <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <label>Proveedor(*):</label>
-                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proveedor"></select>
-                          </div>
-
-
+                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <label>Proveedor(*):</label>
+                          <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proveedor"></select>
+                        </div>
 
 
-                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
-                            <label>Tipo Documento(*):</label>
-                            <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento" data-style="btn-default btn-sm" data-title="Elige Documento" required>
-                              <option value="Acuerdo">Acuerdo</option>
-                              <option value="Fondo Reintegrable">Fondo Reintegrable</option>
-                              <option value="Fondo Rotatorio">Fondo Rotatorio</option>
-                              <option value="O/C">O/C</option>
-                            </select>
-                          </div>
+                        <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                          <label>Tipo Documento(*):</label>
+                          <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento" data-style="btn-default btn-sm" data-title="Elige Documento" required>
+                            <option value="Acuerdo">Acuerdo</option>
+                            <option value="Fondo Reintegrable">Fondo Reintegrable</option>
+                            <option value="Fondo Rotatorio">Fondo Rotatorio</option>
+                            <option value="O/C">O/C</option>
+                          </select>
+                        </div>
 
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; margin-top: 25px;">
+                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; margin-top: 25px;">
 
-                            <a data-toggle="modal" href="#myModal">
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-dollar-sign"></span> Agregar Objeto Gasto</button>
-                            </a>
+                          <a data-toggle="modal" href="#myModal">
+                            <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-dollar-sign"></span> Agregar Objeto Gasto</button>
+                          </a>
 
-                          </div>
+                        </div>
 
-                          <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <label>Unidad de Superficie (*):</label>
-                            <select id="iduuss" name="iduuss" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un unidad"></select>
-                          </div>
+                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <label>Unidad de Superficie (*):</label>
+                          <select id="iduuss" name="iduuss" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un unidad"></select>
+                        </div>
 
 
 
-                          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 thisisdiv">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 thisisdiv">
 
 
-                        <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table">
+                          <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table">
 
-                          <thead id="det-thead" role="rowgroup" style="background-color:#d2d6de">
-                            <tr role="row">
-                              <th role="columnheader">Opciones</th>
-                              <th role="columnheader">Objeto Gasto</th>
-                              <th role="columnheader">Unidad</th>
-                              <th role="columnheader">Cantidad</th>
-                              <th colspan="4" role="columnheader">Descripcion</th>
-                              <th role="columnheader">Precio Unitario</th>
-                              <th role="columnheader">Subtotal</th>
-                            </tr>
-                          </thead>
-<!-- onblur="onInputBlur(event)" onfocus="onInputFocus(event)" -->
-                          <tbody id="det-tbody" role="rowgroup">
-                          </tbody>
+                            <thead id="det-thead" role="rowgroup" style="background-color:#d2d6de">
+                              <tr role="row">
+                                <th role="columnheader">Opciones</th>
+                                <th role="columnheader">Objeto Gasto</th>
+                                <th role="columnheader">Unidad</th>
+                                <th role="columnheader">Cantidad</th>
+                                <th colspan="4" role="columnheader">Descripcion</th>
+                                <th role="columnheader">Precio Unitario</th>
+                                <th role="columnheader">Subtotal</th>
+                              </tr>
+                            </thead>
+                            <!-- onblur="onInputBlur(event)" onfocus="onInputFocus(event)" -->
+                            <tbody id="det-tbody" role="rowgroup">
+                            </tbody>
 
 
-                          <tfoot>
-                            <th colspan="4"></th>
-                            <th>
-                            </th>
-                            <th></th>
-                            <th></th>
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th>
+                              </th>
+                              <th></th>
+                              <th></th>
 
-                            <th></th>
+                              <th></th>
 
                               <th>TOTAL</th>
-                            <th>
-                              <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
-                            </th>
-                          </tfoot>
+                              <th>
+                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                              </th>
+                            </tfoot>
 
 
 
@@ -331,244 +355,241 @@ if ($_SESSION['admonoc']==1)
 
 
 
-                              <tfoot>
-                                <th colspan="4"></th>
-                                <th></th>
-                                <th></th>
-                                  <th></th>
-                                <th></th>
-                                <th style="width:10%;">SUB TOTAL INICIAL</th>
-                                <th>
-                                  <h4 id="sub_total_inicial">L. 0.00</h4>
-                                </th>
-                              </tfoot>
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th style="width:10%;">SUB TOTAL INICIAL</th>
+                              <th>
+                                <h4 id="sub_total_inicial">L. 0.00</h4>
+                              </th>
+                            </tfoot>
 
 
 
-                              <tfoot>
-                                <th colspan="4"></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>TOTAL DESCUENTO</th>
-                                <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
-                              </tfoot>
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th>TOTAL DESCUENTO</th>
+                              <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
+                            </tfoot>
 
 
-                              <tfoot>
-                                <th colspan="4"></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>SUB TOTAL</th>
-                                <th>
-                                  <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="subtotales" id="subtotales">
-                                </th>
-                              </tfoot>
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th>SUB TOTAL</th>
+                              <th>
+                                <h4 id="sub_total">L. 0.00</h4><input type="hidden" name="subtotales" id="subtotales">
+                              </th>
+                            </tfoot>
 
-                              <tfoot>
-                                <th colspan="4"></th>
-                                <th style="width:200px;"></th>
-                                <th style="width:80px;">
-                                  <input class="form-control input-sm" type="number" name="" id="">
-                                </th>
-                                <th style="width:45px;">
-                                  % de
-                                </th>
-                                <th style="width:80px;">
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th style="width:200px;"></th>
+                              <th style="width:80px;">
+                                <input type="number" class="form-control input-sm" name="" id="valsv" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()" >
+                              </th>
+                              <th style="width:45px;">
+                                % de
+                              </th>
+                              <th style="width:80px;">
+                                <input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="calcularimpuestoSV()" onkeyup="calcularimpuestoSV()">
+                              </th>
+                              <th>IMP. S/V</th>
+                              <th>
+                                <input class="form-control input-sm" type="text" name="" id="impsv" readonly>
+                              </th>
+                            </tfoot>
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th><input class="form-control input-sm" type="text" name="" id=""></th>
+                              <th>% de</th>
+                              <th><input class="form-control input-sm" type="text" name="" id=""></th>
+                              <th>IMPUESTO</th>
+                              <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
+                            </tfoot>
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th>
+                              </th>
+                              <th></th>
+                              <th></th>
+
+                              <th></th>
+
+                              <th>TOTAL</th>
+                              <th>
+                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                              </th>
+                            </tfoot>
+
+
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th>
+                              </th>
+                              <th></th>
+                              <th></th>
+
+                              <th></th>
+
+                              <th>RETENCION ISV</th>
+                              <th>
+                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                              </th>
+                            </tfoot>
+
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th>
+                              </th>
+                              <th>
                                 <input class="form-control input-sm" type="text" name="" id="">
                               </th>
-                                <th>IMS. S/V</th>
-                                <th>
-                                  <input class="form-control input-sm" type="text" name="" id="" readonly>
-                                </th>
-                              </tfoot>
+                              <th>
+                                % de
+                              </th>
+                              <th>
+                                <input class="form-control input-sm" type="text" name="" id="">
+                              </th>
 
-                              <tfoot>
-                                <th colspan="4"></th>
+                              <th>RETENCION ISR</th>
+                              <th>
+                                <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
+                              </th>
+                            </tfoot>
+
+
+                          </table>
+                        </div>
+
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
+
+                          <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fas fa-arrow-circle-left"></i> Cancelar</button>
+                        </div>
+                      </form>
+                    </div>
+
+
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                          <table id="detallesfactura" class="table table-striped table-bordered table-condensed table-hover">
+                            <thead>
+                              <th>Nª Factura</th>
+                              <th>Fecha</th>
+                              <th>Valor</th>
+                              <th>Opciones</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot>
+                              <tr style="height:20px;">
                                 <th></th>
-                                <th><input class="form-control input-sm" type="text" name="" id=""></th>
-                                <th>% de</th>
-                                <th><input class="form-control input-sm" type="text" name="" id=""></th>
-                                <th>IMPUESTO</th>
-                                <th><input type="number" step=".01" class="form-control input-sm" name="impuesto" id="impuesto" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
-                              </tfoot>
-
-                              <tfoot>
-                                <th colspan="4"></th>
-                                <th>
-                                </th>
                                 <th></th>
                                 <th></th>
-
                                 <th></th>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
 
-                                  <th>TOTAL</th>
-                                <th>
-                                  <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
-                                </th>
-                              </tfoot>
+                        <div id="here_inside" class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
 
-
-
-                                                        <tfoot>
-                                                          <th colspan="4"></th>
-                                                          <th>
-                                                          </th>
-                                                          <th></th>
-                                                          <th></th>
-
-                                                          <th></th>
-
-                                                            <th>TOTAL</th>
-                                                          <th>
-                                                            <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
-                                                          </th>
-                                                        </tfoot>
-
-
-                                                        <tfoot>
-                                                          <th colspan="4"></th>
-                                                          <th>
-                                                          </th>
-                                                          <th>
-                                                            <input class="form-control input-sm" type="text" name="" id="">
-                                                          </th>
-                                                          <th>
-                                                            % de
-                                                          </th>
-                                                          <th>
-                                                          <input class="form-control input-sm" type="text" name="" id="">
-                                                        </th>
-
-                                                            <th>RETENCION ISR</th>
-                                                          <th>
-                                                            <h4 id="montototal">L. 0.00</h4><input type="hidden" name="monto_total" id="monto_total">
-                                                          </th>
-                                                        </tfoot>
-
-
-                            </table>
-                          </div>
-
-                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
-
-                            <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fas fa-arrow-circle-left"></i> Cancelar</button>
-                          </div>
-                        </form>
-                      </div>
-
-
-                </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="tab_2">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-                        <table id="detallesfactura" class="table table-striped table-bordered table-condensed table-hover">
-                          <thead>
-                            <th>Nª Factura</th>
-                            <th>Fecha</th>
-                            <th>Valor</th>
-                            <th>Opciones</th>
-                          </thead>
-                          <tbody>
-
-                          </tbody>
-                          <tfoot>
-                            <tr style="height:20px;">
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                            </tr>
-                          </tfoot>
-                        </table>
-                      </div>
-
-                      <div id="here_inside" class="col-lg-2 col-sm-2 col-md-2 col-xs-12">
-
+                        </div>
                       </div>
                     </div>
+
+
+
                   </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_3">
 
 
+                    <br>
+                    <div class="row container">
 
-                </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="tab_3">
-
-
-                <br>
-                <div class="row container">
-
-                    <div class="form-group  col-md-4">
+                      <div class="form-group  col-md-4">
                         <label class="control-label" for="debitos">Debitos:</label>
                         <input type="text" class="form-control input-sm" form="formulario" name="debitos" id="debitos" style="text-transform: uppercase;" placeholder="Ingresa un debito">
-                    </div>
+                      </div>
 
-                    <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <label>Tipo de Pago(*):</label>
-                      <select class="form-control selectpicker" form="formulario" name="tipopago" id="tipopago" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Tipo">
-                        <option value="Deposito">Deposito</option>
-                        <option value="Cheque">Cheque</option>
-                      </select>
-                    </div>
+                      <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <label>Tipo de Pago(*):</label>
+                        <select class="form-control selectpicker" form="formulario" name="tipopago" id="tipopago" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Tipo">
+                          <option value="Deposito">Deposito</option>
+                          <option value="Cheque">Cheque</option>
+                        </select>
+                      </div>
 
-                    <div class="form-group col-md-3" id="contenedorNumeroCuenta">
+                      <div class="form-group col-md-3" id="contenedorNumeroCuenta">
                         <label class="control-label" for="NumeroCuenta">Numero de Cuenta</label>
                         <input type="number" class="form-control input-sm" form="formulario" id="num_transferencia" name="num_transferencia" placeholder="Ingresa # de cuenta">
+                      </div>
                     </div>
-                </div>
 
-                <div class="row container">
-                    <div class="form-group  col-md-4">
+                    <div class="row container">
+                      <div class="form-group  col-md-4">
                         <label class="control-label" for="contabilidad">Contabilidad</label>
                         <input type="text" class="form-control input-sm" form="formulario" id="contabilidad" name="contabilidad" style="text-transform: uppercase;" placeholder="Ingresa estado">
+                      </div>
+
+                      <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Cuenta de banco a debitar(*):</label>
+                        <select class="form-control selectpicker" form="formulario" id="idctasbancarias" name="idctasbancarias" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige Cuenta de banco"></select>
+                      </div>
+
                     </div>
 
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                      <label>Cuenta de banco a debitar(*):</label>
-                      <select class="form-control selectpicker" form="formulario" id="idctasbancarias" name="idctasbancarias" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige Cuenta de banco"></select>
-                    </div>
-
-                </div>
-
-              <div class="row container">
-                    <div class="form-group  col-md-4">
+                    <div class="row container">
+                      <div class="form-group  col-md-4">
                         <label class="control-label" for="creditos">Creditos</label>
-                        <input type="text" class="form-control input-sm" form="formulario" style="text-transform: uppercase;"  id="creditos" name="creditos"  placeholder="Ingresa Creditos">
+                        <input type="text" class="form-control input-sm" form="formulario" style="text-transform: uppercase;" id="creditos" name="creditos" placeholder="Ingresa Creditos">
+                      </div>
                     </div>
-                </div>
-               <hr>
-                <div class="row container">
-                    <div class="form-group  col-md-4">
-                      <a type="button" id="changetab" onclick='$("#tabprincipal").trigger("click")'>  <i style="font-size:35px;" class="fas fa-arrow-alt-circle-left"></i> <span style="position: absolute; margin-top: 8px; margin-left: 3px;">  Regresa</span></a>
+                    <hr>
+                    <div class="row container">
+                      <div class="form-group  col-md-4">
+                        <a type="button" id="changetab" onclick='$("#tabprincipal").trigger("click")'> <i style="font-size:35px;" class="fas fa-arrow-alt-circle-left"></i> <span style="position: absolute; margin-top: 8px; margin-left: 3px;">
+                            Regresa</span></a>
+                      </div>
                     </div>
-                </div>
 
+                  </div>
+                  <!-- /.tab-pane -->
                 </div>
-                <!-- /.tab-pane -->
+                <!-- /.tab-content -->
               </div>
-              <!-- /.tab-content -->
+              <!-- nav-tabs-custom -->
             </div>
-            <!-- nav-tabs-custom -->
-      </div>
 
           </div>
-
-
           <!-- /.box-body -->
           <div class="box-footer">
 
           </div>
           <!-- /.box-footer-->
-      </div>
-
-
+        </div>
 
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -576,14 +597,6 @@ if ($_SESSION['admonoc']==1)
 
 </div><!-- /.content-wrapper -->
 <!--Fin-Contenido-->
-
-
-
-
-
-
-
-
 
 
 <!--   Modal -->
@@ -628,8 +641,6 @@ if ($_SESSION['admonoc']==1)
   </div>
 </div>
 <!--   Fin modal -->
-
-
 <?php
 }
 else

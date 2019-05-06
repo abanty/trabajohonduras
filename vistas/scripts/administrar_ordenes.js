@@ -11,7 +11,6 @@ function init(){
 
 	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
-	$("#tipo_impuesto_div").hide();
 
 	$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
 					$("#here_inside").html(r);
@@ -122,7 +121,6 @@ function mostrarform(flag)
 	{
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
-		// $("#tipo_impuesto_div").show();
 		$("#btnagregar").hide();
 		listarPresupuesto_disponible();
 
@@ -142,7 +140,6 @@ function mostrarform(flag)
 //Función cancelarform
 function cancelarform()
 {
-	$("#tipo_impuesto_div").hide();
 	limpiar();
 	mostrarform(false);
 }
@@ -251,7 +248,6 @@ function guardaryeditar(e)
 
 function orden_mostrar(idadministrar_ordenes)
 {
-		$("#tipo_impuesto_div").show();
 
 	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
@@ -471,14 +467,47 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   }
 
 
+	function calcularimpuestoSV(){
+		var percentsv = $("#valsv").val();
+		var ofnumber = $("#ofnumb").val();
+		var resultpercent = percentsv / 100;
+		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
+	$("#impsv").val(resultabsolute);
+	}
+
+	function calcularimpuestosimple(){
+		var percentsv = $("#valsv").val();
+		var ofnumber = $("#ofnumb").val();
+		var resultpercent = percentsv / 100;
+		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
+	$("#impsv").val(resultabsolute);
+	}
+
+	function calcularimpuestoSV(){
+		var percentsv = $("#valsv").val();
+		var ofnumber = $("#ofnumb").val();
+		var resultpercent = percentsv / 100;
+		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
+	$("#impsv").val(resultabsolute);
+	}
+
+
+
 
   function calcularTotales(){
 
   	 var sub = document.getElementsByName("subtotal");
   	 var total = 0.0;
 
+
+		 var tipo_imp = $("#impsv").val();
+
+
+
+
+
   	 var desc = $("#descuento_total").val();
-		 var tipo_imp = $("#tipo_impuesto").val();
+		 var tipo_imp = $("#impsv").val();
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
@@ -512,7 +541,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   function evaluar(){
   	if (detalles>0)
     {
-			$("#tipo_impuesto_div").show();
       $("#btnGuardar").show();
 			$("#mynewtd").remove();
     }
@@ -523,7 +551,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 			$("#sub_total").text("L. 0.00");
 			$("#montototal").text("L. 0.00");
 
-			$("#tipo_impuesto_div").hide();
       $("#btnGuardar").hide();
       cont=0;
     }
