@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "../modelos/Presupuesto_disponible.php";
 
 $presupuesto_disponible=new presupuesto_disponible();
@@ -68,7 +68,7 @@ switch ($_GET["op"]){
  					' <button class="btn btn-primary" onclick="activar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-check"></i></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
- 				"3"=>$reg->presupuesto_anual,
+ 				"3"=>($reg->presupuesto_anual<'0')?'<span style="color:red;">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual,
  				"4"=>$reg->fondos_disponibles,
  				"5"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
@@ -85,18 +85,18 @@ switch ($_GET["op"]){
 
 	// case "selectPresupuesto_anual":
 	// 	require_once "../modelos/presupuesto_anual.php";
-		
+
 	// 	$nombre_objeto = new presupuesto_anual();
 
 
 	// 	$rspta = $nombre_objeto->select();
-		
+
 	// 	while ($reg = $rspta->fetch_object())
 	// 			{
-	// 				echo 
+	// 				echo
 	// 				'<option value=' . $reg->idpresupuesto_anual . '>' . $reg->nombre_objeto . '</option>';
 
-					
+
 	// 			}
 	// break;
 
@@ -105,10 +105,10 @@ switch ($_GET["op"]){
 	// 	$codigo = new presupuesto_anual();
 
 	// 	$rspta = $codigo->select();
-		
+
 	// 	while ($reg = $rspta->fetch_object())
 	// 			{
-	// 				echo 
+	// 				echo
 	// 				'<option value=' . $reg->codigo . '>' . $reg->codigo . '</option>';
 	// 			}
 	// break;
