@@ -13,7 +13,9 @@ Class Proveedores
   //Implementamos un método para insertar registros
   public function insertar(
     $casa_comercial,
+    $rtn,
     $nombre_banco,
+
     $num_cuenta,
     $tipo_cuenta,
     $imagen)
@@ -21,13 +23,16 @@ Class Proveedores
     $sql="INSERT INTO proveedores(
     casa_comercial,
     $nombre_banco,
+    $rtn,
     num_cuenta,
     tipo_cuenta,
     imagen,
     condicion)
     VALUES (
     '$casa_comercial',
+    '$rtn',
     '$nombre_banco',
+
     '$num_cuenta',
     '$tipo_cuenta',
     '$imagen',
@@ -39,7 +44,9 @@ Class Proveedores
   public function editar(
     $idproveedores,
     $casa_comercial,
+    $rtn,
     $nombre_banco,
+
     $num_cuenta,
     $tipo_cuenta,
     $imagen)
@@ -48,7 +55,9 @@ Class Proveedores
     UPDATE proveedores
     SET
     casa_comercial='$casa_comercial',
+    rtn='$rtn',
     nombre_banco='$nombre_banco',
+
     num_cuenta='$num_cuenta',
     tipo_cuenta='$tipo_cuenta',
     imagen='$imagen'

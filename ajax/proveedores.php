@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "../modelos/Proveedores.php"; // Las clases se nombran en mayúsculas, aunque ese no es el problema
 
 $proveedores=new Proveedores();
@@ -6,6 +6,7 @@ $proveedores=new Proveedores();
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
 
 $casa_comercial=isset($_POST["casa_comercial"])? limpiarCadena($_POST["casa_comercial"]):"";
+$rtn=isset($_POST["rtn"])? limpiarCadena($_POST["rtn"]):"";
 $nombre_banco=isset($_POST["nombre_banco"])? limpiarCadena($_POST["nombre_banco"]):"";
 $num_cuenta=isset($_POST["num_cuenta"])? limpiarCadena($_POST["num_cuenta"]):"";
 $tipo_cuenta=isset($_POST["tipo_cuenta"])? limpiarCadena($_POST["tipo_cuenta"]):"";
@@ -17,7 +18,7 @@ switch ($_GET["op"]){
 		{
 			$imagen=$_POST["imagenactual"];
 		}
-		else 
+		else
 		{
 			$ext = explode(".", $_FILES["imagen"]["name"]);
 			if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
@@ -26,11 +27,12 @@ switch ($_GET["op"]){
 				move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/autorizaciones/" . $imagen);
 			}
 
-		}	
+		}
 		if (empty($idproveedores)){
-			$rspta=$proveedores->insertar( 
-				
+			$rspta=$proveedores->insertar(
+
 			    $casa_comercial,
+					$rtn,
 			    $nombre_banco,
 			    $num_cuenta,
 			    $tipo_cuenta,
@@ -39,8 +41,9 @@ switch ($_GET["op"]){
 		}
 		else {
 			$rspta=$proveedores->editar(
-				$idproveedores, 
+				$idproveedores,
 			    $casa_comercial,
+					$rtn,
 			    $nombre_banco,
 			    $num_cuenta,
 			    $tipo_cuenta,
@@ -78,11 +81,12 @@ switch ($_GET["op"]){
  					' <button class="btn btn-primary" onclick="activar('.$reg->idproveedores.')"><i class="fas fa-check"></i></button>',
  				//"1"=>$reg->casa?comercial, // Aquí hay un error, la forma correcta es como está debajo
  				"1"=>$reg->casa_comercial,
- 				"2"=>$reg->nombre_banco, // este dato está faltando
- 				"3"=>$reg->num_cuenta,
- 				"4"=>$reg->tipo_cuenta,
- 				"5"=>"<img src='../files/autorizaciones/".$reg->imagen."' height='50px' width='50px' >",
- 				"6"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
+				"2"=>$reg->rtn,
+ 				"3"=>$reg->nombre_banco, // este dato está faltando
+ 				"4"=>$reg->num_cuenta,
+ 				"5"=>$reg->tipo_cuenta,
+ 				"6"=>"<img src='../files/autorizaciones/".$reg->imagen."' height='50px' width='50px' >",
+ 				"7"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}

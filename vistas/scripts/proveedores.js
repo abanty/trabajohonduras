@@ -7,7 +7,7 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
+		guardaryeditar(e);
 	})
 
 	$("#imagenmuestra").hide();
@@ -20,7 +20,9 @@ function init(){
 function limpiar()
 {
 	$("#casa_comercial").val("");
+	$("#rtn").val("");	
 	$("#nombre_banco").val("");
+
 	$("#num_cuenta").val("");
 	$("#tipo_cuenta").val("");
 	$("#imagenmuestra").attr("src","");
@@ -64,7 +66,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -74,9 +76,9 @@ function listar()
 				{
 					url: '../ajax/proveedores.php?op=listarp',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -100,8 +102,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          tabla.ajax.reload();
 	    }
@@ -114,18 +116,20 @@ function mostrar(idproveedores)
 {
 	$.post("../ajax/proveedores.php?op=mostrar",{idproveedores : idproveedores}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 		$("#casa_comercial").val(data.casa_comercial);
+		$("#rtn").val(data.rtn);
 		$("#nombre_banco").val(data.nombre_banco);
+
 		$("#num_cuenta").val(data.num_cuenta);
 		$("#tipo_cuenta").val(data.tipo_cuenta);
 		$("#imagenmuestra").show();
 		$("#imagenmuestra").attr("src","../files/autorizaciones/"+data.imagen);
 		$("#imagenactual").val(data.imagen);
  		$("#idproveedores").val(data.idproveedores);
-		
+
 
  	})
 }
@@ -139,7 +143,7 @@ function desactivar(idproveedores)
         	$.post("../ajax/proveedores.php?op=desactivar", {idproveedores : idproveedores}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -153,7 +157,7 @@ function activar(idproveedores)
         	$.post("../ajax/proveedores.php?op=activar", {idproveedores : idproveedores}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -167,7 +171,7 @@ function eliminar(idproveedores)
         	$.post("../ajax/proveedores.php?op=eliminar", {idproveedores : idproveedores}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }

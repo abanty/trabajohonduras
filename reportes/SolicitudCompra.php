@@ -35,7 +35,7 @@ $pdf->AddPage();
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4));
 
-$pdf->fact_dev("S/ No. ",$regv->num_orden);
+$pdf->fact_dev("S/C No. ",$regv->num_orden);
 // $pdf->temporaire( "ORDER DE COMPRA" );
 $pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->titulo_orden );
 
@@ -141,7 +141,7 @@ $pdf->Ln(10);
 $pdf->SetLineWidth(0.2);
 $pdf->SetX(160);
 $pdf->SetFont('Arial','I',8.5);
-$pdf->MultiCell(39,4, 'PAGADOR GENERAL DE LA F.N.H.','T','L');
+$pdf->MultiCell(50,4, 'PAGADOR GENERAL DE LA F.N.H.','T','L');
 
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();

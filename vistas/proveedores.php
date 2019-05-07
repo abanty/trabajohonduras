@@ -15,10 +15,10 @@ if ($_SESSION['configuraciones']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             Administrar Proveedores
           </h1>
           <ol class="breadcrumb">
@@ -43,17 +43,19 @@ if ($_SESSION['configuraciones']==1)
                           <thead style="background-color:#3c8dbc">
                             <th>Opciones</th>
                             <th>Casa Comercial</th>
+                            <th>RTN</th>
                             <th>Nombre Banco</th>
                             <th>Núm Cuenta</th>
                             <th>Tipo Cuenta</th>
                             <th>Imagen</th>
                             <th>Condicion</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot>
                             <th>Opciones</th>
                             <th>Casa Comercial</th>
+                            <th>RTN</th>
                             <th>Nombre Banco</th>
                             <th>Núm Cuenta</th>
                             <th>Tipo Cuenta</th>
@@ -70,15 +72,21 @@ if ($_SESSION['configuraciones']==1)
                             <input type="text" class="form-control" name="casa_comercial" id="casa_comercial" maxlength="100" placeholder="Nombre del proveedor" required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>RTN(*):</label>
+                            <input type="text" class="form-control" name="rtn" id="rtn" maxlength="100" placeholder="Ingrese el RTN" required>
+                          </div>
+
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre Banco(*):</label>
                             <input type="text" class="form-control" name="nombre_banco" id="nombre_banco" maxlength="100" placeholder="Ingrese el nombre del banco" required>
-                          </div> 
+                          </div>
+
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Número Cuenta:</label>
                             <input type="text" class="form-control" name="num_cuenta" id="num_cuenta" maxlength="45" placeholder="Numero de Cuenta">
                           </div>
-                          
+
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Tipo Cuenta:</label>
@@ -120,7 +128,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/proveedores.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>
