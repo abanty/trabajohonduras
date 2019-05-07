@@ -473,6 +473,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var resultpercent = percentsv / 100;
 		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
 	$("#impsv").val(resultabsolute);
+	$("#valisv").val(percentsv);
+	CalcularImpuestoISV();
 	calcularTotales();
 	}
 
@@ -513,7 +515,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		 var val_imp = $("#impuesto").val();
 		 var val_impsv = $("#impsv").val();
-  	 var desc = $("#descuento_total").val();
+
+		 var desc_before = $("#descuento_total").val();
+  	 var desc =  desc_before.replace(/,/g, '');
+
 		 var val_isv = $("#retencionisv").val();
 		 var val_isr = $("#retencionisr").val();
 

@@ -437,7 +437,7 @@ if ($_SESSION['admonoc']==1)
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="valisv" id="valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()"></th>
                               <th>% de</th>
-                              <th><input class="form-control input-sm" type="text" name="num_of_valisv" id="num_of_valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()"></th>
+                              <th><input class="form-control input-sm" type="text" name="num_of_valisv" id="num_of_valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" readonly></th>
                               <th>RETENCION ISV</th>
                               <th><input type="number" step=".01" class="form-control input-sm" name="retencionisv" id="retencionisv" maxlength="45" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                             </tfoot>
