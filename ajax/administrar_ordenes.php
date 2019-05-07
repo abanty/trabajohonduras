@@ -83,7 +83,7 @@ switch ($_GET["op"]){
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
 
   	}else {
-      
+
 
 
 		}
@@ -165,6 +165,7 @@ switch ($_GET["op"]){
  				$urlsolicitud='../reportes/OrdenCompra.php?id=';
         $urlorden='../reportes/OrdenCompra.php?id=';
         $urlcomprobante='../reportes/Comprobante_orden.php?id=';
+        $urlsolicitudcompra='../reportes/SolicitudCompra.php?id=';
 
         $ejemplo='../reportes/ejemplo.php';
 
@@ -180,6 +181,7 @@ switch ($_GET["op"]){
                 <ul class="dropdown-menu">
                  <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
                  <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
+                 <li><a target="_blank" href="'.$urlsolicitudcompra.$reg->idadministrar_ordenes.'">Solicitud de Compra</a></li>
                 </ul>
           </li>',
  				"1"=>$reg->fecha,

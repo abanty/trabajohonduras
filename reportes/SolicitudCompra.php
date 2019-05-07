@@ -19,7 +19,7 @@ require('Orden.php');
 $tittle1 = "SECRETARIA DE ESTADO EN EL DESPACHO DE DEFENSA NACIONAL";
 $tittle2 = "FUERZAS ARMADAS DE HONDURAS";
 $tittle3 = "FUERZA NAVAL DE HONDURAS";
-$tittle4 = "SOLICITUD DE COMPRA No.";
+$tittle4 = "SOLICITUD DE COMPRA";
 
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Administrar_ordenes.php";
@@ -35,7 +35,7 @@ $pdf->AddPage();
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4));
 
-$pdf->fact_dev("O/C No. ",$regv->num_orden);
+$pdf->fact_dev("S/C No. ",$regv->num_orden);
 // $pdf->temporaire( "ORDER DE COMPRA" );
 $pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->titulo_orden );
 
