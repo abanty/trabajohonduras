@@ -398,9 +398,9 @@ if ($_SESSION['admonoc']==1)
                             <tfoot>
                               <th colspan="4"></th>
                               <th style="width:200px;"></th>
-                              <th style="width:80px;"><input type="number" class="form-control input-sm" name="" id="valsv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
+                              <th style="width:140px;"><input type="number" class="form-control input-sm" name="" id="valsv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
                               <th style="width:45px;">% de</th>
-                              <th style="width:80px;"><input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
+                              <th style="width:140px;"><input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
                               <th style="width:140px;">IMP. S/V</th>
                               <th style="width:200px;"><input class="form-control input-sm" type="text" name="" id="impsv" value="0.00" readonly></th>
                             </tfoot>
@@ -435,7 +435,7 @@ if ($_SESSION['admonoc']==1)
                             <tfoot>
                               <th colspan="4"></th>
                               <th></th>
-                              <th><input class="form-control input-sm" type="text" name="valisv" id="valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()"></th>
+                              <th><input class="form-control input-sm" type="text" name="valisv" id="valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" readonly></th>
                               <th>% de</th>
                               <th><input class="form-control input-sm" type="text" name="num_of_valisv" id="num_of_valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" readonly></th>
                               <th>RETENCION ISV</th>
