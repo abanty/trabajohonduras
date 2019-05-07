@@ -14,13 +14,15 @@ Class Administrar_ordenes
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
 	public function insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
-	$tipo_impuesto,$fecha_hora,$subtotal,$impuestosv,$impuesto,$monto_total,$retencionisv,$retencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
-	$precio_unitario,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
+	$fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,
+	$retencionisr,$tasaretencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,iduuss,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
-											tipo_impuesto,fecha_hora,subtotal,impuestosv,impuesto,monto_total,retencionisv,retencionisr,totalnet,estado)
+											fecha_hora,subtotal_inicial,descuento_total,subtotal,impuesto_sv,tasa_sv,impuesto,tasa_imp,monto_total,retencion_isv,tasa_retencion_isv,
+											retencion_isr,tasa_retencion_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
-															'$tipo_impuesto','$fecha_hora','$subtotal','$impuestosv','$impuesto','$monto_total','$retencionisv','$retencionisr','$totalnet','Aceptado')";
+															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$impuesto','$tasaimpuesto','$monto_total',
+															'$retencionisv','$tasaretencionisv','$retencionisr','$tasaretencionisr','$totalneto','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
@@ -50,13 +52,15 @@ Class Administrar_ordenes
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
 	public function insertar_orden_factura($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
-	$tipo_impuesto,$fecha_hora,$subtotal,$impuestosv,$impuesto,$monto_total,$retencionisv,$retencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
-	$precio_unitario,$num_factura,$fecha_factura,$valor_factura)
+	$fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,
+	$retencionisr,$tasaretencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario,$num_factura,$fecha_factura,$valor_factura)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,iduuss,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
-											tipo_impuesto,fecha_hora,subtotal,impuestosv,impuesto,monto_total,retencionisv,retencionisr,totalnet,estado)
+											fecha_hora,subtotal_inicial,descuento_total,subtotal,impuesto_sv,tasa_sv,impuesto,tasa_imp,monto_total,retencion_isv,tasa_retencion_isv,
+											retencion_isr,tasa_retencion_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
-															'$tipo_impuesto','$fecha_hora','$subtotal','$impuestosv','$impuesto','$monto_total','$retencionisv','$retencionisr','$totalnet','Aceptado')";
+															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$impuesto','$tasaimpuesto','$monto_total',
+															'$retencionisv','$tasaretencionisv','$retencionisr','$tasaretencionisr','$totalneto','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
@@ -92,13 +96,16 @@ Class Administrar_ordenes
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
 	public function insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
-	$tipo_impuesto,$fecha_hora,$subtotal,$impuestosv,$impuesto,$monto_total,$retencionisv,$retencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,
-	$precio_unitario,$num_factura,$fecha_factura,$valor_factura,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
+	$fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,
+	$retencionisr,$tasaretencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario,$num_factura,$fecha_factura,$valor_factura,
+	$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,iduuss,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
-											tipo_impuesto,fecha_hora,subtotal,impuestosv,impuesto,monto_total,retencionisv,retencionisr,totalnet,estado)
+											fecha_hora,subtotal_inicial,descuento_total,subtotal,impuesto_sv,tasa_sv,impuesto,tasa_imp,monto_total,retencion_isv,tasa_retencion_isv,
+											retencion_isr,tasa_retencion_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
-															'$tipo_impuesto','$fecha_hora','$subtotal','$impuestosv','$impuesto','$monto_total','$retencionisv','$retencionisr','$totalnet','Aceptado')";
+															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$impuesto','$tasaimpuesto','$monto_total',
+															'$retencionisv','$tasaretencionisv','$retencionisr','$tasaretencionisr','$totalneto','Aceptado')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
@@ -137,14 +144,17 @@ Class Administrar_ordenes
 	// --------------------------------------------------------------------
 	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
 	// --------------------------------------------------------------------
-	public function insertar_orden($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,$fecha_hora,
-	$subtotal,$impuestosv,$impuesto,$monto_total,$retencionisv,$retencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario)
+	public function insertar_orden($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$fecha_hora,
+	$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,
+	$retencionisr,$tasaretencionisr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,$descripcion,$precio_unitario)
 	{
 		$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,iduuss,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
-											tipo_impuesto,fecha_hora,subtotal,impuestosv,impuesto,monto_total,retencionisv,retencionisr,totalnet,estado)
+											fecha_hora,subtotal_inicial,descuento_total,subtotal,impuesto_sv,tasa_sv,impuesto,tasa_imp,monto_total,retencion_isv,tasa_retencion_isv,
+											retencion_isr,tasa_retencion_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
-															'$tipo_impuesto','$fecha_hora','$subtotal','$impuestosv','$impuesto','$monto_total','$retencionisv','$retencionisr','$totalnet','Aceptado')";
-															
+															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$impuesto','$tasaimpuesto','$monto_total',
+															'$retencionisv','$tasaretencionisv','$retencionisr','$tasaretencionisr','$totalneto','Aceptado')";
+
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
 		$num_elementos=0;
@@ -182,19 +192,20 @@ Class Administrar_ordenes
 	public function mostrar_orden($idadministrar_ordenes)
 	{
 		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
-		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,
-		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
+		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, DATE(ao.fecha_hora) as fecha, ao.subtotal_inicial,ao.descuento_total,
+		ao.subtotal,ao.impuesto_sv,ao.tasa_sv,ao.impuesto,ao.tasa_imp,ao.monto_total,ao.retencion_isv,ao.tasa_retencion_isv,ao.retencion_isr,
+		ao.tasa_retencion_isr,ao.total_neto,ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
 		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad
-									FROM administrar_ordenes ao
-									LEFT JOIN proveedores p ON
-									ao.idproveedores=p.idproveedores
-									LEFT JOIN usuario u ON
-									ao.idusuario=u.idusuario
-									LEFT JOIN programa w ON
-									ao.idprograma=w.idprograma
-									LEFT JOIN contabilidad cb ON
-									cb.idadministrar_ordenes = ao.idadministrar_ordenes
-		 			WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
+		FROM administrar_ordenes ao
+		LEFT JOIN proveedores p ON
+		ao.idproveedores=p.idproveedores
+		LEFT JOIN usuario u ON
+		ao.idusuario=u.idusuario
+		LEFT JOIN programa w ON
+		ao.idprograma=w.idprograma
+		LEFT JOIN contabilidad cb ON
+		cb.idadministrar_ordenes = ao.idadministrar_ordenes
+		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
 
@@ -251,8 +262,7 @@ Class Administrar_ordenes
 	public function listarOrden()
 	{
 		$sql="SELECT v.idadministrar_ordenes,	DATE(v.fecha_hora) as fecha, v.idproveedores,	p.casa_comercial as proveedor,
-		u.idusuario,	u.nombre as usuario,	w.idprograma,	w.codigop,	v.num_orden,	v.num_comprobante,
-		v.tipo_impuesto,	v.monto_total,	v.impuesto,	v.estado
+		u.idusuario,	u.nombre as usuario,	w.idprograma,	w.codigop,	v.num_orden,	v.num_comprobante, v.monto_total,v.total_neto,	v.impuesto,	v.estado
 		FROM administrar_ordenes v
 		INNER JOIN proveedores p ON	v.idproveedores=p.idproveedores
 		INNER JOIN usuario u ON	 v.idusuario=u.idusuario
@@ -280,9 +290,10 @@ Class Administrar_ordenes
 	public function mostrar_datos_comprobante($idadministrar_ordenes)
 	{
 		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
-		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, ao.tipo_impuesto, DATE(ao.fecha_hora) as fecha, ao.impuesto, ao.subtotal, ao.descuento_total,(ao.subtotal+ao.descuento_total) as subtotal_origen,
-		ao.monto_total, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,
-		cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad, cts.bancopg as banco
+		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento,DATE(ao.fecha_hora) as fecha, ao.subtotal_inicial,ao.descuento_total,
+		ao.subtotal,ao.impuesto_sv,ao.tasa_sv,ao.impuesto,ao.tasa_imp,ao.monto_total,ao.retencion_isv,ao.tasa_retencion_isv,ao.retencion_isr,
+		ao.tasa_retencion_isr,ao.total_neto, ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias,
+		cb.tipo_pago,cb.numero_transferencia, cb.debitos, cb.creditos, cb.contabilidad, cts.bancopg as banco
 		FROM administrar_ordenes ao
 		LEFT JOIN proveedores p ON
 		ao.idproveedores=p.idproveedores
@@ -294,7 +305,7 @@ Class Administrar_ordenes
 		cb.idadministrar_ordenes = ao.idadministrar_ordenes
     LEFT JOIN ctasbancarias cts ON
     cb.idctasbancarias = cts.idctasbancarias
-		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
+		WHERE ao.idadministrar_ordenes='1'";
 		return ejecutarConsulta($sql);
 	}
 

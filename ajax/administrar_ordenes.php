@@ -18,34 +18,27 @@ $descripcion_orden=isset($_POST["descripcion_orden"])? limpiarCadena($_POST["des
 $tipo_documento=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 
-
-
+$subtotalinicial=isset($_POST["subtotal_inicial"])? limpiarCadena($_POST["subtotal_inicial"]):"";
+$descuentototal=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
 $subtotal=isset($_POST["subtotales"])? limpiarCadena($_POST["subtotales"]):"";
-$impuestosv
+$impuestosv=isset($_POST["impuestosv"])? limpiarCadena($_POST["impuestosv"]):"";
+$tasaimpuestosv=isset($_POST["tasaisv"])? limpiarCadena($_POST["tasaisv"]):"";
 $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
+$tasaimpuesto=isset($_POST["tasaimpuesto"])? limpiarCadena($_POST["tasaimpuesto"]):"";
 $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
-$retencionisv
-$retencionisr
-$totalneto
-
-
-$descuento_total=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
-
-
+$retencionisv=isset($_POST["retencionisv"])? limpiarCadena($_POST["retencionisv"]):"";
+$tasaretencionisv=isset($_POST["tasaretencionisv"])? limpiarCadena($_POST["tasaretencionisv"]):"";
+$retencionisr=isset($_POST["retencionisr"])? limpiarCadena($_POST["retencionisr"]):"";
+$tasaretencionisr=isset($_POST["tasaretencionisr"])? limpiarCadena($_POST["tasaretencionisr"]):"";
+$totalneto=isset($_POST["total_neto"])? limpiarCadena($_POST["total_neto"]):"";
 
 // VARIABLES FUNCION Comprobante
-
 $idctasbancarias=isset($_POST["idctasbancarias"])? limpiarCadena($_POST["idctasbancarias"]):"";
 $tipopago=isset($_POST["tipopago"])? limpiarCadena($_POST["tipopago"]):"";
 $num_transferencia=isset($_POST["num_transferencia"])? limpiarCadena($_POST["num_transferencia"]):"";
 $debitos=isset($_POST["debitos"])? limpiarCadena($_POST["debitos"]):"";
 $creditos=isset($_POST["creditos"])? limpiarCadena($_POST["creditos"]):"";
 $contabilidad=isset($_POST["contabilidad"])? limpiarCadena($_POST["contabilidad"]):"";
-
-// $num_factura = isset($_POST["num_factura"])? limpiarCadena($_POST["num_factura"]):"";
-// $fecha_factura = isset($_POST["fecha_factura"])? limpiarCadena($_POST["fecha_factura"]):"";
-// $valor_factura = isset($_POST["valor_factura"])? limpiarCadena($_POST["valor_factura"]):"";
-
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
@@ -59,27 +52,28 @@ switch ($_GET["op"]){
 
       if ($variable_factura && $contabilidad){
 
-        $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
-               $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-               ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
+        $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$fecha_hora,
+        $subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,$retencionisr,$tasaretencionisr,$totalneto,
+        $_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]),$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],
+        $idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
           }elseif ($variable_factura) {
 
-            $rspta=$admin_ord->insertar_orden_factura($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
-            $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-            ,$_POST["precio_unitario"],$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
+            $rspta=$admin_ord->insertar_orden_factura($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$subtotalinicial,$fecha_hora,
+            $descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,$retencionisr,$tasaretencionisr,$totalneto,
+            $_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]),$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
 
                 }elseif ($contabilidad) {
 
-                  $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
-                   $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-                   ,$_POST["precio_unitario"],$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
+                  $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
+                   $fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,$retencionisr,$tasaretencionisr,$totalneto,
+                   $_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]),$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,
+                   $contabilidad);
 
                           }else {
-
-                            $rspta=$admin_ord->insertar_orden($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$tipo_impuesto,
-                                  $fecha_hora,$impuesto,$subtotal,$descuento_total,$monto_total,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"]
-                                  ,$_POST["precio_unitario"]);
+                            $rspta=$admin_ord->insertar_orden($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
+                                  $fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$impuesto,$tasaimpuesto,$monto_total,$retencionisv,$tasaretencionisv,$retencionisr,$tasaretencionisr,$totalneto,
+                                  $_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]));
                           }
 
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
@@ -121,9 +115,9 @@ switch ($_GET["op"]){
 					<td style="width: 106px;">'.$reg->codigo.'</td>
           <td style="width: 95px;">'.$reg->unidad.'</td>
         	<td style="width: 108px;">'.$reg->cantidad.'</td>
-					<td style="width: 377px;">'.$reg->descripcion.'</td>
+					<td colspan="4" style="width: 377px;">'.$reg->descripcion.'</td>
 					<td style="width: 162px;">'.$reg->precio_unitario.'</td>
-					<td style="width: 214px;">'.$reg->precio_unitario * $reg->cantidad.'</td></tr>';
+					<td style="width: 214px;">'.number_format($reg->precio_unitario * $reg->cantidad, 2, '.', ',').'</td></tr>';
 				}
 
 	break;
@@ -184,9 +178,8 @@ switch ($_GET["op"]){
  				"4"=>$reg->codigop,
   			"5"=>$reg->num_orden,
  				"6"=>$reg->num_comprobante,
- 				"7"=>$reg->monto_total,
- 				"8"=>$reg->impuesto,
- 				"9"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+ 				"7"=>$reg->total_neto,
+ 				"8"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
  				);
  		}

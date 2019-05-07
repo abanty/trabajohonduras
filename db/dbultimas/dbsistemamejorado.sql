@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2019 a las 00:23:34
+-- Tiempo de generación: 07-05-2019 a las 07:45:24
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -39,12 +39,20 @@ CREATE TABLE `administrar_ordenes` (
   `titulo_orden` varchar(80) NOT NULL,
   `descripcion_orden` varchar(100) NOT NULL,
   `tipo_documento` varchar(30) NOT NULL,
-  `tipo_impuesto` varchar(20) NOT NULL,
   `fecha_hora` date NOT NULL,
-  `impuesto` decimal(11,2) NOT NULL,
-  `subtotal` decimal(11,2) NOT NULL,
+  `subtotal_inicial` decimal(11,2) NOT NULL,
   `descuento_total` decimal(11,2) NOT NULL,
+  `subtotal` decimal(11,2) NOT NULL,
+  `impuesto_sv` decimal(11,2) NOT NULL,
+  `tasa_sv` decimal(11,2) NOT NULL,
+  `impuesto` decimal(11,2) NOT NULL,
+  `tasa_imp` decimal(11,2) NOT NULL,
   `monto_total` decimal(11,2) NOT NULL,
+  `retencion_isv` decimal(11,2) NOT NULL,
+  `tasa_retencion_isv` decimal(11,2) NOT NULL,
+  `retencion_isr` decimal(11,2) NOT NULL,
+  `tasa_retencion_isr` decimal(11,2) NOT NULL,
+  `total_neto` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,9 +60,8 @@ CREATE TABLE `administrar_ordenes` (
 -- Volcado de datos para la tabla `administrar_ordenes`
 --
 
-INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `tipo_impuesto`, `fecha_hora`, `impuesto`, `subtotal`, `descuento_total`, `monto_total`, `estado`) VALUES
-(1, 9, 1, 4, 1, '001', '0001', 'Recursos para viviendas', 'Materiales o recursos para viviendas de la villa militar', 'O/C', '0.15', '2019-05-04', '172.78', '1151.86', '10.00', '1324.64', 'Aceptado'),
-(2, 10, 1, 1, 10, '001', '0001', 'Materiales', 'sdfsdfds', 'Acuerdo', '0.15', '2019-05-05', '13.50', '90.00', '0.00', '103.50', 'Aceptado');
+INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `impuesto`, `tasa_imp`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `retencion_isr`, `tasa_retencion_isr`, `total_neto`, `estado`) VALUES
+(1, 9, 1, 1, 11, '001', '0001', 'Materiales', 'Materiales para obras de construcción en la entidad militar', 'O/C', '2019-05-07', '7856.10', '200.00', '7656.10', '1148.42', '15.00', '957.01', '12.50', '9761.53', '1148.42', '15.00', '957.01', '12.50', '7656.10', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -234,13 +241,6 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `contabilidad`
---
-
-INSERT INTO `contabilidad` (`idcontabilidad`, `idadministrar_ordenes`, `idctasbancarias`, `tipo_pago`, `numero_transferencia`, `debitos`, `creditos`, `contabilidad`, `fechacreacion`, `fecha_actualizacion`) VALUES
-(1, 1, 2, 'Deposito', 2147483647, 'gastos de administracion', 'caja y bancos', 'ok', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -357,17 +357,6 @@ CREATE TABLE `detalle_ingreso` (
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- Disparadores `detalle_ingreso`
---
-DELIMITER $$
-CREATE TRIGGER `tr_actualizar_disponible` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN
-    UPDATE presupuesto_disponible SET fondos_disponibles = fondos_disponibles + NEW.monto
-    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
-END
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -389,10 +378,9 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, 'mts', 5, 'Materiales o recursos para viviendas de la villa militar', '50.50'),
-(2, 1, 2, 'mts', 4, 'Materiales o recursos para viviendas de la villa militar', '150.23'),
-(3, 1, 3, 'mts', 2, 'Materiales o recursos para viviendas de la villa militar', '154.22'),
-(4, 2, 5, 'mts', 1, 'fdsfdsfsd', '90.00');
+(1, 1, 1, 'Galones', 1, 'Porciones de pintura base para paredes y estilados', '1850.55'),
+(2, 1, 2, 'Galones', 1, 'Herramientas diversas para estructura de construcción', '2500.00'),
+(3, 1, 3, 'Galones', 1, 'Combustible para maquinarias de uso continuo ', '3505.55');
 
 --
 -- Disparadores `detalle_orden`
@@ -466,14 +454,6 @@ CREATE TABLE `factura_orden` (
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `factura_orden`
---
-
-INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
-(1, 1, '000125485', '2019-05-04', '662.32'),
-(2, 1, '000125486', '2019-05-04', '662.32');
-
 -- --------------------------------------------------------
 
 --
@@ -546,9 +526,9 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Basicos', 11, 1112, '11100', '333500.00', '300.25', 1),
-(2, 'Adicionales', 0, 0, '11400', '740.00', '100.25', 1),
-(3, 'Decimotercer Mes', 0, 0, '11510', '16800.00', '100100.25', 1),
+(1, 'Sueldos Basicos', 11, 1112, '11100', '331649.45', '300.25', 1),
+(2, 'Adicionales', 0, 0, '11400', '-1760.00', '100.25', 1),
+(3, 'Decimotercer Mes', 0, 0, '11510', '13294.45', '100100.25', 1),
 (4, 'Decimocuarto Mes', 0, 0, '11520', '15450.30', '100.25', 1),
 (5, 'Complementos', 0, 0, '11600', '-90.00', '100.25', 1),
 (6, 'Contribuciones al Instituto de Prevision Militar - Cuota Patronal', 0, 0, '11731', '0.00', '0.00', 1),
@@ -1221,7 +1201,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1245,7 +1225,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
@@ -1275,7 +1255,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
@@ -1293,7 +1273,7 @@ ALTER TABLE `dtransf_ctaspg`
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`

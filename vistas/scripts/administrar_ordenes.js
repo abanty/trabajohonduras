@@ -68,8 +68,6 @@ function limpiar()
 	$("#num_comprobante").val('');
 	$("#descripcion_orden").val('');
 
-	$("#tipo_impuesto").selectpicker('val',"");
-	$("#tipo_impuesto").selectpicker('refresh');
 	$("#idprograma").selectpicker('val',"");
 	$("#idprograma").selectpicker('refresh');
 	$("#iduuss").selectpicker('val',"");
@@ -162,7 +160,10 @@ function listar()
      columnDefs: [
 			  				{ width: 125, targets: 0 },
 			          { width: 60, targets: 1 },
-								{ width: 190, targets: 2 }
+								{ width: 95, targets: 3 },
+								{ width: 70, targets: 4 },
+								{ width: 75, targets: 5 },
+								{ width: 125, targets: 6 }
 			      ],
 
 
@@ -256,7 +257,6 @@ function orden_mostrar(idadministrar_ordenes)
 
 		$("#idprograma").val(data.idprograma).selectpicker('refresh');
 		$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
-		$("#tipo_impuesto").val(data.tipo_impuesto).selectpicker('refresh');
 		$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
 
 		$("#titulo_orden").val(data.titulo_orden);
@@ -266,6 +266,8 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#fecha_hora").val(data.fecha);
 
 		// FOOTER DETAIL
+
+		$("#sub_total_inicial").html("L. " + data.subtotal_inicial);
 		$("#subtotales").val(data.subtotal);
 		$("#sub_total").text(data.subtotal);
 		$("#descuento_total").val(data.descuento_total);
@@ -334,7 +336,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							  	var cantidad = 1;
 							  	var unidad = "";
 							  	var descripcion = "";
-							  	var precio_unitario = 0;
+							  	var precio_unitario = 0.00;
 									// getvalue('+cont+')
 					    if (idpresupuesto_disponible!="")
 					    {
@@ -347,7 +349,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								/*UNIDAD*/
 								'<td role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
 								/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
-								'<td role="cell"><input type="number" class="form-control input-sm" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+								'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								/*DESCRIPCION*/
 								'<td colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
 								/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
@@ -366,7 +368,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
 							});
 					   	$('#detalles').append(fila);
-
+	console.log(precio_unitario);
 					   	modificarSubototales();
 					    }
 					    else
@@ -459,6 +461,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 				  preci.style.fontWeight="bold";
 			}
 
+
+
 				subt.value=(canti.value*preci_unit_valor);
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
@@ -468,18 +472,18 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 
 	function CalcularImpuestoSV(){
-		var percentsv = $("#valsv").val();
+		var percentsv = $("#tasaisv").val();
 		var ofnumber = $("#ofnumb").val();
 		var resultpercent = percentsv / 100;
 		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
-	$("#impsv").val(resultabsolute);
-	$("#valisv").val(percentsv);
+	$("#impuestosv").val(resultabsolute);
+	$("#tasaretencionisv").val(percentsv);
 	CalcularImpuestoISV();
 	calcularTotales();
 	}
 
 	function CalcularImpuestosimple(){
-		var percentimp = $("#valimp").val();
+		var percentimp = $("#tasaimpuesto").val();
 		var ofnumberimp = $("#ofnum_imp").val();
 		var resultpercentimp = percentimp / 100;
 		var resultabsoluteimp = parseFloat(Math.round((ofnumberimp * resultpercentimp) * 100) / 100).toFixed(2);
@@ -488,7 +492,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	}
 
 	function CalcularImpuestoISV(){
-		var percentisv = $("#valisv").val();
+		var percentisv = $("#tasaretencionisv").val();
 		var ofnumberisv = $("#num_of_valisv").val();
 		var resultpercentisv = percentisv / 100;
 		var resultabsoluteisv = parseFloat(Math.round((ofnumberisv * resultpercentisv) * 100) / 100).toFixed(2);
@@ -497,7 +501,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	}
 
 	function CalcularImpuestoISR(){
-		var percentisr = $("#valisr").val();
+		var percentisr = $("#tasaretencionisr").val();
 		var ofnumberisr = $("#num_of_valisr").val();
 		var resultpercentisr = percentisr / 100;
 		var resultabsoluteisr = parseFloat(Math.round((ofnumberisr * resultpercentisr) * 100) / 100).toFixed(2);
@@ -512,13 +516,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
   	 var sub = document.getElementsByName("subtotal");
   	 var total = 0.0;
-
-		 var val_imp = $("#impuesto").val();
-		 var val_impsv = $("#impsv").val();
-
 		 var desc_before = $("#descuento_total").val();
-  	 var desc =  desc_before.replace(/,/g, '');
-
+		 var desc =  desc_before.replace(/,/g, '');
+		 var val_imp = $("#impuesto").val();
+		 var val_impsv = $("#impuestosv").val();
 		 var val_isv = $("#retencionisv").val();
 		 var val_isr = $("#retencionisr").val();
 
@@ -531,32 +532,24 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 		new_total_minus = new_total - (parseFloat(val_isv) + parseFloat(val_isr))
 
-		console.log(new_total);
-
-inicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
+		inicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
 		sub_sub_total = parseFloat(Math.round(newsubtotal * 100) / 100).toFixed(2);
 		total_total_neto = parseFloat(Math.round(new_total_minus * 100) / 100).toFixed(2);
-
-
-
 	 	}
 
-$("#ofnumb").val(sub_sub_total);
-$("#num_of_valisv").val(sub_sub_total);
-
-
+		//SUBTOTAL INICIAL
 		$("#sub_total_inicial").html("L. " + inicial);
+		$("#subtotal_inicial").val(inicial);
+		//SUBTOTAL NETO
 		$("#sub_total").html("L. " + sub_sub_total);
+		$("#subtotales").val(sub_sub_total);
+		//PRIMER TOTAL
 		$("#montototal").html("L. " + total_total);
-		$("#totalneto").html("L. " + total_total_neto);
-
-
-
 		$("#monto_total").val(total_total);
-
-		// $("#sub_total_inicial").html("L. " + subinicial);
-
+		//TOTAL NETO
+		$("#totalneto").html("L. " + total_total_neto);
+		$("#total_neto").val(total_total_neto);
 
     evaluar();
 
