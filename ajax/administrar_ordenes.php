@@ -83,9 +83,15 @@ switch ($_GET["op"]){
         echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
 
   	}else {
+      
 
 
 		}
+
+
+
+
+
 	break;
 
 	case 'anular':
