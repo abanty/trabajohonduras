@@ -266,15 +266,21 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#fecha_hora").val(data.fecha);
 
 		// FOOTER DETAIL
-
 		$("#sub_total_inicial").html("L. " + data.subtotal_inicial);
-		$("#subtotales").val(data.subtotal);
-		$("#sub_total").text(data.subtotal);
 		$("#descuento_total").val(data.descuento_total);
+		$("#sub_total").html("L. " + data.subtotal);
+		$("#impuestosv").val(data.impuesto_sv);
 		$("#impuesto").val(data.impuesto);
-		$("#monto_total").val(data.monto_total);
-		$("#montototal").text(data.monto_total);
-
+		// PRIMER TOTAL
+		$("#montototal").html("L. " + data.monto_total);
+		$("#retencionisv").val(data.retencion_isv);
+		$("#retencionisr").val(data.retencion_isr);
+		$("#totalneto").html("L. " + data.total_neto);
+		// % IMPUESTOS Y RETENCIONES
+			$("#tasaisv").val(data.tasa_sv);
+				$("#tasaimpuesto").val(data.tasa_imp);
+					$("#tasaretencionisv").val(data.tasa_retencion_isv);
+						$("#tasaretencionisr").val(data.tasa_retencion_isr);
 
 		//DETALLE COMPROBANTE
 		$("#debitos").val(data.debitos);
