@@ -16,12 +16,21 @@ $num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_com
 $titulo_orden =isset($_POST["titulo_orden"])? limpiarCadena($_POST["titulo_orden"]):"";
 $descripcion_orden=isset($_POST["descripcion_orden"])? limpiarCadena($_POST["descripcion_orden"]):"";
 $tipo_documento=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
-$tipo_impuesto=isset($_POST["tipo_impuesto"])? limpiarCadena($_POST["tipo_impuesto"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
-$impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
+
+
+
 $subtotal=isset($_POST["subtotales"])? limpiarCadena($_POST["subtotales"]):"";
-$descuento_total=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
+$impuestosv
+$impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
 $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
+$retencionisv
+$retencionisr
+$totalneto
+
+
+$descuento_total=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
+
 
 
 // VARIABLES FUNCION Comprobante
