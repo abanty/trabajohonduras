@@ -191,7 +191,7 @@ Class Administrar_ordenes
 	// -------------------------------------------
 	public function mostrar_orden($idadministrar_ordenes)
 	{
-		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
+		$sql="SELECT	ao.idadministrar_ordenes, ao.idproveedores,ao.iduuss, ao.idusuario, ao.idprograma, ao.num_orden, ao.num_comprobante,
 		ao.titulo_orden, ao.descripcion_orden, ao.tipo_documento, DATE(ao.fecha_hora) as fecha, ao.subtotal_inicial,ao.descuento_total,
 		ao.subtotal,ao.impuesto_sv,ao.tasa_sv,ao.impuesto,ao.tasa_imp,ao.monto_total,ao.retencion_isv,ao.tasa_retencion_isv,ao.retencion_isr,
 		ao.tasa_retencion_isr,ao.total_neto,ao.estado, p.casa_comercial as proveedor, u.nombre as usuario, w.nombrep, w.codigop, cb.idctasbancarias, cb.tipo_pago,

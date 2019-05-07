@@ -246,6 +246,30 @@ function guardaryeditar(e)
 	limpiar();
 }
 
+function number_format (number, decimals, dec_point, thousands_sep) {
+    // Strip all characters but numerical ones.
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function (n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+
 
 function orden_mostrar(idadministrar_ordenes)
 {
@@ -258,6 +282,8 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#idprograma").val(data.idprograma).selectpicker('refresh');
 		$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
 		$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
+		$("#iduuss").val(data.iduuss).selectpicker('refresh');
+
 
 		$("#titulo_orden").val(data.titulo_orden);
 		$("#num_orden").val(data.num_orden);
@@ -266,16 +292,20 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#fecha_hora").val(data.fecha);
 
 		// FOOTER DETAIL
-		$("#sub_total_inicial").html("L. " + data.subtotal_inicial);
-		$("#descuento_total").val(data.descuento_total);
-		$("#sub_total").html("L. " + data.subtotal);
-		$("#impuestosv").val(data.impuesto_sv);
-		$("#impuesto").val(data.impuesto);
+		$("#sub_total_inicial").html("L. " + number_format(data.subtotal_inicial, 2, '.', ','));
+
+		$("#descuento_total").val(number_format(data.descuento_total, 2, '.', ','));
+
+		$("#sub_total").html("L. " +  number_format(data.subtotal, 2, '.', ','));
+		$("#impuestosv").val(number_format(data.impuesto_sv, 2, '.', ','));
+		$("#impuesto").val(number_format(data.impuesto, 2, '.', ','));
 		// PRIMER TOTAL
-		$("#montototal").html("L. " + data.monto_total);
-		$("#retencionisv").val(data.retencion_isv);
-		$("#retencionisr").val(data.retencion_isr);
-		$("#totalneto").html("L. " + data.total_neto);
+		$("#montototal").html("L. " + number_format(data.monto_total, 2, '.', ','));
+
+
+		$("#retencionisv").val(number_format(data.retencion_isv, 2, '.', ','));
+		$("#retencionisr").val(number_format(data.retencion_isr, 2, '.', ','));
+		$("#totalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
 		// % IMPUESTOS Y RETENCIONES
 			$("#tasaisv").val(data.tasa_sv);
 				$("#tasaimpuesto").val(data.tasa_imp);
@@ -522,12 +552,21 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
   	 var sub = document.getElementsByName("subtotal");
   	 var total = 0.0;
+
 		 var desc_before = $("#descuento_total").val();
 		 var desc =  desc_before.replace(/,/g, '');
-		 var val_imp = $("#impuesto").val();
-		 var val_impsv = $("#impuestosv").val();
-		 var val_isv = $("#retencionisv").val();
-		 var val_isr = $("#retencionisr").val();
+
+		 var val_imp_before = $("#impuesto").val();
+		 var val_imp = val_imp_before.replace(/,/g, '');
+
+		 var val_impsv_before = $("#impuestosv").val();
+		 var val_impsv = val_impsv_before.replace(/,/g, '');
+
+		 var val_isv_before = $("#retencionisv").val();
+		 var val_isv = val_isv_before.replace(/,/g, '');
+
+		 var val_isr_before = $("#retencionisr").val();
+		 var val_isr = val_isr_before.replace(/,/g, '');
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
