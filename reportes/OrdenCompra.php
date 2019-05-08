@@ -95,7 +95,7 @@ $V=new EnLetras();
 $pdf->SetFont( "Arial", "", 8);
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
 $pdf->SetX(55);
-$pdf->MultiCell(90,4, $con_letra,0);
+$pdf->MultiCell(90,4, utf8_decode($con_letra),0);
 $pdf->SetX(55);
 $pdf->MultiCell(95,4, "************************************* U.L **************************************",0);
 $pdf->Ln(1);
