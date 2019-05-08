@@ -596,13 +596,13 @@ function addLine( $ligne, $tab )
 {
 	global $colonnes, $format;
 
-	$ordonnee     = 13.5;
+	$ordonnee     = 11;
 	$maxSize      = $ligne;
 
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
-		$longCell  = $pos -2;
+		$longCell  = $pos;
 		$texte     = $tab[ $lib ];
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
@@ -621,13 +621,13 @@ function addLine2( $ligne, $tab )
 {
 	global $colonnes, $format;
 
-	$ordonnee     = 82;
+	$ordonnee     = 78;
 	$maxSize      = $ligne;
 
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
-		$longCell  = $pos -2;
+		$longCell  = $pos;
 		$texte     = $tab[ $lib ];
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );

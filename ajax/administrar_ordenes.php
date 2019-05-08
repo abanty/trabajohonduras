@@ -22,14 +22,18 @@ $subtotalinicial=isset($_POST["subtotal_inicial"])? limpiarCadena($_POST["subtot
 $descuentototal=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
 $subtotal=isset($_POST["subtotales"])? limpiarCadena($_POST["subtotales"]):"";
 $impuestosv=isset($_POST["impuestosv"])? limpiarCadena($_POST["impuestosv"]):"";
-$tasaimpuestosv=isset($_POST["tasaisv"])? limpiarCadena($_POST["tasaisv"]):"";
+$tasaimpuestosv=isset($_POST["tasasv"])? limpiarCadena($_POST["tasasv"]):"";
+$valor_sv=isset($_POST["valor_sv"])? limpiarCadena($_POST["valor_sv"]):"";
 $impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
 $tasaimpuesto=isset($_POST["tasaimpuesto"])? limpiarCadena($_POST["tasaimpuesto"]):"";
+$valor_impuesto=isset($_POST["valor_impuesto"])? limpiarCadena($_POST["valor_impuesto"]):"";
 $monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
 $retencionisv=isset($_POST["retencionisv"])? limpiarCadena($_POST["retencionisv"]):"";
 $tasaretencionisv=isset($_POST["tasaretencionisv"])? limpiarCadena($_POST["tasaretencionisv"]):"";
+$valor_isv=isset($_POST["valor_isv"])? limpiarCadena($_POST["valor_isv"]):"";
 $retencionisr=isset($_POST["retencionisr"])? limpiarCadena($_POST["retencionisr"]):"";
 $tasaretencionisr=isset($_POST["tasaretencionisr"])? limpiarCadena($_POST["tasaretencionisr"]):"";
+$valor_isr=isset($_POST["valor_isr"])? limpiarCadena($_POST["valor_isr"]):"";
 $totalneto=isset($_POST["total_neto"])? limpiarCadena($_POST["total_neto"]):"";
 
 // VARIABLES FUNCION Comprobante
@@ -53,30 +57,30 @@ switch ($_GET["op"]){
       if ($variable_factura && $contabilidad){
 
         $rspta=$admin_ord->insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$fecha_hora,
-        $subtotalinicial,str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,str_replace(',','',$impuesto),$tasaimpuesto,$monto_total,str_replace(',','',$retencionisv),
-        $tasaretencionisv,str_replace(',','',$retencionisr),$tasaretencionisr,$totalneto,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],
+        $subtotalinicial,str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,$valor_sv,str_replace(',','',$impuesto),$tasaimpuesto,$valor_impuesto,$monto_total,str_replace(',','',$retencionisv),
+        $tasaretencionisv,$valor_isv,str_replace(',','',$retencionisr),$tasaretencionisr,$valor_isr,$totalneto,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],
         str_replace(',','',$_POST["precio_unitario"]),$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"],
         $idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad);
 
           }elseif ($variable_factura) {
 
             $rspta=$admin_ord->insertar_orden_factura($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,$subtotalinicial,$fecha_hora,
-            str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,str_replace(',','',$impuesto),$tasaimpuesto,$monto_total,str_replace(',','',
-            $retencionisv),$tasaretencionisv,str_replace(',','',$retencionisr),$tasaretencionisr,$totalneto,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],
+            str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,$valor_sv,str_replace(',','',$impuesto),$tasaimpuesto,$valor_impuesto,$monto_total,str_replace(',','',
+            $retencionisv),$tasaretencionisv,$valor_isv,str_replace(',','',$retencionisr),$tasaretencionisr,$valor_isv,$totalneto,$_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],
             $_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]),$_POST["num_factura"],$_POST["fecha_factura"],$_POST["valor_factura"]);
 
                 }elseif ($contabilidad) {
 
                   $rspta=$admin_ord->insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
-                   $fecha_hora,$subtotalinicial,str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,str_replace(',','',$impuesto),$tasaimpuesto,
-                   $monto_total,str_replace(',','',$retencionisv),$tasaretencionisv,str_replace(',','',$retencionisr),$tasaretencionisr,$totalneto,$_POST["idpresupuesto_disponible"],
+                   $fecha_hora,$subtotalinicial,str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,$valor_sv,str_replace(',','',$impuesto),$tasaimpuesto,$valor_impuesto,
+                   $monto_total,str_replace(',','',$retencionisv),$tasaretencionisv,$valor_isv,str_replace(',','',$retencionisr),$tasaretencionisr,$valor_isr,$totalneto,$_POST["idpresupuesto_disponible"],
                    $_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]),$idctasbancarias,$tipopago,$num_transferencia,$debitos,
                    $creditos,$contabilidad);
 
                           }else {
                             $rspta=$admin_ord->insertar_orden($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,$tipo_documento,
-                                  $fecha_hora,$subtotalinicial,str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,str_replace(',','',$impuesto),
-                                  $tasaimpuesto,$monto_total,str_replace(',','',$retencionisv),$tasaretencionisv,str_replace(',','',$retencionisr),$tasaretencionisr,$totalneto,
+                                  $fecha_hora,$subtotalinicial,str_replace(',','',$descuentototal),$subtotal,str_replace(',','',$impuestosv),$tasaimpuestosv,$valor_sv,str_replace(',','',$impuesto),
+                                  $tasaimpuesto,$valor_impuesto,$monto_total,str_replace(',','',$retencionisv),$tasaretencionisv,$valor_isv,str_replace(',','',$retencionisr),$tasaretencionisr,$valor_isr,$totalneto,
                                   $_POST["idpresupuesto_disponible"],$_POST["unidad"],$_POST["cantidad"],$_POST["descripcion"],str_replace(',','',$_POST["precio_unitario"]));
                           }
 

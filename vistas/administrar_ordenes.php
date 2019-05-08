@@ -396,9 +396,9 @@ if ($_SESSION['admonoc']==1)
                             <tfoot>
                               <th colspan="4"></th>
                               <th style="width:100px;"></th>
-                              <th style="width:140px;"><input type="number" class="form-control input-sm" name="tasaisv" id="tasaisv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
+                              <th style="width:140px;"><input type="number" class="form-control input-sm" name="tasasv" id="tasasv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
                               <th style="width:45px;">% de</th>
-                              <th style="width:140px;"><input class="form-control input-sm" type="text" name="" id="ofnumb" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
+                              <th style="width:140px;"><input class="form-control input-sm" type="text" name="valor_sv" id="valor_sv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
                               <th style="width:140px;">IMP. S/V</th>
                               <th style="width:200px;"><input class="form-control input-sm" type="text" name="impuestosv" id="impuestosv" value="0.00" readonly></th>
                             </tfoot>
@@ -408,7 +408,7 @@ if ($_SESSION['admonoc']==1)
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="tasaimpuesto" id="tasaimpuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
                               <th>% de</th>
-                              <th><input class="form-control input-sm" type="text" name="" id="ofnum_imp" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
+                              <th><input class="form-control input-sm" type="text" name="valor_impuesto" id="valor_impuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
                               <th>IMPUESTO</th>
                               <th><input type="text" class="form-control input-sm" name="impuesto" id="impuesto" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                             </tfoot>
@@ -431,7 +431,7 @@ if ($_SESSION['admonoc']==1)
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="tasaretencionisv" id="tasaretencionisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
                               <th>% de</th>
-                              <th><input class="form-control input-sm" type="text" name="num_of_valisv" id="num_of_valisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
+                              <th><input class="form-control input-sm" type="text" name="valor_isv" id="valor_isv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
                               <th>RETENCION ISV</th>
                               <th><input type="text" class="form-control input-sm" name="retencionisv" id="retencionisv" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                             </tfoot>
@@ -442,7 +442,7 @@ if ($_SESSION['admonoc']==1)
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="tasaretencionisr" id="tasaretencionisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
                               <th>% de</th>
-                              <th><input class="form-control input-sm" type="text" name="num_of_valisr" id="num_of_valisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
+                              <th><input class="form-control input-sm" type="text" name="valor_isr" id="valor_isr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
                               <th>RETENCION ISR</th>
                               <th><input type="text" class="form-control input-sm" name="retencionisr" id="retencionisr" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
                             </tfoot>

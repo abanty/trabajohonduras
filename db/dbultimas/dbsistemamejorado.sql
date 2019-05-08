@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 00:26:38
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Tiempo de generación: 08-05-2019 a las 09:26:08
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,13 +45,17 @@ CREATE TABLE `administrar_ordenes` (
   `subtotal` decimal(11,2) NOT NULL,
   `impuesto_sv` decimal(11,2) NOT NULL,
   `tasa_sv` decimal(11,2) NOT NULL,
+  `valor_sv` decimal(11,2) DEFAULT NULL,
   `impuesto` decimal(11,2) NOT NULL,
   `tasa_imp` decimal(11,2) NOT NULL,
+  `valor_impuesto` decimal(11,2) DEFAULT NULL,
   `monto_total` decimal(11,2) NOT NULL,
   `retencion_isv` decimal(11,2) NOT NULL,
   `tasa_retencion_isv` decimal(11,2) NOT NULL,
+  `valor_isv` decimal(11,2) DEFAULT NULL,
   `retencion_isr` decimal(11,2) NOT NULL,
   `tasa_retencion_isr` decimal(11,2) NOT NULL,
+  `valor_isr` decimal(11,2) DEFAULT NULL,
   `total_neto` decimal(11,2) NOT NULL,
   `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,9 +64,8 @@ CREATE TABLE `administrar_ordenes` (
 -- Volcado de datos para la tabla `administrar_ordenes`
 --
 
-INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `impuesto`, `tasa_imp`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `retencion_isr`, `tasa_retencion_isr`, `total_neto`, `estado`) VALUES
-(1, 9, 1, 1, 11, '001', '0001', 'Materiales', 'Materiales para obras de construcción en la entidad militar', 'O/C', '2019-05-07', '7856.10', '200.00', '7656.10', '1148.42', '15.00', '957.01', '12.50', '9761.53', '1148.42', '15.00', '957.01', '12.50', '7656.10', 'Aceptado'),
-(2, 17, 1, 1, 4, '95', '555555', 'Materiales', 'sdddddddddddddddddddsdsd', 'O/C', '0000-00-00', '2019.00', '2500.00', '1667373.00', '0.00', '0.00', '225000.00', '15.00', '1892373.00', '225000.00', '15.00', '0.00', '0.00', '1667373.00', 'Aceptado');
+INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
+(1, 9, 1, 2, 3, '0001', '001', 'Recursos para viviendas', 'Materiales para construcción en zonas militares', 'O/C', '2019-05-08', '19287901.00', '2500.00', '19285401.00', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '24588886.28', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '19285401.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -242,6 +245,13 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `contabilidad`
+--
+
+INSERT INTO `contabilidad` (`idcontabilidad`, `idadministrar_ordenes`, `idctasbancarias`, `tipo_pago`, `numero_transferencia`, `debitos`, `creditos`, `contabilidad`, `fechacreacion`, `fecha_actualizacion`) VALUES
+(1, 1, 2, 'Deposito', 2147483647, 'gastos de administracion', 'caja y bancos', 'ok', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -386,14 +396,14 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, 'Galones', 1, 'Porciones de pintura base para paredes y estilados', '1850.55'),
-(2, 1, 2, 'Galones', 1, 'Herramientas diversas para estructura de construcción', '2500.00'),
-(3, 1, 3, 'Galones', 1, 'Combustible para maquinarias de uso continuo ', '3505.55'),
-(4, 2, 6, 'C/U', 10, 'dadad', '2500.00'),
-(5, 2, 7, 'C/U', 10, 'adad', '250.00'),
-(6, 2, 7, 'C/U', 20, 'dadada', '250.00'),
-(7, 2, 8, 'C/U', 100, 'dadad', '14555.55'),
-(8, 2, 8, 'C/U', 40, 'dadad', '4545.45');
+(1, 1, 1, 'mts', 5, 'Cuerda de escalar para fijar arnés', '585000.00'),
+(2, 1, 2, 'galones', 9, 'Combustible para mezcla de agregados en la maquina', '125000.00'),
+(3, 1, 3, 'cajas', 11, 'Herramientas para construcción', '258000.55'),
+(4, 1, 4, 'unidades', 15, 'de planos virtuales en diseño autocat', '589800.55'),
+(5, 1, 1, 'botellas', 12, 'botellas whisky para merienda semestral', '58002.00'),
+(6, 1, 2, 'empaques', 8, 'Empaque de productos alimentarios', '98900.55'),
+(7, 1, 3, 'pulgadas', 7, 'clavos para techos y paredes', '12588.90'),
+(8, 1, 4, 'onzas', 22, 'de mezcla para pegamento fuerte', '89888.00');
 
 --
 -- Disparadores `detalle_orden`
@@ -472,7 +482,23 @@ CREATE TABLE `factura_orden` (
 --
 
 INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
-(1, 2, '00023586', '2019-05-07', '1667373.00');
+(1, 1, '01241111581', '2019-05-08', '3857080.20'),
+(2, 1, '01241111582', '2019-05-08', '3857080.20'),
+(3, 1, '01241111583', '2019-05-08', '3857080.20'),
+(4, 1, '01241111584', '2019-05-08', '3857080.20'),
+(5, 1, '01241111585', '2019-05-08', '3857080.20'),
+(7, 1, '01241111586', '0000-00-00', '3857080.20'),
+(8, 1, '01241111587', '0000-00-00', '3857080.20'),
+(9, 1, '01241111588', '0000-00-00', '3857080.20'),
+(10, 1, '01241111589', '0000-00-00', '3857080.20'),
+(11, 1, '01241111590', '0000-00-00', '3857080.20'),
+(12, 1, '01241111591', '0000-00-00', '3857080.20'),
+(13, 1, '01241111592', '0000-00-00', '3857080.20'),
+(14, 1, '01241111593', '0000-00-00', '3857080.20'),
+(15, 1, '01241111594', '0000-00-00', '3857080.20'),
+(16, 1, '01241111595', '0000-00-00', '3857080.20'),
+(17, 1, '01241111596', '0000-00-00', '3857080.20'),
+(18, 1, '01241111597', '0000-00-00', '3857080.20');
 
 -- --------------------------------------------------------
 
@@ -547,14 +573,14 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Basicos', 11, 1112, '11100', '331649.45', '300.25', 1),
-(2, 'Adicionales', 0, 0, '11400', '-1760.00', '100.25', 1),
-(3, 'Decimotercer Mes', 0, 0, '11510', '13294.45', '100100.25', 1),
-(4, 'Decimocuarto Mes', 0, 0, '11520', '15450.30', '100.25', 1),
+(1, 'Sueldos Basicos', 11, 1112, '11100', '-3287524.00', '300.25', 1),
+(2, 'Adicionales', 0, 0, '11400', '-1915464.40', '100.25', 1),
+(3, 'Decimotercer Mes', 0, 0, '11510', '-2909328.35', '100100.25', 1),
+(4, 'Decimocuarto Mes', 0, 0, '11520', '-10809093.95', '100.25', 1),
 (5, 'Complementos', 0, 0, '11600', '-90.00', '100.25', 1),
-(6, 'Contribuciones al Instituto de Prevision Militar - Cuota Patronal', 0, 0, '11731', '-25000.00', '0.00', 1),
-(7, 'Contribuciones al Instituto de Prevision Militar - Regimen de Riesgos Especiales', 0, 0, '11732', '-7500.00', '0.00', 1),
-(8, 'Contribuciones al Instituto de Prevision Militar - Reserva Laboral', 0, 0, '11733', '-1637373.00', '0.00', 1),
+(6, 'Contribuciones al Instituto de Prevision Militar - Cuota Patronal', 0, 0, '11731', '0.00', '0.00', 1),
+(7, 'Contribuciones al Instituto de Prevision Militar - Regimen de Riesgos Especiales', 0, 0, '11732', '0.00', '0.00', 1),
+(8, 'Contribuciones al Instituto de Prevision Militar - Reserva Laboral', 0, 0, '11733', '0.00', '0.00', 1),
 (9, 'Beneficios y Compensaciones', 0, 0, '16100', '0.00', '0.00', 1),
 (10, 'Energia Electrica', 0, 0, '21100', '0.00', '0.00', 1),
 (11, 'agua', 0, 0, '21200', '0.00', '0.00', 1),
@@ -1223,7 +1249,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1247,7 +1273,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
@@ -1295,7 +1321,7 @@ ALTER TABLE `dtransf_ctaspg`
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`

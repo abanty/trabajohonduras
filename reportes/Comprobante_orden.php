@@ -38,7 +38,7 @@ $pdf->AddPage();
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->titulos_encabezados(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4),utf8_decode($tittle5));
 
-$pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->banco),utf8_decode($regv->tipo_pago),$regv->numero_transferencia,$regv->subtotal_origen,
+$pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->banco),utf8_decode($regv->tipo_pago),$regv->numero_transferencia,$regv->monto_total,
 $regv->codigop,$regv->usuario,$regv->num_orden,$regv->descripcion_orden,$regv->tipo_documento,$regv->fecha);
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la comprobante
@@ -149,8 +149,8 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->Cell(20,-4, "",0,0);
   $pdf->Cell(22,-4, "",0,0);
   $pdf->Cell(35,-4, "",0,0);
-  $pdf->SetFont( "Arial", "B", 8);
-  $pdf->Cell(35,-4,number_format($regv->subtotal_origen."", 2, '.', ','),0,0,'R');
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,-4,number_format($regv->subtotal_inicial."", 2, '.', ','),0,0,'R');
   $pdf->Cell(49,-4, "",'T',1);
   $pdf->Ln(4);
   // DETALLE - DEBITOS - CREDITOS
@@ -158,65 +158,76 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->Cell(148,2,'','TL',0,'L',0);
   $pdf->Cell(49,2,'','RL',1,'C',0);
   // 1er ROW
+  $pdf->SetFont( "Arial", "B", 8);
   $pdf->Cell(78,5,'CMDCIA GRAL.','L',0,'L',0);
   $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'R',0);
-  $pdf->Cell(35,5,number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->subtotal_inicial, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "B", 10);
   $pdf->Cell(49,5,'D  E  B  I  T  O  S','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 8);
   // 2do ROW
   $pdf->Cell(78,5,'FNH','L',0,'L',0);
   $pdf->Cell(35,5,'DESCUENTO L.',0,0,'R',0);
-  $pdf->Cell(35,5,number_format($regv->descuento_total, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->descuento_total, 2, '.', ','),0,0,'R',0);
   $pdf->Cell(49,5,'GASTO DE FUNCIONAMIENTO','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 8);
   // 3ro ROW
   $pdf->Cell(78,5,'','L',0,'L',0);
   $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(35,5,number_format($regv->subtotal, 2, '.', ','),0,0,'R',0);
-  $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(49,5,'','RL',1,'C',0);
-  $pdf->SetFont( "Arial", "B", 8);
+  $pdf->SetFont( "Arial", "", 8);
   // 4to ROW
-  $pdf->Cell(78,5,'','L',0,'L',0);
-  $pdf->Cell(35,5,'IMPUESTO S/V L.',0,0,'R',0);
-  $pdf->Cell(35,5,'',0,0,'R',0);
-  $pdf->SetFont( "Arial", "", 8);
-  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->Cell(78,5,$regv->tasa_sv.'%   de  '.number_format($regv->valor_sv, 2, '.', ','),'L',0,'R',0);
   $pdf->SetFont( "Arial", "B", 8);
+  $pdf->Cell(35,5,'IMPUESTO S/V L.',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->impuesto_sv, 2, '.', ','),0,0,'R',0);
+  $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "", 8);
   // 5to ROW
-  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(78,5,$regv->tasa_imp.'%   de  '.number_format($regv->valor_impuesto, 2, '.', ','),'L',0,'R',0);
+  $pdf->SetFont( "Arial", "B", 8);
   $pdf->Cell(35,5,'IMPUESTO L.',0,0,'R',0);
-  $pdf->Cell(35,5,$regv->impuesto,0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->impuesto, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "B", 10);
   $pdf->Cell(49,5,'C  R  E  D  I  T  O  S','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 8);
   // 6to ROW
   $pdf->Cell(78,5,'','L',0,'L',0);
   $pdf->Cell(35,5,'TOTAL L.',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(35,5,number_format($regv->monto_total, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(49,5,'CAJAS Y BANCOS','RL',1,'C',0);
-  $pdf->SetFont( "Arial", "B", 8);
+  $pdf->SetFont( "Arial", "", 8);
   // 7to ROW
-  $pdf->Cell(78,5,'','L',0,'L',0);
+  $pdf->Cell(78,5,$regv->tasa_retencion_isv.'%   de  '.number_format($regv->valor_isv, 2, '.', ','),'L',0,'R',0);
+  $pdf->SetFont( "Arial", "B", 8);
   $pdf->Cell(35,5,'RETENCION ISV L.',0,0,'R',0);
-  $pdf->Cell(35,5,'',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->retencion_isv, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(49,5,'','RL',1,'C',0);
+  $pdf->SetFont( "Arial", "", 8);
+  // 8vo ROW tasa_retencion_isr
+  $pdf->Cell(78,5,$regv->tasa_retencion_isr.'%   de  '.number_format($regv->valor_isr, 2, '.', ','),'L',0,'R',0);
   $pdf->SetFont( "Arial", "B", 8);
-  // 8vo ROW
-  $pdf->Cell(78,5,'','L',0,'L',0);
-  $pdf->Cell(35,5,'RETENCION LSR L.',0,0,'R',0);
-  $pdf->Cell(35,5,'',0,0,'R',0);
+  $pdf->Cell(35,5,'RETENCION ISR L.',0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->retencion_isr, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(49,5,'','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 9);
   // 9no ROW
   $pdf->Cell(78,5,'','L',0,'L',0);
   $pdf->Cell(35,5,'NETO A PAGAR L.',0,0,'R',0);
-  $pdf->Cell(35,5,number_format($regv->monto_total, 2, '.', ','),0,0,'R',0);
+  $pdf->SetFont( "Arial", "", 8);
+  $pdf->Cell(35,5,number_format($regv->total_neto, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(49,5,'','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 8);
@@ -227,7 +238,7 @@ while ($regd3 = $rsptad3->fetch_object()) {
 
   $pdf->SetFont( "Arial", "", 8);
   $texta = $regv->usuario;
-  $textb = $regv->usuario;
+  $textb = '';
   $textc = '';
 
 

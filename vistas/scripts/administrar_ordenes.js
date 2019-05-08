@@ -306,11 +306,18 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#retencionisv").val(number_format(data.retencion_isv, 2, '.', ','));
 		$("#retencionisr").val(number_format(data.retencion_isr, 2, '.', ','));
 		$("#totalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
+
 		// % IMPUESTOS Y RETENCIONES
-			$("#tasaisv").val(data.tasa_sv);
+			$("#tasasv").val(data.tasa_sv);
 				$("#tasaimpuesto").val(data.tasa_imp);
 					$("#tasaretencionisv").val(data.tasa_retencion_isv);
 						$("#tasaretencionisr").val(data.tasa_retencion_isr);
+
+							// VALORES DE IMPUESTOS
+							$("#valor_sv").val(data.valor_sv);
+								$("#valor_impuesto").val(data.valor_impuesto);
+									$("#valor_isv").val(data.valor_isv);
+										$("#valor_isr").val(data.valor_isr);
 
 		//DETALLE COMPROBANTE
 		$("#debitos").val(data.debitos);
@@ -508,8 +515,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 
 	function CalcularImpuestoSV(){
-		var percentsv = $("#tasaisv").val();
-		var ofnumber = $("#ofnumb").val();
+		var percentsv = $("#tasasv").val();
+		var ofnumber = $("#valor_sv").val();
 		var resultpercent = percentsv / 100;
 		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
 	$("#impuestosv").val(resultabsolute);
@@ -520,7 +527,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 	function CalcularImpuestosimple(){
 		var percentimp = $("#tasaimpuesto").val();
-		var ofnumberimp = $("#ofnum_imp").val();
+		var ofnumberimp = $("#valor_impuesto").val();
 		var resultpercentimp = percentimp / 100;
 		var resultabsoluteimp = parseFloat(Math.round((ofnumberimp * resultpercentimp) * 100) / 100).toFixed(2);
 	$("#impuesto").val(resultabsoluteimp);
@@ -529,7 +536,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 	function CalcularImpuestoISV(){
 		var percentisv = $("#tasaretencionisv").val();
-		var ofnumberisv = $("#num_of_valisv").val();
+		var ofnumberisv = $("#valor_isv").val();
 		var resultpercentisv = percentisv / 100;
 		var resultabsoluteisv = parseFloat(Math.round((ofnumberisv * resultpercentisv) * 100) / 100).toFixed(2);
 	$("#retencionisv").val(resultabsoluteisv);
@@ -538,7 +545,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 	function CalcularImpuestoISR(){
 		var percentisr = $("#tasaretencionisr").val();
-		var ofnumberisr = $("#num_of_valisr").val();
+		var ofnumberisr = $("#valor_isr").val();
 		var resultpercentisr = percentisr / 100;
 		var resultabsoluteisr = parseFloat(Math.round((ofnumberisr * resultpercentisr) * 100) / 100).toFixed(2);
 	$("#retencionisr").val(resultabsoluteisr);
