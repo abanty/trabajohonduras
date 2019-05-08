@@ -455,12 +455,12 @@ function addLine( $ligne, $tab )
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
-		$longCell  = $pos -2;
+		$longCell  = $pos;
 		$texte     = $tab[ $lib ];
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
-		// $this->SetFont( "Arial", "U", 8.5);
+		$this->SetFont( "Arial", "", 8.5);
 		$this->SetXY( $ordonnee, $ligne-2);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
