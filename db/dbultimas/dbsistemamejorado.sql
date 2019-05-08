@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 09:49:31
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.11
+-- Tiempo de generación: 08-05-2019 a las 10:08:20
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -375,6 +375,17 @@ CREATE TABLE `detalle_ingreso` (
 INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
 (1, 3, 1, '14000000.00');
 
+--
+-- Disparadores `detalle_ingreso`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_actualizar_disponible` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN
+    UPDATE presupuesto_disponible SET fondos_disponibles = fondos_disponibles + NEW.monto
+    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -573,7 +584,7 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos B?sicos', 11, 100, '11100', '389725559.00', '0.00', 1),
+(1, 'Sueldos Básicos', 11, 100, '11100', '389725559.00', '0.00', 1),
 (2, 'Adicionales', 11, 400, '11400', '6276000.00', '0.00', 1),
 (3, 'Decimotercer Mes', 11, 510, '11510', '32477130.00', '0.00', 1),
 (4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
