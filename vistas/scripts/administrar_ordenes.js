@@ -120,6 +120,8 @@ function mostrarform(flag)
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnagregar").hide();
+		$("#tipo_documento").change(change_input_by_tipodoc);
+
 		listarPresupuesto_disponible();
 
 		// $("#btnGuardar").hide();
@@ -133,6 +135,29 @@ function mostrarform(flag)
 		$("#formularioregistros").hide();
 		$("#btnagregar").show();
 	}
+}
+
+
+function change_input_by_tipodoc()
+{
+	var selecttipodoc = $("#tipo_documento option:selected").val();
+
+		if(selecttipodoc == 'Acuerdo'){
+			$("#sol").hide();
+			$("#No_ord").hide();
+			$("#No_acuerdo").show();
+			$("#uni_sup").hide();
+			$("#ft_sub_ini").hide();
+			$("#ft_desc").hide();
+			$("#ft_sv").hide();
+			$("#ft_imp").hide();
+			$("#ft_isv").hide();
+			$("#ft_isr").hide();
+
+
+		}
+
+	// console.log(selecttipodoc);
 }
 
 //Función cancelarform
@@ -390,11 +415,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								/*IDPRESUPUESTO Y CODIGO*/
 								'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
 								/*UNIDAD*/
-								'<td role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
+								'<td id="td_uni" role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
 								/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
 								'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								/*DESCRIPCION*/
-								'<td colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
+								'<td id="td_descri" colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
 								/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
 								'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
 								/*SUB TOTAL*/

@@ -257,25 +257,32 @@ if ($_SESSION['admonoc']==1)
 
                       <form name="formulario" id="formulario" method="POST">
 
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        <div id="sol" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                           <label>Solicitud(*):</label>
                           <input type="text" class="form-control input-sm" name="titulo_orden" id="titulo_orden" maxlength="45" placeholder="Ingrese un titulo">
                         </div>
 
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        <div id="No_ord" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                           <label>No. Orden(*):</label>
                           <input type="hidden" name="idadministrar_ordenes" id="idadministrar_ordenes">
                           <input type="text" class="form-control input-sm" name="num_orden" id="num_orden" maxlength="45" placeholder="Ingrese el # de orden">
                         </div>
-                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+
+                        <div id="No_comp" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>No. Comprobante (*):</label>
                           <input type="text" class="form-control input-sm" name="num_comprobante" id="num_comprobante" maxlength="45" placeholder="Ingrese el # de comprobante">
                         </div>
 
-                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div id="No_acuerdo" style="display:none;" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>No. Acuerdo(*):</label>
+                          <input type="text" class="form-control input-sm" name="num_acuerdo" id="num_acuerdo" maxlength="45" placeholder="Ingrese el # de orden">
+                        </div>
+
+                        <div id="program" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Programa(*):</label>
                           <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
                         </div>
+
 
                         <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                           <label>Fecha(*):</label>
@@ -313,7 +320,7 @@ if ($_SESSION['admonoc']==1)
 
                         </div>
 
-                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div id="uni_sup" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                           <label>Unidad de Superficie (*):</label>
                           <select id="iduuss" name="iduuss" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un unidad"></select>
                         </div>
@@ -357,7 +364,7 @@ if ($_SESSION['admonoc']==1)
                             </tfoot>
 
 
-                            <tfoot>
+                            <tfoot id="ft_sub_ini">
                               <th colspan="4"></th>
                               <th></th>
                               <th></th>
@@ -371,7 +378,7 @@ if ($_SESSION['admonoc']==1)
 
 
 
-                            <tfoot>
+                            <tfoot id="ft_desc">
                               <th colspan="4"></th>
                               <th></th>
                               <th></th>
@@ -394,7 +401,7 @@ if ($_SESSION['admonoc']==1)
                               </th>
                             </tfoot>
 
-                            <tfoot>
+                            <tfoot id="ft_sv">
                               <th colspan="4"></th>
                               <th style="width:100px;"></th>
                               <th style="width:140px;"><input type="number" class="form-control input-sm" name="tasasv" id="tasasv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
@@ -404,7 +411,7 @@ if ($_SESSION['admonoc']==1)
                               <th style="width:200px;"><input class="form-control input-sm" type="text" name="impuestosv" id="impuestosv" value="0.00" readonly></th>
                             </tfoot>
 
-                            <tfoot>
+                            <tfoot id="ft_imp">
                               <th colspan="4"></th>
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="tasaimpuesto" id="tasaimpuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
@@ -427,7 +434,7 @@ if ($_SESSION['admonoc']==1)
 
 
 
-                            <tfoot>
+                            <tfoot id="ft_isv">
                               <th colspan="4"></th>
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="tasaretencionisv" id="tasaretencionisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
@@ -438,7 +445,7 @@ if ($_SESSION['admonoc']==1)
                             </tfoot>
 
 
-                            <tfoot>
+                            <tfoot id="ft_isr">
                               <th colspan="4"></th>
                               <th></th>
                               <th><input class="form-control input-sm" type="text" name="tasaretencionisr" id="tasaretencionisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
