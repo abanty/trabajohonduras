@@ -23,6 +23,7 @@ $tittle2 = "FUERZAS ARMADAS DE HONDURAS";
 $tittle3 = "FUERZA NAVAL DE HONDURAS";
 $tittle4 = "COMPROBANTE DE PAGO";
 $tittle5 = "De conformidad a las Facturas, Recibidas de más documentos que se adjuntan se le está :";
+
 //Obtenemos los datos de la cabecera de la comprobante actual
 require_once "../modelos/Administrar_ordenes.php";
 $comprobante= new Administrar_ordenes();
@@ -111,8 +112,12 @@ $pdf->addCadreTVAs("*** ".$con_letra);
 // //Mostramos el impuesto
 // $pdf->addTVAs($regv->subtotal_origen,$regv->descuento_total,$regv->subtotal, $regv->impuesto, $regv->monto_total,"");
 //
+;
 $pdf->SetFont( "Arial", "B", 8);
+$pdf->SetXY(157.5,25);
+$pdf->Cell(49,5, "C/P No.".$regv->num_comprobante,0,1,'R');
 $pdf->SetXY(10,125);
+
 $pdf->Cell(23,5, "Programa",1,0,'C');
 $pdf->Cell(13,5, "Grupo",1,0,'C');
 $pdf->Cell(20,5, "Subgrupo",1,0,'C');

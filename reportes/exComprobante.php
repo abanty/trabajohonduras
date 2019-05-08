@@ -357,7 +357,7 @@ $programa,$usuario,$norden,$motivopago,$tipodoc,$fecha)
 
 	$this->SetFont( "Arial", "B", 8);
 	$this->SetXY(150,110);
-	$this->MultiCell( 60, 4, utf8_decode("Pagador General de las FF .AA."));
+	$this->MultiCell( 60, 4, utf8_decode("Pagador General de la Fuerza Naval"));
 
 	$this->SetXY( $r1+0.5, $y1);
 	$this->SetFont( "Arial", "B", 8.5);
