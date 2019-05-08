@@ -100,7 +100,7 @@ $pdf->SetX(55);
 $pdf->MultiCell(95,4, "************************************* U.L **************************************",0);
 $pdf->Ln(1);
 $pdf->SetX(55);
-$pdf->MultiCell(90,3, "NOTA: ".$regv->descripcion_orden,0);
+$pdf->MultiCell(90,3, "NOTA: ".utf8_decode($regv->descripcion_orden),0);
 $pdf->Ln(15);
 $texta = strtoupper($regv->cargar);
 
