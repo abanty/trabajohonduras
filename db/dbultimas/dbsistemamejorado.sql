@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 10:08:20
+-- Tiempo de generación: 08-05-2019 a las 10:44:49
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -292,7 +292,7 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '8490000.00', 1),
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '4950000.00', 1),
 (2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '0.00', 1),
 (3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
 (4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
@@ -373,7 +373,10 @@ CREATE TABLE `detalle_ingreso` (
 --
 
 INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
-(1, 3, 1, '14000000.00');
+(1, 3, 1, '14000000.00'),
+(2, 1, 1, '12000000.00'),
+(3, 2, 1, '3000000.00'),
+(4, 3, 1, '15000000.00');
 
 --
 -- Disparadores `detalle_ingreso`
@@ -472,7 +475,8 @@ CREATE TABLE `dtransf_ctaspg` (
 --
 
 INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasbancarias`, `num_precompromiso`, `valor`) VALUES
-(1, 1, 1, 12, '10000000.00');
+(1, 1, 1, 12, '2450000.00'),
+(2, 2, 1, 12, '2500000.00');
 
 -- --------------------------------------------------------
 
@@ -531,9 +535,9 @@ CREATE TABLE `ingreso` (
 --
 
 INSERT INTO `ingreso` (`idingreso`, `idusuario`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
-(1, 1, '2019-01-09 00:00:00', 777, '12000000.00', 'Aceptado'),
-(2, 1, '2019-02-12 00:00:00', 770, '12000000.00', 'Aceptado'),
-(3, 1, '2019-05-07 00:00:00', 321212, '14000000.00', 'Aceptado');
+(1, 1, '2019-05-08 00:00:00', 770, '12000000.00', 'Aceptado'),
+(2, 1, '2019-05-08 00:00:00', 771, '3000000.00', 'Aceptado'),
+(3, 1, '2019-05-08 00:00:00', 772, '15000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -584,7 +588,7 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Básicos', 11, 100, '11100', '389725559.00', '0.00', 1),
+(1, 'Sueldos Básicos', 11, 100, '11100', '389725559.00', '30000000.00', 1),
 (2, 'Adicionales', 11, 400, '11400', '6276000.00', '0.00', 1),
 (3, 'Decimotercer Mes', 11, 510, '11510', '32477130.00', '0.00', 1),
 (4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
@@ -937,14 +941,6 @@ CREATE TABLE `transferenciabch` (
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `transferenciabch`
---
-
-INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
-(1, 9, 1, '2019-04-24', '124', '25', '1000000.14', 'SFSFSFSF', 1),
-(2, 14, 1, '2019-04-28', 'ABR01s', '24573', '1500000.00', 'dfsdddddddddddddfds', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -966,7 +962,8 @@ CREATE TABLE `transferidoctaspg` (
 --
 
 INSERT INTO `transferidoctaspg` (`idtransferidoctaspg`, `idusuario`, `fecha_hora`, `numexpediente`, `numtransferencia`, `valor_transferido`, `estado`) VALUES
-(1, 1, '2019-04-24', '012', '14', '10000000.00', 'Aceptado');
+(1, 1, '2019-05-08', '10', '359', '2450000.00', 'Aceptado'),
+(2, 1, '2019-05-08', '11', '360', '2500000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1308,7 +1305,7 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
@@ -1326,7 +1323,7 @@ ALTER TABLE `detalle_retenciones`
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
-  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
@@ -1368,13 +1365,13 @@ ALTER TABLE `retenciones`
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
-  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
-  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
