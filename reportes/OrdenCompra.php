@@ -52,7 +52,7 @@ $cols=array( "Cod"=>13,
              "Total"=>22);
 $pdf->addCols( $cols);
 $cols=array( "Cod"=>"L",
-             "Unidad"=>"C",
+             "Unidad"=>"L",
              "Cantidad"=>"C",
             "Descripcion"=>"L",
              "P.Unitario"=>"R",
