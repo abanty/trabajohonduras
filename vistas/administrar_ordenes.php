@@ -298,9 +298,10 @@ if ($_SESSION['admonoc']==1)
                           <label>Tipo Documento(*):</label>
                           <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento" data-style="btn-default btn-sm" data-title="Elige Documento" required>
                             <option value="Acuerdo">Acuerdo</option>
-                            <option value="Fondo Reintegrable">Fondo Reintegrable</option>
-                            <option value="Fondo Rotatorio">Fondo Rotatorio</option>
+                            <option value="F.R.">F.R.</option>
                             <option value="O/C">O/C</option>
+                            <option value="Alimentacion">Alimentacion</option>
+                            <option value="Becas">Becas</option>
                           </select>
                         </div>
 
