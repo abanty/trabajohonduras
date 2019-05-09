@@ -121,6 +121,10 @@ function mostrarform(flag)
 				$('#num_orden').val($(this).val());
 		});
 
+		$('#inputfr').change(function() {
+				$('#num_orden').val($(this).val());
+		});
+
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnagregar").hide();
@@ -147,20 +151,54 @@ function change_input_by_tipodoc()
 	var selecttipodoc = $("#tipo_documento option:selected").val();
 
 		if(selecttipodoc == 'Acuerdo'){
+
 			$("#sol").hide();
 			$("#No_ord").hide();
 			$("#No_acuerdo").show();
 			$("#uni_sup").hide();
 			$("#th_uni").hide();
 			$("#th_descr").hide();
+			$("#No_fr").hide();
 		  $("#detalles tfoot").hide();
 			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
 			$("#table_invoce").show();
 			$("#detalles tbody tr").remove();
-			document.getElementById("descripcion_orden").rows = "5";
-		}
+			$("#content_tfoot").hide();
 
-	// console.log(selecttipodoc);
+			document.getElementById("descripcion_orden").rows = "5";
+
+		}else if (selecttipodoc == 'O/C') {
+
+				$("#detalles tbody tr").remove();
+				$("#table_invoce").hide();
+				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
+				 $("#detalles tfoot").show();
+				 $("#uni_sup").show();
+				 $("#th_uni").show();
+				 $("#No_fr").hide();
+				 $("#th_descr").show();
+				 $("#sol").show();
+				 $("#No_ord").show();
+				 $("#No_acuerdo").hide();
+				 $("#content_tfoot").hide();
+				 	document.getElementById("descripcion_orden").rows = "9";
+
+				}else if ((selecttipodoc == 'F.R.')||(selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
+					$("#sol").hide();
+					$("#No_ord").hide();
+					$("#No_acuerdo").hide();
+					$("#No_fr").show();
+					$("#uni_sup").hide();
+					$("#th_uni").hide();
+					$("#th_descr").hide();
+					document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
+					$("#table_invoce").hide();
+					$("#detalles tbody tr").remove();
+					$("#detalles tfoot").hide();
+					$("#content_tfoot").show();
+
+					document.getElementById("descripcion_orden").rows = "5";
+				}
 }
 
 //Función cancelarform
@@ -408,10 +446,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							  	var unidad = "";
 							  	var descripcion = "";
 							  	var precio_unitario = 0.00;
-									// getvalue('+cont+')
 
 						var selecttipodoc = $("#tipo_documento option:selected").val();
-						if((selecttipodoc == 'Acuerdo')&&(idpresupuesto_disponible!="")){
+						if((selecttipodoc == 'Acuerdo')||(selecttipodoc == 'F.R.')||(selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')&&(idpresupuesto_disponible!="")){
 							var subtotal= cantidad*precio_unitario;
 							var fila='<tr role="row" class="filas" id="fila'+cont+'">'+
 								/*BOTON ELIMINAR FILAS*/
@@ -423,7 +460,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
 								'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								/*DESCRIPCION*/
-								'<td id="td_descri" style="display:none; colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
+								'<td id="td_descri" style="display:none;" colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
 								/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
 								'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
 								/*SUB TOTAL*/
@@ -665,11 +702,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 
 		//DATOS CALCULADOS DE OTRO CONTENEDORES
+
 		$("#showsubtotal").html("L. " + number_format(sub_sub_total, 2, '.', ','));
 		$("#showtotal").html("L. " + number_format(total_total, 2, '.', ','));
 		$("#showtotalneto").html("L. " + number_format(total_total_neto, 2, '.', ','));
-
-
 
     evaluar();
 

@@ -25,6 +25,14 @@ if ($_SESSION['admonoc']==1)
   vertical-align: middle;
 }
 
+#content_tfoot tfoot{
+  font-size: 11px;
+}
+
+#content_tfoot tfoot th{
+  vertical-align: middle;
+}
+
   #preloader {
     background: #000000d9;
     position: fixed;
@@ -287,6 +295,11 @@ if ($_SESSION['admonoc']==1)
                           <input type="text" class="form-control input-sm" name="num_acuerdo" id="num_acuerdo" maxlength="45" placeholder="Ingrese el # de acuerdo">
                         </div>
 
+                        <div id="No_fr" style="display:none;" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>F.R.(*):</label>
+                          <input type="text" class="form-control input-sm" name="inputfr" id="inputfr" maxlength="45" placeholder="Ingrese el # de F.R.">
+                        </div>
+
                         <div id="program" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Programa(*):</label>
                           <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
@@ -467,6 +480,119 @@ if ($_SESSION['admonoc']==1)
                           </table>
 
 
+                          <table id="content_tfoot" class="table table-striped table-bordered table-condensed table-hover">
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th>
+                              </th>
+                              <th></th>
+                              <th></th>
+
+                              <th></th>
+
+                              <th>TOTAL NETO</th>
+                              <th>
+                                <h4 id="totalneto">L. 0.00</h4><input type="hidden" name="total_neto" id="total_neto">
+                              </th>
+                            </tfoot>
+
+
+                            <tfoot id="ft_sub_ini">
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th>SUB TOTAL INICIAL</th>
+                              <th>
+                                <h5 id="sub_total_inicial">L. 0.00</h5><input type="hidden" name="subtotal_inicial" id="subtotal_inicial">
+                              </th>
+                            </tfoot>
+
+
+
+                            <tfoot id="ft_desc">
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th>TOTAL DESCUENTO</th>
+                              <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
+                            </tfoot>
+
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th>SUB TOTAL</th>
+                              <th>
+                                <h5 id="sub_total">L. 0.00</h5><input type="hidden" name="subtotales" id="subtotales">
+                              </th>
+                            </tfoot>
+
+                            <tfoot id="ft_sv">
+                              <th colspan="4"></th>
+                              <th style="width:100px;"></th>
+                              <th style="width:140px;"><input type="number" class="form-control input-sm" name="tasasv" id="tasasv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
+                              <th style="width:45px;">% de</th>
+                              <th style="width:140px;"><input class="form-control input-sm prec" type="text" name="valor_sv" id="valor_sv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
+                              <th style="width:140px;">IMP. S/V</th>
+                              <th style="width:200px;"><input class="form-control input-sm prec" type="text" name="impuestosv" id="impuestosv" value="0.00" readonly></th>
+                            </tfoot>
+
+                            <tfoot id="ft_imp">
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th><input class="form-control input-sm" type="text" name="tasaimpuesto" id="tasaimpuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
+                              <th>% de</th>
+                              <th><input class="form-control input-sm prec" type="text" name="valor_impuesto" id="valor_impuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
+                              <th>IMPUESTO</th>
+                              <th><input type="text" class="form-control input-sm prec" name="impuesto" id="impuesto" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
+                            </tfoot>
+
+                            <tfoot>
+                              <th colspan="4"></th>
+                              <th>
+                              </th>
+                              <th></th>
+                              <th></th>
+                              <th></th>
+                              <th>TOTAL</th>
+                              <th><h5 id="montototal">L. 0.00</h5><input type="hidden" name="monto_total" id="monto_total"></th>
+                            </tfoot>
+
+
+
+                            <tfoot id="ft_isv">
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th><input class="form-control input-sm" type="text" name="tasaretencionisv" id="tasaretencionisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
+                              <th>% de</th>
+                              <th><input class="form-control input-sm prec" type="text" name="valor_isv" id="valor_isv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
+                              <th>RETENCION ISV</th>
+                              <th><input type="text" class="form-control input-sm prec" name="retencionisv" id="retencionisv" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
+                            </tfoot>
+
+
+                            <tfoot id="ft_isr">
+                              <th colspan="4"></th>
+                              <th></th>
+                              <th><input class="form-control input-sm" type="text" name="tasaretencionisr" id="tasaretencionisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
+                              <th>% de</th>
+                              <th><input class="form-control input-sm prec" type="text" name="valor_isr" id="valor_isr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
+                              <th>RETENCION ISR</th>
+                              <th><input type="text" class="form-control input-sm prec" name="retencionisr" id="retencionisr" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
+                            </tfoot>
+
+                        </table>
+
+
+
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
 
@@ -477,21 +603,30 @@ if ($_SESSION['admonoc']==1)
                           <p class="lead">Cálculos</p>
                            <div class="table-responsive">
                               <table class="table">
-                                <tbody><tr>
-                                  <th style="width:50%">Subtotal:</th>
-                                  <td id="showsubtotal">L. 0.00</td>
-                                </tr>
-                                <tr>
-                                  <th>Total:</th>
-                                  <td id="showtotal">L. 0.00</td>
-                                </tr>
-                                <tr>
-                                  <th>Total Neto:</th>
-                                  <td id="showtotalneto">L. 0.00</td>
-                                </tr>
-                              </tbody></table>
+
+                                    <tbody>
+
+                                    <tr>
+                                      <th style="width:40%">Subtotal:</th>
+                                      <td id="showsubtotal">L. 0.00</td>
+                                    </tr>
+
+
+                                    <tr>
+                                      <th>Total:</th>
+                                      <td id="showtotal">L. 0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                      <th>Total Neto:</th>
+                                      <td id="showtotalneto">L. 0.00</td>
+                                    </tr>
+
+                                  </tbody>
+
+                            </table>
                             </div>
-                        </div>
+                        </div>             
 
                       </form>
                     </div>
