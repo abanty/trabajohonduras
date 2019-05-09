@@ -490,7 +490,7 @@ if ($_SESSION['admonoc']==1)
 
 
 
-                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div style="padding-top: 30px;" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
 
                             <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fas fa-arrow-circle-left"></i> Cancelar</button>
