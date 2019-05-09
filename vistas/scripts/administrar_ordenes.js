@@ -117,6 +117,10 @@ function mostrarform(flag)
 {
 	if (flag)
 	{
+		$('#num_acuerdo').change(function() {
+				$('#num_orden').val($(this).val());
+		});
+
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnagregar").hide();
@@ -147,18 +151,13 @@ function change_input_by_tipodoc()
 			$("#No_ord").hide();
 			$("#No_acuerdo").show();
 			$("#uni_sup").hide();
-			$("#ft_sub_ini").hide();
-			$("#ft_desc").hide();
-			$("#ft_sv").hide();
-			$("#ft_imp").hide();
-			$("#ft_isv").hide();
-			$("#ft_isr").hide();
 			$("#th_uni").hide();
 			$("#th_descr").hide();
-
-
-
-
+		  $("#detalles tfoot").hide();
+			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
+			$("#table_invoce").show();
+			$("#detalles tbody tr").remove();
+			document.getElementById("descripcion_orden").rows = "5";
 		}
 
 	// console.log(selecttipodoc);
@@ -343,10 +342,10 @@ function orden_mostrar(idadministrar_ordenes)
 						$("#tasaretencionisr").val(data.tasa_retencion_isr);
 
 							// VALORES DE IMPUESTOS
-							$("#valor_sv").val(data.valor_sv);
-								$("#valor_impuesto").val(data.valor_impuesto);
-									$("#valor_isv").val(data.valor_isv);
-										$("#valor_isr").val(data.valor_isr);
+							$("#valor_sv").val(number_format(data.valor_sv, 2, '.', ','));
+								$("#valor_impuesto").val(number_format(data.valor_impuesto, 2, '.', ','));
+									$("#valor_isv").val(number_format(data.valor_isv, 2, '.', ','));
+										$("#valor_isr").val(number_format(data.valor_isr, 2, '.', ','));
 
 		//DETALLE COMPROBANTE
 		$("#debitos").val(data.debitos);
@@ -577,43 +576,44 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	function CalcularImpuestoSV(){
 		var percentsv = $("#tasasv").val();
 		var ofnumber = $("#valor_sv").val();
+		var ofnumber_valid = ofnumber.replace(/,/g, '');
 		var resultpercent = percentsv / 100;
-		var resultabsolute = parseFloat(Math.round((ofnumber * resultpercent) * 100) / 100).toFixed(2);
-	$("#impuestosv").val(resultabsolute);
-	$("#tasaretencionisv").val(percentsv);
-	CalcularImpuestoISV();
-	calcularTotales();
+		var resultabsolute = parseFloat(Math.round((ofnumber_valid * resultpercent) * 100) / 100).toFixed(2);
+		$("#impuestosv").val(number_format(resultabsolute, 2, '.', ','));
+		$("#tasaretencionisv").val(percentsv);
+		CalcularImpuestoISV();
+		calcularTotales();
 	}
 
 	function CalcularImpuestosimple(){
 		var percentimp = $("#tasaimpuesto").val();
 		var ofnumberimp = $("#valor_impuesto").val();
+		var ofnumberimp_valid = ofnumberimp.replace(/,/g, '');
 		var resultpercentimp = percentimp / 100;
-		var resultabsoluteimp = parseFloat(Math.round((ofnumberimp * resultpercentimp) * 100) / 100).toFixed(2);
-	$("#impuesto").val(resultabsoluteimp);
+		var resultabsoluteimp = parseFloat(Math.round((ofnumberimp_valid * resultpercentimp) * 100) / 100).toFixed(2);
+		$("#impuesto").val(number_format(resultabsoluteimp, 2, '.', ','));
 		calcularTotales();
 	}
 
 	function CalcularImpuestoISV(){
 		var percentisv = $("#tasaretencionisv").val();
 		var ofnumberisv = $("#valor_isv").val();
+		var ofnumberisv_valid = ofnumberisv.replace(/,/g, '');
 		var resultpercentisv = percentisv / 100;
-		var resultabsoluteisv = parseFloat(Math.round((ofnumberisv * resultpercentisv) * 100) / 100).toFixed(2);
-	$("#retencionisv").val(resultabsoluteisv);
+		var resultabsoluteisv = parseFloat(Math.round((ofnumberisv_valid * resultpercentisv) * 100) / 100).toFixed(2);
+		$("#retencionisv").val(number_format(resultabsoluteisv, 2, '.', ','));
 		calcularTotales();
 	}
 
 	function CalcularImpuestoISR(){
 		var percentisr = $("#tasaretencionisr").val();
 		var ofnumberisr = $("#valor_isr").val();
+		var ofnumberisr_valid = ofnumberisr.replace(/,/g, '');
 		var resultpercentisr = percentisr / 100;
-		var resultabsoluteisr = parseFloat(Math.round((ofnumberisr * resultpercentisr) * 100) / 100).toFixed(2);
-	$("#retencionisr").val(resultabsoluteisr);
+		var resultabsoluteisr = parseFloat(Math.round((ofnumberisr_valid * resultpercentisr) * 100) / 100).toFixed(2);
+		$("#retencionisr").val(number_format(resultabsoluteisr, 2, '.', ','));
 		calcularTotales();
 	}
-
-
-
 
   function calcularTotales(){
 
@@ -651,17 +651,25 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	 	}
 
 		//SUBTOTAL INICIAL
-		$("#sub_total_inicial").html("L. " + inicial);
+		$("#sub_total_inicial").html("L. " + number_format(inicial, 2, '.', ','));
 		$("#subtotal_inicial").val(inicial);
 		//SUBTOTAL NETO
-		$("#sub_total").html("L. " + sub_sub_total);
+		$("#sub_total").html("L. " + number_format(sub_sub_total, 2, '.', ','));
 		$("#subtotales").val(sub_sub_total);
 		//PRIMER TOTAL
-		$("#montototal").html("L. " + total_total);
+		$("#montototal").html("L. " + number_format(total_total, 2, '.', ','));
 		$("#monto_total").val(total_total);
 		//TOTAL NETO
-		$("#totalneto").html("L. " + total_total_neto);
+		$("#totalneto").html("L. " + number_format(total_total_neto, 2, '.', ','));
 		$("#total_neto").val(total_total_neto);
+
+
+		//DATOS CALCULADOS DE OTRO CONTENEDORES
+		$("#showsubtotal").html("L. " + number_format(sub_sub_total, 2, '.', ','));
+		$("#showtotal").html("L. " + number_format(total_total, 2, '.', ','));
+		$("#showtotalneto").html("L. " + number_format(total_total_neto, 2, '.', ','));
+
+
 
     evaluar();
 
