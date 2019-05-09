@@ -300,6 +300,11 @@ if ($_SESSION['admonoc']==1)
                           <input type="text" class="form-control input-sm" name="inputfr" id="inputfr" maxlength="45" placeholder="Ingrese el # de F.R.">
                         </div>
 
+                        <div id="No_refbancaria" style="display:none;" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>Referencia Bancaria.(*):</label>
+                          <input type="text" class="form-control input-sm" name="refbank" id="refbank" maxlength="45" placeholder="Ingrese el # de Referencia B.">
+                        </div>
+
                         <div id="program" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Programa(*):</label>
                           <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
@@ -317,7 +322,7 @@ if ($_SESSION['admonoc']==1)
 
                         </div>
 
-                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div id="divprov" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                           <label>Proveedor(*):</label>
                           <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proveedor"></select>
                         </div>
@@ -352,7 +357,7 @@ if ($_SESSION['admonoc']==1)
                         <div id="content_table_details" class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
 
-                          <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table">
+                          <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table" style="margin-bottom: 0px;">
 
                             <thead id="det-thead" role="rowgroup" style="background-color:#d2d6de">
                               <tr role="row">
@@ -369,118 +374,10 @@ if ($_SESSION['admonoc']==1)
                             <tbody id="det-tbody" role="rowgroup">
                             </tbody>
 
-
-                            <tfoot>
-                              <th colspan="4"></th>
-                              <th>
-                              </th>
-                              <th></th>
-                              <th></th>
-
-                              <th></th>
-
-                              <th>TOTAL NETO</th>
-                              <th>
-                                <h4 id="totalneto">L. 0.00</h4><input type="hidden" name="total_neto" id="total_neto">
-                              </th>
-                            </tfoot>
-
-
-                            <tfoot id="ft_sub_ini">
-                              <th colspan="4"></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th>SUB TOTAL INICIAL</th>
-                              <th>
-                                <h5 id="sub_total_inicial">L. 0.00</h5><input type="hidden" name="subtotal_inicial" id="subtotal_inicial">
-                              </th>
-                            </tfoot>
-
-
-
-                            <tfoot id="ft_desc">
-                              <th colspan="4"></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th>TOTAL DESCUENTO</th>
-                              <th><input type="text" onchange="modificarSubototales()" onkeyup="modificarSubototales()" class="form-control input-sm" name="descuento_total" id="descuento_total" placeholder="Ingrese el descuento"></th>
-                            </tfoot>
-
-
-                            <tfoot>
-                              <th colspan="4"></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th>SUB TOTAL</th>
-                              <th>
-                                <h5 id="sub_total">L. 0.00</h5><input type="hidden" name="subtotales" id="subtotales">
-                              </th>
-                            </tfoot>
-
-                            <tfoot id="ft_sv">
-                              <th colspan="4"></th>
-                              <th style="width:100px;"></th>
-                              <th style="width:140px;"><input type="number" class="form-control input-sm" name="tasasv" id="tasasv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
-                              <th style="width:45px;">% de</th>
-                              <th style="width:140px;"><input class="form-control input-sm prec" type="text" name="valor_sv" id="valor_sv" onchange="CalcularImpuestoSV()" onkeyup="CalcularImpuestoSV()"></th>
-                              <th style="width:140px;">IMP. S/V</th>
-                              <th style="width:200px;"><input class="form-control input-sm prec" type="text" name="impuestosv" id="impuestosv" value="0.00" readonly></th>
-                            </tfoot>
-
-                            <tfoot id="ft_imp">
-                              <th colspan="4"></th>
-                              <th></th>
-                              <th><input class="form-control input-sm" type="text" name="tasaimpuesto" id="tasaimpuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
-                              <th>% de</th>
-                              <th><input class="form-control input-sm prec" type="text" name="valor_impuesto" id="valor_impuesto" onchange="CalcularImpuestosimple()" onkeyup="CalcularImpuestosimple()"></th>
-                              <th>IMPUESTO</th>
-                              <th><input type="text" class="form-control input-sm prec" name="impuesto" id="impuesto" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
-                            </tfoot>
-
-                            <tfoot>
-                              <th colspan="4"></th>
-                              <th>
-                              </th>
-                              <th></th>
-                              <th></th>
-                              <th></th>
-                              <th>TOTAL</th>
-                              <th><h5 id="montototal">L. 0.00</h5><input type="hidden" name="monto_total" id="monto_total"></th>
-                            </tfoot>
-
-
-
-                            <tfoot id="ft_isv">
-                              <th colspan="4"></th>
-                              <th></th>
-                              <th><input class="form-control input-sm" type="text" name="tasaretencionisv" id="tasaretencionisv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
-                              <th>% de</th>
-                              <th><input class="form-control input-sm prec" type="text" name="valor_isv" id="valor_isv" onchange="CalcularImpuestoISV()" onkeyup="CalcularImpuestoISV()" ></th>
-                              <th>RETENCION ISV</th>
-                              <th><input type="text" class="form-control input-sm prec" name="retencionisv" id="retencionisv" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
-                            </tfoot>
-
-
-                            <tfoot id="ft_isr">
-                              <th colspan="4"></th>
-                              <th></th>
-                              <th><input class="form-control input-sm" type="text" name="tasaretencionisr" id="tasaretencionisr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
-                              <th>% de</th>
-                              <th><input class="form-control input-sm prec" type="text" name="valor_isr" id="valor_isr" onchange="CalcularImpuestoISR()" onkeyup="CalcularImpuestoISR()"></th>
-                              <th>RETENCION ISR</th>
-                              <th><input type="text" class="form-control input-sm prec" name="retencionisr" id="retencionisr" placeholder="Ingrese el impuesto" value="0.00" readonly></th>
-                            </tfoot>
-
                           </table>
 
 
-                          <table id="content_tfoot" class="table table-striped table-bordered table-condensed table-hover">
+                          <table id="content_tfoot" class="table table-condensed">
 
                             <tfoot>
                               <th colspan="4"></th>
@@ -626,7 +523,7 @@ if ($_SESSION['admonoc']==1)
 
                             </table>
                             </div>
-                        </div>             
+                        </div>
 
                       </form>
                     </div>

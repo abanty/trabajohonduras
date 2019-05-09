@@ -50,6 +50,10 @@ switch ($_GET["op"]){
    $iduuss = '1';
   }
 
+  if (empty($idproveedores)) {
+   $idproveedores = '1';
+  }
+
 		if (empty($idadministrar_ordenes)){
 
       $variable_factura= isset($_POST["num_factura"]);

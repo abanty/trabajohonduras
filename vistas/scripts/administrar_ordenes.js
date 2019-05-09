@@ -157,6 +157,7 @@ function change_input_by_tipodoc()
 			$("#No_acuerdo").show();
 			$("#uni_sup").hide();
 			$("#th_uni").hide();
+			$("#No_refbancaria").hide();
 			$("#th_descr").hide();
 			$("#No_fr").hide();
 		  $("#detalles tfoot").hide();
@@ -164,6 +165,7 @@ function change_input_by_tipodoc()
 			$("#table_invoce").show();
 			$("#detalles tbody tr").remove();
 			$("#content_tfoot").hide();
+			$("#divprov").show();
 
 			document.getElementById("descripcion_orden").rows = "5";
 
@@ -172,32 +174,50 @@ function change_input_by_tipodoc()
 				$("#detalles tbody tr").remove();
 				$("#table_invoce").hide();
 				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
-				 $("#detalles tfoot").show();
 				 $("#uni_sup").show();
 				 $("#th_uni").show();
 				 $("#No_fr").hide();
+				 $("#No_refbancaria").hide();
 				 $("#th_descr").show();
 				 $("#sol").show();
 				 $("#No_ord").show();
 				 $("#No_acuerdo").hide();
-				 $("#content_tfoot").hide();
-				 	document.getElementById("descripcion_orden").rows = "9";
+				 document.getElementById("descripcion_orden").rows = "9";
+				 $("#divprov").show();
+				 $("#content_tfoot").show();
 
-				}else if ((selecttipodoc == 'F.R.')||(selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
+				}else if (selecttipodoc == 'F.R.') {
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
 					$("#No_fr").show();
+					$("#No_refbancaria").hide();
 					$("#uni_sup").hide();
 					$("#th_uni").hide();
 					$("#th_descr").hide();
 					document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
 					$("#table_invoce").hide();
 					$("#detalles tbody tr").remove();
-					$("#detalles tfoot").hide();
+					// $("#detalles tfoot").show();
 					$("#content_tfoot").show();
-
+					$("#divprov").show();
 					document.getElementById("descripcion_orden").rows = "5";
+				}else if ((selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
+					$("#sol").hide();
+					$("#No_ord").hide();
+					$("#No_acuerdo").hide();
+					$("#No_fr").hide();
+					$("#No_refbancaria").show();
+					$("#uni_sup").hide();
+					$("#th_uni").hide();
+					$("#th_descr").hide();
+					document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
+					$("#table_invoce").show();
+					$("#detalles tbody tr").remove();
+					$("#content_tfoot").hide();
+					document.getElementById("descripcion_orden").rows = "5";
+					$("#divprov").hide();
+
 				}
 }
 
