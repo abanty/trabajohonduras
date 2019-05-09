@@ -3,7 +3,7 @@ if (strlen(session_id()) < 1)
   session_start();
 
 require_once "../modelos/Administrar_ordenes.php";
-// GUARDANDO UN COMIT
+// GUARDANDO UN COMIT ahora mismo
 $admin_ord=new Administrar_ordenes();
 
 $idadministrar_ordenes=isset($_POST["idadministrar_ordenes"])? limpiarCadena($_POST["idadministrar_ordenes"]):"";
