@@ -275,7 +275,7 @@ if ($_SESSION['admonoc']==1)
 
                         <div id="No_acuerdo" style="display:none;" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>No. Acuerdo(*):</label>
-                          <input type="text" class="form-control input-sm" name="num_acuerdo" id="num_acuerdo" maxlength="45" placeholder="Ingrese el # de orden">
+                          <input type="text" class="form-control input-sm" name="num_orden" id="num_orden" maxlength="45" placeholder="Ingrese el # de acuerdo">
                         </div>
 
                         <div id="program" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -336,9 +336,9 @@ if ($_SESSION['admonoc']==1)
                               <tr role="row">
                                 <th role="columnheader">Opciones</th>
                                 <th role="columnheader">Objeto Gasto</th>
-                                <th role="columnheader">Unidad</th>
+                                <th id="th_uni" role="columnheader">Unidad</th>
                                 <th role="columnheader">Cantidad</th>
-                                <th colspan="4" role="columnheader">Descripcion</th>
+                                <th id="th_descr" colspan="4" role="columnheader">Descripcion</th>
                                 <th role="columnheader">Precio Unitario</th>
                                 <th role="columnheader">Subtotal</th>
                               </tr>
