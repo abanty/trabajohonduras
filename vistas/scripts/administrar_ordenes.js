@@ -140,28 +140,57 @@ function limpiarFooterCalculos(){
 
 
 
-function limpiarCamposDocAcuerdos(){
+function limpiarCamposOrden(){
 
+	fechanow();
+	detalles=0;
+	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+
+	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
+	$("#idadministrar_ordenes").val('');
+
+	$("#titulo_orden").val('');
+	$("#num_orden").val('');
+	$("#num_comprobante").val('');
+	$("#descripcion_orden").val('');
+	$("#num_comprobante").val('');
+	$("#descripcion_orden").val('');
+	$("#num_acuerdo").val('');
+	$("#inputfr").val('');
+	$("#refbank").val('');
+
+	$("#idprograma").selectpicker('val',"");
+	$("#idprograma").selectpicker('refresh');
+
+	$("#iduuss").selectpicker('val',"");
+	$("#iduuss").selectpicker('refresh');
+
+	$("#idproveedores").selectpicker('val',"");
+	$("#idproveedores").selectpicker('refresh');
+
+	// LIMPIAR CAMPOS CONTABILIDAD
+	$("#creditos").val('');
+	$("#debitos").val('');
+	$("#contabilidad").val('');
+	$("#num_transferencia").val('');
+
+	$("#idctasbancarias").selectpicker('val',"");
+	$("#idctasbancarias").selectpicker('refresh');
+	$("#tipopago").selectpicker('val',"");
+	$("#tipopago").selectpicker('refresh');
+	$("#btnaddfact").show();
+
+	$(".filas").remove();
+	$(".filafactura").remove();
+
+	$("#sub_total").html("L. 0.00");
+	$("#montototal").html("L. 0.00");
+
+	limpiarFooterCalculos();
 
 }
 
 
-function limpiarCamposDocFondosR(){
-
-
-}
-
-
-function limpiarOrdenCompra(){
-
-
-}
-
-
-function limpiarFooterAlimBeca(){
-
-
-}
 
 
 
@@ -218,7 +247,7 @@ function change_input_by_tipodoc()
 
 		if(selecttipodoc == 'Acuerdo'){
 
-			limpiarFooterCalculos();
+			limpiarCamposOrden();
 			$("#sol").hide();
 			$("#No_ord").hide();
 			$("#No_acuerdo").show();
@@ -230,7 +259,7 @@ function change_input_by_tipodoc()
 		  $("#detalles tfoot").hide();
 			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
 			$("#table_invoce").show();
-			$("#detalles tbody tr").remove();
+			// $("#detalles tbody tr").remove();
 			$("#content_tfoot").hide();
 			$("#divprov").show();
 
@@ -238,8 +267,8 @@ function change_input_by_tipodoc()
 
 		}else if (selecttipodoc == 'O/C') {
 
-				limpiarFooterCalculos();
-				$("#detalles tbody tr").remove();
+				limpiarCamposOrden();
+				// $("#detalles tbody tr").remove();
 				$("#table_invoce").hide();
 				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
 				 $("#uni_sup").show();
@@ -256,7 +285,7 @@ function change_input_by_tipodoc()
 
 				}else if (selecttipodoc == 'F.R.') {
 
-					limpiarFooterCalculos();
+					limpiarCamposOrden();
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
@@ -267,7 +296,7 @@ function change_input_by_tipodoc()
 					$("#th_descr").hide();
 					document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
 					$("#table_invoce").hide();
-					$("#detalles tbody tr").remove();
+					// $("#detalles tbody tr").remove();
 					// $("#detalles tfoot").show();
 					$("#content_tfoot").show();
 					$("#divprov").show();
@@ -275,7 +304,8 @@ function change_input_by_tipodoc()
 
 				}else if ((selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
 
-					limpiarFooterCalculos();
+
+					limpiarCamposOrden();
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
@@ -286,7 +316,7 @@ function change_input_by_tipodoc()
 					$("#th_descr").hide();
 					document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
 					$("#table_invoce").show();
-					$("#detalles tbody tr").remove();
+					// $("#detalles tbody tr").remove();
 					$("#content_tfoot").hide();
 					document.getElementById("descripcion_orden").rows = "5";
 					$("#divprov").hide();
