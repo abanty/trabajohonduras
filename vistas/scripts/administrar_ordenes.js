@@ -119,19 +119,24 @@ function limpiarFooterCalculos(){
 	$("#total_neto").val('');
 	$("#totalneto").html("L. 0.00");
 
-	$("#impuestosv").val('');
+// TOTALES ACUERDO
+	$("#showsubtotal").html("L. 0.00");
+	$("#showtotal").html("L. 0.00");
+	$("#showtotalneto").html("L. 0.00");
+
+	$("#impuestosv").val('0');
 	$("#valor_sv").val('');
 	$("#tasasv").val('');
 
-	$("#impuesto").val('');
+	$("#impuesto").val('0');
 	$("#valor_impuesto").val('');
 	$("#tasaimpuesto").val('');
 
-	$("#retencionisv").val('');
+	$("#retencionisv").val('0');
 	$("#valor_isv").val('');
 	$("#tasaretencionisv").val('');
 
-	$("#retencionisr").val('');
+	$("#retencionisr").val('0');
 	$("#valor_isr").val('');
 	$("#tasaretencionisr").val('');
 
