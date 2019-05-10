@@ -16,10 +16,10 @@ if ($_SESSION['siafi']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             <b>Ingreso de Fondos a las Cuentas de PGFNH</b>
           </h1>
           <ol class="breadcrumb">
@@ -45,36 +45,46 @@ if ($_SESSION['siafi']==1)
                             <th>Opciones</th>
                             <th>Fecha</th>
                             <th>Usuario</th>
+                            <th>Tipo Transferencia</th>
                             <th>No. Expediente</th>
                             <th>No. Transferencia</th>
                             <th>Valor transferido</th>
                             <th>Estado</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Fecha</th>
                             <th>Usuario</th>
+                            <th>Tipo Transferencia</th>
                             <th>No. Expediente</th>
                             <th>No. Transferencia</th>
                             <th>Valor transferido</th>
-                            <th>Estado</th>                         
-                          </tfoot>                         
+                            <th>Estado</th>
+                          </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Fecha(*):</label>
-                             <input type="hidden" name="idtransferidoctaspg" id="idtransferidoctaspg">             
+                             <input type="hidden" name="idtransferidoctaspg" id="idtransferidoctaspg">
                              <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
+                          </div>
+
+                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                            <label>Tipo Transferencia(*):</label>
+                            <select class="form-control selectpicker" name="tipo_transf" id="tipo_transf" data-style="btn-default btn-sm" data-title="Elige el Tipo de Transferencia" required>
+                              <option value="Transf/Sedena">Transf/Sedena</option>
+                              <option value="Transf/Cuentas">Transf/Cuentas</option>
+                            </select>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>No. Expediente(*):</label>
                             <input type="text" class="form-control" name="numexpediente" id="numexpediente" maxlength="25" placeholder="Número de Expediente" required="">
-                          </div>                          
+                          </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>No. Transferencia(*):</label>
@@ -82,7 +92,7 @@ if ($_SESSION['siafi']==1)
                           </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <a data-toggle="modal" href="#myModal">           
+                            <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Transferir Fondos</button>
                             </a>
                           </div>
@@ -102,10 +112,10 @@ if ($_SESSION['siafi']==1)
                                     <th></th>
                                     <th></th>
                                     <th><h4 id="total">L. 0.00</h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.01">
-                                    </th> 
+                                    </th>
                                 </tfoot>
                                 <tbody>
-                                  
+
                                 </tbody>
                             </table>
                           </div>
@@ -151,7 +161,7 @@ if ($_SESSION['siafi']==1)
               <th>Fondos Disponibles</th>
           </thead>
           <tbody>
-            
+
           </tbody>
           <tfoot>
             <thead style="background-color:#d2d6de">
@@ -167,10 +177,10 @@ if ($_SESSION['siafi']==1)
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-      </div>        
+      </div>
     </div>
   </div>
-</div>  
+</div>
 <!--   Fin modal -->
 
 
@@ -184,9 +194,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/transferidoctaspg.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>
-
-

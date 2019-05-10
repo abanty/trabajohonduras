@@ -9,6 +9,7 @@ $transferidoctaspg=new transferidoctaspg();
 $idtransferidoctaspg=isset($_POST["idtransferidoctaspg"])? limpiarCadena($_POST["idtransferidoctaspg"]):"";
 $idusuario=$_SESSION["idusuario"];
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
+$tipo_transf=isset($_POST["tipo_transf"])? limpiarCadena($_POST["tipo_transf"]):"";
 $numexpediente=isset($_POST["numexpediente"])? limpiarCadena($_POST["numexpediente"]):"";
 $numtransferencia=isset($_POST["numtransferencia"])? limpiarCadena($_POST["numtransferencia"]):"";
 
@@ -20,6 +21,7 @@ switch ($_GET["op"]){
 			$rspta=$transferidoctaspg->insertar(
 		$idusuario,
 		$fecha_hora,
+    $tipo_transf,
 		$numexpediente,
 		$numtransferencia,
 		$valor_transferido,
@@ -99,10 +101,11 @@ case 'listarDetalle':
 
  				"1"=>$reg->fecha,
  				"2"=>$reg->usuario,
- 				"3"=>$reg->numexpediente,
- 				"4"=>$reg->numtransferencia,
- 				"5"=>$reg->valor_transferido,
- 				"6"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
+        "3"=>$reg->tipo_transf,
+ 				"4"=>$reg->numexpediente,
+ 				"5"=>$reg->numtransferencia,
+ 				"6"=>$reg->valor_transferido,
+ 				"7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
  				);
  		}

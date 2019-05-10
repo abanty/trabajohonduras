@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -15,6 +15,7 @@ Class Transferidoctaspg
 
 		$idusuario,
 		$fecha_hora,
+		$tipo_transf,
 		$numexpediente,
 		$numtransferencia,
 		$valor_transferido,
@@ -30,12 +31,13 @@ Class Transferidoctaspg
 		idusuario,
 		fecha_hora,
 		numexpediente,
-		numtransferencia,		
+		numtransferencia,
 		valor_transferido,
 		estado)
 		VALUES (
 		'$idusuario',
 		'$fecha_hora',
+		'$tipo_transf',
 		'$numexpediente',
 		'$numtransferencia',
 		'$valor_transferido',
@@ -63,12 +65,12 @@ Class Transferidoctaspg
 			ejecutarConsulta($sql);
 
 			$sql_detalle = "INSERT INTO dtransf_ctaspg(
-			idtransferidoctaspg, 
+			idtransferidoctaspg,
 			idctasbancarias,
 			num_precompromiso,
-			valor) 
+			valor)
 			VALUES (
-			'$idtransferidoctaspgnew', 
+			'$idtransferidoctaspgnew',
 			'$idctasbancarias[$num_elementos]',
 			'$num_precompromiso[$num_elementos]',
 			'$valor[$num_elementos]')";
@@ -77,21 +79,21 @@ Class Transferidoctaspg
 		}return $sw;
 
 
-			
+
 	}else
 	{
 		return false;
 	}
 
-		
+
 	}
 
 
-	 
+
 	//Implementamos un método para anular categorías
 	public function anular($idtransferidoctaspg)
 	{
-		$sql="UPDATE ctasbancarias as a INNER JOIN dtransf_ctaspg b 
+		$sql="UPDATE ctasbancarias as a INNER JOIN dtransf_ctaspg b
 			on a.idctasbancarias = b.idctasbancarias
 			INNER JOIN transferidoctaspg c on c.idtransferidoctaspg=b.idtransferidoctaspg
 			SET a.fondos_disponibles = (a.fondos_disponibles-c.valor_transferido)
@@ -110,15 +112,16 @@ Class Transferidoctaspg
 		i.idtransferidoctaspg,
 		DATE(i.fecha_hora) as fecha,
 		u.nombre as usuario,
+		i.tipo_transf,
 		i.numexpediente,
 		i.numtransferencia,
 		FORMAT(i.valor_transferido, 2) as valor_transferido,
-		
-		i.estado 
+
+		i.estado
 
 
-		FROM transferidoctaspg i 	INNER JOIN usuario u ON 
-		i.idusuario=u.idusuario 
+		FROM transferidoctaspg i 	INNER JOIN usuario u ON
+		i.idusuario=u.idusuario
 		WHERE i.idtransferidoctaspg='$idtransferidoctaspg'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
@@ -127,19 +130,19 @@ Class Transferidoctaspg
 	public function listarDetalle($idtransferidoctaspg)
 	{
 		$sql="
-		SELECT 
+		SELECT
 		di.idtransferidoctaspg,
 		di.idctasbancarias,
 		a.cuentapg,
 		a.bancopg,
 		a.tipoctapg,
-		a.numctapg,	
+		a.numctapg,
 		di.num_precompromiso,
 		di.valor as valor
-		FROM dtransf_ctaspg di INNER JOIN ctasbancarias a on 
-		di.idctasbancarias=a.idctasbancarias 
+		FROM dtransf_ctaspg di INNER JOIN ctasbancarias a on
+		di.idctasbancarias=a.idctasbancarias
 		where di.idtransferidoctaspg='$idtransferidoctaspg'";
-		return ejecutarConsulta($sql);	
+		return ejecutarConsulta($sql);
 	}
 
 
@@ -147,21 +150,22 @@ Class Transferidoctaspg
 	public function listar()
 	{
 		$sql="
-		SELECT 
+		SELECT
 		i.idtransferidoctaspg,
 		DATE(i.fecha_hora) as fecha,
 		u.nombre as usuario,
+		i.tipo_transf,
 		i.numexpediente,
 		i.numtransferencia,
 		FORMAT(i.valor_transferido, 2) as valor_transferido,
-		i.estado 
-		FROM transferidoctaspg i 	INNER JOIN usuario u ON 
-		i.idusuario=u.idusuario 
+		i.estado
+		FROM transferidoctaspg i 	INNER JOIN usuario u ON
+		i.idusuario=u.idusuario
 		ORDER BY i.idtransferidoctaspg desc";
 
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
-	
+
 }
 
 ?>
