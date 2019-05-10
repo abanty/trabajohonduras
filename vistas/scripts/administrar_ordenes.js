@@ -61,26 +61,26 @@ function limpiar()
 	fechanow();
 
 	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
 	$("#idadministrar_ordenes").val('');
-	$("#num_orden").val('');
+
 	$("#titulo_orden").val('');
+	$("#num_orden").val('');
 	$("#num_comprobante").val('');
 	$("#descripcion_orden").val('');
 
 	$("#idprograma").selectpicker('val',"");
 	$("#idprograma").selectpicker('refresh');
+
 	$("#iduuss").selectpicker('val',"");
 	$("#iduuss").selectpicker('refresh');
+
 	$("#idproveedores").selectpicker('val',"");
 	$("#idproveedores").selectpicker('refresh');
 
 	$("#tipo_documento").selectpicker('val',"");
 	$("#tipo_documento").selectpicker('refresh');
-
-	// $("#descuento_total").val('0');
-	// $("#impuesto").val("0.00000");
-
 
 	// LIMPIAR CAMPOS CONTABILIDAD
 	$("#creditos").val('');
@@ -100,6 +100,72 @@ function limpiar()
 	$("#sub_total").html("L. 0.00");
 	$("#montototal").html("L. 0.00");
 }
+
+
+
+function limpiarFooterCalculos(){
+
+	$("#subtotal_inicial").val('');
+	$("#sub_total_inicial").html("L. 0.00");
+
+	$("#descuento_total").val('');
+
+	$("#subtotales").val('');
+	$("#sub_total").html("L. 0.00");
+
+	$("#monto_total").val('');
+	$("#montototal").html("L. 0.00");
+
+	$("#total_neto").val('');
+	$("#totalneto").html("L. 0.00");
+
+	$("#impuestosv").val('');
+	$("#valor_sv").val('');
+	$("#tasasv").val('');
+
+	$("#impuesto").val('');
+	$("#valor_impuesto").val('');
+	$("#tasaimpuesto").val('');
+
+	$("#retencionisv").val('');
+	$("#valor_isv").val('');
+	$("#tasaretencionisv").val('');
+
+	$("#retencionisr").val('');
+	$("#valor_isr").val('');
+	$("#tasaretencionisr").val('');
+
+}
+
+
+
+
+function limpiarCamposDocAcuerdos(){
+
+
+}
+
+
+function limpiarCamposDocFondosR(){
+
+
+}
+
+
+function limpiarOrdenCompra(){
+
+
+}
+
+
+function limpiarFooterAlimBeca(){
+
+
+}
+
+
+
+
 
 
 function fechanow(){
@@ -152,6 +218,7 @@ function change_input_by_tipodoc()
 
 		if(selecttipodoc == 'Acuerdo'){
 
+			limpiarFooterCalculos();
 			$("#sol").hide();
 			$("#No_ord").hide();
 			$("#No_acuerdo").show();
@@ -171,6 +238,7 @@ function change_input_by_tipodoc()
 
 		}else if (selecttipodoc == 'O/C') {
 
+				limpiarFooterCalculos();
 				$("#detalles tbody tr").remove();
 				$("#table_invoce").hide();
 				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
@@ -187,6 +255,8 @@ function change_input_by_tipodoc()
 				 $("#content_tfoot").show();
 
 				}else if (selecttipodoc == 'F.R.') {
+
+					limpiarFooterCalculos();
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
@@ -202,7 +272,10 @@ function change_input_by_tipodoc()
 					$("#content_tfoot").show();
 					$("#divprov").show();
 					document.getElementById("descripcion_orden").rows = "5";
+
 				}else if ((selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
+
+					limpiarFooterCalculos();
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
