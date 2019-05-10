@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 10:44:49
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Tiempo de generación: 10-05-2019 a las 22:34:13
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,7 +65,8 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 9, 1, 2, 3, '0001', '001', 'Recursos para viviendas', 'Materiales para construcción en zonas militares', 'O/C', '2019-05-08', '19287901.00', '2500.00', '19285401.00', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '24588886.28', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '19285401.00', 'Aceptado');
+(1, 9, 1, 2, 3, '0001', '001', 'Recursos para viviendas', 'Materiales para construcción en zonas militares', 'O/C', '2019-05-08', '19287901.00', '2500.00', '19285401.00', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '24588886.28', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '19285401.00', 'Aceptado'),
+(2, 141, 1, 12, 1, '56455454', '555555', '', '', 'F.R.', '2019-05-10', '250000.00', '0.00', '250000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '250000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '250000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -292,7 +293,7 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '4950000.00', 1),
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '0.00', 1),
 (2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '0.00', 1),
 (3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
 (4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
@@ -417,7 +418,8 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (5, 1, 1, 'botellas', 12, 'botellas whisky para merienda semestral', '58002.00'),
 (6, 1, 2, 'empaques', 8, 'Empaque de productos alimentarios', '98900.55'),
 (7, 1, 3, 'pulgadas', 7, 'clavos para techos y paredes', '12588.90'),
-(8, 1, 4, 'onzas', 22, 'de mezcla para pegamento fuerte', '89888.00');
+(8, 1, 4, 'onzas', 22, 'de mezcla para pegamento fuerte', '89888.00'),
+(9, 2, 8, '', 1, '', '250000.00');
 
 --
 -- Disparadores `detalle_orden`
@@ -469,14 +471,6 @@ CREATE TABLE `dtransf_ctaspg` (
   `num_precompromiso` int(11) NOT NULL,
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `dtransf_ctaspg`
---
-
-INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasbancarias`, `num_precompromiso`, `valor`) VALUES
-(1, 1, 1, 12, '2450000.00'),
-(2, 2, 1, 12, '2500000.00');
 
 -- --------------------------------------------------------
 
@@ -595,7 +589,7 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (5, 'Complementos', 11, 600, '11600', '24671710.00', '0.00', 1),
 (6, 'Contribuciones al Instituto de Previsi?n Militar - Cuota Patronal', 11, 731, '11731', '42869812.00', '0.00', 1),
 (7, 'Contribuciones al Instituto de Previsi?n Militar - R?gimen de Riesgos Especiales', 11, 732, '11732', '28255103.00', '0.00', 1),
-(8, 'Contribuciones al Instituto de Previsi?n Militar - Reserva Laboral', 11, 733, '11733', '31826537.00', '0.00', 1),
+(8, 'Contribuciones al Instituto de Previsi?n Militar - Reserva Laboral', 11, 733, '11733', '31576537.00', '0.00', 1),
 (9, 'Beneficios y Compensaciones', 16, 100, '16100', '8486473.00', '0.00', 1),
 (10, 'Energ?a El?ctrica', 21, 100, '21100', '700000.00', '0.00', 1),
 (11, 'Agua', 21, 200, '21200', '480000.00', '0.00', 1),
@@ -951,19 +945,12 @@ CREATE TABLE `transferidoctaspg` (
   `idtransferidoctaspg` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `fecha_hora` date NOT NULL,
+  `tipo_transf` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
   `numexpediente` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
   `numtransferencia` varchar(11) COLLATE utf8mb4_spanish_ci NOT NULL,
   `valor_transferido` decimal(12,2) NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `transferidoctaspg`
---
-
-INSERT INTO `transferidoctaspg` (`idtransferidoctaspg`, `idusuario`, `fecha_hora`, `numexpediente`, `numtransferencia`, `valor_transferido`, `estado`) VALUES
-(1, 1, '2019-05-08', '10', '359', '2450000.00', 'Aceptado'),
-(2, 1, '2019-05-08', '11', '360', '2500000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1257,7 +1244,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1311,7 +1298,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
