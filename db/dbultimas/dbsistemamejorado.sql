@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2019 a las 22:34:13
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Tiempo de generación: 11-05-2019 a las 00:03:52
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,8 +65,10 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 9, 1, 2, 3, '0001', '001', 'Recursos para viviendas', 'Materiales para construcción en zonas militares', 'O/C', '2019-05-08', '19287901.00', '2500.00', '19285401.00', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '24588886.28', '2892810.15', '15.00', '19285401.00', '2410675.13', '12.50', '19285401.00', '19285401.00', 'Aceptado'),
-(2, 141, 1, 12, 1, '56455454', '555555', '', '', 'F.R.', '2019-05-10', '250000.00', '0.00', '250000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '250000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '250000.00', 'Aceptado');
+(1, 9, 1, 3, 1, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-10', '42093.75', '850.57', '41243.18', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '52585.06', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '41243.18', 'Aceptado'),
+(2, 10, 1, 4, 1, '1245', '1245', '', 'Acuerdos de comercio', 'Acuerdo', '2019-05-10', '1155.55', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', 'Aceptado'),
+(3, 9, 1, 3, 1, 'FR458', '4444', '', 'Fondos Rotatorios del Estado', 'F.R.', '2019-05-10', '5555.55', '100.00', '5455.55', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '6955.82', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '5455.55', 'Aceptado'),
+(4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -246,13 +248,6 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `contabilidad`
---
-
-INSERT INTO `contabilidad` (`idcontabilidad`, `idadministrar_ordenes`, `idctasbancarias`, `tipo_pago`, `numero_transferencia`, `debitos`, `creditos`, `contabilidad`, `fechacreacion`, `fecha_actualizacion`) VALUES
-(1, 1, 2, 'Deposito', 2147483647, 'gastos de administracion', 'caja y bancos', 'ok', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -411,15 +406,11 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, 'mts', 5, 'Cuerda de escalar para fijar arnés', '585000.00'),
-(2, 1, 2, 'galones', 9, 'Combustible para mezcla de agregados en la maquina', '125000.00'),
-(3, 1, 3, 'cajas', 11, 'Herramientas para construcción', '258000.55'),
-(4, 1, 4, 'unidades', 15, 'de planos virtuales en diseño autocat', '589800.55'),
-(5, 1, 1, 'botellas', 12, 'botellas whisky para merienda semestral', '58002.00'),
-(6, 1, 2, 'empaques', 8, 'Empaque de productos alimentarios', '98900.55'),
-(7, 1, 3, 'pulgadas', 7, 'clavos para techos y paredes', '12588.90'),
-(8, 1, 4, 'onzas', 22, 'de mezcla para pegamento fuerte', '89888.00'),
-(9, 2, 8, '', 1, '', '250000.00');
+(1, 1, 1, 'Galones', 5, 'Materiales: Clavos', '1555.55'),
+(2, 1, 2, 'Galones', 4, 'Materiales: Pinturas', '8579.00'),
+(3, 2, 6, '', 1, '', '1155.55'),
+(4, 3, 2, '', 1, '', '5555.55'),
+(5, 4, 43, '', 5, '', '1547.00');
 
 --
 -- Disparadores `detalle_orden`
@@ -582,12 +573,12 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Básicos', 11, 100, '11100', '389725559.00', '30000000.00', 1),
-(2, 'Adicionales', 11, 400, '11400', '6276000.00', '0.00', 1),
+(1, 'Sueldos Básicos', 11, 100, '11100', '389717781.25', '30000000.00', 1),
+(2, 'Adicionales', 11, 400, '11400', '6236128.45', '0.00', 1),
 (3, 'Decimotercer Mes', 11, 510, '11510', '32477130.00', '0.00', 1),
 (4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
 (5, 'Complementos', 11, 600, '11600', '24671710.00', '0.00', 1),
-(6, 'Contribuciones al Instituto de Previsi?n Militar - Cuota Patronal', 11, 731, '11731', '42869812.00', '0.00', 1),
+(6, 'Contribuciones al Instituto de Previsi?n Militar - Cuota Patronal', 11, 731, '11731', '42868656.45', '0.00', 1),
 (7, 'Contribuciones al Instituto de Previsi?n Militar - R?gimen de Riesgos Especiales', 11, 732, '11732', '28255103.00', '0.00', 1),
 (8, 'Contribuciones al Instituto de Previsi?n Militar - Reserva Laboral', 11, 733, '11733', '31576537.00', '0.00', 1),
 (9, 'Beneficios y Compensaciones', 16, 100, '16100', '8486473.00', '0.00', 1),
@@ -624,7 +615,7 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (40, 'Impuesto sobre Venta- 12%', 27, 114, '27114', '334375.00', '0.00', 1),
 (41, 'Impuesto sobre Venta- 15%', 27, 115, '27115', '5000.00', '0.00', 1),
 (42, 'Ceremonial y Protocolo', 29, 100, '29100', '157500.00', '0.00', 1),
-(43, 'Alimentos y Bebidas para Personas', 31, 100, '31100', '44371800.00', '0.00', 1),
+(43, 'Alimentos y Bebidas para Personas', 31, 100, '31100', '44364065.00', '0.00', 1),
 (44, 'Madera, Corcho y sus Manufacturas', 31, 500, '31500', '292247.00', '0.00', 1),
 (45, 'Hilados y Telas', 32, 100, '32100', '503922.00', '0.00', 1),
 (46, 'Confecciones Textiles', 32, 200, '32200', '600000.00', '0.00', 1),
@@ -731,6 +722,7 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`idproveedores`, `casa_comercial`, `rtn`, `nombre_banco`, `num_cuenta`, `tipo_cuenta`, `imagen`, `condicion`) VALUES
+(1, 'N/A', '-', '-', '-', '-', '-', 0),
 (9, 'Auto Partes Reaya S.A. de  C.V.', '03039015766793', 'Banco de Occidente, S.A.', '11-201-003553-2', 'Cheques', '1548792537.jpg', 1),
 (10, 'Autosuspension / Rafael Rodas Corrales', '', 'Banco de America Central Honduras,  S. A.', '730078331', 'Cheques', '1550502488.jpg', 1),
 (11, 'Az Comercial S. de R.L.', '', 'Banco de Occidente, S.A.', '11402013075-5', 'Cheques', '1550502503.jpg', 1),
@@ -1244,7 +1236,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1268,7 +1260,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
@@ -1298,7 +1290,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
