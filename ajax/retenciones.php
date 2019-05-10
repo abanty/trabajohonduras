@@ -83,9 +83,9 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
  				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idretenciones.')"><i class="fa fa-close"></i></button>':
+ 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idretenciones.')"><i class="fa fa-trash"></i></button>':
  					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idretenciones.')"><i class="fa fa-eye"></i></button>').
- 					'<a target="_blank" href="../reportes/exretenciones.php?id='.$reg->idretenciones.'"> <button class="btn btn-info btn-sm"><i class="fa fa-file"></i></button></a>',
+ 					'<a target="_blank" href="../reportes/exretenciones.php?id='.$reg->idretenciones.'"> <button class="btn btn-info btn-sm"><i class="fa fa-print"></i></button></a>',
  				"1"=>$reg->proveedor,
  				"2"=>$reg->rtn,
  				"3"=>$reg->numdocumento,
