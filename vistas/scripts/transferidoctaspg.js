@@ -1,5 +1,5 @@
 var tabla;
- 
+
 //Función que se ejecuta al inicio
 function init(){
 	mostrarform(false);
@@ -7,13 +7,15 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
-	});	
+		guardaryeditar(e);
+	});
 }
 
 //Función limpiar
 function limpiar()
 {
+  $("#tipo_transf").selectpicker('val',"");
+	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");
 	$("#numtransferencia").val("");
 	$("#fecha_hora").val("");
@@ -30,7 +32,7 @@ function limpiar()
     $('#fecha_hora').val(today);
 
 
-}	
+}
 
 //Función mostrar formulario
 function mostrarform(flag)
@@ -59,7 +61,7 @@ function mostrarform(flag)
 		$("#btnagregar").show();
 	}
 
-}	
+}
 
 
 //Función cancelarform
@@ -77,7 +79,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -87,9 +89,9 @@ function listar()
 				{
 					url: '../ajax/transferidoctaspg.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -109,16 +111,16 @@ function listarCtasbancarias()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 
 		        ],
 		"ajax":
 				{
 					url: '../ajax/transferidoctaspg.php?op=listarCtasbancarias',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -144,8 +146,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          listar();
 	    }
@@ -158,9 +160,9 @@ function mostrar(idtransferidoctaspg)
 {
 	$.post("../ajax/transferidoctaspg.php?op=mostrar",{idtransferidoctaspg : idtransferidoctaspg}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
-
+    $("#tipo_transf").val(data.tipo_transf).selectpicker('refresh')
 		$("#numexpediente").val(data.numexpediente);
 		$("#numtransferencia").val(data.numtransferencia);
 		$("#fecha_hora").val(data.fecha);
@@ -187,7 +189,7 @@ function anular(idtransferidoctaspg)
         	$.post("../ajax/transferidoctaspg.php?op=anular", {idtransferidoctaspg : idtransferidoctaspg}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -263,7 +265,7 @@ $("#valor_transferido").val(total);
     }
     else
     {
-      $("#btnGuardar").hide(); 
+      $("#btnGuardar").hide();
       cont=0;
     }
   }
@@ -274,6 +276,6 @@ $("#valor_transferido").val(total);
   	detalles=detalles-1;
   	evaluar();
   }
-  
+
 
 init();
