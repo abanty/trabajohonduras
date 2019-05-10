@@ -225,6 +225,10 @@ function mostrarform(flag)
 				$('#num_orden').val($(this).val());
 		});
 
+		$('#refbank').change(function() {
+				$('#num_orden').val($(this).val());
+		});
+
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnagregar").hide();

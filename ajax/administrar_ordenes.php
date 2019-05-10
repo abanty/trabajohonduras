@@ -46,13 +46,9 @@ $contabilidad=isset($_POST["contabilidad"])? limpiarCadena($_POST["contabilidad"
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
-  if (empty($iduuss)) {
-   $iduuss = '1';
-  }
 
-  if (empty($idproveedores)) {
-   $idproveedores = '1';
-  }
+    $idproveedores == null ? $idproveedores='1' : $idproveedores;
+  	$iduuss == null ? $iduuss='1' : $iduuss;
 
 		if (empty($idadministrar_ordenes)){
 
