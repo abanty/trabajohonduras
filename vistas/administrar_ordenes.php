@@ -224,13 +224,14 @@ if ($_SESSION['admonoc']==1)
 
           <div class="box-body this" id="listadoregistros">
             <div class="panel-body table-responsive thispan">
-              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width:100%; font-size:13px;">
                 <thead style="background-color:#d2d6de">
                   <th>Opciones</th>
                   <th>Fecha</th>
                   <th>Proveedor</th>
                   <th>Usuario</th>
                   <th>Programa</th>
+                  <th>Documento</th>
                   <th>No. Orden</th>
                   <th>No. Comprobante</th>
                   <th>Monto Total</th>
@@ -246,6 +247,7 @@ if ($_SESSION['admonoc']==1)
                   <th>Proveedor</th>
                   <th>Usuario</th>
                   <th>Programa</th>
+                  <th>Documento</th>
                   <th>No. Orden</th>
                   <th>No. Comprobante</th>
                   <th>Monto Total</th>

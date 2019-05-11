@@ -91,20 +91,28 @@ switch ($_GET["op"]){
 
 
 		}
-
-
-
-
-
 	break;
 
+
+/*-------------------------------------*
+| FUNCION PARA CAMBIAR ESTADO A ANULADO |
+.-------------------------------------*/
 	case 'anular':
 		$rspta=$admin_ord->anular($idadministrar_ordenes);
  		echo $rspta ? "Orden de compra anulada" : "Orden de compra no se puede anular";
 	break;
 
+/*-------------------------------------*
+| FUNCION PARA CAMBIAR ESTADO A PAGADO |
+.-------------------------------------*/
+  case 'pagar':
+    $rspta=$admin_ord->pagar($idadministrar_ordenes);
+    echo $rspta ? "Orden de compra pagada" : "Orden de compra no se puede pagar";
+  break;
 
-
+/*-------------------------------------------------------*
+| FUNCION PARA CAMBIAR MOSTRAR LA INFORMACION DE ORDENES |
+.-------------------------------------------------------*/
 	case 'mostrar_orden_edit':
 
 		$rspta=$admin_ord->mostrar_orden($idadministrar_ordenes);
@@ -173,10 +181,27 @@ switch ($_GET["op"]){
 
         $ejemplo='../reportes/ejemplo.php';
 
+        switch ($reg->tipo_documento) {
+        case "F.R.":
+        $reg->tipo_documento = '<a style="color:rgb(245, 126, 126); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
+        case "Alimentacion":
+        $reg->tipo_documento = '<a style="color:rgb(214, 116, 244); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
+        case "Acuerdo":
+        $reg->tipo_documento = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
+        case "O/C":
+        $reg->tipo_documento = '<a style="color:rgb(31, 208, 128); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
+        case "Becas":
+        $reg->tipo_documento = '<a style="color:rgb(211, 246, 137); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
+        default : $reg->tipo_documento ; break;
+      };
+
  			$data[]=array(
- 				"0"=>(($reg->estado=='Aceptado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
- 					'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>').
+ 				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>'.
+          ' <button class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.')"><i class="fas fa-coins"></i></button>':
+          (($reg->estado=='Pagado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
+          ' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
+        '<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
 
           '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
               <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
@@ -192,12 +217,12 @@ switch ($_GET["op"]){
  				"2"=>$reg->proveedor,
  				"3"=>$reg->usuario,
  				"4"=>$reg->codigop,
-  			"5"=>$reg->num_orden,
- 				"6"=>$reg->num_comprobante,
- 				"7"=>$reg->total_neto,
- 				"8"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
- 				'<span class="label bg-red">Anulado</span>'
- 				);
+        "5"=>$reg->tipo_documento,
+  			"6"=>$reg->num_orden,
+ 				"7"=>$reg->num_comprobante,
+ 				"8"=>$reg->total_neto,
+ 				"9"=>($reg->estado=='Pendiente')?'<span class="label bg-green">Pendiente</span>':(($reg->estado=='Pagado')?'<span class="label bg-yellow">Pagado</span>'
+        :'<span class="label bg-red">Anulado</span>'));
  		}
  		$results = array(
  			"sEcho"=>1, //Información para el datatables

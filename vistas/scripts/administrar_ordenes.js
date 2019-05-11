@@ -356,12 +356,14 @@ function listar()
 		        ],
 
      columnDefs: [
-			  				{ width: 125, targets: 0 },
+			  				{ width: 140, targets: 0 },
 			          { width: 60, targets: 1 },
 								{ width: 95, targets: 3 },
 								{ width: 70, targets: 4 },
-								{ width: 75, targets: 5 },
-								{ width: 125, targets: 6 }
+								{ width: 70, targets: 5 },
+								{ width: 65, targets: 6 },
+								{ width: 110, targets: 7 },
+
 			      ],
 
 
@@ -545,7 +547,9 @@ function orden_mostrar(idadministrar_ordenes)
 	});
 }
 
-//Función para anular registros
+/*--------------------------------------*
+| FUNCION PARA CAMBIAR ESTADO A ANULADO |
+.--------------------------------------*/
 function anular(idadministrar_ordenes)
 {
 	bootbox.confirm("¿Está Seguro de anular la orden?", function(result){
@@ -558,6 +562,24 @@ function anular(idadministrar_ordenes)
         }
 	})
 }
+
+/*-------------------------------------*
+| FUNCION PARA CAMBIAR ESTADO A PAGADO |
+.-------------------------------------*/
+function pagar(idadministrar_ordenes)
+{
+	bootbox.confirm("¿Está Seguro de validar la orden a pagado?", function(result){
+		if(result)
+        {
+        	$.post("../ajax/administrar_ordenes.php?op=pagar", {idadministrar_ordenes : idadministrar_ordenes}, function(e){
+        		bootbox.alert(e);
+	            tabla.ajax.reload();
+        	});
+        }
+	})
+}
+
+
 
 
 //Declaración de variables necesarias para trabajar con las compras y

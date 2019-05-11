@@ -183,6 +183,15 @@ Class Administrar_ordenes
 		return ejecutarConsulta($sql);
 	}
 
+	// ----------------------------
+	// METODO PARA PAGAR ORDENES:|
+	// ----------------------------
+	public function pagar($idadministrar_ordenes)
+	{
+		$sql="UPDATE Administrar_ordenes SET estado='Pagado' WHERE idadministrar_ordenes='$idadministrar_ordenes'";
+		return ejecutarConsulta($sql);
+	}
+
 
 	// -------------------------------------------
 	// METODO PARA MOSTRAR REGISTROS DE LA ORDEN:|
@@ -260,7 +269,7 @@ Class Administrar_ordenes
 	public function listarOrden()
 	{
 		$sql="SELECT v.idadministrar_ordenes,	DATE(v.fecha_hora) as fecha, v.idproveedores,	p.casa_comercial as proveedor,
-		u.idusuario,	u.nombre as usuario,	w.idprograma,	w.codigop,	v.num_orden,	v.num_comprobante, v.monto_total,v.total_neto,	v.impuesto,	v.estado
+		u.idusuario,	u.nombre as usuario,	w.idprograma,	w.codigop, v.tipo_documento,	v.num_orden,	v.num_comprobante, v.monto_total,v.total_neto,	v.impuesto,	v.estado
 		FROM administrar_ordenes v
 		INNER JOIN proveedores p ON	v.idproveedores=p.idproveedores
 		INNER JOIN usuario u ON	 v.idusuario=u.idusuario
