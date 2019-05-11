@@ -174,26 +174,54 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
 
- 				$urlsolicitud='../reportes/OrdenCompra.php?id=';
         $urlorden='../reportes/OrdenCompra.php?id=';
         $urlcomprobante='../reportes/Comprobante_orden.php?id=';
         $urlsolicitudcompra='../reportes/SolicitudCompra.php?id=';
 
-        $ejemplo='../reportes/ejemplo.php';
-
         switch ($reg->tipo_documento) {
-        case "F.R.":
-        $reg->tipo_documento = '<a style="color:rgb(245, 126, 126); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
-        case "Alimentacion":
-        $reg->tipo_documento = '<a style="color:rgb(214, 116, 244); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
-        case "Acuerdo":
-        $reg->tipo_documento = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
-        case "O/C":
-        $reg->tipo_documento = '<a style="color:rgb(31, 208, 128); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
-        case "Becas":
-        $reg->tipo_documento = '<a style="color:rgb(211, 246, 137); font-weight:bold;">'.$reg->tipo_documento.'</a>' ; break;
-        default : $reg->tipo_documento ; break;
+
+            case "F.R.":
+            $reg->tipo_documento = '<a style="color:rgb(245, 126, 126); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
+            $contenido_li =  '<ul class="dropdown-menu">
+               <li id="pdfordencompra"><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+               <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
+              </ul>';
+            break;
+
+            case "Alimentacion":
+            $reg->tipo_documento = '<a style="color:rgb(214, 116, 244); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
+            $contenido_li =  '';
+            break;
+
+            case "Acuerdo":
+            $reg->tipo_documento = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
+            $contenido_li =  '<ul class="dropdown-menu">
+               <li id="pdfordencompra"><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+               <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
+              </ul>';
+            break;
+
+            case "O/C":
+            $reg->tipo_documento = '<a style="color:rgb(31, 208, 128); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $contenido_li =  '<ul class="dropdown-menu">
+               <li id="pdfordencompra"><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+               <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
+               <li><a target="_blank" href="'.$urlsolicitudcompra.$reg->idadministrar_ordenes.'">Solicitud de Compra</a></li>
+              </ul>';
+            break;
+
+            case "Becas":
+            $reg->tipo_documento = '<a style="color:rgb(211, 246, 137); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $contenido_li =  '';
+            break;
+
+            default :
+            $contenido_li;
+            $reg->tipo_documento;
+            break;
       };
+
+
 
  			$data[]=array(
  				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
@@ -203,16 +231,12 @@ switch ($_GET["op"]){
           ' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
         '<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
 
+
           '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
               <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
                 <i class="fas fa-print" aria-hidden="true"></i>
-              </a>
-                <ul class="dropdown-menu">
-                 <li><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
-                 <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
-                 <li><a target="_blank" href="'.$urlsolicitudcompra.$reg->idadministrar_ordenes.'">Solicitud de Compra</a></li>
-                </ul>
-          </li>',
+              </a>'.$contenido_li.'</li>',
+
  				"1"=>$reg->fecha,
  				"2"=>$reg->proveedor,
  				"3"=>$reg->usuario,
