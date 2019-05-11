@@ -321,7 +321,6 @@ if ($_SESSION['admonoc']==1)
                         <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
                           <label>Descripcion:</label>
                           <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="9" cols="50"></textarea>
-
                         </div>
 
                         <div id="divprov" class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">

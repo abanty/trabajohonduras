@@ -257,6 +257,8 @@ function change_input_by_tipodoc()
 		if(selecttipodoc == 'Acuerdo'){
 
 			limpiarCamposOrden();
+
+			$("#No_comp").show();
 			$("#sol").hide();
 			$("#No_ord").hide();
 			$("#No_acuerdo").show();
@@ -267,6 +269,7 @@ function change_input_by_tipodoc()
 			$("#No_fr").hide();
 		  $("#detalles tfoot").hide();
 			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
+			document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
 			$("#table_invoce").show();
 			// $("#detalles tbody tr").remove();
 			$("#content_tfoot").hide();
@@ -278,8 +281,10 @@ function change_input_by_tipodoc()
 
 				limpiarCamposOrden();
 				// $("#detalles tbody tr").remove();
+				$("#No_comp").show();
 				$("#table_invoce").hide();
 				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
+				document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
 				 $("#uni_sup").show();
 				 $("#th_uni").show();
 				 $("#No_fr").hide();
@@ -295,6 +300,7 @@ function change_input_by_tipodoc()
 				}else if (selecttipodoc == 'F.R.') {
 
 					limpiarCamposOrden();
+					$("#No_comp").show();
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
@@ -304,6 +310,7 @@ function change_input_by_tipodoc()
 					$("#th_uni").hide();
 					$("#th_descr").hide();
 					document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
+					document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
 					$("#table_invoce").hide();
 					// $("#detalles tbody tr").remove();
 					// $("#detalles tfoot").show();
@@ -315,6 +322,7 @@ function change_input_by_tipodoc()
 
 
 					limpiarCamposOrden();
+					$("#No_comp").hide();
 					$("#sol").hide();
 					$("#No_ord").hide();
 					$("#No_acuerdo").hide();
@@ -323,7 +331,11 @@ function change_input_by_tipodoc()
 					$("#uni_sup").hide();
 					$("#th_uni").hide();
 					$("#th_descr").hide();
+
 					document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
+					document.getElementById("No_refbancaria").className = "col-lg-4 col-md-4 col-sm-6 col-xs-12";
+					document.getElementById("program").className = "col-lg-4 col-md-4 col-sm-6 col-xs-12";
+
 					$("#table_invoce").show();
 					// $("#detalles tbody tr").remove();
 					$("#content_tfoot").hide();
