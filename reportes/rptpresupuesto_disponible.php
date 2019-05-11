@@ -18,7 +18,7 @@ require('PDF_MC_Table.php');
 
 //Instanciamos la clase para generar el documento pdf
 $pdf=new PDF_MC_Table();
-$pdf=new FPDF('L', 'mm', 'A4');
+$pdf=new PDF('H', 'mm', 'A4');
 
 //Agregamos la primera página al documento pdf
 $pdf->AddPage();
@@ -30,7 +30,7 @@ $y_axis_initial = 25;
 $pdf->SetFont('Arial','B',12);
 
 $pdf->Cell(40,6,'',0,0,'C');
-$pdf->Cell(100,6,'LISTA DE PRODUCTOS',1,0,'C');
+$pdf->Cell(100,6,'CONTROL DE PRESUPUESTO',1,0,'C');
 $pdf->Ln(10);
 
 //Creamos las celdas para los títulos de cada columna y le asignamos un fondo gris y el tipo de letra
@@ -44,10 +44,10 @@ $pdf->Cell(35,6,'Descripcion',1,0,'C',1);
 
 $pdf->Ln(10);
 //Comenzamos a crear las filas de los registros según la consulta mysql
-require_once "../modelos/Producto.php";
-$producto = new Producto();
+require_once "../modelos/Presupuesto_disponible.php";
+$presupuesto_disponible = new Presupuesto_disponible();
 
-$rspta = $producto->listar();
+$rspta = $presupuesto_disponible->listar();
 
 //Table with 20 rows and 4 columns
 $pdf->SetWidths(array(58,50,30,12,35));
