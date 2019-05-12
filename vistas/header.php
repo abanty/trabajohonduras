@@ -157,6 +157,7 @@ if (strlen(session_id()) < 1)
               <li><a href="compromisos.php"><i class="far fa-dot-circle text-blue"></i>Compromisos</a></li>
               <li><a href="compromisosfecha.php"><i class="far fa-dot-circle text-blue"></i>Consulta Compromisos</a></li>
               <li><a href="proveedores.php"><i class="far fa-dot-circle text-blue"></i>Ingresar Proveedor</a></li>
+              <li><a href="consfactpagadas.php"><i class="far fa-dot-circle text-blue"></i>Compromisos Pagados</a></li>
 
 
             </ul>
