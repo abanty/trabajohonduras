@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2019 a las 18:23:02
+-- Tiempo de generación: 12-05-2019 a las 19:09:17
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -61,6 +61,18 @@ CREATE TABLE `administrar_ordenes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- RELACIONES PARA LA TABLA `administrar_ordenes`:
+--   `idprograma`
+--       `programa` -> `idprograma`
+--   `idproveedores`
+--       `proveedores` -> `idproveedores`
+--   `idusuario`
+--       `usuario` -> `idusuario`
+--   `iduuss`
+--       `uuss` -> `iduuss`
+--
+
+--
 -- Volcado de datos para la tabla `administrar_ordenes`
 --
 
@@ -69,7 +81,7 @@ INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `id
 (2, 10, 1, 4, 1, '1245', '1245', '', 'Acuerdos de comercio', 'Acuerdo', '2019-05-10', '1155.55', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', 'Pendiente'),
 (3, 9, 1, 3, 1, 'FR458', '4444', '', 'Fondos Rotatorios del Estado', 'F.R.', '2019-05-10', '5555.55', '100.00', '5455.55', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '6955.82', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '5455.55', 'Pendiente'),
 (4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Pendiente'),
-(5, 11, 1, 3, 10, '453', '345435', 'Materiales', 'fsfsd', 'O/C', '2019-05-12', '4543.54', '435.55', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', 'Pendiente');
+(5, 11, 1, 3, 10, '453', '345435', 'Materiales', 'fsfsd', 'O/C', '2019-05-12', '4543.54', '435.55', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', 'Pagado');
 
 -- --------------------------------------------------------
 
@@ -84,6 +96,10 @@ CREATE TABLE `bancos` (
   `referencia` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `bancos`:
+--
 
 --
 -- Volcado de datos para la tabla `bancos`
@@ -195,6 +211,14 @@ CREATE TABLE `compromisos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
+-- RELACIONES PARA LA TABLA `compromisos`:
+--   `idprograma`
+--       `programa` -> `idprograma`
+--   `idproveedores`
+--       `proveedores` -> `idproveedores`
+--
+
+--
 -- Volcado de datos para la tabla `compromisos`
 --
 
@@ -223,6 +247,10 @@ CREATE TABLE `configuracion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
+-- RELACIONES PARA LA TABLA `configuracion`:
+--
+
+--
 -- Volcado de datos para la tabla `configuracion`
 --
 
@@ -249,6 +277,14 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- RELACIONES PARA LA TABLA `contabilidad`:
+--   `idctasbancarias`
+--       `ctasbancarias` -> `idctasbancarias`
+--   `idadministrar_ordenes`
+--       `administrar_ordenes` -> `idadministrar_ordenes`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -268,6 +304,16 @@ CREATE TABLE `crear_acuerdo` (
   `estado` varchar(12) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- RELACIONES PARA LA TABLA `crear_acuerdo`:
+--   `idprograma`
+--       `programa` -> `idprograma`
+--   `idproveedores`
+--       `proveedores` -> `idproveedores`
+--   `idusuario`
+--       `usuario` -> `idusuario`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -283,6 +329,10 @@ CREATE TABLE `ctasbancarias` (
   `fondos_disponibles` decimal(12,2) DEFAULT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `ctasbancarias`:
+--
 
 --
 -- Volcado de datos para la tabla `ctasbancarias`
@@ -308,6 +358,14 @@ CREATE TABLE `detalle_compromisos` (
   `valor` decimal(11,2) NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `detalle_compromisos`:
+--   `idcompromisos`
+--       `compromisos` -> `idcompromisos`
+--   `idpresupuesto_disponible`
+--       `presupuesto_disponible` -> `idpresupuesto_disponible`
+--
 
 --
 -- Volcado de datos para la tabla `detalle_compromisos`
@@ -352,6 +410,14 @@ CREATE TABLE `detalle_crear_acuerdo` (
   `monto` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- RELACIONES PARA LA TABLA `detalle_crear_acuerdo`:
+--   `idpresupuesto_disponible`
+--       `presupuesto_disponible` -> `idpresupuesto_disponible`
+--   `idcrear_acuerdo`
+--       `crear_acuerdo` -> `idcrear_acuerdo`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -364,6 +430,14 @@ CREATE TABLE `detalle_ingreso` (
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `detalle_ingreso`:
+--   `idingreso`
+--       `ingreso` -> `idingreso`
+--   `idpresupuesto_disponible`
+--       `presupuesto_disponible` -> `idpresupuesto_disponible`
+--
 
 --
 -- Volcado de datos para la tabla `detalle_ingreso`
@@ -403,6 +477,14 @@ CREATE TABLE `detalle_orden` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- RELACIONES PARA LA TABLA `detalle_orden`:
+--   `idadministrar_ordenes`
+--       `administrar_ordenes` -> `idadministrar_ordenes`
+--   `idpresupuesto_disponible`
+--       `presupuesto_disponible` -> `idpresupuesto_disponible`
+--
+
+--
 -- Volcado de datos para la tabla `detalle_orden`
 --
 
@@ -439,6 +521,14 @@ CREATE TABLE `detalle_retenciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- RELACIONES PARA LA TABLA `detalle_retenciones`:
+--   `idcompromisos`
+--       `compromisos` -> `idcompromisos`
+--   `idretenciones`
+--       `retenciones` -> `idretenciones`
+--
+
+--
 -- Volcado de datos para la tabla `detalle_retenciones`
 --
 
@@ -465,6 +555,14 @@ CREATE TABLE `dtransf_ctaspg` (
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+--
+-- RELACIONES PARA LA TABLA `dtransf_ctaspg`:
+--   `idctasbancarias`
+--       `ctasbancarias` -> `idctasbancarias`
+--   `idtransferidoctaspg`
+--       `transferidoctaspg` -> `idtransferidoctaspg`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -478,6 +576,12 @@ CREATE TABLE `factura_orden` (
   `fecha_factura` date NOT NULL,
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELACIONES PARA LA TABLA `factura_orden`:
+--   `idadministrar_ordenes`
+--       `administrar_ordenes` -> `idadministrar_ordenes`
+--
 
 --
 -- Volcado de datos para la tabla `factura_orden`
@@ -518,6 +622,12 @@ CREATE TABLE `ingreso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- RELACIONES PARA LA TABLA `ingreso`:
+--   `idusuario`
+--       `usuario` -> `idusuario`
+--
+
+--
 -- Volcado de datos para la tabla `ingreso`
 --
 
@@ -536,6 +646,10 @@ CREATE TABLE `permiso` (
   `idpermiso` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELACIONES PARA LA TABLA `permiso`:
+--
 
 --
 -- Volcado de datos para la tabla `permiso`
@@ -569,6 +683,10 @@ CREATE TABLE `presupuesto_disponible` (
   `fondos_disponibles` decimal(15,2) DEFAULT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `presupuesto_disponible`:
+--
 
 --
 -- Volcado de datos para la tabla `presupuesto_disponible`
@@ -681,6 +799,10 @@ CREATE TABLE `programa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
+-- RELACIONES PARA LA TABLA `programa`:
+--
+
+--
 -- Volcado de datos para la tabla `programa`
 --
 
@@ -718,6 +840,10 @@ CREATE TABLE `proveedores` (
   `imagen` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `condicion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `proveedores`:
+--
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -904,6 +1030,12 @@ CREATE TABLE `retenciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
+-- RELACIONES PARA LA TABLA `retenciones`:
+--   `idproveedores`
+--       `proveedores` -> `idproveedores`
+--
+
+--
 -- Volcado de datos para la tabla `retenciones`
 --
 
@@ -929,6 +1061,14 @@ CREATE TABLE `transferenciabch` (
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- RELACIONES PARA LA TABLA `transferenciabch`:
+--   `idctasbancarias`
+--       `ctasbancarias` -> `idctasbancarias`
+--   `idproveedores`
+--       `proveedores` -> `idproveedores`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -945,6 +1085,12 @@ CREATE TABLE `transferidoctaspg` (
   `valor_transferido` decimal(12,2) NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `transferidoctaspg`:
+--   `idusuario`
+--       `usuario` -> `idusuario`
+--
 
 -- --------------------------------------------------------
 
@@ -968,6 +1114,10 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- RELACIONES PARA LA TABLA `usuario`:
+--
+
+--
 -- Volcado de datos para la tabla `usuario`
 --
 
@@ -987,6 +1137,14 @@ CREATE TABLE `usuario_permiso` (
   `idusuario` int(11) NOT NULL,
   `idpermiso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELACIONES PARA LA TABLA `usuario_permiso`:
+--   `idpermiso`
+--       `permiso` -> `idpermiso`
+--   `idusuario`
+--       `usuario` -> `idusuario`
+--
 
 --
 -- Volcado de datos para la tabla `usuario_permiso`
@@ -1019,6 +1177,10 @@ CREATE TABLE `uuss` (
   `nombreuuss` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `rhfn` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `uuss`:
+--
 
 --
 -- Volcado de datos para la tabla `uuss`
@@ -1408,11 +1570,25 @@ ALTER TABLE `crear_acuerdo`
   ADD CONSTRAINT `fk_crear_acuerdo_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `detalle_compromisos`
+--
+ALTER TABLE `detalle_compromisos`
+  ADD CONSTRAINT `fk_compromiso_detalles` FOREIGN KEY (`idcompromisos`) REFERENCES `compromisos` (`idcompromisos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_presupuesto_dispo` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `detalle_crear_acuerdo`
 --
 ALTER TABLE `detalle_crear_acuerdo`
   ADD CONSTRAINT `fk_detalle_crear_acuerdo_presupuesto_disponible` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_detalle_crear_orden_crear_acuerdo` FOREIGN KEY (`idcrear_acuerdo`) REFERENCES `crear_acuerdo` (`idcrear_acuerdo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `detalle_ingreso`
+--
+ALTER TABLE `detalle_ingreso`
+  ADD CONSTRAINT `fk_ingreso_detalle` FOREIGN KEY (`idingreso`) REFERENCES `ingreso` (`idingreso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_presupuesto_detalle` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `detalle_orden`
@@ -1429,16 +1605,49 @@ ALTER TABLE `detalle_retenciones`
   ADD CONSTRAINT `detalle_retenciones` FOREIGN KEY (`idretenciones`) REFERENCES `retenciones` (`idretenciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `dtransf_ctaspg`
+--
+ALTER TABLE `dtransf_ctaspg`
+  ADD CONSTRAINT `fk_idctasbancarias` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_idtransferidoctaspg` FOREIGN KEY (`idtransferidoctaspg`) REFERENCES `transferidoctaspg` (`idtransferidoctaspg`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
   ADD CONSTRAINT `factura_idorden` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `ingreso`
+--
+ALTER TABLE `ingreso`
+  ADD CONSTRAINT `usuario_ingreso` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Filtros para la tabla `retenciones`
 --
 ALTER TABLE `retenciones`
   ADD CONSTRAINT `retenciones_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `transferenciabch`
+--
+ALTER TABLE `transferenciabch`
+  ADD CONSTRAINT `cta_transferencia` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `proveedor_transferencia` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `transferidoctaspg`
+--
+ALTER TABLE `transferidoctaspg`
+  ADD CONSTRAINT `fk_usuario_ctspg` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `usuario_permiso`
+--
+ALTER TABLE `usuario_permiso`
+  ADD CONSTRAINT `fk_permiso_usuario` FOREIGN KEY (`idpermiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuario_permiso` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
