@@ -377,6 +377,7 @@ function addCols( $tab )
 	$this->SetFont( "Arial", "B", 9.7);
 	while ( list( $lib, $pos ) = each ($tab) )
 	{
+
 		$this->SetXY( $colX+0.2, $y1+0.3 );
 		$this->Cell( $pos, 4.5, $lib, 0, 1, "C",true);
 		$colX += $pos;
@@ -387,12 +388,15 @@ function addCols( $tab )
 
 function addLineFormat( $tab )
 {
-	global $format, $colonnes;
+	global $format,$subrayado, $colonnes;
 
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
-		if ( isset( $tab["$lib"] ) )
+		if ( isset( $tab["$lib"]) )
+
 			$format[ $lib ] = $tab["$lib"];
+			$subrayado[ $lib ] = $tab["$lib"];
+
 	}
 }
 
@@ -421,12 +425,16 @@ function addLineFormat( $tab )
                       "MONTANT H.T." => sprintf ( "%.2F", $prod["qte"] * $prod["px_unit"]) ,
                       "TVA"          => $prod["tva"] );
 */
+
 function addLine( $ligne, $tab )
 {
-	global $colonnes, $format;
+	global $colonnes, $format, $subrayado;
 
 	$ordonnee     = 10;
 	$maxSize      = $ligne;
+
+	$this->SetFont( "Arial", "", 8.5);
+
 
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
@@ -437,10 +445,11 @@ function addLine( $ligne, $tab )
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
-
-		if ($texte == 'ADICIONALES') {
-				$this->SetFont( "Arial", "U", 8.5);
+		$formTextUnderline = isset($subrayado[ $lib ]) ? $subrayado[ $lib ] : "";
+		if (in_array(strtoupper($texte),$tab)) {
+			$this->SetFont( "", "$formTextUnderline");
 		}
+
 		$this->SetXY( $ordonnee, $ligne-2);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		if ( $maxSize < ($this->GetY()  ) )

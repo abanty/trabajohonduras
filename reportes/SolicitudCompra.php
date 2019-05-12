@@ -51,6 +51,7 @@ $cols=array( "Cod"=>13,
              "SubTotal"=>22,
              "Total"=>22);
 $pdf->addCols( $cols);
+
 $cols=array( "Cod"=>"L",
              "Unidad"=>"C",
              "Cantidad"=>"C",
@@ -58,8 +59,18 @@ $cols=array( "Cod"=>"L",
              "P.Unitario"=>"R",
              "SubTotal"=>"R",
            "Total"=>"R");
+
+$cols=array( "Cod"=>"",
+            "Unidad"=>"",
+            "Cantidad"=>"",
+           "Descripcion"=>"U",
+            "P.Unitario"=>"",
+            "SubTotal"=>"",
+          "Total"=>"");
+
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
+$pdf->addLineFormat( $cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
 $y= 88;
 
@@ -69,15 +80,28 @@ $rsptad = $venta->administrar_ordenes_detalle_grouping($_GET["id"]);
 while ($regd = $rsptad->fetch_object()) {
 
 
-  $line = array( "Cod"=> "$regd->cod",
+  $line = array("Cod"=> "$regd->cod",
                 "Unidad"=> utf8_decode("$regd->uni"),
                 "Cantidad"=> "$regd->cant",
+
                 "Descripcion" => utf8_decode("$regd->descripcion"),
+
                 "P.Unitario"=> number_format("$regd->precu", 2, '.', ','),
                 "SubTotal"=> number_format("$regd->subtot", 2, '.', ','),
                 "Total"=> number_format("$regd->total", 2, '.', ','));
                 // ,
                 // "Total"=> "$regv->monto_total"
+
+
+
+
+
+                // if ($line[3]) {
+                //   $pdf->SetFont('','U');
+                // }
+
+
+
             $size = $pdf->addLine( $y, $line );
             $y   += $size + 2;
 
@@ -86,6 +110,11 @@ while ($regd = $rsptad->fetch_object()) {
             // $size = $pdf->addLine( $y, $line );
             // $y   += $size + 2;
 }
+
+
+
+
+
 
 
 $pdf->Ln(15);

@@ -22,7 +22,7 @@ Class Administrar_ordenes
 											valor_isv,retencion_isr,tasa_retencion_isr,valor_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto','$valor_impuesto','$monto_total',
-															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Aceptado')";
+															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
@@ -60,7 +60,7 @@ Class Administrar_ordenes
 											valor_isv,retencion_isr,tasa_retencion_isr,valor_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto','$valor_impuesto','$monto_total',
-															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Aceptado')";
+															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
 		$num_elementos=0;
@@ -104,7 +104,7 @@ Class Administrar_ordenes
 											valor_isv,retencion_isr,tasa_retencion_isr,valor_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto','$valor_impuesto','$monto_total',
-															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Aceptado')";
+															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
@@ -152,7 +152,7 @@ Class Administrar_ordenes
 											valor_isv,retencion_isr,tasa_retencion_isr,valor_isr,total_neto,estado)
 											VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
 															'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto','$valor_impuesto','$monto_total',
-															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Aceptado')";
+															'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 		$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
 		$num_elementos=0;
