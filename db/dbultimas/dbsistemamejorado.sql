@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2019 a las 14:06:57
+-- Tiempo de generación: 12-05-2019 a las 18:23:02
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -57,7 +57,7 @@ CREATE TABLE `administrar_ordenes` (
   `tasa_retencion_isr` decimal(11,2) NOT NULL,
   `valor_isr` decimal(11,2) DEFAULT NULL,
   `total_neto` decimal(11,2) NOT NULL,
-  `estado` varchar(20) NOT NULL DEFAULT 'Penidente'
+  `estado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -68,7 +68,8 @@ INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `id
 (1, 9, 1, 3, 1, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-10', '42093.75', '850.57', '41243.18', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '52585.06', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '41243.18', 'Pendiente'),
 (2, 10, 1, 4, 1, '1245', '1245', '', 'Acuerdos de comercio', 'Acuerdo', '2019-05-10', '1155.55', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', 'Pendiente'),
 (3, 9, 1, 3, 1, 'FR458', '4444', '', 'Fondos Rotatorios del Estado', 'F.R.', '2019-05-10', '5555.55', '100.00', '5455.55', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '6955.82', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '5455.55', 'Pendiente'),
-(4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Pendiente');
+(4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Pendiente'),
+(5, 11, 1, 3, 10, '453', '345435', 'Materiales', 'fsfsd', 'O/C', '2019-05-12', '4543.54', '435.55', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -410,7 +411,8 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (2, 1, 2, 'Galones', 4, 'Materiales: Pinturas', '8579.00'),
 (3, 2, 6, '', 1, '', '1155.55'),
 (4, 3, 2, '', 1, '', '5555.55'),
-(5, 4, 43, '', 5, '', '1547.00');
+(5, 4, 43, '', 5, '', '1547.00'),
+(6, 5, 1, 'mts', 1, 'fsdfsd', '4543.54');
 
 --
 -- Disparadores `detalle_orden`
@@ -573,7 +575,7 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Básicos', 11, 100, '11100', '389717781.25', '30000000.00', 1),
+(1, 'Sueldos Básicos', 11, 100, '11100', '389713237.71', '30000000.00', 1),
 (2, 'Adicionales', 11, 400, '11400', '6236128.45', '0.00', 1),
 (3, 'Decimotercer Mes', 11, 510, '11510', '32477130.00', '0.00', 1),
 (4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
@@ -1236,7 +1238,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1290,7 +1292,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
