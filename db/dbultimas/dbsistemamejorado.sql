@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-05-2019 a las 19:09:17
+-- Tiempo de generación: 13-05-2019 a las 01:43:27
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -57,31 +57,34 @@ CREATE TABLE `administrar_ordenes` (
   `tasa_retencion_isr` decimal(11,2) NOT NULL,
   `valor_isr` decimal(11,2) DEFAULT NULL,
   `total_neto` decimal(11,2) NOT NULL,
-  `estado` varchar(20) NOT NULL
+  `estado` varchar(20) NOT NULL DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELACIONES PARA LA TABLA `administrar_ordenes`:
---   `idprograma`
---       `programa` -> `idprograma`
---   `idproveedores`
---       `proveedores` -> `idproveedores`
---   `idusuario`
---       `usuario` -> `idusuario`
---   `iduuss`
---       `uuss` -> `iduuss`
---
 
 --
 -- Volcado de datos para la tabla `administrar_ordenes`
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 9, 1, 3, 1, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-10', '42093.75', '850.57', '41243.18', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '52585.06', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '41243.18', 'Pendiente'),
-(2, 10, 1, 4, 1, '1245', '1245', '', 'Acuerdos de comercio', 'Acuerdo', '2019-05-10', '1155.55', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', 'Pendiente'),
-(3, 9, 1, 3, 1, 'FR458', '4444', '', 'Fondos Rotatorios del Estado', 'F.R.', '2019-05-10', '5555.55', '100.00', '5455.55', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '6955.82', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '5455.55', 'Pendiente'),
-(4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Pendiente'),
-(5, 11, 1, 3, 10, '453', '345435', 'Materiales', 'fsfsd', 'O/C', '2019-05-12', '4543.54', '435.55', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4107.99', 'Pagado');
+(1, 13, 1, 4, 1, '1254', '0001', '', 'dasdasdasdas', 'Acuerdo', '2019-05-12', '100000.00', '0.00', '100000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '100000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '100000.00', 'Pendiente'),
+(2, 10, 1, 3, 1, '002', '00005', 'insumos', 'Materiales e Insumos', 'O/C', '2019-05-12', '20000.00', '10000.00', '10000.00', '1500.00', '15.00', '10000.00', '1250.00', '12.50', '10000.00', '12750.00', '1500.00', '15.00', '10000.00', '1250.00', '12.50', '10000.00', '10000.00', 'Pendiente');
+
+--
+-- Disparadores `administrar_ordenes`
+--
+DELIMITER $$
+CREATE TRIGGER `tr_actualizar_presupuesto_anual` AFTER UPDATE ON `administrar_ordenes` FOR EACH ROW BEGIN
+    UPDATE presupuesto_disponible p, detalle_orden d SET p.presupuesto_anual = p.presupuesto_anual - (d.cantidad * d.precio_unitario)
+WHERE p.idpresupuesto_disponible = d.idpresupuesto_disponible AND New.estado = 'Pagado';
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `tr_subsanar_presupuesto_anual` BEFORE UPDATE ON `administrar_ordenes` FOR EACH ROW BEGIN
+    UPDATE presupuesto_disponible p, detalle_orden d SET p.presupuesto_anual = p.presupuesto_anual + (d.cantidad * d.precio_unitario)
+WHERE p.idpresupuesto_disponible = d.idpresupuesto_disponible AND New.estado = 'Anulado';
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -96,10 +99,6 @@ CREATE TABLE `bancos` (
   `referencia` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `bancos`:
---
 
 --
 -- Volcado de datos para la tabla `bancos`
@@ -211,14 +210,6 @@ CREATE TABLE `compromisos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `compromisos`:
---   `idprograma`
---       `programa` -> `idprograma`
---   `idproveedores`
---       `proveedores` -> `idproveedores`
---
-
---
 -- Volcado de datos para la tabla `compromisos`
 --
 
@@ -247,10 +238,6 @@ CREATE TABLE `configuracion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `configuracion`:
---
-
---
 -- Volcado de datos para la tabla `configuracion`
 --
 
@@ -277,14 +264,6 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- RELACIONES PARA LA TABLA `contabilidad`:
---   `idctasbancarias`
---       `ctasbancarias` -> `idctasbancarias`
---   `idadministrar_ordenes`
---       `administrar_ordenes` -> `idadministrar_ordenes`
---
-
 -- --------------------------------------------------------
 
 --
@@ -304,16 +283,6 @@ CREATE TABLE `crear_acuerdo` (
   `estado` varchar(12) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `crear_acuerdo`:
---   `idprograma`
---       `programa` -> `idprograma`
---   `idproveedores`
---       `proveedores` -> `idproveedores`
---   `idusuario`
---       `usuario` -> `idusuario`
---
-
 -- --------------------------------------------------------
 
 --
@@ -329,10 +298,6 @@ CREATE TABLE `ctasbancarias` (
   `fondos_disponibles` decimal(12,2) DEFAULT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `ctasbancarias`:
---
 
 --
 -- Volcado de datos para la tabla `ctasbancarias`
@@ -358,14 +323,6 @@ CREATE TABLE `detalle_compromisos` (
   `valor` decimal(11,2) NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `detalle_compromisos`:
---   `idcompromisos`
---       `compromisos` -> `idcompromisos`
---   `idpresupuesto_disponible`
---       `presupuesto_disponible` -> `idpresupuesto_disponible`
---
 
 --
 -- Volcado de datos para la tabla `detalle_compromisos`
@@ -410,14 +367,6 @@ CREATE TABLE `detalle_crear_acuerdo` (
   `monto` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `detalle_crear_acuerdo`:
---   `idpresupuesto_disponible`
---       `presupuesto_disponible` -> `idpresupuesto_disponible`
---   `idcrear_acuerdo`
---       `crear_acuerdo` -> `idcrear_acuerdo`
---
-
 -- --------------------------------------------------------
 
 --
@@ -430,14 +379,6 @@ CREATE TABLE `detalle_ingreso` (
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `detalle_ingreso`:
---   `idingreso`
---       `ingreso` -> `idingreso`
---   `idpresupuesto_disponible`
---       `presupuesto_disponible` -> `idpresupuesto_disponible`
---
 
 --
 -- Volcado de datos para la tabla `detalle_ingreso`
@@ -477,35 +418,13 @@ CREATE TABLE `detalle_orden` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `detalle_orden`:
---   `idadministrar_ordenes`
---       `administrar_ordenes` -> `idadministrar_ordenes`
---   `idpresupuesto_disponible`
---       `presupuesto_disponible` -> `idpresupuesto_disponible`
---
-
---
 -- Volcado de datos para la tabla `detalle_orden`
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, 'Galones', 5, 'Materiales: Clavos', '1555.55'),
-(2, 1, 2, 'Galones', 4, 'Materiales: Pinturas', '8579.00'),
-(3, 2, 6, '', 1, '', '1155.55'),
-(4, 3, 2, '', 1, '', '5555.55'),
-(5, 4, 43, '', 5, '', '1547.00'),
-(6, 5, 1, 'mts', 1, 'fsdfsd', '4543.54');
-
---
--- Disparadores `detalle_orden`
---
-DELIMITER $$
-CREATE TRIGGER `tr_actualizar_presupuesto_anual` AFTER INSERT ON `detalle_orden` FOR EACH ROW BEGIN
-    UPDATE presupuesto_disponible SET presupuesto_anual = presupuesto_anual - NEW.cantidad * NEW.precio_unitario
-    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
-END
-$$
-DELIMITER ;
+(1, 1, 10, '', 1, '', '100000.00'),
+(2, 2, 12, 'MEGAS', 5, 'Materiales e Insumos', '2000.00'),
+(3, 2, 13, 'MEGAS', 5, 'Materiales e Insumos', '2000.00');
 
 -- --------------------------------------------------------
 
@@ -519,14 +438,6 @@ CREATE TABLE `detalle_retenciones` (
   `idcompromisos` int(11) NOT NULL,
   `valorbase` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `detalle_retenciones`:
---   `idcompromisos`
---       `compromisos` -> `idcompromisos`
---   `idretenciones`
---       `retenciones` -> `idretenciones`
---
 
 --
 -- Volcado de datos para la tabla `detalle_retenciones`
@@ -555,14 +466,6 @@ CREATE TABLE `dtransf_ctaspg` (
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `dtransf_ctaspg`:
---   `idctasbancarias`
---       `ctasbancarias` -> `idctasbancarias`
---   `idtransferidoctaspg`
---       `transferidoctaspg` -> `idtransferidoctaspg`
---
-
 -- --------------------------------------------------------
 
 --
@@ -576,12 +479,6 @@ CREATE TABLE `factura_orden` (
   `fecha_factura` date NOT NULL,
   `valor_factura` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `factura_orden`:
---   `idadministrar_ordenes`
---       `administrar_ordenes` -> `idadministrar_ordenes`
---
 
 --
 -- Volcado de datos para la tabla `factura_orden`
@@ -622,12 +519,6 @@ CREATE TABLE `ingreso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `ingreso`:
---   `idusuario`
---       `usuario` -> `idusuario`
---
-
---
 -- Volcado de datos para la tabla `ingreso`
 --
 
@@ -646,10 +537,6 @@ CREATE TABLE `permiso` (
   `idpermiso` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `permiso`:
---
 
 --
 -- Volcado de datos para la tabla `permiso`
@@ -685,41 +572,37 @@ CREATE TABLE `presupuesto_disponible` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `presupuesto_disponible`:
---
-
---
 -- Volcado de datos para la tabla `presupuesto_disponible`
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Básicos', 11, 100, '11100', '389713237.71', '30000000.00', 1),
-(2, 'Adicionales', 11, 400, '11400', '6236128.45', '0.00', 1),
-(3, 'Decimotercer Mes', 11, 510, '11510', '32477130.00', '0.00', 1),
-(4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
-(5, 'Complementos', 11, 600, '11600', '24671710.00', '0.00', 1),
-(6, 'Contribuciones al Instituto de Previsi?n Militar - Cuota Patronal', 11, 731, '11731', '42868656.45', '0.00', 1),
-(7, 'Contribuciones al Instituto de Previsi?n Militar - R?gimen de Riesgos Especiales', 11, 732, '11732', '28255103.00', '0.00', 1),
-(8, 'Contribuciones al Instituto de Previsi?n Militar - Reserva Laboral', 11, 733, '11733', '31576537.00', '0.00', 1),
+(1, 'Sueldos Básicos', 11, 100, '11100', '389710003.50', '30000000.00', 1),
+(2, 'Adicionales', 11, 400, '11400', '6228113.45', '0.00', 1),
+(3, 'Decimotercer Mes', 11, 510, '11510', '32475893.60', '0.00', 1),
+(4, 'Decimocuarto Mes', 11, 520, '11520', '32448129.78', '0.00', 1),
+(5, 'Complementos', 11, 600, '11600', '24670807.80', '0.00', 1),
+(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 731, '11731', '42789212.05', '0.00', 1),
+(7, 'Contribuciones al Instituto de Previsión Militar - Régimen de Riesgos Especiales', 11, 732, '11732', '27010663.96', '0.00', 1),
+(8, 'Contribuciones al Instituto de Previsión Militar - Reserva Laboral', 11, 733, '11733', '31406525.95', '0.00', 1),
 (9, 'Beneficios y Compensaciones', 16, 100, '16100', '8486473.00', '0.00', 1),
-(10, 'Energ?a El?ctrica', 21, 100, '21100', '700000.00', '0.00', 1),
+(10, 'Energía Eléctrica', 21, 100, '21100', '700000.00', '0.00', 1),
 (11, 'Agua', 21, 200, '21200', '480000.00', '0.00', 1),
 (12, 'Correo Postal', 21, 410, '21410', '30000.00', '0.00', 1),
-(13, 'Telefon?a Fija', 21, 420, '21420', '400000.00', '0.00', 1),
-(14, 'Alquiler de Equipos de Transporte, Tracci?n y Elevaci?n', 22, 220, '22220', '110610388.00', '0.00', 1),
+(13, 'Telefonía Fija', 21, 420, '21420', '400000.00', '0.00', 1),
+(14, 'Alquiler de Equipos de Transporte, Tracción y Elevación', 22, 220, '22220', '110610388.00', '0.00', 1),
 (15, 'Alquiler de Tierras y Terrenos', 22, 300, '22300', '40000.00', '0.00', 1),
 (16, 'Otros Alquileres', 22, 900, '22900', '5000.00', '0.00', 1),
-(17, 'Mantenimiento y Reparaci?n de Edificios y Locales', 23, 100, '23100', '560000.00', '0.00', 1),
-(18, 'Mantenimiento y Reparaci?n de Equipos y Medios de Transporte', 23, 200, '23200', '1038319.00', '0.00', 1),
-(19, 'Mantenimiento y Reparaci?n de Equipos Sanitarios y de Laboratorio', 23, 330, '23330', '196000.00', '0.00', 1),
-(20, 'Mantenimiento y Reparaci?n de Equipo para Computaci?n', 23, 350, '23350', '125000.00', '0.00', 1),
-(21, 'Mantenimiento y Reparaci?n de Equipo de Oficina y Muebles', 23, 360, '23360', '150000.00', '0.00', 1),
-(22, 'Mantenimiento y Reparaci?n de Otros Equipos', 23, 390, '23390', '200000.00', '0.00', 1),
-(23, 'Mantenimiento y Reparaci?n de Obras Civiles e Instalaciones Varias', 23, 400, '23400', '626613.00', '0.00', 1),
-(24, 'Limpieza, Aseo y Fumigaci?n', 23, 500, '23500', '150000.00', '0.00', 1),
-(25, 'Servicios de Capacitaci?n', 24, 500, '24500', '150000.00', '0.00', 1),
-(26, 'Servicios de Inform?tica y Sistemas Computarizados', 24, 600, '24600', '306000.00', '0.00', 1),
-(27, 'Servicios de Consultor?a de Gesti?n Administrativa, Financiera y Actividades Conexas', 24, 710, '24710', '330000.00', '0.00', 1),
+(17, 'Mantenimiento y Reparación de Edificios y Locales', 23, 100, '23100', '560000.00', '0.00', 1),
+(18, 'Mantenimiento y Reparación de Equipos y Medios de Transporte', 23, 200, '23200', '1038319.00', '0.00', 1),
+(19, 'Mantenimiento y Reparación de Equipos Sanitarios y de Laboratorio', 23, 330, '23330', '196000.00', '0.00', 1),
+(20, 'Mantenimiento y Reparación de Equipo para Computación', 23, 350, '23350', '125000.00', '0.00', 1),
+(21, 'Mantenimiento y Reparación de Equipo de Oficina y Muebles', 23, 360, '23360', '150000.00', '0.00', 1),
+(22, 'Mantenimiento y Reparación de Otros Equipos', 23, 390, '23390', '200000.00', '0.00', 1),
+(23, 'Mantenimiento y Reparación de Obras Civiles e Instalaciones Varias', 23, 400, '23400', '626613.00', '0.00', 1),
+(24, 'Limpieza, Aseo y Fumigación', 23, 500, '23500', '150000.00', '0.00', 1),
+(25, 'Servicios de Capacitación', 24, 500, '24500', '150000.00', '0.00', 1),
+(26, 'Servicios de Informática y Sistemas Computarizados', 24, 600, '24600', '306000.00', '0.00', 1),
+(27, 'Servicios de Consultoría de Gestión Administrativa, Financiera y Actividades Conexas', 24, 710, '24710', '330000.00', '0.00', 1),
 (28, 'Servicio de Transporte', 25, 100, '25100', '120000.00', '0.00', 1),
 (29, 'Servicio de Imprenta, Publicaciones y Reproducciones', 25, 300, '25300', '18000.00', '0.00', 1),
 (30, 'Primas y Gastos de Seguro', 25, 400, '25400', '15650407.00', '0.00', 1),
@@ -729,8 +612,8 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (34, 'Otros Servicios Comerciales y Financieros', 25, 900, '25900', '175000.00', '0.00', 1),
 (35, 'Pasajes Nacionales', 26, 110, '26110', '20000.00', '0.00', 1),
 (36, 'Pasajes al Exterior', 26, 120, '26120', '20000.00', '0.00', 1),
-(37, 'Vi?ticos Nacionales', 26, 210, '26210', '20000.00', '0.00', 1),
-(38, 'Vi?ticos al Exterior', 26, 220, '26220', '10000.00', '0.00', 1),
+(37, 'Viáticos Nacionales', 26, 210, '26210', '20000.00', '0.00', 1),
+(38, 'Viáticos al Exterior', 26, 220, '26220', '10000.00', '0.00', 1),
 (39, 'Gastos Juridicos ', 27, 500, '27500', '5000.00', '0.00', 1),
 (40, 'Impuesto sobre Venta- 12%', 27, 114, '27114', '334375.00', '0.00', 1),
 (41, 'Impuesto sobre Venta- 15%', 27, 115, '27115', '5000.00', '0.00', 1),
@@ -742,44 +625,44 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (47, 'Prendas de Vestir', 32, 310, '32310', '539367.00', '0.00', 1),
 (48, 'Calzados', 32, 400, '32400', '1701522.00', '0.00', 1),
 (49, 'Papel de Escritorio', 33, 100, '33100', '385659.00', '0.00', 1),
-(50, 'Papel para Computaci?n', 33, 200, '33200', '5250.00', '0.00', 1),
-(51, 'Productos de Artes Gr?ficas', 33, 300, '33300', '105000.00', '0.00', 1),
-(52, 'Productos de Papel y Cart?n', 33, 400, '33400', '50000.00', '0.00', 1),
-(53, 'Libros, Revistas y Peri?dicos', 33, 500, '33500', '28980.00', '0.00', 1),
-(54, 'Textos de Ense?anza', 33, 600, '33600', '10000.00', '0.00', 1),
+(50, 'Papel para Computación', 33, 200, '33200', '5250.00', '0.00', 1),
+(51, 'Productos de Artes Gráficas', 33, 300, '33300', '105000.00', '0.00', 1),
+(52, 'Productos de Papel y Cartón', 33, 400, '33400', '50000.00', '0.00', 1),
+(53, 'Libros, Revistas y Periódicos', 33, 500, '33500', '28980.00', '0.00', 1),
+(54, 'Textos de Enseñanza', 33, 600, '33600', '10000.00', '0.00', 1),
 (55, 'Cueros y Pieles', 34, 100, '34100', '250000.00', '0.00', 1),
-(56, 'Art?culos de Cuero', 34, 200, '34200', '300000.00', '0.00', 1),
-(57, 'Art?culos de Caucho', 34, 300, '34300', '550000.00', '0.00', 1),
-(58, 'Llantas y C?maras de Aire', 34, 400, '34400', '1103050.00', '0.00', 1),
-(59, 'Productos Qu?micos', 35, 100, '35100', '250000.00', '0.00', 1),
-(60, 'Productos Farmac?uticos y Medicinales Varios', 35, 210, '35210', '3726000.00', '0.00', 1),
+(56, 'Artículos de Cuero', 34, 200, '34200', '300000.00', '0.00', 1),
+(57, 'Artículos de Caucho', 34, 300, '34300', '550000.00', '0.00', 1),
+(58, 'Llantas y Cámaras de Aire', 34, 400, '34400', '1103050.00', '0.00', 1),
+(59, 'Productos Químicos', 35, 100, '35100', '250000.00', '0.00', 1),
+(60, 'Productos Farmacéuticos y Medicinales Varios', 35, 210, '35210', '3726000.00', '0.00', 1),
 (61, 'Insecticidas, Fumigantes y Otros', 35, 400, '35400', '100000.00', '0.00', 1),
 (62, 'Tintas, Pinturas y Colorantes', 35, 500, '35500', '1018140.00', '0.00', 1),
 (63, 'Gasolina', 35, 610, '35610', '13172306.00', '0.00', 1),
 (64, 'Diesel', 35, 620, '35620', '16504424.00', '0.00', 1),
 (65, 'Aceites y Grasas Lubricantes', 35, 650, '35650', '1749517.00', '0.00', 1),
-(66, 'Productos de Material Pl?stico', 35, 800, '35800', '723000.00', '0.00', 1),
-(67, 'Productos Qu?micos de Uso Personal', 35, 930, '35930', '220000.00', '0.00', 1),
+(66, 'Productos de Material Plástico', 35, 800, '35800', '723000.00', '0.00', 1),
+(67, 'Productos Químicos de Uso Personal', 35, 930, '35930', '220000.00', '0.00', 1),
 (68, 'Productos Ferrosos', 36, 100, '36100', '271000.00', '0.00', 1),
 (69, 'Productos no Ferrosos', 36, 200, '36200', '175801.00', '0.00', 1),
-(70, 'Estructuras Met?licas Acabadas', 36, 300, '36300', '225000.00', '0.00', 1),
+(70, 'Estructuras Metálicas Acabadas', 36, 300, '36300', '225000.00', '0.00', 1),
 (71, 'Herramientas Menores', 36, 400, '36400', '121000.00', '0.00', 1),
 (72, 'Material de Guerra y Seguridad', 36, 500, '36500', '1040000.00', '0.00', 1),
 (73, 'Accesorios de Metal', 36, 920, '36920', '120000.00', '0.00', 1),
-(74, 'Elementos de Ferreter?a', 36, 930, '36930', '900000.00', '0.00', 1),
+(74, 'Elementos de Ferretería', 36, 930, '36930', '900000.00', '0.00', 1),
 (75, 'Productos de Vidrio', 37, 200, '37200', '248300.00', '0.00', 1),
 (76, 'Productos de Loza y Porcelana', 37, 300, '37300', '288775.00', '0.00', 1),
 (77, 'Productos de Cemento, Asbesto y Yeso', 37, 400, '37400', '370000.00', '0.00', 1),
 (78, 'Cemento, Cal y Yeso', 37, 500, '37500', '242500.00', '0.00', 1),
 (79, 'Piedra, Arcilla y Arena', 38, 400, '38400', '320000.00', '0.00', 1),
 (80, 'Elementos de Limpieza y Aseo Personal', 39, 100, '39100', '538843.00', '0.00', 1),
-(81, 'Utiles de Escritorio, Oficina y Ense?anza', 39, 200, '39200', '9848834.00', '0.00', 1),
-(82, 'Utiles y Materiales El?ctricos', 39, 300, '39300', '405632.00', '0.00', 1),
+(81, 'Utiles de Escritorio, Oficina y Enseñanza', 39, 200, '39200', '9848834.00', '0.00', 1),
+(82, 'Utiles y Materiales Eléctricos', 39, 300, '39300', '405632.00', '0.00', 1),
 (83, 'Utensilios de Cocina y Comedor', 39, 400, '39400', '280000.00', '0.00', 1),
-(84, 'Instrumental M?dico Quir?rgico Menor', 39, 510, '39510', '355000.00', '0.00', 1),
+(84, 'Instrumental Médico Quirúrgico Menor', 39, 510, '39510', '355000.00', '0.00', 1),
 (85, 'Repuestos y Accesorios', 39, 600, '39600', '36253332.00', '0.00', 1),
 (86, 'Repuestos y Accesorios Fondos Propios', 39, 600, '39600', '364350.00', '0.00', 1),
-(87, 'Embarcaciones Mar?timas', 42, 330, '42330', '102634290.00', '0.00', 1),
+(87, 'Embarcaciones Marítimas', 42, 330, '42330', '102634290.00', '0.00', 1),
 (88, 'Becas Nacionales', 51, 211, '51211', '1091400.00', '0.00', 1),
 (89, 'Becas Externas', 51, 212, '51212', '1989680.00', '0.00', 1),
 (90, 'Otros Gastos', 51, 230, '51230', '3978000.00', '0.00', 1);
@@ -797,10 +680,6 @@ CREATE TABLE `programa` (
   `cargar` varchar(70) COLLATE utf8mb4_spanish_ci NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `programa`:
---
 
 --
 -- Volcado de datos para la tabla `programa`
@@ -840,10 +719,6 @@ CREATE TABLE `proveedores` (
   `imagen` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `condicion` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `proveedores`:
---
 
 --
 -- Volcado de datos para la tabla `proveedores`
@@ -1030,12 +905,6 @@ CREATE TABLE `retenciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `retenciones`:
---   `idproveedores`
---       `proveedores` -> `idproveedores`
---
-
---
 -- Volcado de datos para la tabla `retenciones`
 --
 
@@ -1061,14 +930,6 @@ CREATE TABLE `transferenciabch` (
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `transferenciabch`:
---   `idctasbancarias`
---       `ctasbancarias` -> `idctasbancarias`
---   `idproveedores`
---       `proveedores` -> `idproveedores`
---
-
 -- --------------------------------------------------------
 
 --
@@ -1085,12 +946,6 @@ CREATE TABLE `transferidoctaspg` (
   `valor_transferido` decimal(12,2) NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `transferidoctaspg`:
---   `idusuario`
---       `usuario` -> `idusuario`
---
 
 -- --------------------------------------------------------
 
@@ -1114,10 +969,6 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELACIONES PARA LA TABLA `usuario`:
---
-
---
 -- Volcado de datos para la tabla `usuario`
 --
 
@@ -1137,14 +988,6 @@ CREATE TABLE `usuario_permiso` (
   `idusuario` int(11) NOT NULL,
   `idpermiso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELACIONES PARA LA TABLA `usuario_permiso`:
---   `idpermiso`
---       `permiso` -> `idpermiso`
---   `idusuario`
---       `usuario` -> `idusuario`
---
 
 --
 -- Volcado de datos para la tabla `usuario_permiso`
@@ -1177,10 +1020,6 @@ CREATE TABLE `uuss` (
   `nombreuuss` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `rhfn` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `uuss`:
---
 
 --
 -- Volcado de datos para la tabla `uuss`
@@ -1400,7 +1239,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1454,7 +1293,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
@@ -1466,7 +1305,7 @@ ALTER TABLE `detalle_retenciones`
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
-  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
@@ -1514,7 +1353,7 @@ ALTER TABLE `transferenciabch`
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
-  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -1570,25 +1409,11 @@ ALTER TABLE `crear_acuerdo`
   ADD CONSTRAINT `fk_crear_acuerdo_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `detalle_compromisos`
---
-ALTER TABLE `detalle_compromisos`
-  ADD CONSTRAINT `fk_compromiso_detalles` FOREIGN KEY (`idcompromisos`) REFERENCES `compromisos` (`idcompromisos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_presupuesto_dispo` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `detalle_crear_acuerdo`
 --
 ALTER TABLE `detalle_crear_acuerdo`
   ADD CONSTRAINT `fk_detalle_crear_acuerdo_presupuesto_disponible` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_detalle_crear_orden_crear_acuerdo` FOREIGN KEY (`idcrear_acuerdo`) REFERENCES `crear_acuerdo` (`idcrear_acuerdo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `detalle_ingreso`
---
-ALTER TABLE `detalle_ingreso`
-  ADD CONSTRAINT `fk_ingreso_detalle` FOREIGN KEY (`idingreso`) REFERENCES `ingreso` (`idingreso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_presupuesto_detalle` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `detalle_orden`
@@ -1605,49 +1430,16 @@ ALTER TABLE `detalle_retenciones`
   ADD CONSTRAINT `detalle_retenciones` FOREIGN KEY (`idretenciones`) REFERENCES `retenciones` (`idretenciones`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `dtransf_ctaspg`
---
-ALTER TABLE `dtransf_ctaspg`
-  ADD CONSTRAINT `fk_idctasbancarias` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_idtransferidoctaspg` FOREIGN KEY (`idtransferidoctaspg`) REFERENCES `transferidoctaspg` (`idtransferidoctaspg`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
   ADD CONSTRAINT `factura_idorden` FOREIGN KEY (`idadministrar_ordenes`) REFERENCES `administrar_ordenes` (`idadministrar_ordenes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `ingreso`
---
-ALTER TABLE `ingreso`
-  ADD CONSTRAINT `usuario_ingreso` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `retenciones`
 --
 ALTER TABLE `retenciones`
   ADD CONSTRAINT `retenciones_proveedores` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `transferenciabch`
---
-ALTER TABLE `transferenciabch`
-  ADD CONSTRAINT `cta_transferencia` FOREIGN KEY (`idctasbancarias`) REFERENCES `ctasbancarias` (`idctasbancarias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `proveedor_transferencia` FOREIGN KEY (`idproveedores`) REFERENCES `proveedores` (`idproveedores`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `transferidoctaspg`
---
-ALTER TABLE `transferidoctaspg`
-  ADD CONSTRAINT `fk_usuario_ctspg` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `usuario_permiso`
---
-ALTER TABLE `usuario_permiso`
-  ADD CONSTRAINT `fk_permiso_usuario` FOREIGN KEY (`idpermiso`) REFERENCES `permiso` (`idpermiso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_permiso` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
