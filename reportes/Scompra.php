@@ -433,10 +433,14 @@ function addLine( $ligne, $tab )
 	{
 		$longCell  = $pos;
 		$texte     = $tab[ $lib ];
+
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
-		$this->SetFont( "Arial", "", 8.5);
+
+		if ($texte == 'ADICIONALES') {
+				$this->SetFont( "Arial", "U", 8.5);
+		}
 		$this->SetXY( $ordonnee, $ligne-2);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
