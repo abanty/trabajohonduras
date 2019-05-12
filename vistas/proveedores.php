@@ -10,7 +10,7 @@ if (!isset($_SESSION["nombre"]))
 else
 {
 require 'header.php';
-if ($_SESSION['configuraciones']==1)
+if ($_SESSION['compromisosp']==1)
 {
 ?>
 <!--Contenido-->
