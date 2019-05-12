@@ -392,7 +392,7 @@ function listar()
 		scrollCollapse: true,
 		"sPaginationType": "full_numbers", //barra de paginacion
 		"bDestroy": true,
-		"iDisplayLength": 5,//Paginación
+		"iDisplayLength": 10,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
@@ -420,7 +420,7 @@ function listarPresupuesto_disponible()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 8,//Paginación
+		"iDisplayLength": 10,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
