@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-05-2019 a las 00:03:52
+-- Tiempo de generación: 12-05-2019 a las 14:06:57
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -35,7 +35,7 @@ CREATE TABLE `administrar_ordenes` (
   `idprograma` int(11) NOT NULL,
   `iduuss` int(11) NOT NULL,
   `num_orden` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `num_comprobante` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `num_comprobante` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `titulo_orden` varchar(80) NOT NULL,
   `descripcion_orden` varchar(100) NOT NULL,
   `tipo_documento` varchar(30) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `administrar_ordenes` (
   `tasa_retencion_isr` decimal(11,2) NOT NULL,
   `valor_isr` decimal(11,2) DEFAULT NULL,
   `total_neto` decimal(11,2) NOT NULL,
-  `estado` varchar(20) NOT NULL
+  `estado` varchar(20) NOT NULL DEFAULT 'Penidente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -65,10 +65,10 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 9, 1, 3, 1, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-10', '42093.75', '850.57', '41243.18', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '52585.06', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '41243.18', 'Aceptado'),
-(2, 10, 1, 4, 1, '1245', '1245', '', 'Acuerdos de comercio', 'Acuerdo', '2019-05-10', '1155.55', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', 'Aceptado'),
-(3, 9, 1, 3, 1, 'FR458', '4444', '', 'Fondos Rotatorios del Estado', 'F.R.', '2019-05-10', '5555.55', '100.00', '5455.55', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '6955.82', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '5455.55', 'Aceptado'),
-(4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Aceptado');
+(1, 9, 1, 3, 1, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-10', '42093.75', '850.57', '41243.18', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '52585.06', '6186.48', '15.00', '41243.18', '5155.40', '12.50', '41243.18', '41243.18', 'Pendiente'),
+(2, 10, 1, 4, 1, '1245', '1245', '', 'Acuerdos de comercio', 'Acuerdo', '2019-05-10', '1155.55', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1155.55', 'Pendiente'),
+(3, 9, 1, 3, 1, 'FR458', '4444', '', 'Fondos Rotatorios del Estado', 'F.R.', '2019-05-10', '5555.55', '100.00', '5455.55', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '6955.82', '818.33', '15.00', '5455.55', '681.94', '12.50', '5455.55', '5455.55', 'Pendiente'),
+(4, 1, 1, 2, 1, 'RB456', '456878', '', 'Referencias del Banco de Honduras', 'Alimentacion', '2019-05-10', '7735.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '7735.00', 'Pendiente');
 
 -- --------------------------------------------------------
 
