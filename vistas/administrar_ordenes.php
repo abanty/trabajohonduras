@@ -313,12 +313,12 @@ if ($_SESSION['admonoc']==1)
                         </div>
 
 
-                        <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                        <div id="datediv" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                           <label>Fecha(*):</label>
                           <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                         </div>
 
-                        <div class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                        <div id="descdiv" class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
                           <label>Descripcion:</label>
                           <textarea class="form-control input-sm" name="descripcion_orden" id="descripcion_orden" placeholder="Ingresa una descripción..." rows="9" cols="50"></textarea>
                         </div>
@@ -328,19 +328,24 @@ if ($_SESSION['admonoc']==1)
                           <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proveedor"></select>
                         </div>
 
+                        <div id="alertselectdoc" class="callout callout-warning">
+                          <h4><i class="fas fa-exclamation-triangle"></i> Por Favor!</h4>
 
-                        <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                          <p>Selecciona un tipo de documento a tramitar para proseguir.</p>
+                        </div>
+
+                        <div id="tpdoc" class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
                           <label>Tipo Documento(*):</label>
-                          <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento" data-style="btn-default btn-sm" data-title="Elige Documento" required>
-                            <option value="Acuerdo">Acuerdo</option>
-                            <option value="F.R.">F.R.</option>
-                            <option value="O/C">O/C</option>
-                            <option value="Alimentacion">Alimentacion</option>
-                            <option value="Becas">Becas</option>
+                          <select class="form-control selectpicker" name="tipo_documento" id="tipo_documento"  multiple data-max-options="1" data-style="btn-default btn-sm" data-title="Elige Documento" required>
+                            <option data-icon="far fa-file-pdf" value="Acuerdo">Acuerdo</option>
+                            <option data-icon="far fa-file-pdf" value="F.R.">F.R.</option>
+                            <option data-icon="fas fa-file-pdf" value="O/C">O/C</option>
+                            <option data-icon="far fa-file" value="Alimentacion">Alimentacion</option>
+                            <option data-icon="far fa-file" value="Becas">Becas</option>
                           </select>
                         </div>
 
-                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; margin-top: 25px;">
+                        <div id="btnmodal" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12" style="text-align: center; margin-top: 25px;">
 
                           <a data-toggle="modal" href="#myModal">
                             <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-dollar-sign"></span> Agregar Objeto Gasto</button>
@@ -491,12 +496,9 @@ if ($_SESSION['admonoc']==1)
 
 
 
-                          <div style="padding-top: 30px;" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
 
-                            <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fas fa-arrow-circle-left"></i> Cancelar</button>
-                          </div>
                         </div>
+
                         <div id="table_invoce" style="display:none;" class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
                           <p class="lead">Cálculos</p>
                            <div class="table-responsive">
@@ -524,6 +526,13 @@ if ($_SESSION['admonoc']==1)
 
                             </table>
                             </div>
+                        </div>
+
+                        <div id="buttonsordens" style="padding-top: 30px;" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                          <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fas fa-save"></i> Guardar</button>
+                          <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fas fa-arrow-circle-left"></i> Cancelar</button>
+
                         </div>
 
                       </form>

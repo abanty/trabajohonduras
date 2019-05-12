@@ -3,6 +3,8 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
+
+
 	$(function() {
 		$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
 	});
@@ -215,7 +217,12 @@ function fechanow(){
 //Función mostrar formulario
 function mostrarform(flag)
 {
-	if (flag)
+	// if ($('#tipo_documento').val('')) {
+	// 	ocultarcamposinitial();
+	//
+	// }
+
+	if ((flag))
 	{
 		$('#num_acuerdo').change(function() {
 				$('#num_orden').val($(this).val());
@@ -250,6 +257,29 @@ function mostrarform(flag)
 }
 
 
+function ocultarcamposinitial(){
+
+	$("#btnGuardar").hide();
+	$("#alertselectdoc").show();
+	$("#content_table_details").hide();
+	$("#table_invoce").hide();
+	$("#sol").hide();
+	$("#No_ord").hide();
+	$("#No_comp").hide();
+	$("#No_acuerdo").hide();
+	$("#No_fr").hide();
+	$("#No_refbancaria").hide();
+	$("#program").hide();
+	$("#datediv").hide();
+	$("#descdiv").hide();
+	$("#divprov").hide();
+	$("#uni_sup").hide();
+	$("#btnmodal").hide();
+
+}
+
+
+
 function change_input_by_tipodoc()
 {
 	var selecttipodoc = $("#tipo_documento option:selected").val();
@@ -257,7 +287,13 @@ function change_input_by_tipodoc()
 		if(selecttipodoc == 'Acuerdo'){
 
 			limpiarCamposOrden();
+			evaluar();
 
+			$("#program").show();
+			$("#content_table_details").show();
+			$("#btnmodal").show();
+			$("#descdiv").show();
+			$("#datediv").show();
 			$("#No_comp").show();
 			$("#sol").hide();
 			$("#No_ord").hide();
@@ -271,7 +307,7 @@ function change_input_by_tipodoc()
 			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
 			document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
 			$("#table_invoce").show();
-			// $("#detalles tbody tr").remove();
+			$("#alertselectdoc").hide();
 			$("#content_tfoot").hide();
 			$("#divprov").show();
 
@@ -280,7 +316,14 @@ function change_input_by_tipodoc()
 		}else if (selecttipodoc == 'O/C') {
 
 				limpiarCamposOrden();
-				// $("#detalles tbody tr").remove();
+				evaluar();
+
+				$("#program").show();
+				$("#btnmodal").show();
+				$("#content_table_details").show();
+				$("#descdiv").show();
+				$("#datediv").show();
+				$("#alertselectdoc").hide();
 				$("#No_comp").show();
 				$("#table_invoce").hide();
 				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
@@ -300,6 +343,14 @@ function change_input_by_tipodoc()
 				}else if (selecttipodoc == 'F.R.') {
 
 					limpiarCamposOrden();
+					evaluar();
+
+					$("#content_table_details").show();
+					$("#program").show();
+					$("#btnmodal").show();
+					$("#descdiv").show();
+					$("#datediv").show();
+					$("#alertselectdoc").hide();
 					$("#No_comp").show();
 					$("#sol").hide();
 					$("#No_ord").hide();
@@ -320,8 +371,15 @@ function change_input_by_tipodoc()
 
 				}else if ((selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
 
-
 					limpiarCamposOrden();
+					evaluar();
+
+					$("#content_table_details").show();
+					$("#program").show();
+					$("#btnmodal").show();
+					$("#descdiv").show();
+					$("#datediv").show();
+					$("#alertselectdoc").hide();
 					$("#No_comp").hide();
 					$("#sol").hide();
 					$("#No_ord").hide();
@@ -342,6 +400,8 @@ function change_input_by_tipodoc()
 					document.getElementById("descripcion_orden").rows = "5";
 					$("#divprov").hide();
 
+				}else if ($('#tipo_documento').val() == "") {
+						ocultarcamposinitial();
 				}
 }
 
@@ -485,73 +545,131 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 
 function orden_mostrar(idadministrar_ordenes)
 {
-
 	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
+
+
+		// change_input_by_tipodoc();
+
 		data = JSON.parse(data);
 		mostrarform(true);
 
-		$("#idprograma").val(data.idprograma).selectpicker('refresh');
-		$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
-		$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
-		$("#iduuss").val(data.iduuss).selectpicker('refresh');
+		if (data.tipo_documento == 'Acuerdo') {
+
+			$("#th_uni").hide();
+			$("#th_descr").hide();
+			$("#td_uni").hide();
+			$("#td_descr").hide();
+			//NUMERO COMPROBANTE
+			$("#No_comp").show();
+			$("#num_comprobante").val(data.num_comprobante);
+			//NUMERO ACUERDO
+			$("#No_acuerdo").show();
+			$("#num_acuerdo").val(data.num_orden);
+			//NUMERO PROGRAMA
+			$("#program").show();
+			$("#idprograma").val(data.idprograma).selectpicker('refresh');
+			//FECHA
+			$("#datediv").show();
+			$("#fecha_hora").val(data.fecha);
+			//DESCRIPCION
+			$("#descdiv").show();
+			$("#descripcion_orden").val(data.descripcion_orden);
+			//PROVEEDOR
+			$("#divprov").show();
+			$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
+			//TIPO DOCUMENTO
+			$("#tpdoc").show();
+			$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
+
+			$("#btnmodal").hide();
+			$("#sol").hide();
+			$("#No_ord").hide();
+			$("#uni_sup").hide();
+			$("#No_refbancaria").hide();
+			$("#No_fr").hide();
 
 
-		$("#titulo_orden").val(data.titulo_orden);
-		$("#num_orden").val(data.num_orden);
-		$("#num_comprobante").val(data.num_comprobante);
-		$("#descripcion_orden").val(data.descripcion_orden);
-		$("#fecha_hora").val(data.fecha);
+			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
+			document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
+			$("#table_invoce").show();
+			$("#alertselectdoc").hide();
+			$("#content_tfoot").hide();
 
-		// FOOTER DETAIL
-		$("#sub_total_inicial").html("L. " + number_format(data.subtotal_inicial, 2, '.', ','));
+		}
 
-		$("#descuento_total").val(number_format(data.descuento_total, 2, '.', ','));
+		//
 
-		$("#sub_total").html("L. " +  number_format(data.subtotal, 2, '.', ','));
-		$("#impuestosv").val(number_format(data.impuesto_sv, 2, '.', ','));
-		$("#impuesto").val(number_format(data.impuesto, 2, '.', ','));
-		// PRIMER TOTAL
-		$("#montototal").html("L. " + number_format(data.monto_total, 2, '.', ','));
-
-
-		$("#retencionisv").val(number_format(data.retencion_isv, 2, '.', ','));
-		$("#retencionisr").val(number_format(data.retencion_isr, 2, '.', ','));
-		$("#totalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
-
-		// % IMPUESTOS Y RETENCIONES
-			$("#tasasv").val(data.tasa_sv);
-				$("#tasaimpuesto").val(data.tasa_imp);
-					$("#tasaretencionisv").val(data.tasa_retencion_isv);
-						$("#tasaretencionisr").val(data.tasa_retencion_isr);
-
-							// VALORES DE IMPUESTOS
-							$("#valor_sv").val(number_format(data.valor_sv, 2, '.', ','));
-								$("#valor_impuesto").val(number_format(data.valor_impuesto, 2, '.', ','));
-									$("#valor_isv").val(number_format(data.valor_isv, 2, '.', ','));
-										$("#valor_isr").val(number_format(data.valor_isr, 2, '.', ','));
-
-		//DETALLE COMPROBANTE
-		$("#debitos").val(data.debitos);
-		$("#tipopago").val(data.tipo_pago).selectpicker('refresh');
-		$("#num_transferencia").val(data.numero_transferencia);
-		$("#contabilidad").val(data.contabilidad);
-		$("#creditos").val(data.creditos);
-
-		$("#idctasbancarias").val(data.idctasbancarias).selectpicker('refresh');
-		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
-
-		//Ocultar y mostrar los botones
-		$("#btnGuardar").hide();
-		$("#btnCancelar").show();
-		$("#btnAgregarArt").hide();
-		$("#btnaddfact").hide();
+		//
+		//
+		// $("#iduuss").val(data.iduuss).selectpicker('refresh');
+		//
+		//
+		// $("#titulo_orden").val(data.titulo_orden);
+		// $("#num_orden").val(data.num_orden);
+		//
+		//
+		//
+		//
+		// // FOOTER DETAIL
+		// $("#sub_total_inicial").html("L. " + number_format(data.subtotal_inicial, 2, '.', ','));
+		//
+		// $("#descuento_total").val(number_format(data.descuento_total, 2, '.', ','));
+		//
+		// $("#sub_total").html("L. " +  number_format(data.subtotal, 2, '.', ','));
+		// $("#impuestosv").val(number_format(data.impuesto_sv, 2, '.', ','));
+		// $("#impuesto").val(number_format(data.impuesto, 2, '.', ','));
+		// // PRIMER TOTAL
+		// $("#montototal").html("L. " + number_format(data.monto_total, 2, '.', ','));
+		//
+		//
+		// $("#retencionisv").val(number_format(data.retencion_isv, 2, '.', ','));
+		// $("#retencionisr").val(number_format(data.retencion_isr, 2, '.', ','));
+		// $("#totalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
+		//
+		// // % IMPUESTOS Y RETENCIONES
+		// 	$("#tasasv").val(data.tasa_sv);
+		// 		$("#tasaimpuesto").val(data.tasa_imp);
+		// 			$("#tasaretencionisv").val(data.tasa_retencion_isv);
+		// 				$("#tasaretencionisr").val(data.tasa_retencion_isr);
+		//
+		// 					// VALORES DE IMPUESTOS
+		// 					$("#valor_sv").val(number_format(data.valor_sv, 2, '.', ','));
+		// 						$("#valor_impuesto").val(number_format(data.valor_impuesto, 2, '.', ','));
+		// 							$("#valor_isv").val(number_format(data.valor_isv, 2, '.', ','));
+		// 								$("#valor_isr").val(number_format(data.valor_isr, 2, '.', ','));
+		//
+		// //DETALLE COMPROBANTE
+		// $("#debitos").val(data.debitos);
+		// $("#tipopago").val(data.tipo_pago).selectpicker('refresh');
+		// $("#num_transferencia").val(data.numero_transferencia);
+		// $("#contabilidad").val(data.contabilidad);
+		// $("#creditos").val(data.creditos);
+		//
+		// $("#idctasbancarias").val(data.idctasbancarias).selectpicker('refresh');
+		// $("#idadministrar_ordenes").val(data.idadministrar_ordenes);
+		//
+		// //Ocultar y mostrar los botones
+		// $("#btnGuardar").hide();
+		// $("#btnCancelar").show();
+		// $("#btnAgregarArt").hide();
+		// $("#btnaddfact").hide();
  	});
 
 
 
  	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
 				  $("#detalles tbody").html(r);
+
+						if (data.tipo_documento == 'Acuerdo') {
+
+							$("#th_uni").hide();
+							$("#th_descr").hide();
+							$("#td_uni").hide();
+							$("#td_descr").hide();
+
+						}
+
 	});
 
 	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Facturas&id="+idadministrar_ordenes,function(r){
@@ -643,7 +761,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
 							});
 							$('#detalles').append(fila);
-	console.log(precio_unitario);
+
 							modificarSubototales();
 						}else if (idpresupuesto_disponible!="") {
 
