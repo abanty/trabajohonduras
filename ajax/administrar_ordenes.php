@@ -221,8 +221,6 @@ switch ($_GET["op"]){
             break;
       };
 
-
-
  			$data[]=array(
  				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>'.

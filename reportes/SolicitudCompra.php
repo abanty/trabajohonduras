@@ -13,7 +13,7 @@ else
 if ($_SESSION['admonoc']==1)
 {
 //Incluímos el archivo Factura.php
-require('Orden.php');
+require('Scompra.php');
 
 //Establecemos los datos de la empresa
 $tittle1 = "SECRETARIA DE ESTADO EN EL DESPACHO DE DEFENSA NACIONAL";
@@ -37,7 +37,7 @@ $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle
 
 $pdf->fact_dev("S/C No. ",$regv->num_orden);
 // $pdf->temporaire( "ORDER DE COMPRA" );
-$pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->titulo_orden );
+$pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->titulo_orden);
 
 //Enviamos los datos del cliente al método addClientAdresse de la clase Factura
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->programa),utf8_decode($regv->proveedor));
@@ -61,7 +61,7 @@ $cols=array( "Cod"=>"L",
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 63;
+$y= 88;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle_grouping($_GET["id"]);
@@ -86,25 +86,8 @@ while ($regd = $rsptad->fetch_object()) {
             // $y   += $size + 2;
 }
 
-$pdf->SetFont( "Arial", "B", 8);
-$pdf->Ln(10);
-$pdf->SetX(55);
-$pdf->Cell(80,4, "IMPORTE TOTAL CON LETRA",0,1);
-require_once "Letras.php";
-$V=new EnLetras();
-$pdf->SetFont( "Arial", "", 8);
-$con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
-$pdf->SetX(55);
-$pdf->MultiCell(90,4, $con_letra,0);
-$pdf->SetX(55);
-$pdf->MultiCell(95,4, "************************************* U.L **************************************",0);
-$pdf->Ln(1);
-$pdf->SetX(55);
-$pdf->MultiCell(90,3, "NOTA: ".$regv->descripcion_orden,0);
-$pdf->Ln(15);
-$texta = strtoupper($regv->cargar);
 
-// $pdf->SetX(55);
+$pdf->Ln(15);
 $pdf->SetWidths(array(70));
 
 $pdf->SetFont('Arial','B',7.5);
@@ -113,36 +96,48 @@ $pdf->Rowedit(array($texta));
 $pdf->Ln(-3);
 
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(172,4, "SubTotal Lps  :",0,0,'R');
+$pdf->Cell(80,4, "SUBTOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->subtotal_origen, 2, '.', ','),0,'R');
+$pdf->Cell(95,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
+$pdf->Cell(22,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(172,4, "Descuento Lps  :",0,0,'R');
+$pdf->Cell(80,4, "DESCUENTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->descuento_total, 2, '.', ','),0,'R');
+$pdf->Cell(95,4, number_format($regv->descuento_total, 2, '.', ','),0,0,'R');
+$pdf->Cell(22,4,'',0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(172,4, "SubTotal Lps  :",0,0,'R');
+$pdf->Cell(80,4, "SUBTOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->subtotal, 2, '.', ','),0,'R');
+$pdf->Cell(95,4, number_format($regv->subtotal, 2, '.', ','),0,0,'R');
+$pdf->Cell(22,4,'',0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(172,4, "Impuesto Lps  :",0,0,'R');
+$pdf->Cell(80,4, "IMPUESTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->impuesto, 2, '.', ','),0,'R');
+$pdf->Cell(95,4, number_format($regv->impuesto, 2, '.', ','),0,0,'R');
+$pdf->Cell(22,4,'',0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(172,4, "Total Lps  :",0,0,'R');
+$pdf->Cell(80,4, "TOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->monto_total, 2, '.', ','),0,'R');
+$pdf->Cell(95,4, number_format($regv->monto_total, 2, '.', ','),0,0,'R');
+$pdf->Cell(22,4, number_format($regv->monto_total, 2, '.', ','),0,1,'R');
 $pdf->Ln(10);
 
 $pdf->SetLineWidth(0.2);
-$pdf->SetX(160);
-$pdf->SetFont('Arial','I',8.5);
-$pdf->MultiCell(50,4, 'PAGADOR GENERAL DE LA F.N.H.','T','L');
-
+$pdf->SetX(8);
+$pdf->SetFont('Arial','',8);
+$pdf->MultiCell(200,4, 'PAGADOR GENERAL DE LA F.N.H.',1,'C');
+$pdf->SetX(8);
+$pdf->MultiCell(200,4, 'CAPITAN DE GRAGATA C.G',1,'C');
+$pdf->SetX(8);
+$pdf->MultiCell(200,15, '',1,'C');
+$pdf->SetX(8);
+$pdf->MultiCell(200,4, 'ERNESTO ANTONIO AVILA KATTAN',1,'C');
+$pdf->SetX(8);
+$pdf->MultiCell(200,4, "NOTA: ".utf8_decode($regv->descripcion_orden),1,'L');
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
 
