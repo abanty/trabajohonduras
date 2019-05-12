@@ -374,7 +374,7 @@ function addCols( $tab )
 	$colX = $r1;
 	$colonnes = $tab;
 	// $this->SetTextColor(255,255,255);
-	$this->SetFont( "Arial", "B", 9.7);
+	$this->SetFont( "Arial", "B", 9);
 	while ( list( $lib, $pos ) = each ($tab) )
 	{
 

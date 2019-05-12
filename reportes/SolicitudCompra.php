@@ -43,30 +43,30 @@ $pdf->addDate_MontoGeneral_TituloOrden($regv->fecha,$regv->monto_total,$regv->ti
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->programa),utf8_decode($regv->proveedor));
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
-$cols=array( "Cod"=>13,
-             "Unidad"=>27,
-             "Cantidad"=>17,
-             "Descripcion"=>70,
-             "P.Unitario"=>25,
-             "SubTotal"=>22,
-             "Total"=>22);
+$cols=array( "OJB"=>13,
+             "UNIDAD"=>27,
+             "CANTIDAD"=>17,
+             "DESCRIPCION"=>70,
+             "P.UNIT"=>25,
+             "S/TOTAL"=>22,
+             "TOTAL"=>22);
 $pdf->addCols( $cols);
 
-$cols=array( "Cod"=>"L",
-             "Unidad"=>"C",
-             "Cantidad"=>"C",
-            "Descripcion"=>"L",
-             "P.Unitario"=>"R",
-             "SubTotal"=>"R",
-           "Total"=>"R");
+$cols=array( "OJB"=>"L",
+             "UNIDAD"=>"C",
+             "CANTIDAD"=>"C",
+            "DESCRIPCION"=>"L",
+             "P.UNIT"=>"R",
+             "S/TOTAL"=>"R",
+           "TOTAL"=>"R");
 
-$cols=array( "Cod"=>"",
-            "Unidad"=>"",
-            "Cantidad"=>"",
-           "Descripcion"=>"U",
-            "P.Unitario"=>"",
-            "SubTotal"=>"",
-          "Total"=>"");
+$cols=array( "OJB"=>"",
+            "UNIDAD"=>"",
+            "CANTIDAD"=>"",
+           "DESCRIPCION"=>"U",
+            "P.UNIT"=>"",
+            "S/TOTAL"=>"",
+          "TOTAL"=>"");
 
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
@@ -75,20 +75,20 @@ $pdf->addLineFormat( $cols);
 $y= 88;
 
 //Obtenemos todos los detalles de la venta actual
-$rsptad = $venta->administrar_ordenes_detalle_grouping($_GET["id"]);
+$rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
 
 while ($regd = $rsptad->fetch_object()) {
 
 
-  $line = array("Cod"=> "$regd->cod",
-                "Unidad"=> utf8_decode("$regd->uni"),
-                "Cantidad"=> "$regd->cant",
+  $line = array("OJB"=> "$regd->codigo",
+                "UNIDAD"=> utf8_decode("$regd->unidad"),
+                "CANTIDAD"=> "$regd->cantidad",
 
-                "Descripcion" => utf8_decode("$regd->descripcion"),
+                "DESCRIPCION" => utf8_decode("$regd->descripcion"),
 
-                "P.Unitario"=> number_format("$regd->precu", 2, '.', ','),
-                "SubTotal"=> number_format("$regd->subtot", 2, '.', ','),
-                "Total"=> number_format("$regd->total", 2, '.', ','));
+                "P.UNIT"=> number_format("$regd->precio_unitario", 2, '.', ','),
+                "S/TOTAL"=> number_format("$regd->subtot", 2, '.', ','),
+                "TOTAL"=> number_format("", 2, '.', ','));
                 // ,
                 // "Total"=> "$regv->monto_total"
 
@@ -117,7 +117,7 @@ while ($regd = $rsptad->fetch_object()) {
 
 
 
-$pdf->Ln(15);
+
 $pdf->SetWidths(array(70));
 
 $pdf->SetFont('Arial','B',7.5);
@@ -126,11 +126,12 @@ $pdf->Rowedit(array($texta));
 $pdf->Ln(-3);
 
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(80,4, "SUBTOTAL Lps  :",0,0,'R');
+$pdf->Cell(90,4, "SUBTOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(95,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
-$pdf->Cell(22,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
+$pdf->Cell(77,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
+$pdf->Cell(30,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
 
+$pdf->Ln(15);
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(80,4, "DESCUENTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
