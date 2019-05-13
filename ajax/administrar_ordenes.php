@@ -135,9 +135,9 @@ switch ($_GET["op"]){
 				{
 					echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
 					<td>'.$reg->codigo.'</td>
-          <td id="td_uni"  style="display:none;">'.$reg->unidad.'</td>
+          <td class="tdunit" style="display:none;">'.$reg->unidad.'</td>
         	<td>'.$reg->cantidad.'</td>
-					<td id="td_descri"  style="display:none;" colspan="4">'.$reg->descripcion.'</td>
+					<td class="tddesc" style="display:none;" colspan="4">'.$reg->descripcion.'</td>
 					<td>'.number_format($reg->precio_unitario, 2, '.', ',').'</td>
 					<td>'.number_format($reg->precio_unitario * $reg->cantidad, 2, '.', ',').'</td></tr>';
 				}
