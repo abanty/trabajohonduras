@@ -1,143 +1,192 @@
 var tabla;
 
-//Función que se ejecuta al inicio
+//------------------
+// FUNCION INICIAL |
+//------------------
 function init(){
 
+			//Transformando inputs a libreria MASKMONEY.
+			$(function() {
+				$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
+			});
+
+			ocultarcamposinitial(true);
+			mostrarform(false);
+			listar();
 
 
-	$(function() {
-		$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
-	});
-
-	fechanow();
-
-	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
-
-	$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
-					$("#here_inside").html(r);
-	});
-
-	mostrarform(false);
-	listar();
-
-	$("#formulario").on("submit",function(e)
-	{
-		guardaryeditar(e);
-	});
-	//Cargamos los items al select Proveedores
-	$.post("../ajax/administrar_ordenes.php?op=selectProveedores", function(r){
-	            $("#idproveedores").html(r);
-	            $('#idproveedores').selectpicker('refresh');
-	});
+			$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+			$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
 
 
-	//Cargamos los items al select Progra,a
-	$.post("../ajax/administrar_ordenes.php?op=selectPrograma", function(r){
-	            $("#idprograma").html(r);
-	            $('#idprograma').selectpicker('refresh');
-	});
+			$("#formulario").on("submit",function(e)
+			{
+
+				guardaryeditar(e);
+
+			});
 
 
-//Seleccionamos un numero de cuenta contactenado con el nombtre del banco
-	$.post("../ajax/administrar_ordenes.php?op=select_cta_banco", function(r){
-	            $("#idctasbancarias").html(r);
-	            $('#idctasbancarias').selectpicker('refresh');
-	});
+			//Cargamos Botton para agregar Facturas del AJAX
+			$.post("../ajax/administrar_ordenes.php?op=button_add",function(r){
+							$("#here_inside").html(r);
+			});
 
 
-	//Seleccionamos nombre de la tabla Uuss
-		$.post("../ajax/administrar_ordenes.php?op=selectUuss", function(r){
-		            $("#iduuss").html(r);
-		            $('#iduuss').selectpicker('refresh');
-		});
+			//Cargamos los items al select Proveedores
+			$.post("../ajax/administrar_ordenes.php?op=selectProveedores", function(r){
+			            $("#idproveedores").html(r);
+			            $('#idproveedores').selectpicker('refresh');
+			});
 
 
+			//Cargamos los items al select Progra,a
+			$.post("../ajax/administrar_ordenes.php?op=selectPrograma", function(r){
+			            $("#idprograma").html(r);
+			            $('#idprograma').selectpicker('refresh');
+			});
+
+
+			//Seleccionamos un numero de cuenta contactenado con el nombtre del banco
+			$.post("../ajax/administrar_ordenes.php?op=select_cta_banco", function(r){
+			            $("#idctasbancarias").html(r);
+			            $('#idctasbancarias').selectpicker('refresh');
+			});
+
+
+			//Seleccionamos nombre de la tabla Uuss
+				$.post("../ajax/administrar_ordenes.php?op=selectUuss", function(r){
+				            $("#iduuss").html(r);
+				            $('#iduuss').selectpicker('refresh');
+				});
 }
 
-//-----------------------------
-// FUNCION PARA LIMPIAR CAMPOS |
-//-----------------------------
+
+/*-----------------------------------------*
+| FUNCION PARA OCULTAR CAMPOS INICIALMENTE |
+.------------------------------------------*/
+function ocultarcamposinitial(flag=true){
+
+	if (flag) {
+		//Campos formulario principal
+		$("#sol").hide();
+		$("#No_ord").hide();
+		$("#No_comp").hide();
+		$("#No_acuerdo").hide();
+		$("#No_fr").hide();
+		$("#No_refbancaria").hide();
+		$("#program").hide();
+		$("#datediv").hide();
+		$("#descdiv").hide();
+		$("#divprov").hide();
+		$("#uni_sup").hide();
+		//Mostrar alerta
+		$("#alertselectdoc").show();
+		//Campos del detalle ordenes
+		$("#content_table_details").hide();
+		$("#table_invoce").hide();
+		// Botones
+		$("#btnGuardar").hide();
+		$("#btnmodal").hide();
+
+	}else {
+		$("#alertselectdoc").hide();
+	}
+}
+
+
+/*----------------------------*
+| FUNCION PARA LIMPIAR CAMPOS |
+.-----------------------------*/
 function limpiar()
 {
+	// limpiarCamposOrden();
+	$("#tipo_documento").selectpicker('val',"");
+	$("#tipo_documento").selectpicker('refresh');
+}
+
+
+/*----------------------------------------------------*
+| FUNCION PARA LIMPIAR CAMPOS DEL FORMULARIO ORDENES  |
+.----------------------------------------------------*/
+function limpiarCamposOrden()
+{
 	fechanow();
-
+	//INFORMACION CUANDO NO HAY FILAS
 	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
+	// INPUTS PRINCIPALES DEL FORMULARIO
 	$("#idadministrar_ordenes").val('');
-
 	$("#titulo_orden").val('');
 	$("#num_orden").val('');
 	$("#num_comprobante").val('');
 	$("#descripcion_orden").val('');
-
+	//INPUTS REFERENCIAS N ORDEN
+	$("#num_acuerdo").val('');
+	$("#inputfr").val('');
+	$("#refbank").val('');
+	// SELECTS FORMULARIO
 	$("#idprograma").selectpicker('val',"");
 	$("#idprograma").selectpicker('refresh');
-
 	$("#iduuss").selectpicker('val',"");
 	$("#iduuss").selectpicker('refresh');
-
 	$("#idproveedores").selectpicker('val',"");
 	$("#idproveedores").selectpicker('refresh');
-
-	$("#tipo_documento").selectpicker('val',"");
-	$("#tipo_documento").selectpicker('refresh');
-
 	// LIMPIAR CAMPOS CONTABILIDAD
 	$("#creditos").val('');
 	$("#debitos").val('');
 	$("#contabilidad").val('');
 	$("#num_transferencia").val('');
-
 	$("#idctasbancarias").selectpicker('val',"");
 	$("#idctasbancarias").selectpicker('refresh');
 	$("#tipopago").selectpicker('val',"");
 	$("#tipopago").selectpicker('refresh');
 	$("#btnaddfact").show();
-
+	// ROMOVER FILAS
+	detalles=0;
 	$(".filas").remove();
 	$(".filafactura").remove();
 
-	$("#sub_total").html("L. 0.00");
-	$("#montototal").html("L. 0.00");
+	limpiarFooterCalculos();
 }
 
 
-
-function limpiarFooterCalculos(){
-
+/*-------------------------------------------*
+| FUNCION PARA LIMPIAR DETALLES DE LA ORDEN  |
+.-------------------------------------------*/
+function limpiarFooterCalculos()
+{
+	//SUB TOTAL INICIAL
 	$("#subtotal_inicial").val('');
 	$("#sub_total_inicial").html("L. 0.00");
-
+	//DESCUENTO
 	$("#descuento_total").val('');
-
+	//SUB TOTALES
 	$("#subtotales").val('');
 	$("#sub_total").html("L. 0.00");
-
+	//TOTAL
 	$("#monto_total").val('');
 	$("#montototal").html("L. 0.00");
-
+	//TOTAL NETO
 	$("#total_neto").val('');
 	$("#totalneto").html("L. 0.00");
-
-// TOTALES ACUERDO
+	//TOTALES ACUERDO
 	$("#showsubtotal").html("L. 0.00");
 	$("#showtotal").html("L. 0.00");
 	$("#showtotalneto").html("L. 0.00");
-
+	//IMPUESTO SV
 	$("#impuestosv").val('0');
 	$("#valor_sv").val('');
 	$("#tasasv").val('');
-
+	//IMPUESTO
 	$("#impuesto").val('0');
 	$("#valor_impuesto").val('');
 	$("#tasaimpuesto").val('');
-
+	//IMPUESTO ISV
 	$("#retencionisv").val('0');
 	$("#valor_isv").val('');
 	$("#tasaretencionisv").val('');
-
+	//IMPUESTO ISR
 	$("#retencionisr").val('0');
 	$("#valor_isr").val('');
 	$("#tasaretencionisr").val('');
@@ -145,97 +194,46 @@ function limpiarFooterCalculos(){
 }
 
 
-
-
-function limpiarCamposOrden(){
-
-	fechanow();
-	detalles=0;
-	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-
-	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
-	$("#idadministrar_ordenes").val('');
-
-	$("#titulo_orden").val('');
-	$("#num_orden").val('');
-	$("#num_comprobante").val('');
-	$("#descripcion_orden").val('');
-	$("#num_comprobante").val('');
-	$("#descripcion_orden").val('');
-	$("#num_acuerdo").val('');
-	$("#inputfr").val('');
-	$("#refbank").val('');
-
-	$("#idprograma").selectpicker('val',"");
-	$("#idprograma").selectpicker('refresh');
-
-	$("#iduuss").selectpicker('val',"");
-	$("#iduuss").selectpicker('refresh');
-
-	$("#idproveedores").selectpicker('val',"");
-	$("#idproveedores").selectpicker('refresh');
-
-	// LIMPIAR CAMPOS CONTABILIDAD
-	$("#creditos").val('');
-	$("#debitos").val('');
-	$("#contabilidad").val('');
-	$("#num_transferencia").val('');
-
-	$("#idctasbancarias").selectpicker('val',"");
-	$("#idctasbancarias").selectpicker('refresh');
-	$("#tipopago").selectpicker('val',"");
-	$("#tipopago").selectpicker('refresh');
-	$("#btnaddfact").show();
-
-	$(".filas").remove();
-	$(".filafactura").remove();
-
-	$("#sub_total").html("L. 0.00");
-	$("#montototal").html("L. 0.00");
-
-	limpiarFooterCalculos();
-
-}
-
-
-
-
-
-
-
-
-function fechanow(){
-	// Obtenemos la fecha actual
+/*------------------------------------*
+| FUNCION PARA CALCULAR FECHA ACTUAL  |
+.------------------------------------*/
+function fechanow()
+{
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-
 	$('#fecha_hora').val(today);
 }
 
-//Función mostrar formulario
+
+/*------------------------------------------*
+| FUNCION SIMLE TRANSCRIBIR CAMPOS Nº ORDEN |
+.------------------------------------------*/
+function trnascribir()
+{
+	$('#num_acuerdo').change(function() {
+			$('#num_orden').val($(this).val());
+	});
+
+	$('#inputfr').change(function() {
+			$('#num_orden').val($(this).val());
+	});
+
+	$('#refbank').change(function() {
+			$('#num_orden').val($(this).val());
+	});
+}
+
+
+/*-----------------------------------*
+| FUNCION MOSTRAR FORMULARIO ORDENES |
+.-----------------------------------*/
 function mostrarform(flag)
 {
-	// if ($('#tipo_documento').val('')) {
-	// 	ocultarcamposinitial();
-	//
-	// }
-
-	if ((flag))
+	trnascribir();
+	if (flag)
 	{
-		$('#num_acuerdo').change(function() {
-				$('#num_orden').val($(this).val());
-		});
-
-		$('#inputfr').change(function() {
-				$('#num_orden').val($(this).val());
-		});
-
-		$('#refbank').change(function() {
-				$('#num_orden').val($(this).val());
-		});
-
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnagregar").hide();
@@ -243,7 +241,6 @@ function mostrarform(flag)
 
 		listarPresupuesto_disponible();
 
-		// $("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").show();
 		detalles=0;
@@ -257,29 +254,9 @@ function mostrarform(flag)
 }
 
 
-function ocultarcamposinitial(){
-
-	$("#btnGuardar").hide();
-	$("#alertselectdoc").show();
-	$("#content_table_details").hide();
-	$("#table_invoce").hide();
-	$("#sol").hide();
-	$("#No_ord").hide();
-	$("#No_comp").hide();
-	$("#No_acuerdo").hide();
-	$("#No_fr").hide();
-	$("#No_refbancaria").hide();
-	$("#program").hide();
-	$("#datediv").hide();
-	$("#descdiv").hide();
-	$("#divprov").hide();
-	$("#uni_sup").hide();
-	$("#btnmodal").hide();
-
-}
-
-
-
+/*-----------------------------------*
+| FUNCION FILTRAR CAMPOS DOCUMENTOS  |
+.-----------------------------------*/
 function change_input_by_tipodoc()
 {
 	var selecttipodoc = $("#tipo_documento option:selected").val();
@@ -288,131 +265,50 @@ function change_input_by_tipodoc()
 
 			limpiarCamposOrden();
 			evaluar();
+			VistaAcuerdos();
+			ocultarcamposinitial(false);
 
-			$("#program").show();
-			$("#content_table_details").show();
-			$("#btnmodal").show();
-			$("#descdiv").show();
-			$("#datediv").show();
-			$("#No_comp").show();
-			$("#sol").hide();
-			$("#No_ord").hide();
-			$("#No_acuerdo").show();
-			$("#uni_sup").hide();
-			$("#th_uni").hide();
-			$("#No_refbancaria").hide();
-			$("#th_descr").hide();
-			$("#No_fr").hide();
-		  $("#detalles tfoot").hide();
-			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
-			document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
-			$("#table_invoce").show();
-			$("#alertselectdoc").hide();
-			$("#content_tfoot").hide();
-			$("#divprov").show();
-
-			document.getElementById("descripcion_orden").rows = "5";
-
-		}else if (selecttipodoc == 'O/C') {
-
-				limpiarCamposOrden();
-				evaluar();
-
-				$("#program").show();
-				$("#btnmodal").show();
-				$("#content_table_details").show();
-				$("#descdiv").show();
-				$("#datediv").show();
-				$("#alertselectdoc").hide();
-				$("#No_comp").show();
-				$("#table_invoce").hide();
-				document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
-				document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
-				 $("#uni_sup").show();
-				 $("#th_uni").show();
-				 $("#No_fr").hide();
-				 $("#No_refbancaria").hide();
-				 $("#th_descr").show();
-				 $("#sol").show();
-				 $("#No_ord").show();
-				 $("#No_acuerdo").hide();
-				 document.getElementById("descripcion_orden").rows = "9";
-				 $("#divprov").show();
-				 $("#content_tfoot").show();
-
-				}else if (selecttipodoc == 'F.R.') {
+			}else if (selecttipodoc == 'O/C') {
 
 					limpiarCamposOrden();
 					evaluar();
+					VistaOrdenesC();
+					ocultarcamposinitial(false);
 
-					$("#content_table_details").show();
-					$("#program").show();
-					$("#btnmodal").show();
-					$("#descdiv").show();
-					$("#datediv").show();
-					$("#alertselectdoc").hide();
-					$("#No_comp").show();
-					$("#sol").hide();
-					$("#No_ord").hide();
-					$("#No_acuerdo").hide();
-					$("#No_fr").show();
-					$("#No_refbancaria").hide();
-					$("#uni_sup").hide();
-					$("#th_uni").hide();
-					$("#th_descr").hide();
-					document.getElementById("content_table_details").className = "col-lg-12 col-sm-12 col-md-12 col-xs-12";
-					document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
-					$("#table_invoce").hide();
-					// $("#detalles tbody tr").remove();
-					// $("#detalles tfoot").show();
-					$("#content_tfoot").show();
-					$("#divprov").show();
-					document.getElementById("descripcion_orden").rows = "5";
+					}else if (selecttipodoc == 'F.R.') {
 
-				}else if ((selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
+						limpiarCamposOrden();
+						evaluar();
+						VistaFondosR();
+						ocultarcamposinitial(false);
 
-					limpiarCamposOrden();
-					evaluar();
+							}else if ((selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')) {
 
-					$("#content_table_details").show();
-					$("#program").show();
-					$("#btnmodal").show();
-					$("#descdiv").show();
-					$("#datediv").show();
-					$("#alertselectdoc").hide();
-					$("#No_comp").hide();
-					$("#sol").hide();
-					$("#No_ord").hide();
-					$("#No_acuerdo").hide();
-					$("#No_fr").hide();
-					$("#No_refbancaria").show();
-					$("#uni_sup").hide();
-					$("#th_uni").hide();
-					$("#th_descr").hide();
+								limpiarCamposOrden();
+								evaluar();
+								VistaAlimentosBecas();
+								ocultarcamposinitial(false);
 
-					document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
-					document.getElementById("No_refbancaria").className = "col-lg-4 col-md-4 col-sm-6 col-xs-12";
-					document.getElementById("program").className = "col-lg-4 col-md-4 col-sm-6 col-xs-12";
-
-					$("#table_invoce").show();
-					// $("#detalles tbody tr").remove();
-					$("#content_tfoot").hide();
-					document.getElementById("descripcion_orden").rows = "5";
-					$("#divprov").hide();
-
-				}else if ($('#tipo_documento').val() == "") {
-						ocultarcamposinitial();
-				}
+										}else if ($('#tipo_documento').val() == "") {
+												ocultarcamposinitial(true);
+										}
 }
 
-//Función cancelarform
+
+/*----------------------------*
+| FUNCION CANCELAR Y REGRESAR |
+.----------------------------*/
 function cancelarform()
 {
 	limpiar();
+	ocultarcamposinitial(true);
 	mostrarform(false);
 }
 
-//Función Listar
+
+/*-----------------------*
+| FUNCION LISTAS ORDENES |
+.------------------------*/
 function listar()
 {
 	tabla=$('#tbllistado').dataTable(
@@ -437,9 +333,6 @@ function listar()
 								{ width: 110, targets: 7 },
 
 			      ],
-
-
-
 		"ajax":
 				{
 					url: '../ajax/administrar_ordenes.php?op=listar',
@@ -458,8 +351,9 @@ function listar()
 }
 
 
-//Función Listar presupuesto_disponible
-
+/*-----------------------------------------*
+| FUNCION LISTAS RENGLONES PRESUPUESTALES  |
+.------------------------------------------*/
 function listarPresupuesto_disponible()
 {
 	tabla=$('#tblpresupuesto_disponible').dataTable(
@@ -486,7 +380,9 @@ function listarPresupuesto_disponible()
 }
 
 
-//Función para guardar o editar
+/*-------------------------*
+| FUNCION GUARDAR ORDENES  |
+.--------------------------*/
 function guardaryeditar(e)
 {
 
@@ -518,6 +414,10 @@ function guardaryeditar(e)
 	limpiar();
 }
 
+
+/*---------------------------------------------*
+| FUNCION CONVERTIR ENTEROS A MILLARES FORMATO |
+.----------------------------------------------*/
 function number_format (number, decimals, dec_point, thousands_sep) {
     // Strip all characters but numerical ones.
     number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
@@ -543,134 +443,115 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 }
 
 
+/*--------------------------------*
+| FUNCION MOSTRAR DETALLE POR ID  |
+.--------------------------------*/
 function orden_mostrar(idadministrar_ordenes)
 {
+	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
+					$("#detalles tbody").html(r);
+	});
+
+
 	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
-
-
-		// change_input_by_tipodoc();
-
+		ocultarcamposinitial(false);
 		data = JSON.parse(data);
 		mostrarform(true);
+		// TITULO ORDEN
+		$("#titulo_orden").val(data.titulo_orden);
+		// NUMERO ORDEN
+		$("#num_orden").val(data.num_orden);
+		// NUMERO COMPROBANTE
+		$("#num_comprobante").val(data.num_comprobante);
+		// NUMERO ACUERDO
+		$("#num_acuerdo").val(data.num_orden);
+		// NUMERO FONDO ROTATORIO
+		$("#inputfr").val(data.num_orden);
+		// NUMERO REF BANCARIA
+		$("#refbank").val(data.num_orden);
+		// NUMERO PROGRAMA
+		$("#idprograma").val(data.idprograma).selectpicker('refresh');
+		// FECHA
+		$("#fecha_hora").val(data.fecha);
+		// DESCRIPCION
+		$("#descripcion_orden").val(data.descripcion_orden);
+		// PROVEEDOR
+		$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
+		// TIPO DOCUMENTO
+		$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
+		// UNIDAD SUPERFICIE
+		$("#iduuss").val(data.iduuss).selectpicker('refresh');
 
-		if (data.tipo_documento == 'Acuerdo') {
+		//TABLA INVOICE
+		$("#showsubtotal").html("L. " + number_format(data.subtotal, 2, '.', ','));
+		$("#showtotal").html("L. " + number_format(data.monto_total, 2, '.', ','));
+		$("#showtotalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
 
-			$("#th_uni").hide();
-			$("#th_descr").hide();
-			$("#td_uni").hide();
-			$("#td_descr").hide();
-			//NUMERO COMPROBANTE
-			$("#No_comp").show();
-			$("#num_comprobante").val(data.num_comprobante);
-			//NUMERO ACUERDO
-			$("#No_acuerdo").show();
-			$("#num_acuerdo").val(data.num_orden);
-			//NUMERO PROGRAMA
-			$("#program").show();
-			$("#idprograma").val(data.idprograma).selectpicker('refresh');
-			//FECHA
-			$("#datediv").show();
-			$("#fecha_hora").val(data.fecha);
-			//DESCRIPCION
-			$("#descdiv").show();
-			$("#descripcion_orden").val(data.descripcion_orden);
-			//PROVEEDOR
-			$("#divprov").show();
-			$("#idproveedores").val(data.idproveedores).selectpicker('refresh');
-			//TIPO DOCUMENTO
-			$("#tpdoc").show();
-			$("#tipo_documento").val(data.tipo_documento).selectpicker('refresh');
+		// FOOTER DETAIL
+		$("#sub_total_inicial").html("L. " + number_format(data.subtotal_inicial, 2, '.', ','));
 
-			$("#btnmodal").hide();
-			$("#sol").hide();
-			$("#No_ord").hide();
-			$("#uni_sup").hide();
-			$("#No_refbancaria").hide();
-			$("#No_fr").hide();
+		$("#descuento_total").val(number_format(data.descuento_total, 2, '.', ','));
 
+		$("#sub_total").html("L. " +  number_format(data.subtotal, 2, '.', ','));
+		$("#impuestosv").val(number_format(data.impuesto_sv, 2, '.', ','));
+		$("#impuesto").val(number_format(data.impuesto, 2, '.', ','));
+		// PRIMER TOTAL
+		$("#montototal").html("L. " + number_format(data.monto_total, 2, '.', ','));
 
-			document.getElementById("content_table_details").className = "col-lg-8 col-sm-8 col-md-8 col-xs-8";
-			document.getElementById("program").className = "col-lg-3 col-md-3 col-sm-6 col-xs-12";
-			$("#table_invoce").show();
-			$("#alertselectdoc").hide();
-			$("#content_tfoot").hide();
+		$("#retencionisv").val(number_format(data.retencion_isv, 2, '.', ','));
+		$("#retencionisr").val(number_format(data.retencion_isr, 2, '.', ','));
+		$("#totalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
 
+		// % IMPUESTOS Y RETENCIONES
+		$("#tasasv").val(data.tasa_sv);
+		$("#tasaimpuesto").val(data.tasa_imp);
+		$("#tasaretencionisv").val(data.tasa_retencion_isv);
+		$("#tasaretencionisr").val(data.tasa_retencion_isr);
+		// VALORES DE IMPUESTOS
+		$("#valor_sv").val(number_format(data.valor_sv, 2, '.', ','));
+		$("#valor_impuesto").val(number_format(data.valor_impuesto, 2, '.', ','));
+		$("#valor_isv").val(number_format(data.valor_isv, 2, '.', ','));
+	  $("#valor_isr").val(number_format(data.valor_isr, 2, '.', ','));
+
+		//DETALLE COMPROBANTE
+		$("#debitos").val(data.debitos);
+		$("#tipopago").val(data.tipo_pago).selectpicker('refresh');
+		$("#num_transferencia").val(data.numero_transferencia);
+		$("#contabilidad").val(data.contabilidad);
+		$("#creditos").val(data.creditos);
+
+		$("#idctasbancarias").val(data.idctasbancarias).selectpicker('refresh');
+		$("#idadministrar_ordenes").val(data.idadministrar_ordenes);
+
+		//Ocultar y mostrar los botones
+		$("#btnGuardar").hide();
+		$("#btnCancelar").show();
+		$("#btnAgregarArt").hide();
+		$("#btnaddfact").hide();
+
+		switch (data.tipo_documento) {
+			case 'Acuerdo':
+				VistaAcuerdos();
+				break;
+			case 'O/C':
+				VistaOrdenesC();
+				$(".tdunit").show();
+				$(".tddesc").show();
+				break;
+		  case 'F.R.':
+		  	VistaFondosR();
+		  	break;
+		  case 'Alimentacion':
+		  	VistaAlimentosBecas();
+		  	break;
+			case 'Becas':
+			 	VistaAlimentosBecas();
+			 	break;
+			// default:
 		}
 
-		//
-
-		//
-		//
-		// $("#iduuss").val(data.iduuss).selectpicker('refresh');
-		//
-		//
-		// $("#titulo_orden").val(data.titulo_orden);
-		// $("#num_orden").val(data.num_orden);
-		//
-		//
-		//
-		//
-		// // FOOTER DETAIL
-		// $("#sub_total_inicial").html("L. " + number_format(data.subtotal_inicial, 2, '.', ','));
-		//
-		// $("#descuento_total").val(number_format(data.descuento_total, 2, '.', ','));
-		//
-		// $("#sub_total").html("L. " +  number_format(data.subtotal, 2, '.', ','));
-		// $("#impuestosv").val(number_format(data.impuesto_sv, 2, '.', ','));
-		// $("#impuesto").val(number_format(data.impuesto, 2, '.', ','));
-		// // PRIMER TOTAL
-		// $("#montototal").html("L. " + number_format(data.monto_total, 2, '.', ','));
-		//
-		//
-		// $("#retencionisv").val(number_format(data.retencion_isv, 2, '.', ','));
-		// $("#retencionisr").val(number_format(data.retencion_isr, 2, '.', ','));
-		// $("#totalneto").html("L. " + number_format(data.total_neto, 2, '.', ','));
-		//
-		// // % IMPUESTOS Y RETENCIONES
-		// 	$("#tasasv").val(data.tasa_sv);
-		// 		$("#tasaimpuesto").val(data.tasa_imp);
-		// 			$("#tasaretencionisv").val(data.tasa_retencion_isv);
-		// 				$("#tasaretencionisr").val(data.tasa_retencion_isr);
-		//
-		// 					// VALORES DE IMPUESTOS
-		// 					$("#valor_sv").val(number_format(data.valor_sv, 2, '.', ','));
-		// 						$("#valor_impuesto").val(number_format(data.valor_impuesto, 2, '.', ','));
-		// 							$("#valor_isv").val(number_format(data.valor_isv, 2, '.', ','));
-		// 								$("#valor_isr").val(number_format(data.valor_isr, 2, '.', ','));
-		//
-		// //DETALLE COMPROBANTE
-		// $("#debitos").val(data.debitos);
-		// $("#tipopago").val(data.tipo_pago).selectpicker('refresh');
-		// $("#num_transferencia").val(data.numero_transferencia);
-		// $("#contabilidad").val(data.contabilidad);
-		// $("#creditos").val(data.creditos);
-		//
-		// $("#idctasbancarias").val(data.idctasbancarias).selectpicker('refresh');
-		// $("#idadministrar_ordenes").val(data.idadministrar_ordenes);
-		//
-		// //Ocultar y mostrar los botones
-		// $("#btnGuardar").hide();
-		// $("#btnCancelar").show();
-		// $("#btnAgregarArt").hide();
-		// $("#btnaddfact").hide();
  	});
-
-
-
- 	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
-				  $("#detalles tbody").html(r);
-
-						if (data.tipo_documento == 'Acuerdo') {
-
-							$("#th_uni").hide();
-							$("#th_descr").hide();
-							$("#td_uni").hide();
-							$("#td_descr").hide();
-
-						}
-
-	});
 
 	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Facturas&id="+idadministrar_ordenes,function(r){
 				  $("#detallesfactura tbody").html(r);
@@ -710,12 +591,7 @@ function pagar(idadministrar_ordenes)
 }
 
 
-
-
-//Declaración de variables necesarias para trabajar con las compras y
-//sus detalles versionando ahora
-var impuesto=15;
-var impuesto=12.5;
+// Declaración de variables necesarias para trabajar con las compras y sus detalles versionando ahora
 var cont=0;
 var cont_factura=0;
 var detalles=0;
@@ -723,6 +599,9 @@ var detalles_factura=0;
 $("#btnGuardar").hide();
 
 
+/*--------------------------------------*
+| FUNCION PARA AGREGAR FILAS AL DETALLE |
+.--------------------------------------*/
 function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 									var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
@@ -740,7 +619,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								/*IDPRESUPUESTO Y CODIGO*/
 								'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
 								/*UNIDAD*/
-								'<td id="td_uni" style="display:none; role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
+								'<td id="td_uni" style="display:none;" role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
 								/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
 								'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
 								/*DESCRIPCION*/
@@ -793,7 +672,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
 							});
 					   	$('#detalles').append(fila);
-	console.log(precio_unitario);
 					   	modificarSubototales();
 					    }else{
 								swal({
@@ -804,12 +682,18 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 					    }
   }
 
+
+/*----------------------------------------*
+| FUNCION PARA OBTENER EL INDEX DE LA FILA|
+.-----------------------------------------*/
 	function  getId(element) {
     contenido = element.parentNode.parentNode.rowIndex - 1;
-		// console.log(contenido);
 	}
 
 
+/*-------------------------------------------------*
+| FUNCION PARA AGREGAR FILAS AL DETALLE DE FACTURAS|
+.--------------------------------------------------*/
 	function agregarfilafactura()
 	  {
 			var now = new Date();
@@ -838,9 +722,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 	  }
 
-	/*---------------------------------------------------*
-	|FUNCION PARA LIMPIAR CAMPOS DETALLE VENTA AL INICIAR|
-	.---------------------------------------------------*/
+
+/*---------------------------------------------------*
+|FUNCION PARA LIMPIAR CAMPOS DETALLE VENTA AL INICIAR|
+.---------------------------------------------------*/
 	window.onInputFocus = function(e) {
 
 
@@ -857,6 +742,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	}
 
 
+/*-------------------------------------------------------*
+|FUNCION PARA CALCULAR SUBTOTALES Y CAMPOS INDEPENDIENTES|
+.--------------------------------------------------------*/
  function modificarSubototales()
   {
 		var totalprecio = 0;
@@ -884,8 +772,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 				  preci.style.fontWeight="bold";
 			}
 
-
-
 				subt.value=(canti.value*preci_unit_valor);
 
 				document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(subt.value * 100) / 100).toFixed(2);
@@ -894,6 +780,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   }
 
 
+/*----------------------------------*
+| FUNCION PARA CALCULAR IMPUESTO SV |
+.-----------------------------------*/
 	function CalcularImpuestoSV(){
 		var percentsv = $("#tasasv").val();
 		var ofnumber = $("#valor_sv").val();
@@ -906,6 +795,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		calcularTotales();
 	}
 
+
+/*--------------------------------------*
+| FUNCION PARA CALCULAR IMPUESTO SIMPLE |
+.---------------------------------------*/
 	function CalcularImpuestosimple(){
 		var percentimp = $("#tasaimpuesto").val();
 		var ofnumberimp = $("#valor_impuesto").val();
@@ -916,6 +809,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		calcularTotales();
 	}
 
+
+/*-----------------------------------*
+| FUNCION PARA CALCULAR IMPUESTO ISV |
+.------------------------------------*/
 	function CalcularImpuestoISV(){
 		var percentisv = $("#tasaretencionisv").val();
 		var ofnumberisv = $("#valor_isv").val();
@@ -926,6 +823,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		calcularTotales();
 	}
 
+
+/*-----------------------------------*
+| FUNCION PARA CALCULAR IMPUESTO ISR |
+.------------------------------------*/
 	function CalcularImpuestoISR(){
 		var percentisr = $("#tasaretencionisr").val();
 		var ofnumberisr = $("#valor_isr").val();
@@ -936,6 +837,10 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		calcularTotales();
 	}
 
+
+/*----------------------------------------*
+| FUNCION PARA CALCULAR TOTALES GENERALES |
+.-----------------------------------------*/
   function calcularTotales(){
 
   	 var sub = document.getElementsByName("subtotal");
@@ -957,19 +862,19 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		 var val_isr = val_isr_before.replace(/,/g, '');
 
   	for (var i = 0; i <sub.length; i++) {
-		total += document.getElementsByName("subtotal")[i].value;
+					total += document.getElementsByName("subtotal")[i].value;
 
-		newsubtotal = total - desc;
+					newsubtotal = total - desc;
 
-		new_total = (parseFloat(val_imp) + parseFloat(val_impsv)+parseFloat(newsubtotal));
+					new_total = (parseFloat(val_imp) + parseFloat(val_impsv)+parseFloat(newsubtotal));
 
-		new_total_minus = new_total - (parseFloat(val_isv) + parseFloat(val_isr))
+					new_total_minus = new_total - (parseFloat(val_isv) + parseFloat(val_isr))
 
-		inicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
-		total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
-		sub_sub_total = parseFloat(Math.round(newsubtotal * 100) / 100).toFixed(2);
-		total_total_neto = parseFloat(Math.round(new_total_minus * 100) / 100).toFixed(2);
-	 	}
+					inicial = parseFloat(Math.round(total * 100) / 100).toFixed(2);
+					total_total = parseFloat(Math.round(new_total * 100) / 100).toFixed(2);
+					sub_sub_total = parseFloat(Math.round(newsubtotal * 100) / 100).toFixed(2);
+					total_total_neto = parseFloat(Math.round(new_total_minus * 100) / 100).toFixed(2);
+		}
 
 		//SUBTOTAL INICIAL
 		$("#sub_total_inicial").html("L. " + number_format(inicial, 2, '.', ','));
@@ -984,9 +889,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		$("#totalneto").html("L. " + number_format(total_total_neto, 2, '.', ','));
 		$("#total_neto").val(total_total_neto);
 
-
 		//DATOS CALCULADOS DE OTRO CONTENEDORES
-
 		$("#showsubtotal").html("L. " + number_format(sub_sub_total, 2, '.', ','));
 		$("#showtotal").html("L. " + number_format(total_total, 2, '.', ','));
 		$("#showtotalneto").html("L. " + number_format(total_total_neto, 2, '.', ','));
@@ -996,6 +899,9 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   }
 
 
+/*---------------------------------------*
+| FUNCION PARA EVALUAR FILAS EN LA TABLA |
+.----------------------------------------*/
   function evaluar(){
   	if (detalles>0)
     {
@@ -1005,15 +911,19 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
     else
     {
 			$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-			$("#impuesto").val("0.00000");
-			$("#sub_total").text("L. 0.00");
-			$("#montototal").text("L. 0.00");
+			// $("#impuesto").val("0.00000");
+			// $("#sub_total").text("L. 0.00");
+			// $("#montototal").text("L. 0.00");
 
       $("#btnGuardar").hide();
       cont=0;
     }
   }
 
+
+/*--------------------------------------------------*
+| FUNCION PARA EVALUAR FILAS EN LA TABLA DE FACTURA |
+.---------------------------------------------------*/
 	function evaluar_factura(){
 		if (detalles_factura>0)
 		{
@@ -1022,11 +932,14 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		else
 		{
 		$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
-
 			cont_factura=0;
 		}
 	}
 
+
+/*-----------------------------------------*
+| FUNCION PARA ELIMINAR FILAS DEL DETALLE  |
+.------------------------------------------*/
   function eliminarDetalle(indice){
   	$("#fila" + indice).remove();
   	calcularTotales();
@@ -1036,10 +949,143 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   }
 
 
+/*------------------------------------------------------*
+| FUNCION PARA ELIMINAR FILAS DEL DETALLE DE LA FACTURA |
+.-------------------------------------------------------*/
 	function eliminarDetalle_factura(indice_factura){
 		$("#filafactura" + indice_factura).remove();
 		detalles_factura=detalles_factura-1;
 		evaluar_factura();
 	}
+
+
+/*-------------------------------------------------------*
+| CREACION DE FORMULARIOS DE TIPOS DE DOCUMENTOS BY QUERY |
+.--------------------------------------------------------*/
+  function VistaAcuerdos(){
+	 //CAMPOS CABECERA MOSTRAR
+	 $("#No_comp").show();
+	 $("#No_acuerdo").show();
+	 $("#program").show();
+	 $("#datediv").show();
+	 $('#descripcion_orden').attr('rows', 5);
+	 $("#descdiv").show(); //Contenedor de input descripcion
+	 $("#divprov").show();
+	 $("#btnmodal").show();
+
+	 //CAMPOS CABECERA OCULTAR
+	 $("#sol").hide();
+	 $("#No_ord").hide();
+	 $("#No_fr").hide();
+	 $("#No_refbancaria").hide();
+	 $("#uni_sup").hide();
+
+	 // $("#alertselectdoc").hide();
+
+	 //MOSTRAR CAMPOS DETALLES
+	 $("#table_invoce").show();
+	 $("#content_table_details").attr("class", "col-lg-8 col-sm-8 col-md-8 col-xs-8");
+	 $("#content_table_details").show();
+	 //MOSTRAR CAMPOS DETALLES OCULTOS
+	 $("#content_tfoot").hide();
+	 $("#th_uni").hide();
+	 $("#th_descr").hide();
+ }
+
+ function VistaOrdenesC(){
+	 //CAMPOS CABECERA MOSTRAR
+		$("#sol").show();
+		$("#No_ord").show();
+		$("#No_comp").show();
+		$("#program").show();
+		$("#program").attr("class", "col-lg-3 col-sm-3 col-md-6 col-xs-12");
+		$("#datediv").show();
+		$("#descdiv").show(); //Contenedor de input descripcion
+		$('#descripcion_orden').attr('rows', 9);
+		$("#divprov").show();
+		$("#uni_sup").show();
+		$("#btnmodal").show();
+
+		//CAMPOS CABECERA OCULTAR
+		 $("#No_fr").hide();
+		 $("#No_refbancaria").hide();
+		 $("#No_acuerdo").hide();
+
+		//CAMPOS DETALLE FOOTER
+		$("#content_table_details").show();
+		$("#content_table_details").attr("class", "col-lg-12 col-sm-12 col-md-12 col-xs-12");
+		$("#content_tfoot").show();
+		$("#th_uni").show();
+		$("#th_descr").show();
+
+		$("#table_invoce").hide();
+
+		// $("#alertselectdoc").hide();
+ }
+
+ function VistaFondosR(){
+	 //CAMPOS CABECERA MOSTRAR
+		$("#No_comp").show();
+		$("#No_fr").show();
+		$("#program").attr("class", "col-lg-3 col-sm-3 col-md-6 col-xs-12");
+		$("#program").show();
+		$("#datediv").show();
+		$('#descripcion_orden').attr('rows', 5);
+		$("#descdiv").show(); //Contenedor de input descripcion
+		$("#divprov").show();
+		$("#btnmodal").show();
+
+		//CAMPOS CABECERA OCULTAR
+		$("#sol").hide();
+		$("#No_ord").hide();
+		$("#No_acuerdo").hide();
+		$("#No_refbancaria").hide();
+		$("#uni_sup").hide();
+
+		// $("#alertselectdoc").hide();
+
+		//CAMPOS DETALLE FOOTER
+		$("#content_table_details").show();
+		$("#content_table_details").attr("class", "col-lg-12 col-sm-12 col-md-12 col-xs-12");
+		$("#th_uni").hide();
+		$("#th_descr").hide();
+		//CAMPOS OCULTOS DETALLE FOOTER
+		$("#table_invoce").hide();
+		$("#content_tfoot").show();
+ }
+
+ function VistaAlimentosBecas(){
+	 // MOSTRAR CAMPOS FIJOS
+	 $("#No_refbancaria").show();
+	 $("#program").show();
+	 $("#datediv").show();
+	 $("#descdiv").show();
+	 $("#btnmodal").show();
+
+	 // OCULTAR CAMPOS
+	 $("#sol").hide();
+	 $("#No_ord").hide();
+	 $("#No_comp").hide();
+	 $("#No_acuerdo").hide();
+	 $("#No_fr").hide();
+	 $("#divprov").hide();
+	 $("#uni_sup").hide();
+	 $("#th_uni").hide();
+	 $("#th_descr").hide();
+	 $("#alertselectdoc").hide();
+
+	 $("#content_table_details").attr("class", "col-lg-8 col-sm-8 col-md-8 col-xs-8");
+	 $("#No_refbancaria").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
+	 $("#program").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
+	 $("#descripcion_orden").attr("rows", 5);
+
+	 //MOSTRAR CAMPOS DETALLES
+	 $("#content_table_details").show();
+	 $("#table_invoce").show();
+	 //MOSTRAR CAMPOS DETALLES OCULTOS
+	 $("#content_tfoot").hide();
+ }
+
+
 
 init();
