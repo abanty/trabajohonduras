@@ -133,13 +133,13 @@ switch ($_GET["op"]){
 
 		while ($reg = $rspta->fetch_object())
 				{
-					echo '<tr class="filas"><td style="width: 80px; text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
-					<td style="width: 106px;">'.$reg->codigo.'</td>
-          <td id="td_uni" style="width: 95px;">'.$reg->unidad.'</td>
-        	<td style="width: 108px;">'.$reg->cantidad.'</td>
-					<td id="td_descri" colspan="4" style="width: 377px;">'.$reg->descripcion.'</td>
-					<td style="width: 162px;">'.number_format($reg->precio_unitario, 2, '.', ',').'</td>
-					<td style="width: 214px;">'.number_format($reg->precio_unitario * $reg->cantidad, 2, '.', ',').'</td></tr>';
+					echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+					<td>'.$reg->codigo.'</td>
+          <td class="tdunit" style="display:none;">'.$reg->unidad.'</td>
+        	<td>'.$reg->cantidad.'</td>
+					<td class="tddesc" style="display:none;" colspan="4">'.$reg->descripcion.'</td>
+					<td>'.number_format($reg->precio_unitario, 2, '.', ',').'</td>
+					<td>'.number_format($reg->precio_unitario * $reg->cantidad, 2, '.', ',').'</td></tr>';
 				}
 
 	break;
