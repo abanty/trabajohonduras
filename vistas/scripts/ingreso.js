@@ -201,7 +201,7 @@ $("#btnGuardar").hide();
 function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
   {
 
-    var monto=1;
+    var monto="";
 
     if (idpresupuesto_disponible!="")
     {

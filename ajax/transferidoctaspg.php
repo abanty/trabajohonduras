@@ -70,10 +70,9 @@ case 'listarDetalle':
 					</td>
 					<td>'.$reg->numctapg.'</td>
 					<td>'.$reg->num_precompromiso.'</td>
-					<td>'.$reg->valor.'</td>
-					<td>'.$reg->valor.'</td>
+					<td>'.number_format($reg->valor, 2, '.', ',').'</td>
+					<td>'.number_format($reg->valor, 2, '.', ',').'</td>
 					</tr>';
-
 					$total=$total+$reg->valor;
 				}
 		echo '<tfoot>
