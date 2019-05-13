@@ -22,8 +22,8 @@ Class Proveedores
   {
     $sql="INSERT INTO proveedores(
     casa_comercial,
-    $nombre_banco,
-    $rtn,
+    nombre_banco,
+    rtn,
     num_cuenta,
     tipo_cuenta,
     imagen,
@@ -32,7 +32,6 @@ Class Proveedores
     '$casa_comercial',
     '$rtn',
     '$nombre_banco',
-
     '$num_cuenta',
     '$tipo_cuenta',
     '$imagen',

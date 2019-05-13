@@ -30,6 +30,7 @@ Class Transferidoctaspg
 		$sql="INSERT INTO transferidoctaspg (
 		idusuario,
 		fecha_hora,
+		tipo_transf,
 		numexpediente,
 		numtransferencia,
 		valor_transferido,
