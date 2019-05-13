@@ -1,0 +1,177 @@
+#detalles tfoot{
+  font-size: 11px;
+}
+
+#detalles tfoot th{
+  vertical-align: middle;
+}
+
+#content_tfoot tfoot{
+  font-size: 11px;
+}
+
+#content_tfoot tfoot th{
+  vertical-align: middle;
+}
+
+  #preloader {
+    background: #000000d9;
+    position: fixed;
+    z-index: 121;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+  }
+
+  .lead{
+    background: #d2d6de;
+    padding: 7px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13.5px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /*
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen smaller than 760px and also iPads specifically.
+	*/
+  @media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .content-header>h1 {
+      margin: 0;
+      font-size: 13.8px;
+      font-weight: bold;
+    }
+
+    .rowperson {
+      padding: 10px 0% 10px 60% !important;
+    }
+
+    .this {
+      padding: 0px !important;
+    }
+
+    .thispan {
+      padding: 0px !important;
+    }
+
+    .thisisdiv {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+
+    .col-md-12.thismd12 {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .nav-tabs-custom>.tab-content {
+      padding: 0px !important;
+    }
+
+
+
+    /* Force table to not be like tables anymore */
+    /* table, thead, tbody, th, td, tr {*/
+
+    #detalles,
+    #det-thead,
+    #det-tbody,
+    #det-thead th,
+    #det-tbody td,
+    #det-tbody tr,
+    #det-thead tr {
+
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #det-thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      margin: 0 0 1rem 0;
+    }
+
+    #det-tbody tr {
+      margin: 0 0 1rem 0;
+    }
+
+    #det-thead tr:nth-child(odd) {
+      background: #dcdcdc;
+    }
+
+    #det-tbody tr:nth-child(odd) {
+      background: #dcdcdc;
+    }
+
+    #det-thead tr:nth-child(even) {
+      background: #d3e9fd;
+    }
+
+    #det-tbody tr:nth-child(even) {
+      background: #d3e9fd;
+    }
+
+    #det-tbody td {
+      /* Behave  like a "row" */
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 40%;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-right: 2%;
+    }
+
+    #det-tbody td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 4.5px;
+      left: 10px;
+      font-size: 11.5px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    /* #mynewtd */
+    #det-tbody td#mynewtd:nth-of-type(1):before {
+      content: "" !important;
+    }
+
+    /*
+		Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+		*/
+    #det-tbody td:nth-of-type(1):before {
+      content: "Opciones :";
+    }
+
+    #det-tbody td:nth-of-type(2):before {
+      content: "Objeto Gasto :";
+    }
+
+    #det-tbody td:nth-of-type(3):before {
+      content: "Unidad :";
+    }
+
+    #det-tbody td:nth-of-type(4):before {
+      content: "Cantidad :";
+    }
+
+    #det-tbody td:nth-of-type(5):before {
+      content: "Descripcion :";
+    }
+
+    #det-tbody td:nth-of-type(6):before {
+      content: "Precio Unitario :";
+    }
+
+    #det-tbody td:nth-of-type(7):before {
+      content: "Subtotal :";
+    }
+
+  }
