@@ -328,11 +328,11 @@ if ($_SESSION['admonoc']==1)
                           <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Proveedor"></select>
                         </div>
 
-                        <div id="alertselectdoc" class="callout callout-warning">
+                        <!-- <div id="alertselectdoc" class="callout callout-warning">
                           <h4><i class="fas fa-exclamation-triangle"></i> Por Favor!</h4>
 
                           <p>Selecciona un tipo de documento a tramitar para proseguir.</p>
-                        </div>
+                        </div> -->
 
                         <div id="tpdoc" class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
                           <label>Tipo Documento(*):</label>
