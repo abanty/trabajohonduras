@@ -60,15 +60,6 @@ $cols=array( "OJB"=>"L",
              "S/TOTAL"=>"R",
            "TOTAL"=>"R");
 
-$cols=array( "OJB"=>"",
-            "UNIDAD"=>"",
-            "CANTIDAD"=>"",
-           "DESCRIPCION"=>"U",
-            "P.UNIT"=>"",
-            "S/TOTAL"=>"",
-          "TOTAL"=>"");
-
-$pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 $pdf->addLineFormat( $cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos

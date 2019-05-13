@@ -100,8 +100,7 @@ function ocultarcamposinitial(flag=true){
 .-----------------------------*/
 function limpiar()
 {
-	fechanow();
-	limpiarCamposOrden();
+	// limpiarCamposOrden();
 	$("#tipo_documento").selectpicker('val',"");
 	$("#tipo_documento").selectpicker('refresh');
 }
@@ -112,6 +111,7 @@ function limpiar()
 .----------------------------------------------------*/
 function limpiarCamposOrden()
 {
+	fechanow();
 	//INFORMACION CUANDO NO HAY FILAS
 	$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
@@ -231,6 +231,7 @@ function trnascribir()
 .-----------------------------------*/
 function mostrarform(flag)
 {
+	trnascribir();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
@@ -299,7 +300,7 @@ function change_input_by_tipodoc()
 .----------------------------*/
 function cancelarform()
 {
-	// limpiar();
+	limpiar();
 	ocultarcamposinitial(true);
 	mostrarform(false);
 }
