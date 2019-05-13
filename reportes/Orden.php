@@ -153,7 +153,7 @@ function addSociete( $tittle1, $tittle2,$tittle3,$tittle4 )
 
 
 	$this->SetXY( $x1+40, $y1 + 5 );
-	$this->SetFont('Arial','',10);
+	$this->SetFont('Arial','',8);
 	// $length = $this->GetStringWidth( $tittle2 );
 	$this->Cell( $length, 2, $tittle2);
 
