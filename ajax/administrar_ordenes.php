@@ -195,8 +195,7 @@ switch ($_GET["op"]){
 
             case "Acuerdo":
             $reg->tipo_documento = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
-            $contenido_li =  '<ul class="dropdown-menu">
-               <li id="pdfordencompra"><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
+            $contenido_li =  '<ul class="dropdown-menu">        
                <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
               </ul>';
             break;

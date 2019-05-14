@@ -210,7 +210,7 @@ function fechanow()
 /*------------------------------------------*
 | FUNCION SIMLE TRANSCRIBIR CAMPOS Nº ORDEN |
 .------------------------------------------*/
-function trnascribir()
+function transcribir()
 {
 	$('#num_acuerdo').change(function() {
 			$('#num_orden').val($(this).val());
@@ -231,7 +231,7 @@ function trnascribir()
 .-----------------------------------*/
 function mostrarform(flag)
 {
-	trnascribir();
+	transcribir();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
