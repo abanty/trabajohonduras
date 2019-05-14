@@ -232,21 +232,23 @@ $("#btnGuardar").hide();
 function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
   {
   	var num_precompromiso = "";
-    var valor="";
+    var valor=0.00;
 
     if (idctasbancarias!="")
     {
     	var subtotal=valor;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" name="idctasbancarias[]" value="'+idctasbancarias+'">'+ctasbancarias+'</td>'+
-    	'<td><input type="text" name="num_precompromiso[]" value="'+num_precompromiso+'"></td>'+
-    	'<td><input type="text" name="valor[]" value="'+valor+'"></td>'+
+    	'<td><input type="hidden" class="form-control input-sm" name="idctasbancarias[]" value="'+idctasbancarias+'">'+ctasbancarias+'</td>'+
+    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="num_precompromiso[]" value="'+num_precompromiso+'"></td>'+
+    	'<td><input type="text" class="form-control input-sm prec" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="valor[]" value="'+valor+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
     	cont++;
     	detalles=detalles+1;
+			$(function() {
+				$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+			});
     	$('#detalles').append(fila);
     	modificarSubototales();
     }
@@ -256,6 +258,23 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
     }
   }
 
+	/*---------------------------------------------------*
+	|FUNCION PARA LIMPIAR CAMPOS DETALLE VENTA AL INICIAR|
+	.---------------------------------------------------*/
+		window.onInputFocus = function(e) {
+
+
+		    var elm = $(e.target);
+		    elm.data('orig-value', elm.val());
+		    elm.val('');
+		}
+
+		window.onInputBlur = function(e) {
+		    var elm = $(e.target);
+		    if (!elm.val()) {
+		        elm.val(elm.data('orig-value'));
+		    }
+		}
 
 
  function modificarSubototales()
@@ -267,8 +286,11 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
     	var inpC=valor[i];
     	var inpS=sub[i];
 
-    	inpS.value=inpC.value*1;
-    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+			var preci_unit_valor = parseFloat((inpC.value).replace(/,/g, ''));
+
+    	inpS.value=preci_unit_valor*1;
+			document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(inpS.value * 100) / 100).toFixed(2);
+    	// document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
     }
     calcularTotales();
 
