@@ -388,14 +388,14 @@ function addCols( $tab )
 
 function addLineFormat( $tab )
 {
-	global $format,$subrayado, $colonnes;
+	global $format, $colonnes;
 
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
 		if ( isset( $tab["$lib"]) )
 
 			$format[ $lib ] = $tab["$lib"];
-			$subrayado[ $lib ] = $tab["$lib"];
+
 
 	}
 }
@@ -428,7 +428,7 @@ function addLineFormat( $tab )
 
 function addLine( $ligne, $tab )
 {
-	global $colonnes, $format, $subrayado;
+	global $colonnes, $format;
 
 	$ordonnee     = 10;
 	$maxSize      = $ligne;
@@ -445,10 +445,7 @@ function addLine( $ligne, $tab )
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
-		$formTextUnderline = isset($subrayado[ $lib ]) ? $subrayado[ $lib ] : "";
-		if (in_array(strtoupper($texte),$tab)) {
-			$this->SetFont( "", "$formTextUnderline");
-		}
+		
 
 		$this->SetXY( $ordonnee, $ligne-2);
 		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
