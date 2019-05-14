@@ -25,7 +25,7 @@ function limpiar()
 
 	$("#valor_transferido").val("");
 	$(".filas").remove();
-	$("#total").html("0");
+	$("#total").html("Lps 0.00");
 
 //Obtenemos la fecha actual
 	var now = new Date();
@@ -301,8 +301,10 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
+		totales = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 	}
-	$("#total").html("L. " + total);
+	$("#total").html("Lps. " + totales);
+
 $("#valor_transferido").val(total);
     evaluar();
   }
