@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
@@ -12,23 +12,23 @@ Class Consultas_compromisos
 
 	public function compromisosfecha($fecha_inicio,$fecha_fin)
 	{
-		$sql="SELECT 
+		$sql="SELECT
 		DATE(com.fecha_hora) as fecha,
 		pro.casa_comercial,
-		pre.nombre_objeto,		
+		pre.nombre_objeto,
 		pre.codigo,
 		prog.nombrep as unidad,
 		com.numfactura,
 		FORMAT(det.valor,2) as valor,
 		com.condicion FROM compromisos AS com INNER JOIN detalle_compromisos AS det ON com.idcompromisos=det.idcompromisos INNER JOIN proveedores AS pro ON com.idproveedores=pro.idproveedores INNER JOIN presupuesto_disponible AS pre ON det.idpresupuesto_disponible=pre.idpresupuesto_disponible INNER JOIN programa AS prog ON com.idprograma=prog.idprograma
 		WHERE DATE(com.fecha_hora)>='$fecha_inicio' AND DATE(com.fecha_hora)<='$fecha_fin'";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
 
 	// public function ventasfechacliente($fecha_inicio,$fecha_fin,$idcliente)
 	// {
 	// 	$sql="SELECT DATE(v.fecha_hora) as fecha,u.nombre as usuario, p.nombre as cliente,v.tipo_comprobante,v.serie_comprobante,v.num_comprobante,v.total_venta,v.impuesto,v.estado FROM venta v INNER JOIN persona p ON v.idcliente=p.idpersona INNER JOIN usuario u ON v.idusuario=u.idusuario WHERE DATE(v.fecha_hora)>='$fecha_inicio' AND DATE(v.fecha_hora)<='$fecha_fin' AND v.idcliente='$idcliente'";
-	// 	return ejecutarConsulta($sql);		
+	// 	return ejecutarConsulta($sql);
 	// }
 
 
@@ -44,6 +44,11 @@ Class Consultas_compromisos
 		return ejecutarConsulta($sql);
 	}
 
+	public function totaladministrar_ordeneshoy()
+{
+	$sql="SELECT IFNULL(SUM(total_neto),0) as total_neto FROM administrar_ordenes";
+	return ejecutarConsulta($sql);
+}
 	// public function totalventahoy()
 	// {
 	// 	$sql="SELECT IFNULL(SUM(total_venta),0) as total_venta FROM venta WHERE DATE(fecha_hora)=curdate()";
@@ -62,17 +67,17 @@ Class Consultas_compromisos
 
 	public function sgralcta($fecha_inicio,$fecha_fin)
 	{
-		$sql="SELECT 
+		$sql="SELECT
 		DATE(com.fecha_hora) as fecha,
 		pro.casa_comercial,
-		pre.nombre_objeto,		
+		pre.nombre_objeto,
 		pre.codigo,
 		prog.nombrep as unidad,
 		com.numfactura,
 		FORMAT(det.valor,2) as valor,
 		com.condicion FROM compromisos AS com INNER JOIN detalle_compromisos AS det ON com.idcompromisos=det.idcompromisos INNER JOIN proveedores AS pro ON com.idproveedores=pro.idproveedores INNER JOIN presupuesto_disponible AS pre ON det.idpresupuesto_disponible=pre.idpresupuesto_disponible INNER JOIN programa AS prog ON com.idprograma=prog.idprograma
 		WHERE DATE(com.fecha_hora)>='$fecha_inicio' AND DATE(com.fecha_hora)<='$fecha_fin'";
-		return ejecutarConsulta($sql);		
+		return ejecutarConsulta($sql);
 	}
 
 // 	public function ventasultimos_12meses()
