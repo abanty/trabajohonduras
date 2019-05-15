@@ -24,7 +24,7 @@ switch ($_GET["op"]){
     $tipo_transf,
 		$numexpediente,
 		$numtransferencia,
-		$valor_transferido,
+		str_replace(',','',$valor_transferido),
 		$_POST["idtransferidoctaspg"],
 		$_POST["idctasbancarias"],
 		$_POST["num_precompromiso"],
@@ -83,7 +83,7 @@ case 'listarDetalle':
                                       <th>TOTAL</th>
                                       <th></th>
                                       <th></th>
-                                      <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
+                                      <th><h4 id="total">L.&nbsp'.number_format($total, 2, '.', ',').' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
                                   </tfoot>';
     }
     else
@@ -112,7 +112,7 @@ case 'listarDetalle':
                                       <th></th>
                                       <th class="tdthis"></th>
                                       <th></th>
-                                      <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
+                                      <th><h4 id="total">L.&nbsp'.number_format($total, 2, '.', ',').' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
                                   </tfoot>';
     }
 

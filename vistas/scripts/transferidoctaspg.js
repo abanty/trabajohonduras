@@ -24,7 +24,7 @@ function limpiar()
 	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");
 	$("#numtransferencia").val("");
-	
+
 
 	$("#valor_transferido").val("");
 	$(".filas").remove();
@@ -335,8 +335,8 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
 			var preci_unit_valor = parseFloat((inpC.value).replace(/,/g, ''));
 
     	inpS.value=preci_unit_valor*1;
-			document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + parseFloat(Math.round(inpS.value * 100) / 100).toFixed(2);
-    	// document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+			var valuesubt = parseFloat(Math.round(inpS.value * 100) / 100).toFixed(2);
+			document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + 	number_format(valuesubt, 2, '.', ',');
     }
     calcularTotales();
 
@@ -349,7 +349,7 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
 		total += document.getElementsByName("subtotal")[i].value;
 		totales = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 	}
-	$("#total").html("Lps. " + totales);
+	$("#total").html("Lps. " + number_format(totales, 2, '.', ','));
 
 $("#valor_transferido").val(total);
     evaluar();
