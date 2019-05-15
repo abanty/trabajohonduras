@@ -18,6 +18,7 @@ $(function() {
 //Función limpiar
 function limpiar()
 {
+	fechanow();	
   $("#tipo_transf").selectpicker('val',"");
 	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");

@@ -91,7 +91,7 @@ case 'listarDetalle':
       echo '<thead style="background-color:#d2d6de">
                                       <th>Opciones</th>
                                       <th>Numero Cuenta</th>
-                                      <th>No. Precompromiso</th>
+                                      <th class="ththis">No. Precompromiso</th>
                                       <th>Valor</th>
                                       <th>Subtotal</th>
                                   </thead>';
@@ -101,7 +101,7 @@ case 'listarDetalle':
             echo '<tr class="filas">
             <tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
             <td>'.$reg->numctapg.'</td>
-            <td>'.$reg->num_precompromiso.'</td>
+            <td class="tdthis">'.$reg->num_precompromiso.'</td>
             <td>'.number_format($reg->valor, 2, '.', ',').'</td>
             <td>'.number_format($reg->valor, 2, '.', ',').'</td>
             </tr>';
@@ -110,7 +110,7 @@ case 'listarDetalle':
       echo '<tfoot>
                                       <th>TOTAL</th>
                                       <th></th>
-                                      <th></th>
+                                      <th class="tdthis"></th>
                                       <th></th>
                                       <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
                                   </tfoot>';
