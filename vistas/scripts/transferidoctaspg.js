@@ -4,6 +4,7 @@ var tabla;
 function init(){
 	mostrarform(false);
 	listar();
+	fechanow();
 
 	$("#formulario").on("submit",function(e)
 	{
@@ -27,20 +28,25 @@ function limpiar()
 	$(".filas").remove();
 	$("#total").html("Lps 0.00");
 
-//Obtenemos la fecha actual
+}
+
+
+/*------------------------------------*
+| FUNCION PARA CALCULAR FECHA ACTUAL  |
+.------------------------------------*/
+function fechanow()
+{
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-    $('#fecha_hora').val(today);
-
-
+	$('#fecha_hora').val(today);
 }
 
 //Función mostrar formulario
 function mostrarform(flag)
 {
-	limpiar();
+
 	if (flag)
 	{
 		$("#listadoregistros").hide();
@@ -48,6 +54,7 @@ function mostrarform(flag)
 		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
 		listarCtasbancarias();
+		$("#tipo_transf").change(change_input_by_tipodoc);
 
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
@@ -64,6 +71,21 @@ function mostrarform(flag)
 		$("#btnagregar").show();
 	}
 
+}
+
+var selecttipodoc
+function change_input_by_tipodoc()
+{
+	 selecttipodoc = $("#tipo_transf option:selected").val();
+
+		if(selecttipodoc == 'Transf/Cuentas'){
+				$('.ththis').hide();
+				$('.tdthis').hide();
+
+		}else{
+			$('.ththis').show();
+				$('.tdthis').show();
+		}
 }
 
 
@@ -195,6 +217,13 @@ function mostrar(idtransferidoctaspg)
 		$("#fecha_hora").val(data.fecha);
 		$("#idtransferidoctaspg").val(data.idtransferidoctaspg);
 
+		if (data.tipo_transf == 'Transf/Cuentas') {
+			$('.ththisx').hide();
+			$('.tdthis').hide();
+		}else{
+			$('.ththis').show();
+			$('.tdthis').show();
+		}
 		//Ocultar y mostrar los botones
 		$("#Guardar").show();
 		$("#btnGuardar").hide();
@@ -234,13 +263,13 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
   	var num_precompromiso = "";
     var valor=0.00;
 
-    if (idctasbancarias!="")
+    if ((selecttipodoc == 'Transf/Cuentas')&&(idctasbancarias!=""))
     {
     	var subtotal=valor;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
     	'<td><input type="hidden" class="form-control input-sm" name="idctasbancarias[]" value="'+idctasbancarias+'">'+ctasbancarias+'</td>'+
-    	'<td><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="num_precompromiso[]" value="'+num_precompromiso+'"></td>'+
+    	'<td class="tdthis" style="display:none;"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="num_precompromiso[]" value="'+num_precompromiso+'"></td>'+
     	'<td><input type="text" class="form-control input-sm prec" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="valor[]" value="'+valor+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'</tr>';
@@ -251,7 +280,24 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
 			});
     	$('#detalles').append(fila);
     	modificarSubototales();
-    }
+    }else if (idctasbancarias!="")
+		    {
+		    	var subtotal=valor;
+		    	var fila='<tr class="filas" id="fila'+cont+'">'+
+		    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
+		    	'<td><input type="hidden" class="form-control input-sm" name="idctasbancarias[]" value="'+idctasbancarias+'">'+ctasbancarias+'</td>'+
+		    	'<td class="tdthis"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="num_precompromiso[]" value="'+num_precompromiso+'"></td>'+
+		    	'<td><input type="text" class="form-control input-sm prec" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="valor[]" value="'+valor+'"></td>'+
+		    	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
+		    	'</tr>';
+		    	cont++;
+		    	detalles=detalles+1;
+					$(function() {
+						$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+					});
+		    	$('#detalles').append(fila);
+		    	modificarSubototales();
+		    }
     else
     {
     	alert("Error al ingresar el detalle, revisar los datos de las cuentas bancarias");

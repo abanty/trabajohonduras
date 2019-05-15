@@ -70,7 +70,7 @@ if ($_SESSION['siafi']==1)
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Fecha(*):</label>
                              <input type="hidden" name="idtransferidoctaspg" id="idtransferidoctaspg">
-                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
+                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
                           <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
@@ -83,12 +83,12 @@ if ($_SESSION['siafi']==1)
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>No. Expediente(*):</label>
-                            <input type="text" class="form-control" name="numexpediente" id="numexpediente" maxlength="25" placeholder="Número de Expediente" required="">
+                            <input type="text" class="form-control input-sm" name="numexpediente" id="numexpediente" maxlength="25" placeholder="Número de Expediente" required="">
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>No. Transferencia(*):</label>
-                            <input type="text" class="form-control" name="numtransferencia" id="numtransferencia" maxlength="25" placeholder="Número de Transferencia" required="">
+                            <input type="text" class="form-control input-sm" name="numtransferencia" id="numtransferencia" maxlength="25" placeholder="Número de Transferencia" required="">
                           </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -102,14 +102,14 @@ if ($_SESSION['siafi']==1)
                               <thead style="background-color:#d2d6de">
                                     <th>Opciones</th>
                                     <th>No. Cuenta</th>
-                                    <th>No.Precompromiso</th>
+                                    <th class="ththis">No.Precompromiso</th>
                                     <th>Valor</th>
                                     <th>Subtotal</th>
                                 </thead>
                                 <tfoot>
                                     <th>TOTAL</th>
                                     <th></th>
-                                    <th></th>
+                                    <th class="ththis"></th>
                                     <th></th>
                                     <th><h4 id="total">L. 0.00</h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.01">
                                     </th>

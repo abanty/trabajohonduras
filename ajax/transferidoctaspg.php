@@ -28,7 +28,7 @@ switch ($_GET["op"]){
 		$_POST["idtransferidoctaspg"],
 		$_POST["idctasbancarias"],
 		$_POST["num_precompromiso"],
-		$_POST["valor"]);
+		str_replace(',','',$_POST["valor"]));
 
 			echo $rspta ? "transferencia registrada" : "No se pudieron registrar los datos o el numero de transferencia ya existe.";
 		}
@@ -54,34 +54,68 @@ case 'listarDetalle':
 
 
 		$rspta = $transferidoctaspg->listarDetalle($id);
-		$total=0;
-		echo '<thead style="background-color:#A9D0F5">
-                                    <th>Opciones</th>
-                                    <th>Numero Cuenta</th>
-                                    <th>No. Precompromiso</th>
-                                    <th>Valor</th>
-                                    <th>Subtotal</th>
-                                </thead>';
+    $rspta2 = $transferidoctaspg->tipotransf($id);
+    $reg2 = $rspta2->fetch_object();
 
-		while ($reg = $rspta->fetch_object())
-				{
-					echo '<tr class="filas">
-					<td>
-					</td>
-					<td>'.$reg->numctapg.'</td>
-					<td>'.$reg->num_precompromiso.'</td>
-					<td>'.number_format($reg->valor, 2, '.', ',').'</td>
-					<td>'.number_format($reg->valor, 2, '.', ',').'</td>
-					</tr>';
-					$total=$total+$reg->valor;
-				}
-		echo '<tfoot>
-                                    <th>TOTAL</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
-                                </tfoot>';
+
+		$total=0;
+
+
+    if ($reg2->tipo_transf == 'Transf/Cuentas') {
+      echo '<thead style="background-color:#d2d6de">
+                                      <th>Opciones</th>
+                                      <th>Numero Cuenta</th>
+                                      <th>Valor</th>
+                                      <th>Subtotal</th>
+                                  </thead>';
+
+      while ($reg = $rspta->fetch_object())
+          {
+            echo '<tr class="filas">
+            <tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+            <td>'.$reg->numctapg.'</td>
+            <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+            <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+            </tr>';
+            $total=$total+$reg->valor;
+          }
+      echo '<tfoot>
+                                      <th>TOTAL</th>
+                                      <th></th>
+                                      <th></th>
+                                      <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
+                                  </tfoot>';
+    }
+    else
+    {
+      echo '<thead style="background-color:#d2d6de">
+                                      <th>Opciones</th>
+                                      <th>Numero Cuenta</th>
+                                      <th>No. Precompromiso</th>
+                                      <th>Valor</th>
+                                      <th>Subtotal</th>
+                                  </thead>';
+
+      while ($reg = $rspta->fetch_object())
+          {
+            echo '<tr class="filas">
+            <tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+            <td>'.$reg->numctapg.'</td>
+            <td>'.$reg->num_precompromiso.'</td>
+            <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+            <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+            </tr>';
+            $total=$total+$reg->valor;
+          }
+      echo '<tfoot>
+                                      <th>TOTAL</th>
+                                      <th></th>
+                                      <th></th>
+                                      <th></th>
+                                      <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
+                                  </tfoot>';
+    }
+
 	break;
 
 

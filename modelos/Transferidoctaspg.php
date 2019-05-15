@@ -147,6 +147,17 @@ Class Transferidoctaspg
 	}
 
 
+
+	//Implementar un método para listar los registros
+	public function tipotransf($idtransferidoctaspg)
+	{
+		$sql="	SELECT tipo_transf FROM transferidoctaspg WHERE idtransferidoctaspg = '$idtransferidoctaspg'";
+		return ejecutarConsulta($sql);
+	}
+
+
+
+
 	//Implementar un método para listar los registros
 	public function listar()
 	{
