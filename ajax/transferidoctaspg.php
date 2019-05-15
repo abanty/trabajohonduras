@@ -80,9 +80,9 @@ case 'listarDetalle':
             $total=$total+$reg->valor;
           }
       echo '<tfoot>
-                                      <th>TOTAL</th>
                                       <th></th>
                                       <th></th>
+                                      <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
                                       <th><h4 id="total">L.&nbsp'.number_format($total, 2, '.', ',').' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
                                   </tfoot>';
     }
@@ -108,10 +108,10 @@ case 'listarDetalle':
             $total=$total+$reg->valor;
           }
       echo '<tfoot>
-                                      <th>TOTAL</th>
+                                      <th></th>
                                       <th></th>
                                       <th class="tdthis"></th>
-                                      <th></th>
+                                      <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
                                       <th><h4 id="total">L.&nbsp'.number_format($total, 2, '.', ',').' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
                                   </tfoot>';
     }

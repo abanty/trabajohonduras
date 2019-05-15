@@ -5,6 +5,7 @@ function init(){
 	mostrarform(false);
 	listar();
 	fechanow();
+			$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 
 	$("#formulario").on("submit",function(e)
 	{
@@ -19,7 +20,7 @@ $(function() {
 //Función limpiar
 function limpiar()
 {
-
+	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
   $("#tipo_transf").selectpicker('val',"");
 	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");
@@ -359,9 +360,12 @@ $("#valor_transferido").val(total);
   	if (detalles>0)
     {
       $("#btnGuardar").show();
+			$("#mynewtd").remove();
     }
     else
     {
+			$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+
       $("#btnGuardar").hide();
       cont=0;
     }
