@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-05-2019 a las 00:32:18
+-- Tiempo de generación: 15-05-2019 a las 22:46:54
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -67,7 +67,10 @@ CREATE TABLE `administrar_ordenes` (
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
 (1, 11, 1, 3, 2, '001', '0001', 'insumos', 'Materiales', 'O/C', '2019-05-13', '67111.00', '1000.00', '66111.00', '9916.65', '15.00', '66111.00', '8263.88', '12.50', '66111.00', '84291.53', '9916.65', '15.00', '66111.00', '8263.88', '12.50', '66111.00', '66111.00', 'Pendiente'),
 (2, 11, 1, 3, 1, '', '56', '', 'Acuerdo de licencias', 'Acuerdo', '2019-05-13', '9012999.73', '0.00', '9012999.73', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9012999.73', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9012999.73', 'Pendiente'),
-(3, 11, 1, 5, 1, '454', '489', '', 'Fondo para empresas internas', 'F.R.', '2019-05-13', '507110.99', '500.00', '506610.99', '75991.65', '15.00', '506610.99', '63326.37', '12.50', '506610.99', '645929.01', '75991.65', '15.00', '506610.99', '63326.37', '12.50', '506610.99', '506610.99', 'Pendiente');
+(3, 11, 1, 5, 1, '454', '489', '', 'Fondo para empresas internas', 'F.R.', '2019-05-13', '507110.99', '500.00', '506610.99', '75991.65', '15.00', '506610.99', '63326.37', '12.50', '506610.99', '645929.01', '75991.65', '15.00', '506610.99', '63326.37', '12.50', '506610.99', '506610.99', 'Pendiente'),
+(4, 11, 1, 4, 1, '5875675', '3376587', '', 'sssssfdsfdsfds', 'F.R.', '2019-05-13', '1066567.55', '1256.55', '1065311.00', '159796.65', '15.00', '1065311.00', '133163.88', '12.50', '1065311.00', '1358271.53', '159796.65', '15.00', '1065311.00', '133163.88', '12.50', '1065311.00', '1065311.00', 'Pendiente'),
+(5, 1, 1, 5, 1, '243e43', '', '', 'dsfsdfsd', 'Alimentacion', '2019-05-13', '620247.90', '0.00', '620247.90', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '620247.90', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '620247.90', 'Pendiente'),
+(6, 1, 1, 3, 1, '3424532', '', '', 'fggfdgfd', 'Becas', '2019-05-13', '1018585.37', '0.00', '1018585.37', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1018585.37', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1018585.37', 'Pendiente');
 
 --
 -- Disparadores `administrar_ordenes`
@@ -305,8 +308,8 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '0.00', 1),
-(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '0.00', 1),
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '6664465.46', 1),
+(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '654654.64', 1),
 (3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
 (4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
 (5, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '0.00', 1);
@@ -430,7 +433,14 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (5, 2, 10, '', 9, '', '999999.99'),
 (6, 3, 5, '', 5, '', '55555.55'),
 (7, 3, 5, '', 8, '', '888.88'),
-(8, 3, 6, '', 5, '', '44444.44');
+(8, 3, 6, '', 5, '', '44444.44'),
+(9, 4, 3, '', 11, '', '54645.65'),
+(10, 4, 4, '', 10, '', '46546.54'),
+(11, 5, 2, '', 12, '', '45354.35'),
+(12, 5, 2, '', 22, '', '3454.35'),
+(13, 6, 3, '', 22, '', '43533.44'),
+(14, 6, 3, '', 11, '', '4543.53'),
+(15, 6, 4, '', 2, '', '5435.43');
 
 -- --------------------------------------------------------
 
@@ -471,6 +481,15 @@ CREATE TABLE `dtransf_ctaspg` (
   `num_precompromiso` int(11) NOT NULL,
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `dtransf_ctaspg`
+--
+
+INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasbancarias`, `num_precompromiso`, `valor`) VALUES
+(1, 1, 1, 4545, '999999.00'),
+(2, 2, 1, 0, '5665465.46'),
+(3, 2, 2, 0, '654654.64');
 
 -- --------------------------------------------------------
 
@@ -936,6 +955,13 @@ CREATE TABLE `transferenciabch` (
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `transferenciabch`
+--
+
+INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
+(1, 11, 1, '2019-05-13', '3432423', 'testdeprueba', '999.00', 'test de prueba', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -952,6 +978,14 @@ CREATE TABLE `transferidoctaspg` (
   `valor_transferido` decimal(12,2) NOT NULL,
   `estado` varchar(15) COLLATE utf8mb4_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `transferidoctaspg`
+--
+
+INSERT INTO `transferidoctaspg` (`idtransferidoctaspg`, `idusuario`, `fecha_hora`, `tipo_transf`, `numexpediente`, `numtransferencia`, `valor_transferido`, `estado`) VALUES
+(1, 1, '2019-05-13', 'Transf/Sedena', '456', '45654', '999999.00', 'Aceptado'),
+(2, 1, '2019-05-15', 'Transf/Cuentas', '564', '345', '6320120.10', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1245,7 +1279,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1299,7 +1333,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
@@ -1311,7 +1345,7 @@ ALTER TABLE `detalle_retenciones`
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
-  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
@@ -1353,13 +1387,13 @@ ALTER TABLE `retenciones`
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
-  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
 --
 ALTER TABLE `transferidoctaspg`
-  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtransferidoctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
