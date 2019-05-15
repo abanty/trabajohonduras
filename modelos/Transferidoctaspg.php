@@ -108,19 +108,8 @@ Class Transferidoctaspg
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar($idtransferidoctaspg)
 	{
-		$sql="
-		SELECT
-		i.idtransferidoctaspg,
-		DATE(i.fecha_hora) as fecha,
-		u.nombre as usuario,
-		i.tipo_transf,
-		i.numexpediente,
-		i.numtransferencia,
-		FORMAT(i.valor_transferido, 2) as valor_transferido,
-
-		i.estado
-
-
+		$sql="SELECT i.idtransferidoctaspg,DATE(i.fecha_hora) as fecha,u.nombre as usuario,i.tipo_transf,
+		i.numexpediente,i.numtransferencia,FORMAT(i.valor_transferido, 2) as valor_transferido,i.estado
 		FROM transferidoctaspg i 	INNER JOIN usuario u ON
 		i.idusuario=u.idusuario
 		WHERE i.idtransferidoctaspg='$idtransferidoctaspg'";

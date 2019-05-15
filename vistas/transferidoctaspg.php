@@ -106,6 +106,8 @@ if ($_SESSION['siafi']==1)
                                     <th>Valor</th>
                                     <th>Subtotal</th>
                                 </thead>
+                                <tbody>
+                                </tbody>
                                 <tfoot>
                                     <th></th>
                                     <th></th>
@@ -114,9 +116,6 @@ if ($_SESSION['siafi']==1)
                                     <th><h4 id="total">L. 0.00</h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.01">
                                     </th>
                                 </tfoot>
-                                <tbody>
-
-                                </tbody>
                             </table>
                           </div>
 

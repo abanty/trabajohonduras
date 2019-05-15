@@ -58,64 +58,30 @@ case 'listarDetalle':
     $reg2 = $rspta2->fetch_object();
 
 
-		$total=0;
-
-
     if ($reg2->tipo_transf == 'Transf/Cuentas') {
-      echo '<thead style="background-color:#d2d6de">
-                                      <th>Opciones</th>
-                                      <th>Numero Cuenta</th>
-                                      <th>Valor</th>
-                                      <th>Subtotal</th>
-                                  </thead>';
-
       while ($reg = $rspta->fetch_object())
           {
             echo '<tr class="filas">
-            <tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+            <td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
             <td>'.$reg->numctapg.'</td>
             <td>'.number_format($reg->valor, 2, '.', ',').'</td>
             <td>'.number_format($reg->valor, 2, '.', ',').'</td>
             </tr>';
-            $total=$total+$reg->valor;
           }
-      echo '<tfoot>
-                                      <th></th>
-                                      <th></th>
-                                      <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
-                                      <th><h4 id="total">L.&nbsp'.number_format($total, 2, '.', ',').' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
-                                  </tfoot>';
     }
     else
     {
-      echo '<thead style="background-color:#d2d6de">
-                                      <th>Opciones</th>
-                                      <th>Numero Cuenta</th>
-                                      <th class="ththis">No. Precompromiso</th>
-                                      <th>Valor</th>
-                                      <th>Subtotal</th>
-                                  </thead>';
-
       while ($reg = $rspta->fetch_object())
           {
             echo '<tr class="filas">
             <tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
             <td>'.$reg->numctapg.'</td>
-            <td class="tdthis">'.$reg->num_precompromiso.'</td>
+            <td>'.$reg->num_precompromiso.'</td>
             <td>'.number_format($reg->valor, 2, '.', ',').'</td>
             <td>'.number_format($reg->valor, 2, '.', ',').'</td>
             </tr>';
-            $total=$total+$reg->valor;
           }
-      echo '<tfoot>
-                                      <th></th>
-                                      <th></th>
-                                      <th class="tdthis"></th>
-                                      <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
-                                      <th><h4 id="total">L.&nbsp'.number_format($total, 2, '.', ',').' </h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.02">
-                                  </tfoot>';
     }
-
 	break;
 
 
