@@ -15,15 +15,16 @@ function init(){
 $(function() {
 	$('#total').maskMoney({thousands:',', decimal:'.', allowZero:true});
 });
+
 //Función limpiar
 function limpiar()
 {
-	fechanow();	
+
   $("#tipo_transf").selectpicker('val',"");
 	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");
 	$("#numtransferencia").val("");
-	$("#fecha_hora").val("");
+	
 
 	$("#valor_transferido").val("");
 	$(".filas").remove();
@@ -61,9 +62,6 @@ function mostrarform(flag)
 		$("#btnCancelar").show();
 		detalles=0;
 		$("#btnAgregarArt").show();
-
-
-
 	}
 	else
 	{
@@ -94,6 +92,7 @@ function change_input_by_tipodoc()
 function cancelarform()
 {
 	limpiar();
+	fechanow();
 	mostrarform(false);
 }
 
