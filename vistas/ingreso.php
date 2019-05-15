@@ -14,12 +14,18 @@ require 'header.php';
 if ($_SESSION['siafi']==1)
 {
 ?>
+<style media="screen">
+  .lead{
+    color:#43567d;
+
+  }
+</style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             Administrar Ingreso de Presupuesto
           </h1>
           <ol class="breadcrumb">
@@ -31,7 +37,7 @@ if ($_SESSION['siafi']==1)
             <div class="row">
               <div class="col-md-12">
                   <div class="box">
-                   <div class="box box-success">
+                   <div class="box box-primary">
                     <div class="box-header with-border">
                           <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fas fa-plus-circle"></i> Agregar</button></h1>
                         <div class="box-tools pull-right">
@@ -49,58 +55,76 @@ if ($_SESSION['siafi']==1)
                             <th>Total</th>
                             <th>Estado</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Fecha</th>
-                            <th>Usuario</th>        
+                            <th>Usuario</th>
                             <th>Número F01</th>
                             <th>Total</th>
-                            <th>Estado</th>                            
-                          </tfoot>                         
+                            <th>Estado</th>
+                          </tfoot>
                         </table>
                     </div>
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Fecha(*):</label>
-                             <input type="hidden" name="idingreso" id="idingreso">             
-                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
-                          </div>
 
-                          <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                            <label>Número F01(*):</label>
-                            <input type="text" class="form-control" name="numf01" id="numf01" maxlength="25" placeholder="Número" required="">
-                          </div>
-
-
-                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <a data-toggle="modal" href="#myModal">           
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Presupuesto</button>
                             </a>
                           </div>
 
-                          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover" width="100%">
-                              <thead style="background-color:#d2d6de">
-                                    <th>Opciones</th>
-                                    <th>Nombre Objeto</th>
-                                    <th>Valor</th>
-                                    <th>Subtotal</th>
-                                </thead>
-                                <tfoot>
-                                    <th>TOTAL</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><h4 id="total">L. 0.00</h4><input type="hidden" name="total_importe" id="total_importe" step"0.01">
-                                    </th> 
-                                </tfoot>
-                                <tbody>
-                                  
-                                </tbody>
-                            </table>
+                          <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                              <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Busqueda sensible de datos con acceso optimizado" name="srch-term" id="srch-term">
+                                <div class="input-group-btn">
+                                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                              </div>
                           </div>
+
+
+                        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <label>Fecha(*):</label>
+                               <input type="hidden" name="idingreso" id="idingreso">
+                               <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
+                            </div>
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <label>Número F01(*):</label>
+                              <input type="text" class="form-control input-sm" name="numf01" id="numf01" maxlength="25" placeholder="Número" required="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                            <div class="panel panel-primary">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">Detalles de Ingresos presupuestales :</h3>
+                              </div>
+                              <table id="detalles" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+                                <thead style="background-color:#d2d6de">
+                                      <th>Opciones</th>
+                                      <th>Nombre Objeto</th>
+                                      <th>Valor</th>
+                                      <th>Subtotal</th>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                                  <tfoot>
+                                      <th></th>
+                                      <th></th>
+                                      <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
+                                      <th><h4 id="total">Lps. 0.00</h4><input type="hidden" name="total_importe" id="total_importe" step"0.01">
+                                      </th>
+                                  </tfoot>
+                              </table>
+                            </div>
+                        </div>
+
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
@@ -141,7 +165,7 @@ if ($_SESSION['siafi']==1)
               <th>Fondos Disponibles</th>
           </thead>
           <tbody>
-            
+
           </tbody>
           <tfoot>
             <thead style="background-color:#d2d6de">
@@ -155,10 +179,10 @@ if ($_SESSION['siafi']==1)
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-      </div>        
+      </div>
     </div>
   </div>
-</div>  
+</div>
 <!--   Fin modal -->
 
 
@@ -172,8 +196,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/ingreso.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>
-

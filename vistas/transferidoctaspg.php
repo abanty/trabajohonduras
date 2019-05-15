@@ -113,7 +113,7 @@ if ($_SESSION['siafi']==1)
                                     <th></th>
                                     <th class="ththis"></th>
                                     <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
-                                    <th><h4 id="total">L. 0.00</h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.01">
+                                    <th><h4 id="total">Lps. 0.00</h4><input type="hidden" name="valor_transferido" id="valor_transferido" step"0.01">
                                     </th>
                                 </tfoot>
                             </table>

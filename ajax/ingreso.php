@@ -15,7 +15,7 @@ $total_importe=isset($_POST["total_importe"])? limpiarCadena($_POST["total_impor
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idingreso)){
-			$rspta=$ingreso->insertar($idusuario,$fecha_hora,$numf01,$total_importe,$_POST["idpresupuesto_disponible"],$_POST["monto"]);
+			$rspta=$ingreso->insertar($idusuario,$fecha_hora,$numf01,str_replace(',','',$total_importe),$_POST["idpresupuesto_disponible"],str_replace(',','',$_POST["monto"]));
 			echo $rspta ? "Ingreso registrado" : "No se pudieron registrar los datos o el numero F01 ya existe.";
 		}
 		else {
@@ -37,35 +37,17 @@ case 'listarDetalle':
 		//Recibimos el idingreso
 		$id=$_GET['id'];
 
-
-
 		$rspta = $ingreso->listarDetalle($id);
-		$total=0;
-		echo '<thead style="background-color:#A9D0F5">
-		                            <th>Opciones</th>
-                                    <th>Nombre Objeto</th>
-                                    <th>Valor</th>
-                                    <th>Subtotal</th>
-                                </thead>';
-
 		while ($reg = $rspta->fetch_object())
 				{
 					echo '<tr class="filas">
-					<td>
-					</td>
+					<td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
 					<td>'.$reg->codigo.'</td>
 					<td>'.$reg->monto.'</td>
 					<td>'.$reg->monto.'</td>
 					</tr>';
-
-					$total=$total+$reg->monto;
 				}
-		echo '<tfoot>
-                                    <th>TOTAL</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><h4 id="total">L.&nbsp'.$total.' </h4><input type="hidden" name="total_importe" id="total_importe" step"0.02">
-                                </tfoot>';
+
 	break;
 
 

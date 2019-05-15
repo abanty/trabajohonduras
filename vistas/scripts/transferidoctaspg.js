@@ -5,8 +5,7 @@ function init(){
 	mostrarform(false);
 	listar();
 	fechanow();
-			$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-
+	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);

@@ -50,21 +50,8 @@ Class Ingreso
 	}
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar($idingreso)
-
-
-
 	{
-		$sql="
-		SELECT
-		i.idingreso,
-		DATE(i.fecha_hora) as fecha,
-		u.nombre as usuario,
-		i.numf01,
-		FORMAT(i.total_importe, 2) as total_importe,
-
-		i.estado
-
-
+		$sql="SELECT i.idingreso,DATE(i.fecha_hora) as fecha,u.nombre as usuario,i.numf01,FORMAT(i.total_importe, 2) as total_importe,i.estado
 		FROM ingreso i 	INNER JOIN usuario u ON
 		i.idusuario=u.idusuario
 		WHERE i.idingreso='$idingreso'";
