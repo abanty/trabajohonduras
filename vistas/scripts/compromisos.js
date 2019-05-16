@@ -10,6 +10,14 @@ function init(){
 		guardaryeditar(e);
 	})
 
+	$(document).on("keypress", 'form', function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+				e.preventDefault();
+				return false;
+		}
+	});
+
 
 	//Cargamos los items al select categoria
 	//Cargamos los items al select cliente
@@ -242,12 +250,14 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
     	'<td><input type="hidden" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
-    	'<td><input type="text" name="valor[]" value="'+valor+'"></td>'+
+    	'<td><input type="text" class="form-control input-sm prec" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="valor[]" value="'+valor+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
     	cont++;
     	detalles=detalles+1;
+			$(function() {
+				$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+			});
     	$('#detalles').append(fila);
     	modificarSubototales();
     }
@@ -256,6 +266,31 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
     	alert("Error al ingresar el detalle, revisar los datos del presupuesto disponible");
     }
   }
+
+
+	function number_format (number, decimals, dec_point, thousands_sep) {
+	    // Strip all characters but numerical ones.
+	    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+	    var n = !isFinite(+number) ? 0 : +number,
+	        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+	        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+	        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+	        s = '',
+	        toFixedFix = function (n, prec) {
+	            var k = Math.pow(10, prec);
+	            return '' + Math.round(n * k) / k;
+	        };
+	    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+	    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+	    if (s[0].length > 3) {
+	        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+	    }
+	    if ((s[1] || '').length < prec) {
+	        s[1] = s[1] || '';
+	        s[1] += new Array(prec - s[1].length + 1).join('0');
+	    }
+	    return s.join(dec);
+	}
 
 
 
@@ -268,20 +303,26 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
     	var inpC=valor[i];
     	var inpS=sub[i];
 
-    	inpS.value=inpC.value*1;
-    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+			var preci_unit_valor = parseFloat((inpC.value).replace(/,/g, ''));
+
+    	inpS.value=preci_unit_valor*1;
+			var valuesubt = parseFloat(Math.round(inpS.value * 100) / 100).toFixed(2);
+			document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + 	number_format(valuesubt, 2, '.', ',');
     }
     calcularTotales();
 
   }
+
+
   function calcularTotales(){
   	var sub = document.getElementsByName("subtotal");
   	var total = 0.0;
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
+		totales = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 	}
-	$("#total").html("L. " + total);
+	$("#total").html("L. " + number_format(totales, 2, '.', ','));
 $("#total_compra").val(total);
     evaluar();
   }

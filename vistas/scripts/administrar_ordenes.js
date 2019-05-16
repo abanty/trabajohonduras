@@ -9,7 +9,13 @@ function init(){
 			$(function() {
 				$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
 			});
-
+			$(document).on("keypress", 'form', function (e) {
+				var code = e.keyCode || e.which;
+				if (code == 13) {
+						e.preventDefault();
+						return false;
+				}
+			});
 			ocultarcamposinitial(true);
 			mostrarform(false);
 			listar();

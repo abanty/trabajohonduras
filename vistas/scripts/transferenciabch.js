@@ -5,6 +5,14 @@ function init(){
 	mostrarform(false);
 	listar();
 
+	$(document).on("keypress", 'form', function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+				e.preventDefault();
+				return false;
+		}
+	});
+
 	$("#formulario").on("submit",function(e)
 	{
 		//Cargamos los items al select categoria

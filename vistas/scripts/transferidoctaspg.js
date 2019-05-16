@@ -6,13 +6,15 @@ function init(){
 	listar();
 	fechanow();
 	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+
 	$(document).on("keypress", 'form', function (e) {
 		var code = e.keyCode || e.which;
 		if (code == 13) {
 				e.preventDefault();
 				return false;
 		}
-});
+	});
+
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);
@@ -359,6 +361,9 @@ var selecttipodoc = $("#tipo_transf option:selected").val();
     calcularTotales();
 
   }
+
+
+	
   function calcularTotales(){
   	var sub = document.getElementsByName("subtotal");
   	var total = 0.0;

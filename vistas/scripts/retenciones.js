@@ -10,6 +10,14 @@ function init(){
 		guardaryeditar(e);
 	})
 
+	$(document).on("keypress", 'form', function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+				e.preventDefault();
+				return false;
+		}
+	});
+
 	//Cargamos los items al select Proveedor
 	$.post("../ajax/retenciones.php?op=selectProveedores", function(r){
 	            $("#idproveedores").html(r);
