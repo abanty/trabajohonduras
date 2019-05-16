@@ -14,6 +14,7 @@ require 'header.php';
 if ($_SESSION['escritorio']==1)
 {
   require_once "../modelos/consultas_compromisos.php";
+
   $consultas_compromisos = new Consultas_compromisos();
   $rsptac = $consultas_compromisos->totalcompromisoshoy();
   $regc=$rsptac->fetch_object();
@@ -23,9 +24,9 @@ if ($_SESSION['escritorio']==1)
   $regv=$rsptav->fetch_object();
   $totalv=$regv->fondos_disponibles;
 
-  $rsptav = $consultas_compromisos->totaladministrar_ordeneshoy();
-  $regv=$rsptav->fetch_object();
-  $totalv=$regv->total_neto;
+  $rsptab = $consultas_compromisos->totaladministrar_ordeneshoy();
+  $regb=$rsptab->fetch_object();
+  $totalb=$regb->total_neto;
 
 
 
@@ -91,7 +92,7 @@ if ($_SESSION['escritorio']==1)
                           <div class="small-box bg-yellow">
                               <div class="inner">
                                 <h4 style="font-size:35px;">
-                                  <strong>L. <?php echo number_format($totalv,2); ?></strong>
+                                  <strong>L. <?php echo number_format($totalb,2); ?></strong>
                                 </h4>
                                 <p>PRESUPUESTO EJECUTADO</p>
                               </div>
@@ -107,7 +108,7 @@ if ($_SESSION['escritorio']==1)
                           <div class="small-box bg-green">
                               <div class="inner">
                                 <h4 style="font-size:35px;">
-                                  <strong>L.<?php echo number_format($totalv,2); ?></strong>
+                                  <strong>L.<?php echo number_format($totalc,2); ?></strong>
                                 </h4>
                                 <p>COMPROMISOS</p>
                               </div>
