@@ -7,7 +7,19 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);
+		//Cargamos los items al select categoria
+		$.post("../ajax/transferenciabch.php?op=ValidarNumTranf", function(datos){
+			datos = JSON.parse(datos);
+
+			var num_t = $('#num_transf').val();
+
+			if (datos.includes(num_t)) {
+				alert('Existe en la bd, digite otro por favor');
+			}else {
+				guardaryeditar(e);
+			}
+		});
+		return false;
 	})
 
 	$('#idctasbancarias').change(function() {
@@ -83,13 +95,13 @@ window.onInputBlur = function(e) {
 //Función limpiar
 function limpiar()
 {
-	$("#serie_transf").val("");
-	$("#num_transf").val("");
+	// $("#serie_transf").val("");
+	// $("#num_transf").val("");
 	$("#monto_acreditar").val("");
 	$("#descripcion").val("");
 	$("#idtransferenciabch").val("");
 
-}
+
 
 	//Obtenemos la fecha actual
 	var now = new Date();
@@ -97,9 +109,18 @@ function limpiar()
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
     $('#fecha_hora').val(today);
+}
+
+
+
+
+
 //Función mostrar formulario
 function mostrarform(flag)
 {
+
+
+
 	limpiar();
 	if (flag)
 	{

@@ -83,6 +83,13 @@ Class Transferenciabch
 	}
 
 
+	public function validarnumtransferenciaduplicados()
+	{
+		$sql="SELECT num_transf FROM transferenciabch";
+		return ejecutarConsulta($sql);
+	}
+
+
 		public function solicitud_transferencias($sol){
 		$sql="SELECT t.idtransferenciabch,t.idproveedores,t.idctasbancarias,t.fecha_hora,t.serie_transf,t.num_transf,t.monto_acreditar,
 		t.descripcion,t.condicion,p.casa_comercial,p.nombre_banco,p.num_cuenta,p.tipo_cuenta as tp_prov,c.cuentapg,c.bancopg,c.tipoctapg,

@@ -10,6 +10,8 @@
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <!-- Bootstrap 3.3.5 -->
     <script src="../public/js/bootstrap.min.js"></script>
+    <!-- Librerias Alertas: NOTIFY-->
+
     <!-- AdminLTE App -->
     <script src="../public/js/app.min.js"></script>
     <script type="text/javascript"   src="../public/js/sweetalert2.js"></script>
@@ -27,6 +29,7 @@
     <script src="../public/datatables/vfs_fonts.js"></script>
 
     <script src="../public/js/bootbox.min.js"></script>
+      <script src="../public/js/notify.min.js"></script>
     <script src="../public/js/bootstrap-select.min.js"></script>
   </body>
 </html>

@@ -62,6 +62,23 @@ switch ($_GET["op"]){
 
 
 
+		case 'ValidarNumTranf':
+
+			$rspta=$transferenciabch->validarnumtransferenciaduplicados();
+	 		//Vamos a declarar un array
+	 		$data= Array();
+
+	 		while ($reg=$rspta->fetch_object()){
+
+	 			$data[]=$reg->num_transf;
+
+	 		}
+	 		echo json_encode($data);
+
+		break;
+
+
+
 	case 'listar':
 		$rspta=$transferenciabch->listar();
  		//Vamos a declarar un array

@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 require_once "../modelos/Usuario.php";
 
 $usuario=new Usuario();
@@ -23,7 +23,7 @@ switch ($_GET["op"]){
 		{
 			$imagen=$_POST["imagenactual"];
 		}
-		else 
+		else
 		{
 			$ext = explode(".", $_FILES["imagen"]["name"]);
 			if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png")
@@ -89,6 +89,38 @@ switch ($_GET["op"]){
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);
  		echo json_encode($results);
+
+	break;
+
+
+	case 'VerificarNumTransf':
+		$rspta=$usuario->listar();
+		//Vamos a declarar un array
+		$data= Array();
+
+		while ($reg=$rspta->fetch_object()){
+			$data[]=array(
+				"0"=>($reg->condicion)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idusuario.')"><i class="fas fa-pen"></i></button>'.
+					' <button class="btn btn-danger" onclick="desactivar('.$reg->idusuario.')"><i class="fas fa-times"></i></button>':
+					'<button class="btn btn-warning" onclick="mostrar('.$reg->idusuario.')"><i class="fas fa-pen"></i></button>'.
+					' <button class="btn btn-primary" onclick="activar('.$reg->idusuario.')"><i class="fas fa-check"></i></button>',
+				"1"=>$reg->nombre,
+				"2"=>$reg->tipo_documento,
+				"3"=>$reg->num_documento,
+				"4"=>$reg->telefono,
+				"5"=>$reg->email,
+				"6"=>$reg->login,
+				"7"=>"<img src='../files/usuarios/".$reg->imagen."' height='50px' width='50px' >",
+				"8"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
+				'<span class="label bg-red">Desactivado</span>'
+				);
+		}
+		$results = array(
+			"sEcho"=>1, //Información para el datatables
+			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+			"aaData"=>$data);
+		echo json_encode($results);
 
 	break;
 
@@ -166,7 +198,7 @@ switch ($_GET["op"]){
 	break;
 
 	case 'salir':
-		//Limpiamos las variables de sesión   
+		//Limpiamos las variables de sesión
         session_unset();
         //Destruìmos la sesión
         session_destroy();
