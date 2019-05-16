@@ -2,10 +2,18 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+
 	mostrarform(false);
 	listar();
 	fechanow();
 	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$(document).on("keypress", 'form', function (e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);
@@ -221,7 +229,7 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
 
 
     	var fila='<tr class="filas" id="fila'+cont+'">'+
-    	'<td style="text-align:center;"><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
+    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
     	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
 			'<td><input type="text" class="form-control input-sm prec" step="0.1" name="monto[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" value="'+monto+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
