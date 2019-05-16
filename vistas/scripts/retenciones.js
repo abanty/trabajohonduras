@@ -214,6 +214,34 @@ function anular(idretenciones)
 	})
 }
 
+
+/*---------------------------------------------*
+| FUNCION CONVERTIR ENTEROS A MILLARES FORMATO |
+.----------------------------------------------*/
+function number_format (number, decimals, dec_point, thousands_sep) {
+    // Strip all characters but numerical ones.
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function (n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+
 //Declaración de variables necesarias para trabajar con las compras y
 //sus detalles
 var cont=0;
@@ -225,20 +253,22 @@ function agregarDetallefacturas(idcompromisos,numfactura)
   {
 
 		// console.log(idcompromisos,numfactura);
-    var valorbase;
+    var valorbase=0.00;
 
     if (idcompromisos!="")
     {
     	var subtotal=valorbase;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
-    	'<td><input type="number" step="0.1" name="valorbase[]" value="'+valorbase+'"></td>'+
+    	'<td><input type="hidden" class="form-control input-sm" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
+    	'<td><input type="text" class="form-control input-sm prec" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="valorbase[]" value="'+valorbase+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
     	cont++;
     	detalles=detalles+1;
+			$(function() {
+				$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+			});
     	$('#detalles').append(fila);
     	modificarSubototales();
     }
@@ -262,10 +292,15 @@ function agregarDetallefacturas(idcompromisos,numfactura)
     	var inpV=valor[i];
     	var inpS=sub[i];
 
-    	inpS.value= inpV.value*1;
+			var newvalue = inpV.value;
+			var unit_valor = parseFloat(newvalue.replace(/,/g, ''));
 
 
-    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+    	inpS.value= unit_valor*1;
+
+			var valuesubt = parseFloat(Math.round(inpS.value * 100) / 100).toFixed(2);
+			document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + 	number_format(valuesubt, 2, '.', ',');
+
     }
     calcularTotales();
 
@@ -289,10 +324,10 @@ function agregarDetallefacturas(idcompromisos,numfactura)
 		 $("#imp_retenido").val(impuesto_impuesto);
 	}
 
-	$("#sub_total").html("L. " + total);
+	$("#sub_total").html("Lps. " + number_format(total, 2, '.', ','));
 	$("#base_imponible").val(total);
 
-	$("#montototal").html("L. " + total_total);
+	$("#montototal").html("Lps. " + number_format(total_total, 2, '.', ','));
 	$("#total_oc").val(total_total);
 
     evaluar();
