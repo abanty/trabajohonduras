@@ -139,15 +139,22 @@ if ($_SESSION['escritorio']==1)
 
                     </div>
                     <div class="panel-body">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                          <div class="box box-primary">
+
+                        <div class="col-lg-12">
+
+                          <div class="box box-solid bg-teal-gradient">
                               <div class="box-header with-border">
+                                <i class="fa fa-th"></i>
+
                                 EJECUCION DEL PRESUPUESTO
                               </div>
-                              <div class="box-body">
+                              <div class="box-body border-radius-none nuevoGraficoVentas">
+                                <!-- <div class="chart" id="line-chart-ventas" style="height: 250px;"></div> -->
                                 <canvas id="compras" width="400" height="300"></canvas>
                               </div>
                           </div>
+
+
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                           <div class="box box-primary">
