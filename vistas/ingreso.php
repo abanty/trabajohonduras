@@ -70,41 +70,33 @@ if ($_SESSION['siafi']==1)
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
 
-                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <a data-toggle="modal" href="#myModal">
-                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Presupuesto</button>
-                            </a>
-                          </div>
-
-                          <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                              <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Busqueda sensible de datos con acceso optimizado" name="srch-term" id="srch-term">
-                                <div class="input-group-btn">
-                                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                </div>
-                              </div>
-                          </div>
 
 
-                        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                               <label>Fecha(*):</label>
                                <input type="hidden" name="idingreso" id="idingreso">
                                <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                             </div>
 
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                               <label>Número F01(*):</label>
                               <input type="text" class="form-control input-sm" name="numf01" id="numf01" maxlength="25" placeholder="Número" required="">
                             </div>
-                        </div>
 
-                        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
-                            <div class="panel panel-primary">
-                              <div class="panel-heading">
+
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <a data-toggle="modal" href="#myModal">
+                                <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Presupuesto</button>
+                              </a>
+                            </div>
+
+
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                            <!-- <div class="panel panel-primary"> -->
+                              <!-- <div class="panel-heading">
                                 <h3 class="panel-title">Detalles de Ingresos presupuestales :</h3>
-                              </div>
+                              </div> -->
                               <table id="detalles" class="table table-striped table-bordered table-condensed table-hover" width="100%">
                                 <thead style="background-color:#d2d6de">
                                       <th>Opciones</th>
@@ -122,7 +114,7 @@ if ($_SESSION['siafi']==1)
                                       </th>
                                   </tfoot>
                               </table>
-                            </div>
+                            <!-- </div> -->
                         </div>
 
 
