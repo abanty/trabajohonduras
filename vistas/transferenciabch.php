@@ -75,7 +75,7 @@ if ($_SESSION['siafi']==1)
 
                             <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Serie:</label>
-                            <input type="text" class="form-control" name="serie_transf" id="serie_transf" maxlength="7" placeholder="Serie">
+                            <input type="text" class="form-control" name="serie_transf" id="serie_transf" maxlength="12" placeholder="Serie">
                           </div>
 
 
