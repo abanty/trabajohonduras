@@ -15,10 +15,10 @@ if ($_SESSION['siafi']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             Administrar Presupuesto Disponible
           </h1>
           <ol class="breadcrumb">
@@ -49,8 +49,8 @@ if ($_SESSION['siafi']==1)
                             <th>Estado</th>
 
                           </thead>
-                          <tbody>                            
-                         
+                          <tbody>
+
                         </table>
                     </div>
                         <div class="panel-body" style="height: 100%;" id="formularioregistros">
@@ -58,35 +58,35 @@ if ($_SESSION['siafi']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre Objeto(*):</label>
                             <input type="hidden" name="idpresupuesto_disponible" id="idpresupuesto_disponible">
-                            <input type="text" class="form-control" name="nombre_objeto" id="nombre_objeto" maxlength="100" placeholder="nombre_objeto">
+                            <input type="text" class="form-control input-sm" name="nombre_objeto" id="nombre_objeto" maxlength="100" placeholder="nombre_objeto">
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>grupo:</label>
-                            <input type="text" class="form-control" name="grupo" id="grupo" maxlength="45" placeholder="grupo">
+                            <input type="text" class="form-control input-sm" name="grupo" id="grupo" maxlength="45" placeholder="grupo">
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>subgrupo:</label>
-                            <input type="text" class="form-control" name="subgrupo" id="subgrupo" maxlength="45" placeholder="subgrupo">
+                            <input type="text" class="form-control input-sm" name="subgrupo" id="subgrupo" maxlength="45" placeholder="subgrupo">
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Codigo:</label>
-                            <input type="text" class="form-control" name="codigo" id="codigo" maxlength="45" placeholder="codigo">
+                            <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="codigo">
                           </div>
-                     
+
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Presupuesto Anual(*):</label>
-                            <input type="number" step='0.01' class="form-control" name="presupuesto_anual" id="presupuesto_anual" required>
+                            <input type="text" class="form-control input-sm" name="presupuesto_anual" id="presupuesto_anual" required>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Fondos Disponibles(*):</label>
-                            <input type="number" step='0.01' class="form-control" name="fondos_disponibles" id="fondos_disponibles" required>
+                            <input type="text" class="form-control input-sm" name="fondos_disponibles" id="fondos_disponibles" required>
                           </div>
-            
-                     
+
+
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 
@@ -111,7 +111,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/presupuesto_disponible.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>

@@ -22,8 +22,8 @@ switch ($_GET["op"]){
 				$grupo,
 				$subgrupo,
 				$codigo,
-				$presupuesto_anual,
-				$fondos_disponibles);
+				str_replace(',','',$presupuesto_anual),
+				str_replace(',','',$fondos_disponibles));
 			echo $rspta ? "Presupuesto registrado" : "Presupuesto no se pudo registrar";
 		}
 		else {
@@ -33,8 +33,8 @@ switch ($_GET["op"]){
 				$grupo,
 				$subgrupo,
 				$codigo,
-				$presupuesto_anual,
-				$fondos_disponibles);
+				str_replace(',','',$presupuesto_anual),
+				str_replace(',','',$fondos_disponibles));
 		echo $rspta ? "Presupuesto actualizado" : "Presupuesto no se pudo actualizar";
 		}
 	break;

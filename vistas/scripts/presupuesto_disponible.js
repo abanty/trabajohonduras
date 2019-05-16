@@ -7,7 +7,7 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
+		guardaryeditar(e);
 	})
 // 	//Cargamos los items al select categoria
 // 	$.post("../ajax/presupuesto_disponible.php?op=selectPresupuesto_anual", function(r){
@@ -19,7 +19,7 @@ function init(){
 // 	            $("#codigo").html(r);
 // 	            $('#codigo').selectpicker('refresh');
 // });
-}	
+}
 
 //Función limpiar
 function limpiar()
@@ -37,6 +37,13 @@ function limpiar()
 //Función mostrar formulario
 function mostrarform(flag)
 {
+
+	//Transformando inputs a libreria MASKMONEY.
+	$(function() {
+		$('#fondos_disponibles').maskMoney({thousands:',', decimal:'.', allowZero:true});
+		$('#presupuesto_anual').maskMoney({thousands:',', decimal:'.', allowZero:true});
+	});
+
 	limpiar();
 	if (flag)
 	{
@@ -68,7 +75,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -78,9 +85,9 @@ function listar()
 				{
 					url: '../ajax/presupuesto_disponible.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -104,8 +111,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          tabla.ajax.reload();
 	    }
@@ -118,21 +125,48 @@ function mostrar(idpresupuesto_disponible)
 {
 	$.post("../ajax/presupuesto_disponible.php?op=mostrar",{idpresupuesto_disponible : idpresupuesto_disponible}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
-
 
 		$("#nombre_objeto").val(data.nombre_objeto);
 		$("#grupo").val(data.grupo);
 		$("#subgrupo").val(data.subgrupo);
 		$("#codigo").val(data.codigo);
-		$("#presupuesto_anual").val(data.presupuesto_anual);	
-		$("#fondos_disponibles").val(data.fondos_disponibles);
+		$("#presupuesto_anual").val(number_format(data.presupuesto_anual, 2, '.', ','));
+		$("#fondos_disponibles").val(number_format(data.fondos_disponibles, 2, '.', ','));
  		$("#idpresupuesto_disponible").val(data.idpresupuesto_disponible);
-
 
  	})
 }
+
+
+/*---------------------------------------------*
+| FUNCION CONVERTIR ENTEROS A MILLARES FORMATO |
+.----------------------------------------------*/
+function number_format (number, decimals, dec_point, thousands_sep) {
+    // Strip all characters but numerical ones.
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function (n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+
 
 //Función para desactivar registros
 function desactivar(idpresupuesto_disponible)
@@ -143,7 +177,7 @@ function desactivar(idpresupuesto_disponible)
         	$.post("../ajax/presupuesto_disponible.php?op=desactivar", {idpresupuesto_disponible : idpresupuesto_disponible}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -157,7 +191,7 @@ function activar(idpresupuesto_disponible)
         	$.post("../ajax/presupuesto_disponible.php?op=activar", {idpresupuesto_disponible : idpresupuesto_disponible}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
