@@ -43,6 +43,7 @@ if ($_SESSION['siafi']==1)
 
                             <th>Opciones</th>
                             <th>Fecha</th>
+                            <th>Tipo Transferencia</th>
                             <th>Proveedor</th>
                             <th>No. Transferencia</th>
                             <th>Monto Pagado</th>
@@ -54,6 +55,7 @@ if ($_SESSION['siafi']==1)
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Fecha</th>
+                            <th>Tipo Transferencia</th>
                             <th>Proveedor</th>
                             <th>No. Transferencia</th>
                             <th>Monto Pagado</th>
@@ -72,7 +74,14 @@ if ($_SESSION['siafi']==1)
                              <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
-
+                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                            <label>Tipo Transferencia(*):</label>
+                            <select class="form-control selectpicker" name="tipo_transfbch" id="tipo_transfbch" data-style="btn-default btn-sm" data-title="Elige el Tipo de Transferencia" required>
+                              <option value="Transf/Terceros">Transf/Terceros</option>
+                              <option value="Transf/Cuentas">Transf/Cuentas</option>
+                            </select>
+                          </div>
+                          
                             <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <label>Serie:</label>
                             <input type="text" class="form-control" name="serie_transf" id="serie_transf" maxlength="12" placeholder="Serie">

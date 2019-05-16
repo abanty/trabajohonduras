@@ -7,6 +7,7 @@ $idtransferenciabch=isset($_POST["idtransferenciabch"])? limpiarCadena($_POST["i
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
 $idctasbancarias=isset($_POST["idctasbancarias"])? limpiarCadena($_POST["idctasbancarias"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
+$tipo_transfbch=isset($_POST["tipo_transfbch"])? limpiarCadena($_POST["tipo_transfbch"]):"";
 $serie_transf=isset($_POST["serie_transf"])? limpiarCadena($_POST["serie_transf"]):"";
 $num_transf=isset($_POST["num_transf"])? limpiarCadena($_POST["num_transf"]):"";
 $monto_acreditar=isset($_POST["monto_acreditar"])? limpiarCadena($_POST["monto_acreditar"]):"";
@@ -21,6 +22,7 @@ switch ($_GET["op"]){
 		$idproveedores,
 		$idctasbancarias,
 		$fecha_hora,
+		$tipo_transfbch,
 		$serie_transf,
 		$num_transf,
 		$monto_acreditar,
@@ -121,11 +123,12 @@ switch ($_GET["op"]){
 					</li>',
 
  				"1"=>$reg->fecha,
- 				"2"=>$reg->casa_comercial,
- 				"3"=>$reg->serie_transf.'-'.$reg->num_transf,
- 				"4"=>$reg->monto_acreditar,
+				"2"=>$reg->tipo_transfbch,
+ 				"3"=>$reg->casa_comercial,
+ 				"4"=>$reg->serie_transf.'-'.$reg->num_transf,
+ 				"5"=>$reg->monto_acreditar,
 
- 				"5"=>($reg->condicion)?'<span class="label bg-yellow label-bs">Pendiente</span>':
+ 				"6"=>($reg->condicion)?'<span class="label bg-yellow label-bs">Pendiente</span>':
  				'<span class="label bg-green ">Pagado</span>'
  				);
  		}
