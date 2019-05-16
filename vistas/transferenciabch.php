@@ -81,7 +81,7 @@ if ($_SESSION['siafi']==1)
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                           <label>Numero de Transferencia:(*):</label>
-                          <input type="text" class="form-control" name="num_transf" id="num_transf" maxlength="50" placeholder="Nombre" required>
+                          <input type="text" class="form-control" name="num_transf" id="num_transf" maxlength="50" placeholder="Ingrese el No. de Transferencia" required>
                           </div>
 
                           <!-- <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
