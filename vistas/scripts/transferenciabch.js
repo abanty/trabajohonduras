@@ -215,6 +215,8 @@ function mostrar(idtransferenciabch)
 	$("#idproveedor").selectpicker('refresh');
 	$("#idctasbancarias").val(data.idctasbancarias);
 	$("#idctasbancarias").selectpicker('refresh');
+
+	$("#tipo_transfbch").val(data.tipo_transfbch);
 	$("#serie_transf").val(data.serie_transf);
 	$("#num_transf").val(data.num_transf);
 	$("#monto_acreditar").val(data.monto_acreditar);

@@ -10,10 +10,10 @@ Class Transferenciabch
 
 	}
 
-	public function insertar($idproveedores,$idctasbancarias,$fecha_hora,$serie_transf,$num_transf,$monto_acreditar,$descripcion)
+	public function insertar($idproveedores,$idctasbancarias,$fecha_hora,$tipo_transfbch,$serie_transf,$num_transf,$monto_acreditar,$descripcion)
 	{
-		$sql="INSERT INTO transferenciabch (idproveedores,idctasbancarias,fecha_hora,serie_transf,num_transf,monto_acreditar,descripcion,
-		condicion)	VALUES ('$idproveedores','$idctasbancarias','$fecha_hora','$serie_transf','$num_transf','$monto_acreditar','$descripcion',
+		$sql="INSERT INTO transferenciabch (idproveedores,idctasbancarias,fecha_hora,tipo_transfbch,serie_transf,num_transf,monto_acreditar,descripcion,
+		condicion)	VALUES ('$idproveedores','$idctasbancarias','$fecha_hora','$tipo_transfbch','$serie_transf','$num_transf','$monto_acreditar','$descripcion',
 		'1')";
 		 ejecutarConsulta($sql);
 
@@ -53,7 +53,7 @@ Class Transferenciabch
 
 	public function mostrar($idtransferenciabch)
 	{
-		$sql="SELECT a.idtransferenciabch,	a.idproveedores,	a.idctasbancarias,	DATE(a.fecha_hora) as fecha,	a.serie_transf,
+		$sql="SELECT a.idtransferenciabch,	a.idproveedores,	a.idctasbancarias,	DATE(a.fecha_hora) as fecha, a.tipo_transfbch,	a.serie_transf,
 		a.num_transf,	b.cuentapg,	b.numctapg,	c.casa_comercial,	c.tipo_cuenta,	c.nombre_banco,	a.monto_acreditar,	a.descripcion,
 		a.condicion
 		FROM transferenciabch a
@@ -65,7 +65,7 @@ Class Transferenciabch
 
 	public function listar()
 	{
-		$sql="SELECT a.idtransferenciabch,a.idproveedores,a.idctasbancarias,DATE(a.fecha_hora) as fecha,a.serie_transf,a.num_transf,b.cuentapg,
+		$sql="SELECT a.idtransferenciabch,a.idproveedores,a.idctasbancarias,DATE(a.fecha_hora) as fecha, a.tipo_transfbch, a.serie_transf,a.num_transf,b.cuentapg,
 		b.numctapg,	c.casa_comercial,	c.tipo_cuenta,	c.nombre_banco,	FORMAT(a.monto_acreditar,2) as monto_acreditar,	a.descripcion,
 		a.condicion
 		FROM transferenciabch a
@@ -91,7 +91,7 @@ Class Transferenciabch
 
 
 		public function solicitud_transferencias($sol){
-		$sql="SELECT t.idtransferenciabch,t.idproveedores,t.idctasbancarias,t.fecha_hora,t.serie_transf,t.num_transf,t.monto_acreditar,
+		$sql="SELECT t.idtransferenciabch,t.idproveedores,t.idctasbancarias,t.fecha_hora,t.tipo_transfbch,t.serie_transf,t.num_transf,t.monto_acreditar,
 		t.descripcion,t.condicion,p.casa_comercial,p.nombre_banco,p.num_cuenta,p.tipo_cuenta as tp_prov,c.cuentapg,c.bancopg,c.tipoctapg,
 		c.numctapg,c.fondos_disponibles
 		FROM transferenciabch t
