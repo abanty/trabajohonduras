@@ -2,9 +2,18 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+
 	mostrarform(false);
 	listar();
-
+	fechanow();
+	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$(document).on("keypress", 'form', function (e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);
@@ -14,27 +23,32 @@ function init(){
 //Función limpiar
 function limpiar()
 {
+	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$("#numf01").val("");
 	$("#fecha_hora").val("");
 
 	$("#total_importe").val("");
 	$(".filas").remove();
-	$("#total").html("0");
+	$("#total").html("Lps 0.00");
 
-//Obtenemos la fecha actual
+}
+
+
+/*------------------------------------*
+| FUNCION PARA CALCULAR FECHA ACTUAL  |
+.------------------------------------*/
+function fechanow()
+{
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-    $('#fecha_hora').val(today);
-
-
+	$('#fecha_hora').val(today);
 }
 
 //Función mostrar formulario
 function mostrarform(flag)
 {
-	limpiar();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
@@ -65,6 +79,7 @@ function mostrarform(flag)
 function cancelarform()
 {
 	limpiar();
+	fechanow();
 	mostrarform(false);
 }
 
@@ -165,6 +180,11 @@ function mostrar(idingreso)
 		$("#fecha_hora").val(data.fecha);
 		$("#idingreso").val(data.idingreso);
 
+		$("#total").html("L. " + number_format(data.total_importe, 2, '.', ','));
+		$("#total_importe").val(number_format(data.total_importe, 2, '.', ','));
+
+
+
 		//Ocultar y mostrar los botones
 		$("#Guardar").show();
 		$("#btnGuardar").hide();
@@ -173,7 +193,7 @@ function mostrar(idingreso)
  	});
 
  	$.post("../ajax/ingreso.php?op=listarDetalle&id="+idingreso,function(r){
-	        $("#detalles").html(r);
+	        $("#detalles tbody").html(r);
 	});
 }
 
@@ -201,7 +221,7 @@ $("#btnGuardar").hide();
 function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
   {
 
-    var monto="";
+    var monto=0.00;
 
     if (idpresupuesto_disponible!="")
     {
@@ -210,13 +230,15 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
 
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
-			'<td><input type="number" step="0.1" name="monto[]" value="'+monto+'"></td>'+
+    	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
+			'<td><input type="text" class="form-control input-sm prec" step="0.1" name="monto[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" value="'+monto+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
-    	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fab fa-rev fa-lg"></i></button></td>'+
     	'</tr>';
     	cont++;
     	detalles=detalles+1;
+			$(function() {
+				$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+			});
     	$('#detalles').append(fila);
     	modificarSubototales();
     }
@@ -225,6 +247,31 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
     	alert("Error al ingresar el detalle, revisar los datos del presupuesto disponible");
     }
   }
+
+
+	function number_format (number, decimals, dec_point, thousands_sep) {
+	    // Strip all characters but numerical ones.
+	    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+	    var n = !isFinite(+number) ? 0 : +number,
+	        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+	        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+	        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+	        s = '',
+	        toFixedFix = function (n, prec) {
+	            var k = Math.pow(10, prec);
+	            return '' + Math.round(n * k) / k;
+	        };
+	    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+	    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+	    if (s[0].length > 3) {
+	        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+	    }
+	    if ((s[1] || '').length < prec) {
+	        s[1] = s[1] || '';
+	        s[1] += new Array(prec - s[1].length + 1).join('0');
+	    }
+	    return s.join(dec);
+	}
 
 
 
@@ -237,8 +284,12 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
     	var inpC=monto[i];
     	var inpS=sub[i];
 
-    	inpS.value=inpC.value*1;
-    	document.getElementsByName("subtotal")[i].innerHTML = inpS.value;
+			var preci_unit_valor = parseFloat((inpC.value).replace(/,/g, ''));
+
+    	inpS.value=preci_unit_valor*1;
+			var valuesubt = parseFloat(Math.round(inpS.value * 100) / 100).toFixed(2);
+			document.getElementsByName("subtotal")[i].innerHTML = "Lps. " + 	number_format(valuesubt, 2, '.', ',');
+
     }
     calcularTotales();
 
@@ -249,8 +300,10 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
 
   	for (var i = 0; i <sub.length; i++) {
 		total += document.getElementsByName("subtotal")[i].value;
+		totales = parseFloat(Math.round(total * 100) / 100).toFixed(2);
 	}
-	$("#total").html("L. " + total);
+	$("#total").html("Lps. " + number_format(totales, 2, '.', ','));
+
 $("#total_importe").val(total);
     evaluar();
   }
@@ -259,9 +312,11 @@ $("#total_importe").val(total);
   	if (detalles>0)
     {
       $("#btnGuardar").show();
+			$("#mynewtd").remove();
     }
     else
     {
+			$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
       $("#btnGuardar").hide();
       cont=0;
     }

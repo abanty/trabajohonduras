@@ -5,8 +5,14 @@ function init(){
 	mostrarform(false);
 	listar();
 	fechanow();
-			$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-
+	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
+	$(document).on("keypress", 'form', function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+				e.preventDefault();
+				return false;
+		}
+});
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);
@@ -25,8 +31,8 @@ function limpiar()
 	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");
 	$("#numtransferencia").val("");
-
-
+	$('.ththis').show();
+	$('.tdthis').show();
 	$("#valor_transferido").val("");
 	$(".filas").remove();
 	$("#total").html("Lps 0.00");
@@ -73,17 +79,17 @@ function mostrarform(flag)
 
 }
 
-var selecttipodoc
+
 function change_input_by_tipodoc()
 {
-	 selecttipodoc = $("#tipo_transf option:selected").val();
+	 var selecttipodoc = $("#tipo_transf option:selected").val();
 
 		if(selecttipodoc == 'Transf/Cuentas'){
 				$('.ththis').hide();
 				$('.tdthis').hide();
 
 		}else{
-			$('.ththis').show();
+		  	$('.ththis').show();
 				$('.tdthis').show();
 		}
 }
@@ -182,6 +188,7 @@ function guardaryeditar(e)
 	limpiar();
 }
 
+
 function number_format (number, decimals, dec_point, thousands_sep) {
     // Strip all characters but numerical ones.
     number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
@@ -206,6 +213,7 @@ function number_format (number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 
+
 function mostrar(idtransferidoctaspg)
 {
 	$.post("../ajax/transferidoctaspg.php?op=mostrar",{idtransferidoctaspg : idtransferidoctaspg}, function(data, status)
@@ -219,8 +227,9 @@ function mostrar(idtransferidoctaspg)
 		$("#idtransferidoctaspg").val(data.idtransferidoctaspg);
 
 		if (data.tipo_transf == 'Transf/Cuentas') {
-			$('.ththisx').hide();
+			$('.ththis').hide();
 			$('.tdthis').hide();
+
 		}else{
 			$('.ththis').show();
 			$('.tdthis').show();
@@ -230,10 +239,15 @@ function mostrar(idtransferidoctaspg)
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
 		$("#btnAgregarArt").hide();
+		// FOOTER DETAIL
+		$("#total").html("L. " + number_format(data.valor_transferido, 2, '.', ','));
+		$("#valor_transferido").val(number_format(data.valor_transferido, 2, '.', ','));
+
+
  	});
 
  	$.post("../ajax/transferidoctaspg.php?op=listarDetalle&id="+idtransferidoctaspg,function(r){
-	        $("#detalles").html(r);
+	        $("#detalles tbody").html(r);
 	});
 }
 
@@ -264,6 +278,9 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
   	var num_precompromiso = "";
     var valor=0.00;
 
+
+var selecttipodoc = $("#tipo_transf option:selected").val();
+
     if ((selecttipodoc == 'Transf/Cuentas')&&(idctasbancarias!=""))
     {
     	var subtotal=valor;
@@ -281,7 +298,7 @@ function agregarDetalle(idctasbancarias,ctasbancarias,numctapg)
 			});
     	$('#detalles').append(fila);
     	modificarSubototales();
-    }else if (idctasbancarias!="")
+    }else if ((idctasbancarias!="")||(selecttipodoc == ""))
 		    {
 		    	var subtotal=valor;
 		    	var fila='<tr class="filas" id="fila'+cont+'">'+
