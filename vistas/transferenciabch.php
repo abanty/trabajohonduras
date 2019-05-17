@@ -67,6 +67,11 @@ if ($_SESSION['siafi']==1)
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
 
+<<<<<<< HEAD
+=======
+                          <div class="row">
+
+>>>>>>> 2baa4c6db52d8d824b0cf49f94424b0e26e759dc
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
 
                             <label>Fecha:(*):</label>
@@ -88,11 +93,18 @@ if ($_SESSION['siafi']==1)
                           </div>
 
 
+<<<<<<< HEAD
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+=======
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+>>>>>>> 2baa4c6db52d8d824b0cf49f94424b0e26e759dc
                           <label>Numero de Transferencia:(*):</label>
                           <input type="text" class="form-control input-sm" name="num_transf" id="num_transf" maxlength="50" placeholder="Ingrese el No. de Transferencia" required>
                           </div>
+                          </div>
 
+
+<<<<<<< HEAD
 
                           <div style="padding-right: 0px; padding-left: 0px;" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group col-lg-6">
@@ -106,9 +118,31 @@ if ($_SESSION['siafi']==1)
                           </div>
 
                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+=======
+                          <!-- <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <label>Responsable:(*):</label>
+                            <select id="idconfiguracion" name="idconfiguracion" class="form-control selectpicker" data-live-search="true" title="Elegir una responsable" required></select>
+                          </div> -->
+                          <div class="row">
+
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label>Nombre Cta Debitar:(*):</label>
+                            <select id="idctasbancarias" name="idctasbancarias" class="form-control selectpicker" data-live-search="true" title="Elegir un cuenta" required></select>
+                          </div>
+
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Casa Comercial:</label>
+                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" required></select>
+                          </div>
+
+
+                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+>>>>>>> 2baa4c6db52d8d824b0cf49f94424b0e26e759dc
                             <label>Monto a Pagar(*):</label>
                             <input type="text" class="form-control input-sm" onchange="verpres()" onkeyup="verpres()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="monto_acreditar" id="monto_acreditar" required>
                           </div>
+                          </div>
+
 
                           <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Sinopsis(*):</label>
