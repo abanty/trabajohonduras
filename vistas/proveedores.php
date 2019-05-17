@@ -91,8 +91,8 @@ if ($_SESSION['compromisosp']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Tipo Cuenta:</label>
                             <select class="form-control select-picker" name="tipo_cuenta" id="tipo_cuenta" required>
-                              <option value="Ahorros">Ahorros</option>
-                              <option value="Cheques">Cheques</option>
+                              <option value="AHORROS">AHORROS</option>
+                              <option value="CHEQUES">CHEQUES</option>
                             </select>
                           </div>
 
