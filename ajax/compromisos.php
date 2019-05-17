@@ -90,7 +90,7 @@ switch ($_GET["op"]){
  				"4"=>$reg->numfactura,
  				"5"=>$reg->total_compra,
  				"6"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
- 				'<span class="label bg-red">Pendiente</span>'
+ 				'<span class="label bg-orange">Pendiente</span>'
  				);
  		}
  		$results = array(
