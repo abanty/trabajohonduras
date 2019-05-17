@@ -4,6 +4,7 @@ var tabla;
 function init(){
 	mostrarform(false);
 	listar();
+	fechanow();
 
 	$(document).on("keypress", 'form', function (e) {
 		var code = e.keyCode || e.which;
@@ -22,7 +23,10 @@ function init(){
 			var num_t = $('#num_transf').val();
 
 			if (datos.includes(num_t)) {
-				alert('Existe en la bd, digite otro por favor');
+				alert('Datos ya existe en la bd, digite otro por favor');
+				$('#num_transf').val("");
+				$("#num_transf").focus();
+
 			}else {
 				guardaryeditar(e);
 			}
@@ -108,15 +112,21 @@ function limpiar()
 	$("#monto_acreditar").val("");
 	$("#descripcion").val("");
 	$("#idtransferenciabch").val("");
+	$("#tipo_transfbch").selectpicker('val',"");
+	$("#tipo_transfbch").selectpicker('refresh');
+}
 
 
-
-	//Obtenemos la fecha actual
+/*------------------------------------*
+| FUNCION PARA CALCULAR FECHA ACTUAL  |
+.------------------------------------*/
+function fechanow()
+{
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
 	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-    $('#fecha_hora').val(today);
+	$('#fecha_hora').val(today);
 }
 
 
@@ -126,10 +136,10 @@ function limpiar()
 //Función mostrar formulario
 function mostrarform(flag)
 {
+	$(function() {
+		$('#monto_acreditar').maskMoney({thousands:',', decimal:'.', allowZero:true});
+	});
 
-
-
-	limpiar();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
@@ -152,6 +162,7 @@ function mostrarform(flag)
 function cancelarform()
 {
 	limpiar();
+	fechanow();
 	mostrarform(false);
 }
 
@@ -225,6 +236,7 @@ function mostrar(idtransferenciabch)
 	$("#idctasbancarias").selectpicker('refresh');
 
 	$("#tipo_transfbch").val(data.tipo_transfbch);
+	$("#tipo_transfbch").selectpicker('refresh');
 	$("#serie_transf").val(data.serie_transf);
 	$("#num_transf").val(data.num_transf);
 	$("#monto_acreditar").val(data.monto_acreditar);
