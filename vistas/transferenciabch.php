@@ -63,65 +63,60 @@ if ($_SESSION['siafi']==1)
                             </tfoot>
                         </table>
                     </div>
+
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
 
-                          <div class="row">
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
 
                             <label>Fecha:(*):</label>
                             <input type="hidden" name="idtransferenciabch" id="idtransferenciabch">
-                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
+                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
-                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Tipo Transferencia(*):</label>
                             <select class="form-control selectpicker" name="tipo_transfbch" id="tipo_transfbch" data-style="btn-default btn-sm" data-title="Elige el Tipo de Transferencia" required>
                               <option value="Transf/Terceros">Transf/Terceros</option>
                               <option value="Transf/Cuentas">Transf/Cuentas</option>
                             </select>
                           </div>
-                          
-                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+                            <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Serie:</label>
-                            <input type="text" class="form-control" name="serie_transf" id="serie_transf" maxlength="12" placeholder="Serie">
+                            <input type="text" class="form-control input-sm" name="serie_transf" id="serie_transf" maxlength="12" placeholder="Serie">
                           </div>
 
 
-                          <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                           <label>Numero de Transferencia:(*):</label>
-                          <input type="text" class="form-control" name="num_transf" id="num_transf" maxlength="50" placeholder="Ingrese el No. de Transferencia" required>
-                          </div>
-
-                          <!-- <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                            <label>Responsable:(*):</label>
-                            <select id="idconfiguracion" name="idconfiguracion" class="form-control selectpicker" data-live-search="true" title="Elegir una responsable" required></select>
-                          </div> -->
-
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Nombre Cta Debitar:(*):</label>
-                            <select id="idctasbancarias" name="idctasbancarias" class="form-control selectpicker" data-live-search="true" title="Elegir un cuenta" required></select>
+                          <input type="text" class="form-control input-sm" name="num_transf" id="num_transf" maxlength="50" placeholder="Ingrese el No. de Transferencia" required>
                           </div>
 
 
-                        <hr>
-
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Casa Comercial:</label>
-                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" required></select>
+                          <div style="padding-right: 0px; padding-left: 0px;" class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group col-lg-6">
+                              <label>Nombre Cta Debitar:(*):</label>
+                              <select id="idctasbancarias" name="idctasbancarias" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" title="Elegir un cuenta" required></select>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label>Casa Comercial:</label>
+                              <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" required></select>
+                            </div>
                           </div>
 
-
-                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Monto a Pagar(*):</label>
-                            <input type="text" step='0.01' class="form-control" onchange="verpres()" onkeyup="verpres()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="monto_acreditar" id="monto_acreditar" required>
+                            <input type="text" class="form-control input-sm" onchange="verpres()" onkeyup="verpres()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="monto_acreditar" id="monto_acreditar" required>
                           </div>
 
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <label>Sinopsis(*):</label>
                            <textarea class="form-control  col-lg-5" rows="3" id="descripcion" name="descripcion"placeholder="Descripcion" required pattern="^[a-zA-Z0-9_áéíóúñ°\s]{0,200}$"></textarea>
                            </div>
+
                            </h1>
+
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 
@@ -129,9 +124,9 @@ if ($_SESSION['siafi']==1)
                             <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                           </div>
                         </form>
-                    </div>
-                    <!--Fin centro -->
-                 <!-- /.box -->
+
+                      </div><!--Fin centro -->
+                   </div><!-- /.box -->
               </div><!-- /.col -->
           </div><!-- /.row -->
       </section><!-- /.content -->

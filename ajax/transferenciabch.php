@@ -25,7 +25,7 @@ switch ($_GET["op"]){
 		$tipo_transfbch,
 		$serie_transf,
 		$num_transf,
-		$monto_acreditar,
+		str_replace(',','',$monto_acreditar),
 		$descripcion);
 			echo $rspta ? "Transferencia registrada" : "Transferencia no se pudo registrar";
 		}
@@ -91,8 +91,25 @@ switch ($_GET["op"]){
  				$urlsolicitudbch='../reportes/Solicitudbch.php?id=';
 				$urlsolicitudbchentrec='../reportes/Solicitudbchentrec.php?id=';
 
-				$urldemo='../reportes/Autoajust.php?id=';
-				$urldemo2='../reportes/Demo2.php?id=';
+				// $urldemo='../reportes/Autoajust.php?id=';
+				// $urldemo2='../reportes/Demo2.php?id=';
+
+				switch ($reg->tipo_transfbch) {
+					case 'Transf/Cuentas':
+					$contenido_li =  '<ul class="dropdown-menu">
+							 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabch.'">Transf entre c</a></li>
+							</ul>';
+
+						break;
+
+					default:
+							$contenido_li =  '<ul class="dropdown-menu">
+							 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
+							 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabch.'">Transf entre c</a></li>
+							</ul>';
+							$reg->tipo_transfbch;
+						break;
+				}
 
  			$data[]=array(
  				"0"=>($reg->condicion)?
@@ -101,26 +118,16 @@ switch ($_GET["op"]){
 					'<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
 							<a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
 								<i class="fas fa-print" aria-hidden="true"></i>
-							</a>
-								<ul class="dropdown-menu">
-								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
-								 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabch.'">Transferencia entre c </a></li>
-
-								</ul>
-					</li>'.
+							</a>'.$contenido_li.'</li>'.
  					' <button class="btn btn-success btn-sm" onclick="validar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>':
+
+
 					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idtransferenciabch.')"><i class="fas fa-pen"></i></button>'.
 					' <button class="btn btn-primary btn-sm" onclick="activar('.$reg->idtransferenciabch.')"><i class="fas fa-check"></i></button>'.
 					'<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
 							<a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
 								<i class="fas fa-print" aria-hidden="true"></i>
-							</a>
-								<ul class="dropdown-menu">
-								 <li><a target="_blank" href="'.$urlsolicitudbch.$reg->idtransferenciabch.'">Transferencia</a></li>
-								 <li><a target="_blank" href="'.$urlsolicitudbchentrec.$reg->idtransferenciabch.'">Transf entre c</a></li>
-
-								</ul>
-					</li>',
+							</a>'.$contenido_li.'</li>',
 
  				"1"=>$reg->fecha,
 				"2"=>$reg->tipo_transfbch,
