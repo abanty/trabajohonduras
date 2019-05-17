@@ -10,7 +10,7 @@ $("#frmAcceso").on('submit',function(e)
     {
         if (data!="null")
         {
-            $(location).attr("href","administrar_ordenes.php");            
+            $(location).attr("href","escritorio.php");            
         }
         else
         {
