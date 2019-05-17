@@ -67,6 +67,7 @@ if ($_SESSION['siafi']==1)
                         <form name="formulario" id="formulario" method="POST">
 
                           <div class="row">
+
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
 
                             <label>Fecha:(*):</label>
@@ -74,37 +75,37 @@ if ($_SESSION['siafi']==1)
                              <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
                           </div>
 
-                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Tipo Transferencia(*):</label>
                             <select class="form-control selectpicker" name="tipo_transfbch" id="tipo_transfbch" data-style="btn-default btn-sm" data-title="Elige el Tipo de Transferencia" required>
                               <option value="Transf/Terceros">Transf/Terceros</option>
                               <option value="Transf/Cuentas">Transf/Cuentas</option>
                             </select>
                           </div>
-                          
-                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+                            <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Serie:</label>
                             <input type="text" class="form-control" name="serie_transf" id="serie_transf" maxlength="12" placeholder="Serie">
                           </div>
 
 
-                          <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Numero de Transferencia:(*):</label>
                           <input type="text" class="form-control" name="num_transf" id="num_transf" maxlength="50" placeholder="Ingrese el No. de Transferencia" required>
                           </div>
+                          </div>
+
 
                           <!-- <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-12">
                             <label>Responsable:(*):</label>
                             <select id="idconfiguracion" name="idconfiguracion" class="form-control selectpicker" data-live-search="true" title="Elegir una responsable" required></select>
                           </div> -->
+                          <div class="row">
 
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label>Nombre Cta Debitar:(*):</label>
                             <select id="idctasbancarias" name="idctasbancarias" class="form-control selectpicker" data-live-search="true" title="Elegir un cuenta" required></select>
                           </div>
-
-
-                        <hr>
 
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Casa Comercial:</label>
@@ -112,10 +113,12 @@ if ($_SESSION['siafi']==1)
                           </div>
 
 
-                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label>Monto a Pagar(*):</label>
                             <input type="text" step='0.01' class="form-control" onchange="verpres()" onkeyup="verpres()" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" name="monto_acreditar" id="monto_acreditar" required>
                           </div>
+                          </div>
+
 
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <label>Sinopsis(*):</label>
