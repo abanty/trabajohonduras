@@ -46,7 +46,7 @@ Class Consultas_compromisos
 
 	public function totaladministrar_ordeneshoy()
 {
-	$sql="SELECT IFNULL(SUM(total_neto),0) as total_neto FROM administrar_ordenes";
+	$sql="SELECT IFNULL(SUM(total_neto),0) as total_neto FROM administrar_ordenes WHERE estado='Pagado'";
 	return ejecutarConsulta($sql);
 }
 	// public function totalventahoy()
