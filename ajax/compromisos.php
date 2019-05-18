@@ -76,13 +76,13 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
 
  			$data[]=array(
- 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-danger" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+ 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
  					//' <button class="btn btn-info" onclick = "print('.$reg->idcompromisos.')"> <i class="fas fa-print"> </i></button>'.
  					// '<a target="_blank" href="'.$url.$reg->idcompromisos.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
- 					' <button class="btn btn-danger" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-times"></i></button>':
-					'<button class="btn btn-warning" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
-					' <button class="btn btn-primary" onclick="pendiente('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>',
+ 					' <button class="btn btn-danger btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-times"></i></button>':
+					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+					' <button class="btn btn-primary btn-sm" onclick="pendiente('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>',
 
  				"1"=>$reg->fecha,
  				"2"=>$reg->programa,

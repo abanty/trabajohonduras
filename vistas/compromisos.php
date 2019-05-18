@@ -15,10 +15,10 @@ if ($_SESSION['compromisosp']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
+          <h1>
             Administrar Compromisos
           </h1>
           <ol class="breadcrumb">
@@ -49,7 +49,7 @@ if ($_SESSION['compromisosp']==1)
                             <th>Total Compra</th>
                             <th>Estado</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
@@ -67,23 +67,23 @@ if ($_SESSION['compromisosp']==1)
                           <div class="btn-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Casa Comercial(*):</label>
                             <input type="hidden" name="idcompromisos" id="idcompromisos">
-                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" ></select>
+                            <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm"></select>
                           </div>
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Fecha(*):</label>
-                            <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
+                            <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Programa(*):</label>
-                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" ></select>
+                            <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm"></select>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Número de Factura:</label>
-                            <input type="text" class="form-control" name="numfactura" id="numfactura" maxlength="20" placeholder="numero de factura" required="">
+                            <input type="text" class="form-control input-sm" name="numfactura" id="numfactura" maxlength="20" placeholder="numero de factura" required="">
                           </div>
-                          
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <a data-toggle="modal" href="#myModal">           
+
+                          <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Renglon Presupuestario</button>
                             </a>
                           </div>
@@ -100,10 +100,10 @@ if ($_SESSION['compromisosp']==1)
                                     <th>TOTAL</th>
                                     <th></th>
                                     <th></th>
-                                    <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_compra" id="total_compra"></th> 
+                                    <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_compra" id="total_compra"></th>
                                 </tfoot>
                                 <tbody>
-                                  
+
                                 </tbody>
                             </table>
                           </div>
@@ -147,7 +147,7 @@ if ($_SESSION['compromisosp']==1)
               <th>Fondos Disponibles</th>
           </thead>
           <tbody>
-            
+
           </tbody>
           <tfoot>
             <thead style="background-color:#d2d6de">
@@ -161,10 +161,10 @@ if ($_SESSION['compromisosp']==1)
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      </div>        
+      </div>
     </div>
   </div>
-</div>  
+</div>
 <!--   Fin modal -->
 <?php
 }
@@ -176,13 +176,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/compromisos.js"></script>
-<?php 
+<?php
 }
 ob_end_flush();
 ?>
-
-
-
-
-
-
