@@ -20,7 +20,7 @@ function init(){
 function limpiar()
 {
 	$("#casa_comercial").val("");
-	$("#rtn").val("");	
+	$("#rtn").val("");
 	$("#nombre_banco").val("");
 
 	$("#num_cuenta").val("");
@@ -72,6 +72,11 @@ function listar()
 		            'csvHtml5',
 		            'pdf'
 		        ],
+	  	columnDefs: [
+
+ 							{ width: 110, targets: 5 },
+
+ 						      ],
 		"ajax":
 				{
 					url: '../ajax/proveedores.php?op=listarp',

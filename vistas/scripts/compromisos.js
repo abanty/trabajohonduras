@@ -193,7 +193,7 @@ function mostrar(idcompromisos)
 //Función para desactivar registros
 function pagado(idcompromisos)
 {
-	bootbox.confirm("¿Está Seguro de desactivar el Compromiso?", function(result){
+	bootbox.confirm("¿Está Seguro de validar el compromiso a pagado?", function(result){
 		if(result)
         {
         	$.post("../ajax/compromisos.php?op=pagado", {idcompromisos : idcompromisos}, function(e){

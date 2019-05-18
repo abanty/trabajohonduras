@@ -45,7 +45,7 @@ switch ($_GET["op"]){
 
 		case 'pagado':
 		$rspta=$compromisos->pagado($idcompromisos);
- 		echo $rspta ? "Compromiso Desactivado" : "Compromiso no se puede desactivar";
+ 		echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
 	break;
 
 	case 'pendiente':
@@ -80,7 +80,7 @@ switch ($_GET["op"]){
  					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
  					//' <button class="btn btn-info" onclick = "print('.$reg->idcompromisos.')"> <i class="fas fa-print"> </i></button>'.
  					// '<a target="_blank" href="'.$url.$reg->idcompromisos.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
- 					' <button class="btn btn-danger btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-times"></i></button>':
+ 					' <button class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>':
 					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 					' <button class="btn btn-primary btn-sm" onclick="pendiente('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>',
 

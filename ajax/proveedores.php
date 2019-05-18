@@ -75,10 +75,10 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>($reg->condicion)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idproveedores.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg->idproveedores.')"><i class="fas fa-times"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idproveedores.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-primary" onclick="activar('.$reg->idproveedores.')"><i class="fas fa-check"></i></button>',
+ 				"0"=>($reg->condicion)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idproveedores.')"><i class="fas fa-pen"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="desactivar('.$reg->idproveedores.')"><i class="fas fa-times"></i></button>':
+ 					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idproveedores.')"><i class="fas fa-pen"></i></button>'.
+ 					' <button class="btn btn-primary btn-sm" onclick="activar('.$reg->idproveedores.')"><i class="fas fa-check"></i></button>',
  				//"1"=>$reg->casa?comercial, // Aquí hay un error, la forma correcta es como está debajo
  				"1"=>$reg->casa_comercial,
 				"2"=>$reg->rtn,

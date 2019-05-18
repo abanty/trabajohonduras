@@ -62,10 +62,10 @@ switch ($_GET["op"]){
 
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
- 				"0"=>($reg->condicion)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-danger" onclick="desactivar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-times"></i></button>':
- 					'<button class="btn btn-warning" onclick="mostrar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-primary" onclick="activar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-check"></i></button>',
+ 				"0"=>($reg->condicion)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-pen"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="desactivar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-times"></i></button>':
+ 					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-pen"></i></button>'.
+ 					' <button class="btn btn-primary btn-sm" onclick="activar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-check"></i></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
  				"3"=>($reg->presupuesto_anual<'0')?'<span style="color:red;">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual,

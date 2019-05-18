@@ -135,8 +135,7 @@ Class Compromisos
 	//Implementar un método para listar los registros
 	public function listarDetalle($idcompromisos)
 	{
-		$sql="
-		SELECT
+		$sql="SELECT
 		dc.idcompromisos,
 		dc.idpresupuesto_disponible,
 		r.nombre_objeto,
