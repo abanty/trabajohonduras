@@ -10,11 +10,21 @@ Class Retenciones
 
 	}
 
-	// --------------------------------------------------------------------
-	// METODO PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY:|
-	// --------------------------------------------------------------------
-	public function insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,
-	$base_imponible,$imp_retenido,$total_oc,$idcompromisos,$valorbase)
+	/*---------------------------------------------------------------------*
+	| FUNCION PARA INSERTAR DATOS EN MULTIPLES TABLA MEDIANTE MSQLI QUERY: |
+	.----------------------------------------------------------------------*/
+	public function insertar(
+		$idproveedores,
+		$rtn,
+		$numdocumento,
+		$fecha_hora,
+		$tipo_impuesto,
+		$descripcion,
+	  $base_imponible,
+		$imp_retenido,
+		$total_oc,
+		$idcompromisos,
+		$valorbase)
 	{
 		$sqlx="INSERT INTO retenciones (idproveedores,rtn,numdocumento,fecha_hora,tipo_impuesto,descripcion,base_imponible,imp_retenido,total_oc,estado)
 		VALUES ('$idproveedores','$rtn','$numdocumento','$fecha_hora','$tipo_impuesto','$descripcion','$base_imponible','$imp_retenido','$total_oc','Aceptado')";
@@ -23,7 +33,6 @@ Class Retenciones
 		$num_elementos=0;
 		$sw=true;
 
-
 		while ($num_elementos < count($idcompromisos))
 		{
 			$sql_reten = "INSERT INTO detalle_retenciones(idretenciones,idcompromisos,valorbase)
@@ -31,20 +40,15 @@ Class Retenciones
 
 			ejecutarConsulta($sql_reten) or $sw = false;
 			$num_elementos=$num_elementos + 1;
-
 		}
-
 		return $sw;
 
 		}
 
 
-
-
-		// return $sw;
-	// }
-
-	// //Implementar un método para listar los registros
+	/*------------------------------*
+	| FUNCION PARA LISTAR REGISTROS |
+	.-------------------------------*/
 	public function listar()
 	{
 		$sql="SELECT
@@ -58,9 +62,23 @@ Class Retenciones
 		r.descripcion,
 		r.base_imponible,
 		r.imp_retenido,
-		r.estado FROM retenciones r INNER JOIN proveedores p ON r.idproveedores=p.idproveedores ORDER BY r.idretenciones desc";
+		r.estado
+		FROM retenciones r
+		INNER JOIN proveedores p ON r.idproveedores=p.idproveedores
+		ORDER BY r.idretenciones desc";
 		return ejecutarConsulta($sql);
 	}
+
+
+	/*--------------------------------------------------------*
+	| FUNCION PARA VALIDAR NUMERODOC DE RETENCIONES REPETIDOS |
+	.---------------------------------------------------------*/
+	public function validar_doc_reten()
+	{
+		$sql="SELECT numdocumento FROM retenciones";
+		return ejecutarConsulta($sql);
+	}
+
 
 }
 

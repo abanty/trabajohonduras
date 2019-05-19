@@ -62,8 +62,6 @@ switch ($_GET["op"]){
 		echo json_encode($rspta);
 	break;
 
-
-
 		case 'ValidarNumTranf':
 
 			$rspta=$transferenciabch->validarnumtransferenciaduplicados();

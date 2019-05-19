@@ -10,12 +10,24 @@ Class Transferenciabch
 
 	}
 
-	public function insertar($idproveedores,$idctasbancarias,$fecha_hora,$tipo_transfbch,$serie_transf,$num_transf,$monto_acreditar,$descripcion)
+
+	/*----------------------------------------------------*
+	| FUNCION PARA INSERTAR REGISTROS DE MULTIPLES TABLAS |
+	.-----------------------------------------------------*/
+	public function insertar(
+		$idproveedores,
+		$idctasbancarias,
+		$fecha_hora,
+		$tipo_transfbch,
+		$serie_transf,
+		$num_transf,
+		$monto_acreditar,
+		$descripcion )
 	{
 		$sql="INSERT INTO transferenciabch (idproveedores,idctasbancarias,fecha_hora,tipo_transfbch,serie_transf,num_transf,monto_acreditar,descripcion,
 		condicion)	VALUES ('$idproveedores','$idctasbancarias','$fecha_hora','$tipo_transfbch','$serie_transf','$num_transf','$monto_acreditar','$descripcion',
 		'1')";
-		 ejecutarConsulta($sql);
+		ejecutarConsulta($sql);
 
 		$sql="UPDATE ctasbancarias AS a INNER JOIN transferenciabch as b
 		ON a.idctasbancarias = b.idctasbancarias
@@ -26,6 +38,9 @@ Class Transferenciabch
 	}
 
 
+	/*--------------------------------*
+  | FUNCION PARA ELIMINAR REGISTROS |
+  .--------------------------------*/
 	public function eliminar($idtransferenciabch)
 	{
 		$sql="UPDATE ctasbancarias AS a INNER JOIN transferenciabch as b
@@ -38,12 +53,20 @@ Class Transferenciabch
 		return ejecutarConsulta($sql);
 	}
 
+
+	/*----------------------------------*
+	| FUNCION PARA DESACTIVAR REGISTROS |
+	.-----------------------------------*/
 	public function desactivar($idtransferenciabch)
 	{
 		$sql="UPDATE transferenciabch SET condicion='0' WHERE idtransferenciabch='$idtransferenciabch'";
 		return ejecutarConsulta($sql);
 	}
 
+
+	/*--------------------------------*
+	|  FUNCION PARA ACTIVAR REGISTROS |
+	.--------------------------------*/
 	public function activar($idtransferenciabch)
 	{
 		$sql="UPDATE transferenciabch SET condicion='1' WHERE idtransferenciabch='$idtransferenciabch'";
@@ -51,6 +74,9 @@ Class Transferenciabch
 	}
 
 
+	/*-------------------------------*
+	| FUNCION PARA MOSTRAR REGISTROS |
+	.-------------------------------*/
 	public function mostrar($idtransferenciabch)
 	{
 		$sql="SELECT a.idtransferenciabch,	a.idproveedores,	a.idctasbancarias,	DATE(a.fecha_hora) as fecha, a.tipo_transfbch,	a.serie_transf,
@@ -63,6 +89,10 @@ Class Transferenciabch
 		return ejecutarConsultaSimpleFila($sql);
 	}
 
+
+	/*------------------------------*
+	| FUNCION PARA LISTAR REGISTROS |
+	.-------------------------------*/
 	public function listar()
 	{
 		$sql="SELECT a.idtransferenciabch,a.idproveedores,a.idctasbancarias,DATE(a.fecha_hora) as fecha, a.tipo_transfbch, a.serie_transf,a.num_transf,b.cuentapg,
@@ -76,6 +106,9 @@ Class Transferenciabch
 	}
 
 
+	/*---------------------------------------------------------*
+	| FUNCION PARA OBTENER EL PRESUPUESTO DE CUENTAS BANCARIAS |
+	.---------------------------------------------------------*/
 	public function obtenerpresupuesto($idpresupuesto)
 	{
 		$sql="SELECT	fondos_disponibles FROM ctasbancarias WHERE idctasbancarias = $idpresupuesto";
@@ -83,6 +116,9 @@ Class Transferenciabch
 	}
 
 
+	/*--------------------------------------------------------*
+	| FUNCION PARA VALIDAR NUMEROS DE TRANSFERENCIA REPETIDOS |
+	.---------------------------------------------------------*/
 	public function validarnumtransferenciaduplicados()
 	{
 		$sql="SELECT num_transf FROM transferenciabch";
@@ -90,7 +126,10 @@ Class Transferenciabch
 	}
 
 
-		public function solicitud_transferencias($sol){
+	/*------------------------------------------------------------*
+	| FUNCION PARA MOSTRAR DATOS DE LA SOLICITUD DE TRANSFERENCIA |
+	.-------------------------------------------------------------*/
+	public function solicitud_transferencias($sol){
 		$sql="SELECT t.idtransferenciabch,t.idproveedores,t.idctasbancarias,t.fecha_hora,t.tipo_transfbch,t.serie_transf,t.num_transf,t.monto_acreditar,
 		t.descripcion,t.condicion,p.casa_comercial,p.nombre_banco,p.num_cuenta,p.tipo_cuenta as tp_prov,c.cuentapg,c.bancopg,c.tipoctapg,
 		c.numctapg,c.fondos_disponibles
@@ -99,6 +138,9 @@ Class Transferenciabch
 		INNER JOIN ctasbancarias c ON t.idctasbancarias = c.idctasbancarias
 		WHERE t.idtransferenciabch='$sol'";
 		return ejecutarConsulta($sql);
-		}
+	}
+
+
 }
+
 ?>

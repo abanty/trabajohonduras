@@ -5,6 +5,9 @@ require_once "../modelos/Retenciones.php";
 
 $reten=new Retenciones();
 
+/*------------------------------------------------------------*
+| DECLARACION DE VARIABLES PARA ALMACEN VALOR POR METODO POST |
+.------------------------------------------------------------*/
 $idretenciones=isset($_POST["idretenciones"])? limpiarCadena($_POST["idretenciones"]):"";
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
 $rtn=isset($_POST["rtn"])? limpiarCadena($_POST["rtn"]):"";
@@ -16,11 +19,10 @@ $base_imponible=isset($_POST["base_imponible"])? limpiarCadena($_POST["base_impo
 $imp_retenido=isset($_POST["imp_retenido"])? limpiarCadena($_POST["imp_retenido"]):"";
 $total_oc=isset($_POST["total_oc"])? limpiarCadena($_POST["total_oc"]):"";
 
-
-// $idcompromisos=isset($_POST["idcompromisos"])? limpiarCadena($_POST["idcompromisos"]):"";
-// $valor_base=isset($_POST["valor_base"])? limpiarCadena($_POST["valor_base"]):"";
-
 switch ($_GET["op"]){
+  /*----------------------------*
+	| CASE PARA GUARDAR REGISTROS |
+	.----------------------------*/
 	case 'guardaryeditar':
 		if (empty($idretenciones)){
 			$rspta=$reten->insertar($idproveedores,$rtn,$numdocumento,$fecha_hora,$tipo_impuesto,$descripcion,$base_imponible,
@@ -31,50 +33,57 @@ switch ($_GET["op"]){
 		}
 	break;
 
+
+  /*---------------------------*
+  | CASE PARA ANULAR REGISTROS |
+  .---------------------------*/
 	case 'anular':
 		$rspta=$reten->anular($idretenciones);
  		echo $rspta ? "retencion anulada" : "La retencion no se puede anular";
 	break;
 
+
+  /*----------------------------*
+	| CASE PARA MOSTRAR REGISTROS |
+	.----------------------------*/
 	case 'mostrar':
 		$rspta=$reten->mostrar($idretenciones);
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
 
-	// case 'listarDetalle':
-	// 	//Recibimos el idretenciones
-	// 	$id=$_GET['id'];
 
-	// 	$rspta = $retenciones->listarDetalle($id);
-	// 	$total=0;
-	// 	echo '<thead style="background-color:#A9D0F5">
-  //                                   <th>Opciones</th>
-  //                                   <th>N. Facturas</th>
-  //                                   <th>Valor Base</th>
-  //                                   <th>Subtotal</th>
-  //                               </thead>';
-  //
-	// 	while ($reg = $rspta->fetch_object())
-	// 			{
-	// 				echo '<tr class="filas">
-  //         <td>
-  //         </td>
-  //         <td>'.$reg->numfactura.'</td>
-  //         <td>'.$reg->valor_base.'</td>
-  //         <td>'.$reg->valor_base==$reg->valor_base.'</td></tr>';
-	// 				$total=$total+($reg->valor_base==$reg->valor_base);
-	// 			}
-	// 	echo '<tfoot>
-  //                                   <th>TOTAL</th>
-  //                                   <th></th>
-  //                                   <th></th>
-  //                                   <th></th>
-  //                                   <th></th>
-  //                                   <th><h4 id="total">S/.'.$total.'</h4><input type="hidden" name="total_compra" id="total_compra"></th>
-  //                               </tfoot>';
-	// break;
+  /*-------------------------------------*
+	| CASE PARA OBTENER RTN DE PROVEEDORES |
+	.-------------------------------------*/
+  case 'get_rtn':
+    require_once "../modelos/Proveedores.php";
+    $provider=new Proveedores();
+		$rspta=$provider->get_rtn_proveedor($idproveedores);
+ 		//Codificar el resultado utilizando json
+ 		echo json_encode($rspta);
+	break;
 
+
+  /*--------------------------------------------*
+  | CASE PARA VALIDAR N° DE DOCUMENTO DUPLICADO |
+  .--------------------------------------------*/
+  case 'ValidarNumDocReten':
+
+    $rspta=$reten->validar_doc_reten();
+    $data= Array();
+
+    while ($reg=$rspta->fetch_object()){
+      $data[]=$reg->numdocumento;
+    }
+    echo json_encode($data);
+
+  break;
+
+
+  /*---------------------------*
+  | CASE PARA LISTAR REGISTROS |
+  .---------------------------*/
 	case 'listar':
 		$rspta=$reten->listar();
  		//Vamos a declarar un array
@@ -107,6 +116,10 @@ switch ($_GET["op"]){
 
 	break;
 
+
+  /*--------------------------------------------------*
+  | CASE PARA SELECCIONAR PROVEEDORES EN UN SELECTBOX |
+  .--------------------------------------------------*/
   case "selectProveedores":
 		require_once "../modelos/Proveedores.php";
 		$casa_comercial = new Proveedores();
@@ -120,6 +133,10 @@ switch ($_GET["op"]){
 
 	break;
 
+
+  /*-----------------------------------------*
+  | CASE PARA LISTAR COMPROMISOS EN UN MODAL |
+  .-----------------------------------------*/
 	case 'listarCompromisos':
 		require_once "../modelos/Compromisos.php";
 		$compromisos=new Compromisos();

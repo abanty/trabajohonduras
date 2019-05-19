@@ -23,7 +23,7 @@ function init(){
 			var num_t = $('#num_transf').val();
 
 			if (datos.includes(num_t)) {
-				alert('Datos ya existe en la bd, digite otro por favor');
+				alert('Dato ya existe en la bd, digite otro por favor');
 				$('#num_transf').val("");
 				$("#num_transf").focus();
 

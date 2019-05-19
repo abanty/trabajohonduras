@@ -7,8 +7,25 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);
+		//Cargamos los items al select categoria
+		$.post("../ajax/retenciones.php?op=ValidarNumDocReten", function(datos){
+			datos = JSON.parse(datos);
+
+			var num_d_reten = $('#numdocumento').val();
+
+			if (datos.includes(num_d_reten)) {
+				alert('Dato ya existe en la bd, digite otro por favor');
+				$('#numdocumento').val("");
+				$("#numdocumento").focus();
+
+			}else {
+				guardaryeditar(e);
+			}
+		});
+		return false;
 	})
+
+
 
 	$(document).on("keypress", 'form', function (e) {
 		var code = e.keyCode || e.which;
@@ -22,8 +39,26 @@ function init(){
 	$.post("../ajax/retenciones.php?op=selectProveedores", function(r){
 	            $("#idproveedores").html(r);
 	            $('#idproveedores').selectpicker('refresh');
-});
+				});
 
+
+	$('#idproveedores').change(function() {
+	  setrtn();
+	});
+
+}
+
+
+function setrtn()
+{
+	//Cargamos los items al combobox departamento
+	rtn=$("#idproveedores").val();
+
+	$.post("../ajax/retenciones.php?op=get_rtn",{idproveedores : rtn}, function(data, status)
+	{
+				datax = JSON.parse(data);
+				$("#rtn").val(datax.rtn);
+	});
 }
 
 //Función limpiar
@@ -180,9 +215,7 @@ function mostrar(idretenciones)
 		data = JSON.parse(data);
 		mostrarform(true);
 
-
-
-		$("#idproveedores").val(data.idproveedores);
+ 		$("#idproveedores").val(data.idproveedores);
 		$("#idproveedores").selectpicker('refresh');
 		$("#rtn").val(data.rtn);
 
