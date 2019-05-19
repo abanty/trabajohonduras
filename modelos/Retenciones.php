@@ -70,6 +70,31 @@ Class Retenciones
 	}
 
 
+	/*------------------------------*
+	| FUNCION PARA MOSTRAR REGISTROS |
+	.-------------------------------*/
+	public function mostrar($idretenciones)
+	{
+		$sql="SELECT
+		r.idretenciones,
+		DATE(r.fecha_hora) as fecha,
+		r.idproveedores,
+		p.casa_comercial as proveedor,
+		r.rtn,
+		r.numdocumento,
+		r.tipo_impuesto,
+		r.descripcion,
+		r.base_imponible,
+		r.imp_retenido,
+		r.estado
+		FROM retenciones r
+		INNER JOIN proveedores p ON r.idproveedores=p.idproveedores
+		WHERE r.idretenciones = '$idretenciones'";
+
+		return ejecutarConsultaSimpleFila($sql);
+	}
+
+
 	/*--------------------------------------------------------*
 	| FUNCION PARA VALIDAR NUMERODOC DE RETENCIONES REPETIDOS |
 	.---------------------------------------------------------*/
