@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2019 a las 22:46:54
+-- Tiempo de generación: 19-05-2019 a las 13:53:55
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -65,12 +65,7 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 11, 1, 3, 2, '001', '0001', 'insumos', 'Materiales', 'O/C', '2019-05-13', '67111.00', '1000.00', '66111.00', '9916.65', '15.00', '66111.00', '8263.88', '12.50', '66111.00', '84291.53', '9916.65', '15.00', '66111.00', '8263.88', '12.50', '66111.00', '66111.00', 'Pendiente'),
-(2, 11, 1, 3, 1, '', '56', '', 'Acuerdo de licencias', 'Acuerdo', '2019-05-13', '9012999.73', '0.00', '9012999.73', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9012999.73', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '9012999.73', 'Pendiente'),
-(3, 11, 1, 5, 1, '454', '489', '', 'Fondo para empresas internas', 'F.R.', '2019-05-13', '507110.99', '500.00', '506610.99', '75991.65', '15.00', '506610.99', '63326.37', '12.50', '506610.99', '645929.01', '75991.65', '15.00', '506610.99', '63326.37', '12.50', '506610.99', '506610.99', 'Pendiente'),
-(4, 11, 1, 4, 1, '5875675', '3376587', '', 'sssssfdsfdsfds', 'F.R.', '2019-05-13', '1066567.55', '1256.55', '1065311.00', '159796.65', '15.00', '1065311.00', '133163.88', '12.50', '1065311.00', '1358271.53', '159796.65', '15.00', '1065311.00', '133163.88', '12.50', '1065311.00', '1065311.00', 'Pendiente'),
-(5, 1, 1, 5, 1, '243e43', '', '', 'dsfsdfsd', 'Alimentacion', '2019-05-13', '620247.90', '0.00', '620247.90', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '620247.90', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '620247.90', 'Pendiente'),
-(6, 1, 1, 3, 1, '3424532', '', '', 'fggfdgfd', 'Becas', '2019-05-13', '1018585.37', '0.00', '1018585.37', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1018585.37', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1018585.37', 'Pendiente');
+(1, 9, 1, 12, 5, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-17', '63367615.65', '1000.00', '63366615.65', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '80792434.96', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '63366615.65', 'Pendiente');
 
 --
 -- Disparadores `administrar_ordenes`
@@ -218,14 +213,18 @@ CREATE TABLE `compromisos` (
 --
 
 INSERT INTO `compromisos` (`idcompromisos`, `idprograma`, `idproveedores`, `fecha_hora`, `numfactura`, `total_compra`, `condicion`) VALUES
-(32, 6, 11, '2019-02-12', '1000-01-1457888', '31357.17', 0),
-(33, 3, 13, '2019-02-12', '01457845781258', '500.00', 0),
-(34, 12, 138, '2019-02-13', '000-001-01-00019218', '1143300.00', 0),
-(35, 5, 21, '2019-02-13', '0001555443212', '688.50', 1),
-(36, 1, 9, '2019-02-20', '1015-1025-1000000', '20001545.52', 0),
-(37, 1, 9, '2019-02-24', '778', '0.00', 0),
-(38, 1, 9, '2019-02-24', '1111', '150.00', 0),
-(39, 2, 10, '2019-02-27', '45454545454', '162362.45', 0);
+(1, 1, 1, '2019-05-17', '1254', '450.00', 0),
+(2, 1, 1, '2019-05-17', '587', '55.55', 0),
+(3, 1, 1, '2019-05-17', '8888', '10300.20', 0),
+(4, 1, 1, '2019-05-17', '34', '327.56', 0),
+(5, 1, 1, '2019-05-17', '3432', '367.47', 0),
+(6, 1, 1, '2019-05-17', '3444', '324567.56', 0),
+(7, 1, 1, '2019-05-17', '324', '43243.24', 0),
+(8, 1, 1, '2019-05-17', '432', '43.24', 0),
+(9, 1, 1, '2019-05-17', '434', '43243.24', 0),
+(10, 1, 1, '2019-05-17', '4344', '4324.44', 0),
+(11, 1, 1, '2019-05-17', '2234', '46.48', 0),
+(12, 1, 10, '2019-05-17', '1254', '155222222.22', 1);
 
 -- --------------------------------------------------------
 
@@ -268,6 +267,13 @@ CREATE TABLE `contabilidad` (
   `fecha_actualizacion` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `contabilidad`
+--
+
+INSERT INTO `contabilidad` (`idcontabilidad`, `idadministrar_ordenes`, `idctasbancarias`, `tipo_pago`, `numero_transferencia`, `debitos`, `creditos`, `contabilidad`, `fechacreacion`, `fecha_actualizacion`) VALUES
+(1, 1, 1, 'Deposito', 2147483647, 'gastos de administracion', 'caja y bancos', 'ok', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -308,8 +314,8 @@ CREATE TABLE `ctasbancarias` (
 --
 
 INSERT INTO `ctasbancarias` (`idctasbancarias`, `cuentapg`, `bancopg`, `tipoctapg`, `numctapg`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '6664465.46', 1),
-(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '654654.64', 1),
+(1, 'Pagaduria Fuerza Naval', 'Banco del Pais', 'Ahorro', '215-990-007-350', '6662572.46', 1),
+(2, 'Fuerzas Armadas de Honduras / Fuerza Naval / Haberes de Tropa', 'Banco Central de Honduras', 'Cheques', '11101-01-000989-8', '221111.53', 1),
 (3, 'Fuerzas Armadas de Honduras / Fuerza Naval / Fondo de Inversión', 'Banco Central de Honduras', 'Cheques', '11101-01-000990-1', '0.00', 1),
 (4, 'Fuerzas Armadas de Honduras / Fuerza Naval / Apoyo Institucional', 'Banco Central de Honduras', 'Cheques', '11101-01-000991-1', '0.00', 1),
 (5, 'Fuerzas Armadas de Honduras / Fuerza Naval / Funcionamiento', 'Banco Central de Honduras', 'Cheques', '11101-01-000992-8', '0.00', 1);
@@ -333,30 +339,26 @@ CREATE TABLE `detalle_compromisos` (
 --
 
 INSERT INTO `detalle_compromisos` (`iddetalle_compromisos`, `idcompromisos`, `idpresupuesto_disponible`, `valor`, `condicion`) VALUES
-(30, 32, 1, '1000.52', 0),
-(31, 32, 2, '144.58', 0),
-(32, 32, 3, '14478.70', 0),
-(33, 32, 4, '14478.50', 0),
-(34, 32, 5, '1254.87', 0),
-(35, 33, 21, '100.00', 0),
-(36, 33, 22, '100.00', 0),
-(37, 33, 23, '100.00', 0),
-(38, 33, 24, '100.00', 0),
-(39, 33, 25, '100.00', 0),
-(40, 34, 64, '1143300.00', 0),
-(41, 35, 1, '110.00', 1),
-(42, 35, 2, '145.00', 1),
-(43, 35, 3, '145.00', 1),
-(44, 35, 4, '111.50', 1),
-(45, 35, 5, '177.00', 1),
-(46, 36, 1, '10000000.00', 0),
-(47, 36, 2, '1545.52', 0),
-(48, 36, 3, '10000000.00', 0),
-(49, 37, 2, '15.00', 0),
-(50, 38, 1, '150.00', 0),
-(51, 39, 1, '15454.00', 0),
-(52, 39, 2, '145454.00', 0),
-(53, 39, 3, '1454.45', 0);
+(1, 1, 11, '150.00', 0),
+(2, 1, 12, '150.00', 0),
+(3, 1, 13, '150.00', 0),
+(4, 2, 11, '55.55', 0),
+(5, 3, 15, '5.00', 0),
+(6, 3, 14, '4.00', 0),
+(7, 4, 12, '3.24', 0),
+(8, 4, 13, '324.32', 0),
+(9, 5, 13, '43.24', 0),
+(10, 5, 12, '324.23', 0),
+(11, 6, 12, '243.24', 0),
+(12, 6, 12, '324.00', 0),
+(13, 7, 13, '43.00', 0),
+(14, 8, 12, '43.24', 0),
+(15, 9, 11, '43.00', 0),
+(16, 10, 11, '4.00', 0),
+(17, 11, 12, '43.24', 0),
+(18, 11, 12, '3.24', 0),
+(19, 12, 11, '155.00', 1),
+(20, 12, 11, '222.00', 1);
 
 -- --------------------------------------------------------
 
@@ -383,16 +385,6 @@ CREATE TABLE `detalle_ingreso` (
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `detalle_ingreso`
---
-
-INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
-(1, 3, 1, '14000000.00'),
-(2, 1, 1, '12000000.00'),
-(3, 2, 1, '3000000.00'),
-(4, 3, 1, '15000000.00');
 
 --
 -- Disparadores `detalle_ingreso`
@@ -426,21 +418,9 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 1, 'GALONES', 11, 'Materiales', '1555.55'),
-(2, 1, 2, ' GALONES', 5, 'Materiales', '9999.99'),
-(3, 2, 6, '', 5, '', '999.98'),
-(4, 2, 9, '', 8, '', '999.99'),
-(5, 2, 10, '', 9, '', '999999.99'),
-(6, 3, 5, '', 5, '', '55555.55'),
-(7, 3, 5, '', 8, '', '888.88'),
-(8, 3, 6, '', 5, '', '44444.44'),
-(9, 4, 3, '', 11, '', '54645.65'),
-(10, 4, 4, '', 10, '', '46546.54'),
-(11, 5, 2, '', 12, '', '45354.35'),
-(12, 5, 2, '', 22, '', '3454.35'),
-(13, 6, 3, '', 22, '', '43533.44'),
-(14, 6, 3, '', 11, '', '4543.53'),
-(15, 6, 4, '', 2, '', '5435.43');
+(1, 1, 11, 'GALONES', 1, 'Materiales', '454654.56'),
+(2, 1, 12, 'GALONES', 1, 'Materiales', '6456414.65'),
+(3, 1, 13, 'GALONES', 1, 'Materiales', '56456546.44');
 
 -- --------------------------------------------------------
 
@@ -455,19 +435,6 @@ CREATE TABLE `detalle_retenciones` (
   `valorbase` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `detalle_retenciones`
---
-
-INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `idcompromisos`, `valorbase`) VALUES
-(1, 1, 35, '10.00'),
-(2, 1, 36, '5.00'),
-(3, 1, 37, '15.00'),
-(4, 1, 38, '30.00'),
-(5, 2, 35, '15.00'),
-(6, 2, 36, '34.00'),
-(7, 2, 37, '33.00');
-
 -- --------------------------------------------------------
 
 --
@@ -481,15 +448,6 @@ CREATE TABLE `dtransf_ctaspg` (
   `num_precompromiso` int(11) NOT NULL,
   `valor` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `dtransf_ctaspg`
---
-
-INSERT INTO `dtransf_ctaspg` (`dtransf_ctaspg`, `idtransferidoctaspg`, `idctasbancarias`, `num_precompromiso`, `valor`) VALUES
-(1, 1, 1, 4545, '999999.00'),
-(2, 2, 1, 0, '5665465.46'),
-(3, 2, 2, 0, '654654.64');
 
 -- --------------------------------------------------------
 
@@ -510,23 +468,10 @@ CREATE TABLE `factura_orden` (
 --
 
 INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_factura`, `fecha_factura`, `valor_factura`) VALUES
-(1, 1, '01241111581', '2019-05-08', '3857080.20'),
-(2, 1, '01241111582', '2019-05-08', '3857080.20'),
-(3, 1, '01241111583', '2019-05-08', '3857080.20'),
-(4, 1, '01241111584', '2019-05-08', '3857080.20'),
-(5, 1, '01241111585', '2019-05-08', '3857080.20'),
-(7, 1, '01241111586', '0000-00-00', '3857080.20'),
-(8, 1, '01241111587', '0000-00-00', '3857080.20'),
-(9, 1, '01241111588', '0000-00-00', '3857080.20'),
-(10, 1, '01241111589', '0000-00-00', '3857080.20'),
-(11, 1, '01241111590', '0000-00-00', '3857080.20'),
-(12, 1, '01241111591', '0000-00-00', '3857080.20'),
-(13, 1, '01241111592', '0000-00-00', '3857080.20'),
-(14, 1, '01241111593', '0000-00-00', '3857080.20'),
-(15, 1, '01241111594', '0000-00-00', '3857080.20'),
-(16, 1, '01241111595', '0000-00-00', '3857080.20'),
-(17, 1, '01241111596', '0000-00-00', '3857080.20'),
-(18, 1, '01241111597', '0000-00-00', '3857080.20');
+(1, 1, '1', '2019-05-17', '0.00'),
+(2, 1, '2', '2019-05-17', '0.00'),
+(3, 1, '3', '2019-05-17', '0.00'),
+(4, 1, '4', '2019-05-17', '0.00');
 
 -- --------------------------------------------------------
 
@@ -542,15 +487,6 @@ CREATE TABLE `ingreso` (
   `total_importe` decimal(11,2) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `ingreso`
---
-
-INSERT INTO `ingreso` (`idingreso`, `idusuario`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
-(1, 1, '2019-05-08 00:00:00', 770, '12000000.00', 'Aceptado'),
-(2, 1, '2019-05-08 00:00:00', 771, '3000000.00', 'Aceptado'),
-(3, 1, '2019-05-08 00:00:00', 772, '15000000.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -601,16 +537,16 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Básicos', 11, 100, '11100', '389710003.50', '30000000.00', 1),
-(2, 'Adicionales', 11, 400, '11400', '6228113.45', '0.00', 1),
-(3, 'Decimotercer Mes', 11, 510, '11510', '32475893.60', '0.00', 1),
-(4, 'Decimocuarto Mes', 11, 520, '11520', '32448129.78', '0.00', 1),
-(5, 'Complementos', 11, 600, '11600', '24670807.80', '0.00', 1),
-(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 731, '11731', '42789212.05', '0.00', 1),
+(1, 'Sueldos Básicos', 11, 100, '11100', '389111116.75', '0.00', 1),
+(2, 'Adicionales', 11, 400, '11400', '4478115.20', '0.00', 1),
+(3, 'Decimotercer Mes', 11, 510, '11510', '11437318.35', '0.00', 1),
+(4, 'Decimocuarto Mes', 11, 520, '11520', '16156840.78', '0.00', 1),
+(5, 'Complementos', 11, 600, '11600', '14948586.55', '0.00', 1),
+(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 731, '11731', '42614215.55', '0.00', 1),
 (7, 'Contribuciones al Instituto de Previsión Militar - Régimen de Riesgos Especiales', 11, 732, '11732', '27010663.96', '0.00', 1),
 (8, 'Contribuciones al Instituto de Previsión Militar - Reserva Laboral', 11, 733, '11733', '31406525.95', '0.00', 1),
-(9, 'Beneficios y Compensaciones', 16, 100, '16100', '8486473.00', '0.00', 1),
-(10, 'Energía Eléctrica', 21, 100, '21100', '700000.00', '0.00', 1),
+(9, 'Beneficios y Compensaciones', 16, 100, '16100', '8206475.80', '0.00', 1),
+(10, 'Energía Eléctrica', 21, 100, '21100', '-314299996.85', '0.00', 1),
 (11, 'Agua', 21, 200, '21200', '480000.00', '0.00', 1),
 (12, 'Correo Postal', 21, 410, '21410', '30000.00', '0.00', 1),
 (13, 'Telefonía Fija', 21, 420, '21420', '400000.00', '0.00', 1),
@@ -750,164 +686,176 @@ CREATE TABLE `proveedores` (
 --
 
 INSERT INTO `proveedores` (`idproveedores`, `casa_comercial`, `rtn`, `nombre_banco`, `num_cuenta`, `tipo_cuenta`, `imagen`, `condicion`) VALUES
-(1, 'N/A', '-', '-', '-', '-', '-', 0),
-(9, 'Auto Partes Reaya S.A. de  C.V.', '03039015766793', 'Banco de Occidente, S.A.', '11-201-003553-2', 'Cheques', '1548792537.jpg', 1),
-(10, 'Autosuspension / Rafael Rodas Corrales', '', 'Banco de America Central Honduras,  S. A.', '730078331', 'Cheques', '1550502488.jpg', 1),
-(11, 'Az Comercial S. de R.L.', '', 'Banco de Occidente, S.A.', '11402013075-5', 'Cheques', '1550502503.jpg', 1),
-(13, 'Base Naval De Puerto Castilla', '', 'Banco del Pais, S.A.', '01-635-000079-0', 'Cheques', '', 1),
-(14, 'Base Naval De Puerto Cortes', '', 'Banco del Pais, S.A.', '01-070-000126-0', 'Cheques', '', 1),
-(15, 'Cam International Honduras', '', 'Banco Financiera  Comercial  Hondureña, S.A.', '200002689404-', 'Ahorros', '1557254066.jpeg', 1),
-(16, 'Casa Comercial Mathews, S.A de C.V. (CEMCOL)', '', 'Banco del Pais, S.A.', '01299000003-0', 'Cheques', '', 1),
-(17, 'Casa Eventos S. de R.L. de C.V.', '', 'Banco de America Central Honduras,  S. A. ', '730323501', 'Ahorros', '', 1),
-(18, 'Casa Rafael ', '', 'Banco Atlantida,  S.A. ', '3100036759', 'Cheques', '1', 1),
-(19, 'Central De Mangueras S.A (Pto Cortes)', '', 'Banco de America Central Honduras,  S. A. ', '90173850-1', 'Cheques', '', 1),
-(20, 'Central De Mangueras S.A (Tocoa)', '', 'Banco Atlantida,  S.A. ', '110013295-8', 'Cheques', '', 1),
-(21, 'Central De Turbos E Inversiones De Honduras', '', 'Banco de America Central Honduras,  S. A. ', '72908848-1', 'Cheques', '', 1),
-(22, 'Centro De Adiestramiento Militar Del Ejercito', '', 'Banco del Pais, S.A.', '01-370-000078-1', 'Cheques', '', 1),
-(23, 'Centro Experimental de Desarrollo Agropecuario Y Conservaci?n Ecol?gica', '', 'Banco del Pais, S.A.', '01-345-000087-9', 'Cheques', '', 1),
-(24, 'Centro Ferretero Tornifesa S. de R.L. De C.V.', '', 'Sociedad  Anonima Banco Davivienda Honduras', '601-014893-4', 'Cheques', '', 1),
-(25, 'Centro Industrial y Tecnico del Color S. De R.L.', '', 'Banco de Occidente, S.A.', '11907000901-2', 'Cheques', '', 1),
-(26, 'Comcel', '', 'Banco del Pais, S.A.', '21-300-0224124', 'Cheques', '', 1),
-(27, 'Comercial Genesis y Asociados S. de R.L.  Comercial Genesa', '', 'Banco de America Central Honduras,  S. A. ', '730216691', 'Cheques', '', 1),
-(28, 'Comercial Ultramotor', '', 'Banco Atlantida,  S.A. ', '1100231487', 'Cheques', '', 1),
-(29, 'Comercial Yoly S.de R.L.', '', 'Banco de Desarrollo  Rural Honduras,  S.A. ', '0590101001770-0', 'Cheques', '', 1),
-(30, 'Comercializaciones Q S De R. L. de C.V.', '', 'Banco del Pais, S.A.', '01600000815-6', 'Cheques', '', 1),
-(31, 'Comercializadora El Mueble S de R.L. (Coelmu S. de R.L.)', '', 'Banco de America Central Honduras,  S. A. ', '10535003-1', 'Cheques', '', 1),
-(32, 'Comisariato IPM', '', 'Banco del Pais, S.A.', '01-599-001037-4', 'Cheques', '', 1),
-(33, 'Constructora Rivera ', '', 'Banco de los Trabajadores, S.A.', '21705000009-1', 'Cheques', '', 1),
-(34, 'Consultoria, Supervision Y Construccion De Obras S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '90199010-1', 'Ahorros', '', 1),
-(35, 'Corporacion Industrial Farmaceutica S.A. de C.V', '', 'Banco Lafise Honduras', '11150300007-6', 'Cheques', '', 1),
-(36, 'Darwin Antonio Velasquez Arias ', '', 'Banco del Pais, S.A.', '21-304-000874-0', 'Ahorros', '', 1),
-(37, 'David Humberto Owen Garcia/Norit', '', 'Banco Hondure?o  del Cafe, S.A.', '160400000-2', 'Cheques', '', 1),
-(38, 'Dental Pro', '', 'Banco de America Central Honduras,  S. A. ', '730134521', 'Cheques', '', 1),
-(39, 'Dimafer y Electricos, S. de. R.L.', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '20000271888-9', 'Cheques', '', 1),
-(40, 'DISPROA', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '0030010007023-2', 'Cheques', '', 1),
-(41, 'Distribuciones Diversas de Centro America S. De R.L.', '', 'Banco Lafise Honduras', '11450300076-7', 'Cheques', '', 1),
-(42, 'Distribuciones Valencia', '', 'Banco de Occidente, S.A.', '21401142153-6', 'Ahorros', '', 1),
-(43, 'Distribuidora Chorotega ', '', 'Banco de America Central Honduras,  S. A. ', '900193401', 'Ahorros', '', 1),
-(44, 'Distribuidora Comercial S.A DICOSA', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '0011027042-9', 'Cheques', '', 1),
-(45, 'Distribuidora de Materiales de Sula S.A. de C.V. (DIDEMA).', '', 'Banco del Pais, S.A.', '01001002411-2', 'Cheques', '', 1),
-(46, 'Distribuidora De Productos y Servicios Pizzati', '', 'Sociedad  Anonima Banco Davivienda Honduras', '301131991-4', 'Cheques', '', 1),
-(47, 'Distribuidora Dilops/ Glenda Xiomara Lopez Romero', '', 'Banco Hondure?o  del Cafe, S.A.', '1606000215', 'Cheques', '', 1),
-(48, 'Distribuidora Soal', '', 'Banco de Occidente, S.A.', '11401015008-7', 'Cheques', '', 1),
-(49, 'Distribuidores Tecnologicos S. de R.L. de C.V. (Distech)', '', 'Banco de America Central Honduras,  S. A. ', '72734531-1', 'Ahorros', '', 1),
-(50, 'Droguer?a Pharma Internacional S. de R.L.', '', 'Sociedad  Anonima Banco Davivienda Honduras', '101016507-9', 'Cheques', '', 1),
-(51, 'Drogueria Y Distribuciones Diversas de Centroamerica S. de R.L.  ', '', 'Banco de America Central Honduras,  S. A. ', '730277261', 'Cheques', '', 1),
-(52, 'Editorial Luna Color S. de R.L.', '', 'Banco del Pais, S.A.', '01300001000-8', 'Cheques', '', 1),
-(53, 'El Heraldo', '', 'Banco de America Central Honduras,  S. A. ', '100350938', 'Cheques', '', 1),
-(54, 'El Libano Industrial S. de R.L. de C.V.', '', 'Banco del Pais, S.A.', '01014000118-0', 'Cheques', '', 1),
-(55, 'Electro Llantas S. de R.L.', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '021026705-8', 'Cheques', '', 1),
-(56, 'Empresa De Mantenimiento y Servicios Maritimos (Eagle Marine S.A.)', '', 'Banco Atlantida,  S.A. ', '31000-71053', 'Cheques', '', 1),
-(57, 'Empresa Para El Desarrollo Social De Honduras, S.A. de C.V. (Empadesh),', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '0021390000016-7', 'Cheques', '', 1),
-(58, 'Equipos y Agroindustrias Torres/ Blanca Sabina Flores M', '', 'Banco Atlantida,  S.A. ', '2203029901', 'Ahorros', '', 1),
-(59, 'Escuela de Comando y Estado Mayor', '', 'Banco del Pais, S.A.', '01-599-001536-8', 'Cheques', '', 1),
-(60, 'Escuela de Suboficiales Navales', '', 'Banco del Pais, S.A.', '01-599-001655-0', 'Cheques', '', 1),
-(61, 'Escuela Tecnica del Ejercito', '', 'Banco del Pais, S.A.', '21-599-001107-1', 'Cheques', '', 1),
-(62, 'Ess-Electronics And Systems Solutions S. DE R.L. DE C.V.', '', 'Banco del Pais, S.A.', '21-001-044171-9', 'Cheques', '', 1),
-(63, 'Extintores De Honduras/William Nahum Martinez Canales', '', 'Banco de Occidente, S.A.', '21406117976-3', 'Ahorros', '', 1),
-(64, 'Fabrica De Extractores Fuentes ', '', 'Banco de America Central Honduras,  S. A. ', '73-000-8441', 'Cheques', '', 1),
-(65, 'FAH/FNH/ Centro De Adiestramiento Naval', '', 'Banco del Pais, S.A.', '01-599-001673-9', 'Cheques', '', 1),
-(66, 'FAH/FNH/2do Batallon De Infanteria De Marina', '', 'Banco del Pais, S.A.', '01-599-001283-0', 'Cheques', '', 1),
-(67, 'FAH/FNH/Primer Batall?n De Fuerzas Especiales', '', 'Banco del Pais, S.A.', '01-599-001802-2', 'Cheques', '', 1),
-(68, 'Ferreteria La Economica S. De R.L. Ferreco', '', 'Banco Hondure?o  del Cafe, S.A.', '561400000-9', 'Cheques', '', 1),
-(69, 'Ferreteria Pineda', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '20000501354-1', 'Ahorros', '', 1),
-(70, 'Ferreteria y Maderera Grufer ', '', 'Banco de America Central Honduras,  S. A. ', '73013774-1', 'Cheques', '', 1),
-(71, 'FFAA/FNH/BANAGUA', '', 'Banco del Pais, S.A.', '01-599-001650-0', 'Cheques', '', 1),
-(72, 'FFAA/FNH/Base Naval De Caratasca', '', 'Banco del Pais, S.A.', '01-599-001676-3', 'Cheques', '', 1),
-(73, 'FFAA/FNH/Cuartel General Naval', '', 'Banco del Pais, S.A.', '01-599-001654-2', 'Cheques', '', 1),
-(74, 'Formulas Quimicas S. De R.L.', '', 'Banco de America Central Honduras,  S. A. ', '90366000-1', 'Cheques', '', 1),
-(75, 'Fuerzas Armadas de Honduras /Academia Naval De Honduras', '', 'Banco del Pais, S.A.', '01-602-000012-6', 'Cheques', '', 1),
-(76, 'Fuerzas Armadas de Honduras /Fuerza Naval /Apoyo Institucional', '', 'Banco Central de Honduras', '11101-01-000991-1', 'Cheques', '', 1),
-(77, 'Fuerzas Armadas de Honduras /Fuerza Naval /Fondo de Inversi?n', '', 'Banco Central de Honduras', '11101-01-000990-1', 'Cheques', '', 1),
-(78, 'Fuerzas Armadas de Honduras /Fuerza Naval /Funcionamiento', '', 'Banco Central de Honduras', '11101-01-000992-8', 'Cheques', '', 1),
-(79, 'Fuerzas Armadas de Honduras /Fuerza Naval /Haberes de Tropa', '', 'Banco Central de Honduras', '11101-01-000989-8', 'Cheques', '', 1),
-(80, 'Fuerzas Armadas de Honduras/ Fuerza Naval /BANAMAP', '', 'Banco del Pais, S.A.', '01-599-001256-3', 'Cheques', '', 1),
-(81, 'Fuerzas Armadas de Honduras/Escuadra Naval', '', 'Banco del Pais, S.A.', '01-599-001609-7', 'Cheques', '', 1),
-(82, 'Fuerzas Armadas/Industria Militar/Fondos Propios', '', 'Banco Central de Honduras', '11101-01-000973-1', 'Cheques', '', 1),
-(83, 'Fundaempresa', '', 'Banco de America Central Honduras,  S. A. ', '100370671', 'Cheques', '', 1),
-(84, 'Grupo Biomed S. de. .R.L. de C.V.', '', 'Banco Lafise Honduras', '11450300021-0', 'Cheques', '', 1),
-(85, 'Grupo Multicables de Cortes, S. de R.L. ', '', 'Banco de America Central Honduras,  S. A. ', '730294321', 'Ahorros', '', 1),
-(86, 'Healthcare Products Centroam?rica S. de R.L.', '', 'Banco Lafise Honduras', '10110100525-6', 'Cheques', '', 1),
-(87, 'Hondurasnet S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '913436901', 'Cheques', '', 1),
-(88, 'Hondurasnet S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '913436901', 'Cheques', '', 1),
-(89, 'Hospital Militar', '', 'Banco del Pais, S.A.', '01-599-000613-0', 'Cheques', '', 1),
-(90, 'Humberto Jossue Castillo Ortega/ Inversiones Castillo', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '4124066096', 'Cheques', '', 1),
-(91, 'IMS Consulting de Honduras S de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '727277291', 'Ahorros', '', 1),
-(92, 'Ingenieria, Importaciones Y Soluciones Energeticas', '', 'Sociedad  Anonima Banco Davivienda Honduras', '216006141-3', 'Cheques', '', 1),
-(93, 'Instituto Fuerza Naval', '', 'Banco Lafise Honduras', '24050300002-6', 'Cheques', '', 1),
-(94, 'INVERDUCOR (Inversiones Duron de Cortes)', '', 'Banco de Occidente, S.A.', '11-205-002319-5', 'Cheques', '', 1),
-(95, 'Inversiones Amor S de R.L', '', 'Banco de America Central Honduras,  S. A. ', '73023524-1', 'Cheques', '', 1),
-(96, 'Inversiones de Combustible S. de R.L.  ', '', 'Banco Atlantida,  S.A. ', '10120081269', 'Cheques', '', 1),
-(97, 'Inversiones Energy S. de R.L. de C.V.', '', 'Banco de America Central Honduras,  S. A. ', '20012421-3', 'Cheques', '', 1),
-(98, 'Inversiones Florales Ar Flowers, S. de R.L.', '', 'Banco de Occidente, S.A.', '21417114198-1', 'Ahorros', '', 1),
-(99, 'Inversiones Kalter ', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '20000503600-2', 'Ahorros', '', 1),
-(100, 'Inversiones Logisticas H&M S. de R.L.', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '20000509144-5', 'Cheques', '', 1),
-(101, 'Inversiones R y R', '', 'Banco de America Central Honduras,  S. A. ', '729770951', 'Ahorros', '', 1),
-(102, 'Inversiones y Equipos S. de R.L. de C.V.', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '11390000398-7', 'Cheques', '', 1),
-(103, 'La Armeria ', '', 'Banco del Pais, S.A.', '21-599-001222-1', 'Ahorros', '', 1),
-(104, 'Lapidas y Placas de Honduras', '', 'Banco Atlantida,  S.A. ', '1332010824-7', 'Ahorros', '', 1),
-(105, 'Leoplast S. de R.L.', '', 'Banco de Occidente, S.A.', '11401012673-9', 'Cheques', '', 1),
-(106, 'Madison Dry Cleaners', '', 'Banco Atlantida,  S.A. ', '120347652-6', 'Cheques', '', 1),
-(107, 'Magnum Base S. de R.L. de C. V.', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '0211010058986-9', 'Cheques', '', 1),
-(108, 'Maritima y Transportes Honduras  S.A de C.V.', '', 'Banco de Occidente, S.A.', '11201003603-2', 'Cheques', '', 1),
-(109, 'Maritimos y Transporte de Honduras', '', 'Banco de Occidente, S.A.', '112000000000-0', 'Cheques', '', 1),
-(110, 'Medica Dental Nacional S. de R.L. Medident', '', 'Banco de Occidente, S.A.', '11230000017-0', 'Cheques', '', 1),
-(111, 'Meditec', '', 'Sociedad  Anonima Banco Davivienda Honduras', '2011056248', 'Cheques', '', 1),
-(112, 'Metales y Mas S. de R.L.', '', 'Banco de Occidente, S.A.', '11-403-013193-2', 'Cheques', '', 1),
-(113, 'Motores Kawas ', '', 'Banco Atlantida,  S.A. ', '310-00-21595', 'Cheques', '', 1),
-(114, 'Multiservicios Lagos Sm, S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '729205731', 'Cheques', '', 1),
-(115, 'Muros y Mas S. de R.L. de C.V.', '', 'Banco Atlantida,  S.A. ', '1011101642-3', 'Cheques', '', 1),
-(116, 'Nohelia Sport', '', 'Banco de Occidente, S.A.', '11-205-002410-8', 'Cheques', '', 1),
-(117, 'Norit/ David Humberto Owen Garcia', '', 'Banco Hondure?o  del Cafe, S.A.', '1604000002', 'Cheques', '', 1),
-(118, 'Novedades Steffys', '', 'Sociedad  Anonima Banco Promerica,  S.A.', '176476-7', 'Ahorros', '', 1),
-(119, 'Operadores Turisticos de Honduras S.A.', '', 'Banco de Occidente, S.A.', '11401017470-9', 'Cheques', '', 1),
-(120, 'Pagaduria Fuerza Naval', '', 'Banco del Pais, S.A.', '215-990-007-350', 'Ahorros', '', 1),
-(121, 'Papelera Calpules S.A. de C.V. (Pacasa)', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '021-102-10-100-7', 'Cheques', '', 1),
-(122, 'Papeleria Honduras S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '90977720-1', 'Cheques', '', 1),
-(123, 'Pat Joyeria y Relojeria S. de R.L.', '', 'Banco Atlantida,  S.A. ', '110015032-3', 'Cheques', '', 1),
-(124, 'Periodicos y Revistas S.A de C.V.', '', 'Banco de Occidente, S.A.', '11424000209-8', 'Cheques', '', 1),
-(125, 'Pinturas Sur De Honduras ', '', 'Banco de America Central Honduras,  S. A. ', '90990930-1', 'Cheques', '', 1),
-(126, 'Pool Supplies S. De R.L.', '', 'Banco de America Central Honduras,  S. A. ', '730159491', 'Cheques', '', 1),
-(127, 'Primer Batallon de Infanteria De Marina', '', 'Banco del Pais, S.A.', '01-600-000263-8', 'Cheques', '', 1),
-(128, 'Pronto Servicios de Honduras', '', 'Banco Financiera  Centroamericana, S.A. ', '320022932', 'Ahorros', '', 1),
-(129, 'Proveedora de Materiales De La Construccion(Promaco)', '', 'Banco Atlantida,  S.A. ', '720066996-3', 'Cheques', '', 1),
-(130, 'Proyecto de Ingenier?a Centroamericana S. de R.L (Proinca S. de R.L.)', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '0012401983-1', 'Ahorros', '', 1),
-(131, 'Reencauche y Distribucion de Llantas S.A de C.V', '', 'Banco de America Central Honduras,  S. A. ', '73003546-1', 'Cheques', '', 1),
-(132, 'Representaciones Quimicas de Centro America S. de R.L.', '', 'Banco de Occidente, S.A.', '11408013088-3', 'Cheques', '', 1),
-(133, 'Representaciones y Distribuciones Ponce (REDIPO)', '', 'Banco Atlantida,  S.A. ', '110026205-2', 'Cheques', '', 1),
-(134, 'Repuestos y Accesorios Pizzati', '', 'Sociedad  Anonima Banco Davivienda Honduras', '301131991-4', 'Cheques', '', 1),
-(135, 'Restaurante y Terraza Bella Vista S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '727832231', 'Cheques', '', 1),
-(136, 'RILMAC Impresores', '', 'Banco de America Central Honduras,  S. A. ', '730013641', 'Cheques', '', 1),
-(137, 'Rocas Comercial / Renen Orlando Casco', '', 'Banco de Occidente, S.A.', '21-401-165868-8', 'Ahorros', '', 1),
-(138, 'Roymart S. de R.L. De C.V.', '', 'Banco de America Central Honduras,  S. A. ', '71000651-1', 'Cheques', '', 1),
-(139, 'RZV Soluciones Y Distribuciones Inform?ticas ', '', 'Banco de America Central Honduras,  S. A. ', '102350141', 'Cheques', '', 1),
-(140, 'Secretaria De Defensa Nacional / Universidad de Defensa de Honduras', '', 'Banco del Pais, S.A.', '01-599-000886-8', 'Cheques', '', 1),
-(141, 'SEDENA-Hospital Militar', '', 'Banco del Pais, S.A.', '01599000613-0', 'Cheques', '', 1),
-(142, 'Seguros Atlantida, S.A.', '', 'Banco Atlantida,  S.A. ', '110002248-0', 'Cheques', '', 1),
-(143, 'Seribotex S. de R.L.', '', 'Banco Atlantida,  S.A. ', '1152006553-0', 'Ahorros', '', 1),
-(144, 'Servi Meches', '', 'Banco del Pais, S.A.', '21-302-0092266', 'Ahorros', '', 1),
-(145, 'Servicio Electrico Mecanico Industrial S.E.M.I', '', 'Banco de Occidente, S.A.', '112000000000.00', 'Cheques', '', 1),
-(146, 'Servicios Aire, Tierra y Mar S.de.R.L.', '', 'Banco Atlantida,  S.A. ', '01011101372-7', 'Cheques', '', 1),
-(147, 'Servicios Maritimos De Honduras, S. de R.L. ', '', 'Banco de America Central Honduras,  S. A. ', '727392311', 'Ahorros', '', 1),
-(148, 'Servicios Tecnicos y Suministros (STS)', '', 'Banco Atlantida,  S.A. ', '001-201-71145-2', 'Ahorros', '', 1),
-(149, 'Servitodo S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '91120770-1', 'Cheques', '', 1),
-(150, 'Sistemas Graficos Mendez / Sigmen', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '011-101-344071', 'Cheques', '', 1),
-(151, 'Souvenirs Artesanias Candu', '', 'Banco de America Central Honduras,  S. A. ', '100200488', 'Ahorros', '', 1),
-(152, 'Stephanie Williams Caceres', '', 'Banco del Pais, S.A.', '21-326-002884-8', 'Ahorros', '', 1),
-(153, 'Supermercados Yip S. A de C.V', '', 'Banco Atlantida,  S.A. ', '110003439-4', 'Cheques', '', 1),
-(154, 'Taller Velassquez', '', 'Banco del Pais, S.A.', '21304000874-0', 'Ahorros', '', 1),
-(155, 'Tecnicom y Suministros S de R.L.', '', 'Banco Atlantida,  S.A. ', '1381100092-9', 'Cheques', '', 1),
-(156, 'Tecnologias y Servicios Internacionales de Honduras S.A de C.V.', '', 'Banco de America Central Honduras,  S. A. ', '73020157-1', 'Cheques', '', 1),
-(157, 'Tienda Militar I.P.M.', '', 'Banco del Pais, S.A.', '01-599-000608-3', 'Cheques', '', 1),
-(158, 'Tienda Naval', '', 'Banco del Pais, S.A.', '21302009511-7', 'Ahorros', '', 1),
-(159, 'Tienda Naval', '', 'Banco del Pais, S.A.', '01302000225-6', 'Cheques', '', 1),
-(160, 'Tornillos y Partes Industriales S. de R.L. De C.V.', '', 'Sociedad  Anonima Banco Davivienda Honduras', '6010109980', 'Cheques', '', 1),
-(161, 'Toyoservicio, S.A.', '', 'Banco de America Central Honduras,  S. A. ', '91151860-1', 'Cheques', '', 1),
-(162, 'Tulio Roberto Lagos Arnold', '', 'Banco del Pais, S.A.', '21-318-006260-8', 'Ahorros', '', 1),
-(163, 'Tulipanes Alimentos y Servicios S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '91153810-1', 'Cheques', '', 1),
-(164, 'Xmedia S. de R.L.', '', 'Banco de America Central Honduras,  S. A. ', '100603860', 'Cheques', '', 1),
-(165, 'XXI Batallon de Policia Militar (Haberes)', '', 'Banco del Pais, S.A.', '01-599-000785-3', 'Cheques', '', 1),
-(166, 'Yam Industrial S. de R.L. de C.V', '', 'Banco Financiera  Comercial  Hondure?a, S.A. ', '07101301-836', 'Cheques', '', 1);
+(1, 'ACCESORIOS PARA COMPUTADORA Y OFICINAS S. A DE C.V.', 'N.A', 'BANCO DEL PAIS', '01-010-000331-9', 'CHEQUES', '1558141700.jpg', 1),
+(2, 'ALEJANDROS AUTO PARTS', '1588', 'BANCO FICOHSA', '0111390000032-6', 'CHEQUES', '', 1),
+(3, 'ALMACEN INDUSTRIAL / KUESTERMANN Y BIENST S.DE R.L.', '', 'DAVIVIENDA HONDURAS, S.A.', '6010089497', 'CHEQUES', '', 1),
+(4, 'AMERICAN DRY CLEANING S. DE R.L.', '', 'BANCO DE OCCIDENTE S.A', '11412130636-0', 'CHEQUES', '', 1),
+(5, 'ANPHAR S.A. DE C.V.', '', 'BANCO DE OCCIDENTE S.A', '11201013472-7', 'CHEQUES', '', 1),
+(6, 'ARRENDADORA DE VEHICULOS, S.A.,', '', 'BAC HONDURAS', '72377563-1', 'CHEQUES', '', 1),
+(7, 'ASTRO TOUR S DE R.L', '', 'BANCO DE OCCIDENTE S.A', '11201008282-4', 'CHEQUES', '', 1),
+(8, 'AUTO PARTES REAYA S.A. DE  C.V. ', '', 'BAC HONDURAS', '730129391', 'CHEQUES', '', 1),
+(9, 'AUTO PARTES REAYA S.A. DE  C.V. ', '', 'BANCO DE OCCIDENTE S.A.', '11-201-003553-2', 'CHEQUES', '', 1),
+(10, 'AUTOSUSPENSION / RAFAEL RODAS CORRALES ', '', 'BAC HONDURAS', '730078331', 'CHEQUES', '', 1),
+(11, 'AZ COMERCIAL S. DE R.L.', '', 'BANCO DE OCCIDENTE S.A', '11402013075-5', 'CHEQUES', '', 1),
+(12, 'BAR Y RESTAURANTE EL PELICANO', '', 'DAVIVIENDA HONDURAS, S.A.', '207132071-5', 'AHORRO', '', 1),
+(13, 'BASE NAVAL DE PUERTO CASTILLA', '', 'BANCO DEL PAIS', '01-635-000079-0', 'CHEQUES', '', 1),
+(14, 'BASE NAVAL DE PUERTO CORTES', '', 'BANCO DEL PAIS', '01-070-000126-0', 'CHEQUES', '', 1),
+(15, 'CAM INTERNATIONAL HONDURAS', '', 'BANCO FICOHSA', '200002689404-', 'AHORROS ', '', 1),
+(16, 'CASA COMERCIAL MATHEWS, S.A DE C.V. (CEMCOL)', '', 'BANCO DEL PAIS', '01299000003-0', 'CHEQUES', '', 1),
+(17, 'CASA EVENTOS S. DE R.L. DE C.V.', '', 'BAC HONDURAS', '730323501', 'AHORROS ', '', 1),
+(18, 'CASA RAFAEL ', '', 'BANCO ATLANTIDA', '3100036759', 'CHEQUES', '', 1),
+(19, 'CENTRAL DE MANGUERAS S.A (PTO CORTES)', '', 'BAC HONDURAS', '90173850-1', 'CHEQUES', '', 1),
+(20, 'CENTRAL DE MANGUERAS S.A (TOCOA)', '', 'BANCO ATLANTIDA', '110013295-8', 'CHEQUES', '', 1),
+(21, 'CENTRAL DE TURBOS E INVERSIONES DE HONDURAS', '', 'BAC HONDURAS', '72908848-1', 'CHEQUES', '', 1),
+(22, 'CENTRO DE ADIESTRAMIENTO MILITAR DEL EJERCITO', '', 'BANCO DEL PAIS', '01-370-000078-1', 'CHEQUES', '', 1),
+(23, 'CENTRO EXPERIMENTAL DE DESARROLLO AGROPECUARIO Y CONSERVACION ECOLOGICA', '', 'BANCO DEL PAIS', '01-345-000087-9', 'CHEQUES', '', 1),
+(24, 'CENTRO FERRETERO TORNIFESA S. DE R.L. DE C.V.', '', 'DAVIVIENDA HONDURAS, S.A.', '601-014893-4', 'CHEQUES', '', 1),
+(25, 'CENTRO INDUSTRIAL Y TECNICO DEL COLOR S. DE R.L.', '', 'BANCO DE OCCIDENTE S.A', '11907000901-2', 'CHEQUES', '', 1),
+(26, 'COMCEL', '', 'BANCO DEL PAIS', '21-300-0224124', 'CHEQUES', '', 1),
+(27, 'COMERCIAL GENESIS Y ASOCIADOS S. DE R.L.  COMERCIAL GENESA', '', 'BAC HONDURAS', '730216691', 'CHEQUES', '', 1),
+(28, 'COMERCIAL ULTRAMOTOR', '', 'BANCO ATLANTIDA, S.A.', '1100231487', 'CHEQUES', '', 1),
+(29, 'COMERCIAL YOLY S.DE R.L.', '', 'BANRURAL', '0590101001770-0', 'CHEQUES', '', 1),
+(30, 'COMERCIALIZACIONES Q S DE R. L. DE C.V.', '', 'BANCO DEL PAIS', '01600000815-6', 'CHEQUES', '', 1),
+(31, 'COMERCIALIZADORA EL MUEBLE S DE R.L. (COELMU S DE R.L.)', '', 'BAC HONDURAS', '10535003-1', 'CHEQUES', '', 1),
+(32, 'COMISARIATO IPM', '', 'BANCO DEL PAIS', '01-599-001037-4', 'CHEQUES', '', 1),
+(33, 'CONSTRUCTORA RIVERA ', '', 'BANCO DE LOS TRABAJADORES', '21705000009-1', 'CHEQUES', '', 1),
+(34, 'CONSULTORIA, SUPERVISION Y CONSTRUCCION DE OBRAS S. DE R.L.', '', 'BAC HONDURAS', '90199010-1', 'AHORRO', '', 1),
+(35, 'CORPORACION INDUSTRIAL FARMACEUTICA S.A. DE C.V', '', 'BANCO LAFISE S.A.', '11150300007-6', 'CHEQUES', '', 1),
+(36, 'DARWYN ANTONIO VELASQUEZ ARIAS ', '', 'BANCO DEL PAIS', '21-304-000874-0', 'AHORRO', '', 1),
+(37, 'DAVID HUMBERTO OWEN GARCIA/NORIT', '', 'BANHCAFE', '160400000-2', 'CHEQUES', '', 1),
+(38, 'DENTAL PRO', '', 'BAC HONDURAS', '730134521', 'CHEQUES', '', 1),
+(39, 'DIMAFER Y ELECTRICOS, S. DE. R.L.', '', 'BANCO FICOHSA', '20000271888-9', 'CHEQUES', '', 1),
+(40, 'DISPROA', '', ' BANCO FICOHSA', '0030010007023-2', 'CHEQUES', '', 1),
+(41, 'DISTRIBUCIONES DIVERSAS DE CENTRO AMERICA S DE RL', '', 'BANCO LAFISE S.A.', '11450300076-7', 'CHEQUES', '', 1),
+(42, 'DISTRIBUCIONES VALENCIA', '', 'BANCO DE OCCIDENTE', '21401142153-6', 'AHORRO', '', 1),
+(43, 'DISTRIBUIDORA CHOROTEGA ', '', 'BAC HONDURAS', '900193401', 'AHORRO', '', 1),
+(44, 'DISTRIBUIDORA COMERCIAL S.A \"DICOSA\"', '', 'BANCO FICOHSA', '0011027042-9', 'CHEQUES', '', 1),
+(45, 'DISTRIBUIDORA DE MATERIALES DE SULA S.A. DE C.V. DIDEMA.', '', 'BANCO DEL PAIS', '01001002411-2', 'CHEQUES', '', 1),
+(46, 'DISTRIBUIDORA DE PRODUCTOS Y SERVICIOS PIZZATI', '', 'DAVIVIENDA HONDURAS, S.A.', '301131991-4', 'CHEQUES', '', 1),
+(47, 'DISTRIBUIDORA DILOPS/ GLENDA SIOMARA LOPEZ ROMERO', '', 'BANCO BANHCAFE', '1606000215', 'CHEQUES', '', 1),
+(48, 'DISTRIBUIDORA SOAL', '', 'BANCO DE OCCIDENTE', '11401015008-7', 'CHEQUES', '', 1),
+(49, 'DISTRIBUIDORES TECNOLOGICOS S. DE R.L. DE C.V. (DISTECH)', '', 'BAC HONDURAS', '72734531-1', 'AHORRO', '', 1),
+(50, 'DROGUERIA PHARMA INTERNACIONAL S. DE R.L.', '', 'DAVIVIENDA HONDURAS, S.A.', '101016507-9', 'CHEQUES', '', 1),
+(51, 'DROGUERIA Y DISTRIBUCIONES DIVERSAS DE CENTROAMERICA S. DE R.L.  ', '', 'BAC HONDURAS', '730277261', 'CHEQUES', '', 1),
+(52, 'EDITORIAL LUNA COLOR S. de R.L.', '', 'BANCO DEL PAIS', '01300001000-8', 'CHEQUES', '', 1),
+(53, 'EL HERALDO', '', 'BAC HONDURAS', '100350938', 'CHEQUES', '', 1),
+(54, 'EL LIBANO INDUSTRIAL S. DE R.L. DE C.V.', '', 'BANCO DEL PAIS', '01014000118-0', 'CHEQUES', '', 1),
+(55, 'ELECTRO LLANTAS S.DE R.L.', '', 'BANCO FICOHSA', '021026705-8', 'CHEQUES', '', 1),
+(56, 'EMPRESA DE MANTENIMIENTO Y SERVICIOS MARITIMOS (EAGLE MARINE S.A.)', '', 'BANCO ATLANTIDA', '31000-71053', 'CHEQUES', '', 1),
+(57, 'EMPRESA PARA EL DESARROLLO SOCIAL DE HONDURAS, S.A. DE C.V. (EMPADESH),', '', 'BANCO FICOHSA', '0021390000016-7', 'CHEQUES', '', 1),
+(58, 'ENSE?ANZAS DE LA TECNOLOGIA DE INFORMACION Y COMUNICACION S DE R.L.', '', 'BANCO FICOHSA', '0-152401326', 'AHORROS ', '', 1),
+(59, 'EQUIPOS Y AGROINDUSTRIAS TORRES/ BLANCA SABINA FLORES M', '', 'BANCO ATLANTIDA, S.A.', '2203029901', 'AHORROS', '', 1),
+(60, 'ESCUELA DE COMANDO Y ESTADO MAYOR', '', 'BANCO DEL PAIS', '01-599-001536-8', 'CHEQUES', '', 1),
+(61, 'ESCUELA DE SUBOFICIALES NAVALES', '', 'BANCO DEL PAIS', '01-599-001655-0', 'CHEQUES', '', 1),
+(62, 'ESCUELA TECNICA DE LEJERCITO', '', 'BANCO DEL PAIS', '21-599-001107-1', 'CHEQUES', '', 1),
+(63, 'ESS-ELECTRONICS AND SYSTEMS SOLUTIONS S de RL de CV ', '', 'BANCO DEL PAIS', '21-001-044171-9', 'CHEQUES', '', 1),
+(64, 'EXTINTORES DE HONDURAS/WILLIAM NAHUN MARTINEZ CANALES', '', 'BANCO DE OCCIDENTE S.A', '21406117976-3', 'AHORROS', '', 1),
+(65, 'FABRICA DE EXTRACTORES FUENTES ', '', 'BAC HONDURAS', '73-000-8441', 'CHEQUES', '', 1),
+(66, 'FAH/FNH/ CENTRO DE ADIESTRAMIENTO NAVAL', '', 'BANCO DEL PAIS', '01-599-001673-9', 'CHEQUES', '', 1),
+(67, 'FAH/FNH/2DO BATALLON DE INFANTERIA DE MARINA', '', 'BANCO DEL PAIS', '01-599-001283-0', 'CHEQUES', '', 1),
+(68, 'FAH/FNH/PRIMER BATALLON DE FUERZAS ESPECIALES', '', 'BANCO DEL PAIS', '01-599-001802-2', 'CHEQUES', '', 1),
+(69, 'FERRETERIA LA ECONOMICA S. DE R.L. FERRECO', '', 'BANCO BANHCAFE', '561400000-9', 'CHEQUES', '', 1),
+(70, 'FERRETERIA PINEDA', '', 'BANCO FICOHSA', '20000501354-1', 'AHORRO', '', 1),
+(71, 'FERRETERIA Y MADERERA GRUFER ', '', 'BAC HONDURAS', '73013774-1', 'CHEQUES', '', 1),
+(72, 'FFAA/FNH/BANAGUA', '', 'BANCO DEL PAIS', '01-599-001650-0', 'CHEQUES', '', 1),
+(73, 'FFAA/FNH/BASE NAVAL DE CARATASCA', '', 'BANCO DEL PAIS', '01-599-001676-3', 'CHEQUES', '', 1),
+(74, 'FFAA/FNH/CUARTEL GENERAL NAVAL', '', 'BANCO DEL PAIS', '01-599-001654-2', 'CHEQUES', '', 1),
+(75, 'FORMULAS QUIMICAS S. DE R.L.', '', 'BAC HONDURAS', '90366000-1', 'CHEQUES', '', 1),
+(76, 'FUERZAS ARMADAS DE HONDURAS /ACADEMIA NAVAL DE HONDURAS', '', 'BANCO DEL PAIS', '01-602-000012-6', 'CHEQUES', '', 1),
+(77, 'FUERZAS ARMADAS DE HONDURAS /FUERZA NAVAL /APOYO INSTITUCIONAL', '', 'BANCO CENTRAL DE HONDURAS', '11101-01-000991-1', 'CHEQUES', '', 1),
+(78, 'FUERZAS ARMADAS DE HONDURAS /FUERZA NAVAL /FONDO DE INVERSION', '', 'BANCO CENTRAL DE HONDURAS', '11101-01-000990-1', 'CHEQUES', '', 1),
+(79, 'FUERZAS ARMADAS DE HONDURAS /FUERZA NAVAL /FUNCIONAMIENTO', '', 'BANCO CENTRAL DE HONDURAS', '11101-01-000992-8', 'CHEQUES', '', 1),
+(80, 'FUERZAS ARMADAS DE HONDURAS /FUERZA NAVAL /HABERES DE TROPA', '', 'BANCO CENTRAL DE HONDURAS', '11101-01-000989-8', 'CHEQUES', '', 1),
+(81, 'FUERZAS ARMADAS DE HONDURAS(ECAMAN)', '', 'BANCO DEL PAIS', '21-599-001977-3', 'AHORROS ', '11', 1),
+(82, 'FUERZAS ARMADAS DE HONDURAS/ FUERZA NAVAL /BANAMAP', '', 'BANCO DEL PAIS', '01-599-001256-3', 'CHEQUES', '', 1),
+(83, 'FUERZAS ARMADAS DE HONDURAS/ESCUADRA NAVAL', '', 'BANCO DEL PAIS', '01-599-001609-7', 'CHEQUES', '', 1),
+(84, 'FUERZAS ARMADAS/INDUSTRIA MILITAR/FONDOS PROPIOS', '', 'BANCO CENTRAL DE HONDURAS', '11101-01-000973-1', 'CHEQUES', '', 1),
+(85, 'FUNDAEMPRESA', '', 'BAC HONDURAS', '100370671', 'CHEQUES', '', 1),
+(86, 'GRUPO BIOMED S. DE. .R.L. DE C.V.', '', 'BANCO LAFISE S.A.', '11450300021-0', 'CHEQUES', '', 1),
+(87, 'GRUPO MULTICABLES DE CORTES, S DE R.L. ', '', 'BAC HONDURAS', '730294321', 'AHORRO', '', 1),
+(88, 'HEALTHCARE PRODUCTS CENTROAMERICA S. DE R.L.', '', 'BANCO LAFISE S.A.', '10110100525-6', 'CHEQUES', '', 1),
+(89, 'HONDURASNET S. DE R.L.', '', 'BAC HONDURAS', '913436901', 'CHEQUES', '', 1),
+(90, 'HONDURASNET S. DE R.L.', '', 'BAC HONDURAS', '913436901', 'CHEQUES', '', 1),
+(91, 'HOSPITAL MILITAR', '', 'BANCO DEL PAIS', '01-599-000613-0', 'CHEQUES', '', 1),
+(92, 'HUMBERTO JOSSUE CASTILLO ORTEGA/ INVERSIONES CASTILLO', '', 'BANCO FICOHSA', '4124066096', 'CHEQUES', '', 1),
+(93, 'IMS CONSULTING DE HONDURAS S DE RL', '', 'BAC HONDURAS ', '727277291', 'AHORROS', '', 1),
+(94, 'INGENIERIA, IMPORTACIONES Y SOLUCIONES ENERGETICAS', '', 'DAVIVIENDA HONDURAS, S.A.', '216006141-3', 'CHEQUES', '', 1),
+(95, 'INSTITUTO FUERZA NAVAL', '', 'BANCO LAFISE S.A.', '24050300002-6', 'CHEQUES', '', 1),
+(96, 'INVERDUCOR (INVERSIONES DURON DE CORTES)', '', 'BANCO DE OCCIDENTE S.A.', '11-205-002319-5', 'CHEQUES', '', 1),
+(97, 'INVERSIONES AMOR S DE R.L', '', 'BAC HONDURAS', '73023524-1', 'CHEQUES', '', 1),
+(98, 'INVERSIONES DE COMBUSTIBLE S. DE R.L. (INVERCO)', '', 'BANCO ATLANTIDA, S.A.', '10120081269', 'AHORROS', '', 1),
+(99, 'INVERSIONES DEL CENTRO S. DE R.L. DE C.V.', '', 'BAC HONDURAS', '73024779-1', 'CHEQUES', '', 1),
+(100, 'INVERSIONES ENERGY S. DE R.L. DE C.V.', '', 'BAC HONDURAS', '20012421-3', 'CHEQUES', '', 1),
+(101, 'INVERSIONES FLORALES AR FLOWER?S, S. DE R.L.', '', 'BANCO DE OCCIDENTE S.A.', '21417114198-1', 'AHORRO', '', 1),
+(102, 'INVERSIONES KALTER ', '', 'BANCO FICOHSA', '20000503600-2', 'AHORRO', '', 1),
+(103, 'INVERSIONES LOGISTICAS H&M S.DE R.L.', '8019017912731', 'BANCO FICOHSA', '20000509144-5', 'CHEQUES', '', 1),
+(104, 'INVERSIONES R Y R', '', 'BAC HONDURAS', '729770951', 'AHORRO', '', 1),
+(105, 'INVERSIONES Y EQUIPOS S. DE R.L. DE C.V.', '', 'BANCO FICOHSA', '11390000398-7', 'CHEQUES', '', 1),
+(106, 'LA ARMERIA ', '', 'BANCO DEL PAIS', '21-599-001222-1', 'AHORRO', '', 1),
+(107, 'LAPIDAS Y PLACAS DE HONDURAS', '', 'BANCO ATLANTIDA', '1332010824-7', 'AHORRO', '', 1),
+(108, 'LEOPLAST S. DE R.L.', '', 'BANCO DE OCCIDENTE S.A', '11401012673-9', 'CHEQUES', '', 1),
+(109, 'MADISON DRY CLEANERS', '', 'BANCO ATLANTIDA', '120347652-6', 'CHEQUES', '', 1),
+(110, 'MAGNUM BASE S. DE R.L. DE C. V.', '', 'BANCO FICOHSA', '0211010058986-9', 'CHEQUES', '', 1),
+(111, 'MARITIMA Y TRANSPORTES HONDURAS  S.A DE C.V.', '', 'BANCO DE OCCIDENTE S.A', '11201003603-2', 'CHEQUES', '', 1),
+(112, 'MARITIMOS Y TRANSPORTE DE HONDURAS', '', 'BANCO DE OCCIDENTE S.A', '1120100360302', 'CHEQUES', '', 1),
+(113, 'MEDICA DENTAL NACIONAL S. DE R.L. MEDIDENT', '', 'BANCO DE OCCIDENTE S.A', '11230000017-0', 'CHEQUES', '', 1),
+(114, 'MEDITEC', '', 'DAVIVIENDA HONDURAS, S.A.', '2011056248', 'AHORRO', '', 1),
+(115, 'METALES Y MAS S. DE R.L.', '', 'BANCO DE OCCIDENTE S.A', '11-403-013193-2', 'CHEQUES', '', 1),
+(116, 'MOTORES KAWAS ', '', 'BANCO ATLANTIDA, S.A.', '310-00-21595', 'CHEQUES', '', 1),
+(117, 'MULTISERVICIOS LAGOS SM, S. DE R.L.', '', 'BAC HONDURAS', '729205731', 'CHEQUES', '', 1),
+(118, 'MUROS Y MAS S. DE R.L. DE C.V.', '', 'BANCO ATLANTIDA', '1011101642-3', 'CHEQUES', '', 1),
+(119, 'NOHELIA SPORT', '', 'BANCO DE OCCIDENTE S.A', '11-205-002410-8', 'CHEQUES', '', 1),
+(120, 'NORIT/ DAVID HUMBERTO OWEN GARCIA', '', 'BANCO BANHCAFE', '1604000002', 'CHEQUES', '', 1),
+(121, 'NOVEDADES STEFFY?S', '', 'BANCO PROMERICA', '176476-7', 'AHORRO', '', 1),
+(122, 'OPERADORES TURISTICOS DE HONDURAS S.A.', '', 'BANCO DE OCCIDENTE S.A', '11401017470-9', 'CHEQUES', '', 1),
+(123, 'PAGADURIA FUERZA NAVAL', '', 'BANCO DEL PAIS', '215-990-007-350', 'AHORRO', '', 1),
+(124, 'PAPELERA CALPULES S.A. DE C.V. (PACASA)', '', 'BANCO FICOHSA', '021-102-10-100-7', 'CHEQUES', '', 1),
+(125, 'PAPELERIA HONDURAS S. DE R.L.', '', 'BAC HONDURAS', '90977720-1', 'CHEQUES', '', 1),
+(126, 'PAT JOYERIA Y RELOJERIA S. DE R.L.', '', 'BANCO ATLANTIDA', '110015032-3', 'CHEQUES', '', 1),
+(127, 'PERIODICOS Y REVISTAS S.A DE C.V.', '', 'BANCO DE OCCIDENTE S.A', '11424000209-8', 'CHEQUES', '', 1),
+(128, 'PINTURAS SUR DE HONDURAS ', '', 'BAC HONDURAS', '90990930-1', 'CHEQUES', '', 1),
+(129, 'POOL SUPPLIES S. DE R.L.', '', 'BAC HONDURAS', '730159491', 'CHEQUES', '', 1),
+(130, 'PRIMER BATALLON DE INFANTERIA DE MARINA', '', 'BANCO DEL PAIS', '01-600-000263-8', 'CHEQUES', '', 1),
+(131, 'PRONTO SERVICIOS DE HONDURAS', '', 'FICENSA', '320022932', 'AHORROS ', '', 1),
+(132, 'PROVEEDORA DE MATERIALES DE LA CONSTRUCCION(PROMACO)', '', 'BANCO ATLANTIDA', '720066996-3', 'CHEQUES', '', 1),
+(133, 'PROYECTO DE INGENIERIA CENTROAMERICANA S. DE R.L (PROINCA S. DE R.L.)', '', 'BANCO FICOHSA', '0012401983-1', 'AHORRO', '', 1),
+(134, 'REENCAUCHE Y DISTRIBUCION DE LLANTAS S.A DE C.V', '', 'BAC HONDURAS', '73003546-1', 'CHEQUES', '', 1),
+(135, 'REPRESENTACIONES QUIMICAS DE CENTRO AMERICA S DE R.L.', '', 'BANCO DE OCCIDENTE S.A', '11408013088-3', 'CHEQUES', '', 1),
+(136, 'REPRESENTACIONES Y DISTRIBUCIONES PONCE (REDIPO)', '', 'BANCO ATLANTIDA', '110026205-2', 'CHEQUES', '', 1),
+(137, 'REPUESTOS Y ACCESORIOS PIZZATI', '', 'DAVIVIENDA HONDURAS, S.A.', '301131991-4', 'CHEQUES', '', 1),
+(138, 'RESTAURANTE Y TERRAZA BELLA VISTA S. DE R.L.', '', 'BAC HONDURAS', '727832231', 'CHEQUES', '', 1),
+(139, 'RILMAC IMPRESORES', '', 'BAC HONDURAS', '730013641', 'CHEQUES', '', 1),
+(140, 'ROCAS COMERCIAL / RENAN ORLANDO CASCO', '', 'BANCO DE OCCIDENTE S.A', '21-401-165866-8', 'AHORROS ', '', 1),
+(141, 'ROYMART S. DE R.L. DE C.V.', '', 'BAC HONDURAS', '71000651-1', 'CHEQUES', '', 1),
+(142, 'RZV SOLUCIONES Y DISTRIBUCIONES INFORMATICAS ', '', 'BAC HONDURAS', '102350141', 'CHEQUES', '', 1),
+(143, 'SECRETARIA DE DEFENSA NACIONAL / UNIVERSIDAD DE DEFENSA DE HONDURAS', '', 'BANCO DEL PAIS', '01-599-000886-8', 'CHEQUES', '', 1),
+(144, 'SEDENA/FFAA/EJERCITO/GASTOS DE FUNCIONAMIENTO', '', 'BANCO CENTRAL DE HONDURAS', '11101-01-000987-1', 'CHEQUES', '', 1),
+(145, 'SEDENA-HOSPITAL MILITAR', '', 'BANCO DEL PAIS', '01599000613-0', 'CHEQUES', '', 1),
+(146, 'SEGUROS ATLANTIDA, S.A.', '', 'BANCO ATLANTIDA, S.A.', '110002248-0', 'CHEQUES', '', 1),
+(147, 'SERIBOTEX S. DE R.L.', '', 'BANCO ATLANTIDA', '1152006553-0', 'AHORRO', '', 1),
+(148, 'SERVI MECHES', '', 'BANCO DEL PAIS', '21-302-0092266', 'AHORRO', '', 1),
+(149, 'SERVICIO ELECTRICO MECANICO INDUSTRIAL S.E.M.I', '', 'BANCO DE OCCIDENTE S.A', '112110072189', 'CHEQUES', '', 1),
+(150, 'SERVICIOS AIRE, TIERRA Y MAR S.DE.R.L.', '', 'BANCO ATLANTIDA, S.A.', '01011101372-7', 'CHEQUES', '', 1),
+(151, 'SERVICIOS MARITIMOS DE HONDURAS, S. DE R.L. ', '', 'BAC HONDURAS', '727392311', 'AHORRO', '', 1),
+(152, 'SERVICIOS TECNICOS Y SUMINISTROS (STS)', '', 'BANCO ATLANTIDA, S.A.', '001-201-71145-2', 'AHORROS ', '', 1),
+(153, 'SERVITODO S. DE R.L.', '', 'BAC HONDURAS', '91120770-1', 'CHEQUES', '', 1),
+(154, 'SISTEMAS GRAFICOS MENDEZ / SIGMEN', '', 'BANCO FICOHSA', '011-101-344071', 'CHEQUES', '', 1),
+(155, 'SOUVENIRS ARTESANIAS CANDU', '', 'BAC HONDURAS', '100200488', 'AHORRO', '', 1),
+(156, 'STEPHANIE WILLIAMS CACERES', '', 'BANCO DEL PAIS', '21-326-002884-8', 'AHORROS ', '', 1),
+(157, 'SUPERMERCADOS YIP S. A DE C.V', '', 'BANCO ATLANTIDA', '110003439-4', 'CHEQUES', '', 1),
+(158, 'TALLER \"VELASQUEZ\"', '', 'BANCO DEL PAIS', '21304000874-0', 'AHORRO', '', 1),
+(159, 'TECNICOM Y SUMINISTROS S DE R.L.', '', 'BANCO ATLANTIDA', '1381100092-9', 'CHEQUES', '', 1),
+(160, 'TECNOLOGIAS Y SERVICIOS INTERNACIONALES DE HONDURAS S.A DE C.V.', '', 'BAC HONDURAS', '73020157-1', 'CHEQUES', '', 1),
+(161, 'TIENDA MILITAR I.P.M.', '', 'BANCO DEL PAIS', '01-599-000608-3', 'CHEQUES', '', 1),
+(162, 'TIENDA NAVAL', '', 'BANCO DEL PAIS', '01302000225-6', 'CHEQUES', '', 1),
+(163, 'TIENDA NAVAL', '', 'BANCO DEL PAIS', '21302009511-7', 'AHORRO', '', 1),
+(164, 'TORNILLOS Y PARTES INDUSTRIALES S. DE R.L. DE C.V.', '', 'DAVIVIENDA HONDURAS, S.A.', '6010109980', 'CHEQUES', '', 1),
+(165, 'TOYOSERVICIO, S.A.', '', 'BAC HONDURAS', '91151860-1', 'CHEQUES', '', 1),
+(166, 'TULIO ROBERTO LAGOS ARNOLD', '', 'BANCO DEL PAIS', '21-318-006260-8', 'AHORRO', '', 1),
+(167, 'TULIPANES ALIMENTOS Y SERVICIOS S. DE R.L.', '', 'BAC HONDURAS', '91153810-1', 'CHEQUES', '', 1),
+(168, 'XMEDIA S. DE R.L.', '', 'BAC HONDURAS', '100603860', 'CHEQUES', '', 1),
+(169, 'XXI BATALLON DE POLICIA MILITAR (HABERES)', '', 'BANCO DEL PAIS', '01-599-000785-3', 'CHEQUES', '', 1),
+(170, 'YAM INDUSTRIAL S. DE R.L. DE C.V', '', 'FICOHSA', '07101301-836', 'CHEQUES', '', 1);
 
 -- --------------------------------------------------------
 
@@ -948,6 +896,7 @@ CREATE TABLE `transferenciabch` (
   `idproveedores` int(11) NOT NULL,
   `idctasbancarias` int(11) NOT NULL,
   `fecha_hora` date DEFAULT NULL,
+  `tipo_transfbch` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `serie_transf` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `num_transf` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   `monto_acreditar` decimal(11,2) DEFAULT NULL,
@@ -959,8 +908,9 @@ CREATE TABLE `transferenciabch` (
 -- Volcado de datos para la tabla `transferenciabch`
 --
 
-INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
-(1, 11, 1, '2019-05-13', '3432423', 'testdeprueba', '999.00', 'test de prueba', 1);
+INSERT INTO `transferenciabch` (`idtransferenciabch`, `idproveedores`, `idctasbancarias`, `fecha_hora`, `tipo_transfbch`, `serie_transf`, `num_transf`, `monto_acreditar`, `descripcion`, `condicion`) VALUES
+(1, 10, 1, '2019-05-17', 'Transf/Terceros', '05MAY2019', '0001', '1550.00', 'Para algo', 1),
+(2, 10, 2, '2019-05-17', 'Transf/Cuentas', '06MAY2019', '0002', '1111.11', 'nada', 1);
 
 -- --------------------------------------------------------
 
@@ -1279,7 +1229,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1291,7 +1241,7 @@ ALTER TABLE `bancos`
 -- AUTO_INCREMENT de la tabla `compromisos`
 --
 ALTER TABLE `compromisos`
-  MODIFY `idcompromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `idcompromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracion`
@@ -1303,7 +1253,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `contabilidad`
 --
 ALTER TABLE `contabilidad`
-  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcontabilidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `crear_acuerdo`
@@ -1315,7 +1265,7 @@ ALTER TABLE `crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_compromisos`
 --
 ALTER TABLE `detalle_compromisos`
-  MODIFY `iddetalle_compromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `iddetalle_compromisos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_crear_acuerdo`
@@ -1327,37 +1277,37 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
 --
 ALTER TABLE `dtransf_ctaspg`
-  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `dtransf_ctaspg` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `factura_orden`
 --
 ALTER TABLE `factura_orden`
-  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idfactura_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -1375,7 +1325,7 @@ ALTER TABLE `presupuesto_disponible`
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
 ALTER TABLE `proveedores`
-  MODIFY `idproveedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `idproveedores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT de la tabla `retenciones`
@@ -1387,7 +1337,7 @@ ALTER TABLE `retenciones`
 -- AUTO_INCREMENT de la tabla `transferenciabch`
 --
 ALTER TABLE `transferenciabch`
-  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idtransferenciabch` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `transferidoctaspg`
