@@ -487,9 +487,8 @@ function addCols( $tab )
 	$y2  = $this->h - 100 - $y1;
 
 	// $this->SetFillColor(0, 255, 0);
-
-
 	// $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
+	
 	$colX = $r1;
 	$colonnes = $tab;
 	// $this->SetTextColor(255,255,255);

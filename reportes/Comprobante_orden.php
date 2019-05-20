@@ -65,8 +65,6 @@ $rsptad = $comprobante->listarFactura_orden_10firts($_GET["id"]);
 
 $rsptad2 = $comprobante->listarFactura_orden_10next($_GET["id"]);
 
-
-
 // for ($i=0; $i < 10; $i++) {
 //   $n_fact = '//';
 //   $fec_fac = '//';

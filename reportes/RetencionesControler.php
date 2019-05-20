@@ -434,36 +434,34 @@ function addCols( $tab )
 	$colX = $r1;
 	$colonnes = $tab;
 
+	$miborder = array('BR','BR','BR','BR','B');
+	$caunt = -1;
 
 	$this->SetFont( "Arial", "", 8);
-	while ( list( $lib, $pos ) = each ($tab) )
+	while ( list( $lib, $pos) = each ($tab) )
 	{
+		$caunt += 1;
+		$datos =  $miborder[$caunt];
 
 		$this->SetXY( $colX+0.2, $y1+0.3 );
-		$this->Cell( $pos, 5, $lib, 'BR', 1, "C",false);
+		$this->Cell( $pos+0.1, 8, utf8_decode($lib), $datos, 1);
 		$colX += $pos;
 
 	}
 	$this->SetFont( "Arial", "", 9);
-
-	// $this->RoundedRectx(10, 100, 12, 7, 2, '1', '');
-	// 	$this->RoundedRectx(22, 100, 80, 7,2, '', '');
-	// 	$this->RoundedRectx(102, 100, 30, 7, 2, '', '');
-	// 	$this->RoundedRectx(132, 100, 35, 7, 2, '', '');
-	// 	$this->RoundedRectx(167, 100, 39, 7, 2, '2', '');
 }
 
-function addLineFormat( $tab )
+function addLineFormat( $tab,$tab2 )
 {
-	global $format, $colonnes;
+	global $format, $bordex, $colonnes;
 
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
 		if ( isset( $tab["$lib"]) )
 
-			$format[ $lib ] = $tab["$lib"];
+			$format[ $lib ] = $tab2["$lib"];
 
-
+			$bordex[ $lib ] = $tab["$lib"];
 	}
 }
 
@@ -515,7 +513,7 @@ function addLine( $ligne, $tab )
 		$aaa = $bordex[ $lib ];
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 4 , $texte, 'R', $formText);
+		$this->MultiCell( $longCell, 5 , $texte, $aaa, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -632,19 +630,8 @@ function Rowedit($data)
 		$x=$this->GetX();
 		$y=$this->GetY();
 
-
 		$this->RoundedRectx($x,$h+96 , $w, $y-99, 2, '1234', '');
-		// $this->RoundedRectx(22, 100, 80, 7,2, '', '');
-		// $this->RoundedRectx(102, 100, 30, 7, 2, '', '');
-		// $this->RoundedRectx(132, 100, 35, 7, 2, '', '');
-		// $this->RoundedRectx(167, 100, 39, 7, 2, '2', '');
-		//Draw the border
-		// $this->Rect($x,$y,$w,$h);
-		// $this->SetFillColor(255,255,255);
-			// $this->RoundedRectx($x, $y, $w, $h, 2, '4321', '');
-				// $this->MultiCell($w,$h,'aa',1);
-		//Print the text
-	// $this->SetFillColor(255,255,255);
+
 		$this->MultiCell($w,4,$data[$i],0,$a,false);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);

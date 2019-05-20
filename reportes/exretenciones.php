@@ -56,29 +56,29 @@ $cols=array( "N°"=>12,
              "Porcentaje de Impuesto"=>35,
              "Impuesto Total Retenido"=>39
              );
+
 $pdf->addCols( $cols);
 
 
-
-$cols=array( "N°"=>"L",
+$cols2=array( "N°"=>"C",
              "Descripcion del impuesto retenido"=>"C",
              "Base imponible"=>"C",
-            "Porcentaje de Impuesto"=>"L",
-             "Impuesto Total Retenido"=>"R"
+            "Porcentaje de Impuesto"=>"C",
+             "Impuesto Total Retenido"=>"C"
             );
 
-// $cols=array( "N°"=>"R",
-//              "Descripcion del impuesto retenido"=>"R",
-//              "Base imponible"=>"R",
-//             "Porcentaje de Impuesto"=>"L",
-//              "Impuesto Total Retenido"=>"R"
-//             );
-//
-//             $pdf->addLineFormat( $cols);
-$pdf->addLineFormat($cols);
-$pdf->addLineFormat( $cols);
+$cols=array( "N°"=>'R',
+             "Descripcion del impuesto retenido"=>'R',
+             "Base imponible"=>'R',
+            "Porcentaje de Impuesto"=>'R',
+             "Impuesto Total Retenido"=>0
+            );
+
+$pdf->addLineFormat( $cols,$cols2);
+
+
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 109.2;
+$y= 111;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
