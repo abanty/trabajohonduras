@@ -50,27 +50,27 @@ $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle
 $pdf->addClientAdresse(utf8_decode($regv->proveedor),utf8_decode($regv->programa),utf8_decode($regv->proveedor));
 
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
-$cols=array( "OJB"=>13,
-             "UNIDAD"=>27,
-             "CANTIDAD"=>17,
-             "DESCRIPCION"=>70,
-             "P.UNIT"=>25,
-             "S/TOTAL"=>22,
-             "TOTAL"=>22);
+$cols=array( "N°"=>12,
+             "Descripcion del impuesto retenido"=>80,
+             "Base imponible"=>30,
+             "Porcentaje de Impuesto"=>35,
+             "Impuesto Total Retenido"=>39
+             );
 $pdf->addCols( $cols);
 
-$cols=array( "OJB"=>"L",
-             "UNIDAD"=>"C",
-             "CANTIDAD"=>"C",
-            "DESCRIPCION"=>"L",
-             "P.UNIT"=>"R",
-             "S/TOTAL"=>"R",
-           "TOTAL"=>"R");
+
+
+$cols=array( "N°"=>"L",
+             "Descripcion del impuesto retenido"=>"C",
+             "Base imponible"=>"C",
+            "Porcentaje de Impuesto"=>"L",
+             "Impuesto Total Retenido"=>"R"
+            );
 
 $pdf->addLineFormat($cols);
 $pdf->addLineFormat( $cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 108;
+$y= 109.2;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
@@ -78,15 +78,14 @@ $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
 while ($regd = $rsptad->fetch_object()) {
 
 
-  $line = array("OJB"=> "$regd->codigo",
-                "UNIDAD"=> utf8_decode("$regd->unidad"),
-                "CANTIDAD"=> "$regd->cantidad",
+  $line = array("N°"=> "$regd->codigo",
+                "Descripcion del impuesto retenido"=> utf8_decode("$regd->descripcion"),
+                "Base imponible"=> "$regd->cantidad",
 
-                "DESCRIPCION" => utf8_decode("$regd->descripcion"),
+                "Porcentaje de Impuesto" => utf8_decode("$regd->descripcion"),
 
-                "P.UNIT"=> number_format("$regd->precio_unitario", 2, '.', ','),
-                "S/TOTAL"=> number_format("$regd->subtot", 2, '.', ','),
-                "TOTAL"=> number_format("", 2, '.', ','));
+                "Impuesto Total Retenido"=> number_format("$regd->precio_unitario", 2, '.', ',')
+                );
                 // ,
                 // "Total"=> "$regv->monto_total"
 
@@ -116,15 +115,15 @@ while ($regd = $rsptad->fetch_object()) {
 
 
 
-$pdf->SetWidths(array(70));
+$pdf->SetWidths(array(12));
 
 $pdf->SetFont('Arial','B',7.5);
-$pdf->SetX(25);
-$pdf->Rowedit(array($texta));
-$pdf->Ln(-3);
+$pdf->SetX(10);
+$pdf->Rowedit(array(''));
 
+    $pdf->Ln(3);
 $pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
+$pdf->Cell(107,4, "SUBTOTAL Lps  :",1,0,'R');
 $pdf->SetFont('Arial','',8.5);
 $pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
 $pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');

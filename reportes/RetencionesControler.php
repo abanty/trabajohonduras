@@ -38,6 +38,9 @@ var $format;
 var $angle=0;
 var $widths;
 var $aligns;
+
+
+
 // private functions
 function RoundedRect($x, $y, $w, $h, $r, $style = '')
 {
@@ -165,8 +168,8 @@ function addSociete( $tittle1, $tittle2,$tittle3,$tittle4,$tittle5)
   $this->SetFont('Arial','',10);
   $this->Cell( 205, 6, $tittle5,0,1,"C");
 
-  $this->SetLineWidth(0.1);
-  $this->SetFillColor(190,190,190,1);
+  // $this->SetLineWidth(0.1);
+  // $this->SetFillColor(190,190,190,1);
 
 }
 
@@ -193,8 +196,8 @@ function fact_dev($lib,$num )
           $loop ++;
     }
 
-    $this->SetLineWidth(0.1);
-    $this->SetFillColor(190,190,190,1);
+    // $this->SetLineWidth(0.1);
+    // $this->SetFillColor(190,190,190,1);
     // $this->RoundedRect($r1, $y1, ($r2 - $r1), $y2, 2.5, 'DF');
     $this->SetXY( $r1+1, $y1+2);
     $this->Cell($r2-$r1 -1,5, $texte, 0, 0, "C" );
@@ -293,21 +296,28 @@ function addClientAdresse( $cliente,$domicilio,$proveedor )
   $this->Cell( 95,4,utf8_decode('Sr.(a): '),0,0);
   $this->RoundedRect(15, 60, 100, 10, 3.5, '');
 
-  $r1x  = 135;
-  $r2x  = $r1x + 60;
-  $y1x  = 60;
-  $y2x  = $y1x+10;
-  $midx = $y1x + (($y2x-$y1x) / 2);
-  $this->SetFillColor(190,190,190,1);
-  $this->RoundedRect($r1x, $y1x, ($r2x - $r1x), ($y2x-$y1x), 2.5, '');
-  $this->Line( $r1x, $midx, $r2x, $midx);
-  $this->SetXY( $r1x + ($r2x-$r1x)/2 -5 , $y1x+1 );
+  // $r1x  = 135;
+  // $r2x  = $r1x + 60;
+  // $y1x  = 60;
+  // $y2x  = $y1x+10;
+  // $midx = $y1x + (($y2x-$y1x) / 2);
+  $this->SetFillColor(70,70,70,1);
+$this->setTextColor(255, 255, 255);
+  // $this->RoundedRect($r1x, $y1x, ($r2x - $r1x), ($y2x-$y1x), 2.5, 'DF');
+  // $this->Line( $r1x, $midx, $r2x, $midx);
+  // $this->SetXY( $r1x + ($r2x-$r1x)/2 -5 , $y1x+1 );
   $this->SetFont( "Arial", "B", 10);
-  $this->Cell(10,4, "RTN", 0, 0, "C");
-  $this->SetXY( $r1x + ($r2x-$r1x)/2 -5 , $y1x + 5 );
+	// $this->setTextColor(255, 255, 255);
+  $this->RoundedRectx(144, 60, 59, 5, 1, '1122', 'DF');
+  $this->Cell(125,4, "RTN", 0, 1, "C");
+  $this->RoundedRectx(144, 65, 59, 5, 1, '34', '');
+
+	$this->SetX($r1+7);
+	$this->Cell(128,4, "", 0, 0, "C");
+	$this->Cell(59,4, "-", 0, 0, "C");
 
 
-
+	$this->setTextColor(0, 0, 0);
 
 
 $this->RoundedRect(48.8, 75, 60.2, 20, 3.5, '');
@@ -339,9 +349,9 @@ $this->SetX($r1+5);
 
 
   // $this->RoundedRect(140, 60, 60, 10, 1, '');
-  // $this->SetX($r1+128);
+  // $this->SetXY($r1+128);
   // $this->Cell( 95,4,utf8_decode('RTN'),0,1);
-  // $this->RoundedRectx(140, 70, 60, 5, 1, '1122', 'DF');
+
 
 }
 
@@ -417,27 +427,27 @@ function addCols( $tab )
 
 	$r1  = 9.7;
 	$r2  = $this->w - ($r1 * 2) ;
-	// $y1  =79.7;
   $y1  =100.7;
 
 	$y2  = $this->h - 195.1 - $y1;
 
-	// $this->SetXY( $r1, $y1 );
-	// $this->SetLineWidth(0.7);
-	// $this->Rect( $r1, 80, 196.5, $y2, "DO");
-
-	// $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
 	$colX = $r1;
 	$colonnes = $tab;
-	// $this->SetTextColor(255,255,255);
-	$this->SetFont( "Arial", "B", 9.7);
+
+	$this->RoundedRectx(10, 100, 12, 7, 2, '1', '');
+	$this->RoundedRectx(22, 100, 80, 7,2, '', '');
+	$this->RoundedRectx(102, 100, 30, 7, 2, '', '');
+	$this->RoundedRectx(132, 100, 35, 7, 2, '', '');
+	$this->RoundedRectx(167, 100, 39, 7, 2, '2', '');
+
+	$this->SetFont( "Arial", "", 8);
 	while ( list( $lib, $pos ) = each ($tab) )
 	{
 
 		$this->SetXY( $colX+0.2, $y1+0.3 );
-		$this->Cell( $pos, 4.5, $lib, 0, 1, "C",true);
+		$this->Cell( $pos, 5, $lib, 0, 1, "C",false);
 		$colX += $pos;
-		// $this->Line( $colX, $y1, $colX, $y1+$y2);
+
 	}
 	$this->SetFont( "Arial", "", 9);
 }
@@ -504,7 +514,7 @@ function addLine( $ligne, $tab )
 
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
+		$this->MultiCell( $longCell, 4 , $texte, 'RL', $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -619,8 +629,10 @@ function Rowedit($data)
 		$y=$this->GetY();
 		//Draw the border
 		// $this->Rect($x,$y,$w,$h);
+			// $this->RoundedRectx($x, $y, $w, $h, 2, '4', '');
+				$this->MultiCell($w,$h,'aa',1);
 		//Print the text
-		$this->MultiCell($w,4,$data[$i],0,$a);
+		$this->MultiCell($w,0,$data[$i],0,$a);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
