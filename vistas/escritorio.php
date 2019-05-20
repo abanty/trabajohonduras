@@ -183,6 +183,8 @@ require 'footer.php';
 <script type="text/javascript" src="scripts/presupuesto_disponible.js"></script>
 <script src="../public/js/chart.min.js"></script>
 <script src="../public/js/Chart.bundle.min.js"></script>
+<script src="../public/raphael/raphael.min.js"></script>
+<script src="../public//morris.js/morris.min.js"></script>
 <script type="text/javascript">
 <script>
 
