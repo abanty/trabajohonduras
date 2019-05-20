@@ -66,7 +66,7 @@ if ($_SESSION['escritorio']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title"><b>ESCRITORIO</b></h1>
+                          <div class="box-title"><h2> <b>   ESCRITORIO</b></h2>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -79,7 +79,7 @@ if ($_SESSION['escritorio']==1)
                                 <h3 style="font-size:35px;">
                                  <strong>L. <?php echo number_format($totalv,2); ?></strong>
                                 </h3>
-                                <p>PRESUPUESTO DISPONIBLE</p>
+                                <p><b>PRESUPUESTO DISPONIBLE</b></p>
                               </div>
                               <div class="icon">
                                 <i class="ion ion-bag"></i>
@@ -94,7 +94,7 @@ if ($_SESSION['escritorio']==1)
                                 <h4 style="font-size:35px;">
                                   <strong>L. <?php echo number_format($totalb,2); ?></strong>
                                 </h4>
-                                <p>PRESUPUESTO EJECUTADO</p>
+                                <p><b>PRESUPUESTO EJECUTADO</b></p>
                               </div>
                               <div class="icon">
                                 <i class="ion ion-social-usd"></i>
@@ -110,7 +110,7 @@ if ($_SESSION['escritorio']==1)
                                 <h4 style="font-size:35px;">
                                   <strong>L.<?php echo number_format($totalc,2); ?></strong>
                                 </h4>
-                                <p>COMPROMISOS</p>
+                                <p><b>COMPROMISOS</b></p>
                               </div>
                               <div class="icon">
                                 <i class="ion ion-social-usd"></i>
@@ -126,7 +126,7 @@ if ($_SESSION['escritorio']==1)
                                 <h4 style="font-size:35px;">
                                   <!-- <strong>S/ <?php echo $totalv; ?></strong> -->
                                 </h4>
-                                <p>FONDOS POR EJECUTAR</p>
+                                <p><b>FONDOS POR EJECUTAR</b></p>
                               </div>
                               <div class="icon">
                                 <i class="ions ion-clipboard"></i>
@@ -134,10 +134,8 @@ if ($_SESSION['escritorio']==1)
                               <a href="" class="small-box-footer">Fondos por Ejecutar<i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
-
-
-
                     </div>
+
                     <div class="panel-body">
 
                         <div class="col-lg-12">
@@ -146,16 +144,14 @@ if ($_SESSION['escritorio']==1)
                               <div class="box-header with-border">
                                 <i class="fa fa-th"></i>
 
-                                EJECUCION DEL PRESUPUESTO
+                                <b>EJECUCION DEL PRESUPUESTO</b>
                               </div>
-                              <div class="box-body border-radius-none nuevoGraficoVentas">
-                                <!-- <div class="chart" id="line-chart-ventas" style="height: 250px;"></div> -->
-                                <canvas id="compras" width="400" height="300"></canvas>
+                              <div class="box-body border-radius-none nuevoGraficoEjecucion">
+                                <div class="chart" id="line-chart-ventas" style="height: 250px;"></div>
                               </div>
                           </div>
-
-
                         </div>
+
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                           <div class="box box-primary">
                               <div class="box-header with-border">
@@ -188,51 +184,52 @@ require 'footer.php';
 <script src="../public/js/chart.min.js"></script>
 <script src="../public/js/Chart.bundle.min.js"></script>
 <script type="text/javascript">
-var ctx = document.getElementById("compras").getContext('2d');
-var compras = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [<?php echo $fechasc; ?>],
-        datasets: [{
-            label: 'Compras en S/ de los últimos 10 días',
-            data: [<?php echo $totalesc; ?>],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+<script>
+
+ var line = new Morris.Line({
+    element          : 'line-chart-ventas',
+    resize           : true,
+    data             : [
+
+    <?php
+
+    if($noRepetirFechas != null){
+
+	    foreach($noRepetirFechas as $key){
+
+	    	echo "{ y: '".$key."', ventas: ".$sumaPagosMes[$key]." },";
+
+
+	    }
+
+	    echo "{y: '".$key."', ventas: ".$sumaPagosMes[$key]." }";
+
+    }else{
+
+       echo "{ y: '0', ventas: '0' }";
+
     }
-});
+
+    ?>
+
+    ],
+    xkey             : 'y',
+    ykeys            : ['ventas'],
+    labels           : ['ventas'],
+    lineColors       : ['#efefef'],
+    lineWidth        : 2,
+    hideHover        : 'auto',
+    gridTextColor    : '#fff',
+    gridStrokeWidth  : 0.4,
+    pointSize        : 4,
+    pointStrokeColors: ['#efefef'],
+    gridLineColor    : '#efefef',
+    gridTextFamily   : 'Open Sans',
+    preUnits         : 'L.',
+    gridTextSize     : 10
+  });
+
+</script>
 
 var ctx = document.getElementById("ventas").getContext('2d');
 var ventas = new Chart(ctx, {
