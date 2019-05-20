@@ -115,7 +115,7 @@ while ($regd = $rsptad->fetch_object()) {
 
 
 
-$pdf->SetWidths(array(12));
+$pdf->SetWidths(array(196));
 
 $pdf->SetFont('Arial','B',7.5);
 $pdf->SetX(10);
@@ -124,60 +124,57 @@ $pdf->Rowedit(array(''));
     $pdf->Ln(3);
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "SUBTOTAL Lps  :",1,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
-
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
+//
+// $pdf->Ln(5);
+// $pdf->SetFont('Arial','B',8.5);
+// $pdf->Cell(107,4, "VALOR EXENTO Lps  :",0,0,'R');
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format('', 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4, number_format('', 2, '.', ','),0,1,'R');
+//
+// $pdf->SetFont('Arial','B',8.5);
+// $pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
+//
+// $pdf->SetFont('Arial','B',8.5);
+// $pdf->Cell(107,4, "DESCUENTO Lps  :",0,0,'R');
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format($regv->descuento_total, 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4,'',0,1,'R');
+//
+// $pdf->SetFont('Arial','B',8.5);
+// $pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format($regv->subtotal, 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4,'',0,1,'R');
+//
+// $pdf->SetFont('Arial','B',8.5);
+// $pdf->Cell(107,4, "15% IMPTO Lps  :",0,0,'R');
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format($regv->impuesto, 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4,'',0,1,'R');
+//
+// $pdf->SetFont('Arial','B',8.5);
+// $pdf->Cell(107,4, "TOTAL Lps  :",0,0,'R');
+// $pdf->SetFont('Arial','',8.5);
+// $pdf->Cell(64,4, number_format($regv->monto_total, 2, '.', ','),0,0,'R');
+// $pdf->Cell(26,4, number_format($regv->monto_total, 2, '.', ','),0,1,'R');
 $pdf->Ln(5);
-$pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "VALOR EXENTO Lps  :",0,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format('', 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format('', 2, '.', ','),0,1,'R');
-
-$pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
-
-$pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "DESCUENTO Lps  :",0,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->descuento_total, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4,'',0,1,'R');
-
-$pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->subtotal, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4,'',0,1,'R');
-
-$pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "15% IMPTO Lps  :",0,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->impuesto, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4,'',0,1,'R');
-
-$pdf->SetFont('Arial','B',8.5);
-$pdf->Cell(107,4, "TOTAL Lps  :",0,0,'R');
-$pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->monto_total, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format($regv->monto_total, 2, '.', ','),0,1,'R');
-$pdf->Ln(10);
 
 $pdf->SetLineWidth(0.2);
 $pdf->SetX(8);
 $pdf->SetFont('Arial','',8);
-$pdf->MultiCell(200,4, 'PAGADOR GENERAL DE LA F.N.H.',0,'C');
+$pdf->MultiCell(200,4, '____________________________',0,'R');
 $pdf->SetX(8);
-$pdf->MultiCell(200,4, 'CAPITAN DE GRAGATA C.G',0,'C');
-$pdf->SetX(8);
-$pdf->MultiCell(200,15, '',0,'C');
-$pdf->SetX(8);
-$pdf->MultiCell(200,10, 'ERNESTO ANTONIO AVILA KATTAN',0,'C');
-$pdf->SetX(8);
-$pdf->MultiCell(200,4, "NOTA:        ".utf8_decode($regv->descripcion_orden),0,'L');
+$pdf->MultiCell(190,4, 'FIRMA Y SELLO',0,'R');
+// $pdf->SetX(8);
+// $pdf->MultiCell(200,15, '',0,'C');
+// $pdf->MultiCell(200,4, "NOTA:        ".utf8_decode($regv->descripcion_orden),0,'L');
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
 

@@ -629,10 +629,12 @@ function Rowedit($data)
 		$y=$this->GetY();
 		//Draw the border
 		// $this->Rect($x,$y,$w,$h);
-			// $this->RoundedRectx($x, $y, $w, $h, 2, '4', '');
-				$this->MultiCell($w,$h,'aa',1);
+		// $this->SetFillColor(255,255,255);
+			// $this->RoundedRectx($x, $y, $w, $h, 2, '4321', '');
+				// $this->MultiCell($w,$h,'aa',1);
 		//Print the text
-		$this->MultiCell($w,0,$data[$i],0,$a);
+	// $this->SetFillColor(255,255,255);
+		$this->MultiCell($w,4,$data[$i],0,$a,false);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
