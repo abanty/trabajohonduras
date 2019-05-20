@@ -67,6 +67,14 @@ $cols=array( "N°"=>"L",
              "Impuesto Total Retenido"=>"R"
             );
 
+// $cols=array( "N°"=>"R",
+//              "Descripcion del impuesto retenido"=>"R",
+//              "Base imponible"=>"R",
+//             "Porcentaje de Impuesto"=>"L",
+//              "Impuesto Total Retenido"=>"R"
+//             );
+//
+//             $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 $pdf->addLineFormat( $cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
@@ -123,6 +131,8 @@ $pdf->Rowedit(array(''));
 
     $pdf->Ln(3);
 $pdf->SetFont('Arial','B',8.5);
+
+
 $pdf->Cell(107,4, "SUBTOTAL Lps  :",1,0,'R');
 // $pdf->SetFont('Arial','',8.5);
 // $pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');

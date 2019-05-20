@@ -434,22 +434,23 @@ function addCols( $tab )
 	$colX = $r1;
 	$colonnes = $tab;
 
-	$this->RoundedRectx(10, 100, 12, 7, 2, '1', '');
-	$this->RoundedRectx(22, 100, 80, 7,2, '', '');
-	$this->RoundedRectx(102, 100, 30, 7, 2, '', '');
-	$this->RoundedRectx(132, 100, 35, 7, 2, '', '');
-	$this->RoundedRectx(167, 100, 39, 7, 2, '2', '');
 
 	$this->SetFont( "Arial", "", 8);
 	while ( list( $lib, $pos ) = each ($tab) )
 	{
 
 		$this->SetXY( $colX+0.2, $y1+0.3 );
-		$this->Cell( $pos, 5, $lib, 0, 1, "C",false);
+		$this->Cell( $pos, 5, $lib, 'BR', 1, "C",false);
 		$colX += $pos;
 
 	}
 	$this->SetFont( "Arial", "", 9);
+
+	// $this->RoundedRectx(10, 100, 12, 7, 2, '1', '');
+	// 	$this->RoundedRectx(22, 100, 80, 7,2, '', '');
+	// 	$this->RoundedRectx(102, 100, 30, 7, 2, '', '');
+	// 	$this->RoundedRectx(132, 100, 35, 7, 2, '', '');
+	// 	$this->RoundedRectx(167, 100, 39, 7, 2, '2', '');
 }
 
 function addLineFormat( $tab )
@@ -494,7 +495,7 @@ function addLineFormat( $tab )
 
 function addLine( $ligne, $tab )
 {
-	global $colonnes, $format;
+	global $colonnes, $format,$bordex;
 
 	$ordonnee     = 10;
 	$maxSize      = $ligne;
@@ -511,10 +512,10 @@ function addLine( $ligne, $tab )
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
 		$formText  = $format[ $lib ];
-
+		$aaa = $bordex[ $lib ];
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 4 , $texte, 'RL', $formText);
+		$this->MultiCell( $longCell, 4 , $texte, 'R', $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -620,6 +621,9 @@ function Rowedit($data)
 	//Issue a page break first if needed
 	$this->CheckPageBreak($h);
 	//Draw the cells of the row
+
+
+
 	for($i=0;$i<count($data);$i++)
 	{
 		$w=$this->widths[$i];
@@ -627,6 +631,13 @@ function Rowedit($data)
 		//Save the current position
 		$x=$this->GetX();
 		$y=$this->GetY();
+
+
+		$this->RoundedRectx($x,$h+96 , $w, $y-99, 2, '1234', '');
+		// $this->RoundedRectx(22, 100, 80, 7,2, '', '');
+		// $this->RoundedRectx(102, 100, 30, 7, 2, '', '');
+		// $this->RoundedRectx(132, 100, 35, 7, 2, '', '');
+		// $this->RoundedRectx(167, 100, 39, 7, 2, '2', '');
 		//Draw the border
 		// $this->Rect($x,$y,$w,$h);
 		// $this->SetFillColor(255,255,255);
