@@ -14,7 +14,7 @@ if ($_SESSION['siafi']==1)
 {
 
 //Inlcuímos a la clase PDF_MC_Table
-require('PDF_MC_Table.php');
+require('controladores_fpdf/PDF_MC_Table.php');
 
 //Instanciamos la clase para generar el documento pdf
 $pdf=new PDF_MC_Table();

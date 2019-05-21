@@ -16,7 +16,7 @@ else
 if ($_SESSION['admonoc']==1)
 {
 //Inlcuímos a la clase PDF_MC_Table
-require('PDF_MC_Table.php');
+require('controladores_fpdf/PDF_MC_Table.php');
 
 //Obtenemos los datos de la cabecera de la comprobante actual
 require_once "../modelos/Transferenciabch.php";

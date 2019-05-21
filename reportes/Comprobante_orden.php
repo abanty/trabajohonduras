@@ -13,7 +13,7 @@ else
 if ($_SESSION['admonoc']==1)
 {
 //Incluímos el archivo Factura.php
-require('exComprobante.php');
+require('controladores_fpdf/exComprobante.php');
 
 //Establecemos los datos de la empresa
 // $logo = "logobra.jpg";

@@ -2,7 +2,7 @@
 // (c) Xavier Nicolay
 // Exemple de génération de devis/facture PDF
 
-require('ExNewOrder.php');
+require('controladores_fpdf/ExNewOrder.php');
 
 $pdf = new PDF_Invoice( 'P', 'mm', 'A4' );
 $pdf->AddPage();

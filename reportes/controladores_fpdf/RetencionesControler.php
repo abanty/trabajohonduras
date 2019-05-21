@@ -273,12 +273,12 @@ function addPageNumber( $page )
 	$this->Cell(10,5,$page, 0,0, "C");
 }
 
-// Client address
 function addClientAdresse()
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
 	$y1     = 45;
+
 	$this->SetXY( $r1+0.5, $y1);
 	$this->SetFont( "Arial", "", 8.5);
 
@@ -296,63 +296,41 @@ function addClientAdresse()
   $this->Cell( 95,4,utf8_decode('Sr.(a): '),0,0);
   $this->RoundedRect(15, 60, 100, 10, 3.5, '');
 
-  // $r1x  = 135;
-  // $r2x  = $r1x + 60;
-  // $y1x  = 60;
-  // $y2x  = $y1x+10;
-  // $midx = $y1x + (($y2x-$y1x) / 2);
   $this->SetFillColor(70,70,70,1);
-$this->setTextColor(255, 255, 255);
-  // $this->RoundedRect($r1x, $y1x, ($r2x - $r1x), ($y2x-$y1x), 2.5, 'DF');
-  // $this->Line( $r1x, $midx, $r2x, $midx);
-  // $this->SetXY( $r1x + ($r2x-$r1x)/2 -5 , $y1x+1 );
+	$this->setTextColor(255, 255, 255);
   $this->SetFont( "Arial", "B", 10);
-	// $this->setTextColor(255, 255, 255);
   $this->RoundedRectx(144, 60, 59, 5, 1, '1122', 'DF');
   $this->Cell(125,4, "RTN", 0, 1, "C");
   $this->RoundedRectx(144, 65, 59, 5, 1, '34', '');
-
 	$this->SetX($r1+7);
 	$this->Cell(128,4, "", 0, 0, "C");
 	$this->Cell(59,4, "-", 0, 0, "C");
-
-
 	$this->setTextColor(0, 0, 0);
-
-
-$this->RoundedRect(48.8, 75, 60.2, 20, 3.5, '');
-$this->RoundedRect(143.8, 75, 60.2, 20, 3.5, '');
-
+	$this->RoundedRect(48.8, 75, 60.2, 20, 3.5, '');
+	$this->RoundedRect(143.8, 75, 60.2, 20, 3.5, '');
   $this->SetFont( "Arial", "", 10);
 
-$this->SetXY($r1+5,75);
-  $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-    $this->Cell(60,5,'10/20/2010', 'B',0, "C");
-      $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-        $this->Cell(60,5,'10/20/2010', 'B',1, "C");
-$this->SetX($r1+5);
-        $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-          $this->Cell(60,5,'10/20/2010', 'B',0, "C");
-            $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-              $this->Cell(60,5,'10/20/2010', 'B',1, "C");
-$this->SetX($r1+5);
-        $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-          $this->Cell(60,5,'10/20/2010', 'B',0, "C");
-            $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-              $this->Cell(60,5,'10/20/2010', 'B',1, "C");
-
-$this->SetX($r1+5);
-        $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-          $this->Cell(60,5,'10/20/2010', '',0, "C");
-            $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-              $this->Cell(60,5,'10/20/2010', '',0, "C");
-
-
-  // $this->RoundedRect(140, 60, 60, 10, 1, '');
-  // $this->SetXY($r1+128);
-  // $this->Cell( 95,4,utf8_decode('RTN'),0,1);
-
-
+	//FECHA D FACTURA Y NUMERO DE FACTURA
+	$this->SetXY($r1+5,75);
+	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
+	$this->Cell(60,5,$array[0], 'B',0, "C");
+	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
+	$this->Cell(60,5,$array[1], 'B',1, "C");
+	$this->SetX($r1+5);
+	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
+	$this->Cell(60,5,$array[1], 'B',0, "C");
+	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
+	$this->Cell(60,5,'10/20/2010', 'B',1, "C");
+	$this->SetX($r1+5);
+	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
+	$this->Cell(60,5,'10/20/2010', 'B',0, "C");
+	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
+	$this->Cell(60,5,'10/20/2010', 'B',1, "C");
+	$this->SetX($r1+5);
+	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
+	$this->Cell(60,5,'10/20/2010', '',0, "C");
+	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
+	$this->Cell(60,5,'10/20/2010', '',0, "C");
 }
 
 // Mode of payment

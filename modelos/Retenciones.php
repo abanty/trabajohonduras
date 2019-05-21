@@ -130,6 +130,8 @@ Class Retenciones
 		FROM detalle_retenciones dt
 		INNER JOIN compromisos c
 		ON c.idcompromisos = dt.idcompromisos
+        INNER JOIN retenciones r
+        ON r.idretenciones = dt.idretenciones
 		WHERE r.idretenciones = '$idretenciones'";
 		return ejecutarConsulta($sql);
 	}

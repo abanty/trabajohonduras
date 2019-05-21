@@ -13,7 +13,7 @@ else
 if ($_SESSION['admonoc']==1)
 {
 //Incluímos el archivo Factura.php
-require('Scompra.php');
+require('controladores_fpdf/Scompra.php');
 
 //Establecemos los datos de la empresa
 $tittle1 = "SECRETARIA DE ESTADO EN EL DESPACHO DE DEFENSA NACIONAL";

@@ -13,7 +13,7 @@ else
 if ($_SESSION['admonoc']==1)
 {
 //Incluímos el archivo Factura.php
-require('RetencionesControler.php');
+require('controladores_fpdf/RetencionesControler.php');
 
 //Establecemos los datos de la empresa
 $tittle1 = "FUERZA NAVAL DE HONDURAS";
@@ -24,6 +24,7 @@ $tittle5 = "Aldea las casitas Km5, carretera a Mateo, Comayaguela M.D.C, Hondura
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Retenciones.php";
 $venta= new Retenciones();
+
 
 
 //Establecemos la configuración de la factura
@@ -40,8 +41,16 @@ $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4),utf8_decode($tittle5));
 //Enviamos los datos del cliente al método addClientAdresse de la clase Factura
-$pdf->addClientAdresse();
 
+//Obtenemos todos los detalles de la venta actual
+$rsptad2 = $venta->pdf_detalle_compromiso($_GET["id"]);
+while ($regd2 = $rsptad2->fetch_object()) {
+  $linex = array($regd2->fecha_hora,$regd2->numfactura);
+
+
+}
+
+$pdf->addClientAdresse();
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
 $cols=array( "N°"=>12,
              "Descripcion del impuesto retenido"=>80,
