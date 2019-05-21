@@ -41,12 +41,14 @@ $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4),utf8_decode($tittle5));
 //Enviamos los datos del cliente al método addClientAdresse de la clase Factura
-
+$pdf->SetY(75);
 //Obtenemos todos los detalles de la venta actual
 $rsptad2 = $venta->pdf_detalle_compromiso($_GET["id"]);
 while ($regd2 = $rsptad2->fetch_object()) {
-  $linex = array($regd2->fecha_hora,$regd2->numfactura);
-
+  $linex = array($regd2->fecha_hora,"",$regd2->numfactura);
+  $pdf->SetWidths(array(60,35,60));
+$pdf->SetX(49);
+  $pdf->Rowdefault($linex);
 
 }
 

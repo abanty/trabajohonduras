@@ -132,7 +132,8 @@ Class Retenciones
 		ON c.idcompromisos = dt.idcompromisos
         INNER JOIN retenciones r
         ON r.idretenciones = dt.idretenciones
-		WHERE r.idretenciones = '$idretenciones'";
+		WHERE r.idretenciones = '$idretenciones'
+		limit 4";
 		return ejecutarConsulta($sql);
 	}
 

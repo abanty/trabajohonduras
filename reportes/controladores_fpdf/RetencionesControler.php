@@ -313,24 +313,24 @@ function addClientAdresse()
 	//FECHA D FACTURA Y NUMERO DE FACTURA
 	$this->SetXY($r1+5,75);
 	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-	$this->Cell(60,5,$array[0], 'B',0, "C");
+	$this->Cell(60,5,'', 'B',0, "C");
 	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-	$this->Cell(60,5,$array[1], 'B',1, "C");
+	$this->Cell(60,5,'', 'B',1, "C");
 	$this->SetX($r1+5);
 	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-	$this->Cell(60,5,$array[1], 'B',0, "C");
+	$this->Cell(60,5,'', 'B',0, "C");
 	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-	$this->Cell(60,5,'10/20/2010', 'B',1, "C");
+	$this->Cell(60,5,'', 'B',1, "C");
 	$this->SetX($r1+5);
 	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-	$this->Cell(60,5,'10/20/2010', 'B',0, "C");
+	$this->Cell(60,5,'', 'B',0, "C");
 	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-	$this->Cell(60,5,'10/20/2010', 'B',1, "C");
+	$this->Cell(60,5,'', 'B',1, "C");
 	$this->SetX($r1+5);
 	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
-	$this->Cell(60,5,'10/20/2010', '',0, "C");
+	$this->Cell(60,5,'', '',0, "C");
 	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
-	$this->Cell(60,5,'10/20/2010', '',0, "C");
+	$this->Cell(60,5,'', '',0, "C");
 }
 
 // Mode of payment
@@ -682,7 +682,7 @@ function Rowdefault($data)
 	$nb=0;
 	for($i=0;$i<count($data);$i++)
 		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-	$h=6*$nb;
+	$h=5*$nb;
 	//Issue a page break first if needed
 	$this->CheckPageBreak($h);
 	//Draw the cells of the row
@@ -694,10 +694,10 @@ function Rowdefault($data)
 		$x=$this->GetX();
 		$y=$this->GetY();
 		//Draw the border
-		$this->Rect($x,$y,$w,$h);
+		// $this->Rect($x,$y,$w,$h);
 		//Print the text
 		$this->SetFillColor(184, 215, 232);
-		$this->MultiCell($w,6,$data[$i],1,$a);
+		$this->MultiCell($w,5,$data[$i],0,$a);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
