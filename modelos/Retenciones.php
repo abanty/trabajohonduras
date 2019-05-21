@@ -105,9 +105,9 @@ Class Retenciones
 	}
 
 
-	/*--------------------------------------------------------*
-	| FUNCION PARA VALIDAR NUMERODOC DE RETENCIONES REPETIDOS |
-	.---------------------------------------------------------*/
+	/*-------------------------------------------------*
+	| FUNCION PARA MOSTRAR DETALLES DE RETENCIONES PDF |
+	.-------------------------------------------------*/
 	public function pdf_detalle_retenciones($idretenciones)
 	{
 		$sql="SELECT c.fecha_hora,c.numfactura, r.base_imponible,r.total_oc,r.descripcion,(r.tipo_impuesto * 100) as impuesto
@@ -121,9 +121,9 @@ Class Retenciones
 	}
 
 
-	/*--------------------------------------------------------*
-	| FUNCION PARA VALIDAR NUMERODOC DE RETENCIONES REPETIDOS |
-	.---------------------------------------------------------*/
+	/*-------------------------------------------------------*
+	| FUNCION PARA MOSTRAR DETALLES DE RETENCIONES PDF TOP 4 |
+	.-------------------------------------------------------*/
 	public function pdf_detalle_compromiso($idretenciones)
 	{
 		$sql="SELECT c.fecha_hora,c.numfactura
@@ -134,6 +134,30 @@ Class Retenciones
         ON r.idretenciones = dt.idretenciones
 		WHERE r.idretenciones = '$idretenciones'
 		limit 4";
+		return ejecutarConsulta($sql);
+	}
+
+
+	/*-----------------------------------------------------*
+	| FUNCION PARA MOSTRAR CAMPOS DE RETENCIONES PDF POR ID|
+	.-----------------------------------------------------*/
+	public function pdf_retenciones($idretenciones)
+	{
+		$sql="SELECT
+		r.idretenciones,
+		DATE(r.fecha_hora) as fecha,
+		r.idproveedores,
+		p.casa_comercial as proveedor,
+		r.rtn,
+		r.numdocumento,
+		r.tipo_impuesto,
+		r.descripcion,
+		r.base_imponible,
+		r.imp_retenido,
+		r.estado
+		FROM retenciones r
+		INNER JOIN proveedores p ON r.idproveedores=p.idproveedores
+		WHERE r.idretenciones = '$idretenciones'";
 		return ejecutarConsulta($sql);
 	}
 

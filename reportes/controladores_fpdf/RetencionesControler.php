@@ -273,7 +273,7 @@ function addPageNumber( $page )
 	$this->Cell(10,5,$page, 0,0, "C");
 }
 
-function addClientAdresse()
+function addClientAdresse($proveedor,$rtn,$numdocumento,$fecha)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
@@ -282,18 +282,18 @@ function addClientAdresse()
 	$this->SetXY( $r1+0.5, $y1);
 	$this->SetFont( "Arial", "", 8.5);
 
-	$this->Cell( 130,4,'RTN: 08019001211980',0,0);
+	$this->Cell( 130,4,'RTN: '.$rtn,0,0);
   $this->SetFont( "Arial", "B", 16);
-  $this->Cell( 65,4,utf8_decode('Nº 004-001-05-0000'),0,1);
+  $this->Cell( 65,4,utf8_decode('Nº '.$numdocumento),0,1);
   $this->SetFont( "Arial", "", 8.5);
   $this->SetX($r1+0.5);
   $this->Cell( 130,4,utf8_decode('CAI: 463B26-841521-ED4196-C5452D-AF25E6-19'),0,1);
   $this->ln(2);
   $this->SetX($r1+0.5);
-  $this->Cell( 130,4,utf8_decode('Fecha de Emisión: _______________________________________________'),0,1);
+  $this->Cell( 130,4,utf8_decode('Fecha de Emisión:                 '.$fecha),0,1);
   $this->ln(2);
   $this->SetX($r1+7);
-  $this->Cell( 95,4,utf8_decode('Sr.(a): '),0,0);
+  $this->Cell( 95,4,utf8_decode('Sr.(a): '.$proveedor),0,0);
   $this->RoundedRect(15, 60, 100, 10, 3.5, '');
 
   $this->SetFillColor(70,70,70,1);
