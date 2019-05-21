@@ -105,6 +105,36 @@ Class Retenciones
 	}
 
 
+	/*--------------------------------------------------------*
+	| FUNCION PARA VALIDAR NUMERODOC DE RETENCIONES REPETIDOS |
+	.---------------------------------------------------------*/
+	public function pdf_detalle_retenciones($idretenciones)
+	{
+		$sql="SELECT r.base_imponible,r.total_oc,r.descripcion,(r.tipo_impuesto * 100) as impuesto
+		FROM detalle_retenciones dt
+		INNER JOIN retenciones r
+		ON r.idretenciones = dt.idretenciones
+		WHERE r.idretenciones = '$idretenciones'";
+		return ejecutarConsulta($sql);
+	}
+
+
+	/*--------------------------------------------------------*
+	| FUNCION PARA VALIDAR NUMERODOC DE RETENCIONES REPETIDOS |
+	.---------------------------------------------------------*/
+	public function pdf_detalle_compromiso($idretenciones)
+	{
+		$sql="SELECT c.fecha_hora,c.numfactura
+		FROM detalle_retenciones dt
+		INNER JOIN compromisos c
+		ON c.idcompromisos = dt.idcompromisos
+		WHERE r.idretenciones = '$idretenciones'";
+		return ejecutarConsulta($sql);
+	}
+
+
+
+
 }
 
 ?>

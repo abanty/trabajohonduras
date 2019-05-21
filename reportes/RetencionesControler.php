@@ -274,7 +274,7 @@ function addPageNumber( $page )
 }
 
 // Client address
-function addClientAdresse( $cliente,$domicilio,$proveedor )
+function addClientAdresse()
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
