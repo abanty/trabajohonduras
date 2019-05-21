@@ -282,15 +282,17 @@ function addClientAdresse($proveedor,$rtn,$numdocumento,$fecha)
 	$this->SetXY( $r1+0.5, $y1);
 	$this->SetFont( "Arial", "", 8.5);
 
-	$this->Cell( 130,4,'RTN: '.$rtn,0,0);
+	$this->Cell( 130,4,'RTN: 08019001211980',0,0);
   $this->SetFont( "Arial", "B", 16);
-  $this->Cell( 65,4,utf8_decode('Nº '.$numdocumento),0,1);
+  $this->Cell( 65,4,utf8_decode('Nº 004-001-05-0000'.$numdocumento),0,1);
   $this->SetFont( "Arial", "", 8.5);
   $this->SetX($r1+0.5);
   $this->Cell( 130,4,utf8_decode('CAI: 463B26-841521-ED4196-C5452D-AF25E6-19'),0,1);
   $this->ln(2);
   $this->SetX($r1+0.5);
-  $this->Cell( 130,4,utf8_decode('Fecha de Emisión:                 '.$fecha),0,1);
+  $this->Cell( 130,4,utf8_decode('Fecha de Emisión:_______________________________________________'),0,1);
+	 $this->SetXY($r1+30,54);
+	$this->Cell( 50,5,utf8_decode($fecha),0,1);
   $this->ln(2);
   $this->SetX($r1+7);
   $this->Cell( 95,4,utf8_decode('Sr.(a): '.$proveedor),0,0);
@@ -301,10 +303,11 @@ function addClientAdresse($proveedor,$rtn,$numdocumento,$fecha)
   $this->SetFont( "Arial", "B", 10);
   $this->RoundedRectx(144, 60, 59, 5, 1, '1122', 'DF');
   $this->Cell(125,4, "RTN", 0, 1, "C");
+	$this->setTextColor(0, 0, 0);
   $this->RoundedRectx(144, 65, 59, 5, 1, '34', '');
 	$this->SetX($r1+7);
 	$this->Cell(128,4, "", 0, 0, "C");
-	$this->Cell(59,4, "-", 0, 0, "C");
+	$this->Cell(59,6, $rtn, 0, 0, "C");
 	$this->setTextColor(0, 0, 0);
 	$this->RoundedRect(48.8, 75, 60.2, 20, 3.5, '');
 	$this->RoundedRect(143.8, 75, 60.2, 20, 3.5, '');
