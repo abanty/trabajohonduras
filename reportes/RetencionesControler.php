@@ -451,6 +451,36 @@ function addCols( $tab )
 	$this->SetFont( "Arial", "", 9);
 }
 
+function addCols2( $tab )
+{
+	global $colonnes;
+
+	$r1  = 9.7;
+	$r2  = $this->w - ($r1 * 2) ;
+  $y1  =100.7;
+
+	$y2  = $this->h - 195.1 - $y1;
+
+	$colX = $r1;
+	$colonnes = $tab;
+
+	$miborder = array('BR','BR','BR','BR','B');
+	$caunt = -1;
+
+	$this->SetFont( "Arial", "", 8);
+	while ( list( $lib, $pos) = each ($tab) )
+	{
+		$caunt += 1;
+		$datos =  $miborder[$caunt];
+
+		$this->SetXY( $colX+0.2, $y1+0.3 );
+		$this->Cell( $pos+0.1, 8, utf8_decode($lib), $datos, 1,'C');
+		$colX += $pos;
+
+	}
+	$this->SetFont( "Arial", "", 9);
+}
+
 function addLineFormat( $tab,$tab2 )
 {
 	global $format, $bordex, $colonnes;
@@ -500,6 +530,34 @@ function addLine( $ligne, $tab )
 
 	$this->SetFont( "Arial", "", 8.5);
 
+	reset( $colonnes );
+	while ( list( $lib, $pos ) = each ($colonnes) )
+	{
+		$longCell  = $pos;
+		$texte     = $tab[ $lib ];
+
+		$length    = $this->GetStringWidth( $texte );
+		$tailleTexte = $this->sizeOfText( $texte, $length );
+		$formText  = $format[ $lib ];
+		$aaa = $bordex[ $lib ];
+
+		$this->SetXY( $ordonnee, $ligne-2);
+		$this->MultiCell( $longCell, 5 , $texte, $aaa, $formText);
+		if ( $maxSize < ($this->GetY()  ) )
+			$maxSize = $this->GetY() ;
+		$ordonnee += $pos;
+	}
+	return ( $maxSize - $ligne );
+}
+
+function addLine2( $ligne, $tab )
+{
+	global $colonnes, $format,$bordex;
+
+	$ordonnee     = 10;
+	$maxSize      = $ligne;
+
+	$this->SetFont( "Arial", "", 8.5);
 
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )

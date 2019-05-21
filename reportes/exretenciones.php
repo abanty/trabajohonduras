@@ -24,6 +24,8 @@ $tittle5 = "Aldea las casitas Km5, carretera a Mateo, Comayaguela M.D.C, Hondura
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Retenciones.php";
 $venta= new Retenciones();
+
+
 //Establecemos la configuración de la factura
 $pdf = new PDF_Invoice( 'P', 'mm', 'Letter' );
 $pdf->AddPage();
