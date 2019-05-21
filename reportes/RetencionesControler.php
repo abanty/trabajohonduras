@@ -326,25 +326,25 @@ $this->RoundedRect(143.8, 75, 60.2, 20, 3.5, '');
   $this->SetFont( "Arial", "", 10);
 
 $this->SetXY($r1+5,75);
-  $this->Cell(35,5,'Fecha de Factura', 0,0, "L");
+  $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
     $this->Cell(60,5,'10/20/2010', 'B',0, "C");
-      $this->Cell(35,5,utf8_decode('Nº de factura'), 0,0, "C");
+      $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
         $this->Cell(60,5,'10/20/2010', 'B',1, "C");
 $this->SetX($r1+5);
-        $this->Cell(35,5,'Fecha de Factura', 0,0, "L");
+        $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
           $this->Cell(60,5,'10/20/2010', 'B',0, "C");
-            $this->Cell(35,5,utf8_decode('Nº de factura'), 0,0, "C");
+            $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
               $this->Cell(60,5,'10/20/2010', 'B',1, "C");
 $this->SetX($r1+5);
-        $this->Cell(35,5,'Fecha de Factura', 0,0, "L");
+        $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
           $this->Cell(60,5,'10/20/2010', 'B',0, "C");
-            $this->Cell(35,5,utf8_decode('Nº de factura'), 0,0, "C");
+            $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
               $this->Cell(60,5,'10/20/2010', 'B',1, "C");
 
 $this->SetX($r1+5);
-        $this->Cell(35,5,'Fecha de Factura', 0,0, "L");
+        $this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
           $this->Cell(60,5,'10/20/2010', '',0, "C");
-            $this->Cell(35,5,utf8_decode('Nº de factura'), 0,0, "C");
+            $this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
               $this->Cell(60,5,'10/20/2010', '',0, "C");
 
 
@@ -444,7 +444,7 @@ function addCols( $tab )
 		$datos =  $miborder[$caunt];
 
 		$this->SetXY( $colX+0.2, $y1+0.3 );
-		$this->Cell( $pos+0.1, 8, utf8_decode($lib), $datos, 1);
+		$this->Cell( $pos+0.1, 8, utf8_decode($lib), $datos, 1,'C');
 		$colX += $pos;
 
 	}
@@ -630,7 +630,7 @@ function Rowedit($data)
 		$x=$this->GetX();
 		$y=$this->GetY();
 
-		$this->RoundedRectx($x,$h+96 , $w, $y-99, 2, '1234', '');
+		$this->RoundedRectx($x,$h+97 , $w, $y-100.8, 2, '1234', '');
 
 		$this->MultiCell($w,4,$data[$i],0,$a,false);
 		//Put the position to the right of the cell
