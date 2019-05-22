@@ -146,7 +146,7 @@ if ($largeur == 0) {
 function addSociete( $tittle1, $tittle2,$tittle3,$tittle4,$tittle5)
 {
 	$x1 = 5;
-	$y1 = 12;
+	$y1 = 8;
 	//Positionnement en bas
 	$this->SetXY( $x1, $y1 );
 	$this->SetFont('Arial','B',14);
@@ -277,44 +277,44 @@ function addClientAdresse($proveedor,$rtn,$numdocumento,$fecha)
 {
 	$r1     = $this->w - 207;
 	$r2     = 100;
-	$y1     = 45;
+	$y1     = 38;
 
 	$this->SetXY( $r1+0.5, $y1);
 	$this->SetFont( "Arial", "", 8.5);
 
-	$this->Cell( 130,4,'RTN: 08019001211980',0,0);
-  $this->SetFont( "Arial", "B", 16);
-  $this->Cell( 65,4,utf8_decode('Nº 004-001-05-0000'.$numdocumento),0,1);
+	$this->Cell( 130,4,'RTN: 08019001211980',0,1);
   $this->SetFont( "Arial", "", 8.5);
   $this->SetX($r1+0.5);
-  $this->Cell( 130,4,utf8_decode('CAI: 463B26-841521-ED4196-C5452D-AF25E6-19'),0,1);
+  $this->Cell( 130,4,utf8_decode('CAI: 463B26-841521-ED4196-C5452D-AF25E6-19'),0,0);
+	$this->SetFont( "Arial", "B", 16);
+  $this->Cell( 65,4,utf8_decode('Nº 004-001-05-0000'.$numdocumento),0,1);
+	$this->SetFont( "Arial", "", 8.5);
   $this->ln(2);
   $this->SetX($r1+0.5);
   $this->Cell( 130,4,utf8_decode('Fecha de Emisión:_______________________________________________'),0,1);
-	 $this->SetXY($r1+30,54);
+	 $this->SetXY($r1+30,47);
 	$this->Cell( 50,5,utf8_decode($fecha),0,1);
   $this->ln(2);
   $this->SetX($r1+7);
   $this->Cell( 95,4,utf8_decode('Sr.(a): '.$proveedor),0,0);
-  $this->RoundedRect(15, 60, 100, 10, 3.5, '');
-
+  $this->RoundedRect(15, 53, 100, 10, 3.5, '');
   $this->SetFillColor(70,70,70,1);
 	$this->setTextColor(255, 255, 255);
   $this->SetFont( "Arial", "B", 10);
-  $this->RoundedRectx(144, 60, 59, 5, 1, '1122', 'DF');
+  $this->RoundedRectx(144, 53, 59, 5, 1, '1122', 'DF');
   $this->Cell(125,4, "RTN", 0, 1, "C");
 	$this->setTextColor(0, 0, 0);
-  $this->RoundedRectx(144, 65, 59, 5, 1, '34', '');
+  $this->RoundedRectx(144, 58, 59, 5, 1, '34', '');
 	$this->SetX($r1+7);
 	$this->Cell(128,4, "", 0, 0, "C");
 	$this->Cell(59,6, $rtn, 0, 0, "C");
 	$this->setTextColor(0, 0, 0);
-	$this->RoundedRect(48.8, 75, 60.2, 20, 3.5, '');
-	$this->RoundedRect(143.8, 75, 60.2, 20, 3.5, '');
-  $this->SetFont( "Arial", "", 10);
+	$this->RoundedRect(48.8, 65, 60.2, 20, 3.5, '');
+	$this->RoundedRect(143.8, 65, 60.2, 20, 3.5, '');
+  $this->SetFont( "Arial", "",9);
 
 	//FECHA D FACTURA Y NUMERO DE FACTURA
-	$this->SetXY($r1+5,75);
+	$this->SetXY($r1+5,65);
 	$this->Cell(35,5,'Fecha de Factura:', 0,0, "L");
 	$this->Cell(60,5,'', 'B',0, "C");
 	$this->Cell(35,5,utf8_decode('Nº de factura:'), 0,0, "C");
@@ -408,7 +408,7 @@ function addCols( $tab )
 
 	$r1  = 9.7;
 	$r2  = $this->w - ($r1 * 2) ;
-  $y1  =100.7;
+  $y1  =88;
 
 	$y2  = $this->h - 195.1 - $y1;
 
@@ -523,7 +523,7 @@ function addLine( $ligne, $tab )
 		$aaa = $bordex[ $lib ];
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 30 , $texte, $aaa, $formText);
+		$this->MultiCell( $longCell, 25 , $texte, $aaa, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -670,7 +670,7 @@ function Rowedit($data)
 		$y=$this->GetY();
 
 		// $this->MultiCell($w,$y,'',0,0);
-		$this->RoundedRectx($x,$h+97 , $w, $y-100.8, 2, '1234', '');
+		$this->RoundedRectx($x,$h+84 , $w, $y-88, 2, '1234', '');
 
 		$this->MultiCell($w,4,$data[$i],0,$a,false);
 		//Put the position to the right of the cell

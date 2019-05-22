@@ -42,7 +42,7 @@ $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 //Enviamos los datos de la empresa al método adsdSociete de la clase Factura
 $pdf->addSociete(utf8_decode($tittle1),utf8_decode($tittle2),utf8_decode($tittle3),utf8_decode($tittle4),utf8_decode($tittle5));
 //Enviamos los datos del cliente al método addClientAdresse de la clase Factura
-$pdf->SetY(75);
+$pdf->SetY(65);
 //Obtenemos todos los detalles de la venta actual
 $rsptad2 = $retencion->pdf_detalle_compromiso($_GET["id"]);
 while ($regd2 = $rsptad2->fetch_object()) {
@@ -83,7 +83,7 @@ $pdf->addLineFormat( $cols,$cols2);
 
 
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 111;
+$y= 98;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $retencion->pdf_detalle_retenciones($_GET["id"]);
