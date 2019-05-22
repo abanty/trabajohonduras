@@ -38,6 +38,90 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" href="../public/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   </head>
+  <style media="screen">
+  .loader-page {
+  position: fixed;
+  z-index: 25000;
+  background: rgb(255, 255, 255);
+  /* background: #ffffff00 */
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:all .3s ease;
+  }
+  .loader-page::before {
+  content: "";
+  position: absolute;
+  border: 2px solid rgb(50, 150, 176);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-left: 2px solid rgba(50, 150, 176,0);
+  border-top: 2px solid rgba(50, 150, 176,0);
+  animation: rotarload 1s linear infinite;
+  transform: rotate(0deg);
+  }
+  @keyframes rotarload {
+    0%   {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
+  }
+  .loader-page::after {
+  content: "";
+  position: absolute;
+  border: 2px solid rgba(50, 150, 176,.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-left: 2px solid rgba(50, 150, 176, 0);
+  border-top: 2px solid rgba(50, 150, 176, 0);
+  animation: rotarload 1s ease-out infinite;
+  transform: rotate(0deg);
+  }
+
+
+  .parpadea {
+    margin-top: -105px;
+    font-size:32px;
+    font-family:helvetica;
+    font-weight:bold;
+    color:#6397a5;
+    text-transform:uppercase;
+
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-name:parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+
+  @-moz-keyframes parpadeo{    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+
+  @-webkit-keyframes parpadeo {
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+  }
+
+  @keyframes parpadeo {
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+  </style>
+  <div class="loader-page"><h1 class="parpadea">SISTEMA FNH</h1></div>
    <div id="preloader" style="display:none;">
       <div class="spinner">
         <div class="spinner-circle spinner-circle-outer"></div>
@@ -47,15 +131,6 @@ if (strlen(session_id()) < 1)
         <div class="text">Insertando datos...</div>
       </div>
     </div>
-  <!-- <div id="preloader">
-    <center>
-    <div class="load">
-
-    </div>
-    <h5 style="color:#fff;">Insertando datos ...</h5>
-    </center>
-  </div> -->
-
 
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -145,7 +220,7 @@ if (strlen(session_id()) < 1)
             if ($_SESSION['compromisosp']==1)
             {
               echo '<li class="treeview">
-            <a href="#" class="wawes-effect active">
+            <a href="#">
 
               <i class="fas fa-grip-vertical fa-lg"></i><span> Compromisos Pendientes</span>
 
@@ -256,9 +331,8 @@ if (strlen(session_id()) < 1)
               <span>SIAFI</span>
 
                 <i class="fal fa-angle-left pull-right"></i>
-              </span>
-            </a>
 
+            </a>
 
                <ul class="treeview-menu">
               <li><a href="presupuesto_disponible.php"><i class="far fa-dot-circle text-blue"></i>Presupuesto Disponible</a></li>
@@ -275,23 +349,21 @@ if (strlen(session_id()) < 1)
           <?php
             if ($_SESSION['documentosr']==1)
             {
-              echo'
+              echo'     <li class="treeview">
+                     <a href="#">
+                      <i class="fas fa-folder-plus"></i>
+                      <span>Retenciones</span>
 
-          <li class="treeview">
-          <a href="">
-            <i class="fas fa-folder-plus fa-lg" aria-hidden="true"></i> <span>Retenciones</span>
+                        <i class="fal fa-angle-left pull-right"></i>
 
-            <i class="fal fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="retenciones.php"><i class="far fa-dot-circle text-red"></i>Crear Retencion</a></li>
-            <li><a href="reporte.php"><i class="far fa-dot-circle text-red"></i>Reporte</a></li>
+                    </a>
+                       <ul class="treeview-menu">
+                      <li><a href="retenciones.php"><i class="far fa-dot-circle text-blue"></i>Crear Retencion</a></li>
+                      <li><a href="reporte.php"><i class="far fa-dot-circle text-blue"></i>Reporte</a></li>
+                    </ul>
 
+                    </li>';
 
-          </ul>
-
-        </li>';
       }
       ?>
 
@@ -299,26 +371,23 @@ if (strlen(session_id()) < 1)
             if ($_SESSION['reportesc']==1)
             {
               echo'
+              <li class="treeview">
+                   <a href="#">
+                    <i class="far fa-chart-bar fa-lg"></i>
+                    <span>Reportes Compromisos</span>
 
-         <li class="treeview">
-          <a href="">
-            <i class="far fa-chart-bar fa-lg"></i> <span>Reportes Compromisos</span>
+                      <i class="fal fa-angle-left pull-right"></i>
 
-            <i class="fal fa-angle-left pull-right"></i>
-            </span>
-          </a>
+                  </a>
+                     <ul class="treeview-menu">
+                      <li><a href="reporte_general"><i class="far fa-dot-circle text-blue"></i> Reporte General</a></li>
+                      <li><a href="reporte_objeto"><i class="far fa-dot-circle text-blue"></i> Reporte OBJ.Gasto</a></li>
+                      <li><a href="reporte_unidades"><i class="far fa-dot-circle text-blue"></i> Reporte Por Unidades</a></li>
+                      <li><a href="reporte_siafi"><i class="far fa-dot-circle text-blue"></i> Reporte SIAFI</a></li>
+                  </ul>
 
-          <ul class="treeview-menu">
-            <li><a href="reporte_general"><i class="far fa-dot-circle text-blue"></i> Reporte General</a></li>
+                  </li>';
 
-            <li><a href="reporte_objeto"><i class="far fa-dot-circle text-blue"></i> Reporte OBJ.Gasto</a></li>
-
-            <li><a href="reporte_unidades"><i class="far fa-dot-circle text-blue"></i> Reporte Por Unidades</a></li>
-
-            <li><a href="reporte_siafi"><i class="far fa-dot-circle text-blue"></i> Reporte SIAFI</a></li>
-          </ul>
-
-          </li>';
         }
         ?>
 

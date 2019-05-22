@@ -2,12 +2,18 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	$(window).on('load', function () {
+			setTimeout(function () {
+		$(".loader-page").css({visibility:"hidden",opacity:"0"})
+	}, 1000);
+
+	});
 	mostrarform(false);
 	listar();
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
+		guardaryeditar(e);
 	})
 }
 
@@ -54,7 +60,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -64,9 +70,9 @@ function listar()
 				{
 					url: '../ajax/presupuesto_anual.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -90,8 +96,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          $("#tbllistado").dataTable().api().ajax.reload();
 	    }
@@ -104,7 +110,7 @@ function mostrar(idpresupuesto_anual)
 {
 	$.post("../ajax/presupuesto_anual.php?op=mostrar",{idpresupuesto_anual : idpresupuesto_anual}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 
@@ -126,7 +132,7 @@ function desactivar(idpresupuesto_anual)
         	$.post("../ajax/presupuesto_anual.php?op=desactivar", {idpresupuesto_anual : idpresupuesto_anual}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -140,7 +146,7 @@ function activar(idpresupuesto_anual)
         	$.post("../ajax/presupuesto_anual.php?op=activar", {idpresupuesto_anual : idpresupuesto_anual}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }

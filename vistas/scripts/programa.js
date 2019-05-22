@@ -2,12 +2,18 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	$(window).on('load', function () {
+			setTimeout(function () {
+		$(".loader-page").css({visibility:"hidden",opacity:"0"})
+	}, 1000);
+
+	});
 	mostrarform(false);
 	listar();
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
+		guardaryeditar(e);
 	})
 }
 
@@ -53,7 +59,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -63,9 +69,9 @@ function listar()
 				{
 					url: '../ajax/programa.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -89,8 +95,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          tabla.ajax.reload();
 	    }
@@ -103,7 +109,7 @@ function mostrar(idprograma)
 {
 	$.post("../ajax/programa.php?op=mostrar",{idprograma : idprograma}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 		$("#codigop").val(data.codigop);
@@ -122,7 +128,7 @@ function desactivar(idprograma)
         	$.post("../ajax/programa.php?op=desactivar", {idprograma : idprograma}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -136,7 +142,7 @@ function activar(idprograma)
         	$.post("../ajax/programa.php?op=activar", {idprograma : idprograma}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }

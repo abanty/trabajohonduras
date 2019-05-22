@@ -2,6 +2,12 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	$(window).on('load', function () {
+			setTimeout(function () {
+		$(".loader-page").css({visibility:"hidden",opacity:"0"})
+	}, 1000);
+
+	});
 	mostrarform(false);
 	listar();
 }
@@ -34,7 +40,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -44,9 +50,9 @@ function listar()
 				{
 					url: '../ajax/permiso.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,

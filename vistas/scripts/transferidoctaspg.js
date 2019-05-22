@@ -2,6 +2,12 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	$(window).on('load', function () {
+			setTimeout(function () {
+		$(".loader-page").css({visibility:"hidden",opacity:"0"})
+	}, 1000);
+
+	});
 	mostrarform(false);
 	listar();
 	fechanow();
@@ -363,7 +369,7 @@ var selecttipodoc = $("#tipo_transf option:selected").val();
   }
 
 
-	
+
   function calcularTotales(){
   	var sub = document.getElementsByName("subtotal");
   	var total = 0.0;

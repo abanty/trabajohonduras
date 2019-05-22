@@ -2,18 +2,24 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+	$(window).on('load', function () {
+			setTimeout(function () {
+		$(".loader-page").css({visibility:"hidden",opacity:"0"})
+	}, 1000);
+
+	});
 	mostrarform(false);
 	listar();
 
 	$("#formulario").on("submit",function(e)
 	{
-		guardaryeditar(e);	
+		guardaryeditar(e);
 	});
 	//Cargamos los items al select cliente
 	$.post("../ajax/venta.php?op=selectCliente", function(r){
 	            $("#idcliente").html(r);
 	            $('#idcliente').selectpicker('refresh');
-	});	
+	});
 }
 
 //Función limpiar
@@ -81,7 +87,7 @@ function listar()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
+	    buttons: [
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
@@ -91,9 +97,9 @@ function listar()
 				{
 					url: '../ajax/venta.php?op=listar',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -111,16 +117,16 @@ function listarArticulos()
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [		          
-		            
+	    buttons: [
+
 		        ],
 		"ajax":
 				{
 					url: '../ajax/venta.php?op=listarArticulosVenta',
 					type : "get",
-					dataType : "json",						
+					dataType : "json",
 					error: function(e){
-						console.log(e.responseText);	
+						console.log(e.responseText);
 					}
 				},
 		"bDestroy": true,
@@ -144,8 +150,8 @@ function guardaryeditar(e)
 	    processData: false,
 
 	    success: function(datos)
-	    {                    
-	          bootbox.alert(datos);	          
+	    {
+	          bootbox.alert(datos);
 	          mostrarform(false);
 	          listar();
 	    }
@@ -158,7 +164,7 @@ function mostrar(idventa)
 {
 	$.post("../ajax/venta.php?op=mostrar",{idventa : idventa}, function(data, status)
 	{
-		data = JSON.parse(data);		
+		data = JSON.parse(data);
 		mostrarform(true);
 
 		$("#idcliente").val(data.idcliente);
@@ -179,7 +185,7 @@ function mostrar(idventa)
 
  	$.post("../ajax/venta.php?op=listarDetalle&id="+idventa,function(r){
 	        $("#detalles").html(r);
-	});	
+	});
 }
 
 //Función para anular registros
@@ -191,7 +197,7 @@ function anular(idventa)
         	$.post("../ajax/venta.php?op=anular", {idventa : idventa}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
-        	});	
+        	});
         }
 	})
 }
@@ -210,11 +216,11 @@ function marcarImpuesto()
   	var tipo_comprobante=$("#tipo_comprobante option:selected").text();
   	if (tipo_comprobante=='Factura')
     {
-        $("#impuesto").val(impuesto); 
+        $("#impuesto").val(impuesto);
     }
     else
     {
-        $("#impuesto").val("0"); 
+        $("#impuesto").val("0");
     }
   }
 
@@ -284,7 +290,7 @@ function agregarDetalle(idarticulo,articulo)
     }
     else
     {
-      $("#btnGuardar").hide(); 
+      $("#btnGuardar").hide();
       cont=0;
     }
   }
