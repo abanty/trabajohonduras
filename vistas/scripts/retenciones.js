@@ -260,7 +260,7 @@ function mostrar(idretenciones)
  	});
 
  	$.post("../ajax/retenciones.php?op=listarDetalle&id="+idretenciones,function(r){
-	        $("#detalles").html(r);
+	        $("#detalles tbody").html(r);
 	});
 }
 

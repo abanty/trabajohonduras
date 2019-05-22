@@ -5,6 +5,12 @@ var tabla;
 //------------------
 function init(){
 
+	$(window).on('load', function () {
+	    setTimeout(function () {
+	  $(".loader-page").css({visibility:"hidden",opacity:"0"})
+	}, 1000);
+
+	});
 			//Transformando inputs a libreria MASKMONEY.
 			$(function() {
 				$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
