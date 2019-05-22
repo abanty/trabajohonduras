@@ -93,7 +93,7 @@ while ($regd = $rsptad->fetch_object()) {
 
   $line = array("N°"=> "1",
                 "Descripcion del impuesto retenido"=> utf8_decode("$regd->descripcion"),
-                "Base imponible"=> "$regd->base_imponible",
+                "Base imponible"=>number_format("$regd->base_imponible", 2, '.', ',') ,
 
                 "Porcentaje de Impuesto" => "$regd->impuesto",
 

@@ -121,7 +121,7 @@ if (strlen(session_id()) < 1)
     100% { opacity: 1.0; }
   }
   </style>
-  <div class="loader-page"><h1 class="parpadea">SISTEMA FNH</h1></div>
+  <div class="loader-page"><h1 class="parpadea">PAGADURÍA F.N.H.</h1></div>
    <div id="preloader" style="display:none;">
       <div class="spinner">
         <div class="spinner-circle spinner-circle-outer"></div>
