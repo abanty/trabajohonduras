@@ -55,9 +55,9 @@ $pdf->SetX(49);
 
 $pdf->addClientAdresse(utf8_decode($regre->proveedor),utf8_decode($regre->rtn),utf8_decode($regre->numdocumento),utf8_decode($regre->fecha));
 //Establecemos las columnas que va a tener la sección donde mostramos los detalles de la venta
-$cols=array( "N°"=>12,
+$cols=array( "N°"=>7,
              "Descripcion del impuesto retenido"=>80,
-             "Base imponible"=>30,
+             "Base imponible"=>35,
              "Porcentaje de Impuesto"=>35,
              "Impuesto Total Retenido"=>39
              );
@@ -123,7 +123,7 @@ $pdf->Ln(5);
 
 $pdf->SetLineWidth(0.2);
 $pdf->SetX(8);
-$pdf->MultiCell(190,4, 'FIRMA Y SELLO',0,'R');
+$pdf->MultiCell(187,4, 'FIRMA Y SELLO',0,'R');
 // $pdf->SetX(8);
 // $pdf->MultiCell(200,15, '',0,'C');
 // $pdf->MultiCell(200,4, "NOTA:        ".utf8_decode($regv->descripcion_orden),0,'L');
