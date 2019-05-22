@@ -523,7 +523,7 @@ function addLine( $ligne, $tab )
 		$aaa = $bordex[ $lib ];
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 5 , $texte, $aaa, $formText);
+		$this->MultiCell( $longCell, 30 , $texte, $aaa, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -669,6 +669,7 @@ function Rowedit($data)
 		$x=$this->GetX();
 		$y=$this->GetY();
 
+		// $this->MultiCell($w,$y,'',0,0);
 		$this->RoundedRectx($x,$h+97 , $w, $y-100.8, 2, '1234', '');
 
 		$this->MultiCell($w,4,$data[$i],0,$a,false);
@@ -698,6 +699,7 @@ function Rowdefault($data)
 		$y=$this->GetY();
 		//Draw the border
 		// $this->Rect($x,$y,$w,$h);
+			$this->SetFont( "Arial", "", 8);
 		//Print the text
 		$this->SetFillColor(184, 215, 232);
 		$this->MultiCell($w,5,$data[$i],0,$a);

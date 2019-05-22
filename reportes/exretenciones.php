@@ -100,10 +100,11 @@ while ($regd = $rsptad->fetch_object()) {
                 "Impuesto Total Retenido"=> number_format("$regd->total_oc", 2, '.', ',')
                 );
 
-            $size = $pdf->addLine( $y, $line );
-            $y   += $size + 2;
+
 }
 
+$size = $pdf->addLine( $y, $line );
+$y   += $size + 2;
 
 $pdf->SetWidths(array(196));
 
