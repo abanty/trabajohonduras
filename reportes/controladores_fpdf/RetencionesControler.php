@@ -159,14 +159,14 @@ function addSociete( $tittle1, $tittle2,$tittle3,$tittle4,$tittle5)
   $this->SetX( $x1);
 	$this->SetFont('Arial','B',10);
 	$this->Cell( 205, 6, $tittle3,0,1,"C");
+$this->Ln(1);
+  $this->SetX( $x1);
+	$this->SetFont('Arial','',9);
+	$this->Cell( 205, 4, $tittle4,0,1,"C");
 
   $this->SetX( $x1);
-	$this->SetFont('Arial','',10);
-	$this->Cell( 205, 6, $tittle4,0,1,"C");
-
-  $this->SetX( $x1);
-  $this->SetFont('Arial','',10);
-  $this->Cell( 205, 6, $tittle5,0,1,"C");
+  $this->SetFont('Arial','',9);
+  $this->Cell( 205, 4, $tittle5,0,1,"C");
 
   // $this->SetLineWidth(0.1);
   // $this->SetFillColor(190,190,190,1);
@@ -717,9 +717,9 @@ function titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2)
 {
 
 //LOGO 1
-	$this->Image($logo1 , 10 ,10, 25 , 25 , $ext_logo1);
+	$this->Image($logo1 , 10 ,5, 25 , 25 , $ext_logo1);
 // LOGO 2
-	$this->Image($logo2 , 180 ,10, 25 , 23.5 , $ext_logo2);
+	$this->Image($logo2 , 180 ,5, 25 , 23.5 , $ext_logo2);
 
 
 }
