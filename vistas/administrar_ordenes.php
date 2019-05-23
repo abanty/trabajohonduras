@@ -53,7 +53,7 @@ if ($_SESSION['admonoc']==1)
                   <th>Usuario</th>
                   <th>Programa</th>
                   <th>Documento</th>
-                  <th>No. Orden</th>
+                  <th>No. Doc</th>
                   <th>No. Comprobante</th>
                   <th>Monto Total</th>
                   <th>Estado</th>
@@ -69,7 +69,7 @@ if ($_SESSION['admonoc']==1)
                   <th>Usuario</th>
                   <th>Programa</th>
                   <th>Documento</th>
-                  <th>No. Orden</th>
+                  <th>No. Doc</th>
                   <th>No. Comprobante</th>
                   <th>Monto Total</th>
                   <th>Estado</th>
@@ -128,6 +128,16 @@ if ($_SESSION['admonoc']==1)
                           <input type="text" class="form-control input-sm" name="refbank" id="refbank" maxlength="45" placeholder="Ingrese el # de Referencia B.">
                         </div>
 
+                        <div id="No_planilla" style="display:none;" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>Nº planilla.(*):</label>
+                          <input type="text" class="form-control input-sm" name="plan" id="plan" maxlength="45" placeholder="Ingrese el # de Referencia B.">
+                        </div>
+
+                        <div id="No_otros" style="display:none;" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                          <label>Nº Documento.(*):</label>
+                          <input type="text" class="form-control input-sm" name="otros" id="otros" maxlength="45" placeholder="Ingrese el # de Referencia B.">
+                        </div>
+
                         <div id="program" class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                           <label>Programa(*):</label>
                           <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Programa"></select>
@@ -161,8 +171,10 @@ if ($_SESSION['admonoc']==1)
                             <option data-icon="far fa-file-pdf" value="Acuerdo">Acuerdo</option>
                             <option data-icon="far fa-file-pdf" value="F.R.">F.R.</option>
                             <option data-icon="fas fa-file-pdf" value="O/C">O/C</option>
-                            <option data-icon="far fa-file" value="Alimentacion">Otros Documentos</option>
-
+                            <option data-icon="far fa-file" value="Alimentacion">Alimentacion</option>
+                            <option data-icon="far fa-file" value="Becas">Becas</option>
+                            <option data-icon="fas fa-paste" value="Planillas">Planillas</option>
+                            <option data-icon="far fa-file" value="Otros">Otros documentos</option>
                           </select>
                         </div>
 

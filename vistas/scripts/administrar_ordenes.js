@@ -137,6 +137,8 @@ function limpiarCamposOrden()
 	$("#num_acuerdo").val('');
 	$("#inputfr").val('');
 	$("#refbank").val('');
+	$("#plan").val('');
+	$("#otros").val('');
 	// SELECTS FORMULARIO
 	$("#idprograma").selectpicker('val',"");
 	$("#idprograma").selectpicker('refresh');
@@ -235,6 +237,14 @@ function transcribir()
 	$('#refbank').change(function() {
 			$('#num_orden').val($(this).val());
 	});
+
+	$('#plan').change(function() {
+			$('#num_orden').val($(this).val());
+	});
+
+	$('#otros').change(function() {
+			$('#num_orden').val($(this).val());
+	});
 }
 
 
@@ -299,6 +309,21 @@ function change_input_by_tipodoc()
 								limpiarCamposOrden();
 								evaluar();
 								VistaAlimentosBecas();
+								ocultarcamposinitial(false);
+
+							}else if (selecttipodoc == 'Planillas') {
+
+								limpiarCamposOrden();
+								evaluar();
+								VistaPlanilla();
+								ocultarcamposinitial(false);
+
+							}else if (selecttipodoc == 'Otros') {
+
+
+								limpiarCamposOrden();
+								evaluar();
+								VistaOtros();
 								ocultarcamposinitial(false);
 
 										}else if ($('#tipo_documento').val() == "") {
@@ -482,6 +507,10 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#inputfr").val(data.num_orden);
 		// NUMERO REF BANCARIA
 		$("#refbank").val(data.num_orden);
+		// NUMERO REF PLANILLA
+		$("#plan").val(data.num_orden);
+		// NUMERO REF OTROS
+		$("#otros").val(data.num_orden);
 		// NUMERO PROGRAMA
 		$("#idprograma").val(data.idprograma).selectpicker('refresh');
 		// FECHA
@@ -986,6 +1015,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	 $("#btnmodal").show();
 
 	 //CAMPOS CABECERA OCULTAR
+	 $("#No_otros").hide();
+ 	 $("#No_planilla").hide();
 	 $("#sol").hide();
 	 $("#No_ord").hide();
 	 $("#No_fr").hide();
@@ -1019,6 +1050,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		$("#btnmodal").show();
 
 		//CAMPOS CABECERA OCULTAR
+	   $("#No_otros").hide();
+	   $("#No_planilla").hide();
 		 $("#No_fr").hide();
 		 $("#No_refbancaria").hide();
 		 $("#No_acuerdo").hide();
@@ -1048,6 +1081,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		$("#btnmodal").show();
 
 		//CAMPOS CABECERA OCULTAR
+		$("#No_otros").hide();
+	  $("#No_planilla").hide();
 		$("#sol").hide();
 		$("#No_ord").hide();
 		$("#No_acuerdo").hide();
@@ -1075,6 +1110,8 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	 $("#btnmodal").show();
 
 	 // OCULTAR CAMPOS
+	 $("#No_otros").hide();
+ 	 $("#No_planilla").hide();
 	 $("#sol").hide();
 	 $("#No_ord").hide();
 	 $("#No_comp").hide();
@@ -1098,6 +1135,75 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	 $("#content_tfoot").hide();
  }
 
+ function VistaPlanilla(){
+	// MOSTRAR CAMPOS FIJOS
+	$("#No_planilla").show();
+	$("#program").show();
+	$("#datediv").show();
+	$("#descdiv").show();
+	$("#btnmodal").show();
+
+	// OCULTAR CAMPOS
+	$("#No_otros").hide();
+	$("#No_refbancaria").hide();
+	$("#sol").hide();
+	$("#No_ord").hide();
+	$("#No_comp").hide();
+	$("#No_acuerdo").hide();
+	$("#No_fr").hide();
+	$("#divprov").hide();
+	$("#uni_sup").hide();
+	$("#th_uni").hide();
+	$("#th_descr").hide();
+	$("#alertselectdoc").hide();
+
+	$("#content_table_details").attr("class", "col-lg-8 col-sm-8 col-md-8 col-xs-8");
+	$("#No_planilla").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
+	$("#program").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
+	$("#descripcion_orden").attr("rows", 5);
+
+	//MOSTRAR CAMPOS DETALLES
+	$("#content_table_details").show();
+	$("#table_invoce").show();
+	//MOSTRAR CAMPOS DETALLES OCULTOS
+	$("#content_tfoot").hide();
+ }
+
+
+ function VistaOtros(){
+	// MOSTRAR CAMPOS FIJOS
+	$("#No_otros").show();
+	$("#program").show();
+	$("#datediv").show();
+	$("#descdiv").show();
+	$("#btnmodal").show();
+
+	// OCULTAR CAMPOS
+
+	$("#No_planilla").hide();
+	$("#No_refbancaria").hide();
+	$("#sol").hide();
+	$("#No_ord").hide();
+	$("#No_comp").hide();
+	$("#No_acuerdo").hide();
+	$("#No_fr").hide();
+	$("#divprov").hide();
+	$("#uni_sup").hide();
+	$("#th_uni").hide();
+	$("#th_descr").hide();
+	$("#alertselectdoc").hide();
+
+	$("#content_table_details").attr("class", "col-lg-8 col-sm-8 col-md-8 col-xs-8");
+	$("#No_otros").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
+	$("#program").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
+	$("#descripcion_orden").attr("rows", 5);
+
+	//MOSTRAR CAMPOS DETALLES
+	$("#content_table_details").show();
+	$("#table_invoce").show();
+	//MOSTRAR CAMPOS DETALLES OCULTOS
+	$("#content_tfoot").hide();
+ }
 
 
 init();
