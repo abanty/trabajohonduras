@@ -18,9 +18,8 @@ require('controladores_fpdf/RetencionesControler.php');
 //Establecemos los datos de la empresa
 $tittle1 = "FUERZA NAVAL DE HONDURAS";
 $tittle2 = "PAGADURIA GENERAL";
-$tittle3 = "COMPROBANTE DE RETENCIÓN DE IMPUESTOS";
-$tittle4 = "Tel: (504) 2234-6288 E-mail pagaduria@fnh.mil.hn";
-$tittle5 = "Aldea las casitas Km5, carretera a Mateo, Comayaguela M.D.C, Honduras C.A.";
+$tittle3 = "COMPROMISOS PENDIENTE DE PAGO POR PROVEEDOR";
+
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Retenciones.php";
 $retencion= new Retenciones();
