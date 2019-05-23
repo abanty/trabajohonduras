@@ -66,7 +66,7 @@ if ($_SESSION['escritorio']==1)
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <div class="box-title"><h2> <b>   ESCRITORIO</b></h2>
+                          <div class="box-title"><h2> <b>ESCRITORIO</b></h2>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -103,7 +103,6 @@ if ($_SESSION['escritorio']==1)
                             </div>
                         </div>
 
-
                         <div class="col-lg-3 col-xs-6">
                           <div class="small-box bg-green">
                               <div class="inner">
@@ -118,7 +117,6 @@ if ($_SESSION['escritorio']==1)
                               <a href="compromisos.php" class="small-box-footer">Cuentas por Pagar<i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
-
 
                         <div class="col-lg-3 col-xs-6">
                           <div class="small-box bg-red">
@@ -137,12 +135,9 @@ if ($_SESSION['escritorio']==1)
                     </div>
 
                     <div class="panel-body">
-
                         <div class="col-lg-12">
-
                           <div class="box box-solid bg-teal-gradient">
                               <div class="box-header with-border">
-                                <i class="fa fa-th"></i>
 
                                 <b>EJECUCION DEL PRESUPUESTO</b>
                               </div>
@@ -186,7 +181,7 @@ require 'footer.php';
 <script src="../public/raphael/raphael.min.js"></script>
 <script src="../public//morris.js/morris.min.js"></script>
 <script type="text/javascript">
-<script>
+
 
  var line = new Morris.Line({
     element          : 'line-chart-ventas',
@@ -231,7 +226,7 @@ require 'footer.php';
     gridTextSize     : 10
   });
 
-</script>
+
 
 var ctx = document.getElementById("ventas").getContext('2d');
 var ventas = new Chart(ctx, {
