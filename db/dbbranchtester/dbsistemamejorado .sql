@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-05-2019 a las 19:36:30
+-- Tiempo de generación: 24-05-2019 a las 01:35:44
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -66,7 +66,11 @@ CREATE TABLE `administrar_ordenes` (
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
 (1, 9, 1, 12, 5, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-17', '63367615.65', '1000.00', '63366615.65', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '80792434.96', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '63366615.65', 'Pendiente'),
-(2, 1, 1, 5, 1, '87894', '', '', 'hgghjghjghj', 'Becas', '2019-05-23', '48333.25', '0.00', '48333.25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '48333.25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '48333.25', 'Pendiente');
+(2, 1, 1, 5, 1, '87894', '', '', 'hgghjghjghj', 'Becas', '2019-05-23', '48333.25', '0.00', '48333.25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '48333.25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '48333.25', 'Pendiente'),
+(3, 1, 1, 3, 1, '4234', '', '', 'fdsfds', 'Alimentacion', '2019-05-23', '2684.68', '0.00', '2684.68', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2684.68', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2684.68', 'Pendiente'),
+(4, 3, 1, 4, 1, '24324', '5443', '', 'dfsdfds', 'F.R.', '2019-05-23', '4328648.64', '3424.32', '4325224.32', '648783.65', '15.00', '4325224.32', '540653.04', '12.50', '4325224.32', '5514661.01', '648783.65', '15.00', '4325224.32', '540653.04', '12.50', '4325224.32', '4325224.32', 'Pendiente'),
+(5, 1, 1, 7, 1, '343234', '', '', 'dsfds', 'Planillas', '2019-05-23', '5439970.77', '0.00', '5439970.77', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5439970.77', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5439970.77', 'Pendiente'),
+(6, 1, 1, 2, 1, '645645654', '', '', 'gfdgdfg', 'Otros', '2019-05-23', '35435888.97', '0.00', '35435888.97', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '35435888.97', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '35435888.97', 'Pendiente');
 
 --
 -- Disparadores `administrar_ordenes`
@@ -429,7 +433,15 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (14, 1, 43, 'frwerew', 343, 'dfef', '3422.00'),
 (15, 1, 78, 'fdesfsd', 34, 'asdsad', '32.00'),
 (16, 2, 2, '', 10, '', '4555.55'),
-(17, 2, 3, '', 5, '', '555.55');
+(17, 2, 3, '', 5, '', '555.55'),
+(18, 3, 2, '', 1, '', '342.34'),
+(19, 3, 1, '', 1, '', '2342.34'),
+(20, 4, 2, '', 1, '', '4324.32'),
+(21, 4, 1, '', 1, '', '4324324.32'),
+(22, 5, 1, '', 1, '', '4535.34'),
+(23, 5, 2, '', 1, '', '5435435.43'),
+(24, 6, 2, '', 1, '', '543.54'),
+(25, 6, 3, '', 1, '', '35435345.43');
 
 -- --------------------------------------------------------
 
@@ -1247,7 +1259,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1301,7 +1313,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
