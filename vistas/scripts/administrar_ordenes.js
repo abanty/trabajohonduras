@@ -86,6 +86,9 @@ function ocultarcamposinitial(flag=true){
 		$("#No_comp").hide();
 		$("#No_acuerdo").hide();
 		$("#No_fr").hide();
+
+		$("#No_otros").hide();
+  	$("#No_planilla").hide();
 		$("#No_refbancaria").hide();
 		$("#program").hide();
 		$("#datediv").hide();
@@ -448,6 +451,8 @@ function guardaryeditar(e)
 	    }
 
 	});
+	limpiarCamposOrden();
+	ocultarcamposinitial();
 	limpiar();
 }
 
@@ -652,7 +657,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 							  	var precio_unitario = 0.00;
 
 						var selecttipodoc = $("#tipo_documento option:selected").val();
-						if((selecttipodoc == 'Acuerdo')||(selecttipodoc == 'F.R.')||(selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')&&(idpresupuesto_disponible!="")){
+						if((selecttipodoc == 'Acuerdo')||(selecttipodoc == 'F.R.')||(selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')||(selecttipodoc == 'Planillas')||(selecttipodoc == 'Otros')&&(idpresupuesto_disponible!="")){
 							var subtotal= cantidad*precio_unitario;
 							var fila='<tr role="row" class="filas" id="fila'+cont+'">'+
 								/*BOTON ELIMINAR FILAS*/

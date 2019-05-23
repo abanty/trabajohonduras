@@ -213,6 +213,16 @@ switch ($_GET["op"]){
             $contenido_li =  '';
             break;
 
+            case "Planillas":
+            $reg->tipo_documento = '<a style="color:rgb(50, 17, 129); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $contenido_li =  '';
+            break;
+
+            case "Otros":
+            $reg->tipo_documento = '<a style="color:rgb(191, 80, 33); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $contenido_li =  '';
+            break;
+
             default :
             $contenido_li;
             $reg->tipo_documento;
