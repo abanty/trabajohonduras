@@ -110,7 +110,7 @@ Class Retenciones
 	.-------------------------------------------------*/
 	public function pdf_detalle_retenciones($idretenciones)
 	{
-		$sql="SELECT c.fecha_hora,c.numfactura, r.base_imponible,r.total_oc,r.descripcion,(r.tipo_impuesto * 100) as impuesto
+		$sql="SELECT c.fecha_hora,c.numfactura, r.base_imponible,r.imp_retenido,r.descripcion,(r.tipo_impuesto * 100) as impuesto
 		FROM detalle_retenciones dt
 		INNER JOIN retenciones r
 		ON r.idretenciones = dt.idretenciones
