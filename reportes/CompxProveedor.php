@@ -13,7 +13,7 @@ else
 if ($_SESSION['admonoc']==1)
 {
 //Incluímos el archivo Factura.php
-require('controladores_fpdf/RetencionesControler.php');
+require('controladores_fpdf/CompxProveedorControlador.php');
 
 //Establecemos los datos de la empresa
 $tittle1 = "FUERZA NAVAL DE HONDURAS";
@@ -21,14 +21,14 @@ $tittle2 = "PAGADURIA GENERAL";
 $tittle3 = "COMPROMISOS PENDIENTE DE PAGO POR PROVEEDOR";
 
 //Obtenemos los datos de la cabecera de la venta actual
-require_once "../modelos/Retenciones.php";
-$retencion= new Retenciones();
+require_once "../modelos/Compromisos.php";
+$compromiso= new Compromisos();
 
-$rsptareten = $retencion->pdf_retenciones($_GET["id"]);
+$rsptareten = $compromiso->pdf_compromisos($_GET["id"]);
 $regre = $rsptareten->fetch_object();
 
 //Establecemos la configuración de la factura
-$pdf = new PDF_Invoice( 'P', 'mm', 'Letter' );
+$pdf = new PDF_Invoice( 'L', 'mm', 'Letter' );
 $pdf->AddPage();
 
 $logo1 = "logo1.jpg";

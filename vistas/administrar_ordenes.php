@@ -161,8 +161,8 @@ if ($_SESSION['admonoc']==1)
                             <option data-icon="far fa-file-pdf" value="Acuerdo">Acuerdo</option>
                             <option data-icon="far fa-file-pdf" value="F.R.">F.R.</option>
                             <option data-icon="fas fa-file-pdf" value="O/C">O/C</option>
-                            <option data-icon="far fa-file" value="Alimentacion">Alimentacion</option>
-                            <option data-icon="far fa-file" value="Becas">Becas</option>
+                            <option data-icon="far fa-file" value="Alimentacion">Otros Documentos</option>
+
                           </select>
                         </div>
 
