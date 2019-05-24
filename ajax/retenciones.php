@@ -134,6 +134,30 @@ switch ($_GET["op"]){
 	break;
 
 
+  /*----------------------*
+  | CASE PARA VER DETALLE |
+  .----------------------*/
+  case 'listar_reten_Detalle':
+		//Recibimos el idingreso
+		$id=$_GET['id'];
+
+		$rspta = $reten->listarDetalle_retencion($id);
+		$total=0;
+
+
+
+		while ($reg = $rspta->fetch_object())
+				{
+					echo
+          '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+    					<td>'.$reg->numfactura.'</td>
+    					<td>'.number_format($reg->valorbase, 2, '.', ',').'</td>
+    					<td>'.number_format($reg->subtotal, 2, '.', ',').'</td>
+          </tr>';
+				}
+
+	break;
+
   /*-----------------------------------------*
   | CASE PARA LISTAR COMPROMISOS EN UN MODAL |
   .-----------------------------------------*/

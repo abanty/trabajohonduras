@@ -62,6 +62,7 @@ Class Retenciones
 		r.descripcion,
 		r.base_imponible,
 		r.imp_retenido,
+		r.total_oc,
 		r.estado
 		FROM retenciones r
 		INNER JOIN proveedores p ON r.idproveedores=p.idproveedores
@@ -86,6 +87,7 @@ Class Retenciones
 		r.descripcion,
 		r.base_imponible,
 		r.imp_retenido,
+		r.total_oc,
 		r.estado
 		FROM retenciones r
 		INNER JOIN proveedores p ON r.idproveedores=p.idproveedores
@@ -101,6 +103,22 @@ Class Retenciones
 	public function validar_doc_reten()
 	{
 		$sql="SELECT numdocumento FROM retenciones";
+		return ejecutarConsulta($sql);
+	}
+
+
+	/*-------------------------------------------------*
+	| FUNCION PARA MOSTRAR DETALLES DE RETENCIONES PDF |
+	.-------------------------------------------------*/
+	public function listarDetalle_retencion($idretenciones)
+	{
+		$sql="SELECT c.numfactura,dt.valorbase, (dt.valorbase*1) as subtotal
+		FROM detalle_retenciones dt
+		INNER JOIN retenciones r
+		ON r.idretenciones = dt.idretenciones
+		INNER JOIN compromisos c
+		ON c.idcompromisos = dt.idcompromisos
+		WHERE r.idretenciones = '$idretenciones'";
 		return ejecutarConsulta($sql);
 	}
 

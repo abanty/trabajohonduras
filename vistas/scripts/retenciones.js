@@ -98,6 +98,10 @@ function limpiar()
 	$("#total_oc").val("");
 	$(".filas").remove();
 	$("#total").html("0");
+	$("#base_imponible").val("");
+	$("#sub_total").html("L. " + number_format('0.00', 2, '.', ','));
+	$("#total_oc").val("");
+	$("#montototal").html("L. " + number_format('0.00', 2, '.', ','));
 }
 
 
@@ -168,7 +172,7 @@ function listar()
 		            'pdf'
 		        ],
 						columnDefs: [
-			 			  				{ width: 100, targets: 0 },			 			         
+			 			  				{ width: 100, targets: 0 },
 
 			 			      ],
 		"ajax":
@@ -259,8 +263,11 @@ function mostrar(idretenciones)
 		$("#tipo_impuesto").val(data.tipo_impuesto);
 		$("#descripcion").val(data.descripcion);
 		$("#base_imponible").val(data.base_imponible);
-		$("#imp_retenido").val(data.imp_retenido);
+		$("#sub_total").html("L. " + number_format(data.base_imponible, 2, '.', ','));
 		$("#total_oc").val(data.total_oc);
+		$("#montototal").html("L. " + number_format(data.total_oc, 2, '.', ','));
+		$("#imp_retenido").val(data.imp_retenido);
+// console.log(data.total_oc);
 		$("#idretenciones").val(data.idretenciones);
 
 		//Ocultar y mostrar los botones
@@ -270,7 +277,7 @@ function mostrar(idretenciones)
 		$("#btnAgregarArt").hide();
  	});
 
- 	$.post("../ajax/retenciones.php?op=listarDetalle&id="+idretenciones,function(r){
+ 	$.post("../ajax/retenciones.php?op=listar_reten_Detalle&id="+idretenciones,function(r){
 	        $("#detalles tbody").html(r);
 	});
 }
