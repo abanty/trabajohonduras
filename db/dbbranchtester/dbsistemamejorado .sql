@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2019 a las 01:35:44
+-- Tiempo de generación: 24-05-2019 a las 08:24:31
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -65,12 +65,13 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 9, 1, 12, 5, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-17', '63367615.65', '1000.00', '63366615.65', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '80792434.96', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '63366615.65', 'Pendiente'),
+(1, 9, 1, 12, 5, '001', '0001', 'Materiales', 'MaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMateriales', 'O/C', '2019-05-17', '63367615.65', '1000.00', '63366615.65', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '80792434.96', '9504992.35', '15.00', '63366615.65', '7920826.96', '12.50', '63366615.65', '63366615.65', 'Pendiente'),
 (2, 1, 1, 5, 1, '87894', '', '', 'hgghjghjghj', 'Becas', '2019-05-23', '48333.25', '0.00', '48333.25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '48333.25', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '48333.25', 'Pendiente'),
 (3, 1, 1, 3, 1, '4234', '', '', 'fdsfds', 'Alimentacion', '2019-05-23', '2684.68', '0.00', '2684.68', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2684.68', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2684.68', 'Pendiente'),
 (4, 3, 1, 4, 1, '24324', '5443', '', 'dfsdfds', 'F.R.', '2019-05-23', '4328648.64', '3424.32', '4325224.32', '648783.65', '15.00', '4325224.32', '540653.04', '12.50', '4325224.32', '5514661.01', '648783.65', '15.00', '4325224.32', '540653.04', '12.50', '4325224.32', '4325224.32', 'Pendiente'),
 (5, 1, 1, 7, 1, '343234', '', '', 'dsfds', 'Planillas', '2019-05-23', '5439970.77', '0.00', '5439970.77', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5439970.77', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5439970.77', 'Pendiente'),
-(6, 1, 1, 2, 1, '645645654', '', '', 'gfdgdfg', 'Otros', '2019-05-23', '35435888.97', '0.00', '35435888.97', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '35435888.97', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '35435888.97', 'Pendiente');
+(6, 1, 1, 2, 1, '645645654', '', '', 'gfdgdfg', 'Otros', '2019-05-23', '35435888.97', '0.00', '35435888.97', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '35435888.97', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '35435888.97', 'Pendiente'),
+(7, 1, 1, 1, 1, '453543', '', '', 'sadsadsa', 'Planillas', '2019-05-23', '4277.75', '0.00', '4277.75', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4277.75', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4277.75', 'Pendiente');
 
 --
 -- Disparadores `administrar_ordenes`
@@ -218,17 +219,17 @@ CREATE TABLE `compromisos` (
 --
 
 INSERT INTO `compromisos` (`idcompromisos`, `idprograma`, `idproveedores`, `fecha_hora`, `numfactura`, `total_compra`, `condicion`) VALUES
-(1, 1, 1, '2019-05-17', '1254', '450.00', 1),
-(2, 1, 1, '2019-05-17', '587', '55.55', 1),
-(3, 1, 1, '2019-05-17', '8888', '10300.20', 0),
-(4, 1, 1, '2019-05-17', '34', '327.56', 0),
-(5, 1, 1, '2019-05-17', '3432', '367.47', 0),
-(6, 1, 1, '2019-05-17', '3444', '324567.56', 0),
-(7, 1, 1, '2019-05-17', '324', '43243.24', 0),
-(8, 1, 1, '2019-05-17', '432', '43.24', 0),
-(9, 1, 1, '2019-05-17', '434', '43243.24', 0),
-(10, 1, 1, '2019-05-17', '4344', '4324.44', 0),
-(11, 1, 1, '2019-05-17', '2234', '46.48', 1),
+(1, 2, 2, '2019-05-17', '1254', '450.00', 1),
+(2, 2, 3, '2019-05-17', '587', '55.55', 0),
+(3, 2, 5, '2019-05-17', '8888', '10300.20', 0),
+(4, 2, 2, '2019-05-17', '34', '327.56', 0),
+(5, 2, 8, '2019-05-17', '3432', '367.47', 0),
+(6, 12, 7, '2019-05-17', '3444', '324567.56', 0),
+(7, 2, 4, '2019-05-17', '324', '43243.24', 0),
+(8, 1, 5, '2019-05-17', '432', '43.24', 0),
+(9, 1, 14, '2019-05-17', '434', '43243.24', 0),
+(10, 1, 144, '2019-05-17', '4344', '4324.44', 0),
+(11, 1, 12, '2019-05-17', '2234', '46.48', 1),
 (12, 1, 10, '2019-05-17', '1254', '155222222.22', 1);
 
 -- --------------------------------------------------------
@@ -347,7 +348,7 @@ INSERT INTO `detalle_compromisos` (`iddetalle_compromisos`, `idcompromisos`, `id
 (1, 1, 11, '150.00', 1),
 (2, 1, 12, '150.00', 1),
 (3, 1, 13, '150.00', 1),
-(4, 2, 11, '55.55', 1),
+(4, 2, 11, '55.55', 0),
 (5, 3, 15, '5.00', 0),
 (6, 3, 14, '4.00', 0),
 (7, 4, 12, '3.24', 0),
@@ -414,7 +415,7 @@ CREATE TABLE `detalle_orden` (
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
   `unidad` varchar(20) DEFAULT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `descripcion` varchar(250) DEFAULT NULL,
+  `descripcion` varchar(550) DEFAULT NULL,
   `precio_unitario` decimal(11,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -423,7 +424,7 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 11, 'GALONES', 1, 'Materiales', '454654.56'),
+(1, 1, 11, 'GALONES', 1, 'MaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMaterialesMateriales', '454654.56'),
 (2, 1, 12, 'GALONES', 1, 'Materiales', '6456414.65'),
 (4, 1, 2, 'galoneras', 3, 'loquecxuxa esea', '1500.00'),
 (10, 1, 65, 'fds', 3, 'sfds', '32.00'),
@@ -431,7 +432,7 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (12, 1, 14, 'fds', 3, 'rrdesr', '34324.00'),
 (13, 1, 42, 'fdsf', 343, 'fdfdsf', '3434.00'),
 (14, 1, 43, 'frwerew', 343, 'dfef', '3422.00'),
-(15, 1, 78, 'fdesfsd', 34, 'asdsad', '32.00'),
+(15, 1, 78, 'fdesfsd', 34, 'MaterialesMaterialesMaterialesMaterialesMaterialesMaterialialesMaterialesMaterialesMaterialesMateriales', '32.00'),
 (16, 2, 2, '', 10, '', '4555.55'),
 (17, 2, 3, '', 5, '', '555.55'),
 (18, 3, 2, '', 1, '', '342.34'),
@@ -441,7 +442,9 @@ INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpres
 (22, 5, 1, '', 1, '', '4535.34'),
 (23, 5, 2, '', 1, '', '5435435.43'),
 (24, 6, 2, '', 1, '', '543.54'),
-(25, 6, 3, '', 1, '', '35435345.43');
+(25, 6, 3, '', 1, '', '35435345.43'),
+(26, 7, 1, '', 1, '', '43.43'),
+(27, 7, 2, '', 1, '', '4234.32');
 
 -- --------------------------------------------------------
 
@@ -463,7 +466,10 @@ CREATE TABLE `detalle_retenciones` (
 INSERT INTO `detalle_retenciones` (`iddetalle_retenciones`, `idretenciones`, `idcompromisos`, `valorbase`) VALUES
 (1, 1, 1, '1.00'),
 (5, 1, 7, '0.00'),
-(6, 1, 7, '0.00');
+(6, 1, 7, '0.00'),
+(7, 2, 1, '546.45'),
+(8, 2, 11, '6.00'),
+(9, 2, 12, '6.00');
 
 -- --------------------------------------------------------
 
@@ -677,22 +683,23 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`idprograma`, `codigop`, `nombrep`, `cargar`, `condicion`) VALUES
-(1, '90-11-03-02', 'BANACORT', 'CARGADO A LA BASE NAVAL DE PUERTO CORTES', 1),
-(2, '90-11-03-03', 'BANAMAP', 'CARGADO A LA BASE NAVAL DE AMAPALA', 1),
-(3, '90-11-03-04', 'BANACAST', 'CARGADO A LA BASE NAVAL DE PUERTO CASTILLA', 1),
-(4, '90-11-03-05', 'CEN', 'CARGADO AL CENTRO DE ESTUDIOS NAVALES', 1),
-(5, '90-11-03-06', 'ANH', 'CARGADO A LA ACADEMIA NAVAL DE HONDURAS', 1),
-(6, '90-11-03-07', '1ER BIM', 'CARGADO AL 1ER BATALLON DE INFANTERIA DE MARINA', 1),
-(7, '90-11-03-08', 'BANACAR', 'CARGADO A LA BASE NAVAL DE CARATASCA', 1),
-(8, '90-11-03-09', 'BANAGUA', 'CARGADO A LA BASE NAVAL DE GUANAJA', 1),
-(9, '90-11-03-10', 'ECAMAN', 'CARGADO A LA ESCUELA DE CAPACITACION DE MANDOS NAVALES', 1),
-(10, '90-11-03-11', 'ESNA', 'CARGADO A LA ESCUADRA NAVAL', 1),
-(11, '90-11-03-12', '2DO BIM', 'CARGADO AL 2DO BATALLON DE INFANTERIA DE MARINA', 1),
-(12, '90-11-03-01', 'CMD GENERAL', 'CARGADO A LA COMANDANCIA GENERAL DE LA FUERZA NAVAL ', 1),
-(13, '90-11-03-14', 'CAN', 'CARGADO AL CENTRO DE ADIESTRAMIENTO NAVAL', 1),
-(14, '90-11-03-15', 'C.G.N', 'CARGADO AL CUARTEL GENERAL NAVAL', 1),
-(15, '90-11-03-13', 'ESCUELA DE BUCEO', 'CARGADO A LA ESCUELA DE BUCEO', 1),
-(16, '90-11-03-16', 'FEN', 'CARGADO AL 1ER BATALLON DE FUERZAS ESPECIALES NAVALES', 1);
+(1, '-', '-', '-', 0),
+(2, '90-11-03-02', 'BANACORT', 'CARGADO A LA BASE NAVAL DE PUERTO CORTES', 1),
+(3, '90-11-03-03', 'BANAMAP', 'CARGADO A LA BASE NAVAL DE AMAPALA', 1),
+(4, '90-11-03-04', 'BANACAST', 'CARGADO A LA BASE NAVAL DE PUERTO CASTILLA', 1),
+(5, '90-11-03-05', 'CEN', 'CARGADO AL CENTRO DE ESTUDIOS NAVALES', 1),
+(6, '90-11-03-06', 'ANH', 'CARGADO A LA ACADEMIA NAVAL DE HONDURAS', 1),
+(7, '90-11-03-07', '1ER BIM', 'CARGADO AL 1ER BATALLON DE INFANTERIA DE MARINA', 1),
+(8, '90-11-03-08', 'BANACAR', 'CARGADO A LA BASE NAVAL DE CARATASCA', 1),
+(9, '90-11-03-09', 'BANAGUA', 'CARGADO A LA BASE NAVAL DE GUANAJA', 1),
+(10, '90-11-03-10', 'ECAMAN', 'CARGADO A LA ESCUELA DE CAPACITACION DE MANDOS NAVALES', 1),
+(11, '90-11-03-11', 'ESNA', 'CARGADO A LA ESCUADRA NAVAL', 1),
+(12, '90-11-03-12', '2DO BIM', 'CARGADO AL 2DO BATALLON DE INFANTERIA DE MARINA', 1),
+(13, '90-11-03-01', 'CMD GENERAL', 'CARGADO A LA COMANDANCIA GENERAL DE LA FUERZA NAVAL ', 1),
+(14, '90-11-03-14', 'CAN', 'CARGADO AL CENTRO DE ADIESTRAMIENTO NAVAL', 1),
+(15, '90-11-03-15', 'C.G.N', 'CARGADO AL CUARTEL GENERAL NAVAL', 1),
+(16, '90-11-03-13', 'ESCUELA DE BUCEO', 'CARGADO A LA ESCUELA DE BUCEO', 1),
+(17, '90-11-03-16', 'FEN', 'CARGADO AL 1ER BATALLON DE FUERZAS ESPECIALES NAVALES', 1);
 
 -- --------------------------------------------------------
 
@@ -913,7 +920,8 @@ CREATE TABLE `retenciones` (
 --
 
 INSERT INTO `retenciones` (`idretenciones`, `idproveedores`, `rtn`, `numdocumento`, `fecha_hora`, `tipo_impuesto`, `descripcion`, `base_imponible`, `imp_retenido`, `total_oc`, `estado`) VALUES
-(1, 2, '1588', '0012', '2019-05-21', '0.15', 'Un detalle dealgoUn detalle dealgoUn detalle dealgoUn detalle dealgoUn detalle dealgoUn detalle dealgoUn detalle dealgo', '3560.00', '534.00', '4094.00', 'Aceptado');
+(1, 2, '1588', '0012', '2019-05-21', '0.15', 'f', '3560.00', '534.00', '4094.00', 'Aceptado'),
+(2, 3, '1588', '58654', '2019-05-24', '0.15', 'gfdgfd', '13639.53', '2045.93', '15685.46', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1259,7 +1267,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1313,13 +1321,13 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
 --
 ALTER TABLE `detalle_retenciones`
-  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iddetalle_retenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `dtransf_ctaspg`
@@ -1361,7 +1369,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `retenciones`
 --
 ALTER TABLE `retenciones`
-  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idretenciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `transferenciabch`
