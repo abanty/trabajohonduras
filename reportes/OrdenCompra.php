@@ -60,36 +60,39 @@ $cols=array( "Cod"=>"L",
              "SubTotal"=>"R",
            "Total"=>"R");
 
-$cols=array( "Cod"=>"",
-           "Unidad"=>"",
-           "Cantidad"=>"",
-          "Descripcion"=>"U",
-           "P.Unitario"=>"",
-           "SubTotal"=>"",
-         "Total"=>"");
+// $cols=array( "Cod"=>"",
+//            "Unidad"=>"",
+//            "Cantidad"=>"",
+//           "Descripcion"=>"U",
+//            "P.Unitario"=>"",
+//            "SubTotal"=>"",
+//          "Total"=>"");
 
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 $pdf->addLineFormat($cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 63;
+// $y= 63;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle_grouping($_GET["id"]);
-
+$pdf->Ln(2);
 while ($regd = $rsptad->fetch_object()) {
 
-  $line = array( "Cod"=> "$regd->cod",
-                "Unidad"=> utf8_decode("$regd->uni"),
-                "Cantidad"=> "$regd->cant",
-                "Descripcion" => utf8_decode("$regd->descripcion"),
-                "P.Unitario"=> number_format("$regd->precu", 2, '.', ','),
-                "SubTotal"=> number_format("$regd->subtot", 2, '.', ','),
-                "Total"=> number_format("$regd->total", 2, '.', ','));
+  $line = array("$regd->cod",utf8_decode("$regd->uni"),"$regd->cant",
+  utf8_decode("$regd->descripcion"),number_format("$regd->precu", 2, '.', ','),
+  number_format("$regd->subtot", 2, '.', ','),number_format("$regd->total", 2, '.', ','));
+
+
+  $pdf->SetWidths(array(13,27,17,70,25,22,22));
+  $pdf->SetUnderline(array('','','','U','','',''));
+
+  $pdf->SetFont('Arial','',7.5);
+  $pdf->Rowedit($line);
                 // ,
                 // "Total"=> "$regv->monto_total"
-            $size = $pdf->addLine( $y, $line );
-            $y   += $size + 2;
+            // $size = $pdf->addLine( $y, $line );
+            // $y   += $size + 2;
 
             // $line = array( "Cod"=> "$regd->codigo",
             //               "Total"=> number_format("$regd->subtot", 2, '.', ','));
@@ -98,7 +101,7 @@ while ($regd = $rsptad->fetch_object()) {
 }
 
 $pdf->SetFont( "Arial", "B", 8);
-$pdf->Ln(10);
+$pdf->Ln(7);
 $pdf->SetX(55);
 $pdf->Cell(80,4, "IMPORTE TOTAL CON LETRA",0,1);
 require_once "Letras.php";

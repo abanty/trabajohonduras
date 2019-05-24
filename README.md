@@ -1,52 +1,22 @@
-// $line3 = array( "Grupo"=> "$regd3->grupo",
-//               "Subgrupo"=> "$regd3->subgrupo",
-//               "No. Objeto"=> "$regd3->codigo",
-//               "INTERIORES"=> number_format("$regd3->subtot", 2, '.', ','),
-//
-//               );
+$line = array("OJB"=> "$regd->codigo",
+              "UNIDAD"=> utf8_decode("$regd->unidad"),
+              "CANTIDAD"=> "$regd->cantidad",
 
-          // $size3 = $pdf->addLine3( $y3, $line3 );
-          // $y3   += $size3 + 0;
+              "DESCRIPCION" => utf8_decode("$regd->descripcion"),
 
-
+              "P.UNIT"=> number_format("$regd->precio_unitario", 2, '.', ','),
+              "S/TOTAL"=> number_format("$regd->subtot", 2, '.', ','),
+              "TOTAL"=> number_format("", 2, '.', ','));
 
 
 
 
-          <?php
-          //Activamos el almacenamiento en el buffer
-          ob_start();
-          session_start();
+              de orden compra:
 
-          if (!isset($_SESSION["nombre"]))
-          {
-            header("Location: login.html");
-          }
-          else
-          {
-          require 'header.php';
-          if ($_SESSION['admonoc']==1)
-          {
-          ?>
-          <!--Contenido-->
-
-
-
-
-
-
-          <?php
-          }
-          else
-          {
-            require 'noacceso.php';
-          }
-
-          require 'footer.php';
-          ?>
-          <script type="text/javascript" src="scripts/administrar_ordenes.js"></script>
-
-          <?php
-          }
-          ob_end_flush();
-          ?>
+              $line = array( "Cod"=> "$regd->cod",
+                            "Unidad"=> utf8_decode("$regd->uni"),
+                            "Cantidad"=> "$regd->cant",
+                            "Descripcion" => utf8_decode("$regd->descripcion"),
+                            "P.Unitario"=> number_format("$regd->precu", 2, '.', ','),
+                            "SubTotal"=> number_format("$regd->subtot", 2, '.', ','),
+                            "Total"=> number_format("$regd->total", 2, '.', ','));

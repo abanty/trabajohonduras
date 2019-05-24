@@ -42,7 +42,7 @@ if ($_SESSION['admonoc']==1)
                     <!-- centro -->
 
                     <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover"width="100%">
+                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="font-size:12.5px;">
                           <thead style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Proveedor</th>
@@ -50,7 +50,7 @@ if ($_SESSION['admonoc']==1)
                             <th>No.Documento</th>
                             <th>Fecha</th>
                             <th>Tipo Impuesto</th>
-                            <th>descripcion</th>
+                            <th>Descripcion</th>
                             <th>Base Retencion</th>
                             <th>Imp Retenido</th>
                             <th>Estado</th>
@@ -64,7 +64,7 @@ if ($_SESSION['admonoc']==1)
                             <th>No.Documento</th>
                             <th>Fecha</th>
                             <th>Tipo Impuesto</th>
-                            <th>descripcion</th>
+                            <th>Descripcion</th>
                             <th>Base Retencion</th>
                             <th>Imp Retenido</th>
                             <th>Estado</th>

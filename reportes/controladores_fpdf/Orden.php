@@ -531,6 +531,12 @@ function SetWidths($w)
 	$this->widths=$w;
 }
 
+function SetUnderline($underline)
+{
+	//Set the array of column widths
+	$this->under=$underline;
+}
+
 function SetCellMargin($margin){
      // Set cell margin
      $this->cMargin = $margin;
@@ -585,10 +591,15 @@ function Rowedit($data)
 	{
 		$w=$this->widths[$i];
 		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+		$u=isset($this->under[$i]) ? $this->under[$i] : '';
+
 		//Save the current position
 		$x=$this->GetX();
 		$y=$this->GetY();
 		//Draw the border
+		if (in_array(strtoupper($data[$i]),$data)) {
+			$this->SetFont( "", "$u");
+		}
 		// $this->Rect($x,$y,$w,$h);
 		//Print the text
 		$this->MultiCell($w,4,$data[$i],0,$a);

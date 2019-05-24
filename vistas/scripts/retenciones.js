@@ -167,6 +167,10 @@ function listar()
 		            'csvHtml5',
 		            'pdf'
 		        ],
+						columnDefs: [
+			 			  				{ width: 100, targets: 0 },			 			         
+
+			 			      ],
 		"ajax":
 				{
 					url: '../ajax/retenciones.php?op=listar',

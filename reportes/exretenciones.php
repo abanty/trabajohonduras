@@ -72,58 +72,49 @@ $cols2=array( "N°"=>"C",
              "Impuesto Total Retenido"=>"C"
             );
 
-$cols=array( "N°"=>'R',
-             "Descripcion del impuesto retenido"=>'R',
-             "Base imponible"=>'R',
-            "Porcentaje de Impuesto"=>'R',
-             "Impuesto Total Retenido"=>0
-            );
 
 $pdf->addLineFormat( $cols,$cols2);
 
 
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 98;
+// $y= 98;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $retencion->pdf_detalle_retenciones($_GET["id"]);
 
 while ($regd = $rsptad->fetch_object()) {
-
-
-  $line = array("N°"=> "1",
-                "Descripcion del impuesto retenido"=> utf8_decode("$regd->descripcion"),
-                "Base imponible"=>"L. ".number_format("$regd->base_imponible", 2, '.', ',') ,
-
-                "Porcentaje de Impuesto" => "$regd->impuesto"."%",
-
-                "Impuesto Total Retenido"=> "L. ".number_format("$regd->imp_retenido", 2, '.', ',')
-                );
-
-
+  $pdf->SetWidths(array(7,80,35,35,39));
+  $pdf->SetRounded(array('1','','','','2'));
+  $pdf->SetFont('Arial','',7.5);
+  $line = array("1",utf8_decode("$regd->descripcion"),"L. ".number_format("$regd->base_imponible", 2, '.', ',') ,
+  "$regd->impuesto"."%","L. ".number_format("$regd->imp_retenido", 2, '.', ','));
 }
 
-$size = $pdf->addLine( $y, $line );
-$y   += $size + 2;
+  $pdf->Rowedit($line);
+  $pdf->Ln(20.5);
+  $pdf->Cell(107,4, "Rango Autorizado: 004-001-05-00002601 al 004-001-05-00003800",0,1,'L');
+  $pdf->Cell(107,4, "Fecha Limite de Emision: 23/05/2019",0,1,'L');
+// $pdf->Ln(10);
+  $pdf->SetX(150);
+  $pdf->MultiCell(50,4, 'FIRMA Y SELLO','T','C');
 
-$pdf->SetWidths(array(196));
+// $pdf->SetWidths(array(196));
+//
+// $pdf->SetFont('Arial','B',7.5);
+// $pdf->SetX(10);
+// $pdf->Rowedit(array('asdsads'));
 
-$pdf->SetFont('Arial','B',7.5);
-$pdf->SetX(10);
-$pdf->Rowedit(array(''));
-
-    $pdf->Ln(0);
-$pdf->SetFont('Arial','',8.5);
+    // $pdf->Ln(0);
+// $pdf->SetFont('Arial','',8.5);
 
 
-$pdf->Cell(107,4, "Rango Autorizado: 004-001-05-00002601 al 004-001-05-00003800",0,1,'L');
-$pdf->Cell(107,4, "Fecha Limite de Emision: 23/05/2019",0,0,'L');
-$pdf->Cell(90,4, "____________________________",0,0,'R');
-$pdf->Ln(5);
 
-$pdf->SetLineWidth(0.2);
-$pdf->SetX(8);
-$pdf->MultiCell(187,4, 'FIRMA Y SELLO',0,'R');
+// $pdf->Cell(90,4, "____________________________",0,0,'R');
+// $pdf->Ln(5);
+
+// $pdf->SetLineWidth(0.2);
+// $pdf->SetX(8);
+
 // $pdf->SetX(8);
 // $pdf->MultiCell(200,15, '',0,'C');
 // $pdf->MultiCell(200,4, "NOTA:        ".utf8_decode($regv->descripcion_orden),0,'L');

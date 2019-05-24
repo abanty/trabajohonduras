@@ -288,7 +288,7 @@ function addClientAdresse($proveedor,$rtn,$numdocumento,$fecha)
   $this->Cell( 130,4,utf8_decode('CAI: 463B26-841521-ED4196-C5452D-AF25E6-19'),0,0);
 	$this->SetFont( "Arial", "B", 16);
   $this->Cell( 65,4,utf8_decode('Nº 004-001-05-0000'.$numdocumento),0,1);
-	$this->SetFont( "Arial", "", 8.5);
+	$this->SetFont( "Arial", "", 7.5);
   $this->ln(2);
   $this->SetX($r1+0.5);
   $this->Cell( 130,4,utf8_decode('Fecha de Emisión:_______________________________________________'),0,1);
@@ -404,18 +404,18 @@ function addReference($ref)
 
 function addCols( $tab )
 {
-	global $colonnes;
+	global $colonnes,$wada;
 
 	$r1  = 9.7;
 	$r2  = $this->w - ($r1 * 2) ;
   $y1  =88;
 
 	$y2  = $this->h - 195.1 - $y1;
-
+	$wada = $y1;
 	$colX = $r1;
 	$colonnes = $tab;
 
-	$miborder = array('BR','BR','BR','BR','B');
+	$miborder = array('B','B','B','B','B');
 	$caunt = -1;
 
 	$this->SetFont( "Arial", "", 8);
@@ -523,12 +523,15 @@ function addLine( $ligne, $tab )
 		$aaa = $bordex[ $lib ];
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 25 , $texte, $aaa, $formText);
+		$this->MultiCell( $longCell, 5 , $texte, 1, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
 	}
+
 	return ( $maxSize - $ligne );
+
+
 }
 
 function addLine2( $ligne, $tab )
@@ -619,6 +622,12 @@ function SetAligns($a)
 	$this->aligns=$a;
 }
 
+function SetRounded($rounding)
+{
+	//Set the array of column alignments
+	$this->rounded=$rounding;
+}
+
 function Row($data)
 {
 	//Calculate the height of the row
@@ -658,23 +667,21 @@ function Rowedit($data)
 	//Issue a page break first if needed
 	$this->CheckPageBreak($h);
 	//Draw the cells of the row
-
-
-
+	$this->Ln(3);
 	for($i=0;$i<count($data);$i++)
 	{
 		$w=$this->widths[$i];
 		$a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+
+		$roun=isset($this->rounded[$i]) ? $this->rounded[$i] : '';
 		//Save the current position
 		$x=$this->GetX();
 		$y=$this->GetY();
 
-		// $this->MultiCell($w,$y,'',0,0);
-		$this->RoundedRectx($x,$h+84 , $w, $y-88, 2, '1234', '');
-
 		$this->MultiCell($w,4,$data[$i],0,$a,false);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
+		$this->RoundedRectx($x,$y-10 , $w, $h+30, 2, $roun, '');
 	}
 	//Go to the next line
 	$this->Ln($h);

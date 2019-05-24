@@ -414,7 +414,7 @@ function listarPresupuesto_disponible()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 10,//Paginación
+		"iDisplayLength": 7,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
@@ -1143,7 +1143,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
  function VistaPlanilla(){
 	// MOSTRAR CAMPOS FIJOS
 	$("#No_planilla").show();
-	$("#program").show();
+	$("#program").hide();
 	$("#datediv").show();
 	$("#descdiv").show();
 	$("#btnmodal").show();
@@ -1165,7 +1165,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 	$("#content_table_details").attr("class", "col-lg-8 col-sm-8 col-md-8 col-xs-8");
 	$("#No_planilla").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
 	$("#program").attr("class", "col-lg-4 col-md-4 col-sm-6 col-xs-12");
-	$("#descripcion_orden").attr("rows", 5);
+	$("#descripcion_orden").attr("rows", 2);
 
 	//MOSTRAR CAMPOS DETALLES
 	$("#content_table_details").show();

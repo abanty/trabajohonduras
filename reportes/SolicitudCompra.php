@@ -63,51 +63,23 @@ $cols=array( "OJB"=>"L",
 $pdf->addLineFormat($cols);
 $pdf->addLineFormat( $cols);
 //Actualizamos el valor de la coordenada "y", que será la ubicación desde donde empezaremos a mostrar los datos
-$y= 88;
+// $y= 88;
 
 //Obtenemos todos los detalles de la venta actual
 $rsptad = $venta->administrar_ordenes_detalle($_GET["id"]);
-
+$pdf->Ln(2);
 while ($regd = $rsptad->fetch_object()) {
 
+  $pdf->SetWidths(array(13,27,17,70,25,22,22));
+  $pdf->SetFont('Arial','',8);
 
-  $line = array("OJB"=> "$regd->codigo",
-                "UNIDAD"=> utf8_decode("$regd->unidad"),
-                "CANTIDAD"=> "$regd->cantidad",
+  $line = array("$regd->codigo",utf8_decode("$regd->unidad"),"$regd->cantidad",utf8_decode("$regd->descripcion"),
+  number_format("$regd->precio_unitario", 2, '.', ','),number_format("$regd->subtot", 2, '.', ','),
+  number_format("", 2, '.', ','));
 
-                "DESCRIPCION" => utf8_decode("$regd->descripcion"),
+$pdf->Rowedit($line);
 
-                "P.UNIT"=> number_format("$regd->precio_unitario", 2, '.', ','),
-                "S/TOTAL"=> number_format("$regd->subtot", 2, '.', ','),
-                "TOTAL"=> number_format("", 2, '.', ','));
-                // ,
-                // "Total"=> "$regv->monto_total"
-
-
-
-
-
-                // if ($line[3]) {
-                //   $pdf->SetFont('','U');
-                // }
-
-
-
-            $size = $pdf->addLine( $y, $line );
-            $y   += $size + 2;
-
-            // $line = array( "Cod"=> "$regd->codigo",
-            //               "Total"=> number_format("$regd->subtot", 2, '.', ','));
-            // $size = $pdf->addLine( $y, $line );
-            // $y   += $size + 2;
 }
-
-
-
-
-
-
-
 
 $pdf->SetWidths(array(70));
 

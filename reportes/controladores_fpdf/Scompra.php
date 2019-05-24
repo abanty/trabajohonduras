@@ -448,7 +448,7 @@ function addLine( $ligne, $tab )
 
 
 		$this->SetXY( $ordonnee, $ligne-2);
-		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
+		$this->MultiCell( $longCell, 4 , $texte, 1, $formText);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
@@ -550,7 +550,7 @@ function Rowedit($data)
 	$nb=0;
 	for($i=0;$i<count($data);$i++)
 		$nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-	$h=4*$nb;
+	$h=5*$nb;
 	//Issue a page break first if needed
 	$this->CheckPageBreak($h);
 	//Draw the cells of the row
@@ -564,7 +564,7 @@ function Rowedit($data)
 		//Draw the border
 		// $this->Rect($x,$y,$w,$h);
 		//Print the text
-		$this->MultiCell($w,4,$data[$i],0,$a);
+		$this->MultiCell($w,5,$data[$i],0,$a);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
