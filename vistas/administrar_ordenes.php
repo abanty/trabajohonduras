@@ -194,7 +194,7 @@ if ($_SESSION['admonoc']==1)
 
 
                         <div id="content_table_details" class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-
+<div class="table-responsive">
 
                           <table class="table table-striped table-bordered table-condensed table-hover" id="detalles" role="table" style="margin-bottom: 0px;">
 
@@ -215,7 +215,7 @@ if ($_SESSION['admonoc']==1)
 
                           </table>
 
-
+        </div>
                           <table id="content_tfoot" class="table table-condensed">
 
                             <tfoot>

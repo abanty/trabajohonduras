@@ -101,8 +101,8 @@ switch ($_GET["op"]){
  				"4"=>$reg->fecha,
         "5"=>$reg->tipo_impuesto,
  				"6"=>$reg->descripcion,
-        "7"=>$reg->base_imponible,
- 				"8"=>$reg->imp_retenido,
+        "7"=>number_format($reg->base_imponible, 2, '.', ','),
+ 				"8"=>number_format($reg->imp_retenido, 2, '.', ','),
  				"9"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				'<span class="label bg-red">Anulado</span>'
  				);
