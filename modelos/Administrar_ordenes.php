@@ -26,15 +26,17 @@ Class Administrar_ordenes
 
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-			$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																	 WHERE idpresupuesto_disponible = '41'";
-																	 ejecutarConsulta($actualizarrentencionisv);
+			if ($tipo_documento == 'O/C') {
+				$actualizarrentencionisv = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
+																		 WHERE idpresupuesto_disponible = '41'";
+																		 ejecutarConsulta($actualizarrentencionisv);
 
-			$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																	 WHERE idpresupuesto_disponible = '40'";
-																	 ejecutarConsulta($actualizarrentencionisr);
+				$actualizarrentencionisr = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
+																		 WHERE idpresupuesto_disponible = '40'";
+																		 ejecutarConsulta($actualizarrentencionisr);
+			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
@@ -73,15 +75,17 @@ Class Administrar_ordenes
 																'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-			$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																	 WHERE idpresupuesto_disponible = '41'";
-																	 ejecutarConsulta($actualizarrentencionisv);
+			if ($tipo_documento == 'O/C') {
+				$actualizarrentencionisv = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
+																		 WHERE idpresupuesto_disponible = '41'";
+																		 ejecutarConsulta($actualizarrentencionisv);
 
-			$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																	 WHERE idpresupuesto_disponible = '40'";
-																	 ejecutarConsulta($actualizarrentencionisr);
+				$actualizarrentencionisr = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
+																		 WHERE idpresupuesto_disponible = '40'";
+																		 ejecutarConsulta($actualizarrentencionisr);
+			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
@@ -128,15 +132,17 @@ Class Administrar_ordenes
 
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-			$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																	 WHERE idpresupuesto_disponible = '41'";
-																	 ejecutarConsulta($actualizarrentencionisv);
+			if ($tipo_documento == 'O/C') {
+				$actualizarrentencionisv = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
+																		 WHERE idpresupuesto_disponible = '41'";
+																		 ejecutarConsulta($actualizarrentencionisv);
 
-			$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																	 WHERE idpresupuesto_disponible = '40'";
-																	 ejecutarConsulta($actualizarrentencionisr);
+				$actualizarrentencionisr = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
+																		 WHERE idpresupuesto_disponible = '40'";
+																		 ejecutarConsulta($actualizarrentencionisr);
+			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
@@ -185,15 +191,17 @@ Class Administrar_ordenes
 																'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-			$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																	 WHERE idpresupuesto_disponible = '41'";
-																	 ejecutarConsulta($actualizarrentencionisv);
+			if ($tipo_documento == 'O/C') {
+				$actualizarrentencionisv = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
+																		 WHERE idpresupuesto_disponible = '41'";
+																		 ejecutarConsulta($actualizarrentencionisv);
 
-			$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																	 WHERE idpresupuesto_disponible = '40'";
-																	 ejecutarConsulta($actualizarrentencionisr);
+				$actualizarrentencionisr = "UPDATE presupuesto_disponible
+																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
+																		 WHERE idpresupuesto_disponible = '40'";
+																		 ejecutarConsulta($actualizarrentencionisr);
+			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
