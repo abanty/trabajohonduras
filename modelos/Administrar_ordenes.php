@@ -4,6 +4,7 @@ require "../config/Conexion.php";
 
 Class Administrar_ordenes
 {
+
 	//Implementamos nuestro constructor
 	public function __construct()
 	{
@@ -26,17 +27,6 @@ Class Administrar_ordenes
 
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-			if ($tipo_documento == 'O/C') {
-				$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																		 WHERE idpresupuesto_disponible = '41'";
-																		 ejecutarConsulta($actualizarrentencionisv);
-
-				$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																		 WHERE idpresupuesto_disponible = '40'";
-																		 ejecutarConsulta($actualizarrentencionisr);
-			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
@@ -74,18 +64,6 @@ Class Administrar_ordenes
 																'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto','$valor_impuesto','$monto_total',
 																'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
-
-			if ($tipo_documento == 'O/C') {
-				$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																		 WHERE idpresupuesto_disponible = '41'";
-																		 ejecutarConsulta($actualizarrentencionisv);
-
-				$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																		 WHERE idpresupuesto_disponible = '40'";
-																		 ejecutarConsulta($actualizarrentencionisr);
-			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
@@ -131,18 +109,6 @@ Class Administrar_ordenes
 																'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
-
-			if ($tipo_documento == 'O/C') {
-				$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																		 WHERE idpresupuesto_disponible = '41'";
-																		 ejecutarConsulta($actualizarrentencionisv);
-
-				$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																		 WHERE idpresupuesto_disponible = '40'";
-																		 ejecutarConsulta($actualizarrentencionisr);
-			}
 
 			$num_elementos=0;
 			$num_elementos_fact=0;
@@ -191,18 +157,6 @@ Class Administrar_ordenes
 																'$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto','Pendiente')";
 			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
 
-			if ($tipo_documento == 'O/C') {
-				$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																		 WHERE idpresupuesto_disponible = '41'";
-																		 ejecutarConsulta($actualizarrentencionisv);
-
-				$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																		 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																		 WHERE idpresupuesto_disponible = '40'";
-																		 ejecutarConsulta($actualizarrentencionisr);
-			}
-
 			$num_elementos=0;
 			$num_elementos_fact=0;
 			$sw=true;
@@ -235,8 +189,20 @@ Class Administrar_ordenes
 	/* ----------------------------*
 	|  METODO PARA PAGAR ORDENES:  |
 	. ----------------------------*/
-	public function pagar($idadministrar_ordenes)
+	public function pagar($idadministrar_ordenes,$tipo_documento,$retencionisv,$retencionisr)
 	{
+		if ($tipo_documento == 'O/C') {
+			$actualizarrentencionisv = "UPDATE presupuesto_disponible
+																	 SET presupuesto_anual = presupuesto_anual - $retencionisv
+																	 WHERE idpresupuesto_disponible = '41'";
+																	 ejecutarConsulta($actualizarrentencionisv);
+
+			$actualizarrentencionisr = "UPDATE presupuesto_disponible
+																	 SET presupuesto_anual = presupuesto_anual - $retencionisr
+																	 WHERE idpresupuesto_disponible = '40'";
+																	 ejecutarConsulta($actualizarrentencionisr);
+		}
+
 		$sql="UPDATE Administrar_ordenes SET estado='Pagado' WHERE idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
 	}
@@ -320,7 +286,8 @@ Class Administrar_ordenes
 	public function listarOrden()
 	{
 		$sql="SELECT v.idadministrar_ordenes,	DATE(v.fecha_hora) as fecha, v.idproveedores,	p.casa_comercial as proveedor,
-		u.idusuario,	u.nombre as usuario,	w.idprograma,	w.codigop, v.tipo_documento,	v.num_orden,	v.num_comprobante, v.monto_total,v.total_neto,	v.impuesto,	v.estado
+		u.idusuario,	u.nombre as usuario,	w.idprograma,	w.codigop, v.tipo_documento,	v.num_orden,	v.num_comprobante,
+		v.retencion_isv,v.retencion_isr, v.monto_total,v.total_neto,	v.impuesto,	v.estado
 		FROM administrar_ordenes v
 		INNER JOIN proveedores p ON	v.idproveedores=p.idproveedores
 		INNER JOIN usuario u ON	 v.idusuario=u.idusuario

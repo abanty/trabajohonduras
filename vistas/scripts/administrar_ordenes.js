@@ -623,12 +623,21 @@ function anular(idadministrar_ordenes)
 /*-------------------------------------*
 | FUNCION PARA CAMBIAR ESTADO A PAGADO |
 .-------------------------------------*/
-function pagar(idadministrar_ordenes)
+function pagar(idadministrar_ordenes,tipo_documento,retencionisv,retencionisr)
 {
+
+	// console.log(idadministrar_ordenes+','+tipo_documento+','+retencionisv+','+retencionisr);
+
 	bootbox.confirm("¿Está Seguro de validar la orden a pagado?", function(result){
 		if(result)
         {
-        	$.post("../ajax/administrar_ordenes.php?op=pagar", {idadministrar_ordenes : idadministrar_ordenes}, function(e){
+        	$.post("../ajax/administrar_ordenes.php?op=pagar",
+					{
+						idadministrar_ordenes : idadministrar_ordenes,
+						tipo_documento : tipo_documento,
+						retencionisv : retencionisv,
+						retencionisr : retencionisr,
+					}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
         	});

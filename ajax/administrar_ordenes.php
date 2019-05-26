@@ -106,7 +106,7 @@ switch ($_GET["op"]){
 | FUNCION PARA CAMBIAR ESTADO A PAGADO |
 .-------------------------------------*/
   case 'pagar':
-    $rspta=$admin_ord->pagar($idadministrar_ordenes);
+    $rspta=$admin_ord->pagar($idadministrar_ordenes,$tipo_documento,$retencionisv,$retencionisr);
     echo $rspta ? "Orden de compra pagada" : "Orden de compra no se puede pagar";
   break;
 
@@ -178,29 +178,30 @@ switch ($_GET["op"]){
         $urlcomprobante='../reportes/Comprobante_orden.php?id=';
         $urlsolicitudcompra='../reportes/SolicitudCompra.php?id=';
 
-        switch ($reg->tipo_documento) {
+        $var_tipo_doc = $reg->tipo_documento;
+        switch ($var_tipo_doc) {
 
             case "F.R.":
-            $reg->tipo_documento = '<a style="color:rgb(245, 126, 126); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
+            $var_tipo_doc = '<a style="color:rgb(245, 126, 126); font-weight:bold;">'.$var_tipo_doc.'</a>' ;
             $contenido_li =  '<ul class="dropdown-menu">
                    <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
               </ul>';
             break;
 
             case "Alimentacion":
-            $reg->tipo_documento = '<a style="color:rgb(214, 116, 244); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
+            $var_tipo_doc = '<a style="color:rgb(214, 116, 244); font-weight:bold;">'.$var_tipo_doc.'</a>' ;
             $contenido_li =  '';
             break;
 
             case "Acuerdo":
-            $reg->tipo_documento = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$reg->tipo_documento.'</a>' ;
+            $var_tipo_doc = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$var_tipo_doc.'</a>' ;
             $contenido_li =  '<ul class="dropdown-menu">
                <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
               </ul>';
             break;
 
             case "O/C":
-            $reg->tipo_documento = '<a style="color:rgb(31, 208, 128); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $var_tipo_doc = '<a style="color:rgb(31, 208, 128); font-weight:bold;">'.$var_tipo_doc.'</a>';
             $contenido_li =  '<ul class="dropdown-menu">
                <li id="pdfordencompra"><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
                <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
@@ -209,30 +210,30 @@ switch ($_GET["op"]){
             break;
 
             case "Becas":
-            $reg->tipo_documento = '<a style="color:rgb(211, 246, 137); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $var_tipo_doc = '<a style="color:rgb(211, 246, 137); font-weight:bold;">'.$var_tipo_doc.'</a>';
             $contenido_li =  '';
             break;
 
             case "Planillas":
-            $reg->tipo_documento = '<a style="color:rgb(50, 17, 129); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $var_tipo_doc = '<a style="color:rgb(50, 17, 129); font-weight:bold;">'.$var_tipo_doc.'</a>';
             $contenido_li =  '';
             break;
 
             case "Otros":
-            $reg->tipo_documento = '<a style="color:rgb(191, 80, 33); font-weight:bold;">'.$reg->tipo_documento.'</a>';
+            $var_tipo_doc = '<a style="color:rgb(191, 80, 33); font-weight:bold;">'.$var_tipo_doc.'</a>';
             $contenido_li =  '';
             break;
 
             default :
             $contenido_li;
-            $reg->tipo_documento;
+            $var_tipo_doc;
             break;
-      };
 
+      };
  			$data[]=array(
  				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
  					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>'.
-          ' <button class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.')"><i class="fas fa-coins"></i></button>':
+          ' <button class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.'  ,  \''.limpiarCadena($reg->tipo_documento).'\'  ,  \''.$reg->retencion_isv.'\'  ,  \''.$reg->retencion_isr.'\')"><i class="fas fa-coins"></i></button>':
           (($reg->estado=='Pagado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
           ' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
         '<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
@@ -247,7 +248,7 @@ switch ($_GET["op"]){
  				"2"=>$reg->proveedor,
  				"3"=>$reg->usuario,
  				"4"=>$reg->codigop,
-        "5"=>$reg->tipo_documento,
+        "5"=>$var_tipo_doc,
   			"6"=>$reg->num_orden,
  				"7"=>$reg->num_comprobante,
  				"8"=>number_format("$reg->total_neto", 2, '.', ','),
