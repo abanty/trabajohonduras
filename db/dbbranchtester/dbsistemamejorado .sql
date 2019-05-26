@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2019 a las 22:59:23
+-- Tiempo de generación: 26-05-2019 a las 22:27:59
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -65,10 +65,7 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 3, 1, 6, 10, '432432', '3432', 'Recursos Hidricos', 'Recursos para operaciones', 'O/C', '2019-04-25', '1500.00', '100.00', '1400.00', '210.00', '15.00', '1400.00', '168.00', '12.00', '1400.00', '1778.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1778.00', 'Pendiente'),
-(2, 5, 1, 5, 11, '001', '0001', 'Materiales', 'Materiales', 'O/C', '2019-05-25', '2000.00', '0.00', '2000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2000.00', 'Pendiente'),
-(3, 4, 1, 2, 12, '2313', '21312', 'afdsa', 'd23213213dsdsa', 'O/C', '2019-05-25', '5000.00', '500.00', '4500.00', '675.00', '15.00', '4500.00', '0.00', '0.00', '4500.00', '5175.00', '0.00', '0.00', '4500.00', '0.00', '0.00', '4500.00', '5175.00', 'Pendiente'),
-(4, 1, 1, 4, 1, '01555', '', '', 'alguna', 'Alimentacion', '2019-05-25', '5555.00', '0.00', '5555.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5555.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5555.00', 'Pendiente');
+(1, 4, 1, 3, 7, '2313', '21312', 'Recursos Hidricos', 'Recursos Hidricos', 'O/C', '2019-05-26', '5000.00', '1000.00', '4000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4000.00', '600.00', '15.00', '4000.00', '500.00', '12.50', '4000.00', '2900.00', 'Pagado');
 
 --
 -- Disparadores `administrar_ordenes`
@@ -414,10 +411,8 @@ CREATE TABLE `detalle_orden` (
 --
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
-(1, 1, 13, 'Pesos', 1, 'Materiales', '1500.00'),
-(2, 2, 13, 'Pesos', 1, 'Materiales', '2000.00'),
-(3, 3, 13, 'Galones', 1, 'nada de lo normal mas que algo para testear', '5000.00'),
-(4, 4, 43, '', 1, '', '5555.00');
+(1, 1, 1, 'Pesos', 1, 'Recursos Hidricos', '1500.00'),
+(2, 1, 2, 'Pesos', 1, 'Recursos Hidricos', '3500.00');
 
 -- --------------------------------------------------------
 
@@ -536,33 +531,33 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Básicos', 11, 100, '11100', '389108774.41', '0.00', 1),
-(2, 'Adicionales', 11, 400, '11400', '4473615.20', '0.00', 1),
-(3, 'Decimotercer Mes', 11, 510, '11510', '11434540.60', '0.00', 1),
-(4, 'Decimocuarto Mes', 11, 520, '11520', '16156840.78', '0.00', 1),
-(5, 'Complementos', 11, 600, '11600', '14948586.55', '0.00', 1),
-(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 731, '11731', '42614215.55', '0.00', 1),
-(7, 'Contribuciones al Instituto de Previsión Militar - Régimen de Riesgos Especiales', 11, 732, '11732', '27010663.96', '0.00', 1),
-(8, 'Contribuciones al Instituto de Previsión Militar - Reserva Laboral', 11, 733, '11733', '31406525.95', '0.00', 1),
-(9, 'Beneficios y Compensaciones', 16, 100, '16100', '8206475.80', '0.00', 1),
-(10, 'Energía Eléctrica', 21, 100, '21100', '314299996.85', '0.00', 1),
-(11, 'Agua', 21, 200, '21200', '25345.44', '0.00', 1),
-(12, 'Correo Postal', 21, 410, '21410', '6426414.65', '0.00', 1),
+(1, 'Sueldos Basicos', 11, 100, '11100', '389524059.00', '0.00', 1),
+(2, 'Adicionales', 11, 400, '11400', '5932500.00', '0.00', 1),
+(3, 'Decimotercer Mes', 11, 510, '11510', '31917130.00', '0.00', 1),
+(4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
+(5, 'Complementos', 11, 600, '11600', '24671710.00', '0.00', 1),
+(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 731, '11731', '42869812.00', '0.00', 1),
+(7, 'Contribuciones al Instituto de Previsión Militar - Régimen de Riesgos Especiales', 11, 732, '11732', '28255103.00', '0.00', 1),
+(8, 'Contribuciones al Instituto de Previsión Militar - Reserva Laboral', 11, 733, '11733', '31826537.00', '0.00', 1),
+(9, 'Beneficios y Compensaciones', 16, 100, '16100', '8486473.00', '0.00', 1),
+(10, 'Energía Eléctrica', 21, 100, '21100', '650000.00', '0.00', 1),
+(11, 'Agua', 21, 200, '21200', '480000.00', '0.00', 1),
+(12, 'Correo Postal', 21, 410, '21410', '30000.00', '0.00', 1),
 (13, 'Telefonía Fija', 21, 420, '21420', '400000.00', '0.00', 1),
-(14, 'Alquiler de Equipos de Transporte, Tracción y Elevación', 22, 220, '22220', '110507416.00', '0.00', 1),
+(14, 'Alquiler de Equipos de Transporte, Tracci?n y Elevaci?n', 22, 220, '22220', '110610388.00', '0.00', 1),
 (15, 'Alquiler de Tierras y Terrenos', 22, 300, '22300', '40000.00', '0.00', 1),
 (16, 'Otros Alquileres', 22, 900, '22900', '5000.00', '0.00', 1),
-(17, 'Mantenimiento y Reparación de Edificios y Locales', 23, 100, '23100', '560000.00', '0.00', 1),
-(18, 'Mantenimiento y Reparación de Equipos y Medios de Transporte', 23, 200, '23200', '1038319.00', '0.00', 1),
-(19, 'Mantenimiento y Reparación de Equipos Sanitarios y de Laboratorio', 23, 330, '23330', '196000.00', '0.00', 1),
-(20, 'Mantenimiento y Reparación de Equipo para Computación', 23, 350, '23350', '125000.00', '0.00', 1),
-(21, 'Mantenimiento y Reparación de Equipo de Oficina y Muebles', 23, 360, '23360', '150000.00', '0.00', 1),
-(22, 'Mantenimiento y Reparación de Otros Equipos', 23, 390, '23390', '200000.00', '0.00', 1),
-(23, 'Mantenimiento y Reparación de Obras Civiles e Instalaciones Varias', 23, 400, '23400', '626613.00', '0.00', 1),
-(24, 'Limpieza, Aseo y Fumigación', 23, 500, '23500', '150000.00', '0.00', 1),
-(25, 'Servicios de Capacitación', 24, 500, '24500', '150000.00', '0.00', 1),
-(26, 'Servicios de Informática y Sistemas Computarizados', 24, 600, '24600', '306000.00', '0.00', 1),
-(27, 'Servicios de Consultoría de Gestión Administrativa, Financiera y Actividades Conexas', 24, 710, '24710', '330000.00', '0.00', 1),
+(17, 'Mantenimiento y Reparaci?n de Edificios y Locales', 23, 100, '23100', '310000.00', '0.00', 1),
+(18, 'Mantenimiento y Reparaci?n de Equipos y Medios de Transporte', 23, 200, '23200', '1038319.00', '0.00', 1),
+(19, 'Mantenimiento y Reparaci?n de Equipos Sanitarios y de Laboratorio', 23, 330, '23330', '196000.00', '0.00', 1),
+(20, 'Mantenimiento y Reparaci?n de Equipo para Computaci?n', 23, 350, '23350', '125000.00', '0.00', 1),
+(21, 'Mantenimiento y Reparaci?n de Equipo de Oficina y Muebles', 23, 360, '23360', '150000.00', '0.00', 1),
+(22, 'Mantenimiento y Reparaci?n de Otros Equipos', 23, 390, '23390', '200000.00', '0.00', 1),
+(23, 'Mantenimiento y Reparaci?n de Obras Civiles e Instalaciones Varias', 23, 400, '23400', '626613.00', '0.00', 1),
+(24, 'Limpieza, Aseo y Fumigaci?n', 23, 500, '23500', '150000.00', '0.00', 1),
+(25, 'Servicios de Capacitaci?n', 24, 500, '24500', '150000.00', '0.00', 1),
+(26, 'Servicios de Inform?tica y Sistemas Computarizados', 24, 600, '24600', '306000.00', '0.00', 1),
+(27, 'Servicios de Consultor?a de Gesti?n Administrativa, Financiera y Actividades Conexas', 24, 710, '24710', '330000.00', '0.00', 1),
 (28, 'Servicio de Transporte', 25, 100, '25100', '120000.00', '0.00', 1),
 (29, 'Servicio de Imprenta, Publicaciones y Reproducciones', 25, 300, '25300', '18000.00', '0.00', 1),
 (30, 'Primas y Gastos de Seguro', 25, 400, '25400', '15650407.00', '0.00', 1),
@@ -572,57 +567,57 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (34, 'Otros Servicios Comerciales y Financieros', 25, 900, '25900', '175000.00', '0.00', 1),
 (35, 'Pasajes Nacionales', 26, 110, '26110', '20000.00', '0.00', 1),
 (36, 'Pasajes al Exterior', 26, 120, '26120', '20000.00', '0.00', 1),
-(37, 'Viáticos Nacionales', 26, 210, '26210', '20000.00', '0.00', 1),
-(38, 'Viáticos al Exterior', 26, 220, '26220', '10000.00', '0.00', 1),
+(37, 'Vi?ticos Nacionales', 26, 210, '26210', '20000.00', '0.00', 1),
+(38, 'Vi?ticos al Exterior', 26, 220, '26220', '10000.00', '0.00', 1),
 (39, 'Gastos Juridicos ', 27, 500, '27500', '5000.00', '0.00', 1),
-(40, 'Impuesto sobre Venta- 12%', 27, 114, '27114', '333375.00', '0.00', 1),
-(41, 'Impuesto sobre Venta- 15%', 27, 115, '27115', '5000.00', '0.00', 1),
-(42, 'Ceremonial y Protocolo', 29, 100, '29100', '-1020362.00', '0.00', 1),
-(43, 'Alimentos y Bebidas para Personas', 31, 100, '31100', '43190319.00', '0.00', 1),
+(40, 'Impuesto sobre Venta- 12%', 27, 114, '27114', '333390.00', '0.00', 1),
+(41, 'Impuesto sobre Venta- 15%', 27, 115, '27115', '4400.00', '0.00', 1),
+(42, 'Ceremonial y Protocolo', 29, 100, '29100', '157500.00', '0.00', 1),
+(43, 'Alimentos y Bebidas para Personas', 31, 100, '31100', '44371800.00', '0.00', 1),
 (44, 'Madera, Corcho y sus Manufacturas', 31, 500, '31500', '292247.00', '0.00', 1),
 (45, 'Hilados y Telas', 32, 100, '32100', '503922.00', '0.00', 1),
 (46, 'Confecciones Textiles', 32, 200, '32200', '600000.00', '0.00', 1),
 (47, 'Prendas de Vestir', 32, 310, '32310', '539367.00', '0.00', 1),
-(48, 'Calzados', 32, 400, '32400', '1689826.00', '0.00', 1),
+(48, 'Calzados', 32, 400, '32400', '1701522.00', '0.00', 1),
 (49, 'Papel de Escritorio', 33, 100, '33100', '385659.00', '0.00', 1),
-(50, 'Papel para Computación', 33, 200, '33200', '5250.00', '0.00', 1),
-(51, 'Productos de Artes Gráficas', 33, 300, '33300', '105000.00', '0.00', 1),
-(52, 'Productos de Papel y Cartón', 33, 400, '33400', '50000.00', '0.00', 1),
-(53, 'Libros, Revistas y Periódicos', 33, 500, '33500', '28980.00', '0.00', 1),
-(54, 'Textos de Enseñanza', 33, 600, '33600', '10000.00', '0.00', 1),
+(50, 'Papel para Computaci?n', 33, 200, '33200', '5250.00', '0.00', 1),
+(51, 'Productos de Artes Gr?ficas', 33, 300, '33300', '105000.00', '0.00', 1),
+(52, 'Productos de Papel y Cart?n', 33, 400, '33400', '50000.00', '0.00', 1),
+(53, 'Libros, Revistas y Peri?dicos', 33, 500, '33500', '28980.00', '0.00', 1),
+(54, 'Textos de Ense?anza', 33, 600, '33600', '10000.00', '0.00', 1),
 (55, 'Cueros y Pieles', 34, 100, '34100', '250000.00', '0.00', 1),
-(56, 'Artículos de Cuero', 34, 200, '34200', '300000.00', '0.00', 1),
-(57, 'Artículos de Caucho', 34, 300, '34300', '550000.00', '0.00', 1),
-(58, 'Llantas y Cámaras de Aire', 34, 400, '34400', '1103050.00', '0.00', 1),
-(59, 'Productos Químicos', 35, 100, '35100', '250000.00', '0.00', 1),
-(60, 'Productos Farmacéuticos y Medicinales Varios', 35, 210, '35210', '3726000.00', '0.00', 1),
+(56, 'Art?culos de Cuero', 34, 200, '34200', '300000.00', '0.00', 1),
+(57, 'Art?culos de Caucho', 34, 300, '34300', '550000.00', '0.00', 1),
+(58, 'Llantas y C?maras de Aire', 34, 400, '34400', '353050.00', '0.00', 1),
+(59, 'Productos Qu?micos', 35, 100, '35100', '250000.00', '0.00', 1),
+(60, 'Productos Farmac?uticos y Medicinales Varios', 35, 210, '35210', '3726000.00', '0.00', 1),
 (61, 'Insecticidas, Fumigantes y Otros', 35, 400, '35400', '100000.00', '0.00', 1),
 (62, 'Tintas, Pinturas y Colorantes', 35, 500, '35500', '1018140.00', '0.00', 1),
 (63, 'Gasolina', 35, 610, '35610', '13172306.00', '0.00', 1),
 (64, 'Diesel', 35, 620, '35620', '16504424.00', '0.00', 1),
-(65, 'Aceites y Grasas Lubricantes', 35, 650, '35650', '1749421.00', '0.00', 1),
-(66, 'Productos de Material Plástico', 35, 800, '35800', '723000.00', '0.00', 1),
-(67, 'Productos Químicos de Uso Personal', 35, 930, '35930', '220000.00', '0.00', 1),
+(65, 'Aceites y Grasas Lubricantes', 35, 650, '35650', '1749517.00', '0.00', 1),
+(66, 'Productos de Material Pl?stico', 35, 800, '35800', '723000.00', '0.00', 1),
+(67, 'Productos Qu?micos de Uso Personal', 35, 930, '35930', '220000.00', '0.00', 1),
 (68, 'Productos Ferrosos', 36, 100, '36100', '271000.00', '0.00', 1),
 (69, 'Productos no Ferrosos', 36, 200, '36200', '175801.00', '0.00', 1),
-(70, 'Estructuras Metálicas Acabadas', 36, 300, '36300', '225000.00', '0.00', 1),
+(70, 'Estructuras Met?licas Acabadas', 36, 300, '36300', '225000.00', '0.00', 1),
 (71, 'Herramientas Menores', 36, 400, '36400', '121000.00', '0.00', 1),
 (72, 'Material de Guerra y Seguridad', 36, 500, '36500', '1040000.00', '0.00', 1),
 (73, 'Accesorios de Metal', 36, 920, '36920', '120000.00', '0.00', 1),
-(74, 'Elementos de Ferretería', 36, 930, '36930', '900000.00', '0.00', 1),
+(74, 'Elementos de Ferreter?a', 36, 930, '36930', '900000.00', '0.00', 1),
 (75, 'Productos de Vidrio', 37, 200, '37200', '248300.00', '0.00', 1),
 (76, 'Productos de Loza y Porcelana', 37, 300, '37300', '288775.00', '0.00', 1),
 (77, 'Productos de Cemento, Asbesto y Yeso', 37, 400, '37400', '370000.00', '0.00', 1),
-(78, 'Cemento, Cal y Yeso', 37, 500, '37500', '241412.00', '0.00', 1),
+(78, 'Cemento, Cal y Yeso', 37, 500, '37500', '242500.00', '0.00', 1),
 (79, 'Piedra, Arcilla y Arena', 38, 400, '38400', '320000.00', '0.00', 1),
 (80, 'Elementos de Limpieza y Aseo Personal', 39, 100, '39100', '538843.00', '0.00', 1),
-(81, 'Utiles de Escritorio, Oficina y Enseñanza', 39, 200, '39200', '9848834.00', '0.00', 1),
-(82, 'Utiles y Materiales Eléctricos', 39, 300, '39300', '405632.00', '0.00', 1),
+(81, 'Utiles de Escritorio, Oficina y Ense?anza', 39, 200, '39200', '9848834.00', '0.00', 1),
+(82, 'Utiles y Materiales El?ctricos', 39, 300, '39300', '405632.00', '0.00', 1),
 (83, 'Utensilios de Cocina y Comedor', 39, 400, '39400', '280000.00', '0.00', 1),
-(84, 'Instrumental Médico Quirúrgico Menor', 39, 510, '39510', '355000.00', '0.00', 1),
+(84, 'Instrumental M?dico Quir?rgico Menor', 39, 510, '39510', '355000.00', '0.00', 1),
 (85, 'Repuestos y Accesorios', 39, 600, '39600', '36253332.00', '0.00', 1),
 (86, 'Repuestos y Accesorios Fondos Propios', 39, 600, '39600', '364350.00', '0.00', 1),
-(87, 'Embarcaciones Marítimas', 42, 330, '42330', '102634290.00', '0.00', 1),
+(87, 'Embarcaciones Mar?timas', 42, 330, '42330', '102634290.00', '0.00', 1),
 (88, 'Becas Nacionales', 51, 211, '51211', '1091400.00', '0.00', 1),
 (89, 'Becas Externas', 51, 212, '51212', '1989680.00', '0.00', 1),
 (90, 'Otros Gastos', 51, 230, '51230', '3978000.00', '0.00', 1);
@@ -1230,7 +1225,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1284,7 +1279,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
