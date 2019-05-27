@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2019 a las 22:27:59
+-- Tiempo de generación: 27-05-2019 a las 04:43:06
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -65,7 +65,9 @@ CREATE TABLE `administrar_ordenes` (
 --
 
 INSERT INTO `administrar_ordenes` (`idadministrar_ordenes`, `idproveedores`, `idusuario`, `idprograma`, `iduuss`, `num_orden`, `num_comprobante`, `titulo_orden`, `descripcion_orden`, `tipo_documento`, `fecha_hora`, `subtotal_inicial`, `descuento_total`, `subtotal`, `impuesto_sv`, `tasa_sv`, `valor_sv`, `impuesto`, `tasa_imp`, `valor_impuesto`, `monto_total`, `retencion_isv`, `tasa_retencion_isv`, `valor_isv`, `retencion_isr`, `tasa_retencion_isr`, `valor_isr`, `total_neto`, `estado`) VALUES
-(1, 4, 1, 3, 7, '2313', '21312', 'Recursos Hidricos', 'Recursos Hidricos', 'O/C', '2019-05-26', '5000.00', '1000.00', '4000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4000.00', '600.00', '15.00', '4000.00', '500.00', '12.50', '4000.00', '2900.00', 'Pagado');
+(1, 4, 1, 3, 7, '2313', '21312', 'Recursos Hidricos', 'Recursos Hidricos', 'O/C', '2019-05-26', '5000.00', '1000.00', '4000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '4000.00', '600.00', '15.00', '4000.00', '500.00', '12.50', '4000.00', '2900.00', 'Pagado'),
+(2, 3, 1, 4, 1, '432434', '21312', '', 'gfdgfdg', 'Acuerdo', '2019-05-26', '5379.96', '0.00', '5379.96', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5379.96', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5379.96', 'Pendiente'),
+(3, 5, 1, 3, 10, '0012', '012548', 'Materiales', 'Materiales de proveedor tal para tal cuestion', 'O/C', '2019-05-26', '5300.00', '1000.00', '4300.00', '645.00', '15.00', '4300.00', '0.00', '0.00', '0.00', '4945.00', '645.00', '15.00', '4300.00', '0.00', '0.00', '0.00', '4300.00', 'Pagado');
 
 --
 -- Disparadores `administrar_ordenes`
@@ -412,7 +414,11 @@ CREATE TABLE `detalle_orden` (
 
 INSERT INTO `detalle_orden` (`iddetalle_orden`, `idadministrar_ordenes`, `idpresupuesto_disponible`, `unidad`, `cantidad`, `descripcion`, `precio_unitario`) VALUES
 (1, 1, 1, 'Pesos', 1, 'Recursos Hidricos', '1500.00'),
-(2, 1, 2, 'Pesos', 1, 'Recursos Hidricos', '3500.00');
+(2, 1, 2, 'Pesos', 1, 'Recursos Hidricos', '3500.00'),
+(3, 2, 2, '', 1, '', '34.53'),
+(4, 2, 1, '', 1, '', '5345.43'),
+(5, 3, 1, 'Pesos', 1, 'Materiales de proveedor tal para tal cuestion', '1500.00'),
+(6, 3, 2, 'Pesos', 1, 'Materiales de proveedor tal para tal cuestion', '3800.00');
 
 -- --------------------------------------------------------
 
@@ -531,8 +537,8 @@ CREATE TABLE `presupuesto_disponible` (
 --
 
 INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `presupuesto_anual`, `fondos_disponibles`, `condicion`) VALUES
-(1, 'Sueldos Basicos', 11, 100, '11100', '389524059.00', '0.00', 1),
-(2, 'Adicionales', 11, 400, '11400', '5932500.00', '0.00', 1),
+(1, 'Sueldos Basicos', 11, 100, '11100', '389522559.00', '0.00', 1),
+(2, 'Adicionales', 11, 400, '11400', '5929000.00', '0.00', 1),
 (3, 'Decimotercer Mes', 11, 510, '11510', '31917130.00', '0.00', 1),
 (4, 'Decimocuarto Mes', 11, 520, '11520', '32462130.00', '0.00', 1),
 (5, 'Complementos', 11, 600, '11600', '24671710.00', '0.00', 1),
@@ -571,7 +577,7 @@ INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto
 (38, 'Vi?ticos al Exterior', 26, 220, '26220', '10000.00', '0.00', 1),
 (39, 'Gastos Juridicos ', 27, 500, '27500', '5000.00', '0.00', 1),
 (40, 'Impuesto sobre Venta- 12%', 27, 114, '27114', '333390.00', '0.00', 1),
-(41, 'Impuesto sobre Venta- 15%', 27, 115, '27115', '4400.00', '0.00', 1),
+(41, 'Impuesto sobre Venta- 15%', 27, 115, '27115', '3755.00', '0.00', 1),
 (42, 'Ceremonial y Protocolo', 29, 100, '29100', '157500.00', '0.00', 1),
 (43, 'Alimentos y Bebidas para Personas', 31, 100, '31100', '44371800.00', '0.00', 1),
 (44, 'Madera, Corcho y sus Manufacturas', 31, 500, '31500', '292247.00', '0.00', 1),
@@ -1225,7 +1231,7 @@ ALTER TABLE `uuss`
 -- AUTO_INCREMENT de la tabla `administrar_ordenes`
 --
 ALTER TABLE `administrar_ordenes`
-  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idadministrar_ordenes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `bancos`
@@ -1279,7 +1285,7 @@ ALTER TABLE `detalle_ingreso`
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
 ALTER TABLE `detalle_orden`
-  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `iddetalle_orden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_retenciones`
