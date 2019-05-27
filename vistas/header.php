@@ -259,8 +259,7 @@ if (strlen(session_id()) < 1)
 
                <ul class="treeview-menu">
                <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Crear Ordenes</a></li>
-              <li><a href="reportes_oc"><i class="far fa-dot-circle text-blue"></i>Reportes O/C</a></li>
-              <li><a href="reportes_oc"><i class="far fa-dot-circle text-blue"></i>Reportes Acuerdos</a></li>
+
 
 
             </ul>
@@ -286,7 +285,7 @@ if (strlen(session_id()) < 1)
 
                <ul class="treeview-menu">
               <li><a href="transferenciabch.php"><i class="far fa-dot-circle text-blue"></i>Crear Transferencia</a></li>
-              <li><a href="nuevatransfbch.php"><i class="far fa-dot-circle text-blue"></i>Reportes</a></li>
+
 
             </ul>
 
@@ -366,30 +365,6 @@ if (strlen(session_id()) < 1)
 
       }
       ?>
-
-      <?php
-            if ($_SESSION['reportesc']==1)
-            {
-              echo'
-              <li class="treeview">
-                   <a href="#">
-                    <i class="far fa-chart-bar fa-lg"></i>
-                    <span>Reportes Compromisos</span>
-
-                      <i class="fal fa-angle-left pull-right"></i>
-
-                  </a>
-                     <ul class="treeview-menu">
-                      <li><a href="reporte_general"><i class="far fa-dot-circle text-blue"></i> Reporte General</a></li>
-                      <li><a href="reporte_objeto"><i class="far fa-dot-circle text-blue"></i> Reporte OBJ.Gasto</a></li>
-                      <li><a href="reporte_unidades"><i class="far fa-dot-circle text-blue"></i> Reporte Por Unidades</a></li>
-                      <li><a href="reporte_siafi"><i class="far fa-dot-circle text-blue"></i> Reporte SIAFI</a></li>
-                  </ul>
-
-                  </li>';
-
-        }
-        ?>
 
         <?php
             if ($_SESSION['configuraciones']==1)
