@@ -251,7 +251,7 @@ switch ($_GET["op"]){
         "5"=>$var_tipo_doc,
   			"6"=>$reg->num_orden,
  				"7"=>$reg->num_comprobante,
- 				"8"=>number_format("$reg->total_neto", 2, '.', ','),
+ 				"8"=>number_format("$reg->monto_total", 2, '.', ','),
  				"9"=>($reg->estado=='Pendiente')?'<span class="label bg-green">Pendiente</span>':(($reg->estado=='Pagado')?'<span class="label bg-yellow">Pagado</span>'
         :'<span class="label bg-red">Anulado</span>'));
  		}

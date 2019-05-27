@@ -26,7 +26,7 @@ switch ($_GET["op"]){
 				"8"=>$reg->unidadbase,
  				"9"=>$reg->num_trans,
 				"10"=>$reg->objeto_gastp,
-				"11"=>$reg->total
+				"11"=>$reg->monto_total
  				// "7"=>($reg->estado=='Aceptado')?'<span class="label bg-green">Aceptado</span>':
  				// '<span class="label bg-red">Anulado</span>'
  				);

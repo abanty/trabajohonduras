@@ -34,7 +34,7 @@ Class Consultas
 		(SELECT num_orden FROM administrar_ordenes
 		 WHERE tipo_documento = 'Acuerdo' and idadministrar_ordenes = a.idadministrar_ordenes) as acdo,
 		pg.nombrep as unidadbase, c.numero_transferencia as num_trans, GROUP_CONCAT(pd.codigo SEPARATOR ', ') as objeto_gastp,
-		a.total_neto as total FROM administrar_ordenes a
+		a.monto_total,a.total_neto as total FROM administrar_ordenes a
 		LEFT JOIN contabilidad c
 		ON c.idadministrar_ordenes = a.idadministrar_ordenes
 		INNER JOIN detalle_orden de
