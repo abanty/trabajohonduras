@@ -19,7 +19,7 @@ switch ($_GET["op"]){
  				"1"=>$reg->fecha,
  				"2"=>$reg->unidad_superficie,
  				"3"=>$reg->cheque,
- 				"4"=>$reg->proveedor.' '.$reg->descripcion,
+ 				"4"=>'<span style="font-weight:bold; text-decoration: underline;">'.$reg->proveedor.':        '.'</span>'.$reg->descripcion,
  				"5"=>$reg->oc,
 				"6"=>$reg->cp,
 				"7"=>$reg->acdo,

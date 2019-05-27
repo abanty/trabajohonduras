@@ -68,7 +68,7 @@ function listar()
 				},
 		"bDestroy": true,
 		"iDisplayLength": 15,//Paginación
-	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
+	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
 
