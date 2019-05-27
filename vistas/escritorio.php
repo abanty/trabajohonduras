@@ -36,9 +36,9 @@ if ($_SESSION['escritorio']==1)
         <section class="content">
             <div class="row">
               <div class="col-md-12">
-                  <div class="box">
+                  <div class="box box-primary">
                     <div class="box-header with-border">
-                          <div class="box-title"><h2> <b>ESCRITORIO</b></h2>
+                          <div class="box-title"><h3><i class="ion-cube" style="color:#3c8dbc;"> </i><b> VISTAS DE REPORTES GRÁFICOS</b></h3>
                                   <div class="box-tools pull-right"></div>
                           </div>
                           <!-- /.box-header -->
