@@ -21,7 +21,7 @@ if (strlen(session_id()) < 1)
     <link href="../public/css/waves.css" rel="stylesheet" />
 
 
-    <link rel="stylesheet" href="../public/css/ionicons.min.css">
+    <link rel="stylesheet" href="../public/Ionicons/css/ionicons.min.css">
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
     <link rel="shortcut icon" href="../public/img/apple-touch-icon.png">
     <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.css">
