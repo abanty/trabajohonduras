@@ -30,10 +30,9 @@ function init(){
 			$("#detalles tbody").html('<td id="mynewtd" colspan="10" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 			$("#detallesfactura tbody").html('<td id="mynewtd_factura" colspan="4" style="text-align: center; padding: 15px;"> -- Ninguna factura en la tabla -- </td>');
 
-
 			$("#formulario").on("submit",function(e)
 			{
-
+				descuentos_rtn();
 				guardaryeditar(e);
 
 			});
@@ -738,6 +737,154 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
   }
 
 
+	function descuentos_rtn(){
+		var rtnisv = $('#retencionisv').val();
+		var rtnisr = $('#retencionisr').val();
+
+		if ((rtnisv != 0)&&(rtnisr != 0)) {
+			agregarDetalle2(40,'27114',rtnisr);
+			agregarDetalle2(41,'27115',rtnisv);
+		}else if (rtnisv != 0) {
+				agregarDetalle2(41,'27115',rtnisv);
+		}else if (rtnisr != 0) {
+				agregarDetalle2(40,'27114',rtnisr);
+		}
+
+	}
+
+
+	function agregarDetalle2(idpresupuesto_disponible,codigo,presupuesto_disponible){
+
+										var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
+										var cantidad = 1;
+										var unidad = "Descuentos";
+										var descripcion = "Retencion de impuestos";
+										var precio_unitario = presupuesto_disponible;
+
+							var selecttipodoc = $("#tipo_documento option:selected").val();
+							if((idpresupuesto_disponible!="")&&(selecttipodoc == 'O/C')) {
+
+								var subtotal= cantidad*precio_unitario;
+								var fila='<tr style="display:none;" role="row" class="filas" id="fila'+cont+'">'+
+									/*BOTON ELIMINAR FILAS*/
+									'<td role="cell" class="rowperson"><button type="button" class="btn btn-danger btn-sm" onclick="eliminarDetalle('+cont+')"><i class="fas fa-trash-alt"></i></button></td>'+
+									/*IDPRESUPUESTO Y CODIGO*/
+									'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
+									/*UNIDAD*/
+									'<td id="td_uni" role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
+									/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
+									'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+									/*DESCRIPCION*/
+									'<td id="td_descri" colspan="4" role="cell"><input type="text" class="form-control input-sm" name="descripcion[]" value="'+descripcion+'"></td>'+
+									/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
+									'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
+									/*SUB TOTAL*/
+									'<td role="cell"><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
+									/*CAMPO OCULTO PRESUPUESTO_DISPONIBLE*/
+									'<td role="cell" style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
+									/*CAMPO OCULTO CODIGO*/
+									'<td role="cell" style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
+								'</tr>';
+
+								cont++;
+								detalles=detalles+1;
+								$(function() {
+									$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+								});
+								$('#detalles').append(fila);
+								modificarSubototales();
+								}else{
+									swal({
+										type: 'error',
+										title: 'Oops...',
+										text: 'Insuficiente Saldo para realizar una transacción',
+									}).catch(swal.noop);
+								}
+		}
+
+
+
+	function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
+
+										var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
+								  	var cantidad = 1;
+								  	var unidad = "";
+								  	var descripcion = "";
+								  	var precio_unitario = 0.00;
+
+							var selecttipodoc = $("#tipo_documento option:selected").val();
+							if((selecttipodoc == 'Acuerdo')||(selecttipodoc == 'F.R.')||(selecttipodoc == 'Alimentacion')||(selecttipodoc == 'Becas')||(selecttipodoc == 'Planillas')||(selecttipodoc == 'Otros')&&(idpresupuesto_disponible!="")){
+								var subtotal= cantidad*precio_unitario;
+								var fila='<tr role="row" class="filas" id="fila'+cont+'">'+
+									/*BOTON ELIMINAR FILAS*/
+									'<td role="cell" class="rowperson"><button type="button" class="btn btn-danger btn-sm" onclick="eliminarDetalle('+cont+')"><i class="fas fa-trash-alt"></i></button></td>'+
+									/*IDPRESUPUESTO Y CODIGO*/
+									'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
+									/*UNIDAD*/
+									'<td id="td_uni" style="display:none;" role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
+									/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
+									'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+									/*DESCRIPCION*/
+									'<td id="td_descri" style="display:none;" colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
+									/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
+									'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
+									/*SUB TOTAL*/
+									'<td role="cell"><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
+									/*CAMPO OCULTO PRESUPUESTO_DISPONIBLE*/
+									'<td role="cell" style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
+									/*CAMPO OCULTO CODIGO*/
+									'<td role="cell" style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
+								'</tr>';
+
+								cont++;
+								detalles=detalles+1;
+								$(function() {
+									$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+								});
+								$('#detalles').append(fila);
+
+								modificarSubototales();
+							}else if (idpresupuesto_disponible!="") {
+
+						    var subtotal= cantidad*precio_unitario;
+								var fila='<tr role="row" class="filas" id="fila'+cont+'">'+
+									/*BOTON ELIMINAR FILAS*/
+									'<td role="cell" class="rowperson"><button type="button" class="btn btn-danger btn-sm" onclick="eliminarDetalle('+cont+')"><i class="fas fa-trash-alt"></i></button></td>'+
+									/*IDPRESUPUESTO Y CODIGO*/
+									'<td role="cell"><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+codigo+'</td>'+
+									/*UNIDAD*/
+									'<td id="td_uni" role="cell"><input type="text" class="form-control input-sm" size="5" name="unidad[]" id="unidad" value="'+unidad+'"></td>'+
+									/*CANTIDAD onblur="onInputBlur(event)" onfocus="onInputFocus(event)"  */
+									'<td role="cell"><input type="number" class="form-control input-sm" onblur="onInputBlur(event)" onfocus="onInputFocus(event)" onchange="modificarSubototales()" onkeyup="modificarSubototales()" style="width: 90px;" min="0" name="cantidad[]" id="cantidad" value="'+cantidad+'"></td>'+
+									/*DESCRIPCION*/
+									'<td id="td_descri" colspan="4" role="cell"><textarea class="form-control input-sm" rows="2" cols="50" name="descripcion[]" value="'+descripcion+'"></textarea></td>'+
+									/*PRECIO UNITARIO   onblur="onInputBlur(event)" onfocus="onInputFocus(event)" step=".01" style="width: 140px;" min="0" onchange="modificarSubototales()" onkeyup="modificarSubototales()" */
+									'<td role="cell"><input type="text" class="form-control input-sm prec"  id="currency" name="precio_unitario[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" onclick="getId(this)" value="'+precio_unitario+'"></td>'+
+									/*SUB TOTAL*/
+									'<td role="cell"><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
+									/*CAMPO OCULTO PRESUPUESTO_DISPONIBLE*/
+									'<td role="cell" style="display:none;"><input type="number" name="presupuesto_disponible[]" value="'+presupuestoformat+'"></td>'+
+									/*CAMPO OCULTO CODIGO*/
+									'<td role="cell" style="display:none;"><input type="number" name="codigo[]" value="'+codigo+'"></td>'+
+								'</tr>';
+
+						    cont++;
+						    detalles=detalles+1;
+								$(function() {
+									$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
+								});
+						   	$('#detalles').append(fila);
+						   	modificarSubototales();
+						    }else{
+									swal({
+										type: 'error',
+										title: 'Oops...',
+										text: 'Insuficiente Saldo para realizar una transacción',
+									}).catch(swal.noop);
+						    }
+	  }
+
+
 /*----------------------------------------*
 | FUNCION PARA OBTENER EL INDEX DE LA FILA|
 .-----------------------------------------*/
@@ -876,6 +1023,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var resultabsoluteisv = parseFloat(Math.round((ofnumberisv_valid * resultpercentisv) * 100) / 100).toFixed(2);
 		$("#retencionisv").val(number_format(resultabsoluteisv, 2, '.', ','));
 		calcularTotales();
+
 	}
 
 
@@ -890,6 +1038,7 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var resultabsoluteisr = parseFloat(Math.round((ofnumberisr_valid * resultpercentisr) * 100) / 100).toFixed(2);
 		$("#retencionisr").val(number_format(resultabsoluteisr, 2, '.', ','));
 		calcularTotales();
+
 	}
 
 

@@ -240,7 +240,7 @@ Class Administrar_ordenes
 		$sql="SELECT dor.iddetalle_orden, dor.idadministrar_ordenes, dor.idpresupuesto_disponible, dor.unidad, dor.cantidad, dor.descripcion,
 		dor.precio_unitario, pd.nombre_objeto, pd.grupo, pd.subgrupo, pd.codigo, pd.presupuesto_anual, pd.fondos_disponibles, pd.condicion
 		FROM detalle_orden dor INNER JOIN presupuesto_disponible pd ON pd.idpresupuesto_disponible = dor.idpresupuesto_disponible
-		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes'";
+		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes' AND dor.idpresupuesto_disponible NOT IN ('40','41')";
 		return ejecutarConsulta($sql);
 	}
 
