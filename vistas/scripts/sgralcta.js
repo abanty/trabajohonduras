@@ -47,7 +47,17 @@ function listar()
 		            'copyHtml5',
 		            'excelHtml5',
 		            'csvHtml5',
-		            'pdf'
+		            'pdf',
+								{
+					extend: 'excelHtml5',
+					autoFilter: true,
+					text: 'Save as Excel',
+					customize: function( xlsx ) {
+							var sheet = xlsx.xl.worksheets['sheet1.xml'];
+							$('row:first c', sheet).attr( 's', '20' );
+						 // $('row c[r*="1"]', sheet).attr( 's', '25' );
+					}
+			}
 		        ],
 		  columnDefs: [
 	 	    				{ width: 20, targets: 0 },
