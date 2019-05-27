@@ -742,18 +742,18 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var rtnisr = $('#retencionisr').val();
 
 		if ((rtnisv != 0)&&(rtnisr != 0)) {
-			agregarDetalle2(40,'27114',rtnisr);
-			agregarDetalle2(41,'27115',rtnisv);
+			agregarRenglonesRetenciones(40,'27114',rtnisr);
+			agregarRenglonesRetenciones(41,'27115',rtnisv);
 		}else if (rtnisv != 0) {
-				agregarDetalle2(41,'27115',rtnisv);
+				agregarRenglonesRetenciones(41,'27115',rtnisv);
 		}else if (rtnisr != 0) {
-				agregarDetalle2(40,'27114',rtnisr);
+				agregarRenglonesRetenciones(40,'27114',rtnisr);
 		}
 
 	}
 
 
-	function agregarDetalle2(idpresupuesto_disponible,codigo,presupuesto_disponible){
+	function agregarRenglonesRetenciones(idpresupuesto_disponible,codigo,presupuesto_disponible){
 
 										var presupuestoformat = parseFloat(presupuesto_disponible.replace(/,/g, ''));
 										var cantidad = 1;
@@ -793,12 +793,6 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 								});
 								$('#detalles').append(fila);
 								modificarSubototales();
-								}else{
-									swal({
-										type: 'error',
-										title: 'Oops...',
-										text: 'Insuficiente Saldo para realizar una transacción',
-									}).catch(swal.noop);
 								}
 		}
 
