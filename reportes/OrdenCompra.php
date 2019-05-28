@@ -85,6 +85,7 @@ while ($regd = $rsptad->fetch_object()) {
 
 
   $pdf->SetWidths(array(13,27,17,70,25,22,22));
+  $pdf->SetAligns(array('','','','','R','R','R'));
   $pdf->SetUnderline(array('','','','U','','',''));
 
   $pdf->SetFont('Arial','',7.5);
@@ -100,20 +101,21 @@ while ($regd = $rsptad->fetch_object()) {
             // $y   += $size + 2;
 }
 
-$pdf->SetFont( "Arial", "B", 8);
-$pdf->Ln(7);
-$pdf->SetX(55);
-$pdf->Cell(80,4, "IMPORTE TOTAL CON LETRA",0,1);
+// $pdf->SetFont( "Arial", "B", 8);
+$pdf->Ln(1);
+// $pdf->SetX(55);
+// $pdf->Cell(80,4, "IMPORTE TOTAL CON LETRA",0,1);
 require_once "Letras.php";
 $V=new EnLetras();
 $pdf->SetFont( "Arial", "", 8);
-$con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
-$pdf->SetX(55);
-$pdf->MultiCell(90,4, utf8_decode($con_letra),0);
-$pdf->SetX(55);
-$pdf->MultiCell(95,4, "************************************* U.L **************************************",0);
+$con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"LEMPIRAS EXACTOS"));
+$pdf->SetX(67);
+// $con_letra.
+$pdf->MultiCell(70,4, utf8_decode("***".$con_letra.""),0);
+$pdf->SetX(67);
+$pdf->MultiCell(70,4, "**************************** U.L ****************************",0);
 $pdf->Ln(1);
-$pdf->SetX(55);
+$pdf->SetX(67);
 $pdf->MultiCell(90,3, "NOTA: ".utf8_decode($regv->descripcion_orden),0);
 $pdf->Ln(15);
 $texta = strtoupper($regv->cargar);

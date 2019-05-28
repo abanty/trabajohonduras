@@ -152,8 +152,8 @@ function addSociete( $tittle1, $tittle2,$tittle3,$tittle4 )
 	$this->Cell( $length, 2, $tittle1);
 
 
-	$this->SetXY( $x1+40, $y1 + 5 );
-	$this->SetFont('Arial','',8);
+	$this->SetXY( $x1+39, $y1 + 5 );
+	$this->SetFont('Arial','',10);
 	// $length = $this->GetStringWidth( $tittle2 );
 	$this->Cell( $length, 2, $tittle2);
 
@@ -631,7 +631,7 @@ function Rowdefault($data)
 		$this->Rect($x,$y,$w,$h);
 		//Print the text
 		$this->SetFillColor(184, 215, 232);
-		$this->MultiCell($w,6,$data[$i],1,$a);
+		$this->MultiCell($w,6,$data[$i],0,$a);
 		//Put the position to the right of the cell
 		$this->SetXY($x+$w,$y);
 	}
