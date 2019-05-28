@@ -358,14 +358,14 @@ Class Administrar_ordenes
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
-		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes' AND p.idpresupuesto_disponible NOT IN ('40','41')
 		GROUP BY de.idpresupuesto_disponible
 		UNION ALL
 		SELECT p.idpresupuesto_disponible,p.grupo,p.subgrupo,'' as cod,de.unidad as uni, de.cantidad as cant,de.descripcion as descripcion,de.precio_unitario as precu,de.precio_unitario as subtot,'' as total
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
-		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes' AND p.idpresupuesto_disponible NOT IN ('40','41')
 		order by idpresupuesto_disponible, cant";
 		return ejecutarConsulta($sql);
 	}
