@@ -105,7 +105,7 @@ switch ($_GET["op"]){
 
 	case "selectProveedores":
 		require_once "../modelos/Proveedores.php";
-		$casa_comercial = new proveedores();
+		$casa_comercial = new Proveedores();
 
 		$rspta = $casa_comercial->listar();
 
@@ -119,7 +119,7 @@ switch ($_GET["op"]){
 		require_once "../modelos/Programa.php";
 		$codigop = new Programa();
 
-		$rspta = $codigop->listar();
+		$rspta = $codigop->select_programa();
 
 		while ($reg = $rspta->fetch_object())
 				{

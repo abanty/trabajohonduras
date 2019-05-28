@@ -26,17 +26,20 @@ function init(){
 
 
 	//Cargamos los items al select categoria
+$.post("../ajax/compromisos.php?op=selectProveedores", function(r){
+					$("#idproveedores").html(r);
+					$('#idproveedores').selectpicker('refresh');
+});
+
+
+	//Cargamos los items al select categoria
 	//Cargamos los items al select cliente
 	$.post("../ajax/compromisos.php?op=selectPrograma", function(r){
 	            $("#idprograma").html(r);
 	            $('#idprograma').selectpicker('refresh');
 	});
 
-			//Cargamos los items al select categoria
-	$.post("../ajax/compromisos.php?op=selectProveedores", function(r){
-	            $("#idproveedores").html(r);
-	            $('#idproveedores').selectpicker('refresh');
-});
+
 
 }
 
