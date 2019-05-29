@@ -1,0 +1,10 @@
+/* html{
+    background: url('https://motionarray-portfolio.imgix.net/preview-83721-73b2ffab8d22cad99c5c66f9b51b4993-high.jpg') !important;
+} */
+.login-page, .register-page{
+    /* background: transparent !important; */
+    background: url('../../vistas/img/plantilla/back.png') !important;
+}
+.mr-1{
+    margin-right:1rem !important;
+}
