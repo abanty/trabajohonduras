@@ -43,7 +43,7 @@ switch ($_GET["op"]){
 	break;
 
 
-		case 'pagado':
+ case 'pagado':
 		$rspta=$compromisos->pagado($idcompromisos);
  		echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
 	break;

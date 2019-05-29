@@ -251,14 +251,14 @@ if (strlen(session_id()) < 1)
 
             '<li class="treeview">
             <a href="#">
-              <i class="fas fa-folder-open fa-lg"></i> <span>Administrar Ordenes</span>
+              <i class="fas fa-folder-open fa-lg"></i> <span>Ejecución presupuestaria</span>
 
                 <i class="fal fa-angle-left pull-right"></i>
               </span>
             </a>
 
                <ul class="treeview-menu">
-               <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Ejecución presupuestaria</a></li>
+               <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Crear ordenes</a></li>
 
 
 
