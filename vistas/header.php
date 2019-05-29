@@ -258,7 +258,7 @@ if (strlen(session_id()) < 1)
             </a>
 
                <ul class="treeview-menu">
-               <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Crear Ordenes</a></li>
+               <li><a href="administrar_ordenes.php"><i class="far fa-dot-circle text-blue"></i>Ejecución presupuestaria</a></li>
 
 
 
@@ -327,7 +327,7 @@ if (strlen(session_id()) < 1)
            <li class="treeview">
              <a href="#">
               <i class="fab fa-buromobelexperte fa-lg"></i>
-              <span>SIAFI</span>
+              <span>Ingreso de presupuesto</span>
 
                 <i class="fal fa-angle-left pull-right"></i>
 

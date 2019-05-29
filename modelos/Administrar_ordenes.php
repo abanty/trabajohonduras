@@ -347,7 +347,7 @@ Class Administrar_ordenes
 		dor.unidad, dor.cantidad,	dor.descripcion, dor.precio_unitario, (dor.cantidad*dor.precio_unitario) as subtot
 		FROM detalle_orden dor INNER JOIN presupuesto_disponible dp ON
 		dor.idpresupuesto_disponible=dp.idpresupuesto_disponible
-		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes'";
+		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes' AND dp.idpresupuesto_disponible NOT IN ('40','41')";
 		return ejecutarConsulta($sql);
 	}
 
@@ -377,7 +377,7 @@ Class Administrar_ordenes
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
-		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes' AND p.idpresupuesto_disponible NOT IN ('40','41')
 		GROUP BY de.idpresupuesto_disponible";
 		return ejecutarConsulta($sql);
 	}

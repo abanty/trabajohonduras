@@ -196,7 +196,7 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->SetFont( "Arial", "B", 8);
   $pdf->Cell(35,5,'IMPUESTO L.',0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
-  $pdf->Cell(35,5,number_format($regv->impuesto, 2, '.', ','),0,0,'R',0);
+  $pdf->Cell(35,5,number_format($regv->retencion_isv, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "B", 10);
   $pdf->Cell(49,5,'C  R  E  D  I  T  O  S','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 8);

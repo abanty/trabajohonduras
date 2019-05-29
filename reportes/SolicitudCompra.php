@@ -71,6 +71,7 @@ $pdf->Ln(2);
 while ($regd = $rsptad->fetch_object()) {
 
   $pdf->SetWidths(array(13,27,17,70,25,22,22));
+    $pdf->SetAligns(array('','','','','R','R','R'));
   $pdf->SetFont('Arial','',8);
 
   $line = array("$regd->codigo",utf8_decode("$regd->unidad"),"$regd->cantidad",utf8_decode("$regd->descripcion"),
@@ -91,45 +92,45 @@ $pdf->Ln(-3);
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
+$pdf->Cell(67,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
 
 $pdf->Ln(5);
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "VALOR EXENTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format('', 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format('', 2, '.', ','),0,1,'R');
+$pdf->Cell(67,4, number_format('', 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4, number_format('', 2, '.', ','),0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
+$pdf->Cell(67,4, number_format($regv->subtotal_origen, 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4, number_format($regv->subtotal_origen, 2, '.', ','),0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "DESCUENTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->descuento_total, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4,'',0,1,'R');
+$pdf->Cell(67,4, number_format($regv->descuento_total, 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4,'',0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->subtotal, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4,'',0,1,'R');
+$pdf->Cell(67,4, number_format($regv->subtotal, 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4,'',0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "15% IMPTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->impuesto, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4,'',0,1,'R');
+$pdf->Cell(67,4, number_format($regv->retencion_isv, 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4,'',0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "TOTAL Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(64,4, number_format($regv->monto_total, 2, '.', ','),0,0,'R');
-$pdf->Cell(26,4, number_format($regv->monto_total, 2, '.', ','),0,1,'R');
+$pdf->Cell(67,4, number_format($regv->monto_total, 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4, number_format($regv->monto_total, 2, '.', ','),0,1,'R');
 $pdf->Ln(10);
 
 $pdf->SetLineWidth(0.2);

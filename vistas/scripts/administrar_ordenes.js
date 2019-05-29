@@ -489,16 +489,34 @@ function number_format (number, decimals, dec_point, thousands_sep) {
 .--------------------------------*/
 function orden_mostrar(idadministrar_ordenes)
 {
-	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
-					$("#detalles tbody").html(r);
-	});
-
 
 	$.post("../ajax/administrar_ordenes.php?op=mostrar_orden_edit",{idadministrar_ordenes : idadministrar_ordenes}, function(data, status)
 	{
 		ocultarcamposinitial(false);
 		data = JSON.parse(data);
+
+		switch (data.tipo_documento) {
+			case 'Acuerdo':
+				VistaAcuerdos();
+				break;
+			case 'O/C':
+				VistaOrdenesC();
+				$(".tdunit").show();
+				$(".tddesc").show();
+				break;
+			case 'F.R.':
+				VistaFondosR();
+				break;
+			case 'Alimentacion':
+				VistaAlimentosBecas();
+				break;
+			case 'Becas':
+				VistaAlimentosBecas();
+				break;
+			// default:
+		}
 		mostrarform(true);
+
 		// TITULO ORDEN
 		$("#titulo_orden").val(data.titulo_orden);
 		// NUMERO ORDEN
@@ -575,28 +593,13 @@ function orden_mostrar(idadministrar_ordenes)
 		$("#btnAgregarArt").hide();
 		$("#btnaddfact").hide();
 
-		switch (data.tipo_documento) {
-			case 'Acuerdo':
-				VistaAcuerdos();
-				break;
-			case 'O/C':
-				VistaOrdenesC();
-				$(".tdunit").show();
-				$(".tddesc").show();
-				break;
-		  case 'F.R.':
-		  	VistaFondosR();
-		  	break;
-		  case 'Alimentacion':
-		  	VistaAlimentosBecas();
-		  	break;
-			case 'Becas':
-			 	VistaAlimentosBecas();
-			 	break;
-			// default:
-		}
+
 
  	});
+
+	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Detalle&id="+idadministrar_ordenes,function(r){
+					$("#detalles tbody").html(r);
+	});
 
 	$.post("../ajax/administrar_ordenes.php?op=listar_Orden_Facturas&id="+idadministrar_ordenes,function(r){
 				  $("#detallesfactura tbody").html(r);
