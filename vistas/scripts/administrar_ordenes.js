@@ -742,12 +742,12 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		var rtnisr = $('#retencionisr').val();
 
 		if ((rtnisv != 0)&&(rtnisr != 0)) {
-			agregarRenglonesRetenciones(40,'27114',rtnisr);
-			agregarRenglonesRetenciones(41,'27115',rtnisv);
+			agregarRenglonesRetenciones(40,'27114','0');
+			agregarRenglonesRetenciones(41,'27115','0');
 		}else if (rtnisv != 0) {
-				agregarRenglonesRetenciones(41,'27115',rtnisv);
+				agregarRenglonesRetenciones(41,'27115','0');
 		}else if (rtnisr != 0) {
-				agregarRenglonesRetenciones(40,'27114',rtnisr);
+				agregarRenglonesRetenciones(40,'27114','0');
 		}
 
 	}
@@ -1080,6 +1080,11 @@ function agregarDetalle(idpresupuesto_disponible,codigo,presupuesto_disponible){
 		//SUBTOTAL NETO
 		$("#sub_total").html("L. " + number_format(sub_sub_total, 2, '.', ','));
 		$("#subtotales").val(sub_sub_total);
+		$("#valor_sv").val(sub_sub_total);
+		$("#valor_isv").val(sub_sub_total);
+
+
+
 		//PRIMER TOTAL
 		$("#montototal").html("L. " + number_format(total_total, 2, '.', ','));
 		$("#monto_total").val(total_total);

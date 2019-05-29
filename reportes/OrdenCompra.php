@@ -146,7 +146,7 @@ $pdf->MultiCell(25,4, number_format($regv->subtotal, 2, '.', ','),0,'R');
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "Impuesto Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->MultiCell(25,4, number_format($regv->impuesto, 2, '.', ','),0,'R');
+$pdf->MultiCell(25,4, number_format($regv->retencion_isv, 2, '.', ','),0,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "Total Lps  :",0,0,'R');
