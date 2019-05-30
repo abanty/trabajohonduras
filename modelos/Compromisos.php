@@ -27,7 +27,7 @@ Class Compromisos
 		idprograma,
 		idproveedores,
 		fecha_hora,
-		fecha_hora,
+		tipo_registro,
 		numfactura,
 		total_compra,
 		condicion)
