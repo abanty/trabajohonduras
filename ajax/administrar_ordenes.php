@@ -106,7 +106,7 @@ switch ($_GET["op"]){
 | FUNCION PARA CAMBIAR ESTADO A PAGADO |
 .-------------------------------------*/
   case 'pagar':
-    $rspta=$admin_ord->pagar($idadministrar_ordenes,$tipo_documento,$retencionisv,$retencionisr);
+    $rspta=$admin_ord->pagar($idadministrar_ordenes);
     echo $rspta ? "Orden de compra pagada" : "Orden de compra no se puede pagar";
   break;
 
