@@ -15,6 +15,7 @@ Class Compromisos
 		$idprograma,
 		$idproveedores,
 		$fecha_hora,
+		$tipo_registro,
 		$numfactura,
 		$total_compra,
 
@@ -26,6 +27,7 @@ Class Compromisos
 		idprograma,
 		idproveedores,
 		fecha_hora,
+		tipo_registro,
 		numfactura,
 		total_compra,
 		condicion)
@@ -33,6 +35,7 @@ Class Compromisos
 		'$idprograma',
 		'$idproveedores',
 		'$fecha_hora',
+		'$tipo_registro',
 		'$numfactura',
 		'$total_compra',
 		'0')";
@@ -117,6 +120,7 @@ Class Compromisos
 		$sql="SELECT
 					 q.idcompromisos,
 					 DATE(q.fecha_hora) as fecha,
+					 q.tipo_registro,
 					 q.idprograma,
 					 w.nombrep as programa,
 					 q.idproveedores,
@@ -154,6 +158,7 @@ Class Compromisos
 		$sql="SELECT
 					 q.idcompromisos,
 					 DATE(q.fecha_hora) as fecha,
+					 q.tipo_registro,
 					 q.idprograma,
 					 w.nombrep as programa,
 					 q.idproveedores,
@@ -176,6 +181,7 @@ Class Compromisos
     c.idprograma,
     c.idproveedores,
     c.fecha_hora,
+		c.tipo_registro,
     c.numfactura,
     c.total_compra,
     c.condicion,

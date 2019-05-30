@@ -43,6 +43,7 @@ if ($_SESSION['compromisosp']==1)
                            <thead style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Fecha</th>
+                            <th>Tipo Registro</th>
                             <th>Programa</th>
                             <th>Proveedor</th>
                             <th>Numero Factura</th>
@@ -54,6 +55,7 @@ if ($_SESSION['compromisosp']==1)
                           <tfoot style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Fecha</th>
+                            <th>Tipo Registro</th>
                             <th>Programa</th>
                             <th>Proveedor</th>
                             <th>Numero Factura</th>
@@ -64,7 +66,7 @@ if ($_SESSION['compromisosp']==1)
                     </div>
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
-                          <div class="btn-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Casa Comercial(*):</label>
                             <input type="hidden" name="idcompromisos" id="idcompromisos">
                             <select id="idproveedores" name="idproveedores" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm"></select>
@@ -73,11 +75,21 @@ if ($_SESSION['compromisosp']==1)
                             <label>Fecha(*):</label>
                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
                           </div>
-                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Tipo Registro(*):</label>
+                            <select class="form-control select-picker" name="tipo_registro" id="tipo_registro" required>
+                              <option value="Funcionamiento/General">Funcionamiento General</option>
+                              <option value="Fondos_CE">Fondos_CE</option>
+                            </select>
+                          </div>
+
+                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Programa(*):</label>
                             <select id="idprograma" name="idprograma" class="form-control selectpicker" data-live-search="true" data-style="btn-default btn-sm"></select>
                           </div>
-                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Número de Factura:</label>
                             <input type="text" class="form-control input-sm" name="numfactura" id="numfactura" maxlength="20" placeholder="numero de factura" required="">
                           </div>

@@ -49,6 +49,7 @@ if ($_SESSION['compromisosp']==1)
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
                           <thead style="background-color:#d2d6de">
                             <th>Fecha</th>
+                            <th>Tipo Registro</th>
                             <th>Casa Comercial</th>
                             <th>Nombre Objeto</th>
                             <th>Codigo</th>
@@ -61,6 +62,7 @@ if ($_SESSION['compromisosp']==1)
                           </tbody>
                           <tfoot  style="background-color:#d2d6de">
                             <th>Fecha</th>
+                            <th>Tipo Registro</th>
                             <th>Casa Comercial</th>
                             <th>Nombre Objeto</th>
                             <th>Codigo</th>
