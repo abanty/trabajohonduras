@@ -7,6 +7,7 @@ $idcompromisos=isset($_POST["idcompromisos"])? limpiarCadena($_POST["idcompromis
 $idprograma=isset($_POST["idprograma"])? limpiarCadena($_POST["idprograma"]):"";
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
+$tipo_registro=isset($_POST["tipo_registro"])? limpiarCadena($_POST["tipo_registro"]):"";
 $numfactura=isset($_POST["numfactura"])? limpiarCadena($_POST["numfactura"]):"";
 $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
 
@@ -21,6 +22,7 @@ switch ($_GET["op"]){
 		$idprograma,
 		$idproveedores,
 		$fecha_hora,
+		$tipo_registro,
 		$numfactura,
 		$total_compra,
 				$_POST["idpresupuesto_disponible"],
@@ -85,11 +87,12 @@ switch ($_GET["op"]){
 					' <button class="btn btn-primary btn-sm" onclick="pendiente('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>',
 
  				"1"=>$reg->fecha,
- 				"2"=>$reg->programa,
- 				"3"=>$reg->proveedor,
- 				"4"=>$reg->numfactura,
- 				"5"=>$reg->total_compra,
- 				"6"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
+				"2"=>$reg->tipo_registro,
+ 				"3"=>$reg->programa,
+ 				"4"=>$reg->proveedor,
+ 				"5"=>$reg->numfactura,
+ 				"6"=>$reg->total_compra,
+ 				"7"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
  				'<span class="label bg-orange">Pendiente</span>'
  				);
  		}

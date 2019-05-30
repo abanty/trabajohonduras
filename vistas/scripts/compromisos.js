@@ -192,6 +192,8 @@ function mostrar(idcompromisos)
 		$("#idprograma").val(data.idprograma);
 		$("#idprograma").selectpicker('refresh');
 		$("#fecha_hora").val(data.fecha);
+		$("#tipo_registro").val(data.$tipo_registro);
+		$("#tipo_registro").selectpicker('refresh');
 		$("#numfactura").val(data.numfactura);
  		$("#idcompromisos").val(data.idcompromisos);
 
