@@ -143,6 +143,8 @@ $textfirma3 = strtoupper("EFRAIN MANN HERNANDEZ");
 $textfirma4 =  strtoupper("ERNESTO ANTONIO AVILA KATTAN");
 $textfirma5 = "Comandante General";
 $textfirma6 =  "Pagador General";
+$textfirma7 = "";
+$textfirma8 =  "Fuerza Naval de Honduras";
 
 $pdf->Ln(5);
 $pdf->SetWidths(array(90,90));
@@ -155,6 +157,8 @@ $pdf->Rowdefaultnoline(array($textfirma3,$textfirma4));
 $pdf->Ln(1);
 $pdf->SetFont('Arial','',11);
 $pdf->Rowdefaultnoline(array($textfirma5,$textfirma6));
+$pdf->SetFont('Arial','',11);
+$pdf->Rowdefaultnoline(array($textfirma7,$textfirma8));
 
 // $pdf->SetFillColor(255, 255,255,255);
 // $pdf->SetXY(15, 160 );
