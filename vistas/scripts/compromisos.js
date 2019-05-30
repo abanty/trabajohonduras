@@ -31,8 +31,6 @@ $.post("../ajax/compromisos.php?op=selectProveedores", function(r){
 					$('#idproveedores').selectpicker('refresh');
 });
 
-
-	//Cargamos los items al select categoria
 	//Cargamos los items al select cliente
 	$.post("../ajax/compromisos.php?op=selectPrograma", function(r){
 	            $("#idprograma").html(r);
@@ -69,13 +67,13 @@ function limpiar()
 function mostrarform(flag)
 {
 
-	limpiar();
 	if (flag)
 	{
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
+		$("#btnAgregarArt").show();
 		listarPresupuesto_disponible();
 
 	}
@@ -181,6 +179,7 @@ function guardaryeditar(e)
 
 function mostrar(idcompromisos)
 {
+
 	$.post("../ajax/compromisos.php?op=mostrar",{idcompromisos : idcompromisos}, function(data, status)
 	{
 		data = JSON.parse(data);
@@ -194,9 +193,15 @@ function mostrar(idcompromisos)
 		$("#fecha_hora").val(data.fecha);
 		$("#numfactura").val(data.numfactura);
  		$("#idcompromisos").val(data.idcompromisos);
-
+		$("#total").html("L. " + number_format(data.total_compra, 2, '.', ','));
+		$("#btnAgregarArt").hide();
 
  	})
+
+	$.post("../ajax/compromisos.php?op=listar_C_Detalle&id="+idcompromisos,function(r){
+					$("#detalles tbody").html(r);
+	});
+
 }
 
 //Función para desactivar registros

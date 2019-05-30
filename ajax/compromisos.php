@@ -24,7 +24,7 @@ switch ($_GET["op"]){
 		$numfactura,
 		$total_compra,
 				$_POST["idpresupuesto_disponible"],
-				$_POST["valor"]);
+				str_replace(',','',$_POST["valor"]));
 			echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar";
 		}
 		else {
@@ -65,6 +65,30 @@ switch ($_GET["op"]){
  		//Codificar el resultado utilizando json
  		echo json_encode($rspta);
 	break;
+
+
+	case 'listar_C_Detalle':
+		//Recibimos el idingreso
+		$id=$_GET['id'];
+
+		$rspta = $compromisos->listarDetalle($id);
+		$total=0;
+
+		while ($reg = $rspta->fetch_object())
+				{
+						echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+						<td>'.$reg->codigo.'</td>
+						<td>'.number_format($reg->valor, 2, '.', ',').'</td>
+						<td>'.number_format($reg->valor, 2, '.', ',').'</td>
+						</tr>';
+				}
+	break;
+
+
+
+
+
+
 
 
 
