@@ -79,8 +79,8 @@ if ($_SESSION['compromisosp']==1)
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <label>Tipo Registro(*):</label>
                             <select class="form-control select-picker" name="tipo_registro" id="tipo_registro" required>
-                              <option value="Funcionamiento">Funcionamiento</option>
-                              <option value="Fondos_CES">Fondos_CES</option>
+                              <option value="Funcionamiento/General">Funcionamiento General</option>
+                              <option value="Fondos_CE">Fondos_CE</option>
                             </select>
                           </div>
 
