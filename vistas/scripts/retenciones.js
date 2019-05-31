@@ -338,8 +338,26 @@ $("#btnGuardar").hide();
 /*---------------------------------------------------------------*
 | FUNCION PARA AGREGAR DETALLES DEL MODAL A LA TABLA DE DETALLES |
 .---------------------------------------------------------------*/
+var contains = [];
 function agregarDetallefacturas(idcompromisos,numfactura)
   {
+		console.log(contains);
+			Array.prototype.contains = function(needle) {
+			for (i in this) {
+				if (this[i] == needle) return true;
+			}
+			return false;
+		}
+
+		if (contains.includes(idcompromisos)) {
+
+		swal({
+			type: 'warning',
+			title: 'Esta Factura ya fue Ingresada',
+			text: 'Para ingresar La Factura debe retirar el mismo producto del detalle...',
+		}).catch(swal.noop);
+
+	}else{
 
     var valorbase=0.00;
 
@@ -347,7 +365,7 @@ function agregarDetallefacturas(idcompromisos,numfactura)
     {
     	var subtotal=valorbase;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
-    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
+    	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle(' + cont + ',' + idcompromisos + ')">x</button></td>'+
     	'<td><input type="hidden" class="form-control input-sm" name="idcompromisos[]" value="' + idcompromisos + '">'+numfactura+'</td>'+
     	'<td><input type="text" class="form-control input-sm prec" onchange="modificarSubototales()" onkeyup="modificarSubototales()" name="valorbase[]" value="'+valorbase+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
@@ -358,13 +376,22 @@ function agregarDetallefacturas(idcompromisos,numfactura)
 				$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
 			});
     	$('#detalles').append(fila);
+			var comp= [idcompromisos];
+						 for (var i = 0; i <comp.length; i++) {
+							 valores=comp[i];
+						 }
+				 contains.push(valores);
+			var comp = [idcompromisos];
+			contains.push(comp);
     	modificarSubototales();
     }
     else
     {
     	alert("Error al ingresar el detalle, revisar los datos del presupuesto disponible");
     }
-  }
+
+	}
+}
 
 
 /*---------------------------------*
@@ -438,11 +465,23 @@ function agregarDetallefacturas(idcompromisos,numfactura)
 /*---------------------------*
 | FUNCION PARA ELIMINAR ROWS |
 .---------------------------*/
-  function eliminarDetalle(indice){
+  function eliminarDetalle(indice,idcompromisos){
   	$("#fila" + indice).remove();
+
+			Array.prototype.compacta = function(){
+			for(var i = 0; i < this.length; i++){
+				if(this[i] === idcompromisos){
+						this.splice(i , 1);
+				}
+			}
+		}
+		contains.compacta();
+
+
   	calcularTotales();
   	detalles=detalles-1;
   	evaluar();
+
   }
 
 
