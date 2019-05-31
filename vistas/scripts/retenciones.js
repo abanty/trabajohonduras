@@ -341,7 +341,7 @@ $("#btnGuardar").hide();
 var contains = [];
 function agregarDetallefacturas(idcompromisos,numfactura)
   {
-		console.log(contains);
+		// console.log(contains);
 			Array.prototype.contains = function(needle) {
 			for (i in this) {
 				if (this[i] == needle) return true;
