@@ -88,12 +88,6 @@ switch ($_GET["op"]){
 
 
 
-
-
-
-
-
-
 	case 'listar':
 		$rspta=$compromisos->listar();
  		//Vamos a declarar un array
@@ -116,7 +110,8 @@ switch ($_GET["op"]){
  				"4"=>$reg->proveedor,
  				"5"=>$reg->numfactura,
  				"6"=>$reg->total_compra,
- 				"7"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
+				"7"=>$reg->fechareg,
+				"8"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
  				'<span class="label bg-orange">Pendiente</span>'
  				);
  		}

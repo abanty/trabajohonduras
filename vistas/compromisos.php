@@ -48,6 +48,7 @@ if ($_SESSION['compromisosp']==1)
                             <th>Proveedor</th>
                             <th>Numero Factura</th>
                             <th>Total Compra</th>
+                            <th>Fecha Registro</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>
@@ -60,6 +61,7 @@ if ($_SESSION['compromisosp']==1)
                             <th>Proveedor</th>
                             <th>Numero Factura</th>
                             <th>Total Compra</th>
+                            <th>Fecha Registro</th>
                             <th>Estado</th>
                           </tfoot>
                         </table>

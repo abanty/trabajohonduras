@@ -27,6 +27,7 @@ Class Compromisos
 		idprograma,
 		idproveedores,
 		fecha_hora,
+		fecha_registro,
 		tipo_registro,
 		numfactura,
 		total_compra,
@@ -35,6 +36,7 @@ Class Compromisos
 		'$idprograma',
 		'$idproveedores',
 		'$fecha_hora',
+		CURRENT_TIMESTAMP,
 		'$tipo_registro',
 		'$numfactura',
 		'$total_compra',
@@ -158,6 +160,7 @@ Class Compromisos
 		$sql="SELECT
 					 q.idcompromisos,
 					 DATE(q.fecha_hora) as fecha,
+					 DATE(q.fecha_registro) as fechareg,
 					 q.tipo_registro,
 					 q.idprograma,
 					 w.nombrep as programa,
