@@ -198,7 +198,7 @@ Class Compromisos
 		INNER JOIN proveedores pr ON
 		    c.idproveedores = pr.idproveedores
 		WHERE
-    c.condicion = '1'";
+    c.condicion = '0'";
 		return ejecutarConsulta($sql);
 	}
 
