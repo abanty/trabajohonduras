@@ -354,7 +354,7 @@ function agregarDetallefacturas(idcompromisos,numfactura)
 		swal({
 			type: 'warning',
 			title: 'Esta Factura ya fue Ingresada',
-			text: 'Para ingresar La Factura debe retirar el mismo factura del detalle...',
+			text: 'Para ingresar La Factura debe retirar la misma factura del detalle...',
 		}).catch(swal.noop);
 
 	}else{
