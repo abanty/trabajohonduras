@@ -149,7 +149,7 @@ function listar() {
 
 		language : {
 
-				sLoadingRecords : '<span style="width:100%;"><img src="http://www.snacklocal.com/images/ajaxload.gif"></span>',
+				sLoadingRecords : '<span style="width:100%;"><img src="../public/img/ajaxload.gif"></span>',
 				'processing': 'Loading...',
 		},
 		"aServerSide": true, //Paginación y filtrado realizados por el servidor
