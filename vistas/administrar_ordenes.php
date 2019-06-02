@@ -146,7 +146,7 @@ if ($_SESSION['admonoc']==1)
 
                         <div id="datediv" class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                           <label>Fecha(*):</label>
-                          <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
+                          <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora">
                         </div>
 
                         <div id="descdiv" class="form-group col-lg-5 col-md-5 col-sm-6 col-xs-12">
