@@ -189,19 +189,19 @@ Class Administrar_ordenes
 	/* ----------------------------*
 	|  METODO PARA PAGAR ORDENES:  |
 	. ----------------------------*/
-	public function pagar($idadministrar_ordenes,$tipo_documento,$retencionisv,$retencionisr)
+	public function pagar($idadministrar_ordenes)
 	{
-		if ($tipo_documento == 'O/C') {
-			$actualizarrentencionisv = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisv
-																	 WHERE idpresupuesto_disponible = '41'";
-																	 ejecutarConsulta($actualizarrentencionisv);
-
-			$actualizarrentencionisr = "UPDATE presupuesto_disponible
-																	 SET presupuesto_anual = presupuesto_anual - $retencionisr
-																	 WHERE idpresupuesto_disponible = '40'";
-																	 ejecutarConsulta($actualizarrentencionisr);
-		}
+		// if ($tipo_documento == 'O/C') {,$tipo_documento,$retencionisv,$retencionisr
+		// 	$actualizarrentencionisv = "UPDATE presupuesto_disponible
+		// 															 SET presupuesto_anual = presupuesto_anual - $retencionisv
+		// 															 WHERE idpresupuesto_disponible = '41'";
+		// 															 ejecutarConsulta($actualizarrentencionisv);
+		//
+		// 	$actualizarrentencionisr = "UPDATE presupuesto_disponible
+		// 															 SET presupuesto_anual = presupuesto_anual - $retencionisr
+		// 															 WHERE idpresupuesto_disponible = '40'";
+		// 															 ejecutarConsulta($actualizarrentencionisr);
+		// }
 
 		$sql="UPDATE administrar_ordenes SET estado='Pagado' WHERE idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
@@ -240,7 +240,7 @@ Class Administrar_ordenes
 		$sql="SELECT dor.iddetalle_orden, dor.idadministrar_ordenes, dor.idpresupuesto_disponible, dor.unidad, dor.cantidad, dor.descripcion,
 		dor.precio_unitario, pd.nombre_objeto, pd.grupo, pd.subgrupo, pd.codigo, pd.presupuesto_anual, pd.fondos_disponibles, pd.condicion
 		FROM detalle_orden dor INNER JOIN presupuesto_disponible pd ON pd.idpresupuesto_disponible = dor.idpresupuesto_disponible
-		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes' AND dor.idpresupuesto_disponible NOT IN ('40','41')";
+		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
 	}
 
@@ -347,7 +347,7 @@ Class Administrar_ordenes
 		dor.unidad, dor.cantidad,	dor.descripcion, dor.precio_unitario, (dor.cantidad*dor.precio_unitario) as subtot
 		FROM detalle_orden dor INNER JOIN presupuesto_disponible dp ON
 		dor.idpresupuesto_disponible=dp.idpresupuesto_disponible
-		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes' AND dp.idpresupuesto_disponible NOT IN ('40','41')";
+		WHERE dor.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
 	}
 
@@ -358,14 +358,14 @@ Class Administrar_ordenes
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
-		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes' AND p.idpresupuesto_disponible NOT IN ('40','41')
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
 		GROUP BY de.idpresupuesto_disponible
 		UNION ALL
 		SELECT p.idpresupuesto_disponible,p.grupo,p.subgrupo,'' as cod,de.unidad as uni, de.cantidad as cant,de.descripcion as descripcion,de.precio_unitario as precu,de.precio_unitario as subtot,'' as total
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
-		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes' AND p.idpresupuesto_disponible NOT IN ('40','41')
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
 		order by idpresupuesto_disponible, cant";
 		return ejecutarConsulta($sql);
 	}
@@ -377,7 +377,7 @@ Class Administrar_ordenes
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
-		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes' AND p.idpresupuesto_disponible NOT IN ('40','41')
+		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
 		GROUP BY de.idpresupuesto_disponible";
 		return ejecutarConsulta($sql);
 	}

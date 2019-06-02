@@ -39,7 +39,7 @@ if ($_SESSION['compromisosp']==1)
                     <!-- /.box-header -->
                     <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                            <thead style="background-color:#d2d6de">
                             <th>Opciones</th>
                             <th>Fecha</th>
@@ -48,6 +48,7 @@ if ($_SESSION['compromisosp']==1)
                             <th>Proveedor</th>
                             <th>Numero Factura</th>
                             <th>Total Compra</th>
+                            <th>Fecha Registro</th>
                             <th>Estado</th>
                           </thead>
                           <tbody>
@@ -60,6 +61,7 @@ if ($_SESSION['compromisosp']==1)
                             <th>Proveedor</th>
                             <th>Numero Factura</th>
                             <th>Total Compra</th>
+                            <th>Fecha Registro</th>
                             <th>Estado</th>
                           </tfoot>
                         </table>

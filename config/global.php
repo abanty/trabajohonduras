@@ -3,7 +3,7 @@
 define("DB_HOST","localhost");
 
 //Nombre de la base de datos
-define("DB_NAME", "dbsistemamejorado");
+define("DB_NAME", "sistemac_fnh");
 
 //Usuario de la base de datos
 define("DB_USERNAME", "root");

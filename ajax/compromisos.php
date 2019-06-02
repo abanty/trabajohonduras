@@ -1,8 +1,11 @@
 <?php
+// REQUERIR CLASE DEL MODELO PERTENECIENTE
 require_once "../modelos/Compromisos.php";
 
-$compromisos=new Compromisos();
-
+$compromisos=new Compromisos(); // Instanciar Clase en una variable
+/*----------------------------------*
+| DEFINICION DE VARIABLES GENERALES |
+.----------------------------------*/
 $idcompromisos=isset($_POST["idcompromisos"])? limpiarCadena($_POST["idcompromisos"]):"";
 $idprograma=isset($_POST["idprograma"])? limpiarCadena($_POST["idprograma"]):"";
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
@@ -12,147 +15,202 @@ $numfactura=isset($_POST["numfactura"])? limpiarCadena($_POST["numfactura"]):"";
 $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
 
 
-
+/*----------------------------------------------*
+| SWITCH PARA INSTANCIAR CASE COMO TIPO FUNCION |
+.----------------------------------------------*/
 switch ($_GET["op"]){
-	case 'guardaryeditar':
+	/*----------------------*
+	| CASE GUARDAR Y EDITAR |
+	.----------------------*/
+		case 'guardaryeditar':
+			if (empty($idcompromisos)){
+				$rspta=$compromisos->insertar(
+			$idprograma,
+			$idproveedores,
+			$fecha_hora,
+			$tipo_registro,
+			$numfactura,
+			$total_compra,
+					$_POST["idpresupuesto_disponible"],
+					str_replace(',','',$_POST["valor"]));
+				echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar";
+			}
+		break;
 
 
-		if (empty($idcompromisos)){
-			$rspta=$compromisos->insertar(
-		$idprograma,
-		$idproveedores,
-		$fecha_hora,
-		$tipo_registro,
-		$numfactura,
-		$total_compra,
-				$_POST["idpresupuesto_disponible"],
-				$_POST["valor"]);
-			echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar";
-		}
-		else {
-		// 	$rspta=$compromisos->editar(
-		// $idcompromisos,
-		// $idprograma,
-		// $idproveedores,
-		// $fecha_hora,
-		// $numfactura,
-		// $total_compra,
-		// 		$_POST["idcompromisos"],
-		// 		$_POST["idpresupuesto_disponible"],
-		// 		$_POST["valor"]);
-		// 	echo $rspta ? "Compromiso actualizado" : "El compromiso no se pudo actualizar";
-		}
-	break;
+	/*--------------------------------------*
+	| CASE PARA EDITAR DATOS DEL COMPROMISO |
+	.--------------------------------------*/
+		case 'editardatos':
+				$rspta=$compromisos->modificardatos($_POST["id"],$_POST["columna_nombre"],$_POST["valorcol"]);
+				echo $rspta ? "Compromiso modificado" : "Compromiso no se puede modificar";
+		break;
 
 
+	/*----------------------------------*
+	| CASE PARA CAMBIAR ESTADO A PAGADO |
+	.----------------------------------*/
 		case 'pagado':
-		$rspta=$compromisos->pagado($idcompromisos);
- 		echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
-	break;
-
-	case 'pendiente':
-		$rspta=$compromisos->pendiente($idcompromisos);
- 		echo $rspta ? "Compromiso activado" : "Compromiso no se puede activar";
-	break;
+				$rspta=$compromisos->pagado($idcompromisos);
+		 		echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
+		break;
 
 
-	case 'eliminar':
-		$rspta=$compromisos->eliminar($idcompromisos);
- 		echo $rspta ? "El compromiso fue eliminada" : "El compromiso no se puede eliminar";
-	break;
+	/*-------------------------------------*
+	| CASE PARA CAMBIAR ESTADO A TRAMITADO |
+	.-------------------------------------*/
+		case 'tramitar':
+				$rspta=$compromisos->tramitar($idcompromisos);
+	 			echo $rspta ? "Compromiso tramitado" : "Compromiso no se puede tramitado";
+		break;
 
 
-	case 'mostrar':
-		$rspta=$compromisos->mostrar($idcompromisos);
- 		//Codificar el resultado utilizando json
- 		echo json_encode($rspta);
-	break;
+	/*----------------------------------------*
+	| CASE PARA CAMBIAR ESTADO A DESTRAMITADO |
+	.----------------------------------------*/
+		case 'destramitar':
+				$rspta=$compromisos->destramitar($idcompromisos);
+				echo $rspta ? "Tramite desecho" : "Tramite no se puede deshacer";
+		break;
 
 
-
-	case 'listar':
-		$rspta=$compromisos->listar();
- 		//Vamos a declarar un array
- 		$data= Array();
-
- 		while ($reg=$rspta->fetch_object()){
-
- 			$data[]=array(
- 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
- 					//' <button class="btn btn-info" onclick = "print('.$reg->idcompromisos.')"> <i class="fas fa-print"> </i></button>'.
- 					// '<a target="_blank" href="'.$url.$reg->idcompromisos.'"> <button class="btn btn-info"><i class="fas fa-print"></i></button></a>'.
- 					' <button class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>':
-					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
-					' <button class="btn btn-primary btn-sm" onclick="pendiente('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>',
-
- 				"1"=>$reg->fecha,
-				"2"=>$reg->tipo_registro,
- 				"3"=>$reg->programa,
- 				"4"=>$reg->proveedor,
- 				"5"=>$reg->numfactura,
- 				"6"=>$reg->total_compra,
- 				"7"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
- 				'<span class="label bg-orange">Pendiente</span>'
- 				);
- 		}
- 		$results = array(
- 			"sEcho"=>1, //Información para el datatables
- 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
- 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
- 			"aaData"=>$data);
- 		echo json_encode($results);
-
-	break;
+	/*-----------------------------------*
+	| CASE PARA CAMBIAR ESTADO A ANULADO |
+	.-----------------------------------*/
+		case 'anular':
+				$rspta=$compromisos->eliminar($idcompromisos);
+	 			echo $rspta ? "El compromiso fue eliminada" : "El compromiso no se puede eliminar";
+		break;
 
 
-	case "selectProveedores":
-		require_once "../modelos/Proveedores.php";
-		$casa_comercial = new Proveedores();
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case 'mostrar':
+			$rspta=$compromisos->mostrar($idcompromisos);
+	 		//Codificar el resultado utilizando json
+	 		echo json_encode($rspta);
+		break;
 
-		$rspta = $casa_comercial->listar();
 
-		while ($reg = $rspta->fetch_object())
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case 'listar_C_Detalle':
+				//Recibimos el idingreso
+				$id=$_GET['id'];
+
+				$rspta = $compromisos->listarDetalle($id);
+				$total=0;
+
+				while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idproveedores. '>' . $reg->casa_comercial . '</option>';
+					 echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+					 <td>'.$reg->codigo.'</td>
+					 <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+					 <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+					 </tr>';
 				}
-	break;
+		break;
 
+
+	/*-----------------------------*
+	| CASE PARA LISTAR COMPROMISOS |
+	.-----------------------------*/
+		case 'listar':
+				$rspta=$compromisos->listar();
+		 		//Vamos a declarar un array
+		 		$data= Array();
+
+		 		while ($reg=$rspta->fetch_object()){
+		 			$data[]=array(
+		 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+		 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
+							' <button class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>'
+		 					:
+							'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
+							' <button class="btn btn-warning btn-sm" onclick="destramitar('.$reg->idcompromisos.')"><i class="fas fa-redo-alt"></i></button>',
+		 				"1"=>$reg->fecha,
+						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="tipo_registro">' .$reg->tipo_registro. '</div>',
+		 				"3"=>$reg->programa,
+		 				"4"=>$reg->proveedor,
+						"5"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="numfactura">' .$reg->numfactura. '</div>',
+		 				"6"=>$reg->total_compra,
+						"7"=>$reg->fechareg,
+						"8"=>($reg->condicion==0)?'<span class="label bg-green">ACTIVO  <i class="fas fa-check"></i></span>':
+						(($reg->condicion==1)?'<span class="label bg-orange"><i class="fas fa-sync-alt fa-spin"></i> PENDIENTE  RETENCION </span>':
+						(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+		 				'<span class="label bg-red">ANULADO </span>')));
+		 		}
+
+		 			$results = array(
+		 			"sEcho"=>1, //Información para el datatables
+		 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+		 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+		 			"aaData"=>$data);
+		 		echo json_encode($results);
+
+		break;
+
+
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case "selectProveedores":
+				require_once "../modelos/Proveedores.php";
+				$casa_comercial = new Proveedores();
+
+				$rspta = $casa_comercial->listar();
+
+				while ($reg = $rspta->fetch_object())
+				{
+							echo '<option value=' . $reg->idproveedores. '>' . $reg->casa_comercial . '</option>';
+				}
+		break;
+
+
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
 		case "selectPrograma":
-		require_once "../modelos/Programa.php";
-		$codigop = new Programa();
+				require_once "../modelos/Programa.php";
+				$codigop = new Programa();
 
-		$rspta = $codigop->select_programa();
+				$rspta = $codigop->select_programa();
 
-		while ($reg = $rspta->fetch_object())
+				while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idprograma . '>' . $reg->codigop ."&nbsp;".'('. $reg->nombrep .')'. ' - ' . $reg->idprograma .'</option>';
+						echo '<option value=' . $reg->idprograma . '>' . $reg->codigop ."&nbsp;".'('. $reg->nombrep .')'. ' - ' . $reg->idprograma .'</option>';
 				}
+		break;
 
-	break;
 
+	/*-----------------------------*
+	| CASE PARA LISTAR PRESUPUESTO |
+	.-----------------------------*/
 	case 'listarPresupuesto_disponible':
-		require_once "../modelos/Presupuesto_disponible.php";
-		$presupuesto_disponible=new Presupuesto_disponible();
+			require_once "../modelos/Presupuesto_disponible.php";
+			$presupuesto_disponible=new Presupuesto_disponible();
 
-		$rspta=$presupuesto_disponible->listarPresupuestoActivos();
- 		//Vamos a declarar un array
- 		$data= Array();
+			$rspta=$presupuesto_disponible->listarPresupuestoActivos();
+	 		//Vamos a declarar un array
+	 		$data= Array();
 
- 		while ($reg=$rspta->fetch_object()){
- 			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\')"><span class="fas fa-plus-circle"></span></button>',
- 				"1"=>$reg->nombre_objeto,
- 				"2"=>$reg->codigo,
- 				"3"=>$reg->fondos_disponibles,
- 				);
- 		}
- 		$results = array(
- 			"sEcho"=>1, //Información para el datatables
- 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
- 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
- 			"aaData"=>$data);
- 		echo json_encode($results);
+	 		while ($reg=$rspta->fetch_object()){
+	 			$data[]=array(
+	 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\')"><span class="fas fa-plus-circle"></span></button>',
+	 				"1"=>$reg->nombre_objeto,
+	 				"2"=>$reg->codigo,
+	 				"3"=>$reg->fondos_disponibles,
+	 				);
+	 		}
+	 		$results = array(
+	 			"sEcho"=>1, //Información para el datatables
+	 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+	 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+	 			"aaData"=>$data);
+	 		echo json_encode($results);
 
 	break;
 }
