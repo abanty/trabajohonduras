@@ -2,92 +2,79 @@
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
+/**
+ *
+ */
+/*------------------*
+| CLASE COMPROMISOS |
+.------------------*/
 Class Compromisos
 {
 	//Implementamos nuestro constructor
 	public function __construct()
 	{
-
+		// Empty
 	}
 
-	//Implementamos un método para insertar registros
-	public function insertar(
-		$idprograma,
-		$idproveedores,
-		$fecha_hora,
-		$tipo_registro,
-		$numfactura,
-		$total_compra,
-
-		// $idcompromisos,
-		$idpresupuesto_disponible,
-		$valor)
-	{
-		$sql="INSERT INTO compromisos (
-		idprograma,
-		idproveedores,
-		fecha_hora,
-		fecha_registro,
-		tipo_registro,
-		numfactura,
-		total_compra,
-		condicion)
-		VALUES (
-		'$idprograma',
-		'$idproveedores',
-		'$fecha_hora',
-		CURRENT_TIMESTAMP,
-		'$tipo_registro',
-		'$numfactura',
-		'$total_compra',
-		'0')";
-		//return ejecutarConsulta($sql);
-		$idingresonew=ejecutarConsulta_retornarID($sql);
-
-
-		$num_elementos=0;
-		$sw=true;
-
-		while ($num_elementos < count($idpresupuesto_disponible))
+	/*-------------------------------------------*
+	| FUNCION PARA INSERTAR DATOS DEL COMPROMISO |
+	.-------------------------------------------*/
+		public function insertar(
+			$idprograma,
+			$idproveedores,
+			$fecha_hora,
+			$tipo_registro,
+			$numfactura,
+			$total_compra,
+			$idpresupuesto_disponible,
+			$valor)
 		{
+			$sql="INSERT INTO compromisos (idprograma,idproveedores,fecha_hora,fecha_registro,tipo_registro,numfactura,total_compra,condicion)
+						VALUES ('$idprograma','$idproveedores','$fecha_hora',CURRENT_TIMESTAMP,'$tipo_registro','$numfactura','$total_compra','0')";
 
+			$idingresonew=ejecutarConsulta_retornarID($sql);
 
-			$sql_detalle = "INSERT INTO detalle_compromisos(
-			idcompromisos,
-			 idpresupuesto_disponible,
-			 valor,
-			 condicion) VALUES (
-			  '$idingresonew',
-			  '$idpresupuesto_disponible[$num_elementos]',
-			  '$valor[$num_elementos]',
-			  '0')";
+			$num_elementos=0;
+			$sw=true;
 
-			ejecutarConsulta($sql_detalle) or $sw = false;
-			$num_elementos=$num_elementos + 1;
+			while ($num_elementos < count($idpresupuesto_disponible))
+			{
+				$sql_detalle = "INSERT INTO detalle_compromisos(idcompromisos,idpresupuesto_disponible,valor,condicion)
+											  VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$valor[$num_elementos]','0')";
+				ejecutarConsulta($sql_detalle) or $sw = false;
+				$num_elementos=$num_elementos + 1;
+			}
+
+			return $sw;
 		}
 
-		return $sw;
-		// return ejecutarConsulta($sql);
-	}
 
-	//Implementamos un método para editar registros
-	// public function editar(
-	// 	$idcompromisos,
-	// 	$idprograma,
-	// 	$idproveedores,
-	// 	$fecha_hora,
-	// 	$numfactura,
-	// 	$total_compra)
-	// {
-	// 	$sql="UPDATE compromisos SET
-	// 	 idprograma='$idprograma',
-	// 	 idproveedores='$idproveedores',
-	// 	 fecha_hora='$fecha_hora',
-	// 	 numfactura='$numfactura',
-	// 	 total_compra='$total_compra'
-	// 	 WHERE idcompromisos='$idcompromisos'";
-	// 	return ejecutarConsulta($sql);
-	// }
+		/*-----------------------------------------*
+		| FUNCION PARA EDITAR DATOS DEL COMPROMISO |
+		.-----------------------------------------*/
+		 public function modificardatos($id,$columna_nombre,$valor)
+		 {
+			 $sql_update = "UPDATE compromisos SET ".$columna_nombre."='".$valor."' WHERE idcompromisos = '".$id."'";
+
+						return ejecutarConsulta($sql_update);
+		 }
+
+
+		/*-----------------------------------------*
+		| FUNCION PARA EDITAR DATOS DEL COMPROMISO |
+		.-----------------------------------------*/
+			public function editar(
+				$idcompromisos,
+				$idprograma,
+				$idproveedores,
+				$fecha_hora,
+				$numfactura,
+				$total_compra)
+			{
+				$sql="UPDATE compromisos SET idprograma='$idprograma',idproveedores='$idproveedores',fecha_hora='$fecha_hora',numfactura='$numfactura',total_compra='$total_compra'
+				 			WHERE idcompromisos='$idcompromisos'";
+				return ejecutarConsulta($sql);
+			}
 
 	//Implementamos un método para eliminar categorías
 	public function eliminar($idcompromisos)
