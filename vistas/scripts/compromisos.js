@@ -107,6 +107,17 @@ function listar()
 		            'csvHtml5',
 		            'pdf'
 		        ],
+						columnDefs: [
+											 { width: 100, targets: 0 },
+											 { width: 80, targets: 1 },
+											 { width: 0, targets: 2 },
+											  { width: 0, targets: 3 },
+												 { width: 0, targets: 4 },
+												 { width: 140, targets: 5 },
+												 { width: 0, targets: 6 },
+												 { width: 0, targets: 7 },
+												 { width: 0, targets: 8 }
+									 ],
 		"ajax":
 				{
 					url: '../ajax/compromisos.php?op=listar',
@@ -118,7 +129,7 @@ function listar()
 				},
 		"bDestroy": true,
 		"iDisplayLength": 10,//Paginación
-	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
+	    "order": [[ 8, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
 
@@ -221,18 +232,33 @@ function pagado(idcompromisos)
 }
 
 //Función para activar registros
-function pendiente(idcompromisos)
+function tramitar(idcompromisos)
 {
-	bootbox.confirm("¿Está Seguro de activar el Compromiso?", function(result){
+	bootbox.confirm("¿Está Seguro de realizar el Tramite de retencion?", function(result){
 		if(result)
         {
-        	$.post("../ajax/compromisos.php?op=pendiente", {idcompromisos : idcompromisos}, function(e){
+        	$.post("../ajax/compromisos.php?op=tramitar", {idcompromisos : idcompromisos}, function(e){
         		bootbox.alert(e);
 	            tabla.ajax.reload();
         	});
         }
 	})
 }
+
+//Función para activar registros
+function destramitar(idcompromisos)
+{
+	bootbox.confirm("¿Está Seguro de deshacer el Tramite de retencion?", function(result){
+		if(result)
+        {
+        	$.post("../ajax/compromisos.php?op=destramitar", {idcompromisos : idcompromisos}, function(e){
+        		bootbox.alert(e);
+	            tabla.ajax.reload();
+        	});
+        }
+	})
+}
+
 //Función para eliminar registros
 function eliminar(idcompromisos)
 {

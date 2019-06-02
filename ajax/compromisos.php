@@ -50,13 +50,18 @@ switch ($_GET["op"]){
  		echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
 	break;
 
-	case 'pendiente':
-		$rspta=$compromisos->pendiente($idcompromisos);
- 		echo $rspta ? "Compromiso activado" : "Compromiso no se puede activar";
+	case 'tramitar':
+		$rspta=$compromisos->tramitar($idcompromisos);
+ 		echo $rspta ? "Compromiso tramitado" : "Compromiso no se puede tramitado";
+	break;
+
+	case 'destramitar':
+		$rspta=$compromisos->destramitar($idcompromisos);
+		echo $rspta ? "Tramite desecho" : "Tramite no se puede deshacer";
 	break;
 
 
-	case 'eliminar':
+	case 'anular':
 		$rspta=$compromisos->eliminar($idcompromisos);
  		echo $rspta ? "El compromiso fue eliminada" : "El compromiso no se puede eliminar";
 	break;
@@ -96,10 +101,12 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
  				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'		
+ 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
+					' <button class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>'
  					:
-					'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>',
-
+					'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
+					' <button class="btn btn-warning btn-sm" onclick="destramitar('.$reg->idcompromisos.')"><i class="fas fa-redo-alt"></i></button>',
  				"1"=>$reg->fecha,
 				"2"=>$reg->tipo_registro,
  				"3"=>$reg->programa,
@@ -107,9 +114,10 @@ switch ($_GET["op"]){
  				"5"=>$reg->numfactura,
  				"6"=>$reg->total_compra,
 				"7"=>$reg->fechareg,
-				"8"=>($reg->condicion==1)?'<span class="label bg-green">PAGADO  <i class="fas fa-check"></i></span>':
- 				'<span class="label bg-orange"><i class="fas fa-sync-alt fa-spin"></i> PENDIENTE </span>'
- 				);
+				"8"=>($reg->condicion==0)?'<span class="label bg-green">ACTIVO  <i class="fas fa-check"></i></span>':
+				(($reg->condicion==1)?'<span class="label bg-orange"><i class="fas fa-sync-alt fa-spin"></i> PENDIENTE  RETENCION </span>':
+				(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+ 				'<span class="label bg-red">ANULADO </span>')));
  		}
  		$results = array(
  			"sEcho"=>1, //Información para el datatables

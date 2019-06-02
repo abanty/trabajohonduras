@@ -101,17 +101,26 @@ Class Compromisos
 	//Implementamos un método para activar registros
 	public function pagado($idcompromisos)
 	{
-		$sql="UPDATE detalle_compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
-		ejecutarConsulta($sql);
+		// $sql="UPDATE detalle_compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
+		// ejecutarConsulta($sql);
 		$sql="UPDATE compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
 		return ejecutarConsulta($sql);
 	}
 
 	//Implementamos un método para activar registros
-	public function pendiente($idcompromisos)
+	public function tramitar($idcompromisos)
 	{
-		$sql="UPDATE detalle_compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
-		ejecutarConsulta($sql);
+		// $sql="UPDATE detalle_compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
+		// ejecutarConsulta($sql);
+		$sql="UPDATE compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
+		return ejecutarConsulta($sql);
+	}
+
+	//Implementamos un método para activar registros
+	public function destramitar($idcompromisos)
+	{
+		// $sql="UPDATE detalle_compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
+		// ejecutarConsulta($sql);
 		$sql="UPDATE compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
 		return ejecutarConsulta($sql);
 	}
@@ -198,7 +207,7 @@ Class Compromisos
 		INNER JOIN proveedores pr ON
 		    c.idproveedores = pr.idproveedores
 		WHERE
-    c.condicion = '0'";
+    c.condicion = '1'";
 		return ejecutarConsulta($sql);
 	}
 
