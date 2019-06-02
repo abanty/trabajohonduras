@@ -11,17 +11,17 @@ Class Presupuesto_disponible
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo,$presupuesto_anual,$fondos_disponibles)
+	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo,$pres_aprobado,$pres_modificado,$presupuesto_anual,$fondos_disponibles)
 	{
-		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,presupuesto_anual,fondos_disponibles,condicion)
-		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','$presupuesto_anual','$fondos_disponibles','1')";
+		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,pres_aprobado,pres_modificado,presupuesto_anual,fondos_disponibles,condicion)
+		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','$pres_aprobado','$pres_modificado','$presupuesto_anual','$fondos_disponibles','1')";
 		return ejecutarConsulta($sql);
 	}
 
 	//Implementamos un método para editar registros
-	public function editar($idpresupuesto_disponible,$nombre_objeto,$grupo,$subgrupo,$codigo,$presupuesto_anual,$fondos_disponibles)
+	public function editar($idpresupuesto_disponible,$nombre_objeto,$grupo,$subgrupo,$codigo,$pres_aprobado,$pres_modificado,$presupuesto_anual,$fondos_disponibles)
 	{
-		$sql="UPDATE presupuesto_disponible SET nombre_objeto='$nombre_objeto', grupo='$grupo', subgrupo='$subgrupo', codigo='$codigo',
+		$sql="UPDATE presupuesto_disponible SET nombre_objeto='$nombre_objeto', grupo='$grupo', subgrupo='$subgrupo', codigo='$codigo',pres_aprobado='$pres_aprobado',pres_modificado='$pres_modificado',
 		presupuesto_anual='$presupuesto_anual', fondos_disponibles='$fondos_disponibles' WHERE idpresupuesto_disponible='$idpresupuesto_disponible'";
 		return ejecutarConsulta($sql);
 	}
