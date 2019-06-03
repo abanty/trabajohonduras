@@ -370,7 +370,7 @@ function listar()
 								{ width: 70, targets: 5 },
 								{ width: 65, targets: 6 },
 								{ width: 110, targets: 7 },
-
+								{ width: 100, targets: 8 }
 			      ],
 		"ajax":
 				{
