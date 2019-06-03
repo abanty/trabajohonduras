@@ -14,12 +14,15 @@ switch ($_GET["op"]){
  		$data= Array();
 
  		while ($reg=$rspta->fetch_object()){
+
+			($reg->proveedor == "-")? $newgetprovider = ''.$dospuntos = '' :$newgetprovider = $reg->proveedor.$dospuntos = ":";;
+			($reg->cheque == '')? $reg->cheque = '<span style="color:red; font-size:12px;">NO ASIGNADO</span>':$reg->cheque = '<span style="color:black; font-size:12px;">'.$reg->cheque.'</span>';
  			$data[]=array(
  				"0"=>$reg->num,
  				"1"=>$reg->fecha,
  				"2"=>$reg->unidad_superficie,
- 				"3"=>$reg->cheque,
- 				"4"=>'<span style="font-weight:bold; text-decoration: underline;">'.$reg->proveedor.':        '.'</span>'.$reg->descripcion,
+ 				"3"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="numfactura">' .$reg->cheque. '</div>',
+ 				"4"=>'<span style="font-weight:bold; text-decoration: underline;">'.$newgetprovider.'</span> '.$dospuntos.' '.$reg->descripcion,
  				"5"=>$reg->oc,
 				"6"=>$reg->cp,
 				"7"=>$reg->acdo,

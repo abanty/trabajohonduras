@@ -10,20 +10,10 @@ Class Consultas
 
 	}
 
-	// public function consolidado_ctas_generales($fecha_inicio,$fecha_fin)
-	// {
-	// 	$sql="SELECT DATE(i.fecha_hora) as fecha,u.nombre as usuario, p.nombre as proveedor,i.tipo_comprobante,i.serie_comprobante,i.num_comprobante,i.total_compra,i.impuesto,i.estado
-	// 	FROM ingreso i
-	// 	INNER JOIN persona p
-	// 	ON i.idproveedor=p.idpersona
-	// 	INNER JOIN usuario u
-	// 	ON i.idusuario=u.idusuario
-	// 	WHERE DATE(i.fecha_hora)>='$fecha_inicio'
-	// 	AND DATE(i.fecha_hora)<='$fecha_fin'";
-	// 	return ejecutarConsulta($sql);
-	// }
 
-
+	/*----------------------------------------------------*
+	| FUNCION PARA LISTAR REPORTE DE CONSOLIDADOS PAGADOS |
+	.----------------------------------------------------*/
 	public function consolidado_ctas_generales($fecha_inicio,$fecha_fin)
 	{
 		$sql="SELECT a.idadministrar_ordenes as num, a.fecha_hora as fecha, u.nombreuuss as unidad_superficie,
@@ -49,6 +39,17 @@ Class Consultas
 		GROUP BY a.idadministrar_ordenes";
 		return ejecutarConsulta($sql);
 	}
+
+
+	/*----------------------------------------------------*
+	| FUNCION PARA INSERTAR Y EDITAR DATOS DEL COMPROMISO |
+	.----------------------------------------------------*/
+	 public function modificardatos($id,$columna_nombre,$valor)
+	 {
+		 $sql_update = "UPDATE compromisos SET ".$columna_nombre."='".$valor."' WHERE idcompromisos = '".$id."'";
+			return ejecutarConsulta($sql_update);
+	 }
+
 
 
 	public function ventasfechacliente($fecha_inicio,$fecha_fin,$idcliente)

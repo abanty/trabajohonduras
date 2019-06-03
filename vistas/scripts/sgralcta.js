@@ -2,6 +2,21 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
+
+	// $(document).on('focusout', '.update', function() {
+	//
+	// var id = $(this).data("id");
+	// var columna_nombre = $(this).data("column");
+	// var valorcol = $(this).text();
+	// bootbox.confirm("¿Está Seguro de realizar la modificacion del compromiso?", function(result) {
+	// 	if (result) {
+	// 		update_data(id, columna_nombre, valorcol);
+	// 	}else {
+	// 		$('#tbllistado').DataTable().ajax.reload(null, false);
+	// 	}
+	// })
+	// });
+
 	$(window).on('load', function () {
 			setTimeout(function () {
 		$(".loader-page").css({visibility:"hidden",opacity:"0"})
@@ -15,6 +30,18 @@ function init(){
 	$("#fecha_fin").change(listar);
 }
 
+
+/*---------------------------------------------*
+| FUNCION JS PARA ABRIR CON DOBLE CLICK LA ROW |
+.---------------------------------------------*/
+function listenForDoubleClick(element) {
+	element.contentEditable = true;
+	setTimeout(function() {
+		if (document.activeElement !== element) {
+			element.contentEditable = false;
+		}
+	}, 300);
+}
 
 /*------------------------------------*
 | FUNCION PARA CALCULAR FECHA ACTUAL  |
@@ -63,6 +90,7 @@ function listar()
 	 	    				{ width: 20, targets: 0 },
 	 	            { width: 80, targets: 1 },
 								{ width: 130, targets: 2 },
+								{ width: 90, targets: 3 },
 								{ width: 120, targets: 9 },
 								{ width: 100, targets: 10 }
 	 					      ],
