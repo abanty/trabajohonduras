@@ -74,9 +74,10 @@ $pdf->Ln(5);
 
 require_once "Letras.php";
 $V=new EnLetras();
+
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS"));
 
-$pdf->SetFont('Arial','',11);
+$pdf->SetFont('Arial','B',11);
 $pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,C);
 
 
