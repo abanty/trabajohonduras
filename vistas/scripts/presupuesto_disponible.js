@@ -34,6 +34,8 @@ function limpiar()
 	$("#grupo").val("");
 	$("#subgrupo").val("");
 	$("#codigo").val("");
+	$("#pres_aprobado").val("");
+	$("#pres_modificado").val("");
 
 	$("#presupuesto_anual").val("");
 	$("#fondos_disponibles").val("");
@@ -46,6 +48,8 @@ function mostrarform(flag)
 
 	//Transformando inputs a libreria MASKMONEY.
 	$(function() {
+		$('#pres_aprobado').maskMoney({thousands:',', decimal:'.', allowZero:true});
+		$('#pres_modificado').maskMoney({thousands:',', decimal:'.', allowZero:true});
 		$('#fondos_disponibles').maskMoney({thousands:',', decimal:'.', allowZero:true});
 		$('#presupuesto_anual').maskMoney({thousands:',', decimal:'.', allowZero:true});
 	});
@@ -138,6 +142,8 @@ function mostrar(idpresupuesto_disponible)
 		$("#grupo").val(data.grupo);
 		$("#subgrupo").val(data.subgrupo);
 		$("#codigo").val(data.codigo);
+		$("#pres_aprobado").val(number_format(data.pres_aprobado, 2, '.', ','));
+		$("#pres_modificado").val(number_format(data.pres_modificado, 2, '.', ','));
 		$("#presupuesto_anual").val(number_format(data.presupuesto_anual, 2, '.', ','));
 		$("#fondos_disponibles").val(number_format(data.fondos_disponibles, 2, '.', ','));
  		$("#idpresupuesto_disponible").val(data.idpresupuesto_disponible);

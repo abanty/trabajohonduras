@@ -9,6 +9,8 @@ $grupo=isset($_POST["grupo"])? limpiarCadena($_POST["grupo"]):"";
 $subgrupo=isset($_POST["subgrupo"])? limpiarCadena($_POST["subgrupo"]):"";
 $codigo=isset($_POST["codigo"])? limpiarCadena($_POST["codigo"]):"";
 $presupuesto_anual=isset($_POST["presupuesto_anual"])? limpiarCadena($_POST["presupuesto_anual"]):"";
+$pres_aprobado=isset($_POST["pres_aprobado"])? limpiarCadena($_POST["pres_aprobado"]):"";
+$pres_modificado=isset($_POST["pres_modificado"])? limpiarCadena($_POST["pres_modificado"]):"";
 $fondos_disponibles=isset($_POST["fondos_disponibles"])? limpiarCadena($_POST["fondos_disponibles"]):"";
 
 
@@ -22,6 +24,8 @@ switch ($_GET["op"]){
 				$grupo,
 				$subgrupo,
 				$codigo,
+				str_replace(',','',$pres_aprobado),
+				str_replace(',','',$pres_modificado),
 				str_replace(',','',$presupuesto_anual),
 				str_replace(',','',$fondos_disponibles));
 			echo $rspta ? "Presupuesto registrado" : "Presupuesto no se pudo registrar";
@@ -33,6 +37,8 @@ switch ($_GET["op"]){
 				$grupo,
 				$subgrupo,
 				$codigo,
+				str_replace(',','',$pres_aprobado),
+				str_replace(',','',$pres_modificado),
 				str_replace(',','',$presupuesto_anual),
 				str_replace(',','',$fondos_disponibles));
 		echo $rspta ? "Presupuesto actualizado" : "Presupuesto no se pudo actualizar";
@@ -68,9 +74,12 @@ switch ($_GET["op"]){
  					' <button class="btn btn-primary btn-sm" onclick="activar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-check"></i></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
- 				"3"=>($reg->presupuesto_anual<'0')?'<span style="color:red;">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual,
- 				"4"=>$reg->fondos_disponibles,
- 				"5"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
+				"3"=>$reg->pres_aprobado,
+				"4"=>$reg->pres_modificado,
+
+ 				"5"=>($reg->presupuesto_anual<'0')?'<span style="color:red;">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual,
+ 				"6"=>$reg->fondos_disponibles,
+ 				"7"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}

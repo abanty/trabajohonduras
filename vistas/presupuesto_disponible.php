@@ -44,8 +44,10 @@ if ($_SESSION['siafi']==1)
                             <th>Opciones</th>
                             <th>Nombre Objeto</th>
                             <th>Código</th>
-                            <th>Presupuesto Anual</th>
-                            <th>Fondos Disponibles</th>
+                            <th>Pres Aprobado</th>
+                            <th>Pres Modificado</th>
+                            <th>Pres por Ejecutar</th>
+                            <th>Pres. Ejecutado Siafi</th>
                             <th>Estado</th>
 
                           </thead>
@@ -77,12 +79,22 @@ if ($_SESSION['siafi']==1)
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <label>Presupuesto Anual(*):</label>
+                            <label>Pres. Aprobado(*):</label>
+                            <input type="text" class="form-control input-sm" name="pres_aprobado" id="pres_aprobado" required>
+                          </div>
+
+                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <label>Presupuesto Modificado(*):</label>
+                            <input type="text" class="form-control input-sm" name="pres_modificado" id="pres_modificado" required>
+                          </div>
+
+                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <label>Presupuesto Por Ejecutar(*):</label>
                             <input type="text" class="form-control input-sm" name="presupuesto_anual" id="presupuesto_anual" required>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <label>Fondos Disponibles(*):</label>
+                            <label>Pres. SIAFI Ejecutado(*):</label>
                             <input type="text" class="form-control input-sm" name="fondos_disponibles" id="fondos_disponibles" required>
                           </div>
 
