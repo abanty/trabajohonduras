@@ -127,7 +127,7 @@ switch ($_GET["op"]){
 		 			$data[]=array(
 		 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 		 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
-							' <button class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')">Pagar <i class="fas fa-dollar-sign"></i></button>'
+							' <button data-toggle="tooltip" title="Realizar pago!" data-placement="right" class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
 		 					:
 							'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.

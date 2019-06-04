@@ -183,7 +183,7 @@ function listar() {
 			'pdf'
 		],
 		columnDefs: [{
-				width: 150,
+				width: 110,
 				targets: 0
 			},
 			{
@@ -233,6 +233,10 @@ function listar() {
 			[8, "asc"]
 		] //Ordenar (columna,orden)
 	}).DataTable();
+
+	$('#tbllistado').on('draw.dt', function() {
+			$('[data-toggle="tooltip"]').tooltip(); // Or your function for tooltips
+ });
 }
 
 
