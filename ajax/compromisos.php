@@ -13,7 +13,7 @@ $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
 $tipo_registro=isset($_POST["tipo_registro"])? limpiarCadena($_POST["tipo_registro"]):"";
 $numfactura=isset($_POST["numfactura"])? limpiarCadena($_POST["numfactura"]):"";
 $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
-
+$condicion=isset($_POST["condicion"])? limpiarCadena($_POST["condicion"]):"";
 
 /*----------------------------------------------*
 | SWITCH PARA INSTANCIAR CASE COMO TIPO FUNCION |
@@ -31,6 +31,7 @@ switch ($_GET["op"]){
 			$tipo_registro,
 			$numfactura,
 			$total_compra,
+			$condicion,
 					$_POST["idpresupuesto_disponible"],
 					str_replace(',','',$_POST["valor"]));
 				echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar";
@@ -126,11 +127,11 @@ switch ($_GET["op"]){
 		 			$data[]=array(
 		 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 		 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
-							' <button class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-check"></i></button>'
+							' <button class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')">Pagar <i class="fas fa-dollar-sign"></i></button>'
 		 					:
 							'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
-							' <button class="btn btn-warning btn-sm" onclick="destramitar('.$reg->idcompromisos.')"><i class="fas fa-redo-alt"></i></button>',
+							' <button class="btn btn-warning btn-sm" onclick="destramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-redo-alt"></i></button>',
 		 				"1"=>$reg->fecha,
 						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="tipo_registro">' .$reg->tipo_registro. '</div>',
 		 				"3"=>$reg->programa,

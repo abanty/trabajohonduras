@@ -96,6 +96,14 @@ if ($_SESSION['compromisosp']==1)
                             <input type="text" class="form-control input-sm" name="numfactura" id="numfactura" maxlength="20" placeholder="numero de factura" required="">
                           </div>
 
+                          <!-- checkbox -->
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                              <br>
+                                  <label>Aplica retención:</label>
+                                  <input type="checkbox" class="flat-red" id="condicion" name="condicion" value="1" checked data-toggle="toggle">
+                          </div>
+
+
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <a data-toggle="modal" href="#myModal">
                               <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Renglon Presupuestario</button>
@@ -190,6 +198,15 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/compromisos.js"></script>
+<script>
+  $(function () {
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass   : 'iradio_flat-green'
+    })
+  })
+</script>
 <?php
 }
 ob_end_flush();

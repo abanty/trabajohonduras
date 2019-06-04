@@ -17,8 +17,23 @@ function init() {
 	})
 	});
 
+
+	// TODO: CODIGO PARA CHECKBOX DINAMICO
+	  $('input[type=checkbox]').change( function() {
+	     if($(this).prop("checked") == true){
+	     		$('#condicion').val('1');
+	     		// alert($(this).val());
+	     }else{
+	     	$('#condicion').val('0');
+	     	// alert($(this).val());
+	     }
+	     }
+	  );
+
+
 mostrar_loader();
 
+fechanow();
 
 	mostrarform(false);
 
@@ -99,12 +114,18 @@ function limpiar() {
 	$("#total_compra").val("");
 	$(".filas").remove();
 	$("#total").html("0");
+}
 
-	//Obtenemos la fecha actual
+
+/*------------------------------------*
+| FUNCION PARA CALCULAR FECHA ACTUAL  |
+.------------------------------------*/
+function fechanow()
+{
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
-	var today = now.getFullYear() + "-" + (month) + "-" + (day);
+	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 	$('#fecha_hora').val(today);
 }
 
@@ -137,6 +158,7 @@ function mostrarform(flag) {
 function cancelarform() {
 	limpiar();
 	mostrarform(false);
+	fechanow();
 }
 
 
@@ -161,7 +183,7 @@ function listar() {
 			'pdf'
 		],
 		columnDefs: [{
-				width: 100,
+				width: 150,
 				targets: 0
 			},
 			{

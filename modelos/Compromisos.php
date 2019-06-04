@@ -26,11 +26,12 @@ Class Compromisos
 			$tipo_registro,
 			$numfactura,
 			$total_compra,
+			$condicion,
 			$idpresupuesto_disponible,
 			$valor)
 		{
 			$sql="INSERT INTO compromisos (idprograma,idproveedores,fecha_hora,fecha_registro,tipo_registro,numfactura,total_compra,condicion)
-						VALUES ('$idprograma','$idproveedores','$fecha_hora',CURRENT_TIMESTAMP,'$tipo_registro','$numfactura','$total_compra','0')";
+						VALUES ('$idprograma','$idproveedores','$fecha_hora',CURRENT_TIMESTAMP,'$tipo_registro','$numfactura','$total_compra','$condicion')";
 
 			$idingresonew=ejecutarConsulta_retornarID($sql);
 
@@ -69,9 +70,11 @@ Class Compromisos
 				$idproveedores,
 				$fecha_hora,
 				$numfactura,
-				$total_compra)
+				$total_compra,
+				$condicion)
 			{
-				$sql="UPDATE compromisos SET idprograma='$idprograma',idproveedores='$idproveedores',fecha_hora='$fecha_hora',numfactura='$numfactura',total_compra='$total_compra'
+				$sql="UPDATE compromisos SET idprograma='$idprograma',idproveedores='$idproveedores',fecha_hora='$fecha_hora',numfactura='$numfactura',
+				total_compra='$total_compra',condicion='$condicion'
 				 			WHERE idcompromisos='$idcompromisos'";
 				return ejecutarConsulta($sql);
 			}
@@ -90,7 +93,7 @@ Class Compromisos
 	{
 		// $sql="UPDATE detalle_compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
 		// ejecutarConsulta($sql);
-		$sql="UPDATE compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
+		$sql="UPDATE compromisos SET condicion='2' WHERE idcompromisos='$idcompromisos'";
 		return ejecutarConsulta($sql);
 	}
 

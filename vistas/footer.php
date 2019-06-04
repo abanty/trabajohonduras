@@ -34,7 +34,7 @@
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.min.js"></script>
 
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
+    <script src="../public/iCheck//icheck.min.js"></script>
 <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
     <script src="../public/raphael/raphael.min.js"></script>
     <script src="../public//morris.js/morris.min.js"></script>

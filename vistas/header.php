@@ -25,6 +25,7 @@ if (strlen(session_id()) < 1)
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
     <link rel="shortcut icon" href="../public/img/apple-touch-icon.png">
     <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.css">
+    <link rel="stylesheet" href="../public/iCheck/all.css">
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
 
     <!-- DATATABLES -->
