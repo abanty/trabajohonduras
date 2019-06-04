@@ -50,13 +50,13 @@ switch ($_GET["op"]){
     $idproveedores == null ? $idproveedores='1' : $idproveedores;
   	$iduuss == null ? $iduuss='1' : $iduuss;
     $idprograma == null ? $idprograma='1' : $idprograma;
-		if (empty($idadministrar_ordenes)){
+if (empty($idadministrar_ordenes)){
 
       $variable_factura= isset($_POST["num_factura"]);
 
-      if ($variable_factura && $contabilidad){
+        if ($variable_factura) {
 
-        $rspta=$admin_ord->insertar_orden_factura_comprobante(
+        $rspta=$admin_ord->insertar_orden_factura(
           $idproveedores,
           $idusuario,
           $idprograma,
@@ -70,14 +70,17 @@ switch ($_GET["op"]){
           str_replace(',','',$subtotalinicial),
           str_replace(',','',$descuentototal),
           $subtotal,str_replace(',','',$impuestosv),
-          $tasaimpuestosv,str_replace(',','',$valor_sv),
+          $tasaimpuestosv,
+          str_replace(',','',$valor_sv),
           str_replace(',','',$impuesto),
           $tasaimpuesto,
           str_replace(',','',$valor_impuesto),
           $monto_total,str_replace(',','',$retencionisv),
-          $tasaretencionisv,str_replace(',','',$valor_isv),
+          $tasaretencionisv,
+          str_replace(',','',$valor_isv),
           str_replace(',','',$retencionisr),
-          $tasaretencionisr,str_replace(',','',$valor_isr),
+          $tasaretencionisr,
+          str_replace(',','',$valor_isr),
           $totalneto,$_POST["idpresupuesto_disponible"],
           $_POST["unidad"],
           $_POST["cantidad"],
@@ -85,17 +88,10 @@ switch ($_GET["op"]){
           str_replace(',','',$_POST["precio_unitario"]),
           $_POST["num_factura"],
           $_POST["fecha_factura"],
-          $_POST["valor_factura"],
-          $idctasbancarias,
-          $tipopago,
-          $num_transferencia,
-          $debitos,
-          $creditos,
-          $contabilidad);
+          $_POST["valor_factura"]);
 
-          }elseif ($variable_factura) {
-
-            $rspta=$admin_ord->insertar_orden_factura(
+          }else {
+            $rspta=$admin_ord->insertar_orden(
               $idproveedores,
               $idusuario,
               $idprograma,
@@ -106,112 +102,32 @@ switch ($_GET["op"]){
               $descripcion_orden,
               $tipo_documento,
               $fecha_hora,
-              str_replace(',','',$subtotalinicial),              
+              str_replace(',','',$subtotalinicial),
               str_replace(',','',$descuentototal),
-              $subtotal,str_replace(',','',$impuestosv),
+              $subtotal,
+              str_replace(',','',$impuestosv),
               $tasaimpuestosv,
               str_replace(',','',$valor_sv),
               str_replace(',','',$impuesto),
               $tasaimpuesto,
               str_replace(',','',$valor_impuesto),
-              $monto_total,str_replace(',','',$retencionisv),
+              $monto_total,
+              str_replace(',','',$retencionisv),
               $tasaretencionisv,
               str_replace(',','',$valor_isv),
               str_replace(',','',$retencionisr),
               $tasaretencionisr,
               str_replace(',','',$valor_isr),
-              $totalneto,$_POST["idpresupuesto_disponible"],
+              $totalneto,
+              $_POST["idpresupuesto_disponible"],
               $_POST["unidad"],
               $_POST["cantidad"],
               $_POST["descripcion"],
-              str_replace(',','',$_POST["precio_unitario"]),
-              $_POST["num_factura"],
-              $_POST["fecha_factura"],
-              $_POST["valor_factura"]);
+              str_replace(',','',$_POST["precio_unitario"]));
+          }
+              echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
 
-                }elseif ($contabilidad) {
-
-                  $rspta=$admin_ord->insertar_orden_comprobante(
-                    $idproveedores,
-                    $idusuario,
-                    $idprograma,
-                    $iduuss,
-                    $num_orden,
-                    $num_comprobante,
-                    $titulo_orden,
-                    $descripcion_orden,
-                    $tipo_documento,
-                    $fecha_hora,
-                    str_replace(',','',$subtotalinicial),
-                    str_replace(',','',$descuentototal),
-                    $subtotal,str_replace(',','',$impuestosv),
-                    $tasaimpuestosv,str_replace(',','',$valor_sv),
-                    str_replace(',','',$impuesto),
-                    $tasaimpuesto,
-                    str_replace(',','',$valor_impuesto),
-                    $monto_total,
-                    str_replace(',','',$retencionisv),
-                    $tasaretencionisv,
-                    str_replace(',','',$valor_isv),
-                    str_replace(',','',$retencionisr),
-                    $tasaretencionisr,
-                    str_replace(',','',$valor_isr),
-                    $totalneto,
-                    $_POST["idpresupuesto_disponible"],
-                    $_POST["unidad"],
-                    $_POST["cantidad"],
-                    $_POST["descripcion"],
-                    str_replace(',','',$_POST["precio_unitario"]),
-                    $idctasbancarias,
-                    $tipopago,
-                    $num_transferencia,
-                    $debitos,
-                    $creditos,
-                    $contabilidad);
-
-                          }else {
-                            $rspta=$admin_ord->insertar_orden(
-                              $idproveedores,
-                              $idusuario,
-                              $idprograma,
-                              $iduuss,
-                              $num_orden,
-                              $num_comprobante,
-                              $titulo_orden,
-                              $descripcion_orden,
-                              $tipo_documento,
-                              $fecha_hora,
-                              str_replace(',','',$subtotalinicial),
-                              str_replace(',','',$descuentototal),
-                              $subtotal,
-                              str_replace(',','',$impuestosv),
-                              $tasaimpuestosv,
-                              str_replace(',','',$valor_sv),
-                              str_replace(',','',$impuesto),
-                              $tasaimpuesto,
-                              str_replace(',','',$valor_impuesto),
-                              $monto_total,
-                              str_replace(',','',$retencionisv),
-                              $tasaretencionisv,
-                              str_replace(',','',$valor_isv),
-                              str_replace(',','',$retencionisr),
-                              $tasaretencionisr,
-                              str_replace(',','',$valor_isr),
-                              $totalneto,
-                              $_POST["idpresupuesto_disponible"],
-                              $_POST["unidad"],
-                              $_POST["cantidad"],
-                              $_POST["descripcion"],
-                              str_replace(',','',$_POST["precio_unitario"]));
-                          }
-
-        echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
-
-  	}else {
-
-
-
-		}
+  	}else {}
 	break;
 
 

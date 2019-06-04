@@ -10,49 +10,6 @@ Class Administrar_ordenes
 	{
 
 	}
-
-	/*--------------------------------------------------------------------------------------------*
-		| FUNCION PARA INSERTAR DATOS DE ORDEN Y COMPROBANTE EN MULTIPLES TABLA MEDIANTE MSQLI QUERY: |
-		.--------------------------------------------------------------------------------------------*/
-		public function insertar_orden_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
-		$tipo_documento,$fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$valor_sv,$impuesto,$tasaimpuesto,$valor_impuesto,
-		$monto_total,$retencionisv,$tasaretencionisv,$valor_isv,$retencionisr,$tasaretencionisr,$valor_isr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,
-		$descripcion,$precio_unitario,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
-		{
-			$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,iduuss,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
-												fecha_hora,subtotal_inicial,descuento_total,subtotal,impuesto_sv,tasa_sv,valor_sv,impuesto,tasa_imp,valor_impuesto,monto_total,retencion_isv,
-												tasa_retencion_isv,valor_isv,retencion_isr,tasa_retencion_isr,valor_isr,total_neto,estado)
-
-						VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
-										'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto',
-										'$valor_impuesto','$monto_total','$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto',
-										'Pendiente')";
-
-			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
-
-
-			$num_elementos=0;
-			$num_elementos_fact=0;
-			$sw=true;
-
-			while ($num_elementos < count($idpresupuesto_disponible))
-			{
-				$sql_detalle = "INSERT INTO detalle_orden(idadministrar_ordenes,idpresupuesto_disponible,unidad,cantidad,descripcion,precio_unitario)
-				VALUES ('$idadministrar_ordenesnew','$idpresupuesto_disponible[$num_elementos]','$unidad[$num_elementos]','$cantidad[$num_elementos]',
-				'$descripcion[$num_elementos]','$precio_unitario[$num_elementos]')";
-
-				ejecutarConsulta($sql_detalle) or $sw = false;
-				$num_elementos=$num_elementos + 1;
-			}
-
-			$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,idctasbancarias,tipo_pago,numero_transferencia,debitos,creditos,contabilidad)
-			VALUES ('$idadministrar_ordenesnew','$idctasbancarias','$tipopago','$num_transferencia','$debitos','$creditos','$contabilidad')";
-			ejecutarConsulta($sql_comprobante);
-
-			return $sw;
-		}
-
-
 		/*----------------------------------------------------------------------------------------*
 		| FUNCION PARA INSERTAR DATOS DE ORDEN Y FACTURA EN MULTIPLES TABLA MEDIANTE MSQLI QUERY: |
 		.----------------------------------------------------------------------------------------*/
@@ -94,60 +51,13 @@ Class Administrar_ordenes
 				$num_elementos_fact=$num_elementos_fact + 1;
 			}
 
-
-			return $sw;
-		}
-
-
-		/*-----------------------------------------------------------------------------------------------------*
-		| FUNCION PARA INSERTAR DATOS DE ORDEN, FACTURA Y COMPROBANTE EN MULTIPLES TABLA MEDIANTE MSQLI QUERY: |
-		.-----------------------------------------------------------------------------------------------------*/
-		public function insertar_orden_factura_comprobante($idproveedores,$idusuario,$idprograma,$iduuss,$num_orden,$num_comprobante,$titulo_orden,$descripcion_orden,
-		$tipo_documento,$fecha_hora,$subtotalinicial,$descuentototal,$subtotal,$impuestosv,$tasaimpuestosv,$valor_sv,$impuesto,$tasaimpuesto,$valor_impuesto,
-		$monto_total,$retencionisv,$tasaretencionisv,$valor_isv,$retencionisr,$tasaretencionisr,$valor_isr,$totalneto,$idpresupuesto_disponible,$unidad,$cantidad,
-		$descripcion,$precio_unitario,$num_factura,$fecha_factura,$valor_factura,$idctasbancarias,$tipopago,$num_transferencia,$debitos,$creditos,$contabilidad)
-		{
-			$sql="INSERT INTO administrar_ordenes(idproveedores,idusuario,idprograma,iduuss,num_orden,num_comprobante,titulo_orden,descripcion_orden,tipo_documento,
-												fecha_hora,subtotal_inicial,descuento_total,subtotal,impuesto_sv,tasa_sv,valor_sv,impuesto,tasa_imp,valor_impuesto,monto_total,retencion_isv,
-												tasa_retencion_isv,valor_isv,retencion_isr,tasa_retencion_isr,valor_isr,total_neto,estado)
-
-						VALUES ('$idproveedores','$idusuario','$idprograma','$iduuss','$num_orden','$num_comprobante','$titulo_orden','$descripcion_orden','$tipo_documento',
-										'$fecha_hora','$subtotalinicial','$descuentototal','$subtotal','$impuestosv','$tasaimpuestosv','$valor_sv','$impuesto','$tasaimpuesto',
-										'$valor_impuesto','$monto_total','$retencionisv','$tasaretencionisv','$valor_isv','$retencionisr','$tasaretencionisr','$valor_isr','$totalneto',
-										'Pendiente')";
-
-			$idadministrar_ordenesnew=ejecutarConsulta_retornarID($sql);
-
-			$num_elementos=0;
-			$num_elementos_fact=0;
-			$sw=true;
-
-			while ($num_elementos < count($idpresupuesto_disponible))
-			{
-				$sql_detalle = "INSERT INTO detalle_orden(idadministrar_ordenes,idpresupuesto_disponible,unidad,cantidad,descripcion,precio_unitario)
-				VALUES ('$idadministrar_ordenesnew','$idpresupuesto_disponible[$num_elementos]','$unidad[$num_elementos]','$cantidad[$num_elementos]',
-				'$descripcion[$num_elementos]','$precio_unitario[$num_elementos]')";
-
-				ejecutarConsulta($sql_detalle) or $sw = false;
-				$num_elementos=$num_elementos + 1;
-			}
-
-			while ($num_elementos_fact < count($num_factura))
-	   {
-				$sqlfac = "INSERT INTO factura_orden(idadministrar_ordenes,num_factura,fecha_factura,valor_factura)
-				VALUES ('$idadministrar_ordenesnew','$num_factura[$num_elementos_fact]','$fecha_factura[$num_elementos_fact]','$valor_factura[$num_elementos_fact]')";
-				ejecutarConsulta($sqlfac) or $sw = false;
-				$num_elementos_fact=$num_elementos_fact + 1;
-			}
-
-			$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,idctasbancarias,tipo_pago,numero_transferencia,debitos,creditos,contabilidad)
-			VALUES ('$idadministrar_ordenesnew','$idctasbancarias','$tipopago','$num_transferencia','$debitos','$creditos','$contabilidad')";
+			$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,tipo_pago,numero_transferencia)
+			VALUES ('$idadministrar_ordenesnew','0000000','0000000')";
 			ejecutarConsulta($sql_comprobante);
 
 
 			return $sw;
 		}
-
 
 		/*-----------------------------------------------------------------------------------*
 		| FUNCION PARA INSERTAR DATOS DE SOLO ORDEN EN MULTIPLES TABLA MEDIANTE MSQLI QUERY: |
@@ -181,6 +91,10 @@ Class Administrar_ordenes
 				ejecutarConsulta($sql_detalle) or $sw = false;
 				$num_elementos=$num_elementos + 1;
 			}
+
+			$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,tipo_pago,numero_transferencia)
+			VALUES ('$idadministrar_ordenesnew','0000000','0000000')";
+			ejecutarConsulta($sql_comprobante);
 
 			return $sw;
 		}

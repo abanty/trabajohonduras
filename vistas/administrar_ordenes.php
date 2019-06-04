@@ -421,15 +421,17 @@ if ($_SESSION['admonoc']==1)
                       </div>
 
                       <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <label>Tipo de Pago(*):</label>
-                        <select class="form-control selectpicker" form="formulario" name="tipopago" id="tipopago" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Tipo">
+                        <label>Pago con cheque N°;</label>
+                        <input type="number" class="form-control input-sm" form="formulario" id="tipopago" name="tipopago" placeholder="Ingresa # de cheque">
+
+                        <!-- <select class="form-control selectpicker" form="formulario" name="tipopago" id="tipopago" data-live-search="true" data-style="btn-default btn-sm" data-title="Elige un Tipo">
                           <option value="Deposito">Deposito</option>
                           <option value="Cheque">Cheque</option>
-                        </select>
+                        </select> -->
                       </div>
 
                       <div class="form-group col-md-3" id="contenedorNumeroCuenta">
-                        <label class="control-label" for="NumeroCuenta">Numero de Cuenta</label>
+                        <label class="control-label" for="NumeroCuenta">Numero de Cuenta:</label>
                         <input type="number" class="form-control input-sm" form="formulario" id="num_transferencia" name="num_transferencia" placeholder="Ingresa # de cuenta">
                       </div>
                     </div>

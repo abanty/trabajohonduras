@@ -11,6 +11,8 @@ function init(){
 	}, 1000);
 
 	});
+
+	$('[href="#tab_3"]').closest('li').hide();
 			//Transformando inputs a libreria MASKMONEY.
 			$(function() {
 				$('#descuento_total').maskMoney({thousands:',', decimal:'.', allowZero:true});
@@ -155,8 +157,10 @@ function limpiarCamposOrden()
 	$("#num_transferencia").val('');
 	$("#idctasbancarias").selectpicker('val',"");
 	$("#idctasbancarias").selectpicker('refresh');
-	$("#tipopago").selectpicker('val',"");
-	$("#tipopago").selectpicker('refresh');
+	$("#tipopago").val('');
+
+	// $("#tipopago").selectpicker('val',"");
+	// $("#tipopago").selectpicker('refresh');
 	$("#btnaddfact").show();
 	// ROMOVER FILAS
 	detalles=0;
@@ -579,7 +583,8 @@ function orden_mostrar(idadministrar_ordenes)
 
 		//DETALLE COMPROBANTE
 		$("#debitos").val(data.debitos);
-		$("#tipopago").val(data.tipo_pago).selectpicker('refresh');
+		$("#tipopago").val(data.tipo_pago);
+
 		$("#num_transferencia").val(data.numero_transferencia);
 		$("#contabilidad").val(data.contabilidad);
 		$("#creditos").val(data.creditos);
