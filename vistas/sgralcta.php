@@ -14,6 +14,12 @@ require 'header.php';
 if ($_SESSION['contabilidad']==1)
 {
 ?>
+
+<style media="screen">
+div.dataTables_wrapper div.dataTables_filter {
+  margin-top: 24.5px !important;
+}
+</style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">

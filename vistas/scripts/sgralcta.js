@@ -3,19 +3,19 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
-	// $(document).on('focusout', '.update', function() {
-	//
-	// var id = $(this).data("id");
-	// var columna_nombre = $(this).data("column");
-	// var valorcol = $(this).text();
-	// bootbox.confirm("¿Está Seguro de realizar la modificacion del compromiso?", function(result) {
-	// 	if (result) {
-	// 		update_data(id, columna_nombre, valorcol);
-	// 	}else {
-	// 		$('#tbllistado').DataTable().ajax.reload(null, false);
-	// 	}
-	// })
-	// });
+	$(document).on('focusout', '.update', function() {
+
+	var id = $(this).data("id");
+	var columna_nombre = $(this).data("column");
+	var valorcol = $(this).text();
+	bootbox.confirm("¿Está Seguro de realizar la modificacion del Reporte?", function(result) {
+		if (result) {
+			update_data(id, columna_nombre, valorcol);
+		}else {
+			$('#tbllistado').DataTable().ajax.reload(null, false);
+		}
+	})
+	});
 
 	$(window).on('load', function () {
 			setTimeout(function () {
@@ -108,6 +108,30 @@ function listar()
 		"iDisplayLength": 15,//Paginación
 	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
+}
+
+
+/*--------------------------------------------*
+| FUNCION JS PARA EDITAR DATOS DEL COMPROMISO |
+.--------------------------------------------*/
+function update_data(id, columna_nombre, valorcol) {
+
+
+	$.ajax({
+		url: "../ajax/sgralcta.php?op=editardatos",
+		method: "POST",
+		data: {
+			id: id,
+			columna_nombre: columna_nombre,
+			valorcol: valorcol
+		},
+
+		success: function(datos) {
+			bootbox.alert(datos);
+			$('#tbllistado').DataTable().ajax.reload(null, false);
+		}
+
+	});
 }
 
 

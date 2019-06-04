@@ -36,6 +36,7 @@ Class Consultas
 		INNER JOIN programa pg ON pg.idprograma = a.idprograma
 		WHERE DATE(a.fecha_hora)>='$fecha_inicio'
 		AND DATE(a.fecha_hora)<='$fecha_fin'
+		AND a.estado = 'pagado'
 		GROUP BY a.idadministrar_ordenes";
 		return ejecutarConsulta($sql);
 	}
@@ -46,7 +47,7 @@ Class Consultas
 	.----------------------------------------------------*/
 	 public function modificardatos($id,$columna_nombre,$valor)
 	 {
-		 $sql_update = "UPDATE compromisos SET ".$columna_nombre."='".$valor."' WHERE idcompromisos = '".$id."'";
+		 $sql_update = "UPDATE contabilidad SET ".$columna_nombre."='".$valor."' WHERE idadministrar_ordenes = '".$id."'";
 			return ejecutarConsulta($sql_update);
 	 }
 
