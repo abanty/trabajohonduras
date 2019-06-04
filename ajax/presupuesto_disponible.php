@@ -76,7 +76,6 @@ switch ($_GET["op"]){
  				"2"=>$reg->codigo,
 				"3"=>$reg->pres_aprobado,
 				"4"=>$reg->pres_modificado,
-
  				"5"=>($reg->presupuesto_anual<'0')?'<span style="color:red;">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual,
  				"6"=>$reg->fondos_disponibles,
  				"7"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
@@ -84,7 +83,7 @@ switch ($_GET["op"]){
  				);
  		}
  		$results = array(
- 			"sEcho"=>1, //Información para el datatables
+ 			"sEcho"=>1, //Informaci��n para el datatables
  			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
  			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
  			"aaData"=>$data);

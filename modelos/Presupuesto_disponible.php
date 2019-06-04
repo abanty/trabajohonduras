@@ -51,7 +51,8 @@ Class Presupuesto_disponible
 //Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo,subgrupo,FORMAT( presupuesto_anual, 2) as presupuesto_anual,
+		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	pres_aprobado,
+		pres_modificado,grupo,subgrupo,FORMAT( presupuesto_anual, 2) as presupuesto_anual,
 		FORMAT( fondos_disponibles, 2) as fondos_disponibles,	condicion
 		FROM presupuesto_disponible";
 		return ejecutarConsulta($sql);

@@ -43,7 +43,7 @@ if ($_SESSION['siafi']==1)
 
                             <th>Opciones</th>
                             <th>Nombre Objeto</th>
-                            <th>Código</th>
+                            <th>Codigo</th>
                             <th>Pres Aprobado</th>
                             <th>Pres Modificado</th>
                             <th>Pres por Ejecutar</th>
@@ -127,3 +127,4 @@ require 'footer.php';
 }
 ob_end_flush();
 ?>
+
