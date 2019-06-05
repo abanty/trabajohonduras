@@ -182,43 +182,6 @@ function listar() {
 			'csvHtml5',
 			'pdf'
 		],
-		columnDefs: [{
-				width: 110,
-				targets: 0
-			},
-			{
-				width: 80,
-				targets: 1
-			},
-			{
-				width: 0,
-				targets: 2
-			},
-			{
-				width: 0,
-				targets: 3
-			},
-			{
-				width: 0,
-				targets: 4
-			},
-			{
-				width: 140,
-				targets: 5
-			},
-			{
-				width: 0,
-				targets: 6
-			},
-			{
-				width: 0,
-				targets: 7
-			},
-			{
-				width: 0,
-				targets: 8
-			}
-		],
 		"ajax": {
 			url: '../ajax/compromisos.php?op=listar',
 			type: "get",
@@ -237,6 +200,8 @@ function listar() {
 	$('#tbllistado').on('draw.dt', function() {
 			$('[data-toggle="tooltip"]').tooltip(); // Or your function for tooltips
  });
+
+
 }
 
 

@@ -32,17 +32,18 @@ if ($_SESSION['compromisosp']==1)
                 <div class="box">
                    <div class="box box-success">
                     <div class="box-header with-border">
-                          <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button> <a href="../reportes/CompxProveedor.php" target="_blank"><button class="btn btn-info">Reporte por Proveedor</button></a></h1>
+                          <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button> </h1>
+                          <button id="contentexcelreport" class="btn btn-info">Reporte por Proveedor</button>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
                     <!-- /.box-header -->
                     <!-- centro -->
                     <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
+                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
                            <thead style="background-color:#d2d6de">
-                            <th>Opciones</th>
-                            <th>Fecha</th>
+                            <th width="120px !important;">Opciones</th>
+                            <th width="90px !important;">Fecha</th>
                             <th>Tipo Registro</th>
                             <th>Programa</th>
                             <th>Proveedor</th>
