@@ -144,7 +144,7 @@ $textfirma3 = strtoupper("EFRAIN MANN HERNANDEZ");
 $textfirma4 =  strtoupper("ERNESTO ANTONIO AVILA KATTAN");
 $textfirma5 = "Comandante General";
 $textfirma6 =  "Pagador General";
-$textfirma7 = "";
+$textfirma7 = "Fuerza Naval de Honduras";
 $textfirma8 =  "Fuerza Naval de Honduras";
 
 $pdf->Ln(5);
