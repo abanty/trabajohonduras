@@ -40,8 +40,8 @@ if ($_SESSION['siafi']==1)
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
                           <thead style="background-color:#d2d6de">
 
-                            <th>Opciones</th>
-                            <th>Fecha</th>
+                            <th width="143px !important;">Opciones</th>
+                            <th width="70px !important;">Fecha</th>
                             <th>Tipo Transferencia</th>
                             <th>Proveedor</th>
                             <th>No. Transferencia</th>
