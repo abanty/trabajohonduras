@@ -50,7 +50,7 @@ function ValorEnLetras($x, $Moneda )
       $s = $this->SubValLetra(intval($Ent));
     }
 
-    if (substr($s,-9, 9) == "Millones " || substr($s,-7, 7) == "Millón ")
+    if (substr($s,-9, 9) == "Millones " || substr($s,-7, 7) == "Millon ")
        $s = $s . "de ";
 
     $s = $s . $Moneda;
@@ -58,7 +58,7 @@ function ValorEnLetras($x, $Moneda )
     if($Frc != $this->Void)
     {
        // $s = $s . " Con " . $this->SubValLetra(intval($Frc)) . "Centavos";
-       $s = $s . " Con " . $Frc . "/100";
+       $s = $s . " Con " . $Frc . "/100" . " ". "Centavos";
     }
     return ($Signo . $s . "");
 
