@@ -10,7 +10,7 @@ function init(){
 	});
 	mostrarform(false);
 	listar();
-
+sumarcampos();
 	$("#formulario").on("submit",function(e)
 	{
 		guardaryeditar(e);
@@ -27,6 +27,20 @@ function init(){
 // });
 }
 
+
+/*------------------------------------------*
+| FUNCION PARA REALIZAR CALCULOS DE ADICION |
+.------------------------------------------*/
+function sumarcampos(){
+	var suma1 = $('#pres_aprobado').val();
+	var suma1replace = parseFloat(suma1.replace(/,/g, ''));
+	var suma2 = $('#pres_modificado').val();
+	var suma2replace = parseFloat(suma2.replace(/,/g, ''));
+	var sumatotal = suma1replace + suma2replace;
+	$('#presupuesto_anual').val(sumatotal);
+}
+
+
 //Función limpiar
 function limpiar()
 {
@@ -34,8 +48,8 @@ function limpiar()
 	$("#grupo").val("");
 	$("#subgrupo").val("");
 	$("#codigo").val("");
-	$("#pres_aprobado").val("");
-	$("#pres_modificado").val("");
+	$("#pres_aprobado").val("0");
+	$("#pres_modificado").val("0");
 
 	$("#presupuesto_anual").val("");
 	$("#fondos_disponibles").val("");
@@ -57,6 +71,7 @@ function mostrarform(flag)
 	limpiar();
 	if (flag)
 	{
+		sumarcampos();
 		$("#listadoregistros").hide();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disabled",false);
@@ -210,4 +225,3 @@ function activar(idpresupuesto_disponible)
 
 
 init();
-

@@ -80,12 +80,12 @@ if ($_SESSION['siafi']==1)
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Pres. Aprobado(*):</label>
-                            <input type="text" class="form-control input-sm" name="pres_aprobado" id="pres_aprobado" required>
+                            <input type="text" class="form-control input-sm" onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_aprobado" id="pres_aprobado" required>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <label>Presupuesto Modificado(*):</label>
-                            <input type="text" class="form-control input-sm" name="pres_modificado" id="pres_modificado" required>
+                            <input type="text" class="form-control input-sm" onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_modificado" id="pres_modificado" required>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -127,4 +127,3 @@ require 'footer.php';
 }
 ob_end_flush();
 ?>
-
