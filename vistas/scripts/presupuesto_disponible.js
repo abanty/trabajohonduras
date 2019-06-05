@@ -36,7 +36,7 @@ function sumarcampos(){
 	var suma1replace = parseFloat(suma1.replace(/,/g, ''));
 	var suma2 = $('#pres_modificado').val();
 	var suma2replace = parseFloat(suma2.replace(/,/g, ''));
-	var sumatotal = suma1replace + suma2replace;
+	var sumatotal = number_format((suma1replace + suma2replace), 2, '.', ',');
 	$('#presupuesto_anual').val(sumatotal);
 }
 
