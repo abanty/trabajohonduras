@@ -52,7 +52,7 @@ Class Administrar_ordenes
 			}
 
 			$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,tipo_pago,numero_transferencia)
-			VALUES ('$idadministrar_ordenesnew','0000000','0000000')";
+			VALUES ('$idadministrar_ordenesnew',null,null)";
 			ejecutarConsulta($sql_comprobante);
 
 
@@ -93,7 +93,7 @@ Class Administrar_ordenes
 			}
 
 			$sql_comprobante="INSERT INTO contabilidad(idadministrar_ordenes,tipo_pago,numero_transferencia)
-			VALUES ('$idadministrar_ordenesnew','0000000','0000000')";
+			VALUES ('$idadministrar_ordenesnew',null,null)";
 			ejecutarConsulta($sql_comprobante);
 
 			return $sw;

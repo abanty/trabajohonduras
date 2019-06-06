@@ -104,7 +104,7 @@ while ($regd2 = $rsptad2->fetch_object()) {
 //Convertimos el total en letras
 require_once "Letras.php";
 $V=new EnLetras();
-$con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,"\n"."LEMPIRAS EXACTOS"));
+$con_letra=strtoupper($V->ValorEnLetras($regv->monto_total,""."LEMPIRAS EXACTOS"));
 $pdf->addCadreTVAs("*** ".$con_letra);
 //
 // //Mostramos el impuesto

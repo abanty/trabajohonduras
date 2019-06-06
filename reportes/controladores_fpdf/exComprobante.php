@@ -369,7 +369,7 @@ $programa,$usuario,$norden,$motivopago,$tipodoc,$fecha)
 
 	$this->SetXY( $r1+138, $y1+5.5);
 	$this->SetFont( "Arial", "B", 8.5);
-	$this->MultiCell( 50, 4, utf8_decode($tipopago." N°: " ));
+	$this->MultiCell( 50, 4, utf8_decode("Cheque N°: ".$tipopago ));
 
 	$this->SetXY( $r1, $y1+11);
 	$this->SetFont( "Arial", "B", 8.5);
@@ -387,12 +387,12 @@ $programa,$usuario,$norden,$motivopago,$tipodoc,$fecha)
 	$this->SetFont( "Arial", "", 8.5);
 	$this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
 
-	$this->SetXY( $r1+4, $y1+28);
+	$this->SetXY( $r1+4, $y1+27.5);
 	$this->SetFont( "Arial", "B", 7.5);
 	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
 	$this->SetFont( "Arial", "", 7.5);
-	$this->SetXY( $r1+27, $y1+28.5);
-	$this->MultiCell( 150, 7, utf8_decode(''.$motivopago));
+	$this->SetXY( $r1+4, $y1+30);
+	$this->MultiCell( 192, 3.5, utf8_decode('	                            '.$motivopago));
 
 }
 
@@ -488,7 +488,7 @@ function addCols( $tab )
 
 	// $this->SetFillColor(0, 255, 0);
 	// $this->Line( $r1, $y1+6, $r1+$r2, $y1+6);
-	
+
 	$colX = $r1;
 	$colonnes = $tab;
 	// $this->SetTextColor(255,255,255);
