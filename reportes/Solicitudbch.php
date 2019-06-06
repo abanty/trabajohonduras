@@ -76,7 +76,7 @@ require_once "Letras.php";
 $V=new EnLetras();
 // ($regv->monto_acreditar % 1 != 0)? $string_exactos = '' : $string_exactos = 'EXACTAS';
 
-($regv->monto_acreditar - floor($regv->monto_acreditar) > 0.000001)?$string_exactos = '':$string_exactos = 'EXACTAS';
+($regv->monto_acreditar - floor($regv->monto_acreditar) > 0.000001)?$string_exactos = '':$string_exactos = 'EXACTOS';
 
 
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS ".$string_exactos));
