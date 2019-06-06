@@ -139,8 +139,8 @@ switch ($_GET["op"]){
 						"5"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="numfactura">' .$reg->numfactura. '</div>',
 		 				"6"=>$reg->total_compra,
 						"7"=>$reg->fechareg,
-						"8"=>($reg->condicion==0)?'<span class="label bg-green">ACTIVO  <i class="fas fa-check"></i></span>':
-						(($reg->condicion==1)?'<span class="label bg-orange"><i class="fas fa-sync-alt fa-spin"></i> PENDIENTE  RETENCION </span>':
+						"8"=>($reg->condicion==0)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
+						(($reg->condicion==1)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
 						(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
 		 				'<span class="label bg-red">ANULADO </span>')));
 		 		}
