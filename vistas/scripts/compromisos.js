@@ -328,7 +328,7 @@ function pagado(idcompromisos) {
 
 //Función para activar registros
 function tramitar(idcompromisos) {
-	bootbox.confirm("¿Está Seguro de realizar el Tramite de retencion?", function(result) {
+	bootbox.confirm("¿Está Seguro de realizar el Pago de retencion?", function(result) {
 		if (result) {
 			$.post("../ajax/compromisos.php?op=tramitar", {
 				idcompromisos: idcompromisos

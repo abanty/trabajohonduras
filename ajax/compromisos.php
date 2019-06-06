@@ -62,7 +62,7 @@ switch ($_GET["op"]){
 	.-------------------------------------*/
 		case 'tramitar':
 				$rspta=$compromisos->tramitar($idcompromisos);
-	 			echo $rspta ? "Compromiso tramitado" : "Compromiso no se puede tramitado";
+	 			echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
 		break;
 
 
@@ -141,7 +141,8 @@ switch ($_GET["op"]){
 						"8"=>($reg->condicion==0)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
 						(($reg->condicion==1)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
 						(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
-		 				'<span class="label bg-red">ANULADO </span>')));
+						(($reg->condicion==3)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+		 				'<span class="label bg-red">ANULADO </span>'))));
 		 		}
 		 				$results = array(
 		 				"sEcho"=>1, //Información para el datatables

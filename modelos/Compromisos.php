@@ -102,7 +102,7 @@ Class Compromisos
 	{
 		// $sql="UPDATE detalle_compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
 		// ejecutarConsulta($sql);
-		$sql="UPDATE compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
+		$sql="UPDATE compromisos SET condicion='3' WHERE idcompromisos='$idcompromisos'";
 		return ejecutarConsulta($sql);
 	}
 
@@ -197,7 +197,7 @@ Class Compromisos
 		INNER JOIN proveedores pr ON
 		    c.idproveedores = pr.idproveedores
 		WHERE
-    c.condicion = '1'";
+    c.condicion in (1,3)";
 		return ejecutarConsulta($sql);
 	}
 
