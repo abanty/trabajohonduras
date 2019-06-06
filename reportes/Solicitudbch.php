@@ -74,8 +74,12 @@ $pdf->Ln(5);
 
 require_once "Letras.php";
 $V=new EnLetras();
+// ($regv->monto_acreditar % 1 != 0)? $string_exactos = '' : $string_exactos = 'EXACTAS';
 
-$con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS"));
+($regv->monto_acreditar - floor($regv->monto_acreditar) > 0.000001)?$string_exactos = '':$string_exactos = 'EXACTAS';
+
+
+$con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS ".$string_exactos));
 
 $pdf->SetFont('Arial','B',11);
 $pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,C);
@@ -104,7 +108,6 @@ $textj = "\n".utf8_decode(strtoupper($regv->descripcion))."\n"." ";
 $textd = "";
 $texte = strtoupper($regv->nombre_banco."");
 $textf = number_format($regv->monto_acreditar, 2, '.', ',');
-
 $textg = strtoupper($regv->tp_prov);
 $texth = $regv->num_cuenta;
 $texti = $regv->casa_comercial."";
@@ -160,11 +163,6 @@ $pdf->SetFont('Arial','',11);
 $pdf->Rowdefaultnoline(array($textfirma5,$textfirma6));
 $pdf->SetFont('Arial','',11);
 $pdf->Rowdefaultnoline(array($textfirma7,$textfirma8));
-
-// $pdf->SetFillColor(255, 255,255,255);
-// $pdf->SetXY(15, 160 );
-// $pdf->MultiCell(60,4,"AAAAAAAAAAAAARRRRRRRRRRRRRRRRRE",1,C,1);
-
 
 $pdf->Output('Solicitud de Transferencias.pdf','I');
 $pdf->Close();
