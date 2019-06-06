@@ -33,7 +33,7 @@ if ($_SESSION['compromisosp']==1)
                    <div class="box box-success">
                     <div class="box-header with-border">
                           <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button> </h1>
-                          <button id="contentexcelreport" class="btn btn-info">Reporte por Proveedor</button>
+                          <a href="../reportes/ejemplo.php"><button class="btn btn-info">Reporte por Proveedor</button></a>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
