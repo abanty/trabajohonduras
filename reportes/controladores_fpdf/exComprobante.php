@@ -392,7 +392,7 @@ $programa,$usuario,$norden,$motivopago,$tipodoc,$fecha)
 	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
 	$this->SetFont( "Arial", "", 7.5);
 	$this->SetXY( $r1+4, $y1+30);
-	$this->MultiCell( 192, 3.5, utf8_decode('	                           '.$motivopago));
+	$this->MultiCell( 192, 3.5, utf8_decode('Motivo de pago: '.$motivopago));
 
 }
 

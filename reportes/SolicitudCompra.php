@@ -144,7 +144,7 @@ $pdf->MultiCell(200,15, '',0,'C');
 $pdf->SetX(8);
 $pdf->MultiCell(200,10, 'ERNESTO ANTONIO AVILA KATTAN',0,'C');
 $pdf->SetX(8);
-$pdf->MultiCell(200,4, "NOTA:        ".utf8_decode($regv->descripcion_orden),0,'L');
+$pdf->MultiCell(200,4, "NOTA:".utf8_decode($regv->descripcion_orden),0,'L');
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
 
