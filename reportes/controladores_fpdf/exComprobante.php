@@ -387,12 +387,12 @@ $programa,$usuario,$norden,$motivopago,$tipodoc,$fecha)
 	$this->SetFont( "Arial", "", 8.5);
 	$this->MultiCell( 32, 4, number_format($monto, 2, '.', ','),0);
 
-	$this->SetXY( $r1+4, $y1+27.5);
+	$this->SetXY( $r1+4, $y1+31);
 	$this->SetFont( "Arial", "B", 7.5);
-	$this->MultiCell( 220, 8, utf8_decode('Motivo de pago: '));
+	$this->MultiCell( 192, 3.5, utf8_decode('Motivo de pago: '));
 	$this->SetFont( "Arial", "", 7.5);
-	$this->SetXY( $r1+4, $y1+30);
-	$this->MultiCell( 192, 3.5, utf8_decode('Motivo de pago: '.$motivopago));
+	$this->SetXY( $r1+4, $y1+31);
+	$this->MultiCell( 192, 3.5, utf8_decode('                             '.$motivopago));
 
 }
 
