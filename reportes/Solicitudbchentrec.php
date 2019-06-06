@@ -74,7 +74,9 @@ $pdf->Ln(5);
 
 require_once "Letras.php";
 $V=new EnLetras();
-$con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS"));
+($regv->monto_acreditar - floor($regv->monto_acreditar) > 0.000001)?$string_exactos = '':$string_exactos = 'EXACTAS';
+
+$con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS ".$string_exactos));
 
 $pdf->SetFont('Arial','B',11);
 $pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,C);
