@@ -122,7 +122,6 @@ switch ($_GET["op"]){
 				$rspta=$compromisos->listar();
 		 		//Vamos a declarar un array
 		 		$data= Array();
-
 		 		while ($reg=$rspta->fetch_object()){
 		 			$data[]=array(
 		 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
@@ -131,7 +130,7 @@ switch ($_GET["op"]){
 		 					:
 							'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
-							' <button class="btn btn-warning btn-sm" onclick="destramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-redo-alt"></i></button>',
+							' <button data-toggle="tooltip" title="Realizar pago con retención!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>',
 		 				"1"=>$reg->fecha,
 						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="tipo_registro">' .$reg->tipo_registro. '</div>',
 		 				"3"=>$reg->programa,
@@ -140,19 +139,17 @@ switch ($_GET["op"]){
 		 				"6"=>$reg->total_compra,
 						"7"=>$reg->fechareg,
 						"8"=>($reg->condicion==0)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
-						(($reg->condicion==1)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+						(($reg->condicion==1)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
 						(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
 		 				'<span class="label bg-red">ANULADO </span>')));
 		 		}
-
-		 			$results = array(
-		 			"sEcho"=>1, //Información para el datatables
-		 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
-		 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
-		 			"aaData"=>$data);
-		 		echo json_encode($results);
-
-		break;
+		 				$results = array(
+		 				"sEcho"=>1, //Información para el datatables
+		 				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+		 				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+		 				"aaData"=>$data);
+		 				echo json_encode($results);
+				break;
 
 
 	/*---------------------------------------*

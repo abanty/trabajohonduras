@@ -29,7 +29,7 @@ Class Compromisos
 			$condicion,
 			$idpresupuesto_disponible,
 			$valor)
-		{
+			{
 			$sql="INSERT INTO compromisos (idprograma,idproveedores,fecha_hora,fecha_registro,tipo_registro,numfactura,total_compra,condicion)
 						VALUES ('$idprograma','$idproveedores','$fecha_hora',CURRENT_TIMESTAMP,'$tipo_registro','$numfactura','$total_compra','$condicion')";
 
@@ -47,7 +47,7 @@ Class Compromisos
 			}
 
 			return $sw;
-		}
+	}
 
 
 		/*-----------------------------------------*

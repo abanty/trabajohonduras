@@ -193,7 +193,7 @@ function listar() {
 		"bDestroy": true,
 		"iDisplayLength": 10, //Paginación
 		"order": [
-			[8, "asc"]
+			[0, "desc"]
 		] //Ordenar (columna,orden)
 	}).DataTable();
 
@@ -342,7 +342,7 @@ function tramitar(idcompromisos) {
 
 //Función para activar registros
 function destramitar(idcompromisos) {
-	bootbox.confirm("¿Está Seguro de deshacer el Tramite de retencion?", function(result) {
+	bootbox.confirm("¿Está Seguro de deshacer el Tramite?", function(result) {
 		if (result) {
 			$.post("../ajax/compromisos.php?op=destramitar", {
 				idcompromisos: idcompromisos
