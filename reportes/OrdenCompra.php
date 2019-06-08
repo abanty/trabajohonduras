@@ -156,6 +156,8 @@ $pdf->Ln(10);
 
 $pdf->SetLineWidth(0.2);
 $pdf->SetX(160);
+$pdf->SetX(160);
+$pdf->SetX(160);
 $pdf->SetFont('Arial','I',8.5);
 $pdf->MultiCell(39,4, 'Comandante General de la Fuerza Naval de Honduras','T','L');
 
