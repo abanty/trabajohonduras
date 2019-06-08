@@ -13,20 +13,20 @@ require 'header.php';
 
 if ($_SESSION['escritorio']==1)
 {
-  require_once "../modelos/consultas_compromisos.php";
-
-  $consultas_compromisos = new Consultas_compromisos();
-  $rsptac = $consultas_compromisos->totalcompromisoshoy();
-  $regc=$rsptac->fetch_object();
-  $totalc=$regc->total_compra;
-
-  $rsptav = $consultas_compromisos->totalctasbancariashoy();
-  $regv=$rsptav->fetch_object();
-  $totalv=$regv->fondos_disponibles;
-
-  $rsptab = $consultas_compromisos->totaladministrar_ordeneshoy();
-  $regb=$rsptab->fetch_object();
-  $totalb=$regb->total_neto;
+  // require_once "../modelos/consultas_compromisos.php";
+  //
+  // $consultas_compromisos = new Consultas_compromisos();
+  // $rsptac = $consultas_compromisos->totalcompromisoshoy();
+  // $regc=$rsptac->fetch_object();
+  // $totalc=$regc->total_compra;
+  //
+  // $rsptav = $consultas_compromisos->totalctasbancariashoy();
+  // $regv=$rsptav->fetch_object();
+  // $totalv=$regv->fondos_disponibles;
+  //
+  // $rsptab = $consultas_compromisos->totaladministrar_ordeneshoy();
+  // $regb=$rsptab->fetch_object();
+  // $totalb=$regb->total_neto;
 
 ?>
 <!--Contenido-->
@@ -147,12 +147,18 @@ else
 
 require 'footer.php';
 ?>
-<script type="text/javascript" src="scripts/presupuesto_disponible.js"></script>
 <script src="../public/js/chart.min.js"></script>
 <script src="../public/js/Chart.bundle.min.js"></script>
 <script src="../public/raphael/raphael.min.js"></script>
 <script src="../public//morris.js/morris.min.js"></script>
+<script type="text/javascript">
+$(window).on('load', function () {
+    setTimeout(function () {
+  $(".loader-page").css({visibility:"hidden",opacity:"0"})
+}, 1000);
 
+});  
+</script>
 
 <?php
 }
