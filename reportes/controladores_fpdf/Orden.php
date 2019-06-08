@@ -229,7 +229,7 @@ function addDate_MontoGeneral_TituloOrden( $date,$datototal,$titulo_orden )
 	$this->Cell(10,5, "Fecha :", 0, 0, "C");
 	$this->SetXY( 192, 35 );
 	$this->SetFont( "Arial", "I", 9);
-	$this->Cell(10,5, "mm/dd/aaaa", 0, 0, "C");
+	$this->Cell(10,5, "dd/mm/aaaa", 0, 0, "C");
 	$this->SetXY( 192, 40 );
 	$this->SetFont( "Arial", "IU", 9.5);
 	$this->Cell(10,5,$date, 0,0, "C");
