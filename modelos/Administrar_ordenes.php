@@ -285,7 +285,7 @@ Class Administrar_ordenes
 		WHERE de.idadministrar_ordenes = '$idadministrar_ordenes'
 		GROUP BY de.idpresupuesto_disponible
 		UNION ALL
-		SELECT p.idpresupuesto_disponible,p.grupo,p.subgrupo,'' as cod,de.unidad as uni, de.cantidad as cant,de.descripcion as descripcion,de.precio_unitario as precu,de.precio_unitario as subtot,'' as total
+		SELECT p.idpresupuesto_disponible,p.grupo,p.subgrupo,'' as cod,de.unidad as uni, de.cantidad as cant,de.descripcion as descripcion,de.precio_unitario as precu,(de.cantidad*de.precio_unitario) as subtot,'' as total
 		FROM detalle_orden de
 		INNER JOIN presupuesto_disponible p
 		ON p.idpresupuesto_disponible = de.idpresupuesto_disponible
