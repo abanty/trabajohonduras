@@ -82,7 +82,7 @@ $rsptad2 = $comprobante->listarFactura_orden_10next($_GET["id"]);
 
 while ($regd = $rsptad->fetch_object()) {
   $line = array( "Factura"=> "$regd->num_factura",
-                "Fecha"=> "$regd->fecha_factura",
+                "Fecha"=> $regd->fechaformat,
                 "Valor"=> number_format("$regd->valor_factura", 2, '.', ','),
             );
 
@@ -93,7 +93,7 @@ while ($regd = $rsptad->fetch_object()) {
 
 while ($regd2 = $rsptad2->fetch_object()) {
   $line2 = array( "Factura"=> "$regd2->num_factura",
-                "Fecha"=> "$regd2->fecha_factura",
+                "Fecha"=> $regd2->fechaformat,
                 "Valor"=> number_format("$regd2->valor_factura", 2, '.', ','),
                 );
 

@@ -174,7 +174,7 @@ Class Administrar_ordenes
 	. --------------------------------------------*/
 	public function listarFactura_orden($idadministrar_ordenes)
 	{
-		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes, fo.num_factura, fo.fecha_factura, fo.valor_factura
+		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes, fo.num_factura, date_format(fo.fecha_factura,'%d/%m/%Y') as fechaformat, fo.valor_factura
 		FROM factura_orden fo INNER JOIN administrar_ordenes ao ON fo.idadministrar_ordenes = ao.idadministrar_ordenes
 		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
@@ -185,7 +185,7 @@ Class Administrar_ordenes
 	. --------------------------------------------------------------*/
 	public function listarFactura_orden_10firts($idadministrar_ordenes)
 	{
-		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes, fo.num_factura, fo.fecha_factura, fo.valor_factura
+		$sql="SELECT fo.idfactura_orden,fo.idadministrar_ordenes,fo.num_factura,date_format(fo.fecha_factura,'%d/%m/%Y') as fechaformat, fo.valor_factura
 		FROM factura_orden fo INNER JOIN administrar_ordenes ao ON fo.idadministrar_ordenes = ao.idadministrar_ordenes
 		WHERE ao.idadministrar_ordenes='$idadministrar_ordenes' limit 10";
 		return ejecutarConsulta($sql);
