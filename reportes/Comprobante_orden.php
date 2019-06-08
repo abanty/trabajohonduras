@@ -22,7 +22,7 @@ $tittle1 = "SECRETARIA DE ESTADO EN EL DESPACHO DE DEFENSA NACIONAL";
 $tittle2 = "FUERZAS ARMADAS DE HONDURAS";
 $tittle3 = "FUERZA NAVAL DE HONDURAS";
 $tittle4 = "COMPROBANTE DE PAGO";
-$tittle5 = "De conformidad a las Facturas, Recibidas de más documentos que se adjuntan se le está :";
+$tittle5 = "De conformidad a las Facturas, Recibos de más documentos que se adjuntan se le está :";
 
 //Obtenemos los datos de la cabecera de la comprobante actual
 require_once "../modelos/Administrar_ordenes.php";
