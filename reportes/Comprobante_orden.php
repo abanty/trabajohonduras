@@ -162,7 +162,7 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->Cell(49,2,'','RL',1,'C',0);
   // 1er ROW
   $pdf->SetFont( "Arial", "B", 8);
-  $pdf->Cell(78,5,'CMDCIA GRAL.','L',0,'L',0);
+  $pdf->Cell(78,5,$regv->nombrep,'L',0,'L',0);
   $pdf->Cell(35,5,'SUBTOTAL L.',0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(35,5,number_format($regv->subtotal_inicial, 2, '.', ','),0,0,'R',0);
