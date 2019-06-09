@@ -14,7 +14,7 @@ Class Consultas_compromisos
 	{
 		$sql="SELECT
 		DATE(com.fecha_hora) as fecha,
-		pro.tipo_registro,
+		com.tipo_registro,
 		pro.casa_comercial,
 		pre.nombre_objeto,
 		pre.codigo,
@@ -70,7 +70,7 @@ Class Consultas_compromisos
 	{
 		$sql="SELECT
 		DATE(com.fecha_hora) as fecha,
-		pro.tipo_registro,
+		com.tipo_registro,
 		pro.casa_comercial,
 		pre.nombre_objeto,
 		pre.codigo,

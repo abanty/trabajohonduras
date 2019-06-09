@@ -1,9 +1,9 @@
-<?php 
+<?php
 require_once "../modelos/Consultas_compromisos.php";
 
 $consultas_compromisos=new Consultas_compromisos();
 
- 
+
 switch ($_GET["op"]){
 	case 'compromisosfecha':
 		$fecha_inicio=$_REQUEST["fecha_inicio"];
@@ -16,13 +16,14 @@ switch ($_GET["op"]){
  		while ($reg=$rspta->fetch_object()){
  			$data[]=array(
  				"0"=>$reg->fecha,
- 				"1"=>$reg->casa_comercial,
- 				"2"=>$reg->nombre_objeto,
- 				"3"=>$reg->codigo,
- 				"4"=>$reg->unidad,
- 				"5"=>$reg->numfactura,
- 				"6"=>$reg->valor,
- 				"7"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
+        "1"=>$reg->tipo_registro,
+ 				"2"=>$reg->casa_comercial,
+ 				"3"=>$reg->nombre_objeto,
+ 				"4"=>$reg->codigo,
+ 				"5"=>$reg->unidad,
+ 				"6"=>$reg->numfactura,
+ 				"7"=>$reg->valor,
+ 				"8"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
  				'<span class="label bg-red">Pendiente</span>'
  				);
  		}
