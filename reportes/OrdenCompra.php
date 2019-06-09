@@ -152,7 +152,7 @@ $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(172,4, "Total Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
 $pdf->MultiCell(25,4, number_format($regv->monto_total, 2, '.', ','),0,'R');
-$pdf->Ln(25);
+$pdf->Ln(35);
 
 $pdf->SetLineWidth(0.2);
 $pdf->SetLineWidth(0.2);
