@@ -388,7 +388,7 @@ function listar()
 		scrollCollapse: true,
 		"sPaginationType": "full_numbers", //barra de paginacion
 		"bDestroy": true,
-		"iDisplayLength": 10,//Paginación
+		"iDisplayLength": 13,//Paginación
 	    "order": [[ 0, "desc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 }
