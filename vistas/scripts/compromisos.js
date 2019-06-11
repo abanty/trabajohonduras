@@ -18,41 +18,41 @@ function init() {
 	});
 
 
-// 	// TODO: CODIGO PARA CHECKBOX DINAMICO
-// 	  $('input[type=checkbox]').change( function() {
-// 	     if($(this).prop("checked") == true){
-// 	     		$('#condicion').val('1');
-// 	     		// alert($(this).val());
-// 	     }else{
-// 	     	$('#condicion').val('0');
-// 	     	// alert($(this).val());
-// 	     }
-// 	     }
-// 	  );
-//
-//
-// mostrar_loader();
-//
-// fechanow();
-//
-// 	mostrarform(false);
-//
-//
-// 	listar();
-//
-//
-// 	$("#formulario").on("submit", function(e) {
-// 		guardaryeditar(e);
-// 	})
-//
-//
-// 	$(document).on("keypress", 'form', function(e) {
-// 		var code = e.keyCode || e.which;
-// 		if (code == 13) {
-// 			e.preventDefault();
-// 			return false;
-// 		}
-// 	});
+	// TODO: CODIGO PARA CHECKBOX DINAMICO
+	  $('input[type=checkbox]').change( function() {
+	     if($(this).prop("checked") == true){
+	     		$('#condicion').val('1');
+	     		// alert($(this).val());
+	     }else{
+	     	$('#condicion').val('0');
+	     	// alert($(this).val());
+	     }
+	     }
+	  );
+
+
+mostrar_loader();
+
+fechanow();
+
+	mostrarform(false);
+
+
+	listar();
+
+
+	$("#formulario").on("submit", function(e) {
+		guardaryeditar(e);
+	})
+
+
+	$(document).on("keypress", 'form', function(e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
 
 
 	//Cargamos los items al select categoria

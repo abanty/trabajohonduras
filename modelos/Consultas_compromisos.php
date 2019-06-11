@@ -22,7 +22,7 @@ Class Consultas_compromisos
 		com.numfactura,
 		FORMAT(det.valor,2) as valor,
 		com.condicion FROM compromisos AS com INNER JOIN detalle_compromisos AS det ON com.idcompromisos=det.idcompromisos INNER JOIN proveedores AS pro ON com.idproveedores=pro.idproveedores INNER JOIN presupuesto_disponible AS pre ON det.idpresupuesto_disponible=pre.idpresupuesto_disponible INNER JOIN programa AS prog ON com.idprograma=prog.idprograma
-		WHERE DATE(com.fecha_hora)>='$fecha_inicio' AND DATE(com.fecha_hora)<='$fecha_fin'";
+		WHERE DATE(com.fecha_hora)>='$fecha_inicio' AND DATE(com.fecha_hora)<='$fecha_fin' AND com.condicion IN (2,3)";
 		return ejecutarConsulta($sql);
 	}
 
