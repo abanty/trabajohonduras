@@ -20,6 +20,17 @@ Class Uuss
 		return ejecutarConsulta($sql);
 	}
 
+	/*-------------------------------------------*
+	| FUNCION PARA INSERTAR DATOS DEL COMPROMISO |
+	.-------------------------------------------*/
+	public function datosphpexcel(){
+
+		$sqlexcel = "SELECT iduuss, nombreuuss, rhfn
+								 FROM uuss";
+		return ejecutarConsulta($sqlexcel);
+
+	}
+
 
 
 
