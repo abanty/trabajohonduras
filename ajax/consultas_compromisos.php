@@ -23,9 +23,11 @@ switch ($_GET["op"]){
  				"5"=>$reg->unidad,
  				"6"=>$reg->numfactura,
  				"7"=>$reg->valor,
- 				"8"=>($reg->condicion==1)?'<span class="label bg-green">Pagado</span>':
- 				'<span class="label bg-red">Pendiente</span>'
- 				);
+				"8"=>($reg->condicion==0)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
+				(($reg->condicion==1)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
+				(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+				(($reg->condicion==3)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+				'<span class="label bg-red">ANULADO </span>'))));
  		}
  		$results = array(
  			"sEcho"=>1, //Información para el datatables
