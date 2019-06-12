@@ -4,88 +4,74 @@ require('../vendor/autoload.php');
 
 //Incluir phpspreadsheet class usando namespaces
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 
-$spreadsheet = new Spreadsheet();
+$reader = IOFactory::createReader('Xlsx');
+$spreadsheet = $reader->load("controladores_fpdf/template_compromisos.xlsx");
+// $spreadsheet = new Spreadsheet();
 
-$sheet = $spreadsheet->getActiveSheet();
-
-$spreadsheet->getDefaultStyle()
-            ->getFont()
-            ->setName('Arial')
-            ->setSize(10);
-
-$spreadsheet
-    ->getProperties()
-    ->setCreator("Aquí va el creador, como cadena")
-    ->setLastModifiedBy('Parzibyte') // última vez modificado por
-    ->setTitle('Mi primer documento creado con PhpSpreadSheet')
-    ->setSubject('El asunto')
-    ->setDescription('Este documento fue generado para parzibyte.me')
-    ->setKeywords('etiquetas o palabras clave separadas por espacios')
-    ->setCategory('La categoría');
-
-$spreadsheet->getActiveSheet()
-            ->getColumnDimension('B')
-            ->setAutoSize(true);
-
-$sheet->setCellValue('A1', 'REPORTE DE SISTEMA FNH DE LA MARINA DE HONDURAS');
-$spreadsheet->getActiveSheet()->mergeCells("A1:F2");
-
-$spreadsheet->getActiveSheet()->getStyle('A1')->getFont()->getSize(25);
-$spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-$spreadsheet->getActiveSheet()->getStyle('A1')->getAlignment()->setVertical(Alignment::VERTICAL_CENTER);
-
-// $spreadsheet->getActiveSheet()->getColumnDimension('A')->SetWidth();
-// $spreadsheet->getActiveSheet()->getColumnDimension('B')->SetWidth();
-// $spreadsheet->getActiveSheet()->getColumnDimension('C')->SetWidth();
-
-$sheet->setCellValue('A4', '#');
-$sheet->setCellValue('B4', 'NOMBRENOMBRENOMBRE  ');
-$sheet->setCellValue('C4', 'RHFN');
-
+// $sheet = $spreadsheet->getActiveSheet();
 
 require_once "../modelos/ReportesExcel.php";
 $excel = new ReportesExcel();
 $rsptac = $excel->compromisosprovedores();
-  $n = 4;
+
+$contentStartRow = 5;
+$currentContentRow = 5;
+
+// ($regd->condicion = 0 && $regd->condicion = 1) ? $regd->condicion = 'Pendiente': $regd->condicion = 'INVALIDO';
+
+
   while ($regd = $rsptac->fetch_object()) {
-      $rowNum = $n+1;
-      $spreadsheet->getActiveSheet()->getStyle('A'.$rowNum)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-      $sheet->setCellValue('A'.$rowNum, $n-3);
-      $sheet->setCellValue('B'.$rowNum, $regd->fecha);
-      $sheet->setCellValue('C'.$rowNum, $regd->tipo_registro);
-      $sheet->setCellValue('D'.$rowNum, $regd->nombrep);
-      $sheet->setCellValue('E'.$rowNum, $regd->casa_comercial);
-      $sheet->setCellValue('F'.$rowNum, $regd->numfactura);
-      $sheet->setCellValue('G'.$rowNum, $regd->total_compra);
-      $sheet->setCellValue('H'.$rowNum, $regd->fecha_registro);
-      $sheet->setCellValue('I'.$rowNum, $regd->condicion);
-      $n++;
+
+(($regd->condicion == 0)||($regd->condicion == 1) )? $varcontent = 'Pendiente': $varcontent = 'Invalido';
+
+
+    $spreadsheet->getActiveSheet()->insertNewRowBefore($currentContentRow+1,1);
+
+    $spreadsheet->getActiveSheet()
+                ->setCellValue('A'.$currentContentRow, $currentContentRow-4)
+                ->setCellValue('B'.$currentContentRow, $regd->fecha)
+                ->setCellValue('C'.$currentContentRow, $regd->tipo_registro)
+                ->setCellValue('D'.$currentContentRow, $regd->nombrep)
+                ->setCellValue('E'.$currentContentRow, $regd->casa_comercial)
+                ->setCellValue('F'.$currentContentRow, $regd->numfactura)
+                ->setCellValue('G'.$currentContentRow, $regd->total_compra)
+                ->setCellValue('H'.$currentContentRow, $regd->fecharegistro)
+                ->setCellValue('I'.$currentContentRow, $varcontent);
+                $currentContentRow++;
     }
 
+    $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
+
+
+
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="Reporte por Proveedor.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 ob_end_clean();
 
 // header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 // header('Content-Disposition: attachment;filename="result.xlsx"');
-      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-      header('Content-Disposition: attachment;filename="Reporte por Proveedor.xlsx"');
-      header('Cache-Control: max-age=0');
-      // If you're serving to IE 9, then the following may be needed
-      header('Cache-Control: max-age=1');
 
-      // If you're serving to IE over SSL, then the following may be needed
-      header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-      header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
-      header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-      header('Pragma: public'); // HTTP/1.0
+      // header('Cache-Control: max-age=0');
+      // // If you're serving to IE 9, then the following may be needed
+      // header('Cache-Control: max-age=1');
+      //
+      // // If you're serving to IE over SSL, then the following may be needed
+      // header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+      // header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT'); // always modified
+      // header('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+      // header('Pragma: public'); // HTTP/1.0
 // Guardar en una salida de php
 $writer->save('php://output');
 exit;
 
 
- ?>
+?>
