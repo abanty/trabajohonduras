@@ -12,17 +12,16 @@ Class Consultas_compromisos
 
 	public function compromisosfecha($fecha_inicio,$fecha_fin)
 	{
-		$sql="SELECT
-		DATE(com.fecha_hora) as fecha,
-		com.tipo_registro,
-		pro.casa_comercial,
-		pre.nombre_objeto,
-		pre.codigo,
-		prog.nombrep as unidad,
-		com.numfactura,
-		FORMAT(det.valor,2) as valor,
-		com.condicion FROM compromisos AS com INNER JOIN detalle_compromisos AS det ON com.idcompromisos=det.idcompromisos INNER JOIN proveedores AS pro ON com.idproveedores=pro.idproveedores INNER JOIN presupuesto_disponible AS pre ON det.idpresupuesto_disponible=pre.idpresupuesto_disponible INNER JOIN programa AS prog ON com.idprograma=prog.idprograma
-		WHERE DATE(com.fecha_hora)>='$fecha_inicio' AND DATE(com.fecha_hora)<='$fecha_fin'";
+		$sql="SELECT c.idcompromisos,
+		DATE(c.fecha_hora) as fecha, c.tipo_registro, p.casa_comercial, GROUP_CONCAT(pd.nombre_objeto SEPARATOR ', ') as nombre_objeto,GROUP_CONCAT(pd.codigo SEPARATOR ', ') as codigo,pro.nombrep as unidad,c.numfactura,c.total_compra as valor,c.condicion
+		FROM compromisos c
+		INNER JOIN detalle_compromisos dc ON c.idcompromisos = dc.idcompromisos
+		INNER JOIN presupuesto_disponible pd ON dc.idpresupuesto_disponible = pd.idpresupuesto_disponible
+		INNER JOIN proveedores p ON c.idproveedores = p.idproveedores
+		INNER JOIN programa pro ON c.idprograma = pro.idprograma
+		WHERE DATE(c.fecha_hora)>='$fecha_inicio' AND DATE(c.fecha_hora)<='$fecha_fin' AND c.condicion IN (2,3)
+		GROUP BY c.idcompromisos";
+
 		return ejecutarConsulta($sql);
 	}
 
