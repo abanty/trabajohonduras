@@ -47,16 +47,22 @@ $sheet->setCellValue('B4', 'NOMBRENOMBRENOMBRE  ');
 $sheet->setCellValue('C4', 'RHFN');
 
 
-require_once "../modelos/Uuss.php";
-$excel = new Uuss();
-$rsptac = $excel->datosphpexcel();
+require_once "../modelos/ReportesExcel.php";
+$excel = new ReportesExcel();
+$rsptac = $excel->compromisosprovedores();
   $n = 4;
   while ($regd = $rsptac->fetch_object()) {
       $rowNum = $n+1;
       $spreadsheet->getActiveSheet()->getStyle('A'.$rowNum)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-      $sheet->setCellValue('A'.$rowNum, $n);
-      $sheet->setCellValue('B'.$rowNum, $regd->nombreuuss);
-      $sheet->setCellValue('C'.$rowNum, $regd->rhfn);
+      $sheet->setCellValue('A'.$rowNum, $n-3);
+      $sheet->setCellValue('B'.$rowNum, $regd->fecha);
+      $sheet->setCellValue('C'.$rowNum, $regd->tipo_registro);
+      $sheet->setCellValue('D'.$rowNum, $regd->nombrep);
+      $sheet->setCellValue('E'.$rowNum, $regd->casa_comercial);
+      $sheet->setCellValue('F'.$rowNum, $regd->numfactura);
+      $sheet->setCellValue('G'.$rowNum, $regd->total_compra);
+      $sheet->setCellValue('H'.$rowNum, $regd->fecha_registro);
+      $sheet->setCellValue('I'.$rowNum, $regd->condicion);
       $n++;
     }
 
