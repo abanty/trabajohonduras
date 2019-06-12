@@ -208,7 +208,7 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(35,5,number_format($regv->monto_total, 2, '.', ','),0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
-  $pdf->Cell(49,5,'CAJAS Y BANCOS','RL',1,'C',0);
+  $pdf->Cell(49,5,'CAJA Y BANCOS','RL',1,'C',0);
   $pdf->SetFont( "Arial", "", 8);
   // 7to ROW
   $pdf->Cell(78,5,$regv->tasa_retencion_isv.'%   de  '.number_format($regv->valor_isv, 2, '.', ','),'L',0,'R',0);
