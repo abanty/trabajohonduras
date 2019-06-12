@@ -24,13 +24,9 @@ $rsptac = $excel->compromisosprovedores();
 $contentStartRow = 5;
 $currentContentRow = 5;
 
-// ($regd->condicion = 0 && $regd->condicion = 1) ? $regd->condicion = 'Pendiente': $regd->condicion = 'INVALIDO';
-
-
   while ($regd = $rsptac->fetch_object()) {
 
-(($regd->condicion == 0)||($regd->condicion == 1) )? $varcontent = 'Pendiente': $varcontent = 'Invalido';
-
+    (($regd->condicion == 0)||($regd->condicion == 1) )? $varcontent = 'Pendiente': $varcontent = 'Invalido';
 
     $spreadsheet->getActiveSheet()->insertNewRowBefore($currentContentRow+1,1);
 
