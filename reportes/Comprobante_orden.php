@@ -65,21 +65,6 @@ $rsptad = $comprobante->listarFactura_orden_10firts($_GET["id"]);
 
 $rsptad2 = $comprobante->listarFactura_orden_10next($_GET["id"]);
 
-// for ($i=0; $i < 10; $i++) {
-//   $n_fact = '//';
-//   $fec_fac = '//';
-//   $valfact = '//';
-//
-// $linemine = array( "Factura"=> "$n_fact",
-//                 "Fecha"=> "$fec_fac",
-//                 "Valor"=> "$valfact"
-//             );
-//
-// $size = $pdf->addLine( $y, $linemine );
-// $y   += $size + 0;
-//
-// }
-
 while ($regd = $rsptad->fetch_object()) {
   $line = array( "Factura"=> "$regd->num_factura",
                 "Fecha"=> $regd->fechaformat,
