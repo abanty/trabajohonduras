@@ -22,7 +22,8 @@ Class ReportesExcel
 		FROM compromisos c
 		INNER JOIN programa p ON p.idprograma = c.idprograma
 		INNER JOIN proveedores pr ON pr.idproveedores = c.idproveedores
-		WHERE c.condicion NOT IN (2,3)";
+		WHERE c.condicion NOT IN (2,3)
+    ORDER BY fecha asc";
     return ejecutarConsulta($sqlexcel);
 
   }
