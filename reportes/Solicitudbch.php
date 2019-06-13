@@ -53,23 +53,23 @@ $contactnumtrans = $regv->serie_transf.'-'.$regv->num_transf;
 $pdf->titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2);
 $pdf->SetFont( "Arial", "", 11);
 $pdf->SetXY(8, 38);
-$pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,C);
+$pdf->MultiCell(50,4,"Tegucigalpa M.D.C",0,'C');
 $pdf->SetXY(8, 43);
-$pdf->MultiCell(50,4,$inicio,0,C);
+$pdf->MultiCell(50,4,$inicio,0,'C');
 $pdf->SetXY(15, 53);
-$pdf->MultiCell(100,4,"Jefe Departamento de Sistema de Pagos",0,L);
+$pdf->MultiCell(100,4,"Jefe Departamento de Sistema de Pagos",0,'L');
 $pdf->SetXY(15, 58);
-$pdf->MultiCell(100,4,"Banco Central de Honduras",0,L);
+$pdf->MultiCell(100,4,"Banco Central de Honduras",0,'L');
 $pdf->SetXY(15, 63);
-$pdf->MultiCell(100,4,"Su Oficina",0,L);
+$pdf->MultiCell(100,4,"Su Oficina",0,'L');
 $pdf->SetXY(146.5, 45);
 $pdf->SetFont( "Arial", "B", 11);
-$pdf->MultiCell(60,4,"TRANSF.No. ".$contactnumtrans,0,L);
+$pdf->MultiCell(60,4,"TRANSF.No. ".$contactnumtrans,0,'L');
 $pdf->SetFont( "Arial", "", 11);
 $pdf->SetXY(15, 72);
-$pdf->MultiCell(50,4,utf8_decode("Estimados Señores"),0,L);
+$pdf->MultiCell(50,4,utf8_decode("Estimados Señores"),0,'L');
 $pdf->SetXY(15, 82);
-$pdf->MultiCell(180,4,utf8_decode("Autorizamos  al  Banco  Central  de  Honduras  a  efectuar  la  Transferencia  de  Fondos  de  la  siguiente  manera:"),0,L);
+$pdf->MultiCell(180,4,utf8_decode("Autorizamos  al  Banco  Central  de  Honduras  a  efectuar  la  Transferencia  de  Fondos  de  la  siguiente  manera:"),0,'L');
 $pdf->Ln(5);
 
 require_once "Letras.php";
@@ -82,7 +82,7 @@ $V=new EnLetras();
 $con_letra=strtoupper($V->ValorEnLetras($regv->monto_acreditar,"LEMPIRAS ".$string_exactos));
 
 $pdf->SetFont('Arial','B',11);
-$pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,C);
+$pdf->MultiCell(180,4,"\n".utf8_decode($con_letra)."\n"." ",1,'C');
 
 
 
