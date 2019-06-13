@@ -176,7 +176,7 @@ while ($regd3 = $rsptad3->fetch_object()) {
   $pdf->Cell(35,5,'DESCUENTO L.',0,0,'R',0);
   $pdf->SetFont( "Arial", "", 8);
   $pdf->Cell(35,5,number_format($regv->descuento_total, 2, '.', ','),0,0,'R',0);
-  $pdf->Cell(49,5,'GASTO DE FUNCIONAMIENTO','RL',1,'C',0);
+  $pdf->Cell(49,5,'GASTOS DE FUNCIONAMIENTO','RL',1,'C',0);
   $pdf->SetFont( "Arial", "B", 8);
   // 3ro ROW
   $pdf->Cell(78,5,'','L',0,'L',0);
