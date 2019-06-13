@@ -75,8 +75,7 @@ while ($regd = $rsptad->fetch_object()) {
   $pdf->SetFont('Arial','',8);
 
   $line = array("$regd->codigo",utf8_decode("$regd->unidad"),"$regd->cantidad",utf8_decode("$regd->descripcion"),
-  number_format("$regd->precio_unitario", 2, '.', ','),number_format("$regd->subtot", 2, '.', ','),
-  number_format("", 2, '.', ','));
+  number_format($regd->precio_unitario, 2, '.', ','),number_format($regd->subtot, 2, '.', ','));
 
 $pdf->Rowedit($line);
 
@@ -86,6 +85,7 @@ $pdf->SetWidths(array(70));
 
 $pdf->SetFont('Arial','B',7.5);
 $pdf->SetX(25);
+$texta = '';
 $pdf->Rowedit(array($texta));
 $pdf->Ln(-3);
 
@@ -99,8 +99,8 @@ $pdf->Ln(5);
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "VALOR EXENTO Lps  :",0,0,'R');
 $pdf->SetFont('Arial','',8.5);
-$pdf->Cell(67,4, number_format('', 2, '.', ','),0,0,'R');
-$pdf->Cell(23,4, number_format('', 2, '.', ','),0,1,'R');
+$pdf->Cell(67,4, number_format('0', 2, '.', ','),0,0,'R');
+$pdf->Cell(23,4, number_format('0', 2, '.', ','),0,1,'R');
 
 $pdf->SetFont('Arial','B',8.5);
 $pdf->Cell(107,4, "SUBTOTAL Lps  :",0,0,'R');

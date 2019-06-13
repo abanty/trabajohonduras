@@ -80,8 +80,8 @@ $pdf->Ln(2);
 while ($regd = $rsptad->fetch_object()) {
 
   $line = array("$regd->cod",utf8_decode("$regd->uni"),"$regd->cant",
-  utf8_decode("$regd->descripcion"),number_format("$regd->precu", 2, '.', ','),
-  number_format("$regd->subtot", 2, '.', ','),number_format("$regd->total", 2, '.', ','));
+  utf8_decode("$regd->descripcion"),number_format($regd->precu, 2, '.', ','),
+  number_format($regd->subtot, 2, '.', ','),number_format($regd->total, 2, '.', ','));
 
 
   $pdf->SetWidths(array(13,27,17,70,25,22,22));
