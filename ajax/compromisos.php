@@ -15,6 +15,11 @@ $numfactura=isset($_POST["numfactura"])? limpiarCadena($_POST["numfactura"]):"";
 $total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
 $condicion=isset($_POST["condicion"])? limpiarCadena($_POST["condicion"]):"";
 
+//Declara la variable para evitar error de notificacion
+$idpresupuesto_disponible = isset($_POST['idpresupuesto_disponible']) ? $_POST['idpresupuesto_disponible']: null ;
+$valor = isset($_POST['valor']) ? $_POST['valor']: null ;
+
+
 /*----------------------------------------------*
 | SWITCH PARA INSTANCIAR CASE COMO TIPO FUNCION |
 .----------------------------------------------*/

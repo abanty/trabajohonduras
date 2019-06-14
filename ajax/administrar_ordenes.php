@@ -44,6 +44,8 @@ $debitos=isset($_POST["debitos"])? limpiarCadena($_POST["debitos"]):"";
 $creditos=isset($_POST["creditos"])? limpiarCadena($_POST["creditos"]):"";
 $contabilidad=isset($_POST["contabilidad"])? limpiarCadena($_POST["contabilidad"]):"";
 
+
+
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 
@@ -203,7 +205,7 @@ if (empty($idadministrar_ordenes)){
         {
           echo '<tr class="filafactura">
           <td style="width: 224px;">'.$reg->num_factura.'</td>
-          <td style="width: 205px;">'.$reg->fecha_factura.'</td>
+          <td style="width: 205px;">'.$reg->fechaformat.'</td>
           <td style="width: 225px;">'.$reg->valor_factura.'</td>
           <td style="width: 95px; text-align:center;"><i class="fas fa-check" style="color: green;"></i></td></tr>';
         }

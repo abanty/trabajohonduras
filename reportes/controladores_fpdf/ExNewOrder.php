@@ -3,34 +3,6 @@ require('../fpdf181/fpdf.php');
 define('EURO', chr(128) );
 define('EURO_VAL', 6.55957 );
 
-// Xavier Nicolay 2004
-// Version 1.02
-
-//////////////////////////////////////
-// Public functions                 //
-//////////////////////////////////////
-//  function sizeOfText( $texte, $larg )
-//  function addSociete( $nom, $adresse )
-//  function fact_dev( $libelle, $num )
-//  function addDevis( $numdev )
-//  function addFacture( $numfact )
-//  function addDate( $date )
-//  function addClient( $ref )
-//  function addPageNumber( $page )
-//  function addClientAdresse( $adresse )
-//  function addReglement( $mode )
-//  function addEcheance( $date )
-//  function addNumTVA($tva)
-//  function addReference($ref)
-//  function addCols( $tab )
-//  function addLineFormat( $tab )
-//  function lineVert( $tab )
-//  function addLine( $ligne, $tab )
-//  function addRemarque($remarque)
-//  function addCadreTVAs()
-//  function addCadreEurosFrancs()
-//  function addTVAs( $params, $tab_tva, $invoice )
-//  function temporaire( $texte )
 
 class PDF_Invoice extends FPDF
 {

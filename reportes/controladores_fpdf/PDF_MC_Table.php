@@ -174,7 +174,7 @@ function Rowdefaultnoline($data)
 		$this->SetXY($x+$w,$y);
 	}
 	//Go to the next line
-	$this->Ln($h);
+	$this->Ln();
 }
 
 function titulos_encabezados($logo1,$ext_logo1,$logo2,$ext_logo2)

@@ -3,33 +3,6 @@ require('../fpdf181/fpdf.php');
 define('EURO', chr(128) );
 define('EURO_VAL', 6.55957 );
 
-
-//////////////////////////////////////
-// Public functions                 //
-//////////////////////////////////////
-//  function sizeOfText( $texte, $larg )
-//  function addSociete( $nom, $adresse )
-//  function fact_dev( $libelle, $num )
-//  function addDevis( $numdev )
-//  function addFacture( $numfact )
-//  function addDate( $date )
-//  function addClient( $ref )
-//  function addPageNumber( $page )
-//  function addClientAdresse( $adresse )
-//  function addReglement( $mode )
-//  function addEcheance( $date )
-//  function addNumTVA($tva)
-//  function addReference($ref)
-//  function addCols( $tab )
-//  function addLineFormat( $tab )
-//  function lineVert( $tab )
-//  function addLine( $ligne, $tab )
-//  function addRemarque($remarque)
-//  function addCadreTVAs()
-//  function addCadreEurosFrancs()
-//  function addTVAs( $params, $tab_tva, $invoice )
-//  function temporaire( $texte )
-
 class PDF_Invoice extends FPDF
 {
 // private variables
@@ -566,48 +539,28 @@ function addLineFormat( $tab )
 	}
 }
 
-// function lineVert( $tab )
-// {
-// 	global $colonnes;
-//
-// 	reset( $colonnes );
-// 	$maxSize=0;
-// 	while ( list( $lib, $pos ) = each ($colonnes) )
-// 	{
-// 		$texte = $tab[ $lib ];
-// 		$longCell  = $pos -22;
-// 		$size = $this->sizeOfText( $texte, $longCell );
-// 		if ($size > $maxSize)
-// 			$maxSize = $size;
-// 	}
-// 	return $maxSize;
-// }
-
-// add a line to the invoice/estimate
-/*    $ligne = array( "REFERENCE"    => $prod["ref"],
-                      "DESIGNATION"  => $libelle,
-                      "QUANTITE"     => sprintf( "%.2F", $prod["qte"]) ,
-                      "P.U. HT"      => sprintf( "%.2F", $prod["px_unit"]),
-                      "MONTANT H.T." => sprintf ( "%.2F", $prod["qte"] * $prod["px_unit"]) ,
-                      "TVA"          => $prod["tva"] );
-*/
 function addLine( $ligne, $tab )
 {
 	global $colonnes, $format;
 
+	$format2 = array('L','L','C');
+
 	$ordonnee     = 11;
 	$maxSize      = $ligne;
+	$caunt = -1;
 
 	reset( $colonnes );
 	while ( list( $lib, $pos ) = each ($colonnes) )
 	{
+		$caunt += 1;
+		$alineacion =  $format2[$caunt];
 		$longCell  = $pos;
 		$texte     = $tab[ $lib ];
 		$length    = $this->GetStringWidth( $texte );
 		$tailleTexte = $this->sizeOfText( $texte, $length );
-		$formText  = $format[ $lib ];
+		$formText  = $format2[ $cont2 ];
 		$this->SetXY( $ordonnee, $ligne-1);
-		$this->MultiCell( $longCell, 4 , $texte, 0, $formText);
+		$this->MultiCell( $longCell, 4 , $texte, 0, $alineacion);
 		if ( $maxSize < ($this->GetY()  ) )
 			$maxSize = $this->GetY() ;
 		$ordonnee += $pos;
