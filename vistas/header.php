@@ -396,14 +396,14 @@ if (strlen(session_id()) < 1)
           ?>
 
           <?php
-              if ($_SESSION['reportes']==1)
+              if ($_SESSION['reportesc']==1)
               {
                 echo'
 
 
             <li class="treeview">
               <a href="#">
-                <i class="fas fa-cogs fa-lg"></i> <span>Reportes</span>
+                <i class="fas fa-chart-bar fa-lg"></i> <span>Reportes</span>
 
                 <i class="fal fa-angle-left pull-right"></i>
                 </span>
@@ -414,7 +414,7 @@ if (strlen(session_id()) < 1)
                 <li><a href="configuracion.php"><i class="far fa-dot-circle text-blue"></i>Transferencias Sedena</a></li>
               </ul>
 
-  
+
               </li>';
             }
             ?>
