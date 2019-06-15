@@ -115,19 +115,17 @@ Class Administrar_ordenes
 	. ----------------------------*/
 	public function pagar($idadministrar_ordenes)
 	{
-		// if ($tipo_documento == 'O/C') {,$tipo_documento,$retencionisv,$retencionisr
-		// 	$actualizarrentencionisv = "UPDATE presupuesto_disponible
-		// 															 SET presupuesto_anual = presupuesto_anual - $retencionisv
-		// 															 WHERE idpresupuesto_disponible = '41'";
-		// 															 ejecutarConsulta($actualizarrentencionisv);
-		//
-		// 	$actualizarrentencionisr = "UPDATE presupuesto_disponible
-		// 															 SET presupuesto_anual = presupuesto_anual - $retencionisr
-		// 															 WHERE idpresupuesto_disponible = '40'";
-		// 															 ejecutarConsulta($actualizarrentencionisr);
-		// }
-
 		$sql="UPDATE administrar_ordenes SET estado='Pagado' WHERE idadministrar_ordenes='$idadministrar_ordenes'";
+		return ejecutarConsulta($sql);
+	}
+
+
+	/* ----------------------------*
+	|  METODO PARA ELIMINAR ORDENES:  |
+	. ----------------------------*/
+	public function eliminar($idadministrar_ordenes)
+	{
+		$sql="DELETE FROM administrar_ordenes WHERE idadministrar_ordenes='$idadministrar_ordenes'";
 		return ejecutarConsulta($sql);
 	}
 

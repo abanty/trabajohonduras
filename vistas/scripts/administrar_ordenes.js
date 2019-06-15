@@ -650,6 +650,23 @@ function pagar(idadministrar_ordenes)
 }
 
 
+/*----------------------------*
+| FUNCION PARA ELIMINAR ORDEN |
+.----------------------------*/
+function eliminar(idadministrar_ordenes) {
+	bootbox.confirm("¿Está Seguro de eliminar el registro?", function(result) {
+		if (result) {
+			$.post("../ajax/administrar_ordenes.php?op=eliminar", {
+				idadministrar_ordenes: idadministrar_ordenes
+			}, function(e) {
+				bootbox.alert(e);
+				tabla.ajax.reload();
+			});
+		}
+	})
+}
+
+
 // Declaración de variables necesarias para trabajar con las compras y sus detalles versionando ahora
 var cont=0;
 var cont_factura=0;

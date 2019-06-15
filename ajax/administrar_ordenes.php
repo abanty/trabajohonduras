@@ -141,6 +141,14 @@ if (empty($idadministrar_ordenes)){
  		echo $rspta ? "Orden de compra anulada" : "Orden de compra no se puede anular";
 	break;
 
+  /*---------------------------*
+  | FUNCION PARA ELIMINAR FILA |
+  .---------------------------*/
+  	case 'eliminar':
+  		$rspta=$admin_ord->eliminar($idadministrar_ordenes);
+   		echo $rspta ? "Orden eliminada permanentemente" : "Orden de no se pudo eliminar";
+  	break;
+
 /*-------------------------------------*
 | FUNCION PARA CAMBIAR ESTADO A PAGADO |
 .-------------------------------------*/
@@ -281,10 +289,10 @@ if (empty($idadministrar_ordenes)){
       };
  			$data[]=array(
  				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>'.
+ 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>'.
           ' <button class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.'  ,  \''.limpiarCadena($reg->tipo_documento).'\'  ,  \''.$reg->retencion_isv.'\'  ,  \''.$reg->retencion_isr.'\')"><i class="fas fa-coins"></i></button>':
           (($reg->estado=='Pagado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
-          ' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fas fa-times-circle"></i></button>':
+          ' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>':
         '<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
 
 
