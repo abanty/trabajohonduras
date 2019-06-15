@@ -395,7 +395,29 @@ if (strlen(session_id()) < 1)
           }
           ?>
 
+          <?php
+              if ($_SESSION['reportesc']==1)
+              {
+                echo'
 
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fas fa-chart-bar fa-lg"></i> <span>Reportes</span>
+
+                <i class="fal fa-angle-left pull-right"></i>
+                </span>
+              </a>
+                <ul class="treeview-menu">
+                <li><a href="proveedores.php"><i class="far fa-dot-circle text-blue"></i>Contabilidad General</a></li>
+                <li><a href="programa.php"><i class="far fa-dot-circle text-blue"></i>Compromisos</a></li>
+                <li><a href="configuracion.php"><i class="far fa-dot-circle text-blue"></i>Transferencias Sedena</a></li>
+              </ul>
+
+
+              </li>';
+            }
+            ?>
             <?php
             if ($_SESSION['acceso']==1)
             {
