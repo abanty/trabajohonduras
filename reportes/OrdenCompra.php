@@ -79,9 +79,14 @@ $rsptad = $venta->administrar_ordenes_detalle_grouping($_GET["id"]);
 $pdf->Ln(2);
 while ($regd = $rsptad->fetch_object()) {
 
-  $line = array("$regd->cod",utf8_decode("$regd->uni"),"$regd->cant",
-  utf8_decode("$regd->descripcion"),number_format($regd->precu, 2, '.', ','),
-  number_format($regd->subtot, 2, '.', ','),number_format($regd->total, 2, '.', ','));
+  $var1;
+  $regd->precu == "" ? $var1 = $regd->precu : $var1 = number_format($regd->precu, 2, '.', ',');
+  $var2;
+  $regd->subtot == "" ? $var2 = $regd->subtot : $var2 = number_format($regd->subtot, 2, '.', ',');
+  $var3;
+  $regd->total == "" ? $var3 = $regd->total : $var3 = number_format($regd->total, 2, '.', ',');
+
+  $line = array("$regd->cod",utf8_decode("$regd->uni"),$regd->cant,utf8_decode("$regd->descripcion"),$var1,$var2,$var3);
 
 
   $pdf->SetWidths(array(13,27,17,70,25,22,22));
