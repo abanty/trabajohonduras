@@ -93,7 +93,7 @@ while ($regd = $rsptad->fetch_object()) {
   $pdf->SetAligns(array('','','','','R','R','R'));
   $pdf->SetUnderline(array('','','','U','','',''));
 
-  $pdf->SetFont('Arial','',7.5);
+  $pdf->SetFont('Arial','',9.5);
   $pdf->Rowedit($line);
                 // ,
                 // "Total"=> "$regv->monto_total"
@@ -130,7 +130,7 @@ $texta = strtoupper($regv->cargar);
 // $pdf->SetX(55);
 $pdf->SetWidths(array(70));
 
-$pdf->SetFont('Arial','B',7.5);
+$pdf->SetFont('Arial','B',9.5);
 $pdf->SetX(25);
 $pdf->Rowedit(array($texta));
 $pdf->Ln(-3);
@@ -165,8 +165,8 @@ $pdf->SetLineWidth(0.2);
 $pdf->SetLineWidth(0.2);
 
 $pdf->SetX(160);
-$pdf->SetFont('Arial','I',8.5);
-$pdf->MultiCell(39,4, 'Comandante General de la Fuerza Naval de Honduras','T','L');
+$pdf->SetFont('Arial','I',10.5);
+$pdf->MultiCell(49,4, 'Comandante General de la Fuerza Naval de Honduras','T','L');
 
 $pdf->Output('Documento de Orden.pdf','I');
 $pdf->Close();
