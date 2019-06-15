@@ -13,6 +13,7 @@ require 'header.php';
 if ($_SESSION['compromisosp']==1)
 {
 ?>
+
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -199,6 +200,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/compromisos.js"></script>
+<link rel="stylesheet" href="../public/css/loadingpages.css">
 <script>
   $(function () {
     //Flat red color scheme for iCheck

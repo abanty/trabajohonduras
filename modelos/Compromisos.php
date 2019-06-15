@@ -16,49 +16,49 @@ Class Compromisos
 		// Empty
 	}
 
-	/*-------------------------------------------*
-	| FUNCION PARA INSERTAR DATOS DEL COMPROMISO |
-	.-------------------------------------------*/
-		public function insertar(
-			$idprograma,
-			$idproveedores,
-			$fecha_hora,
-			$tipo_registro,
-			$numfactura,
-			$total_compra,
-			$condicion,
-			$idpresupuesto_disponible,
-			$valor)
-			{
-			$sql="INSERT INTO compromisos (idprograma,idproveedores,fecha_hora,fecha_registro,tipo_registro,numfactura,total_compra,condicion)
-						VALUES ('$idprograma','$idproveedores','$fecha_hora',CURRENT_TIMESTAMP,'$tipo_registro','$numfactura','$total_compra','$condicion')";
+		/*-------------------------------------------*
+		| FUNCION PARA INSERTAR DATOS DEL COMPROMISO |
+		.-------------------------------------------*/
+		  public function insertar(
+				$idprograma,
+				$idproveedores,
+				$fecha_hora,
+				$tipo_registro,
+				$numfactura,
+				$total_compra,
+				$condicion,
+				$idpresupuesto_disponible,
+				$valor)
+				{
+				$sql="INSERT INTO compromisos (idprograma,idproveedores,fecha_hora,fecha_registro,tipo_registro,numfactura,total_compra,condicion)
+							VALUES ('$idprograma','$idproveedores','$fecha_hora',CURRENT_TIMESTAMP,'$tipo_registro','$numfactura','$total_compra','$condicion')";
 
-			$idingresonew=ejecutarConsulta_retornarID($sql);
+				$idingresonew=ejecutarConsulta_retornarID($sql);
 
-			$num_elementos=0;
-			$sw=true;
+				$num_elementos=0;
+				$sw=true;
 
-			while ($num_elementos < count($idpresupuesto_disponible))
-			{
-				$sql_detalle = "INSERT INTO detalle_compromisos(idcompromisos,idpresupuesto_disponible,valor,condicion)
-											  VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$valor[$num_elementos]','0')";
-				ejecutarConsulta($sql_detalle) or $sw = false;
-				$num_elementos=$num_elementos + 1;
-			}
+				while ($num_elementos < count($idpresupuesto_disponible))
+				{
+					$sql_detalle = "INSERT INTO detalle_compromisos(idcompromisos,idpresupuesto_disponible,valor,condicion)
+												  VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$valor[$num_elementos]','0')";
+					ejecutarConsulta($sql_detalle) or $sw = false;
+					$num_elementos=$num_elementos + 1;
+				}
 
 			return $sw;
-	}
+		}
 
 
-		/*-----------------------------------------*
-		| FUNCION PARA EDITAR DATOS DEL COMPROMISO |
-		.-----------------------------------------*/
+		/*---------------------------------------------------------*
+		| FUNCION PARA EDITAR DATOS DEL COMPROMISO POR TABLA CELLS |
+		.---------------------------------------------------------*/
 		 public function modificardatos($id,$columna_nombre,$valor)
-		 {
-			 $sql_update = "UPDATE compromisos SET ".$columna_nombre."='".$valor."' WHERE idcompromisos = '".$id."'";
+			 {
+				 $sql_update = "UPDATE compromisos SET ".$columna_nombre."='".$valor."' WHERE idcompromisos = '".$id."'";
 
-						return ejecutarConsulta($sql_update);
-		 }
+							return ejecutarConsulta($sql_update);
+			 }
 
 
 		/*-----------------------------------------*
@@ -79,43 +79,62 @@ Class Compromisos
 				return ejecutarConsulta($sql);
 			}
 
-	//Implementamos un método para eliminar categorías
-	public function eliminar($idcompromisos)
-	{
-		$sql="DELETE FROM compromisos WHERE idcompromisos='$idcompromisos'";
-		 ejecutarConsulta($sql);
-		$sql="DELETE FROM detalle_compromisos WHERE idcompromisos='$idcompromisos'";
-		return ejecutarConsulta($sql);
-	}
 
-	//Implementamos un método para activar registros
-	public function pagado($idcompromisos)
-	{
-		// $sql="UPDATE detalle_compromisos SET condicion='1' WHERE idcompromisos='$idcompromisos'";
-		// ejecutarConsulta($sql);
-		$sql="UPDATE compromisos SET condicion='2' WHERE idcompromisos='$idcompromisos'";
-		return ejecutarConsulta($sql);
-	}
+	/*-------------------------------------------*
+	| FUNCION PARA ELIMINAR DATOS DEL COMPROMISO |
+	.-------------------------------------------*/
+			public function eliminar($idcompromisos)
+				{
+					$sql="DELETE FROM compromisos WHERE idcompromisos='$idcompromisos'";
+					 ejecutarConsulta($sql);
+					$sql="DELETE FROM detalle_compromisos WHERE idcompromisos='$idcompromisos'";
+					return ejecutarConsulta($sql);
+				}
 
-	//Implementamos un método para activar registros
-	public function tramitar($idcompromisos)
-	{
-		// $sql="UPDATE detalle_compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
-		// ejecutarConsulta($sql);
-		$sql="UPDATE compromisos SET condicion='3' WHERE idcompromisos='$idcompromisos'";
-		return ejecutarConsulta($sql);
-	}
 
-	//Implementamos un método para activar registros
+	/*-------------------------------*
+	| FUNCION PARA PAGAR COMPROMISOS |
+	.-------------------------------*/
+			public function pagado($idcompromisos)
+			{
+				$sql="UPDATE compromisos SET condicion='2' WHERE idcompromisos='$idcompromisos'";
+				return ejecutarConsulta($sql);
+			}
+
+
+	/*----------------------------------*
+	| FUNCION PARA TRAMITAR COMPROMISOS |
+	.----------------------------------*/
+			public function tramitar($idcompromisos)
+			{
+				$sql="UPDATE compromisos SET condicion='3' WHERE idcompromisos='$idcompromisos'";
+				return ejecutarConsulta($sql);
+			}
+
+
+	/*-------------------------------------*
+	| FUNCION PARA DESTRAMITAR COMPROMISOS |
+	.-------------------------------------*/
 	public function destramitar($idcompromisos)
+			{
+				$sql="UPDATE compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
+				return ejecutarConsulta($sql);
+			}
+
+
+	/*--------------------------------------------------------*
+	| FUNCION PARA VALIDAR NUMEROS DE TRANSFERENCIA REPETIDOS |
+	.---------------------------------------------------------*/
+	public function validarnumfacturasduplicadas()
 	{
-		// $sql="UPDATE detalle_compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
-		// ejecutarConsulta($sql);
-		$sql="UPDATE compromisos SET condicion='0' WHERE idcompromisos='$idcompromisos'";
+		$sql="SELECT numfactura FROM compromisos";
 		return ejecutarConsulta($sql);
 	}
 
-	//Implementar un método para mostrar los datos de un registro a modificar
+
+	/*---------------------------------*
+	| FUNCION PARA MOSTRAR COMPROMISOS |
+	.---------------------------------*/
 	public function mostrar($idcompromisos)
 	{
 		$sql="SELECT
@@ -129,15 +148,17 @@ Class Compromisos
 					 q.numfactura,
 					 q.total_compra,
 					 q.condicion
-			FROM compromisos as q INNER JOIN programa as w
-			ON q.idprograma=w.idprograma
-			INNER JOIN proveedores as e
-			ON q.idproveedores = e.idproveedores WHERE idcompromisos='$idcompromisos'";
+					FROM compromisos as q INNER JOIN programa as w
+					ON q.idprograma=w.idprograma
+					INNER JOIN proveedores as e
+					ON q.idproveedores = e.idproveedores WHERE idcompromisos='$idcompromisos'";
 		return ejecutarConsultaSimpleFila($sql);
 	}
 
 
-	//Implementar un método para listar los registros
+	/*----------------------------------------------*
+	| FUNCION PARA LISTAR EL DETALLE DE COMPROMISOS |
+	.----------------------------------------------*/
 	public function listarDetalle($idcompromisos)
 	{
 		$sql="SELECT
@@ -153,7 +174,9 @@ Class Compromisos
 	}
 
 
-	//Implementar un método para listar los registros
+	/*--------------------------------*
+	| FUNCION PARA LISTAR COMPROMISOS |
+	.--------------------------------*/
 	public function listar()
 	{
 		$sql="SELECT
@@ -168,45 +191,41 @@ Class Compromisos
 					 q.numfactura,
 					 FORMAT(q.total_compra,2) as total_compra,
 					 q.condicion
-			FROM compromisos as q INNER JOIN programa as w
-			ON q.idprograma=w.idprograma
-			INNER JOIN proveedores as e
-			ON q.idproveedores = e.idproveedores ORDER BY q.idcompromisos desc";
+					FROM compromisos as q INNER JOIN programa as w
+					ON q.idprograma=w.idprograma
+					INNER JOIN proveedores as e
+					ON q.idproveedores = e.idproveedores ORDER BY q.idcompromisos desc";
 		return ejecutarConsulta($sql);
 	}
 
-	// 	//Implementar un método para listar los registros activos
+
+	/*--------------------------------------------*
+	| FUNCION PARA LISTAR COMPROMISOS ALTERNATIVO |
+	.--------------------------------------------*/
 	public function listarCompromisos()
 	{
 		$sql="SELECT
-    c.idcompromisos,
-    c.idprograma,
-    c.idproveedores,
-    c.fecha_hora,
-		c.tipo_registro,
-    c.numfactura,
-    c.total_compra,
-    c.condicion,
-    pgr.codigop,
-    pgr.codigop,
-    pr.casa_comercial as proveedor
-		FROM
-		    compromisos c
-		INNER JOIN programa pgr ON
-		    c.idprograma = pgr.idprograma
-		INNER JOIN proveedores pr ON
-		    c.idproveedores = pr.idproveedores
-		WHERE
-    c.condicion in (1,3)";
+			    c.idcompromisos,
+			    c.idprograma,
+			    c.idproveedores,
+			    c.fecha_hora,
+					c.tipo_registro,
+			    c.numfactura,
+			    c.total_compra,
+			    c.condicion,
+			    pgr.codigop,
+			    pgr.codigop,
+			    pr.casa_comercial as proveedor
+					FROM
+					    compromisos c
+					INNER JOIN programa pgr ON
+					    c.idprograma = pgr.idprograma
+					INNER JOIN proveedores pr ON
+					    c.idproveedores = pr.idproveedores
+					WHERE
+			    c.condicion in (1,3)";
 		return ejecutarConsulta($sql);
 	}
-
-
-
-
-
 }
-
-
 
 ?>

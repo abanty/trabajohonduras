@@ -441,16 +441,15 @@ function guardaryeditar(e)
 
 
 			beforeSend: function(xhr){
-					 mostrarform(false);
-		       $('#preloader').show();  // #info must be defined somehwere
+					mostrarform(false);
+		      $('#preloader').show();  // #info must be defined somehwere
 		   },
 	    success: function(datos)
 	    {
-
-						 $('#preloader').hide();
-					    bootbox.alert(datos);
-	          mostrarform(false);
-	          listar();
+				 	$('#preloader').hide();
+				  bootbox.alert(datos);
+	        mostrarform(false);
+		      listar();
 	    }
 
 	});

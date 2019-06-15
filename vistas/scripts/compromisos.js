@@ -2,38 +2,37 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init() {
-
+ 
 	$(document).on('focusout', '.update', function() {
 
-	var id = $(this).data("id");
-	var columna_nombre = $(this).data("column");
-	var valorcol = $(this).text();
-	bootbox.confirm("¿Está Seguro de realizar la modificacion del compromiso?", function(result) {
-		if (result) {
-			update_data(id, columna_nombre, valorcol);
-		}else {
-			$('#tbllistado').DataTable().ajax.reload(null, false);
-		}
-	})
+		var id = $(this).data("id");
+		var columna_nombre = $(this).data("column");
+		var valorcol = $(this).text();
+		bootbox.confirm("¿Está Seguro de realizar la modificacion del compromiso?", function(result) {
+			if (result) {
+				update_data(id, columna_nombre, valorcol);
+			} else {
+				$('#tbllistado').DataTable().ajax.reload(null, false);
+			}
+		})
 	});
 
 
 	// TODO: CODIGO PARA CHECKBOX DINAMICO
-	  $('input[type=checkbox]').change( function() {
-	     if($(this).prop("checked") == true){
-	     		$('#condicion').val('1');
-	     		// alert($(this).val());
-	     }else{
-	     	$('#condicion').val('0');
-	     	// alert($(this).val());
-	     }
-	     }
-	  );
+	$('input[type=checkbox]').change(function() {
+		if ($(this).prop("checked") == true) {
+			$('#condicion').val('1');
+			// alert($(this).val());
+		} else {
+			$('#condicion').val('0');
+			// alert($(this).val());
+		}
+	});
 
 
-mostrar_loader();
+	mostrar_loader();
 
-fechanow();
+	fechanow();
 
 	mostrarform(false);
 
@@ -41,8 +40,27 @@ fechanow();
 	listar();
 
 
+	// $("#formulario").on("submit", function(e) {
+	// 	guardaryeditar(e);
+	// })
+
 	$("#formulario").on("submit", function(e) {
-		guardaryeditar(e);
+		//Cargamos los items al select categoria
+		$.post("../ajax/compromisos.php?op=ValidarNumeroFactura", function(datos) {
+			datos = JSON.parse(datos);
+
+			var num_fact = $('#numfactura').val();
+
+			if (datos.includes(num_fact)) {
+				alert('Dato ya existe en la bd, digite otro por favor');
+				$('#numfactura').val("");
+				$("#numfactura").focus();
+
+			} else {
+				guardaryeditar(e);
+			}
+		});
+		return false;
 	})
 
 
@@ -88,7 +106,7 @@ function listenForDoubleClick(element) {
 /*-------------------------------*
 | FUNCION JS PARA MOSTRAR LOADER |
 .-------------------------------*/
-function mostrar_loader(){
+function mostrar_loader() {
 	$(window).on('load', function() {
 		setTimeout(function() {
 			$(".loader-page").css({
@@ -120,12 +138,11 @@ function limpiar() {
 /*------------------------------------*
 | FUNCION PARA CALCULAR FECHA ACTUAL  |
 .------------------------------------*/
-function fechanow()
-{
+function fechanow() {
 	var now = new Date();
 	var day = ("0" + now.getDate()).slice(-2);
 	var month = ("0" + (now.getMonth() + 1)).slice(-2);
-	var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+	var today = now.getFullYear() + "-" + (month) + "-" + (day);
 	$('#fecha_hora').val(today);
 }
 
@@ -169,10 +186,10 @@ function listar() {
 	tabla = $('#tbllistado').dataTable({
 		"aProcessing": true, //Activamos el procesamiento del datatables
 
-		language : {
+		language: {
 
-				sLoadingRecords : '<span style="width:100%;"><img src="../public/img/ajaxload.gif"></span>',
-				'processing': 'Loading...',
+			sLoadingRecords: '<span style="width:100%;"><img src="../public/img/ajaxload.gif"></span>',
+			'processing': 'Loading...',
 		},
 		"aServerSide": true, //Paginación y filtrado realizados por el servidor
 		dom: 'Bfrtip', //Definimos los elementos del control de tabla
@@ -198,8 +215,8 @@ function listar() {
 	}).DataTable();
 
 	$('#tbllistado').on('draw.dt', function() {
-			$('[data-toggle="tooltip"]').tooltip(); // Or your function for tooltips
- });
+		$('[data-toggle="tooltip"]').tooltip(); // Or your function for tooltips
+	});
 
 
 }
@@ -237,8 +254,7 @@ function listarPresupuesto_disponible() {
 | FUNCION JS PARA INSERTAR DATOS DEL COMPROMISO |
 .----------------------------------------------*/
 function guardaryeditar(e) {
-	e.preventDefault(); //No se activará la acción predeterminada del evento
-	//$("#btnGuardar").prop("disabled",true);
+	e.preventDefault();
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
@@ -248,10 +264,15 @@ function guardaryeditar(e) {
 		contentType: false,
 		processData: false,
 
+		beforeSend: function(datos){
+				 mostrarform(false);
+				 $('#preloader').show();  // #info must be defined somehwere
+		 },
 		success: function(datos) {
-			bootbox.alert(datos);
-			mostrarform(false);
-			listar();
+				$('#preloader').hide();
+				bootbox.alert(datos);
+				mostrarform(false);
+				listar();
 		}
 
 	});

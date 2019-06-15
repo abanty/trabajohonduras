@@ -1,0 +1,25 @@
+#preloader {
+  background: #000000d9;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+}
+
+.lead{
+  background: #d2d6de;
+  padding: 7px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13.5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.red-tooltip + .tooltip.tooltip.bottom .tooltip-arrow,
+.red-tooltip + .tooltip.tooltip.bottom-left .tooltip-arrow,
+.red-tooltip + .tooltip.tooltip.bottom-right .tooltip-arrow{border-bottom-color: red;}
+.red-tooltip + .tooltip.top .tooltip-arrow {border-top-color: red;}
+.red-tooltip + .tooltip.left .tooltip-arrow {border-left-color: red;}
+.red-tooltip + .tooltip.right .tooltip-arrow {border-right-color: red;}
+.red-tooltip + .tooltip > .tooltip-inner{background-color:red;}

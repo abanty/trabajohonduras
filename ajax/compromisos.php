@@ -80,6 +80,25 @@ switch ($_GET["op"]){
 		break;
 
 
+
+	/*-------------------------------------------------*
+	| CASE PARA VALIDAR NUMEROS DE FACTURAS DUPLICADAS |
+	.-------------------------------------------------*/
+		case 'ValidarNumeroFactura':
+
+			$rspta=$compromisos->validarnumfacturasduplicadas();
+			//Vamos a declarar un array
+			$data= Array();
+
+			while ($reg=$rspta->fetch_object()){
+
+				$data[]=$reg->numfactura;
+
+			}
+			echo json_encode($data);
+
+		break;
+
 	/*-----------------------------------*
 	| CASE PARA CAMBIAR ESTADO A ANULADO |
 	.-----------------------------------*/
@@ -133,9 +152,18 @@ switch ($_GET["op"]){
 		 					' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
 							' <button data-toggle="tooltip" title="Realizar pago!" data-placement="right" class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
 		 					:
-							'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							(($reg->condicion==1)?'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
-							' <button data-toggle="tooltip" title="Realizar pago con retención!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>',
+							' <button data-toggle="tooltip" title="Realizar pago con retención!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
+							:
+							(($reg->condicion==2)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
+							' <button  data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
+							:
+							(($reg->condicion==3)?'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
+							' <button data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
+							:''))),
 		 				"1"=>$reg->fecha,
 						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="idproveedores">' .$reg->idproveedores. '</div>',
 		 				"3"=>$reg->programa,
