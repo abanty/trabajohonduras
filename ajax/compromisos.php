@@ -132,7 +132,7 @@ switch ($_GET["op"]){
 							' <button class="btn btn-danger btn-sm" onclick="anular('.$reg->idcompromisos.')" disabled><i class="fas fa-times"></i></button>'.
 							' <button data-toggle="tooltip" title="Realizar pago con retención!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>',
 		 				"1"=>$reg->fecha,
-						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="tipo_registro">' .$reg->tipo_registro. '</div>',
+						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="idproveedores">' .$reg->idproveedores. '</div>',
 		 				"3"=>$reg->programa,
 		 				"4"=>$reg->proveedor,
 						"5"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="numfactura">' .$reg->numfactura. '</div>',
