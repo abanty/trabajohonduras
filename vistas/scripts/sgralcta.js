@@ -72,19 +72,16 @@ function listar()
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
 	    buttons: [
 		            'copyHtml5',
-		            'excelHtml5',
-		            'csvHtml5',
-		            'pdf',
 								{
-					extend: 'excelHtml5',
-					autoFilter: true,
-					text: 'Save as Excel',
-					customize: function( xlsx ) {
-							var sheet = xlsx.xl.worksheets['sheet1.xml'];
-							$('row:first c', sheet).attr( 's', '20' );
-						 // $('row c[r*="1"]', sheet).attr( 's', '25' );
-					}
-			}
+			            text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+			            className: 'btn btn-default btnAddJob',
+			            titleAttr: 'Reporte de Consolidado de Cuentas',
+			            action: function (dt, node, config) {
+											window.location = "../reportes/RE_contabilidad_ctasgrles.php";
+			            	}
+        				},
+		            'csvHtml5',
+		            'pdf'
 		        ],
 		  columnDefs: [
 	 	    				{ width: 20, targets: 0 },
