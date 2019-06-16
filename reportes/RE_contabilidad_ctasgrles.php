@@ -4,7 +4,6 @@ require('../vendor/autoload.php');
 
 //Incluir phpspreadsheet class usando namespaces
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Conditional;
@@ -59,6 +58,7 @@ $currentContentRow = 10;
 
   while ($regd = $rsptac->fetch_object()) {
 
+
 		    $spreadsheet->getActiveSheet()
 				->setCellValue('A'.$currentContentRow, $currentContentRow-9)
 				->setCellValue('B'.$currentContentRow, $regd->fecha)
@@ -74,9 +74,11 @@ $currentContentRow = 10;
 				->setCellValue('L'.$currentContentRow, $regd->monto_total);
         $currentContentRow++;
 
+
+
     }
 
-    $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
+    // $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
 
 
 
