@@ -24,8 +24,11 @@ function init(){
 
 	});
 
+	// setparamsexcel();
+
 	fechanow();
 	listar();
+
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
 }
@@ -77,7 +80,8 @@ function listar()
 			            className: 'btn btn-default btnAddJob',
 			            titleAttr: 'Reporte de Consolidado de Cuentas',
 			            action: function (dt, node, config) {
-											window.location = "../reportes/RE_contabilidad_ctasgrles.php";
+											var uri = "../reportes/RE_contabilidad_ctasgrles.php?fecha_inicio_excel="+fecha_inicio+"&fecha_fin_excel="+fecha_fin;
+											window.location = uri;
 			            	}
         				},
 		            'csvHtml5',
@@ -105,8 +109,28 @@ function listar()
 		"iDisplayLength": 15,//Paginación
 	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
+
 }
 
+
+/*---------------------------------*
+| FUNCION PARA LISTAR S_GRAL_CTAS  |
+.---------------------------------*/
+// function setparamsexcel()
+// {
+// 	var fecha_iniciox = $("#fecha_inicio").val();
+// 	var fecha_finx = $("#fecha_fin").val();
+//
+// 	$.ajax({
+// 					url: '../reportes/RE_contabilidad_ctasgrles.php',
+// 					method: "POST",
+// 					data:{a: '2019-06-01',b: '2019-06-29'},
+// 					success: function(datos) {
+// 						// console.log('bien');
+// 					}
+//
+// 				});
+// }
 
 /*--------------------------------------------*
 | FUNCION JS PARA EDITAR DATOS DEL COMPROMISO |

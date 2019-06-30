@@ -165,7 +165,7 @@ switch ($_GET["op"]){
 							' <button data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
 							:''))),
 		 				"1"=>$reg->fecha,
-						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="idproveedores">' .$reg->idproveedores. '</div>',
+						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="idproveedores">' .$reg->tipo_registro. '</div>',
 		 				"3"=>$reg->programa,
 		 				"4"=>$reg->proveedor,
 						"5"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="numfactura">' .$reg->numfactura. '</div>',
