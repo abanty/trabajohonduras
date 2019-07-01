@@ -40,6 +40,7 @@ $styleArraytop = [
     ],
 ];
 
+$spreadsheet->getActiveSheet()->getRowDimension(1)->setRowHeight(-1);
 $spreadsheet->getActiveSheet()->getStyle('A9:L9')->applyFromArray($styleArraybotton);
 $spreadsheet->getActiveSheet()->getStyle('A7:L7')->applyFromArray($styleArraytop);
 
@@ -85,6 +86,7 @@ $currentContentRow = 10;
 				->setCellValue('K'.$currentContentRow, $regd->objeto_gastp)
 				->setCellValue('L'.$currentContentRow, $regd->monto_total);
         $currentContentRow++;
+
     }
 
     // $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
