@@ -11,9 +11,9 @@ Class Consultas
 	}
 
 
-	/*----------------------------------------------------*
-	| FUNCION PARA LISTAR REPORTE DE CONSOLIDADOS PAGADOS |
-	.----------------------------------------------------*/
+  /*----------------------------------------------------*
+  | FUNCION PARA LISTAR REPORTE DE CONSOLIDADOS PAGADOS |
+  .----------------------------------------------------*/
 	public function consolidado_ctas_generales($fecha_inicio,$fecha_fin)
 	{
 		$sql="SELECT a.idadministrar_ordenes as num, a.fecha_hora as fecha, u.nombreuuss as unidad_superficie,
@@ -23,7 +23,7 @@ Class Consultas
 		a.num_comprobante as cp,
 		(SELECT num_orden FROM administrar_ordenes
 		 WHERE tipo_documento = 'Acuerdo' and idadministrar_ordenes = a.idadministrar_ordenes) as acdo,
-		pg.nombrep as unidadbase, c.numero_transferencia as num_trans, GROUP_CONCAT(pd.codigo SEPARATOR ', ') as objeto_gastp,
+		pg.nombrep as unidadbase, c.numero_transferencia as num_trans, GROUP_CONCAT(DISTINCT pd.codigo SEPARATOR ', ') as objeto_gastp,
 		a.monto_total,a.total_neto as total FROM administrar_ordenes a
 		LEFT JOIN contabilidad c
 		ON c.idadministrar_ordenes = a.idadministrar_ordenes

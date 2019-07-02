@@ -59,19 +59,7 @@ $currentContentRow = 10;
         $html1 = '<b><u>'.strtoupper($regd->proveedor).'</u></b><b> : </b><p>'.strtoupper($regd->descripcion).'</p> ';
         $wizard = new HtmlHelper();
 
-         // $spreadsheet->getActiveSheet()->getColumnDimensionByColumn(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('F')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('G')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('H')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('I')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('K')->setAutoSize(true);
-         // $spreadsheet->getActiveSheet()->getColumnDimension('L')->setAutoSize(true);
-
+        $spreadsheet->getActiveSheet()->insertNewRowBefore($currentContentRow+1,1);
 		    $spreadsheet->getActiveSheet()
 				->setCellValue('A'.$currentContentRow, $currentContentRow-9)
 				->setCellValue('B'.$currentContentRow, $regd->fecha)
@@ -89,7 +77,7 @@ $currentContentRow = 10;
 
     }
 
-    // $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
+    $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     // header('Content-Type: application/vnd.ms-excel');
