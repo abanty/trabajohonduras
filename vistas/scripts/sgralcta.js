@@ -84,6 +84,15 @@ function listar()
 											window.location = uri;
 			            	}
         				},
+								{
+									text: '<i class="fas fa-file-excel" style="color:#337ab7;"></i> Reporte 2',
+									className: 'btn btn-default btnAddJob',
+									titleAttr: 'Reporte de Consolidado de Cuentas',
+									action: function (dt, node, config) {
+											var uri2 = "../reportes/RE_contabilidad_renglones.php";
+											window.location = uri2;
+										}
+								},
 		            'csvHtml5',
 		            'pdf'
 		        ],
