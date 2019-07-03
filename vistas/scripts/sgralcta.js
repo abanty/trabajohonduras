@@ -85,7 +85,11 @@ function listar()
 			            	}
         				},
 		            'csvHtml5',
-		            'pdf'
+								{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'TABLOID'
+            		}
 		        ],
 		  columnDefs: [
 	 	    				{ width: 20, targets: 0 },
