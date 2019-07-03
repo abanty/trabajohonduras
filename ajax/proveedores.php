@@ -4,8 +4,7 @@ require_once "../modelos/Proveedores.php"; // Las clases se nombran en mayúscul
 $proveedores=new Proveedores();
 
 $idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
-
-$casa_comercial=isset($_POST["casa_comercial"])? limpiarCadena($_POST["casa_comercial"]):"";
+$casa_comercial=isset($_POST["casa_comercial"])? htmlspecialchars_decode(limpiarCadena($_POST["casa_comercial"])):"";
 $rtn=isset($_POST["rtn"])? limpiarCadena($_POST["rtn"]):"";
 $nombre_banco=isset($_POST["nombre_banco"])? limpiarCadena($_POST["nombre_banco"]):"";
 $num_cuenta=isset($_POST["num_cuenta"])? limpiarCadena($_POST["num_cuenta"]):"";
