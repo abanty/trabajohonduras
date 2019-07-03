@@ -27,70 +27,172 @@ div.dataTables_wrapper div.dataTables_filter {
         <section class="content">
             <div class="row">
               <div class="col-md-12">
-                  <div class="box box-primary">
-                    <div class="box-header with-border">
-                          <h1 class="box-title"><i style="color:green; font-size:25px;" class="fas fa-file-excel"></i> CONSOLIDADO GENERAL DE CTAS </h1>
-                        <div class="box-tools pull-right">
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- centro -->
-                    <div class="panel-body table-responsive" id="listadoregistros">
-                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                          <label>Fecha Inicio</label>
-                          <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
-                        </div>
-                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                          <label>Fecha Fin</label>
-                          <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
-                        </div>
-                        <!-- <div class="form-inline col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                          <label>PROGRAMA</label>
-                          <select name="idcliente" id="idcliente" class="form-control selectpicker" data-live-search="true" required>
-                          </select>
-                          <button class="btn btn-success" onclick="listar()">Mostrar</button>
-                        </div> -->
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
-                          <thead style="background-color:#d2d6de">
-                            <th>N°</th>
-                            <th>Fecha</th>
-                            <th>Unidad Superficie</th>
-                            <th>Cheque</th>
-                            <th>Descripcion</th>
-                            <th>O/C</th>
-                            <th>C/P</th>
-                            <th>Acdo</th>
-                            <th>Programa</th>
-                            <th>No. Transferencia</th>
-                            <th>Objeto Gasto</th>
-                            <th>Total</th>
-                            <!-- <th>Estado</th> -->
-                          </thead>
-                          <tbody>
-                          </tbody>
-                          <tfoot style="background-color:#d2d6de">
-                            <th>N°</th>
-                            <th>Fecha</th>
-                            <th>Unidad Superficie</th>
-                            <th>Cheque</th>
-                            <th>Descripcion</th>
-                            <th>O/C</th>
-                            <th>C/P</th>
-                            <th>Acdo</th>
-                            <th>Programa</th>
-                            <th>No. Transferencia</th>
-                            <th>Objeto Gasto</th>
-                            <th>Total</th>
-                            <!-- <th>Estado</th> -->
-                          </tfoot>
-                        </table>
-                    </div>
 
-                    <!--Fin centro -->
-                  </div><!-- /.box -->
-              </div><!-- /.col -->
-          </div><!-- /.row -->
-      </section><!-- /.content -->
+                <div class="nav-tabs-custom">
+                  <br>
+                  <ul class="nav nav-tabs pull-right">
+                    <li><a href="#reporteseis" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 6</a></li>
+                    <li><a href="#reportecinco" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 5</a></li>
+                    <li><a href="#reportecuatro" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 4</a></li>
+                    <li><a href="#reportetres" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 3</a></li>
+                    <li><a href="#reporte_renglon" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Renglones</a></li>
+                    <li class="active"><a href="#report_grles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Ctas Grales</a></li>
+
+                    <li class="pull-left header"><i class="fas fa-file-excel" style="color:green;"></i> Reportes de Contabilidad</li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="report_grles">
+
+                        <div class="panel-body table-responsive" id="listadoregistros">
+                            <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                              <label>Fecha Inicio</label>
+                              <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
+                            </div>
+                            <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                              <label>Fecha Fin</label>
+                              <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                            </div>
+
+                            <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
+                              <thead style="background-color:#d2d6de">
+                                <th>N°</th>
+                                <th>Fecha</th>
+                                <th>Unidad Superficie</th>
+                                <th>Cheque</th>
+                                <th>Descripcion</th>
+                                <th>O/C</th>
+                                <th>C/P</th>
+                                <th>Acdo</th>
+                                <th>Programa</th>
+                                <th>No. Transferencia</th>
+                                <th>Objeto Gasto</th>
+                                <th>Total</th>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                              <tfoot style="background-color:#d2d6de">
+                                <th>N°</th>
+                                <th>Fecha</th>
+                                <th>Unidad Superficie</th>
+                                <th>Cheque</th>
+                                <th>Descripcion</th>
+                                <th>O/C</th>
+                                <th>C/P</th>
+                                <th>Acdo</th>
+                                <th>Programa</th>
+                                <th>No. Transferencia</th>
+                                <th>Objeto Gasto</th>
+                                <th>Total</th>
+                              </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="reporte_renglon">
+                      <div class="panel-body table-responsive" id="listadoregistros_renglon">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label>Fecha Inicio</label>
+                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
+                          </div>
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label>Fecha Fin</label>
+                            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                          </div>
+
+                          <table id="tbllistado_renglon" class="table table-striped table-bordered table-condensed table-hover">
+                            <thead style="background-color:#d2d6de">
+                              <th>Renglon</th>
+                              <th>Concepto</th>
+                              <th>Enero</th>
+                              <th>Febrero</th>
+                              <th>Marzo</th>
+                              <th>Abril</th>
+                              <th>Mayo</th>
+                              <th>Junio</th>
+                              <th>Julio</th>
+                              <th>Agosto</th>
+                              <th>Septiembre</th>
+                              <th>Octumbre</th>
+                              <th>Noviembre</th>
+                              <th>Diciembre</th>
+                              <th>Acumulado</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot style="background-color:#d2d6de">
+                              <th>Renglon</th>
+                              <th>Concepto</th>
+                              <th>Enero</th>
+                              <th>Febrero</th>
+                              <th>Marzo</th>
+                              <th>Abril</th>
+                              <th>Mayo</th>
+                              <th>Junio</th>
+                              <th>Julio</th>
+                              <th>Agosto</th>
+                              <th>Septiembre</th>
+                              <th>Octumbre</th>
+                              <th>Noviembre</th>
+                              <th>Diciembre</th>
+                              <th>Acumulado</th>
+                            </tfoot>
+                          </table>
+                      </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_3-2">
+                      <div class="panel-body table-responsive" id="listadoregistros">
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label>Fecha Inicio</label>
+                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
+                          </div>
+                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label>Fecha Fin</label>
+                            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                          </div>
+
+                          <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
+                            <thead style="background-color:#d2d6de">
+                              <th>N°</th>
+                              <th>Fecha</th>
+                              <th>Unidad Superficie</th>
+                              <th>Cheque</th>
+                              <th>Descripcion</th>
+                              <th>O/C</th>
+                              <th>C/P</th>
+                              <th>Acdo</th>
+                              <th>Programa</th>
+                              <th>No. Transferencia</th>
+                              <th>Objeto Gasto</th>
+                              <th>Total</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot style="background-color:#d2d6de">
+                              <th>N°</th>
+                              <th>Fecha</th>
+                              <th>Unidad Superficie</th>
+                              <th>Cheque</th>
+                              <th>Descripcion</th>
+                              <th>O/C</th>
+                              <th>C/P</th>
+                              <th>Acdo</th>
+                              <th>Programa</th>
+                              <th>No. Transferencia</th>
+                              <th>Objeto Gasto</th>
+                              <th>Total</th>
+                            </tfoot>
+                          </table>
+                      </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                  </div>
+                  <!-- /.tab-content -->
+                </div>
+
+              </div>
+          </div>
+      </section>
 
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->

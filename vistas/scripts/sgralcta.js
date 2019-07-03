@@ -125,6 +125,70 @@ function listar()
 
 }
 
+/*---------------------------------*
+| FUNCION PARA LISTAR S_GRAL_CTAS  |
+.---------------------------------*/
+function listar_renglones()
+{
+	var fecha_inicio = $("#fecha_inicio").val();
+	var fecha_fin = $("#fecha_fin").val();
+
+	tabla=$('#tbllistado').dataTable(
+	{
+		"aProcessing": true,//Activamos el procesamiento del datatables
+	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
+	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
+	    buttons: [
+		            'copyHtml5',
+								{
+			            text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+			            className: 'btn btn-default btnAddJob',
+			            titleAttr: 'Reporte de Consolidado de Cuentas',
+			            action: function (dt, node, config) {
+											var uri = "../reportes/RE_contabilidad_ctasgrles.php?fecha_inicio_excel="+fecha_inicio+"&fecha_fin_excel="+fecha_fin;
+											window.location = uri;
+			            	}
+        				},
+								{
+									text: '<i class="fas fa-file-excel" style="color:#337ab7;"></i> Reporte 2',
+									className: 'btn btn-default btnAddJob',
+									titleAttr: 'Reporte de Consolidado de Cuentas',
+									action: function (dt, node, config) {
+											var uri2 = "../reportes/RE_contabilidad_renglones.php";
+											window.location = uri2;
+										}
+								},
+		            'csvHtml5',
+								{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'TABLOID'
+            		}
+		        ],
+		  columnDefs: [
+	 	    				{ width: 20, targets: 0 },
+	 	            { width: 80, targets: 1 },
+								{ width: 130, targets: 2 },
+								{ width: 90, targets: 3 },
+								{ width: 120, targets: 9 },
+								{ width: 100, targets: 10 }
+	 					      ],
+		"ajax":
+				{
+					url: '../ajax/sgralcta.php?op=excel_ctas_generales',
+					data:{fecha_inicio: fecha_inicio,fecha_fin: fecha_fin},
+					type : "get",
+					dataType : "json",
+					error: function(e){
+						console.log(e.responseText);
+					}
+				},
+		"bDestroy": true,
+		"iDisplayLength": 15,//Paginación
+	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
+	}).DataTable();
+
+}
 
 /*---------------------------------*
 | FUNCION PARA LISTAR S_GRAL_CTAS  |
