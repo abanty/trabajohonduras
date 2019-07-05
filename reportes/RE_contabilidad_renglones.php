@@ -47,10 +47,10 @@ $spreadsheet->getActiveSheet()->getStyle('A7:O7')->applyFromArray($styleArraytop
 require_once "../modelos/Consultas.php";
 $excel = new Consultas();
 
-// $fecha_inicio = $_GET['fecha_inicio_excel'];
+$año = $_GET['año'];
 // $fecha_fin = $_GET['fecha_fin_excel'];
 // $fecha_inicio,$fecha_fin
-$rsptac = $excel->contabilidad_renglones();
+$rsptac = $excel->contabilidad_renglones($año);
 
 $contentStartRow = 9;
 $currentContentRow = 9;

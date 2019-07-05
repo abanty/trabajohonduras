@@ -91,15 +91,11 @@ div.dataTables_wrapper div.dataTables_filter {
                     <div class="tab-pane" id="reporte_renglon">
                       <div class="panel-body table-responsive" id="listadoregistros_renglon">
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Fecha Inicio</label>
-                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
-                          </div>
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Fecha Fin</label>
-                            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                            <label>Filtro por Años:</label>
+                            <input type="number" class="form-control" onchange="listar_excel_renglones()" onkeyup="listar_excel_renglones()" name="año" id="año" min="1900" max="2099" step="1" value="2018" />
                           </div>
 
-                          <table id="tbllistado_renglon" class="table table-striped table-bordered table-condensed table-hover">
+                          <table id="tbllistado_renglones" class="table table-striped table-bordered table-condensed table-hover">
                             <thead style="background-color:#d2d6de">
                               <th>Renglon</th>
                               <th>Concepto</th>

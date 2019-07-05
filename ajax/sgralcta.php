@@ -40,7 +40,7 @@ switch ($_GET["op"]){
 					"7"=>$reg->acdo,
 					"8"=>$reg->unidadbase,
 					"9"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="numero_transferencia">' .$reg->num_trans. '</div>',
-	 				"10"=>$reg->objeto_gastp,
+	 				"10"=>$reg->objeto_gasto,
 					"11"=>$reg->monto_total
 	 				);
 	 		}
@@ -55,32 +55,28 @@ switch ($_GET["op"]){
 
 
 		case 'excel_renglones':
-			$fecha_inicio=$_REQUEST["fecha_inicio"];
-			$fecha_fin=$_REQUEST["fecha_fin"];
-
-			$rspta=$consulta->consolidado_ctas_generales($fecha_inicio,$fecha_fin);
+			$año=$_REQUEST["año"];
+			$rspta=$consulta->contabilidad_renglones($año);
 			//Vamos a declarar un array
 			$data= Array();
-
 			while ($reg=$rspta->fetch_object()){
 
-				($reg->proveedor == "-")? $newgetprovider = ''.$dospuntos = '' :$newgetprovider = $reg->proveedor.$dospuntos = ":";;
-				($reg->cheque == '0000000')||($reg->cheque == '')? $reg->cheque = '<span style="color:red; font-size:12px;">NO ASIGNADO</span>':$reg->cheque = '<span style="color:black; font-size:14px;">'.$reg->cheque.'</span>';
-				($reg->num_trans == '0000000')||($reg->num_trans == '')? $reg->num_trans = '<span style="color:red; font-size:12px;">NO ASIGNADO</span>':$reg->num_trans = '<span style="color:black; font-size:14px;">'.$reg->num_trans.'</span>';
-
 				$data[]=array(
-					"0"=>$reg->num,
-					"1"=>$reg->fecha,
-					"2"=>$reg->unidad_superficie,
-					"3"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="tipo_pago">' .$reg->cheque. '</div>',
-					"4"=>'<span style="font-weight:bold; text-decoration: underline;">'.$newgetprovider.'</span> '.$dospuntos.' '.$reg->descripcion,
-					"5"=>$reg->oc,
-					"6"=>$reg->cp,
-					"7"=>$reg->acdo,
-					"8"=>$reg->unidadbase,
-					"9"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="numero_transferencia">' .$reg->num_trans. '</div>',
-					"10"=>$reg->objeto_gastp,
-					"11"=>$reg->monto_total
+					"0"=>$reg->RENGLON,
+					"1"=>$reg->CONCEPTO,
+					"2"=>$reg->ENERO,
+					"3"=>$reg->FEBRERO,
+					"4"=>$reg->MARZO,
+					"5"=>$reg->ABRIL,
+					"6"=>$reg->MAYO,
+					"7"=>$reg->JUNIO,
+					"8"=>$reg->JULIO,
+					"9"=>$reg->AGOSTO,
+					"10"=>$reg->SEPTIEMBRE,
+					"11"=>$reg->OCTUBRE,
+					"12"=>$reg->NOVIEMBRE,
+					"13"=>$reg->DICIEMBRE,
+					"14"=>$reg->ACUMULADO
 					);
 			}
 			$results = array(

@@ -85,7 +85,9 @@ Class Consultas
 		(SELECT SUM(deo.precio_unitario*deo.cantidad)
 		FROM detalle_orden deo inner join administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
 		WHERE MONTH(aor.fecha_hora) = 12 AND YEAR(aor.fecha_hora) = '$año' AND deo.idpresupuesto_disponible = de.idpresupuesto_disponible) AS 'DICIEMBRE',
-		SUM((de.cantidad*de.precio_unitario)) AS 'S.ACUMULADO'
+		(SELECT SUM(deo.precio_unitario*deo.cantidad)
+		FROM detalle_orden deo inner join administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+		WHERE YEAR(aor.fecha_hora) = '$año' AND deo.idpresupuesto_disponible = de.idpresupuesto_disponible) AS 'ACUMULADO'		
 		FROM detalle_orden de
 		RIGHT JOIN presupuesto_disponible pd
 		ON pd.idpresupuesto_disponible = de.idpresupuesto_disponible

@@ -28,6 +28,7 @@ function init(){
 
 	fechanow();
 	listar();
+	listar_excel_renglones();
 
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
@@ -84,15 +85,6 @@ function listar()
 											window.location = uri;
 			            	}
         				},
-								{
-									text: '<i class="fas fa-file-excel" style="color:#337ab7;"></i> Reporte 2',
-									className: 'btn btn-default btnAddJob',
-									titleAttr: 'Reporte de Consolidado de Cuentas',
-									action: function (dt, node, config) {
-											var uri2 = "../reportes/RE_contabilidad_renglones.php";
-											window.location = uri2;
-										}
-								},
 		            'csvHtml5',
 								{
                 extend: 'pdfHtml5',
@@ -128,12 +120,11 @@ function listar()
 /*---------------------------------*
 | FUNCION PARA LISTAR S_GRAL_CTAS  |
 .---------------------------------*/
-function listar_renglones()
+function listar_excel_renglones()
 {
-	var fecha_inicio = $("#fecha_inicio").val();
-	var fecha_fin = $("#fecha_fin").val();
+		var año = $("#año").val();
 
-	tabla=$('#tbllistado').dataTable(
+	tabla=$('#tbllistado_renglones').dataTable(
 	{
 		"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
@@ -141,20 +132,11 @@ function listar_renglones()
 	    buttons: [
 		            'copyHtml5',
 								{
-			            text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
-			            className: 'btn btn-default btnAddJob',
-			            titleAttr: 'Reporte de Consolidado de Cuentas',
-			            action: function (dt, node, config) {
-											var uri = "../reportes/RE_contabilidad_ctasgrles.php?fecha_inicio_excel="+fecha_inicio+"&fecha_fin_excel="+fecha_fin;
-											window.location = uri;
-			            	}
-        				},
-								{
-									text: '<i class="fas fa-file-excel" style="color:#337ab7;"></i> Reporte 2',
+									text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
 									className: 'btn btn-default btnAddJob',
 									titleAttr: 'Reporte de Consolidado de Cuentas',
 									action: function (dt, node, config) {
-											var uri2 = "../reportes/RE_contabilidad_renglones.php";
+											var uri2 = "../reportes/RE_contabilidad_renglones.php?año="+año;
 											window.location = uri2;
 										}
 								},
@@ -165,23 +147,23 @@ function listar_renglones()
                 pageSize: 'TABLOID'
             		}
 		        ],
-		  columnDefs: [
-	 	    				{ width: 20, targets: 0 },
-	 	            { width: 80, targets: 1 },
-								{ width: 130, targets: 2 },
-								{ width: 90, targets: 3 },
-								{ width: 120, targets: 9 },
-								{ width: 100, targets: 10 }
-	 					      ],
+		  // columnDefs: [
+	 	  //   				{ width: 20, targets: 0 },
+	 	  //           { width: 80, targets: 1 },
+			// 					{ width: 130, targets: 2 },
+			// 					{ width: 90, targets: 3 },
+			// 					{ width: 120, targets: 9 },
+			// 					{ width: 100, targets: 10 }
+	 		// 			      ],
 		"ajax":
 				{
-					url: '../ajax/sgralcta.php?op=excel_ctas_generales',
-					data:{fecha_inicio: fecha_inicio,fecha_fin: fecha_fin},
+					url: '../ajax/sgralcta.php?op=excel_renglones',
+					data:{año: año},
 					type : "get",
-					dataType : "json",
+					dataType : "json",			
 					error: function(e){
-						console.log(e.responseText);
-					}
+            console.log(e.responseText);
+       		}
 				},
 		"bDestroy": true,
 		"iDisplayLength": 15,//Paginación
