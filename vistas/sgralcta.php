@@ -92,7 +92,7 @@ div.dataTables_wrapper div.dataTables_filter {
                       <div class="panel-body table-responsive" id="listadoregistros_renglon">
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label>Filtro por Años:</label>
-                            <input type="number" class="form-control" onchange="listar_excel_renglones()" onkeyup="listar_excel_renglones()" name="año" id="año" min="1900" max="2099" step="1" value="2018" />
+                            <input type="number" class="form-control" name="año" id="año" min="1900" max="2099" step="1" value="2018" />
                           </div>
 
                           <table id="tbllistado_renglones" class="table table-striped table-bordered table-condensed table-hover">
@@ -202,6 +202,7 @@ else
 require 'footer.php';
 ?>
 <script type="text/javascript" src="scripts/sgralcta.js"></script>
+<link rel="stylesheet" href="../public/css/cssforordens.css">
 <?php
 }
 ob_end_flush();

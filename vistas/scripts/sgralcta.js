@@ -3,6 +3,7 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
+
 	$(document).on('focusout', '.update', function() {
 
 	var id = $(this).data("id");
@@ -32,6 +33,8 @@ function init(){
 
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
+	$("#año").change(listar_excel_renglones);
+
 }
 
 
@@ -117,16 +120,18 @@ function listar()
 
 }
 
+
 /*---------------------------------*
 | FUNCION PARA LISTAR S_GRAL_CTAS  |
 .---------------------------------*/
 function listar_excel_renglones()
 {
-		var año = $("#año").val();
+
+	var año = $("#año").val();
 
 	tabla=$('#tbllistado_renglones').dataTable(
 	{
-		"aProcessing": true,//Activamos el procesamiento del datatables
+			"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
 	    buttons: [
@@ -147,30 +152,37 @@ function listar_excel_renglones()
                 pageSize: 'TABLOID'
             		}
 		        ],
-		  // columnDefs: [
-	 	  //   				{ width: 20, targets: 0 },
-	 	  //           { width: 80, targets: 1 },
-			// 					{ width: 130, targets: 2 },
-			// 					{ width: 90, targets: 3 },
-			// 					{ width: 120, targets: 9 },
-			// 					{ width: 100, targets: 10 }
-	 		// 			      ],
+
 		"ajax":
 				{
 					url: '../ajax/sgralcta.php?op=excel_renglones',
 					data:{año: año},
 					type : "get",
-					dataType : "json",			
+					dataType : "json",
 					error: function(e){
             console.log(e.responseText);
        		}
 				},
+			// 	"initComplete": function(settings, json) {
+			// 		if (año != '2018') {
+			// 			 // $("#preloader").show().delay(500).fadeOut();
+			// 			 $(window).on('load', function () {
+			// 					 setTimeout(function () {
+			// 				 $(".loader-page").css({visibility:"hidden",opacity:"0"})
+			// 			 }, 300);
+			//
+			// 			 });
+			// 		}
+		  // },
 		"bDestroy": true,
 		"iDisplayLength": 15,//Paginación
 	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 
+
 }
+
+
 
 /*---------------------------------*
 | FUNCION PARA LISTAR S_GRAL_CTAS  |

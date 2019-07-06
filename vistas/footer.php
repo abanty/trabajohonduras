@@ -28,6 +28,8 @@
     <script src="../public/js/waves.js"></script>
     <!-- DATATABLES -->
     <script src="../public/datatables/jquery.dataTables.min.js"></script>
+
+
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 
     <script src="../public/datatables/dataTables.buttons.min.js"></script>
@@ -38,13 +40,11 @@
 <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
     <script src="../public/raphael/raphael.min.js"></script>
     <script src="../public//morris.js/morris.min.js"></script>
-
     <script src="../public/datatables/buttons.html5.min.js"></script>
     <script src="../public/datatables/buttons.colVis.min.js"></script>
     <script src="../public/datatables/jszip.min.js"></script>
     <script src="../public/datatables/pdfmake.min.js"></script>
     <script src="../public/datatables/vfs_fonts.js"></script>
-
     <script src="../public/js/bootbox.min.js"></script>
       <script src="../public/js/notify.min.js"></script>
     <script src="../public/js/bootstrap-select.min.js"></script>
