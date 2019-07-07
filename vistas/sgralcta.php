@@ -22,6 +22,7 @@ div.dataTables_wrapper div.dataTables_filter {
 </style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
+
       <div class="content-wrapper">
         <!-- Main content -->
         <section class="content">
@@ -88,6 +89,7 @@ div.dataTables_wrapper div.dataTables_filter {
                         </div>
                     </div>
                     <!-- /.tab-pane -->
+
                     <div class="tab-pane" id="reporte_renglon">
                       <div class="panel-body table-responsive" id="listadoregistros_renglon">
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -113,7 +115,7 @@ div.dataTables_wrapper div.dataTables_filter {
                               <th>Diciembre</th>
                               <th>Acumulado</th>
                             </thead>
-                            <tbody>
+                            <tbody>                            
                             </tbody>
                             <tfoot style="background-color:#d2d6de">
                               <th>Renglon</th>
@@ -163,6 +165,7 @@ div.dataTables_wrapper div.dataTables_filter {
                               <th>Total</th>
                             </thead>
                             <tbody>
+
                             </tbody>
                             <tfoot style="background-color:#d2d6de">
                               <th>N°</th>
@@ -201,8 +204,10 @@ else
 
 require 'footer.php';
 ?>
+
 <script type="text/javascript" src="scripts/sgralcta.js"></script>
 <link rel="stylesheet" href="../public/css/cssforordens.css">
+
 <?php
 }
 ob_end_flush();

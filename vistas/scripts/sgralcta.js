@@ -3,7 +3,6 @@ var tabla;
 //Función que se ejecuta al inicio
 function init(){
 
-
 	$(document).on('focusout', '.update', function() {
 
 	var id = $(this).data("id");
@@ -25,8 +24,6 @@ function init(){
 
 	});
 
-	// setparamsexcel();
-
 	fechanow();
 	listar();
 	listar_excel_renglones();
@@ -34,7 +31,6 @@ function init(){
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
 	$("#año").change(listar_excel_renglones);
-
 }
 
 
@@ -74,7 +70,7 @@ function listar()
 
 	tabla=$('#tbllistado').dataTable(
 	{
-		"aProcessing": true,//Activamos el procesamiento del datatables
+	  	"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
 	    buttons: [
@@ -126,82 +122,54 @@ function listar()
 .---------------------------------*/
 function listar_excel_renglones()
 {
+	 var año = $("#año").val();
 
-	var año = $("#año").val();
+	 tabla=$('#tbllistado_renglones').dataTable(
 
-	tabla=$('#tbllistado_renglones').dataTable(
-	{
-			"aProcessing": true,//Activamos el procesamiento del datatables
-	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
-	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
-	    buttons: [
-		            'copyHtml5',
-								{
-									text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
-									className: 'btn btn-default btnAddJob',
-									titleAttr: 'Reporte de Consolidado de Cuentas',
-									action: function (dt, node, config) {
-											var uri2 = "../reportes/RE_contabilidad_renglones.php?año="+año;
-											window.location = uri2;
-										}
-								},
-		            'csvHtml5',
-								{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'TABLOID'
-            		}
-		        ],
-
-		"ajax":
-				{
-					url: '../ajax/sgralcta.php?op=excel_renglones',
-					data:{año: año},
-					type : "get",
-					dataType : "json",
-					error: function(e){
-            console.log(e.responseText);
-       		}
-				},
-			// 	"initComplete": function(settings, json) {
-			// 		if (año != '2018') {
-			// 			 // $("#preloader").show().delay(500).fadeOut();
-			// 			 $(window).on('load', function () {
-			// 					 setTimeout(function () {
-			// 				 $(".loader-page").css({visibility:"hidden",opacity:"0"})
-			// 			 }, 300);
-			//
-			// 			 });
-			// 		}
-		  // },
-		"bDestroy": true,
-		"iDisplayLength": 15,//Paginación
-	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
-	}).DataTable();
-
+	 {
+	 		"aProcessing": true,
+	 		"aServerSide": true,
+	 		"deferRender": true,
+			  "language": {
+					'loadingRecords': '<i class="fas fa-circle-notch fa-spin fa-1x fa-fw"></i><br>&nbsp;&nbsp;Cargando...s'
+			 	},
+	 		dom: 'Bfrtip',
+	 		buttons: [
+	 							'copyHtml5',
+	 							{
+	 								text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+	 								className: 'btn btn-default btnAddJob',
+	 								titleAttr: 'Reporte de Consolidado de Cuentas',
+	 								action: function (dt, node, config) {
+	 										var uri2 = "../reportes/RE_contabilidad_renglones.php?año="+año;
+	 										window.location = uri2;
+	 									}
+	 							},
+	 							'csvHtml5',
+	 							{
+	 							extend: 'pdfHtml5',
+	 							orientation: 'landscape',
+	 							pageSize: 'TABLOID'
+	 							}
+	 					],
+	 	"ajax":
+	 			{
+	 				url: '../ajax/sgralcta.php?op=excel_renglones',
+	 				data:{año: año},
+	 				type : "get",
+	 				dataType : "json",
+	 				error: function(e){
+	 					console.log(e.responseText);
+	 				}
+	 			},
+				"deferRender": true,
+	 			// "initComplete": function(settings, json) {},
+	 			"bDestroy": true,
+	 			"iDisplayLength": 10,//Paginación
+	 			"order": [[ 0, "asc" ]]//Ordenar (columna,orden)
+	 }).DataTable();
 
 }
-
-
-
-/*---------------------------------*
-| FUNCION PARA LISTAR S_GRAL_CTAS  |
-.---------------------------------*/
-// function setparamsexcel()
-// {
-// 	var fecha_iniciox = $("#fecha_inicio").val();
-// 	var fecha_finx = $("#fecha_fin").val();
-//
-// 	$.ajax({
-// 					url: '../reportes/RE_contabilidad_ctasgrles.php',
-// 					method: "POST",
-// 					data:{a: '2019-06-01',b: '2019-06-29'},
-// 					success: function(datos) {
-// 						// console.log('bien');
-// 					}
-//
-// 				});
-// }
 
 /*--------------------------------------------*
 | FUNCION JS PARA EDITAR DATOS DEL COMPROMISO |
