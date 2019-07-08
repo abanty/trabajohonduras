@@ -42,10 +42,9 @@ Class Consultas
 	}
 
 
-
-	/*----------------------------------------------------*
-	| FUNCION PARA LISTAR REPORTE DE CONSOLIDADOS PAGADOS |
-	.----------------------------------------------------*/
+	/*----------------------------------------------------------*
+	| FUNCION PARA LISTAR REPORTE DE CONSOLIDADOS POR RENGLONES |
+	.----------------------------------------------------------*/
 	public function contabilidad_renglones($año)
 	{
 		$sql="SELECT pd.codigo AS 'RENGLON',pd.nombre_objeto AS 'CONCEPTO',
@@ -87,7 +86,7 @@ Class Consultas
 		WHERE MONTH(aor.fecha_hora) = 12 AND YEAR(aor.fecha_hora) = '$año' AND deo.idpresupuesto_disponible = de.idpresupuesto_disponible) AS 'DICIEMBRE',
 		(SELECT SUM(deo.precio_unitario*deo.cantidad)
 		FROM detalle_orden deo inner join administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
-		WHERE YEAR(aor.fecha_hora) = '$año' AND deo.idpresupuesto_disponible = de.idpresupuesto_disponible) AS 'ACUMULADO'		
+		WHERE YEAR(aor.fecha_hora) = '$año' AND deo.idpresupuesto_disponible = de.idpresupuesto_disponible) AS 'ACUMULADO'
 		FROM detalle_orden de
 		RIGHT JOIN presupuesto_disponible pd
 		ON pd.idpresupuesto_disponible = de.idpresupuesto_disponible
@@ -96,10 +95,54 @@ Class Consultas
 	}
 
 
-
-
-
-
+	/*---------------------------------------------------------------*
+	| FUNCION PARA MOSTRAR REPORTE EXCEL CONSOLIDADO POR PROVEEDORES |
+	.---------------------------------------------------------------*/
+	public function contabilidad_programas($año)
+	{
+		$sql="SELECT  pg.nombrep as 'PROGRAMA',
+		(SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 1 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'ENERO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 2 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'FEBRERO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 3 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'MARZO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 4 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'ABRIL',
+				(SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 5 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'MAYO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 6 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'JUNIO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 7 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'JULIO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 8 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'AGOSTO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 9 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'SEPTIEMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 10 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'OCTUMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 11 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'NOVIEMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 12 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'DICIEMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'ACUMULADO'
+				FROM programa pg";
+				return ejecutarConsulta($sql);
+	}
 
 
 	/*----------------------------------------------------*
