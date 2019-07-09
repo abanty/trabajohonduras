@@ -222,7 +222,7 @@ function listar_excel_programas()
 				"deferRender": true,
 	 			// "initComplete": function(settings, json) {},
 	 			"bDestroy": true,
-	 			"iDisplayLength": 10,//Paginación
+	 			"iDisplayLength": 13,//Paginación
 	 			"order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	 }).DataTable();
 
