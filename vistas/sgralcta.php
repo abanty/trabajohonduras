@@ -43,7 +43,6 @@ div.dataTables_wrapper div.dataTables_filter {
                   </ul>
                   <div class="tab-content">
                     <div class="tab-pane active" id="report_grles">
-
                         <div class="panel-body table-responsive" id="listadoregistros">
                             <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                               <label>Fecha Inicio</label>
@@ -139,13 +138,13 @@ div.dataTables_wrapper div.dataTables_filter {
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="reporte_programa">
-                      <div class="panel-body table-responsive" id="listadoregistros_renglon">
+                      <div class="panel-body table-responsive" id="listadoregistros_programa">
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <label>Filtro por Años:</label>
-                            <input type="number" class="form-control" name="año2" id="año2" min="1900" max="2099" step="1" value="2018" />
+                            <input type="number" class="form-control" name="añopro" id="añopro" min="1900" max="2099" step="1" value="2018" />
                           </div>
 
-                          <table id="tbllistado_programas" class="table table-striped table-bordered table-condensed table-hover" style="widht:100%;">
+                          <table id="tbllistado_programas" class="table table-striped table-bordered table-condensed table-hover" style="width:100%;">
                              <thead style="background-color:#d2d6de">
                               <th>Programa</th>
                               <th>Enero</th>

@@ -32,7 +32,7 @@ function init(){
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
 	$("#año").change(listar_excel_renglones);
-	$("#año2").change(listar_excel_programas);
+	$("#añopro").change(listar_excel_programas);
 }
 
 
@@ -179,7 +179,7 @@ function listar_excel_renglones()
 .------------------------------------------------*/
 function listar_excel_programas()
 {
-	 var año2 = $("#año2").val();
+	 var añox = $("#añopro").val();
 
 	 tabla=$('#tbllistado_programas').dataTable(
 
@@ -212,7 +212,7 @@ function listar_excel_programas()
 	 	"ajax":
 	 			{
 	 				url: '../ajax/sgralcta.php?op=excel_programas',
-	 				data:{año: año},
+	 				data:{añopro: añox},
 	 				type : "get",
 	 				dataType : "json",
 	 				error: function(e){

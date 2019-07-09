@@ -89,7 +89,7 @@ switch ($_GET["op"]){
 		break;
 
 				case 'excel_programas':
-					$año2=$_REQUEST["año2"];
+					$año2=$_REQUEST["añopro"];
 					$rspta=$consulta->contabilidad_programas($año2);
 					//Vamos a declarar un array
 					$data= Array();
