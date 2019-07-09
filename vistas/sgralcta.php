@@ -35,9 +35,9 @@ div.dataTables_wrapper div.dataTables_filter {
                     <li><a href="#reporteseis" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 6</a></li>
                     <li><a href="#reportecinco" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 5</a></li>
                     <li><a href="#reportecuatro" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 4</a></li>
-                    <li><a href="#reporte_programa" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Consolidado por Programa</a></li>
-                    <li><a href="#reporte_renglon" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Consolidado por Renglones</a></li>
-                    <li class="active"><a href="#report_grles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Consolidados Ctas Grales</a></li>
+                    <li><a href="#reporte_programa" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte por Programa</a></li>
+                    <li><a href="#reporte_renglon" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte por Renglones</a></li>
+                    <li class="active"><a href="#report_grles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Ctas Grales</a></li>
 
                     <li class="pull-left header"><i class="fas fa-file-excel" style="color:green;"></i> Reportes de Contabilidad</li>
                   </ul>
