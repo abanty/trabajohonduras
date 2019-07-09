@@ -35,9 +35,9 @@ div.dataTables_wrapper div.dataTables_filter {
                     <li><a href="#reporteseis" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 6</a></li>
                     <li><a href="#reportecinco" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 5</a></li>
                     <li><a href="#reportecuatro" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 4</a></li>
-                    <li><a href="#reportetres" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 3</a></li>
-                    <li><a href="#reporte_renglon" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Renglones</a></li>
-                    <li class="active"><a href="#report_grles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Ctas Grales</a></li>
+                    <li><a href="#reporte_programa" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Consolidado por Programa</a></li>
+                    <li><a href="#reporte_renglon" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Consolidado por Renglones</a></li>
+                    <li class="active"><a href="#report_grles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Consolidados Ctas Grales</a></li>
 
                     <li class="pull-left header"><i class="fas fa-file-excel" style="color:green;"></i> Reportes de Contabilidad</li>
                   </ul>
@@ -115,7 +115,7 @@ div.dataTables_wrapper div.dataTables_filter {
                               <th>Diciembre</th>
                               <th>Acumulado</th>
                             </thead>
-                            <tbody>                            
+                            <tbody>
                             </tbody>
                             <tfoot style="background-color:#d2d6de">
                               <th>Renglon</th>
@@ -138,48 +138,47 @@ div.dataTables_wrapper div.dataTables_filter {
                       </div>
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_3-2">
-                      <div class="panel-body table-responsive" id="listadoregistros">
+                    <div class="tab-pane" id="reporte_programa">
+                      <div class="panel-body table-responsive" id="listadoregistros_renglon">
                           <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Fecha Inicio</label>
-                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
-                          </div>
-                          <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <label>Fecha Fin</label>
-                            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                            <label>Filtro por Años:</label>
+                            <input type="number" class="form-control" name="año2" id="año2" min="1900" max="2099" step="1" value="2018" />
                           </div>
 
-                          <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
-                            <thead style="background-color:#d2d6de">
-                              <th>N°</th>
-                              <th>Fecha</th>
-                              <th>Unidad Superficie</th>
-                              <th>Cheque</th>
-                              <th>Descripcion</th>
-                              <th>O/C</th>
-                              <th>C/P</th>
-                              <th>Acdo</th>
+                          <table id="tbllistado_programas" class="table table-striped table-bordered table-condensed table-hover" style="widht:100%;">
+                             <thead style="background-color:#d2d6de">
                               <th>Programa</th>
-                              <th>No. Transferencia</th>
-                              <th>Objeto Gasto</th>
-                              <th>Total</th>
+                              <th>Enero</th>
+                              <th>Febrero</th>
+                              <th>Marzo</th>
+                              <th>Abril</th>
+                              <th>Mayo</th>
+                              <th>Junio</th>
+                              <th>Julio</th>
+                              <th>Agosto</th>
+                              <th>Septiembre</th>
+                              <th>Octumbre</th>
+                              <th>Noviembre</th>
+                              <th>Diciembre</th>
+                              <th>Acumulado</th>
                             </thead>
                             <tbody>
-
                             </tbody>
                             <tfoot style="background-color:#d2d6de">
-                              <th>N°</th>
-                              <th>Fecha</th>
-                              <th>Unidad Superficie</th>
-                              <th>Cheque</th>
-                              <th>Descripcion</th>
-                              <th>O/C</th>
-                              <th>C/P</th>
-                              <th>Acdo</th>
                               <th>Programa</th>
-                              <th>No. Transferencia</th>
-                              <th>Objeto Gasto</th>
-                              <th>Total</th>
+                              <th>Enero</th>
+                              <th>Febrero</th>
+                              <th>Marzo</th>
+                              <th>Abril</th>
+                              <th>Mayo</th>
+                              <th>Junio</th>
+                              <th>Julio</th>
+                              <th>Agosto</th>
+                              <th>Septiembre</th>
+                              <th>Octumbre</th>
+                              <th>Noviembre</th>
+                              <th>Diciembre</th>
+                              <th>Acumulado</th>
                             </tfoot>
                           </table>
                       </div>

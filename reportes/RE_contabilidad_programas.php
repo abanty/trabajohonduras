@@ -12,7 +12,7 @@ use PhpOffice\PhpSpreadsheet\Style\Color;
 // use PhpOffice\PhpSpreadsheet\Helper\Html as HtmlHelper;
 
 $reader = IOFactory::createReader('Xlsx');
-$spreadsheet = $reader->load("controladores_fpdf/template_contabilidad_renglones.xlsx");
+$spreadsheet = $reader->load("controladores_fpdf/template_contabilidad_programas.xlsx");
 
 $styleArraybotton = [
     'fill' => [
@@ -47,10 +47,10 @@ $spreadsheet->getActiveSheet()->getStyle('A7:O7')->applyFromArray($styleArraytop
 require_once "../modelos/Consultas.php";
 $excel = new Consultas();
 
-$año = $_GET['año'];
+$año = $_GET['año2'];
 // $fecha_fin = $_GET['fecha_fin_excel'];
 // $fecha_inicio,$fecha_fin
-$rsptac = $excel->contabilidad_renglones($año);
+$rsptac = $excel->contabilidad_programas($año);
 
 $contentStartRow = 9;
 $currentContentRow = 9;
@@ -62,8 +62,8 @@ $currentContentRow = 9;
 
         $spreadsheet->getActiveSheet()->insertNewRowBefore($currentContentRow+1,1);
 		    $spreadsheet->getActiveSheet()
-				->setCellValue('A'.$currentContentRow, $regd->RENGLON)
-				->setCellValue('B'.$currentContentRow, $regd->CONCEPTO)
+				->setCellValue('A'.$currentContentRow, $currentContentRow-8)
+				->setCellValue('B'.$currentContentRow, $regd->PROGRAMA)
 				->setCellValue('C'.$currentContentRow, $regd->ENERO)
 				->setCellValue('D'.$currentContentRow, $regd->FEBRERO)
 				->setCellValue('E'.$currentContentRow, $regd->MARZO)
@@ -85,7 +85,7 @@ $currentContentRow = 9;
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     // header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="Reporte de Contabilidad.xlsx"');
+    header('Content-Disposition: attachment;filename="Reporte de Consolidado por Proveedores.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 ob_end_clean();

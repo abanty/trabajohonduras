@@ -100,7 +100,7 @@ Class Consultas
 	.---------------------------------------------------------------*/
 	public function contabilidad_programas($año)
 	{
-		$sql="SELECT  pg.nombrep as 'PROGRAMA',
+		$sql="SELECT  pg.nombrep AS 'PROGRAMA',
 		(SELECT SUM(deo.precio_unitario*deo.cantidad)
 				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
 				WHERE MONTH(aor.fecha_hora) = 1 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'ENERO',
@@ -130,7 +130,7 @@ Class Consultas
 				WHERE MONTH(aor.fecha_hora) = 9 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'SEPTIEMBRE',
 		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
 				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
-				WHERE MONTH(aor.fecha_hora) = 10 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'OCTUMBRE',
+				WHERE MONTH(aor.fecha_hora) = 10 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'OCTUBRE',
 		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
 				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
 				WHERE MONTH(aor.fecha_hora) = 11 AND YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'NOVIEMBRE',

@@ -27,10 +27,12 @@ function init(){
 	fechanow();
 	listar();
 	listar_excel_renglones();
+	listar_excel_programas();
 
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
 	$("#año").change(listar_excel_renglones);
+	$("#año2").change(listar_excel_programas);
 }
 
 
@@ -117,9 +119,9 @@ function listar()
 }
 
 
-/*---------------------------------*
-| FUNCION PARA LISTAR S_GRAL_CTAS  |
-.---------------------------------*/
+/*----------------------------------------------*
+| FUNCION PARA LISTAR CONSOLIDADO POR RENGLONES |
+.----------------------------------------------*/
 function listar_excel_renglones()
 {
 	 var año = $("#año").val();
@@ -131,7 +133,7 @@ function listar_excel_renglones()
 	 		"aServerSide": true,
 	 		"deferRender": true,
 			  "language": {
-					'loadingRecords': '<i class="fas fa-circle-notch fa-spin fa-1x fa-fw"></i><br>&nbsp;&nbsp;Cargando...s'
+					'loadingRecords': '<i class="fas fa-circle-notch fa-spin fa-1x fa-fw"></i><br>&nbsp;&nbsp;Cargando...'
 			 	},
 	 		dom: 'Bfrtip',
 	 		buttons: [
@@ -155,6 +157,61 @@ function listar_excel_renglones()
 	 	"ajax":
 	 			{
 	 				url: '../ajax/sgralcta.php?op=excel_renglones',
+	 				data:{año: año},
+	 				type : "get",
+	 				dataType : "json",
+	 				error: function(e){
+	 					console.log(e.responseText);
+	 				}
+	 			},
+				"deferRender": true,
+	 			// "initComplete": function(settings, json) {},
+	 			"bDestroy": true,
+	 			"iDisplayLength": 10,//Paginación
+	 			"order": [[ 0, "asc" ]]//Ordenar (columna,orden)
+	 }).DataTable();
+
+}
+
+
+/*------------------------------------------------*
+| FUNCION PARA LISTAR CONSOLIDADO POR PROVEEDORES |
+.------------------------------------------------*/
+function listar_excel_programas()
+{
+	 var año2 = $("#año2").val();
+
+	 tabla=$('#tbllistado_programas').dataTable(
+
+	 {
+	 		"aProcessing": true,
+	 		"aServerSide": true,
+	 		"deferRender": true,
+			  "language": {
+					'loadingRecords': '<i class="fas fa-circle-notch fa-spin fa-1x fa-fw"></i><br>&nbsp;&nbsp;Cargando...'
+			 	},
+	 		dom: 'Bfrtip',
+	 		buttons: [
+	 							'copyHtml5',
+	 							// {
+	 							// 	text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+	 							// 	className: 'btn btn-default btnAddJob',
+	 							// 	titleAttr: 'Reporte de Consolidado de Cuentas',
+	 							// 	action: function (dt, node, config) {
+	 							// 			var uri2 = "../reportes/RE_contabilidad_programas.php?año2="+año2;
+	 							// 			window.location = uri2;
+	 							// 		}
+	 							// },
+	 							'csvHtml5',
+	 							{
+	 							extend: 'pdfHtml5',
+	 							orientation: 'landscape',
+	 							pageSize: 'TABLOID'
+	 							}
+	 					],
+	 	"ajax":
+	 			{
+	 				url: '../ajax/sgralcta.php?op=excel_programas',
 	 				data:{año: año},
 	 				type : "get",
 	 				dataType : "json",

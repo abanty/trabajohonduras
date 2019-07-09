@@ -88,6 +88,38 @@ switch ($_GET["op"]){
 
 		break;
 
+				case 'excel_programas':
+					$año2=$_REQUEST["año2"];
+					$rspta=$consulta->contabilidad_programas($año2);
+					//Vamos a declarar un array
+					$data= Array();
+					while ($reg=$rspta->fetch_object()){
+
+						$data[]=array(
+							"0"=>$reg->PROGRAMA,
+							"1"=>$reg->ENERO,
+							"2"=>$reg->FEBRERO,
+							"3"=>$reg->MARZO,
+							"4"=>$reg->ABRIL,
+							"5"=>$reg->MAYO,
+							"6"=>$reg->JUNIO,
+							"7"=>$reg->JULIO,
+							"8"=>$reg->AGOSTO,
+							"9"=>$reg->SEPTIEMBRE,
+							"10"=>$reg->OCTUBRE,
+							"11"=>$reg->NOVIEMBRE,
+							"12"=>$reg->DICIEMBRE,
+							"13"=>$reg->ACUMULADO
+							);
+					}
+					$results = array(
+						"sEcho"=>1, //Información para el datatables
+						"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+						"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+						"aaData"=>$data);
+					echo json_encode($results);
+
+				break;
 
 	// case 'ventasfechacliente':
 	// 	$fecha_inicio=$_REQUEST["fecha_inicio"];
