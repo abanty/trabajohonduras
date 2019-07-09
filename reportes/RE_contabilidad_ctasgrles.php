@@ -72,7 +72,7 @@ $currentContentRow = 10;
 				->setCellValue('I'.$currentContentRow, $regd->unidadbase)
 				->setCellValue('J'.$currentContentRow, $regd->num_trans)
 				->setCellValue('K'.$currentContentRow, $regd->objeto_gastp)
-				->setCellValue('L'.$currentContentRow, $regd->monto_total);
+				->setCellValue('L'.$currentContentRow, $regd->subtotal);
         $currentContentRow++;
 
     }

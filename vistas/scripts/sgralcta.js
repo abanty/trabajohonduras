@@ -147,7 +147,7 @@ function listarctas_por_detalle()
 			            className: 'btn btn-default btnAddJob',
 			            titleAttr: 'Reporte de Consolidado de Cuentas',
 			            action: function (dt, node, config) {
-											var uri = "../reportes/RE_contabilidad_ctasgrles.php?fecha_inicio_excel="+fecha_inicio+"&fecha_fin_excel="+fecha_fin;
+											var uri = "../reportes/RE_contabilidad_ctas_grles_detalles.php?fecha_inicio_det="+fecha_inicio_det+"&fecha_fin_det="+fecha_fin_det;
 											window.location = uri;
 			            	}
         				},

@@ -148,7 +148,7 @@ div.dataTables_wrapper div.dataTables_filter {
                             <input type="number" class="form-control" name="año" id="año" min="1900" max="2099" step="1" value="2018" />
                           </div>
 
-                          <table id="tbllistado_renglones" class="table table-striped table-bordered table-condensed table-hover">
+                          <table id="tbllistado_renglones" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
                             <thead style="background-color:#d2d6de">
                               <th>Renglon</th>
                               <th>Concepto</th>

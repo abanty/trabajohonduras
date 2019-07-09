@@ -12,7 +12,7 @@ use PhpOffice\PhpSpreadsheet\Style\Color;
 use PhpOffice\PhpSpreadsheet\Helper\Html as HtmlHelper;
 
 $reader = IOFactory::createReader('Xlsx');
-$spreadsheet = $reader->load("controladores_fpdf/template_contabilidad_1.xlsx");
+$spreadsheet = $reader->load("controladores_fpdf/template_contabilidad_cts_gen_detalles.xlsx");
 
 $styleArraybotton = [
     'fill' => [
@@ -47,9 +47,9 @@ $spreadsheet->getActiveSheet()->getStyle('A7:L7')->applyFromArray($styleArraytop
 require_once "../modelos/Consultas.php";
 $excel = new Consultas();
 
-$fecha_inicio = $_GET['fecha_inicio_excel'];
-$fecha_fin = $_GET['fecha_fin_excel'];
-$rsptac = $excel->consolidado_ctas_generales($fecha_inicio,$fecha_fin);
+$fecha_inicio = $_GET['fecha_inicio_det'];
+$fecha_fin = $_GET['fecha_fin_det'];
+$rsptac = $excel->consolidado_detalles($fecha_inicio,$fecha_fin);
 
 $contentStartRow = 10;
 $currentContentRow = 10;
@@ -72,7 +72,7 @@ $currentContentRow = 10;
 				->setCellValue('I'.$currentContentRow, $regd->unidadbase)
 				->setCellValue('J'.$currentContentRow, $regd->num_trans)
 				->setCellValue('K'.$currentContentRow, $regd->objeto_gastp)
-				->setCellValue('L'.$currentContentRow, $regd->monto_total);
+				->setCellValue('L'.$currentContentRow, $regd->subtotal);
         $currentContentRow++;
 
     }
