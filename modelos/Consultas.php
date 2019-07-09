@@ -140,7 +140,8 @@ Class Consultas
 		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
 				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
 				WHERE YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'ACUMULADO'
-				FROM programa pg";
+				FROM programa pg
+				WHERE pg.idprograma NOT IN (1)";
 				return ejecutarConsulta($sql);
 	}
 

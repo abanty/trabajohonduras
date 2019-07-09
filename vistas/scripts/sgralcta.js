@@ -193,15 +193,15 @@ function listar_excel_programas()
 	 		dom: 'Bfrtip',
 	 		buttons: [
 	 							'copyHtml5',
-	 							// {
-	 							// 	text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
-	 							// 	className: 'btn btn-default btnAddJob',
-	 							// 	titleAttr: 'Reporte de Consolidado de Cuentas',
-	 							// 	action: function (dt, node, config) {
-	 							// 			var uri2 = "../reportes/RE_contabilidad_programas.php?año2="+año2;
-	 							// 			window.location = uri2;
-	 							// 		}
-	 							// },
+	 							{
+	 								text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+	 								className: 'btn btn-default btnAddJob',
+	 								titleAttr: 'Reporte de Consolidado de Cuentas',
+	 								action: function (dt, node, config) {
+	 										var uri3 = "../reportes/RE_contabilidad_programas.php?año="+añox;
+	 										window.location = uri3;
+	 									}
+	 							},
 	 							'csvHtml5',
 	 							{
 	 							extend: 'pdfHtml5',

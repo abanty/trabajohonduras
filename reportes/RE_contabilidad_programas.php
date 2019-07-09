@@ -47,7 +47,7 @@ $spreadsheet->getActiveSheet()->getStyle('A7:O7')->applyFromArray($styleArraytop
 require_once "../modelos/Consultas.php";
 $excel = new Consultas();
 
-$año = $_GET['año2'];
+$año = $_GET['año'];
 // $fecha_fin = $_GET['fecha_fin_excel'];
 // $fecha_inicio,$fecha_fin
 $rsptac = $excel->contabilidad_programas($año);
@@ -85,7 +85,7 @@ $currentContentRow = 9;
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     // header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="Reporte de Consolidado por Proveedores.xlsx"');
+    header('Content-Disposition: attachment;filename="Reporte de Consolidado por Programas.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 ob_end_clean();

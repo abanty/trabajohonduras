@@ -85,7 +85,7 @@ $currentContentRow = 9;
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     // header('Content-Type: application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="Reporte de Contabilidad.xlsx"');
+    header('Content-Disposition: attachment;filename="Reporte de Consolidado por Renglones.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 ob_end_clean();
