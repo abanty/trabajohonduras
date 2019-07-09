@@ -109,6 +109,9 @@ switch ($_GET["op"]){
 			$data= Array();
 			while ($reg=$rspta->fetch_object()){
 
+				$contenido = '<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>';
+				$reg->ACUMULADO == null?$content = '' : $content = $contenido;
+
 				$data[]=array(
 					"0"=>$reg->RENGLON,
 					"1"=>$reg->CONCEPTO,
@@ -124,7 +127,7 @@ switch ($_GET["op"]){
 					"11"=>$reg->OCTUBRE,
 					"12"=>$reg->NOVIEMBRE,
 					"13"=>$reg->DICIEMBRE,
-					"14"=>number_format($reg->ACUMULADO, 2, '.', ',')
+					"14"=>$content
 					);
 			}
 			$results = array(
@@ -146,6 +149,9 @@ switch ($_GET["op"]){
 			$data= Array();
 			while ($reg=$rspta->fetch_object()){
 
+				$contenido = '<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>';
+				$reg->ACUMULADO == null?$content = '' : $content = $contenido;
+
 				$data[]=array(
 					"0"=>'<span>'.$reg->PROGRAMA.'</span>',
 					"1"=>$reg->ENERO,
@@ -160,7 +166,7 @@ switch ($_GET["op"]){
 					"10"=>$reg->OCTUBRE,
 					"11"=>$reg->NOVIEMBRE,
 					"12"=>$reg->DICIEMBRE,
-					"13"=>'<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>'
+					"13"=>$content
 					);
 			}
 			$results = array(
@@ -181,6 +187,9 @@ switch ($_GET["op"]){
 			$data= Array();
 			while ($reg=$rspta->fetch_object()){
 
+				$contenido = '<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>';
+				$reg->ACUMULADO == null?$content = '' : $content = $contenido;
+
 			$data[]=array(
 				"0"=>'<span>'.$reg->UNIDAD_SUPERFICIE.'</span>',
 				"1"=>$reg->ENERO,
@@ -195,7 +204,7 @@ switch ($_GET["op"]){
 				"10"=>$reg->OCTUBRE,
 				"11"=>$reg->NOVIEMBRE,
 				"12"=>$reg->DICIEMBRE,
-				"13"=>'<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>'
+				"13"=>$content
 				);
 			}
 			$results = array(
