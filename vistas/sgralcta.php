@@ -22,6 +22,9 @@ div.dataTables_wrapper div.dataTables_filter {
 .nav-tabs-custom>.nav-tabs>li.header {
     padding: 0 24px !important;
 }
+
+
+
 </style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -55,7 +58,54 @@ div.dataTables_wrapper div.dataTables_filter {
                               <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
                             </div>
 
-                            <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
+                            <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
+                              <thead style="background-color:#d2d6de">
+                                <th>N°</th>
+                                <th>Fecha</th>
+                                <th>Unidad Superficie</th>
+                                <th>Cheque</th>
+                                <th>Descripcion</th>
+                                <th>O/C</th>
+                                <th>C/P</th>
+                                <th>Acdo</th>
+                                <th>Programa</th>
+                                <th>No. Transferencia</th>
+                                <th>Objeto Gasto</th>
+                                <th>Total</th>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                              <tfoot style="background-color:#d2d6de">
+                                <th>N°</th>
+                                <th>Fecha</th>
+                                <th>Unidad Superficie</th>
+                                <th>Cheque</th>
+                                <th>Descripcion</th>
+                                <th>O/C</th>
+                                <th>C/P</th>
+                                <th>Acdo</th>
+                                <th>Programa</th>
+                                <th>No. Transferencia</th>
+                                <th>Objeto Gasto</th>
+                                <th>Total</th>
+                              </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+
+                    <div class="tab-pane" id="reporte_detalles">
+                        <div class="panel-body table-responsive" id="listadoregistros">
+                            <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                              <label>Fecha Inicio</label>
+                              <input type="date" class="form-control" name="fecha_inicio_det" id="fecha_inicio_det" value="<?php echo date("Y-m-d"); ?>">
+                            </div>
+                            <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                              <label>Fecha Fin</label>
+                              <input type="date" class="form-control" name="fecha_fin_det" id="fecha_fin_det" value="<?php echo date("Y-m-d"); ?>">
+                            </div>
+
+                            <table id="tbllistado_det" class="table table-striped table-bordered table-condensed table-hover" style="width: 100%;">
                               <thead style="background-color:#d2d6de">
                                 <th>N°</th>
                                 <th>Fecha</th>

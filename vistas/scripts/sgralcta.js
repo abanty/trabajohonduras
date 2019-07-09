@@ -1,7 +1,10 @@
 var tabla;
-
+var tabla1;
+var tabla2;
+var tabla3;
 //Función que se ejecuta al inicio
 function init(){
+
 
 	$(document).on('focusout', '.update', function() {
 
@@ -26,11 +29,14 @@ function init(){
 
 	fechanow();
 	listar();
+	listarctas_por_detalle();
 	listar_excel_renglones();
 	listar_excel_programas();
 
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
+	$("#fecha_inicio_det").change(listarctas_por_detalle);
+	$("#fecha_fin_det").change(listarctas_por_detalle);
 	$("#año").change(listar_excel_renglones);
 	$("#añopro").change(listar_excel_programas);
 }
@@ -74,6 +80,7 @@ function listar()
 	{
 	  	"aProcessing": true,//Activamos el procesamiento del datatables
 	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
+			// "aAutoWidth": true,
 	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
 	    buttons: [
 		            'copyHtml5',
@@ -119,6 +126,64 @@ function listar()
 }
 
 
+/*---------------------------------------------*
+| FUNCION PARA LISTAR S_GRAL_CTAS POR DETALLES |
+.---------------------------------------------*/
+function listarctas_por_detalle()
+{
+	var fecha_inicio_det = $("#fecha_inicio_det").val();
+	var fecha_fin_det = $("#fecha_fin_det").val();
+
+	tabla1=$('#tbllistado_det').dataTable(
+	{
+	  	"aProcessing": true,//Activamos el procesamiento del datatables
+	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
+			// "aAutoWidth": true,
+	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
+	    buttons: [
+		            'copyHtml5',
+								{
+			            text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+			            className: 'btn btn-default btnAddJob',
+			            titleAttr: 'Reporte de Consolidado de Cuentas',
+			            action: function (dt, node, config) {
+											var uri = "../reportes/RE_contabilidad_ctasgrles.php?fecha_inicio_excel="+fecha_inicio+"&fecha_fin_excel="+fecha_fin;
+											window.location = uri;
+			            	}
+        				},
+		            'csvHtml5',
+								{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'TABLOID'
+            		}
+		        ],
+		  columnDefs: [
+	 	    				{ width: 20, targets: 0 },
+	 	            { width: 80, targets: 1 },
+								{ width: 130, targets: 2 },
+								{ width: 90, targets: 3 },
+								{ width: 120, targets: 9 },
+								{ width: 100, targets: 10 }
+	 					      ],
+		"ajax":
+				{
+					url: '../ajax/sgralcta.php?op=excel_ctas_detalles',
+					data:{fecha_inicio_det: fecha_inicio_det,fecha_fin_det: fecha_fin_det},
+					type : "get",
+					dataType : "json",
+					error: function(e){
+						console.log(e.responseText);
+					}
+				},
+		"bDestroy": true,
+		"iDisplayLength": 15,//Paginación
+	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
+	}).DataTable();
+
+}
+
+
 /*----------------------------------------------*
 | FUNCION PARA LISTAR CONSOLIDADO POR RENGLONES |
 .----------------------------------------------*/
@@ -126,7 +191,7 @@ function listar_excel_renglones()
 {
 	 var año = $("#año").val();
 
-	 tabla=$('#tbllistado_renglones').dataTable(
+	 tabla2=$('#tbllistado_renglones').dataTable(
 
 	 {
 	 		"aProcessing": true,
@@ -181,7 +246,7 @@ function listar_excel_programas()
 {
 	 var añox = $("#añopro").val();
 
-	 tabla=$('#tbllistado_programas').dataTable(
+	 tabla3=$('#tbllistado_programas').dataTable(
 
 	 {
 	 		"aProcessing": true,
