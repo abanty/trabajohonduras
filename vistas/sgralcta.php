@@ -19,6 +19,9 @@ if ($_SESSION['contabilidad']==1)
 div.dataTables_wrapper div.dataTables_filter {
   margin-top: 24.5px !important;
 }
+.nav-tabs-custom>.nav-tabs>li.header {
+    padding: 0 24px !important;
+}
 </style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -34,11 +37,10 @@ div.dataTables_wrapper div.dataTables_filter {
                   <ul class="nav nav-tabs pull-right">
                     <li><a href="#reporteseis" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 6</a></li>
                     <li><a href="#reportecinco" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 5</a></li>
-                    <li><a href="#reportecuatro" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte 4</a></li>
                     <li><a href="#reporte_programa" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte por Programa</a></li>
                     <li><a href="#reporte_renglon" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte por Renglones</a></li>
+                    <li><a href="#reporte_detalles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte por Detalles</a></li>
                     <li class="active"><a href="#report_grles" data-toggle="tab"><i class="fas fa-file-excel" style="color:green;"></i> Reporte Ctas Grales</a></li>
-
                     <li class="pull-left header"><i class="fas fa-file-excel" style="color:green;"></i> Reportes de Contabilidad</li>
                   </ul>
                   <div class="tab-content">
@@ -183,6 +185,53 @@ div.dataTables_wrapper div.dataTables_filter {
                       </div>
                     </div>
                     <!-- /.tab-pane -->
+                    <div class="tab-pane" id="reporte_detalles">
+                        <div class="panel-body table-responsive" id="listadoregistros_detalles">
+                            <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                              <label>Fecha Inicio</label>
+                              <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" value="<?php echo date("Y-m-d"); ?>">
+                            </div>
+                            <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                              <label>Fecha Fin</label>
+                              <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" value="<?php echo date("Y-m-d"); ?>">
+                            </div>
+
+                            <table id="tbllistado_detalles" class="table table-striped table-bordered table-condensed table-hover">
+                              <thead style="background-color:#d2d6de">
+                                <th>N°</th>
+                                <th>Fecha</th>
+                                <th>Unidad Superficie</th>
+                                <th>Cheque</th>
+                                <th>Descripcion</th>
+                                <th>O/C</th>
+                                <th>C/P</th>
+                                <th>Acdo</th>
+                                <th>Programa</th>
+                                <th>No. Transferencia</th>
+                                <th>Objeto Gasto</th>
+                                <th>Total</th>
+                              </thead>
+                              <tbody>
+                              </tbody>
+                              <tfoot style="background-color:#d2d6de">
+                                <th>N°</th>
+                                <th>Fecha</th>
+                                <th>Unidad Superficie</th>
+                                <th>Cheque</th>
+                                <th>Descripcion</th>
+                                <th>O/C</th>
+                                <th>C/P</th>
+                                <th>Acdo</th>
+                                <th>Programa</th>
+                                <th>No. Transferencia</th>
+                                <th>Objeto Gasto</th>
+                                <th>Total</th>
+                              </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+
                   </div>
                   <!-- /.tab-content -->
                 </div>

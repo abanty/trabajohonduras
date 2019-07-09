@@ -41,7 +41,7 @@ switch ($_GET["op"]){
 					"8"=>$reg->unidadbase,
 					"9"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="numero_transferencia">' .$reg->num_trans. '</div>',
 	 				"10"=>$reg->objeto_gasto,
-					"11"=>$reg->monto_total
+					"11"=>$reg->subtotal
 	 				);
 	 		}
 	 		$results = array(
