@@ -119,7 +119,7 @@ function listar()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 15,//Paginación
+		"iDisplayLength": 13,//Paginación
 	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 
@@ -177,7 +177,7 @@ function listarctas_por_detalle()
 					}
 				},
 		"bDestroy": true,
-		"iDisplayLength": 15,//Paginación
+		"iDisplayLength": 13,//Paginación
 	    "order": [[ 0, "asc" ]]//Ordenar (columna,orden)
 	}).DataTable();
 
