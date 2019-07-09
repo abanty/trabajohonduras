@@ -44,7 +44,7 @@ switch ($_GET["op"]){
 					"8"=>$reg->unidadbase,
 					"9"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="numero_transferencia">' .$reg->num_trans. '</div>',
 	 				"10"=>$reg->objeto_gasto,
-					"11"=>$reg->subtotal
+					"11"=>number_format($reg->subtotal, 2, '.', ',')
 	 				);
 	 		}
 	 		$results = array(
@@ -85,9 +85,9 @@ switch ($_GET["op"]){
 					"8"=>$reg->unidadbase,
 					"9"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->num.'" data-column="numero_transferencia">' .$reg->num_trans. '</div>',
 					"10"=>$reg->objeto_gasto,
-					"11"=>$reg->isvr,
-					"12"=>$reg->isrr,
-					"13"=>$reg->subtotal
+					"11"=>number_format($reg->isvr, 2, '.', ','),
+					"12"=>number_format($reg->isrr, 2, '.', ','),
+					"13"=>number_format($reg->subtotal, 2, '.', ',')
 					);
 			}
 			$results = array(
@@ -124,7 +124,7 @@ switch ($_GET["op"]){
 					"11"=>$reg->OCTUBRE,
 					"12"=>$reg->NOVIEMBRE,
 					"13"=>$reg->DICIEMBRE,
-					"14"=>$reg->ACUMULADO
+					"14"=>number_format($reg->ACUMULADO, 2, '.', ',')
 					);
 			}
 			$results = array(
@@ -160,7 +160,7 @@ switch ($_GET["op"]){
 					"10"=>$reg->OCTUBRE,
 					"11"=>$reg->NOVIEMBRE,
 					"12"=>$reg->DICIEMBRE,
-					"13"=>'<span style="color:blue;">'.$reg->ACUMULADO.'</span>'
+					"13"=>'<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>'
 					);
 			}
 			$results = array(
@@ -195,7 +195,7 @@ switch ($_GET["op"]){
 				"10"=>$reg->OCTUBRE,
 				"11"=>$reg->NOVIEMBRE,
 				"12"=>$reg->DICIEMBRE,
-				"13"=>'<span style="color:blue;">'.$reg->ACUMULADO.'</span>'
+				"13"=>'<span style="color:blue;">'.number_format($reg->ACUMULADO, 2, '.', ',').'</span>'
 				);
 			}
 			$results = array(

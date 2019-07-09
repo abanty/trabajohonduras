@@ -41,8 +41,8 @@ $styleArraytop = [
 ];
 
 $spreadsheet->getActiveSheet()->getRowDimension(1)->setRowHeight(-1);
-$spreadsheet->getActiveSheet()->getStyle('A9:L9')->applyFromArray($styleArraybotton);
-$spreadsheet->getActiveSheet()->getStyle('A7:L7')->applyFromArray($styleArraytop);
+$spreadsheet->getActiveSheet()->getStyle('A9:N9')->applyFromArray($styleArraybotton);
+$spreadsheet->getActiveSheet()->getStyle('A7:N7')->applyFromArray($styleArraytop);
 
 require_once "../modelos/Consultas.php";
 $excel = new Consultas();
@@ -71,10 +71,11 @@ $currentContentRow = 10;
 				->setCellValue('H'.$currentContentRow, $regd->acdo)
 				->setCellValue('I'.$currentContentRow, $regd->unidadbase)
 				->setCellValue('J'.$currentContentRow, $regd->num_trans)
-				->setCellValue('K'.$currentContentRow, $regd->objeto_gastp)
-				->setCellValue('L'.$currentContentRow, $regd->subtotal);
+				->setCellValue('K'.$currentContentRow, $regd->objeto_gasto)
+				->setCellValue('L'.$currentContentRow, $regd->isvr)
+        ->setCellValue('M'.$currentContentRow, $regd->isrr)
+        ->setCellValue('N'.$currentContentRow, $regd->subtotal);
         $currentContentRow++;
-
     }
 
     $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);

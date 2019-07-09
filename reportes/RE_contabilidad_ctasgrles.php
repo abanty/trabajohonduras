@@ -51,6 +51,8 @@ $fecha_inicio = $_GET['fecha_inicio_excel'];
 $fecha_fin = $_GET['fecha_fin_excel'];
 $rsptac = $excel->consolidado_ctas_generales($fecha_inicio,$fecha_fin);
 
+// $year = substr($fecha_inicio, 0, 4);
+
 $contentStartRow = 10;
 $currentContentRow = 10;
 
@@ -71,12 +73,12 @@ $currentContentRow = 10;
 				->setCellValue('H'.$currentContentRow, $regd->acdo)
 				->setCellValue('I'.$currentContentRow, $regd->unidadbase)
 				->setCellValue('J'.$currentContentRow, $regd->num_trans)
-				->setCellValue('K'.$currentContentRow, $regd->objeto_gastp)
+				->setCellValue('K'.$currentContentRow, $regd->objeto_gasto)
 				->setCellValue('L'.$currentContentRow, $regd->subtotal);
         $currentContentRow++;
-
+        // $ax = $currentContentRow + 2;
     }
-
+    // $spreadsheet->getActiveSheet()->setCellValue('E'.$ax, ' '.$year);
     $spreadsheet->getActiveSheet()->removeRow($currentContentRow,2);
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
