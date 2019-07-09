@@ -123,9 +123,9 @@ Class Consultas
 	}
 
 
-	/*---------------------------------------------------------------*
-	| FUNCION PARA MOSTRAR REPORTE EXCEL CONSOLIDADO POR PROVEEDORES |
-	.---------------------------------------------------------------*/
+	/*-------------------------------------------------------------*
+	| FUNCION PARA MOSTRAR REPORTE EXCEL CONSOLIDADO POR PROGRAMAS |
+	.-------------------------------------------------------------*/
 	public function contabilidad_programas($año)
 	{
 		$sql="SELECT  pg.nombrep AS 'PROGRAMA',
@@ -170,6 +170,57 @@ Class Consultas
 				WHERE YEAR(aor.fecha_hora) = '$año' AND aor.idprograma = pg.idprograma) AS 'ACUMULADO'
 				FROM programa pg
 				WHERE pg.idprograma NOT IN (1)";
+				return ejecutarConsulta($sql);
+	}
+
+
+	/*--------------------------------------------------------*
+	| FUNCION PARA MOSTRAR REPORTE EXCEL CONSOLIDADO POR UUSS |
+	.--------------------------------------------------------*/
+	public function contabilidad_uuss($año)
+	{
+		$sql="SELECT  u.nombreuuss AS 'UNIDAD_SUPERFICIE',
+		(SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 1 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'ENERO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 2 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'FEBRERO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 3 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'MARZO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 4 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'ABRIL',
+				(SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 5 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'MAYO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 6 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'JUNIO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 7 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'JULIO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 8 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'AGOSTO',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 9 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'SEPTIEMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 10 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'OCTUBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 11 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'NOVIEMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE MONTH(aor.fecha_hora) = 12 AND YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'DICIEMBRE',
+		        (SELECT SUM(deo.precio_unitario*deo.cantidad)
+				FROM detalle_orden deo INNER JOIN administrar_ordenes aor on aor.idadministrar_ordenes = deo.idadministrar_ordenes
+				WHERE YEAR(aor.fecha_hora) = '$año' AND aor.iduuss = u.iduuss) AS 'ACUMULADO'
+				FROM uuss u
+				WHERE u.iduuss NOT IN (1)";
 				return ejecutarConsulta($sql);
 	}
 

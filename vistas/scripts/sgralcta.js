@@ -2,6 +2,7 @@ var tabla;
 var tabla1;
 var tabla2;
 var tabla3;
+var tabla4;
 //Función que se ejecuta al inicio
 function init(){
 
@@ -32,6 +33,7 @@ function init(){
 	listarctas_por_detalle();
 	listar_excel_renglones();
 	listar_excel_programas();
+	listar_excel_uuss();
 
 	$("#fecha_inicio").change(listar);
 	$("#fecha_fin").change(listar);
@@ -39,6 +41,7 @@ function init(){
 	$("#fecha_fin_det").change(listarctas_por_detalle);
 	$("#año").change(listar_excel_renglones);
 	$("#añopro").change(listar_excel_programas);
+	$("#añouuss").change(listar_excel_uuss);
 }
 
 
@@ -278,6 +281,61 @@ function listar_excel_programas()
 	 			{
 	 				url: '../ajax/sgralcta.php?op=excel_programas',
 	 				data:{añopro: añox},
+	 				type : "get",
+	 				dataType : "json",
+	 				error: function(e){
+	 					console.log(e.responseText);
+	 				}
+	 			},
+				"deferRender": true,
+	 			// "initComplete": function(settings, json) {},
+	 			"bDestroy": true,
+	 			"iDisplayLength": 13,//Paginación
+	 			"order": [[ 0, "asc" ]]//Ordenar (columna,orden)
+	 }).DataTable();
+
+}
+
+
+/*-----------------------------------------*
+| FUNCION PARA LISTAR CONSOLIDADO POR UUSS |
+.-----------------------------------------*/
+function listar_excel_uuss()
+{
+	 var añouuss = $("#añouuss").val();
+
+	 tabla4=$('#tbllistado_uuss').dataTable(
+
+	 {
+	 		"aProcessing": true,
+	 		"aServerSide": true,
+	 		"deferRender": true,
+			  "language": {
+					'loadingRecords': '<i class="fas fa-circle-notch fa-spin fa-1x fa-fw"></i><br>&nbsp;&nbsp;Cargando...'
+			 	},
+	 		dom: 'Bfrtip',
+	 		buttons: [
+	 							'copyHtml5',
+	 							{
+	 								text: '<i class="fas fa-file-excel" style="color:green;"></i> Reporte',
+	 								className: 'btn btn-default btnAddJob',
+	 								titleAttr: 'Reporte de Consolidado de Cuentas',
+	 								action: function (dt, node, config) {
+	 										var uri3 = "../reportes/RE_contabilidad_programas.php?año="+añox;
+	 										window.location = uri3;
+	 									}
+	 							},
+	 							'csvHtml5',
+	 							{
+	 							extend: 'pdfHtml5',
+	 							orientation: 'landscape',
+	 							pageSize: 'TABLOID'
+	 							}
+	 					],
+	 	"ajax":
+	 			{
+	 				url: '../ajax/sgralcta.php?op=excel_uuss',
+	 				data:{añouuss: añouuss},
 	 				type : "get",
 	 				dataType : "json",
 	 				error: function(e){
