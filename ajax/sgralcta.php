@@ -96,7 +96,7 @@ switch ($_GET["op"]){
 					while ($reg=$rspta->fetch_object()){
 
 						$data[]=array(
-							"0"=>$reg->PROGRAMA,
+							"0"=>'<span>'.$reg->PROGRAMA.'</span>',
 							"1"=>$reg->ENERO,
 							"2"=>$reg->FEBRERO,
 							"3"=>$reg->MARZO,
@@ -109,7 +109,7 @@ switch ($_GET["op"]){
 							"10"=>$reg->OCTUBRE,
 							"11"=>$reg->NOVIEMBRE,
 							"12"=>$reg->DICIEMBRE,
-							"13"=>$reg->ACUMULADO
+							"13"=>'<span style="color:blue;">'.$reg->ACUMULADO.'</span>'
 							);
 					}
 					$results = array(
