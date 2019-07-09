@@ -118,6 +118,8 @@ div.dataTables_wrapper div.dataTables_filter {
                                 <th>Programa</th>
                                 <th>No. Transferencia</th>
                                 <th>Objeto Gasto</th>
+                                <th>ISVR</th>
+                                <th>ISRR</th>
                                 <th>Total</th>
                               </thead>
                               <tbody>
@@ -134,6 +136,8 @@ div.dataTables_wrapper div.dataTables_filter {
                                 <th>Programa</th>
                                 <th>No. Transferencia</th>
                                 <th>Objeto Gasto</th>
+                                <th>ISVR</th>
+                                <th>ISRR</th>
                                 <th>Total</th>
                               </tfoot>
                             </table>

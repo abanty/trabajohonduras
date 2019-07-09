@@ -54,7 +54,7 @@ Class Consultas
 		(SELECT num_orden FROM administrar_ordenes
 		 WHERE tipo_documento = 'Acuerdo' and idadministrar_ordenes = a.idadministrar_ordenes) as acdo,
 		pg.nombrep as unidadbase, c.numero_transferencia as num_trans, pd.codigo as objeto_gasto,
-		a.monto_total,a.total_neto as total, a.subtotal FROM administrar_ordenes a
+		a.monto_total,a.total_neto as total, a.retencion_isv as isvr,a.retencion_isr as isrr, a.subtotal FROM administrar_ordenes a
 		LEFT JOIN contabilidad c
 		ON c.idadministrar_ordenes = a.idadministrar_ordenes
 		INNER JOIN detalle_orden de
