@@ -13,17 +13,17 @@ require 'header.php';
 
 if ($_SESSION['escritorio']==1)
 {
-  // require_once "../modelos/consultas_compromisos.php";
-  //
-  // $consultas_compromisos = new Consultas_compromisos();
-  // $rsptac = $consultas_compromisos->totalcompromisoshoy();
-  // $regc=$rsptac->fetch_object();
-  // $totalc=$regc->total_compra;
-  //
-  // $rsptav = $consultas_compromisos->totalctasbancariashoy();
-  // $regv=$rsptav->fetch_object();
-  // $totalv=$regv->fondos_disponibles;
-  //
+  require_once "../modelos/Consultas_graficos.php";
+  $consultas_graficos= new Consultas_graficos();
+  $rsptac = $consultas_graficos->totalctasbancarias();
+  $regc=$rsptac->fetch_object();
+  $totalc=$regc->fondos_disponibles;
+
+  $rsptav = $consultas_graficos->totaladministrar_ordenes();
+  $regv=$rsptav->fetch_object();
+  $totalv=$regv->total_neto;
+
+
   // $rsptab = $consultas_compromisos->totaladministrar_ordeneshoy();
   // $regb=$rsptab->fetch_object();
   // $totalb=$regb->total_neto;
@@ -47,30 +47,30 @@ if ($_SESSION['escritorio']==1)
                               <div class="col-lg-3 col-xs-6">
                                 <div class="small-box bg-aqua">
                                     <div class="inner">
-                                      <h3 style="font-size:35px;">
-                                       <strong></strong>
-                                      </h3>
+                                      <h2 style="font-size:25px;">
+                                       <strong><?php echo $totalc; ?> L</strong>
+                                     </h2>
                                       <p><b>PRESUPUESTO DISPONIBLE</b></p>
                                     </div>
                                     <div class="icon">
                                       <i class="ion ion-bag"></i>
                                     </div>
-                                    <a href="ctasbancarias.php" class="small-box-footer">Disponible Ctas PGFNH<i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="ctasbancarias.php" class="small-box-footer">Disponible Ctas PGFNH <i class="fas fa-arrow-circle-right"></i></a>
                                   </div>
                               </div>
 
                              <div class="col-lg-3 col-xs-6">
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
-                                      <h4 style="font-size:35px;">
-                                        <strong></strong>
-                                      </h4>
+                                      <h2 style="font-size:25px;">
+                                        <strong><?php echo $totalv; ?> L</strong>
+                                      </h2>
                                       <p><b>PRESUPUESTO EJECUTADO</b></p>
                                     </div>
                                     <div class="icon">
                                       <i class="ion ion-social-usd"></i>
                                     </div>
-                                    <a href="administrar_ordenes.php" class="small-box-footer">Ejecutado<i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="administrar_ordenes.php" class="small-box-footer">Ejecutado <i class="fas fa-arrow-circle-right"></i></a>
                                   </div>
                               </div>
 
@@ -85,7 +85,7 @@ if ($_SESSION['escritorio']==1)
                                     <div class="icon">
                                       <i class="ion ion-social-usd"></i>
                                     </div>
-                                    <a href="compromisos.php" class="small-box-footer">Cuentas por Pagar<i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="compromisos.php" class="small-box-footer">Cuentas por Pagar <i class="fas fa-arrow-circle-right"></i></a>
                                   </div>
                               </div>
 
@@ -100,7 +100,7 @@ if ($_SESSION['escritorio']==1)
                                     <div class="icon">
                                       <i class="ions ion-clipboard"></i>
                                     </div>
-                                    <a href="" class="small-box-footer">Fondos por Ejecutar<i class="fas fa-arrow-circle-right"></i></a>
+                                    <a href="" class="small-box-footer">Fondos por Ejecutar <i class="fas fa-arrow-circle-right"></i></a>
                                   </div>
                               </div>
                           </div>
@@ -157,7 +157,7 @@ $(window).on('load', function () {
   $(".loader-page").css({visibility:"hidden",opacity:"0"})
 }, 1000);
 
-});  
+});
 </script>
 
 <?php
