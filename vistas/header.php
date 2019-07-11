@@ -10,6 +10,7 @@ if (strlen(session_id()) < 1)
     <title>SISTEMA CONTABLE</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="../public/css/estilo.css">
     <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
   </head>

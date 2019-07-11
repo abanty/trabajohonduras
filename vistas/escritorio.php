@@ -14,7 +14,7 @@ require 'header.php';
 if ($_SESSION['escritorio']==1)
 {
   require_once "../modelos/Administrar_ordenes.php";
-  //
+
   // $consultas_compromisos = new Consultas_compromisos();
   // $rsptac = $consultas_compromisos->totalcompromisoshoy();
   // $regc=$rsptac->fetch_object();
