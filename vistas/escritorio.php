@@ -1,5 +1,5 @@
 <?php
-//Activamos el almacenamiento en el buffer
+//Activamos el almacenamiento en el buffer gfd
 ob_start();
 session_start();
 
@@ -157,7 +157,7 @@ $(window).on('load', function () {
   $(".loader-page").css({visibility:"hidden",opacity:"0"})
 }, 1000);
 
-});  
+});
 </script>
 
 <?php
