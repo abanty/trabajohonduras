@@ -24,9 +24,9 @@ if ($_SESSION['escritorio']==1)
   $totalv=$regv->total_neto;
 
 
-  // $rsptab = $consultas_compromisos->totaladministrar_ordeneshoy();
-  // $regb=$rsptab->fetch_object();
-  // $totalb=$regb->total_neto;
+  $rsptab = $consultas_graficos->totalcompromisos();
+  $regb=$rsptab->fetch_object();
+  $totalb=$regb->total_compra;
 
 ?>
 <!--Contenido-->
@@ -78,7 +78,7 @@ if ($_SESSION['escritorio']==1)
                                 <div class="small-box bg-green">
                                     <div class="inner">
                                       <h4 style="font-size:35px;">
-                                        <strong></strong>
+                                        <strong><?php echo $totalb; ?> L</strong>
                                       </h4>
                                       <p><b>COMPROMISOS</b></p>
                                     </div>

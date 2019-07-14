@@ -22,7 +22,7 @@ Class Consultas_graficos
 
 public function totalcompromisos()
 {
-	$sql="SELECT IFNULL(SUM(total_compra),0) as total_compra FROM compromisos WHERE DATE(fecha_hora)";
+	$sql="SELECT IFNULL(SUM(total_compra),0) as total_compra FROM compromisos  WHERE YEAR(fecha_hora)  = YEAR(CURRENT_DATE())";
 	return ejecutarConsulta($sql);
 }
 
