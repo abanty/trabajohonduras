@@ -50,7 +50,7 @@ if ($_SESSION['escritorio']==1)
                                       <h2 style="font-size:25px;">
                                        <strong><?php echo $totalc; ?> L</strong>
                                      </h2>
-                                      <p><b>PRESUPUESTO DISPONIBLE</b></p>
+                                      <p><b>PRESUPUESTO DISPONIBLEEE</b></p>
                                     </div>
                                     <div class="icon">
                                       <i class="ion ion-bag"></i>
