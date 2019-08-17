@@ -234,7 +234,6 @@ if (strlen(session_id()) < 1)
               <li><a href="compromisos.php"><i class="far fa-dot-circle text-blue"></i> Compromisos</a></li>
               <li><a href="compromisosfecha.php"><i class="far fa-dot-circle text-blue"></i> Consulta Compromisos</a></li>
               <li><a href="proveedores.php"><i class="far fa-dot-circle text-blue"></i> Ingresar Proveedor</a></li>
-              <li><a href="consfactpagadas.php"><i class="far fa-dot-circle text-blue"></i> Compromisos Pagados</a></li>
 
 
             </ul>
@@ -311,9 +310,6 @@ if (strlen(session_id()) < 1)
 
                <ul class="treeview-menu">
               <li><a href="sgralcta.php"><i class="far fa-dot-circle text-blue"></i> S.Gral.Ctas</a></li>
-              <li><a href="sgeneral.php"><i class="far fa-dot-circle text-blue"></i> Consolidado General</a></li>
-              <li><a href="modulo3"><i class="far fa-dot-circle text-blue"></i> Modulo 3</a></li>
-              <li><a href="modulo4"><i class="far fa-dot-circle text-blue"></i> Modulo 4</a></li>
 
             </ul>
 
