@@ -321,7 +321,7 @@ function listar_excel_uuss()
 	 								className: 'btn btn-default btnAddJob',
 	 								titleAttr: 'Reporte de Consolidado de Cuentas',
 	 								action: function (dt, node, config) {
-	 										var uri3 = "../reportes/RE_contabilidad_programas.php?año="+añox;
+	 										var uri3 = "../reportes/RE_contabilidad_programas.php?año="+añouuss;
 	 										window.location = uri3;
 	 									}
 	 							},
