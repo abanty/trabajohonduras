@@ -4,7 +4,8 @@
         </div>
         <strong>Copyright &copy; 2019 <a href="">Tte Nav C.G. Hector Mercadal</a>.</strong> All rights reserved.
     </footer>
-    <!-- jQuery -->
+
+  </div>
     <script src="../public/js/jquery-3.1.1.min.js"></script>
     <script>
     $(document).ready(function() {

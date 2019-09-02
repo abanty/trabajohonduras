@@ -29,6 +29,11 @@ if ($_SESSION['escritorio']==1)
   $totalb=$regb->total_compra;
 
 ?>
+<style media="screen">
+.small-box p {
+  font-size: 13px !important;
+}
+</style>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -44,70 +49,70 @@ if ($_SESSION['escritorio']==1)
                           <!-- /.box-header -->
                           <!-- centro -->
                           <div class="panel-body">
-                              <div class="col-lg-3 col-xs-6">
-                                <div class="small-box bg-aqua">
-                                    <div class="inner">
-                                      <h2 style="font-size:25px;">
-                                       <strong><?php echo $totalc; ?> L</strong>
-                                     </h2>
-                                      <p><b>PRESUPUESTO DISPONIBLEEE</b></p>
-                                    </div>
-                                    <div class="icon">
-                                      <i class="ion ion-bag"></i>
-                                    </div>
-                                    <a href="ctasbancarias.php" class="small-box-footer">Disponible Ctas PGFNH <i class="fas fa-arrow-circle-right"></i></a>
-                                  </div>
-                              </div>
 
-                             <div class="col-lg-3 col-xs-6">
-                                <div class="small-box bg-yellow">
-                                    <div class="inner">
-                                      <h2 style="font-size:25px;">
-                                        <strong><?php echo $totalv; ?> L</strong>
-                                      </h2>
-                                      <p><b>PRESUPUESTO EJECUTADO</b></p>
-                                    </div>
-                                    <div class="icon">
-                                      <i class="ion ion-social-usd"></i>
-                                    </div>
-                                    <a href="administrar_ordenes.php" class="small-box-footer">Ejecutado <i class="fas fa-arrow-circle-right"></i></a>
+
+
+                              <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-red-gradient">
+                                  <div class="inner">
+                                    <h3><strong style="font-size:23px;"><?php echo $totalc; ?> L</strong></h3>
+                                    <p>Presupuesto Disponible</p>
                                   </div>
+                                  <div class="icon">
+                                    <i class="ion ion-social-usd"></i>
+                                  </div>
+                                  <a href="ctasbancarias.php" class="small-box-footer">Disponible Ctas PGFNH <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                               </div>
 
                               <div class="col-lg-3 col-xs-6">
-                                <div class="small-box bg-green">
-                                    <div class="inner">
-                                      <h4 style="font-size:35px;">
-                                        <strong><?php echo $totalb; ?> L</strong>
-                                      </h4>
-                                      <p><b>COMPROMISOS</b></p>
-                                    </div>
-                                    <div class="icon">
-                                      <i class="ion ion-social-usd"></i>
-                                    </div>
-                                    <a href="compromisos.php" class="small-box-footer">Cuentas por Pagar <i class="fas fa-arrow-circle-right"></i></a>
+                                <!-- small box -->
+                                <div class="small-box bg-blue-gradient">
+                                  <div class="inner">
+                                    <h3><strong style="font-size:23px;"><?php echo $totalv; ?> L</strong></h3>
+                                    <p>Presupuesto Ejecutado</p>
                                   </div>
+                                  <div class="icon">
+                                    <i class="ion ion-social-usd"></i>
+                                  </div>
+                                  <a href="administrar_ordenes.php" class="small-box-footer">Ejecutado <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                               </div>
 
                               <div class="col-lg-3 col-xs-6">
-                                <div class="small-box bg-red">
-                                    <div class="inner">
-                                      <h4 style="font-size:35px;">
-                                        <strong></strong>
-                                      </h4>
-                                      <p><b>FONDOS POR EJECUTAR</b></p>
-                                    </div>
-                                    <div class="icon">
-                                      <i class="ions ion-clipboard"></i>
-                                    </div>
-                                    <a href="" class="small-box-footer">Fondos por Ejecutar <i class="fas fa-arrow-circle-right"></i></a>
+                                <!-- small box -->
+                                <div class="small-box bg-yellow-gradient">
+                                  <div class="inner">
+                                    <h3><strong style="font-size:23px;"><?php echo $totalb; ?> L</strong></h3>
+                                    <p>Compromisos</p>
                                   </div>
+                                  <div class="icon">
+                                    <i class="ion ion-social-usd"></i>
+                                  </div>
+                                  <a href="compromisos.php" class="small-box-footer">Cuentas por Pagar <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                               </div>
+
+                              <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-maroon-gradient">
+                                  <div class="inner">
+                                    <h3><strong style="font-size:23px;">10000</strong></h3>
+                                    <p>Fondos Por Ejecutar</p>
+                                  </div>
+                                  <div class="icon">
+                                    <i class="ion ion-social-usd"></i>
+                                  </div>
+                                  <a href="" class="small-box-footer">Fondos por Ejecutar <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+
                           </div>
 
                           <div class="panel-body">
                               <div class="col-lg-12">
-                                <div class="box box-solid bg-teal-gradient">
+                                <div class="box box-solid bg-black-gradient">
                                     <div class="box-header with-border">
 
                                       <b>EJECUCION DEL PRESUPUESTO</b>

@@ -18,9 +18,7 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
     <link rel="stylesheet" href="../public/css/spinner.css">
     <!-- Waves Effect Css -->
-    <link href="../public/css/waves.css" rel="stylesheet" />
-
-
+    <link href="../public/css/waves.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../public/Ionicons/css/ionicons.min.css">
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
     <link rel="shortcut icon" href="../public/img/apple-touch-icon.png">
@@ -136,10 +134,7 @@ if (strlen(session_id()) < 1)
 
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
-
       <header class="main-header">
-
-<!-- Logo -->
         <a href="escritorio.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini">
@@ -148,10 +143,8 @@ if (strlen(session_id()) < 1)
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg">
             <img src="img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px">
-
           </span>
         </a>
-
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
@@ -175,7 +168,6 @@ if (strlen(session_id()) < 1)
                     <img src="../files/usuarios/<?php echo $_SESSION['imagen']; ?>" class="img-circle" alt="User Image">
                     <p>
                       Analista Financiero
-
                     </p>
                   </li>
 
@@ -188,6 +180,9 @@ if (strlen(session_id()) < 1)
                   </li>
                 </ul>
               </li>
+              <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fas fa-cog fa-spin"></i></a>
+          </li>
 
             </ul>
           </div>
@@ -203,9 +198,32 @@ if (strlen(session_id()) < 1)
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
+
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="img/usuarios/hmercadal1/249.jpg" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>Sistema Contable FNH</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
+          </div>
+        </div>
+
+
+
+         <form action="#" method="get" class="sidebar-form">
+           <div class="input-group">
+             <input type="text" name="q" class="form-control" placeholder="Busca...">
+             <span class="input-group-btn">
+                   <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                   </button>
+                 </span>
+           </div>
+         </form>
           <!-- sidebar menu: : style can be found in sidebar.less -->
+          <!-- <ul class="sidebar-menu tree" data-widget="tree"> -->
           <ul class="sidebar-menu">
-            <li class="header"></li>
+            <li class="header">MENU DE NAVEGACIÓN</li>
             <?php
             if ($_SESSION['escritorio']==1)
             {
