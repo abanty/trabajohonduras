@@ -92,14 +92,14 @@ form#formulario .help-block {
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="presupuesto_anual">Por Ejecutar:</label>
-                                  <input type="text" class="form-control input-sm"  name="presupuesto_anual" id="presupuesto_anual" required>
+                                  <input type="text" class="form-control input-sm"  onchange="valida_campos()" onkeyup="valida_campos()" name="presupuesto_anual" id="presupuesto_anual" required>
                                   <div class="messages"></div>
                                 </div>
                               </div>
                               <div class="row">
                                   <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <label for="fondos_disponibles">Pres. SIAFI Ejecutado:</label>
-                                    <input type="text" class="form-control input-sm"  name="fondos_disponibles" id="fondos_disponibles" required>
+                                    <input type="text" class="form-control input-sm"  onchange="valida_campo_fondos_disponibles()" onkeyup="valida_campo_fondos_disponibles()" name="fondos_disponibles" id="fondos_disponibles" required>
                                     <div class="messages"></div>
                                   </div>
                                </div>

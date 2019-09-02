@@ -21,7 +21,7 @@ function init() {
 
   listar();
 
-  sumarcampos();
+  // sumarcampos();
 
   validate.extend(validate.validators.datetime, {
     parse: function(value, options) {
@@ -109,6 +109,7 @@ function init() {
   var inputs = document.querySelectorAll("input, textarea, select")
   for (var i = 0; i < inputs.length; ++i) {
     inputs.item(i).addEventListener("change", function(ev) {
+      // ev.preventDefault();
       var errors = validate(form, constraints) || {};
       showErrorsForInput(this, errors[this.name])
     });
@@ -226,12 +227,29 @@ function showSuccess() {
 | FUNCION PARA REALIZAR CALCULOS DE ADICION |
 .------------------------------------------*/
 function sumarcampos() {
+
+  var form = document.querySelector("form#formulario");
+  var errors = validate(form, constraints);
+  // Actualizamos el formulario para reflejar los resultados
+  showErrors(form, errors || {});
+
   var suma1 = $('#pres_aprobado').val();
   var suma1replace = parseFloat(suma1.replace(/,/g, ''));
   var suma2 = $('#pres_modificado').val();
   var suma2replace = parseFloat(suma2.replace(/,/g, ''));
   var sumatotal = number_format((suma1replace - suma2replace), 2, '.', ',');
   $('#presupuesto_anual').val(sumatotal);
+}
+
+/*------------------------------------------*
+| FUNCION PARA REALIZAR CALCULOS DE ADICION |
+.------------------------------------------*/
+function valida_campo_fondos_disponibles() {
+
+  var form = document.querySelector("form#formulario#fondos_disponibles");
+  var errors = validate(form, constraints);
+  // Actualizamos el formulario para reflejar los resultados
+  showErrors(form, errors || {});
 }
 
 /*----------------*
@@ -291,7 +309,6 @@ function mostrarform(flag) {
 
   limpiar();
   if (flag) {
-    sumarcampos();
     $("#listadoregistros").hide();
 		$(".mytext").show();
     $("#formularioregistros").show();
