@@ -35,7 +35,7 @@ function init() {
   constraints = {
     nombre_objeto: {
       // Email is required
-      presence: true
+      presence: true,
 
     },
     grupo: {
@@ -55,7 +55,14 @@ function init() {
     },
     pres_aprobado: {
       // Email is required
-      presence: true
+      presence: true,
+      format: {
+        // We don't allow anything that a-z and 0-9
+        pattern: "[1-9][0-9]+(\.[1-9][0-9]?)?",
+        // pattern: "^[1-9][0-9]*$",
+        message: "No puede contener 0"
+      }
+
 
     },
     pres_modificado: {
@@ -74,6 +81,8 @@ function init() {
 
     }
   };
+
+
 
   // Enlace el formulario
   var form = document.querySelector("form#formulario");

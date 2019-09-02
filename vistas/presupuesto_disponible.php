@@ -2,16 +2,12 @@
 //Activamos el almacenamiento en el buffer
 ob_start();
 session_start();
-if (!isset($_SESSION["nombre"]))
-{
-  header("Location: login.html");
-}
-else
-{
-require 'header.php';
-if ($_SESSION['siafi']==1)
-{
-?>
+if (!isset($_SESSION["nombre"])) {
+    header("Location: login.html");
+} else {
+    require 'header.php';
+    if ($_SESSION['siafi']==1) {
+        ?>
 <style media="screen">
 form#formulario .help-block {
     margin-bottom: -5px !important;
@@ -117,13 +113,10 @@ form#formulario .help-block {
       </section>
     </div>
 <?php
-}
-else
-{
-  require 'noacceso.php';
-}
-require 'footer.php';
-?>
+    } else {
+        require 'noacceso.php';
+    }
+    require 'footer.php'; ?>
 <script type="text/javascript" src="scripts/presupuesto_disponible.js"></script>
 <?php
 }
