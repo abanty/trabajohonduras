@@ -28,28 +28,31 @@ form#formulario .help-block {
         <section class="content">
             <div class="row">
               <div class="col-md-12">
-                  <div class="box box-primary">
-                    <div class="box-header with-border">
-                          <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
-                          <h3 class="box-title mytext"><i class="fas fa-chalkboard-teacher"></i> Formulario Presupuesto</h3>
-                        <div class="box-tools pull-right">
+                  <div class="box box-primary box-solid">
+                      <div class="box-header with-border">
+                            <h1 class="box-title"><button class="btn btn-default" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Registra Presupuesto</button></h1>
+                            <h3 class="box-title mytext"><i class="fas fa-chalkboard-teacher"></i> Formulario Presupuesto</h3>
+                            <div class="box-tools pull-right">
+                              <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                          </div>
+                      </div>
+                      <div class="box-body">
+                        <div class="panel-body table-responsive" id="listadoregistros">
+                            <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+                              <thead style="background-color:#d2d6de">
+                                <th>Opciones</th>
+                                <th>Nombre Objeto</th>
+                                <th>Codigo</th>
+                                <th>Pres Inicial</th>
+                                <th>Pres Disminuciones</th>
+                                <th>Pres Por Ejecutar</th>
+                                <th>Pres. Ejecutado Siafi</th>
+                                <th>Estado</th>
+                              </thead>
+                              <tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
-                          <thead style="background-color:#d2d6de">
-                            <th>Opciones</th>
-                            <th>Nombre Objeto</th>
-                            <th>Codigo</th>
-                            <th>Pres Inicial</th>
-                            <th>Pres Disminuciones</th>
-                            <th>Pres Por Ejecutar</th>
-                            <th>Pres. Ejecutado Siafi</th>
-                            <th>Estado</th>
-                          </thead>
-                          <tbody>
-                        </table>
-                    </div>
                         <div class="panel-body" id="formularioregistros" style="padding: 5px 15px 15px 15px !important;">
                           <form name="formulario" id="formulario" method="POST">
                             <div class="box-body">
@@ -57,24 +60,24 @@ form#formulario .help-block {
                                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                   <label for="nombre_objeto">Objeto:(*)</label>
                                   <input type="hidden" name="idpresupuesto_disponible" id="idpresupuesto_disponible">
-                                  <input type="text" class="form-control input-sm" name="nombre_objeto" id="nombre_objeto" maxlength="100"  placeholder="Nombre de Objeto">
+                                  <input type="text" class="form-control input-sm" name="nombre_objeto" id="nombre_objeto" maxlength="100"  placeholder="Nombre de Objeto...">
                                   <div class="messages"></div>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="grupo">Grupo:(*)</label>
-                                  <input type="text" class="form-control input-sm"  name="grupo" id="grupo" maxlength="45" placeholder="Grupo">
+                                  <input type="text" class="form-control input-sm"  name="grupo" id="grupo" maxlength="45" placeholder="Ingresa Grupo...">
                                   <div class="messages"></div>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="subgrupo">Sub-Grupo:(*)</label>
-                                  <input type="text" class="form-control input-sm"  name="subgrupo" id="subgrupo" maxlength="45" placeholder="Sub Grupo">
+                                  <input type="text" class="form-control input-sm"  name="subgrupo" id="subgrupo" maxlength="45" placeholder="Ingresa Sub Grupo...">
                                   <div class="messages"></div>
                                 </div>
                               </div>
                               <div class="row">
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="codigo">Codigo:(*)</label>
-                                  <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="codigo">
+                                  <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="Digita Codigo...">
                                   <div class="messages"></div>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -107,10 +110,11 @@ form#formulario .help-block {
                             </div>
                           </form>
                     </div>
+                      </div>
                   </div>
               </div>
-          </div>
-      </section>
+           </div>
+        </section>
     </div>
 <?php
     } else {

@@ -33,58 +33,64 @@ function init() {
  | Estas son las restricciones utilizadas para validar el formulario |
  .------------------------------------------------------------------*/
   constraints = {
+
     nombre_objeto: {
       // Email is required
-      presence: true,
-      format: {
-        // We don't allow anything that a-z and 0-9
-        pattern: "a*b*c*",
-        // pattern: "^[1-9][0-9]*$",
-        message: "No puede contener 0"
-      }
+      presence: true
 
     },
+
     grupo: {
       // Email is required
       presence: true
-
     },
+
     subgrupo: {
       // Email is required
       presence: true
-
     },
+
     codigo: {
       // Email is required
       presence: true
-
     },
+
     pres_aprobado: {
       // Email is required
       presence: true,
-      // format: {
-      //   // We don't allow anything that a-z and 0-9
-      //   pattern: "[1-9][0-9]+(\.[1-9][0-9]?)?",
-      //   // pattern: "^[1-9][0-9]*$",
-      //   message: "No puede contener 0"
-      // }
 
-
+      format: {
+        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
     },
+
     pres_modificado: {
       // Email is required
-      presence: true
-
+      presence: true,
+      format: {
+        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
     },
+
     presupuesto_anual: {
       // Email is required
-      presence: true
+      presence: true,
+      format: {
+        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
 
     },
+
     fondos_disponibles: {
       // Email is required
-      presence: true
-
+      presence: true,
+      format: {
+        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
     }
   };
 
