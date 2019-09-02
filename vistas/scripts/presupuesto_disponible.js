@@ -272,10 +272,12 @@ function mostrarform(flag) {
   if (flag) {
     sumarcampos();
     $("#listadoregistros").hide();
+		$(".mytext").show();
     $("#formularioregistros").show();
     $("#btnGuardar").prop("disabled", false);
     $("#btnagregar").hide();
   } else {
+		$(".mytext").hide();
     $("#listadoregistros").show();
     $("#formularioregistros").hide();
     $("#btnagregar").show();

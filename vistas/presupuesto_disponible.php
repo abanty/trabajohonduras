@@ -37,9 +37,10 @@ form#formulario .help-block {
         <section class="content">
             <div class="row">
               <div class="col-md-12">
-                  <div class="box">
+                  <div class="box box-primary">
                     <div class="box-header with-border">
-                          <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button> <a href="../reportes/rptpresupuesto_disponible.php" target="_blank"><button class="btn btn-info">Reporte</button></a></h1>
+                          <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
+                          <h3 class="box-title mytext"><i class="fas fa-chalkboard-teacher"></i> Formulario Presupuesto</h3>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
@@ -60,7 +61,7 @@ form#formulario .help-block {
                           <tbody>
                         </table>
                     </div>
-                        <div class="panel-body" id="formularioregistros">
+                        <div class="panel-body" id="formularioregistros" style="padding: 5px 15px 15px 15px !important;">
                           <form name="formulario" id="formulario" method="POST">
                             <div class="box-body">
                               <div class="row">
