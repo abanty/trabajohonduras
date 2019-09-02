@@ -146,7 +146,6 @@ require 'footer.php';
 ?>
 
 <script type="text/javascript" src="scripts/presupuesto_disponible.js"></script>
-<!-- <script type="text/javascript" src="scripts/validators/valida_formulario.js"></script> -->
 
 <?php
 }
