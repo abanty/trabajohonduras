@@ -114,6 +114,22 @@ function init() {
     });
   }
 
+  var extra_inputs = form.querySelectorAll("#fondos_disponibles")
+  for (var i = 0; i < extra_inputs.length; ++i) {
+    extra_inputs.item(i).addEventListener("change", function(input) {
+      // ev.preventDefault();
+      var errors = validate(form, constraints) || {};
+      showErrorsForInput(this, errors[this.name])
+    });
+  }
+
+  // var form = document.querySelector("form#formulario");
+  // var errorsx = validate(form, constraints);
+  //   _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
+  //     // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
+  //     showErrorsForInput(input, errorsx && errorsx[input.name]);
+  //   });
+
   //Cargamos select selectPresupuesto_anual
   $.post("../ajax/presupuesto_disponible.php?op=selectPresupuesto_anual", function(r) {
     $("#idpresupuesto_anual").html(r);
@@ -244,12 +260,12 @@ function sumarcampos() {
 | FUNCION PARA REALIZAR CALCULOS DE ADICION |
 .------------------------------------------*/
 function valida_campo_fondos_disponibles() {
-      var form = document.querySelector("form#formulario");
-      var errors = validate(form, constraints);
-        _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
-          // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
-          showErrorsForInput(input, errors && errors[input.name]);
-        });
+      // var form = document.querySelector("form#formulario");
+      // var errors = validate(form, constraints);
+      //   _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
+      //     // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
+      //     showErrorsForInput(input, errors && errors[input.name]);
+      //   });
 
 }
 
