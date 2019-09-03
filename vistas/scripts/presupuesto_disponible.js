@@ -37,7 +37,6 @@ function init() {
     nombre_objeto: {
       // Email is required
       presence: true
-
     },
 
     grupo: {
@@ -60,7 +59,7 @@ function init() {
       presence: true,
 
       format: {
-        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
         message: ", No puede ser igual o menor a 0"
       }
     },
@@ -69,7 +68,7 @@ function init() {
       // Email is required
       presence: true,
       format: {
-        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
         message: ", No puede ser igual o menor a 0"
       }
     },
@@ -78,7 +77,7 @@ function init() {
       // Email is required
       presence: true,
       format: {
-        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
         message: ", No puede ser igual o menor a 0"
       }
 
@@ -88,7 +87,7 @@ function init() {
       // Email is required
       presence: true,
       format: {
-        pattern: "^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$",
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
         message: ", No puede ser igual o menor a 0"
       }
     }
@@ -228,10 +227,10 @@ function showSuccess() {
 .------------------------------------------*/
 function sumarcampos() {
 
-  var form = document.querySelector("form#formulario");
-  var errors = validate(form, constraints);
-  // Actualizamos el formulario para reflejar los resultados
-  showErrors(form, errors || {});
+  // var form = document.querySelector("form#formulario");
+  // var errors = validate(form, constraints);
+  // // Actualizamos el formulario para reflejar los resultados
+  // showErrors(form, errors || {});
 
   var suma1 = $('#pres_aprobado').val();
   var suma1replace = parseFloat(suma1.replace(/,/g, ''));
@@ -245,11 +244,13 @@ function sumarcampos() {
 | FUNCION PARA REALIZAR CALCULOS DE ADICION |
 .------------------------------------------*/
 function valida_campo_fondos_disponibles() {
+      var form = document.querySelector("form#formulario");
+      var errors = validate(form, constraints);
+        _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
+          // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
+          showErrorsForInput(input, errors && errors[input.name]);
+        });
 
-  var form = document.querySelector("form#formulario#fondos_disponibles");
-  var errors = validate(form, constraints);
-  // Actualizamos el formulario para reflejar los resultados
-  showErrors(form, errors || {});
 }
 
 /*----------------*
@@ -285,22 +286,7 @@ function mostrarform(flag) {
 	limpiar_campos_validados();
   //Transformando inputs a libreria MASKMONEY.
   $(function() {
-    $('#pres_aprobado').maskMoney({
-      thousands: ',',
-      decimal: '.',
-      allowZero: true
-    });
-    $('#pres_modificado').maskMoney({
-      thousands: ',',
-      decimal: '.',
-      allowZero: true
-    });
-    $('#fondos_disponibles').maskMoney({
-      thousands: ',',
-      decimal: '.',
-      allowZero: true
-    });
-    $('#presupuesto_anual').maskMoney({
+    $('.decimal').maskMoney({
       thousands: ',',
       decimal: '.',
       allowZero: true

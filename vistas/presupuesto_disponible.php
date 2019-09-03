@@ -82,24 +82,24 @@ form#formulario .help-block {
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="pres_aprobado">Pres. Inicial:</label>
-                                  <input type="text" class="form-control input-sm" onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_aprobado" id="pres_aprobado" required>
+                                  <input type="text" class="form-control input-sm decimal" onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_aprobado" id="pres_aprobado" required>
                                   <div class="messages"></div>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="pres_modificado">Disminuciones:</label>
-                                  <input type="text" class="form-control input-sm"  onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_modificado" id="pres_modificado" required>
+                                  <input type="text" class="form-control input-sm decimal"  onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_modificado" id="pres_modificado" required>
                                   <div class="messages"></div>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="presupuesto_anual">Por Ejecutar:</label>
-                                  <input type="text" class="form-control input-sm"  onchange="valida_campos()" onkeyup="valida_campos()" name="presupuesto_anual" id="presupuesto_anual" required>
+                                  <input type="text" class="form-control input-sm decimal"  onchange="valida_campos()" onkeyup="valida_campos()" name="presupuesto_anual" id="presupuesto_anual" required>
                                   <div class="messages"></div>
                                 </div>
                               </div>
                               <div class="row">
                                   <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <label for="fondos_disponibles">Pres. SIAFI Ejecutado:</label>
-                                    <input type="text" class="form-control input-sm"  onchange="valida_campo_fondos_disponibles()" onkeyup="valida_campo_fondos_disponibles()" name="fondos_disponibles" id="fondos_disponibles" required>
+                                    <input type="text" class="form-control input-sm decimal"  onchange="valida_campo_fondos_disponibles()" onkeyup="valida_campo_fondos_disponibles()" name="fondos_disponibles" id="fondos_disponibles" required>
                                     <div class="messages"></div>
                                   </div>
                                </div>
