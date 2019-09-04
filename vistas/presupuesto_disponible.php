@@ -45,7 +45,7 @@ form#formulario .help-block {
                                 <th>Nombre Objeto</th>
                                 <th>Codigo</th>
                                 <th>Pres Inicial</th>
-                                <th>Pres Disminuciones</th>
+                                <!-- <th>Pres Disminuciones</th> -->
                                 <th>Pres Por Ejecutar</th>
                                 <th>Pres. Ejecutado Siafi</th>
                                 <th>Estado</th>
@@ -114,15 +114,17 @@ form#formulario .help-block {
                                   <div class="messages"></div>
                                 </div>
 
+
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="presupuesto_anual">Pres. Por Ejecutar:</label>
-                                  <input type="text" class="form-control input-sm decimal" name="presupuesto_anual" id="presupuesto_anual" required>
+                                  <label for="presupuesto_anual">Vigente:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="pres_disponible" id="pres_disponible" required>
                                   <div class="messages"></div>
                                 </div>
 
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="presupuesto_anual">Pres. Disponible:</label>
-                                  <input type="text" class="form-control input-sm decimal" name="pres_disponible" id="pres_disponible" required>
+                                  <label for="presupuesto_anual">Pres. Por Ejecutar:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="presupuesto_anual" id="presupuesto_anual" required>
                                   <div class="messages"></div>
                                 </div>
 
