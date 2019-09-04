@@ -15,7 +15,6 @@ Class Transferidoctaspg
 
 		$idusuario,
 		$fecha_hora,
-		$tipo_transf,
 		$numexpediente,
 		$numtransferencia,
 		$valor_transferido,
@@ -30,7 +29,6 @@ Class Transferidoctaspg
 		$sql="INSERT INTO transferidoctaspg (
 		idusuario,
 		fecha_hora,
-		tipo_transf,
 		numexpediente,
 		numtransferencia,
 		valor_transferido,
@@ -38,7 +36,6 @@ Class Transferidoctaspg
 		VALUES (
 		'$idusuario',
 		'$fecha_hora',
-		'$tipo_transf',
 		'$numexpediente',
 		'$numtransferencia',
 		'$valor_transferido',
@@ -155,7 +152,6 @@ Class Transferidoctaspg
 		i.idtransferidoctaspg,
 		DATE(i.fecha_hora) as fecha,
 		u.nombre as usuario,
-		i.tipo_transf,
 		i.numexpediente,
 		i.numtransferencia,
 		FORMAT(i.valor_transferido, 2) as valor_transferido,

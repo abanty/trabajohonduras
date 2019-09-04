@@ -45,7 +45,6 @@ if ($_SESSION['siafi']==1)
                             <th>Opciones</th>
                             <th>Fecha</th>
                             <th>Usuario</th>
-                            <th>Tipo Transferencia</th>
                             <th>No. Expediente</th>
                             <th>No. Transferencia</th>
                             <th>Valor transferido</th>
@@ -57,7 +56,6 @@ if ($_SESSION['siafi']==1)
                             <th>Opciones</th>
                             <th>Fecha</th>
                             <th>Usuario</th>
-                            <th>Tipo Transferencia</th>
                             <th>No. Expediente</th>
                             <th>No. Transferencia</th>
                             <th>Valor transferido</th>
@@ -71,14 +69,6 @@ if ($_SESSION['siafi']==1)
                             <label>Fecha(*):</label>
                              <input type="hidden" name="idtransferidoctaspg" id="idtransferidoctaspg">
                              <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
-                          </div>
-
-                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
-                            <label>Tipo Transferencia(*):</label>
-                            <select class="form-control selectpicker" name="tipo_transf" id="tipo_transf" data-style="btn-default btn-sm" data-title="Elige el Tipo de Transferencia" required>
-                              <option value="Transf/Sedena">Transf/Sedena</option>
-                              <option value="Transf/Cuentas">Transf/Cuentas</option>
-                            </select>
                           </div>
 
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">

@@ -35,8 +35,6 @@ $(function() {
 function limpiar()
 {
 	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
-  $("#tipo_transf").selectpicker('val',"");
-	$("#tipo_transf").selectpicker('refresh');
 	$("#numexpediente").val("");
 	$("#numtransferencia").val("");
 	$('.ththis').show();
@@ -71,7 +69,6 @@ function mostrarform(flag)
 		//$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
 		listarCtasbancarias();
-		$("#tipo_transf").change(change_input_by_tipodoc);
 
 		$("#btnGuardar").hide();
 		$("#btnCancelar").show();
@@ -228,7 +225,6 @@ function mostrar(idtransferidoctaspg)
 	{
 		data = JSON.parse(data);
 		mostrarform(true);
-    $("#tipo_transf").val(data.tipo_transf).selectpicker('refresh')
 		$("#numexpediente").val(data.numexpediente);
 		$("#numtransferencia").val(data.numtransferencia);
 		$("#fecha_hora").val(data.fecha);
