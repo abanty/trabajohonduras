@@ -56,53 +56,84 @@ form#formulario .help-block {
                         <div class="panel-body" id="formularioregistros" style="padding: 5px 15px 15px 15px !important;">
                           <form name="formulario" id="formulario" method="POST">
                             <div class="box-body">
+
                               <div class="row">
+
                                 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                   <label for="nombre_objeto">Objeto:(*)</label>
                                   <input type="hidden" name="idpresupuesto_disponible" id="idpresupuesto_disponible">
                                   <input type="text" class="form-control input-sm" name="nombre_objeto" id="nombre_objeto" maxlength="100"  placeholder="Nombre de Objeto...">
                                   <div class="messages"></div>
                                 </div>
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="grupo">Grupo:(*)</label>
                                   <input type="text" class="form-control input-sm"  name="grupo" id="grupo" maxlength="45" placeholder="Ingresa Grupo...">
                                   <div class="messages"></div>
                                 </div>
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="subgrupo">Sub-Grupo:(*)</label>
                                   <input type="text" class="form-control input-sm"  name="subgrupo" id="subgrupo" maxlength="45" placeholder="Ingresa Sub Grupo...">
                                   <div class="messages"></div>
                                 </div>
+
                               </div>
-                              <div class="row">
+
+                             <div class="row">
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="codigo">Codigo:(*)</label>
                                   <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="Digita Codigo...">
                                   <div class="messages"></div>
                                 </div>
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="pres_aprobado">Pres. Inicial:</label>
                                   <input type="text" class="form-control input-sm decimal" onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_aprobado" id="pres_aprobado" required>
                                   <div class="messages"></div>
                                 </div>
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="pres_modificado">Disminuciones:</label>
+                                  <label for="pres_modificado">Pres. Disminuciones:</label>
                                   <input type="text" class="form-control input-sm decimal"  onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_modificado" id="pres_modificado" required>
                                   <div class="messages"></div>
                                 </div>
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="presupuesto_anual">Por Ejecutar:</label>
-                                  <input type="text" class="form-control input-sm decimal"  onchange="valida_campos()" onkeyup="valida_campos()" name="presupuesto_anual" id="presupuesto_anual" required>
+                                  <label for="presupuesto_anual">Pres. Aumentos:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="pres_aumentos" id="pres_aumentos" required>
                                   <div class="messages"></div>
                                 </div>
                               </div>
+
                               <div class="row">
-                                  <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label for="fondos_disponibles">Pres. SIAFI Ejecutado:</label>
-                                    <input type="text" class="form-control input-sm decimal"  onchange="valida_campo_fondos_disponibles()" onkeyup="valida_campo_fondos_disponibles()" name="fondos_disponibles" id="fondos_disponibles" required>
-                                    <div class="messages"></div>
-                                  </div>
-                               </div>
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="presupuesto_anual">Pres. Congelamientos:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="pres_congelamiento" id="pres_congelamiento" required>
+                                  <div class="messages"></div>
+                                </div>
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="presupuesto_anual">Pres. Por Ejecutar:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="presupuesto_anual" id="presupuesto_anual" required>
+                                  <div class="messages"></div>
+                                </div>
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="presupuesto_anual">Pres. Disponible:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="pres_disponible" id="pres_disponible" required>
+                                  <div class="messages"></div>
+                                </div>
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="fondos_disponibles">Pres. SIAFI Ejecutado:</label>
+                                  <input type="text" class="form-control input-sm decimal"  onchange="valida_campo_fondos_disponibles()" onkeyup="valida_campo_fondos_disponibles()" name="fondos_disponibles" id="fondos_disponibles" required>
+                                  <div class="messages"></div>
+                                </div>
+
+                             </div>
+
                             </div>
                             <div class="box-footer">
                               <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>

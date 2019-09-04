@@ -64,6 +64,36 @@ function init() {
       }
     },
 
+    pres_aumentos: {
+      // Email is required
+      presence: true,
+
+      format: {
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
+    },
+
+    pres_congelamiento: {
+      // Email is required
+      presence: true,
+
+      format: {
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
+    },
+
+    pres_disponible: {
+      // Email is required
+      presence: true,
+
+      format: {
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+        message: ", No puede ser igual o menor a 0"
+      }
+    },
+
     pres_modificado: {
       // Email is required
       presence: true,
@@ -114,21 +144,6 @@ function init() {
     });
   }
 
-  var extra_inputs = form.querySelectorAll("#fondos_disponibles")
-  for (var i = 0; i < extra_inputs.length; ++i) {
-    extra_inputs.item(i).addEventListener("change", function(input) {
-      // ev.preventDefault();
-      var errors = validate(form, constraints) || {};
-      showErrorsForInput(this, errors[this.name])
-    });
-  }
-
-  // var form = document.querySelector("form#formulario");
-  // var errorsx = validate(form, constraints);
-  //   _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
-  //     // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
-  //     showErrorsForInput(input, errorsx && errorsx[input.name]);
-  //   });
 
   //Cargamos select selectPresupuesto_anual
   $.post("../ajax/presupuesto_disponible.php?op=selectPresupuesto_anual", function(r) {
@@ -243,10 +258,12 @@ function showSuccess() {
 .------------------------------------------*/
 function sumarcampos() {
 
-  // var form = document.querySelector("form#formulario");
-  // var errors = validate(form, constraints);
-  // // Actualizamos el formulario para reflejar los resultados
-  // showErrors(form, errors || {});
+  var form = document.querySelector("form#formulario");
+  var errors = validate(form, constraints);
+    _.each(form.querySelectorAll(".decimal"), function(input) {
+      // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
+      showErrorsForInput(input, errors && errors[input.name]);
+    });
 
   var suma1 = $('#pres_aprobado').val();
   var suma1replace = parseFloat(suma1.replace(/,/g, ''));
@@ -260,12 +277,12 @@ function sumarcampos() {
 | FUNCION PARA REALIZAR CALCULOS DE ADICION |
 .------------------------------------------*/
 function valida_campo_fondos_disponibles() {
-      // var form = document.querySelector("form#formulario");
-      // var errors = validate(form, constraints);
-      //   _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
-      //     // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
-      //     showErrorsForInput(input, errors && errors[input.name]);
-      //   });
+      var form = document.querySelector("form#formulario");
+      var errors = validate(form, constraints);
+        _.each(form.querySelectorAll("#fondos_disponibles"), function(input) {
+          // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
+          showErrorsForInput(input, errors && errors[input.name]);
+        });
 
 }
 
@@ -277,6 +294,9 @@ function limpiar() {
   $("#grupo").val("");
   $("#subgrupo").val("");
   $("#codigo").val("");
+  $("#pres_aumentos").val("0");
+  $("#pres_congelamiento").val("0");
+  $("#pres_disponible").val("0");
   $("#pres_aprobado").val("0");
   $("#pres_modificado").val("0");
   $("#presupuesto_anual").val("0");
