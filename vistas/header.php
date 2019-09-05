@@ -39,6 +39,11 @@ if (strlen(session_id()) < 1)
 
   </head>
   <style media="screen">
+
+  .user-panel>.info {
+    position: initial !important;
+}
+
   .loader-page {
   position: fixed;
   z-index: 25000;
