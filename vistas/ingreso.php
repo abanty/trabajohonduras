@@ -84,6 +84,15 @@ if ($_SESSION['siafi']==1)
                               <input type="text" class="form-control input-sm" name="numf01" id="numf01" maxlength="25" placeholder="Número" required="">
                             </div>
 
+                            <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                              <label>Tipo Presupuesto(*):</label>
+                              <select class="form-control selectpicker" name="idpresupuesto" id="idpresupuesto"  multiple data-max-options="1" data-style="btn-default btn-sm" data-title="Elige un presupuesto" required>
+                                <option data-icon="fas fa-dollar-sign" value="presinit">Presupuesto Inicial</option>
+                                <option data-icon="fas fa-dollar-sign" value="presanual">Presupuesto Anual</option>
+                                <option data-icon="fas fa-dollar-sign" value="dismin">Disminuciones</option>
+                                <option data-icon="fas fa-dollar-sign" value="aument">Aumentos</option>
+                              </select>
+                            </div>
 
                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                               <a data-toggle="modal" href="#myModal">
@@ -154,7 +163,7 @@ if ($_SESSION['siafi']==1)
               <th>Opciones</th>
                <th>Nombre Objeto</th>
               <th>Código</th>
-              <th>Fondos Disponibles</th>
+              <th>Fondos Vigentes</th>
           </thead>
           <tbody>
 
@@ -164,7 +173,7 @@ if ($_SESSION['siafi']==1)
               <th>Opciones</th>
                <th>Nombre Objeto</th>
               <th>Código</th>
-              <th>Fondos Disponibles</th>
+              <th>Fondos Vigentes</th>
           </tfoot>
         </table>
       </div>

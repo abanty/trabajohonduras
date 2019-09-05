@@ -60,9 +60,8 @@ Class Presupuesto_disponible
 		//Implementar un método para listar los registros activos
 	public function listarPresupuestoActivos()
 	{
-		$sql="SELECT idpresupuesto_disponible, nombre_objeto,	grupo, subgrupo, codigo,
-		FORMAT( presupuesto_anual, 2) as presupuesto_anual,
-		FORMAT( fondos_disponibles, 2) as fondos_disponibles,
+		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo,subgrupo,FORMAT( pres_vigente, 2) as presupuesto_vigente,
+		FORMAT( pres_ejecutar, 2) as presupuesto_ejecutar,		FORMAT( pres_ejecutado, 2) as presupuesto_ejecutado,	condicion
 		condicion
 		FROM presupuesto_disponible
 		WHERE condicion='1'";

@@ -94,7 +94,7 @@ case 'listarDetalle':
  				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\')"><span class="fas fa-plus-circle"></span></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
- 				"3"=>$reg->fondos_disponibles
+ 				"3"=>$reg->presupuesto_vigente
  				);
  		}
  		$results = array(
