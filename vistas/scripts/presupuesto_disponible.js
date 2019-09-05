@@ -54,72 +54,34 @@ function init() {
       presence: true
     },
 
-    pres_aprobado: {
+    pres_vigente: {
       // Email is required
       presence: true,
 
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
+      // format: {
+      //   pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+      //   message: ", No puede ser igual o menor a 0"
+      // }
     },
 
-    pres_aumentos: {
+    pres_ejecutar: {
       // Email is required
       presence: true,
 
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
+      // format: {
+      //   pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+      //   message: ", No puede ser igual o menor a 0"
+      // }
     },
 
-    pres_congelamiento: {
+    pres_ejecutado: {
       // Email is required
       presence: true,
 
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
-    },
-
-    pres_disponible: {
-      // Email is required
-      presence: true,
-
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
-    },
-
-    pres_modificado: {
-      // Email is required
-      presence: true,
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
-    },
-
-    presupuesto_anual: {
-      // Email is required
-      presence: true,
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
-
-    },
-
-    fondos_disponibles: {
-      // Email is required
-      presence: true,
-      format: {
-        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-        message: ", No puede ser igual o menor a 0"
-      }
+      // format: {
+      //   pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+      //   message: ", No puede ser igual o menor a 0"
+      // }
     }
   };
 
@@ -294,13 +256,9 @@ function limpiar() {
   $("#grupo").val("");
   $("#subgrupo").val("");
   $("#codigo").val("");
-  $("#pres_aumentos").val("0");
-  $("#pres_congelamiento").val("0");
-  $("#pres_disponible").val("0");
-  $("#pres_aprobado").val("0");
-  $("#pres_modificado").val("0");
-  $("#presupuesto_anual").val("0");
-  $("#fondos_disponibles").val("0");
+  $("#pres_vigente").val("0");
+  $("#pres_ejecutar").val("0");
+  $("#pres_ejecutado").val("0");
   $("#idpresupuesto_disponible").val("");
 }
 

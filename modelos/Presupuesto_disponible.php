@@ -11,10 +11,10 @@ Class Presupuesto_disponible
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo,$pres_aprobado,$pres_modificado,$presupuesto_anual,$fondos_disponibles)
+	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo,$pres_vigente,$pres_ejecutar,$pres_ejecutado)
 	{
-		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,pres_aprobado,pres_modificado,presupuesto_anual,fondos_disponibles,condicion)
-		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','$pres_aprobado','$pres_modificado','$presupuesto_anual','$fondos_disponibles','1')";
+		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,pres_vigente,pres_ejecutar,pres_ejecutado,condicion)
+		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','$pres_vigente','$pres_ejecutar','$pres_ejecutado','1')";
 		return ejecutarConsulta($sql);
 	}
 
@@ -51,9 +51,8 @@ Class Presupuesto_disponible
 //Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	pres_aprobado,
-		pres_modificado,grupo,subgrupo,FORMAT( presupuesto_anual, 2) as presupuesto_anual,
-		FORMAT( fondos_disponibles, 2) as fondos_disponibles,	condicion
+		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo,subgrupo,FORMAT( pres_vigente, 2) as presupuesto_vigente,
+		FORMAT( pres_ejecutar, 2) as presupuesto_ejecutar,		FORMAT( pres_ejecutado, 2) as presupuesto_ejecutado,	condicion
 		FROM presupuesto_disponible";
 		return ejecutarConsulta($sql);
 	}
