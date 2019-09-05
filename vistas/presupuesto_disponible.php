@@ -81,40 +81,12 @@ form#formulario .help-block {
                               </div>
 
                              <div class="row">
+
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="codigo">Codigo:(*)</label>
                                   <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="Digita Codigo...">
                                   <div class="messages"></div>
                                 </div>
-
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="pres_aprobado">Pres. Inicial:</label>
-                                  <input type="text" class="form-control input-sm decimal" onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_aprobado" id="pres_aprobado" required>
-                                  <div class="messages"></div>
-                                </div>
-
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="pres_modificado">Pres. Disminuciones:</label>
-                                  <input type="text" class="form-control input-sm decimal"  onchange="sumarcampos()" onkeyup="sumarcampos()" name="pres_modificado" id="pres_modificado" required>
-                                  <div class="messages"></div>
-                                </div>
-
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="presupuesto_anual">Pres. Aumentos:</label>
-                                  <input type="text" class="form-control input-sm decimal" name="pres_aumentos" id="pres_aumentos" required>
-                                  <div class="messages"></div>
-                                </div>
-                              </div>
-
-                              <div class="row">
-
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="presupuesto_anual">Pres. Congelamientos:</label>
-                                  <input type="text" class="form-control input-sm decimal" name="pres_congelamiento" id="pres_congelamiento" required>
-                                  <div class="messages"></div>
-                                </div>
-
-
 
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="presupuesto_anual">Vigente:</label>

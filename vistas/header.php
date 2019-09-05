@@ -7,7 +7,7 @@ if (strlen(session_id()) < 1)
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SISTEMA CONTABLE</title>
+    <title>SISTEMA DE CONTROL PRESUPUESTARIO</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../public/css/font-awesome.css">
     <link rel="stylesheet" href="../public/fontawesome5/css/all.css">
@@ -209,7 +209,7 @@ if (strlen(session_id()) < 1)
             <img src="img/usuarios/hmercadal1/249.jpg" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Sistema Contable FNH</p>
+            <p>Sistema FNH</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Activo</a>
           </div>
         </div>
