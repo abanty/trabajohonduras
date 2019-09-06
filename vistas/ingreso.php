@@ -110,6 +110,7 @@ if ($_SESSION['siafi']==1)
                                 <thead style="background-color:#d2d6de">
                                       <th>Opciones</th>
                                       <th>Nombre Objeto</th>
+                                      <th>Actividad</th>
                                       <th>Valor</th>
                                       <th>Subtotal</th>
                                   </thead>
