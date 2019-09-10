@@ -358,6 +358,7 @@ if (strlen(session_id()) < 1)
               <li><a href="presupuesto_disponible.php"><i class="far fa-dot-circle text-blue"></i> Presupuesto Disponible</a></li>
               <li><a href="ingreso.php"><i class="far fa-dot-circle text-blue"></i> Ingreso</a></li>
               <li><a href="transferidoctaspg.php"><i class="far fa-dot-circle text-blue"></i> Transferido BCH</a></li>
+              <li><a href="pgm.php"><i class="far fa-dot-circle text-blue"></i> PGM</a></li>
 
             </ul>
 
