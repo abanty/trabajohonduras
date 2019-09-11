@@ -387,7 +387,30 @@ if (strlen(session_id()) < 1)
 
       }
       ?>
+      <?php
+       if ($_SESSION['compromisosp']==1)
+       {
+         echo '<li class="treeview">
+       <a href="#">
 
+         <i class="fas fa-grip-vertical fa-lg"></i><span>POA</span>
+     
+           <i class="fal fa-angle-left pull-right"></i>
+         </span>
+       </a>
+
+          <ul class="treeview-menu">
+         <li><a href="proyeccion.php"><i class="far fa-dot-circle text-blue"></i> Programacion Anual</a></li>
+         <li><a href="ejecucion_poa.php"><i class="far fa-dot-circle text-blue"></i>Ejecucion Mensual</a></li>
+         <li><a href="reportes_poa.php"><i class="far fa-dot-circle text-blue"></i>Reportes</a></li>
+
+
+       </ul>
+
+
+       </li>';
+     }
+     ?>
         <?php
             if ($_SESSION['configuraciones']==1)
             {
