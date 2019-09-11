@@ -87,11 +87,11 @@ if ($_SESSION['siafi']==1)
                             <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
                               <label>Actividad(*):</label>
                               <select class="form-control selectpicker" name="idpresupuesto" id="idpresupuesto"  multiple data-max-options="1" data-style="btn-default btn-sm" data-title="Elige un presupuesto" required>
-                                <option data-icon="fas fa-dollar-sign" value="presinit">001</option>
-                                <option data-icon="fas fa-dollar-sign" value="presanual">002</option>
-                                <option data-icon="fas fa-dollar-sign" value="dismin">003</option>
-                                <option data-icon="fas fa-dollar-sign" value="aument">004</option>
-                                <option data-icon="fas fa-dollar-sign" value="aument">005</option>
+                                <option data-icon="" value="presinit">001</option>
+                                <option data-icon="" value="presanual">002</option>
+                                <option data-icon="" value="dismin">003</option>
+                                <option data-icon="" value="aument">004</option>
+                                <option data-icon="" value="aument">005</option>
                               </select>
                             </div>
 

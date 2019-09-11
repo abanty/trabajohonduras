@@ -17,12 +17,11 @@ Class Proveedores
     $casa_comercial,
     $rtn,
     $nombre_banco,
-
     $num_cuenta,
     $tipo_cuenta,
     $imagen)
   {
-    $sql="INSERT INTO proveedores(casa_comercial,nombre_banco,rtn,num_cuenta,tipo_cuenta,imagen,condicion)
+    $sql="INSERT INTO proveedores(casa_comercial,rtn,nombre_banco,num_cuenta,tipo_cuenta,imagen,condicion)
     VALUES ('$casa_comercial','$rtn','$nombre_banco','$num_cuenta','$tipo_cuenta','$imagen','1')";
     return ejecutarConsulta($sql);
   }
