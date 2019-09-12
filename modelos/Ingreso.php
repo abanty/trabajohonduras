@@ -28,15 +28,15 @@ Class Ingreso
 
 		switch ($tipo_presupuesto) {
 			case 'siafi':
-			  $var = 'pres_ejecutado';
+			  $var = 'p.pres_ejecutado';
 			break;
 
 			case 'presinit':
-				$var = 'pres_ejecutar';
+				$var = 'p.pres_ejecutar';
 			break;
 
 			case 'congelamientos':
-				$var = 'pres_ejecutar';
+				$var = 'p.pres_ejecutar';
 			break;
 
 			default:
@@ -44,7 +44,9 @@ Class Ingreso
 				break;
 		}
 
-			$sql2="UPDATE presupuesto_disponible SET $var = $var + '$monto[$num_elementos]' WHERE idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'";
+			$sql2="UPDATE presupuesto_disponible p INNER JOIN detalle_ingreso di ON p.idpresupuesto_disponible = di.idpresupuesto_disponible
+			LEFT JOIN ingreso i ON di.idingreso = i.idingreso SET $var = $var + '$monto[$num_elementos]' WHERE p.idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'
+			AND i.fecha_hora = '$fecha_hora'";
 			ejecutarConsulta($sql2);
 
 			ejecutarConsulta($sql_detalle) or $sw = false;
