@@ -237,7 +237,7 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
     	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
-  	  '<td><input type="text" class="form-control input-sm" name="" value=""></td>'+
+  	  '<td><input type="text" class="form-control input-sm" name="actividad[]" value=""></td>'+
 			'<td><input type="text" class="form-control input-sm prec" step="0.1" name="monto[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" value="'+monto+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'</tr>';

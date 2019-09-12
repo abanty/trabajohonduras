@@ -11,10 +11,10 @@ Class Ingreso
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($idusuario,$fecha_hora,$numf01,$total_importe,$idpresupuesto_disponible,$monto)
+	public function insertar($idusuario,$tipo_presupuesto,$fecha_hora,$numf01,$total_importe,$idpresupuesto_disponible,$actividad,$monto)
 	{
-		$sql="INSERT INTO ingreso (idusuario, fecha_hora,	numf01,	total_importe,	estado)
-		VALUES ('$idusuario','$fecha_hora','$numf01','$total_importe','Aceptado')";
+		$sql="INSERT INTO ingreso (idusuario, tipo_presupuesto, fecha_hora,	numf01,	total_importe,	estado)
+		VALUES ('$idusuario','$tipo_presupuesto','$fecha_hora','$numf01','$total_importe','Aceptado')";
 		//return ejecutarConsulta($sql);
 		$idingresonew=ejecutarConsulta_retornarID($sql);
 
@@ -23,11 +23,36 @@ Class Ingreso
 
 		while ($num_elementos < count($idpresupuesto_disponible))
 		{
-			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,monto)
-			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$monto[$num_elementos]')";
+			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,actividad,monto)
+			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$actividad[$num_elementos]','$monto[$num_elementos]')";
+
+		switch ($tipo_presupuesto) {
+			case 'siafi':
+			  $var = 'pres_ejecutado';
+			break;
+
+			case 'presinit':
+				$var = 'pres_ejecutar';
+			break;
+
+			case 'congelamientos':
+				$var = 'pres_ejecutar';
+			break;
+
+			default:
+				// code...
+				break;
+		}
+
+			$sql2="UPDATE presupuesto_disponible SET $var = $var + '$monto[$num_elementos]' WHERE idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'";
+			ejecutarConsulta($sql2);
+
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
+
 		}
+
+
 
 		return $sw;
 	}

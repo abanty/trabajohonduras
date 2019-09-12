@@ -9,13 +9,14 @@ $ingreso=new Ingreso();
 $idingreso=isset($_POST["idingreso"])? limpiarCadena($_POST["idingreso"]):"";
 $idusuario=$_SESSION["idusuario"];
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
+$tipo_presupuesto=isset($_POST["tipo_presupuesto"])? limpiarCadena($_POST["tipo_presupuesto"]):"";
 $numf01=isset($_POST["numf01"])? limpiarCadena($_POST["numf01"]):"";
 $total_importe=isset($_POST["total_importe"])? limpiarCadena($_POST["total_importe"]):"";
 
 switch ($_GET["op"]){
 	case 'guardaryeditar':
 		if (empty($idingreso)){
-			$rspta=$ingreso->insertar($idusuario,$fecha_hora,$numf01,str_replace(',','',$total_importe),$_POST["idpresupuesto_disponible"],str_replace(',','',$_POST["monto"]));
+			$rspta=$ingreso->insertar($idusuario,$tipo_presupuesto,$fecha_hora,$numf01,str_replace(',','',$total_importe),$_POST["idpresupuesto_disponible"],$_POST["actividad"],str_replace(',','',$_POST["monto"]));
 			echo $rspta ? "Ingreso registrado" : "No se pudieron registrar los datos o el numero F01 ya existe.";
 		}
 		else {
