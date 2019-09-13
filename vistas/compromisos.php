@@ -167,7 +167,7 @@ if ($_SESSION['compromisosp']==1)
           <thead style="background-color:#d2d6de">
               <th>Opciones</th>
                <th>Nombre Objeto</th>
-              <th>C贸digo</th>
+              <th>Codigo</th>
               <th>Fondos Disponibles</th>
           </thead>
           <tbody>
@@ -177,7 +177,7 @@ if ($_SESSION['compromisosp']==1)
             <thead style="background-color:#d2d6de">
               <th>Opciones</th>
                <th>Nombre Objeto</th>
-              <th>C贸digo</th>
+              <th>Codigo</th>
               <th>Fondos Disponibles</th>
           </tfoot>
         </table>
