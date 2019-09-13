@@ -94,14 +94,14 @@ if ($_SESSION['compromisosp']==1)
                           </div>
 
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <label>N煤mero de Factura:</label>
+                            <label>Numero de Factura:</label>
                             <input type="text" class="form-control input-sm" name="numfactura" id="numfactura" maxlength="20" placeholder="numero de factura" required="">
                           </div>
 
                           <!-- checkbox -->
                           <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                               <br>
-                                  <label>Aplica retenci贸n:</label>
+                                  <label>Aplica retencion:</label>
                                   <input type="checkbox" class="flat-red" id="condicion" name="condicion" value="1" checked data-toggle="toggle">
                           </div>
 
