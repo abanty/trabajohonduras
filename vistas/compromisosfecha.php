@@ -29,7 +29,6 @@ if ($_SESSION['compromisosp']==1)
                 <div class="box">
                    <div class="box box-success">
                     <div class="box-header with-border">
-                          <h1 class="box-title"> <a href="../reportes/rpcompromisosp.php" target="_blank"> <button class="btn btn-info">Compromisos Pendientes</button>
                            <a href="../reportes/RE_compromiso_renglon.php"> <button class="btn btn-info">Compromisos Pendientes por renglon</button></a></h1>
                         <div class="box-tools pull-right">
                         </div>
