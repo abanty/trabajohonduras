@@ -236,8 +236,8 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
 
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
-    	'<td><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
-  	  '<td><input type="text" class="form-control input-sm" name="actividad[]" value=""></td>'+
+    	'<td><input type="hidden" class="form-control input-sm" name="any[]" value=""><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
+	    '<td><input type="text" class="form-control input-sm" name="actividad[]" value=""></td>'+
 			'<td><input type="text" class="form-control input-sm prec" step="0.1" name="monto[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" value="'+monto+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'</tr>';
@@ -284,12 +284,17 @@ function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
 
  function modificarSubototales()
   {
+
   	var monto = document.getElementsByName("monto[]");
+		var any = document.getElementsByName("any[]");
     var sub = document.getElementsByName("subtotal");
 
     for (var i = 0; i <monto.length; i++) {
+			var varR=any[i];
     	var inpC=monto[i];
     	var inpS=sub[i];
+
+			varR.value = inpC.value;
 
 			var preci_unit_valor = parseFloat((inpC.value).replace(/,/g, ''));
 

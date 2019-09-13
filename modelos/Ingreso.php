@@ -11,7 +11,7 @@ Class Ingreso
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($idusuario,$tipo_presupuesto,$fecha_hora,$numf01,$total_importe,$idpresupuesto_disponible,$actividad,$monto)
+	public function insertar($idusuario,$tipo_presupuesto,$fecha_hora,$numf01,$total_importe,$idpresupuesto_disponible,$anypres,$actividad,$monto)
 	{
 		$sql="INSERT INTO ingreso (idusuario, tipo_presupuesto, fecha_hora,	numf01,	total_importe,	estado)
 		VALUES ('$idusuario','$tipo_presupuesto','$fecha_hora','$numf01','$total_importe','Aceptado')";
@@ -21,28 +21,24 @@ Class Ingreso
 		$num_elementos=0;
 		$sw=true;
 
+		switch ($tipo_presupuesto) {
+			case 'siafi':
+				$var = 'pres_siafi';
+			break;
+
+			case 'presinit':
+				$var = 'pres_inicial';
+			break;
+
+			default:
+				// code...
+				break;
+		}
+
 		while ($num_elementos < count($idpresupuesto_disponible))
 		{
-			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,actividad,monto)
-			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$actividad[$num_elementos]','$monto[$num_elementos]')";
-		// 
-		// switch ($tipo_presupuesto) {
-		// 	case 'siafi':
-		// 	  $var = 'p.pres_ejecutado';
-		// 	break;
-		//
-		// 	case 'presinit':
-		// 		$var = 'p.pres_ejecutar';
-		// 	break;
-		//
-		// 	case 'congelamientos':
-		// 		$var = 'p.pres_ejecutar';
-		// 	break;
-		//
-		// 	default:
-		// 		// code...
-		// 		break;
-		// }
+			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,$var,actividad,monto)
+			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$anypres[$num_elementos]','$actividad[$num_elementos]','$monto[$num_elementos]')";
 
 			// $sql2="UPDATE presupuesto_disponible p INNER JOIN detalle_ingreso di ON p.idpresupuesto_disponible = di.idpresupuesto_disponible
 			// LEFT JOIN ingreso i ON di.idingreso = i.idingreso SET $var = $var + '$monto[$num_elementos]' WHERE p.idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'
