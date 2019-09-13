@@ -67,6 +67,21 @@ switch ($_GET["op"]){
  		echo json_encode($rspta);
 	break;
 
+	case 'ValidarNumRtn':
+
+		$rspta=$proveedores->validarnumrtnduplicados();
+		//Vamos a declarar un array
+		$data= Array();
+
+		while ($reg=$rspta->fetch_object()){
+
+			$data[]=$reg->rtn;
+
+		}
+		echo json_encode($data);
+
+	break;
+
 	case 'listarp':
 		$rspta=$proveedores->listar();
  		//Vamos a declarar un array

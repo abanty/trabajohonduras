@@ -13,7 +13,7 @@ function init(){
 
 	$("#formulario").on("submit",function(e)
 	//Cargamos los items al select categoria
-	$.post("../ajax/proveedores.php?op=ValidarNumeroRtn", function(datos) {
+	$.post("../ajax/proveedores.php?op=ValidarNumRtn", function(datos) {
 		datos = JSON.parse(datos);
 
 		var rtn = $('#rtn').val();
