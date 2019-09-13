@@ -18,6 +18,7 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" href="../public/css/_all-skins.min.css">
     <link rel="stylesheet" href="../public/css/spinner.css">
     <!-- Waves Effect Css -->
+
     <link href="../public/css/waves.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../public/Ionicons/css/ionicons.min.css">
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
@@ -25,6 +26,7 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" type="text/css" href="../public/css/sweetalert2.css">
     <link rel="stylesheet" href="../public/iCheck/all.css">
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="<?php echo $url; ?>public/plugins/plantilla.css">
 
     <!-- DATATABLES -->
     <!-- <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css"> -->
