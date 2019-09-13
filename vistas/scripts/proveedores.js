@@ -12,8 +12,19 @@ function init(){
 	listar();
 
 	$("#formulario").on("submit",function(e)
-	{
-		guardaryeditar(e);
+	//Cargamos los items al select categoria
+	$.post("../ajax/proveedores.php?op=ValidarNumeroRtn", function(datos) {
+		datos = JSON.parse(datos);
+
+		var rtn = $('#rtn').val();
+
+		if (datos.includes(num_fact)) {
+			alert('Dato ya existe en la bd, digite otro por favor');
+			$('#rtn').val("");
+			$("#rtn").focus();
+
+		} else {
+			guardaryeditar(e);
 	})
 
 	$("#imagenmuestra").hide();
