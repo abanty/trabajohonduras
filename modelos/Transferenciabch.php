@@ -36,8 +36,21 @@ Class Transferenciabch
 
 		return ejecutarConsulta($sql);
 	}
-
-
+	/*--------------------------------*
+  | FUNCION PARA EDITAR REGISTROS |
+  .--------------------------------*/
+	public function editar(		$idproveedores,
+			$idctasbancarias,
+			$fecha_hora,
+			$tipo_transfbch,
+			$serie_transf,
+			$num_transf,
+			$monto_acreditar,
+			$descripcion)
+	{
+		$sql="UPDATE categoria SET nombre='$nombre',descripcion='$descripcion' WHERE idcategoria='$idcategoria'";
+		return ejecutarConsulta($sql);
+	}
 	/*--------------------------------*
   | FUNCION PARA ELIMINAR REGISTROS |
   .--------------------------------*/
