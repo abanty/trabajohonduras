@@ -29,10 +29,13 @@ function init(){
 
 	$("#imagenmuestra").hide();
 }
+});
+return false;
+})
 
-
-
-
+$('#idproveedores').change(function() {
+verpres();
+});
 //Función limpiar
 function limpiar()
 {

@@ -1,403 +1,250 @@
 <?php
-if (strlen(session_id()) < 1)
-  session_start();
+// REQUERIR CLASE DEL MODELO PERTENECIENTE
+require_once "../modelos/Compromisos.php";
 
-require_once "../modelos/Administrar_ordenes.php";
-// GUARDANDO UN COMIT ahora mismo
-$admin_ord=new Administrar_ordenes();
-
-$idadministrar_ordenes=isset($_POST["idadministrar_ordenes"])? limpiarCadena($_POST["idadministrar_ordenes"]):"";
-$idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
-$idusuario=$_SESSION["idusuario"];
+$compromisos=new Compromisos(); // Instanciar Clase en una variable
+/*----------------------------------*
+| DEFINICION DE VARIABLES GENERALES |
+.----------------------------------*/
+$idcompromisos=isset($_POST["idcompromisos"])? limpiarCadena($_POST["idcompromisos"]):"";
 $idprograma=isset($_POST["idprograma"])? limpiarCadena($_POST["idprograma"]):"";
-$iduuss=isset($_POST["iduuss"])? limpiarCadena($_POST["iduuss"]):"";
-$num_orden=isset($_POST["num_orden"])? limpiarCadena($_POST["num_orden"]):"";
-$num_comprobante=isset($_POST["num_comprobante"])? limpiarCadena($_POST["num_comprobante"]):"";
-$titulo_orden =isset($_POST["titulo_orden"])? limpiarCadena($_POST["titulo_orden"]):"";
-$descripcion_orden=isset($_POST["descripcion_orden"])? limpiarCadena($_POST["descripcion_orden"]):"";
-$tipo_documento=isset($_POST["tipo_documento"])? limpiarCadena($_POST["tipo_documento"]):"";
+$idproveedores=isset($_POST["idproveedores"])? limpiarCadena($_POST["idproveedores"]):"";
 $fecha_hora=isset($_POST["fecha_hora"])? limpiarCadena($_POST["fecha_hora"]):"";
+$tipo_registro=isset($_POST["tipo_registro"])? limpiarCadena($_POST["tipo_registro"]):"";
+$numfactura=isset($_POST["numfactura"])? limpiarCadena($_POST["numfactura"]):"";
+$total_compra=isset($_POST["total_compra"])? limpiarCadena($_POST["total_compra"]):"";
+$condicion=isset($_POST["condicion"])? limpiarCadena($_POST["condicion"]):"";
 
-$subtotalinicial=isset($_POST["subtotal_inicial"])? limpiarCadena($_POST["subtotal_inicial"]):"";
-$descuentototal=isset($_POST["descuento_total"])? limpiarCadena($_POST["descuento_total"]):"";
-$subtotal=isset($_POST["subtotales"])? limpiarCadena($_POST["subtotales"]):"";
-$impuestosv=isset($_POST["impuestosv"])? limpiarCadena($_POST["impuestosv"]):"";
-$tasaimpuestosv=isset($_POST["tasasv"])? limpiarCadena($_POST["tasasv"]):"";
-$valor_sv=isset($_POST["valor_sv"])? limpiarCadena($_POST["valor_sv"]):"";
-$impuesto=isset($_POST["impuesto"])? limpiarCadena($_POST["impuesto"]):"";
-$tasaimpuesto=isset($_POST["tasaimpuesto"])? limpiarCadena($_POST["tasaimpuesto"]):"";
-$valor_impuesto=isset($_POST["valor_impuesto"])? limpiarCadena($_POST["valor_impuesto"]):"";
-$monto_total=isset($_POST["monto_total"])? limpiarCadena($_POST["monto_total"]):"";
-$retencionisv=isset($_POST["retencionisv"])? limpiarCadena($_POST["retencionisv"]):"";
-$tasaretencionisv=isset($_POST["tasaretencionisv"])? limpiarCadena($_POST["tasaretencionisv"]):"";
-$valor_isv=isset($_POST["valor_isv"])? limpiarCadena($_POST["valor_isv"]):"";
-$retencionisr=isset($_POST["retencionisr"])? limpiarCadena($_POST["retencionisr"]):"";
-$tasaretencionisr=isset($_POST["tasaretencionisr"])? limpiarCadena($_POST["tasaretencionisr"]):"";
-$valor_isr=isset($_POST["valor_isr"])? limpiarCadena($_POST["valor_isr"]):"";
-$totalneto=isset($_POST["total_neto"])? limpiarCadena($_POST["total_neto"]):"";
-
-// VARIABLES FUNCION Comprobante
-$idctasbancarias=isset($_POST["idctasbancarias"])? limpiarCadena($_POST["idctasbancarias"]):"";
-$tipopago=isset($_POST["tipopago"])? limpiarCadena($_POST["tipopago"]):"";
-$num_transferencia=isset($_POST["num_transferencia"])? limpiarCadena($_POST["num_transferencia"]):"";
-$debitos=isset($_POST["debitos"])? limpiarCadena($_POST["debitos"]):"";
-$creditos=isset($_POST["creditos"])? limpiarCadena($_POST["creditos"]):"";
-$contabilidad=isset($_POST["contabilidad"])? limpiarCadena($_POST["contabilidad"]):"";
+//Declara la variable para evitar error de notificacion
+$idpresupuesto_disponible = isset($_POST['idpresupuesto_disponible']) ? $_POST['idpresupuesto_disponible']: null ;
+$valor = isset($_POST['valor']) ? $_POST['valor']: null ;
 
 
-
+/*----------------------------------------------*
+| SWITCH PARA INSTANCIAR CASE COMO TIPO FUNCION |
+.----------------------------------------------*/
 switch ($_GET["op"]){
-	case 'guardaryeditar':
-
-    $idproveedores == null ? $idproveedores='1' : $idproveedores;
-  	$iduuss == null ? $iduuss='1' : $iduuss;
-    $idprograma == null ? $idprograma='1' : $idprograma;
-if (empty($idadministrar_ordenes)){
-
-      $variable_factura= isset($_POST["num_factura"]);
-
-        if ($variable_factura) {
-
-        $rspta=$admin_ord->insertar_orden_factura(
-          $idproveedores,
-          $idusuario,
-          $idprograma,
-          $iduuss,
-          $num_orden,
-          $num_comprobante,
-          $titulo_orden,
-          $descripcion_orden,
-          $tipo_documento,
-          $fecha_hora,
-          str_replace(',','',$subtotalinicial),
-          str_replace(',','',$descuentototal),
-          $subtotal,str_replace(',','',$impuestosv),
-          $tasaimpuestosv,
-          str_replace(',','',$valor_sv),
-          str_replace(',','',$impuesto),
-          $tasaimpuesto,
-          str_replace(',','',$valor_impuesto),
-          $monto_total,str_replace(',','',$retencionisv),
-          $tasaretencionisv,
-          str_replace(',','',$valor_isv),
-          str_replace(',','',$retencionisr),
-          $tasaretencionisr,
-          str_replace(',','',$valor_isr),
-          $totalneto,$_POST["idpresupuesto_disponible"],
-          $_POST["unidad"],
-          $_POST["cantidad"],
-          $_POST["descripcion"],
-          str_replace(',','',$_POST["precio_unitario"]),
-          $_POST["num_factura"],
-          $_POST["fecha_factura"],
-          $_POST["valor_factura"]);
-
-          }else {
-            $rspta=$admin_ord->insertar_orden(
-              $idproveedores,
-              $idusuario,
-              $idprograma,
-              $iduuss,
-              $num_orden,
-              $num_comprobante,
-              $titulo_orden,
-              $descripcion_orden,
-              $tipo_documento,
-              $fecha_hora,
-              str_replace(',','',$subtotalinicial),
-              str_replace(',','',$descuentototal),
-              $subtotal,
-              str_replace(',','',$impuestosv),
-              $tasaimpuestosv,
-              str_replace(',','',$valor_sv),
-              str_replace(',','',$impuesto),
-              $tasaimpuesto,
-              str_replace(',','',$valor_impuesto),
-              $monto_total,
-              str_replace(',','',$retencionisv),
-              $tasaretencionisv,
-              str_replace(',','',$valor_isv),
-              str_replace(',','',$retencionisr),
-              $tasaretencionisr,
-              str_replace(',','',$valor_isr),
-              $totalneto,
-              $_POST["idpresupuesto_disponible"],
-              $_POST["unidad"],
-              $_POST["cantidad"],
-              $_POST["descripcion"],
-              str_replace(',','',$_POST["precio_unitario"]));
-          }
-              echo $rspta ? "Orden de Compra registrada" : "No se pudieron registrar todos los datos de la orden de compra";
-
-  	}else {}
-	break;
+	/*----------------------*
+	| CASE GUARDAR Y EDITAR |
+	.----------------------*/
+		case 'guardaryeditar':
+			if (empty($idcompromisos)){
+				$rspta=$compromisos->insertar(
+			$idprograma,
+			$idproveedores,
+			$fecha_hora,
+			$tipo_registro,
+			$numfactura,
+			$total_compra,
+			$condicion,
+					$_POST["idpresupuesto_disponible"],
+					str_replace(',','',$_POST["valor"]));
+				echo $rspta ? "Compromiso registrado" : "Compromiso no se pudo registrar";
+			}
+		break;
 
 
-/*-------------------------------------*
-| FUNCION PARA CAMBIAR ESTADO A ANULADO |
-.-------------------------------------*/
-	case 'anular':
-		$rspta=$admin_ord->anular($idadministrar_ordenes);
- 		echo $rspta ? "Orden de compra anulada" : "Orden de compra no se puede anular";
-	break;
+	/*--------------------------------------*
+	| CASE PARA EDITAR DATOS DEL COMPROMISO |
+	.--------------------------------------*/
+		case 'editardatos':
+				$rspta=$compromisos->modificardatos($_POST["id"],$_POST["columna_nombre"],$_POST["valorcol"]);
+				echo $rspta ? "Compromiso modificado" : "Compromiso no se puede modificar";
+		break;
 
-  /*---------------------------*
-  | FUNCION PARA ELIMINAR FILA |
-  .---------------------------*/
-  	case 'eliminar':
-  		$rspta=$admin_ord->eliminar($idadministrar_ordenes);
-   		echo $rspta ? "Orden eliminada permanentemente" : "Orden de no se pudo eliminar";
-  	break;
 
-/*-------------------------------------*
-| FUNCION PARA CAMBIAR ESTADO A PAGADO |
-.-------------------------------------*/
-  case 'pagar':
-    $rspta=$admin_ord->pagar($idadministrar_ordenes);
-    echo $rspta ? "Orden de compra pagada" : "Orden de compra no se puede pagar";
-  break;
+	/*----------------------------------*
+	| CASE PARA CAMBIAR ESTADO A PAGADO |
+	.----------------------------------*/
+		case 'pagado':
+				$rspta=$compromisos->pagado($idcompromisos);
+		 		echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
+		break;
 
-/*-------------------------------------------------------*
-| FUNCION PARA CAMBIAR MOSTRAR LA INFORMACION DE ORDENES |
-.-------------------------------------------------------*/
-	case 'mostrar_orden_edit':
 
-		$rspta=$admin_ord->mostrar_orden($idadministrar_ordenes);
+	/*-------------------------------------*
+	| CASE PARA CAMBIAR ESTADO A TRAMITADO |
+	.-------------------------------------*/
+		case 'tramitar':
+				$rspta=$compromisos->tramitar($idcompromisos);
+	 			echo $rspta ? "Compromiso Pagado" : "Compromiso no se puede Pagar";
+		break;
 
- 		//Codificar el resultado utilizando json
- 		echo json_encode($rspta);
 
-	break;
+	/*----------------------------------------*
+	| CASE PARA CAMBIAR ESTADO A DESTRAMITADO |
+	.----------------------------------------*/
+		case 'destramitar':
+				$rspta=$compromisos->destramitar($idcompromisos);
+				echo $rspta ? "Tramite desecho" : "Tramite no se puede deshacer";
+		break;
 
 
 
-	case 'listar_Orden_Detalle':
-		//Recibimos el idingreso
-		$id=$_GET['id'];
+	/*-------------------------------------------------*
+	| CASE PARA VALIDAR NUMEROS DE FACTURAS DUPLICADAS |
+	.-------------------------------------------------*/
+		case 'ValidarNumeroFactura':
 
-		$rspta = $admin_ord->listarDetalle_orden($id);
-		$total=0;
+			$rspta=$compromisos->validarnumfacturasduplicadas();
+			//Vamos a declarar un array
+			$data= Array();
 
-		while ($reg = $rspta->fetch_object())
+			while ($reg=$rspta->fetch_object()){
+
+				$data[]=$reg->numfactura;
+
+			}
+			echo json_encode($data);
+
+		break;
+
+	/*-----------------------------------*
+	| CASE PARA CAMBIAR ESTADO A ANULADO |
+	.-----------------------------------*/
+		case 'eliminar':
+				$rspta=$compromisos->eliminar($idcompromisos);
+	 			echo $rspta ? "El compromiso fue eliminada" : "El compromiso no se puede eliminar";
+		break;
+
+
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case 'mostrar':
+			$rspta=$compromisos->mostrar($idcompromisos);
+	 		//Codificar el resultado utilizando json
+	 		echo json_encode($rspta);
+		break;
+
+
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case 'listar_C_Detalle':
+				//Recibimos el idingreso
+				$id=$_GET['id'];
+
+				$rspta = $compromisos->listarDetalle($id);
+				$total=0;
+
+				while ($reg = $rspta->fetch_object())
 				{
-          if (($reg->descripcion == "")&&($reg->unidad == "")) {
-            echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
-            <td>'.$reg->codigo.'</td>
-            <td class="tdunit" style="display:none;">'.$reg->unidad.'</td>
-            <td>'.$reg->cantidad.'</td>
-            <td class="tddesc" style="display:none;" colspan="4">'.$reg->descripcion.'</td>
-            <td>'.number_format($reg->precio_unitario, 2, '.', ',').'</td>
-            <td>'.number_format($reg->precio_unitario * $reg->cantidad, 2, '.', ',').'</td></tr>';
-          }else {
-            echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
-            <td>'.$reg->codigo.'</td>
-            <td class="tdunit">'.$reg->unidad.'</td>
-            <td>'.$reg->cantidad.'</td>
-            <td class="tddesc" colspan="4">'.$reg->descripcion.'</td>
-            <td>'.number_format($reg->precio_unitario, 2, '.', ',').'</td>
-            <td>'.number_format($reg->precio_unitario * $reg->cantidad, 2, '.', ',').'</td></tr>';
-          }
+					 echo '<tr class="filas"><td style="text-align:center;"><i class="fas fa-check" style="color: green;"></i></td>
+					 <td>'.$reg->codigo.'</td>
+					 <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+					 <td>'.number_format($reg->valor, 2, '.', ',').'</td>
+					 </tr>';
 				}
-
-	break;
-
-
-  case 'listar_Orden_Facturas':
-    //Recibimos el idingreso
-    $id=$_GET['id'];
-
-    $rspta = $admin_ord->listarFactura_orden($id);
-    $total=0;
-
-    while ($reg = $rspta->fetch_object())
-        {
-          echo '<tr class="filafactura">
-          <td style="width: 224px;">'.$reg->num_factura.'</td>
-          <td style="width: 205px;">'.$reg->fechaformat.'</td>
-          <td style="width: 225px;">'.$reg->valor_factura.'</td>
-          <td style="width: 95px; text-align:center;"><i class="fas fa-check" style="color: green;"></i></td></tr>';
-        }
-
-  break;
-
- case 'button_add':
-      echo '<button class="btn btn-warning" id="btnaddfact" onclick="agregarfilafactura()" type="button" name="button"><i class="fa fa-plus"></i> Añadir Factura</button>';
- break;
-
-	case 'listar':
-		$rspta=$admin_ord->listarOrden();
- 		//Vamos a declarar un array
- 		$data= Array();
-
- 		while ($reg=$rspta->fetch_object()){
-
-        $urlorden='../reportes/OrdenCompra.php?id=';
-        $urlcomprobante='../reportes/Comprobante_orden.php?id=';
-        $urlsolicitudcompra='../reportes/SolicitudCompra.php?id=';
-
-        $var_tipo_doc = $reg->tipo_documento;
-        switch ($var_tipo_doc) {
-
-            case "F.R.":
-            $var_tipo_doc = '<a style="color:rgb(245, 126, 126); font-weight:bold;">'.$var_tipo_doc.'</a>' ;
-            $contenido_li =  '<ul class="dropdown-menu">
-                   <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
-              </ul>';
-            break;
-
-            case "Alimentacion":
-            $var_tipo_doc = '<a style="color:rgb(214, 116, 244); font-weight:bold;">'.$var_tipo_doc.'</a>' ;
-            $contenido_li =  '';
-            break;
-
-            case "Acuerdo":
-            $var_tipo_doc = '<a style="color:rgb(93, 155, 212); font-weight:bold;">'.$var_tipo_doc.'</a>' ;
-            $contenido_li =  '<ul class="dropdown-menu">
-               <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
-              </ul>';
-            break;
-
-            case "O/C":
-            $var_tipo_doc = '<a style="color:rgb(31, 208, 128); font-weight:bold;">'.$var_tipo_doc.'</a>';
-            $contenido_li =  '<ul class="dropdown-menu">
-               <li id="pdfordencompra"><a target="_blank" href="'.$urlorden.$reg->idadministrar_ordenes.'">Orden de compra</a></li>
-               <li><a target="_blank" href="'.$urlcomprobante.$reg->idadministrar_ordenes.'">Comprobante de pago</a></li>
-               <li><a target="_blank" href="'.$urlsolicitudcompra.$reg->idadministrar_ordenes.'">Solicitud de Compra</a></li>
-              </ul>';
-            break;
-
-            case "Becas":
-            $var_tipo_doc = '<a style="color:rgb(211, 246, 137); font-weight:bold;">'.$var_tipo_doc.'</a>';
-            $contenido_li =  '';
-            break;
-
-            case "Planillas":
-            $var_tipo_doc = '<a style="color:rgb(50, 17, 129); font-weight:bold;">'.$var_tipo_doc.'</a>';
-            $contenido_li =  '';
-            break;
-
-            case "Otros":
-            $var_tipo_doc = '<a style="color:rgb(191, 80, 33); font-weight:bold;">'.$var_tipo_doc.'</a>';
-            $contenido_li =  '';
-            break;
-
-            default :
-            $contenido_li;
-            $var_tipo_doc;
-            break;
-
-      };
- 			$data[]=array(
- 				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>'.
-          ' <button class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.'  ,  \''.limpiarCadena($reg->tipo_documento).'\'  ,  \''.$reg->retencion_isv.'\'  ,  \''.$reg->retencion_isr.'\')"><i class="fas fa-coins"></i></button>':
-          (($reg->estado=='Pagado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
-          ' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>':
-        '<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
+		break;
 
 
-          '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
-              <a href="#" class="dropdown-toggle btn btn-info btn-sm" data-toggle="dropdown" aria-expanded="true">
-                <i class="fas fa-print" aria-hidden="true"></i>
-              </a>'.$contenido_li.'</li>',
+	/*-----------------------------*
+	| CASE PARA LISTAR COMPROMISOS |
+	.-----------------------------*/
+		case 'listar':
+				$rspta=$compromisos->listar();
+		 		//Vamos a declarar un array
+		 		$data= Array();
+		 		while ($reg=$rspta->fetch_object()){
+		 			$data[]=array(
+		 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+		 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+							' <button data-toggle="tooltip" title="Realizar pago!" data-placement="right" class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
+		 					:
+							(($reg->condicion==1)?'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+							' <button data-toggle="tooltip" title="Realizar pago con retencion!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
+							:
+							(($reg->condicion==2)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button class="btn btn-danger btn-sm" onclick="elminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+							' <button  data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
+							:
+							(($reg->condicion==3)?'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+							' <button data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
+							:''))),
+		 				"1"=>$reg->fecha,
+						"2"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="idproveedores">' .$reg->idproveedores. '</div>',
+		 				"3"=>$reg->programa,
+		 				"4"=>$reg->proveedor,
+						"5"=>'<div onclick="listenForDoubleClick(this);" onblur="this.contentEditable=false;"  class="update" data-id="'.$reg->idcompromisos.'" data-column="numfactura">' .$reg->numfactura. '</div>',
+		 				"6"=>$reg->total_compra,
+						"7"=>$reg->fechareg,
+						"8"=>($reg->condicion==0)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
+						(($reg->condicion==1)?'<span class="label bg-green">PENDIENTE  <i class="fas fa-check"></i></span>':
+						(($reg->condicion==2)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+						(($reg->condicion==3)?'<span class="label bg-red"><i class="fas fa-hand-holding-usd"></i>  PAGADO </span>':
+		 				'<span class="label bg-red">ANULADO </span>'))));
+		 		}
+		 				$results = array(
+		 				"sEcho"=>1, //Informaci贸n para el datatables
+		 				"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+		 				"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+		 				"aaData"=>$data);
+		 				echo json_encode($results);
+				break;
 
- 				"1"=>$reg->fecha,
- 				"2"=>$reg->proveedor,
- 				"3"=>$reg->usuario,
- 				"4"=>$reg->codigop,
-        "5"=>$var_tipo_doc,
-  			"6"=>$reg->num_orden,
- 				"7"=>$reg->num_comprobante,
- 				"8"=>number_format("$reg->monto_total", 2, '.', ','),
- 				"9"=>($reg->estado=='Pendiente')?'<span class="label bg-green">Pendiente</span>':(($reg->estado=='Pagado')?'<span class="label bg-yellow">Pagado</span>'
-        :'<span class="label bg-red">Anulado</span>'));
- 		}
- 		$results = array(
- 			"sEcho"=>1, //Información para el datatables
- 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
- 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
- 			"aaData"=>$data);
- 		echo json_encode($results);
 
-	break;
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case "selectProveedores":
+				require_once "../modelos/Proveedores.php";
+				$casa_comercial = new Proveedores();
 
-	case "selectProveedores":
-		require_once "../modelos/Proveedores.php";
-		$proveedores = new Proveedores();
+				$rspta = $casa_comercial->listar();
 
-		$rspta = $proveedores->select_proveedor();
-
-		while ($reg = $rspta->fetch_object())
+				while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idproveedores. '>' . $reg->casa_comercial . '</option>';
+							echo '<option value=' . $reg->idproveedores. '>' . $reg->casa_comercial . '</option>';
 				}
+		break;
 
-	break;
 
-  case "select_cta_banco":
-		require_once "../modelos/Ctasbancarias.php";
-		$ctasbancos = new Ctasbancarias();
+	/*---------------------------------------*
+	| CASE PARA MOSTRAR DATOS DEL FORMULARIO |
+	.---------------------------------------*/
+		case "selectPrograma":
+				require_once "../modelos/Programa.php";
+				$codigop = new Programa();
 
-		$rspta = $ctasbancos->select_ctas_bancarias();
+				$rspta = $codigop->select_programa();
 
-		while ($reg = $rspta->fetch_object())
+				while ($reg = $rspta->fetch_object())
 				{
-					echo '<option value=' . $reg->idctasbancarias. '>' . $reg->bancopg . ' - ' . $reg->numctapg . '</option>';
+						echo '<option value=' . $reg->idprograma . '>' . $reg->codigop ."&nbsp;".'('. $reg->nombrep .')'. ' - ' . $reg->idprograma .'</option>';
 				}
-
-	break;
-
-
-	case "selectPrograma":
-		require_once "../modelos/Programa.php";
-		$programa = new Programa();
-
-		$rspta = $programa->select_programa();
-
-		while ($reg = $rspta->fetch_object())
-				{
-					echo '<option value=' . $reg->idprograma . '>' . $reg->codigop ."&nbsp;".'('. $reg->nombrep .')'. '</option>';
-				}
-
-	break;
-
-  case "selectUuss":
-    require_once "../modelos/Uuss.php";
-    $uuss = new Uuss();
-
-    $rspta = $uuss->selectUuss();
-
-    while ($reg = $rspta->fetch_object())
-        {
-          echo '<option value=' . $reg->iduuss . '>' . $reg->nombre. '</option>';
-        }
+		break;
 
 
-  break;
-
+	/*-----------------------------*
+	| CASE PARA LISTAR PRESUPUESTO |
+	.-----------------------------*/
 	case 'listarPresupuesto_disponible':
-		require_once "../modelos/Presupuesto_disponible.php";
-		$presupuesto_disponible=new Presupuesto_disponible();
+			require_once "../modelos/Presupuesto_disponible.php";
+			$presupuesto_disponible=new Presupuesto_disponible();
 
-		$rspta=$presupuesto_disponible->listarPresupuestoActivos();
- 		//Vamos a declarar un array
- 		$data= Array();
+			$rspta=$presupuesto_disponible->listarPresupuestoActivos();
+	 		//Vamos a declarar un array
+	 		$data= Array();
 
- 		while ($reg=$rspta->fetch_object()){
- 			$data[]=array(
- 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\',\''.$reg->presupuesto_anual.'\')"><span class="fas fa-plus-circle"></span></button>',
- 				"1"=>$reg->nombre_objeto,
- 				"2"=>$reg->codigo,
-        "3"=>($reg->presupuesto_anual<'0')?'<span style="font-size:13px;" class="label bg-red">'.$reg->presupuesto_anual.'</span>':	$reg->presupuesto_anual
- 				);
- 		}
- 		$results = array(
- 			"sEcho"=>1, //Información para el datatables
- 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
- 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
- 			"aaData"=>$data);
- 		echo json_encode($results);
+	 		while ($reg=$rspta->fetch_object()){
+	 			$data[]=array(
+	 				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\')"><span class="fas fa-plus-circle"></span></button>',
+	 				"1"=>$reg->nombre_objeto,
+	 				"2"=>$reg->codigo,
+	 				"3"=>$reg->fondos_disponibles,
+	 				);
+	 		}
+	 		$results = array(
+	 			"sEcho"=>1, //Informaci贸n para el datatables
+	 			"iTotalRecords"=>count($data), //enviamos el total registros al datatable
+	 			"iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+	 			"aaData"=>$data);
+	 		echo json_encode($results);
 
 	break;
 }
+
 ?>

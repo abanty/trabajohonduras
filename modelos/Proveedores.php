@@ -68,7 +68,7 @@ Class Proveedores
   /*--------------------------------------------------------*
 	| FUNCION PARA VALIDAR NUMEROS DE RTN REPETIDOS |
 	.---------------------------------------------------------*/
-	public function validarnumrtnduplicados()
+	public function ValidarRtnduplicados()
 	{
 		$sql="SELECT rtn FROM proveedores";
 		return ejecutarConsulta($sql);
