@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 05-09-2019 a las 19:13:15
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Servidor: localhost:3306
+-- Tiempo de generación: 13-09-2019 a las 05:16:29
+-- Versión del servidor: 5.7.24
+-- Versión de PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -420,138 +420,9 @@ CREATE TABLE `detalle_ingreso` (
   `iddetalle_ingreso` int(11) NOT NULL,
   `idingreso` int(11) DEFAULT NULL,
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
+  `actividad` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `detalle_ingreso`
---
-
-INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `monto`) VALUES
-(1, 1, 25, '30000.00'),
-(2, 1, 27, '73559.42'),
-(3, 1, 26, '50000.00'),
-(4, 2, 29, '17.09'),
-(5, 2, 31, '341.54'),
-(6, 2, 33, '273.24'),
-(7, 2, 34, '204.93'),
-(8, 2, 40, '768.46'),
-(9, 2, 39, '17.09'),
-(10, 2, 42, '341.54'),
-(11, 2, 46, '341.54'),
-(12, 2, 49, '273.24'),
-(13, 2, 53, '89.09'),
-(14, 2, 59, '102.47'),
-(15, 2, 68, '170.78'),
-(16, 2, 71, '61.49'),
-(17, 2, 80, '170.44'),
-(18, 2, 81, '136.69'),
-(19, 2, 82, '170.80'),
-(20, 2, 83, '239.08'),
-(21, 2, 84, '204.94'),
-(22, 2, 85, '1075.55'),
-(23, 3, 35, '18000.00'),
-(24, 3, 36, '18000.00'),
-(25, 3, 37, '17707.11'),
-(26, 3, 38, '8182.07'),
-(27, 4, 63, '1500000.00'),
-(28, 4, 64, '2500000.00'),
-(29, 4, 65, '1171195.03'),
-(31, 6, 29, '304.42'),
-(32, 6, 31, '6088.33'),
-(33, 6, 33, '4870.66'),
-(34, 6, 34, '3653.00'),
-(35, 6, 40, '13698.74'),
-(36, 6, 39, '304.42'),
-(37, 6, 42, '6088.33'),
-(38, 6, 46, '6088.33'),
-(39, 6, 49, '4870.66'),
-(40, 6, 53, '1587.96'),
-(41, 6, 59, '1826.50'),
-(42, 6, 68, '3044.17'),
-(43, 6, 71, '1095.90'),
-(44, 6, 80, '3037.96'),
-(45, 6, 81, '2435.33'),
-(46, 6, 82, '3044.16'),
-(47, 6, 83, '4261.83'),
-(48, 6, 84, '3653.00'),
-(49, 6, 85, '19178.24'),
-(50, 7, 47, '300000.00'),
-(51, 7, 48, '218092.81'),
-(52, 8, 91, '250000.00'),
-(53, 8, 49, '15000.00'),
-(54, 8, 45, '245000.00'),
-(55, 8, 57, '100000.00'),
-(56, 8, 62, '150000.00'),
-(57, 8, 74, '150000.00'),
-(58, 9, 81, '3500000.00'),
-(59, 10, 81, '1500000.00'),
-(60, 11, 43, '722000.00'),
-(61, 11, 43, '600000.00'),
-(62, 11, 43, '1128000.00'),
-(63, 11, 43, '1700000.00'),
-(64, 12, 60, '749052.59'),
-(65, 13, 88, '350000.00'),
-(66, 13, 88, '450000.00'),
-(67, 14, 90, '663000.00'),
-(68, 15, 35, '1000.00'),
-(69, 15, 36, '1000.00'),
-(70, 15, 37, '1000.00'),
-(71, 15, 38, '817.93'),
-(72, 16, 25, '30000.00'),
-(73, 16, 27, '32751.40'),
-(74, 17, 35, '1000.00'),
-(75, 17, 36, '1000.00'),
-(76, 17, 37, '1292.89'),
-(77, 17, 38, '1000.00'),
-(78, 18, 60, '50000.00'),
-(79, 18, 60, '50000.00'),
-(80, 18, 60, '45588.48'),
-(81, 19, 29, '15.92'),
-(82, 19, 31, '318.48'),
-(83, 19, 33, '254.79'),
-(84, 19, 34, '191.09'),
-(85, 19, 40, '716.59'),
-(86, 19, 39, '15.92'),
-(87, 19, 42, '318.48'),
-(88, 19, 46, '318.48'),
-(89, 19, 49, '254.79'),
-(90, 19, 53, '83.07'),
-(91, 19, 59, '95.54'),
-(92, 19, 68, '159.24'),
-(93, 19, 71, '57.33'),
-(94, 19, 80, '158.92'),
-(95, 19, 81, '127.39'),
-(96, 19, 82, '159.24'),
-(97, 19, 83, '222.95'),
-(98, 19, 84, '191.09'),
-(99, 19, 85, '1003.22'),
-(100, 20, 43, '2919589.95'),
-(101, 21, 90, '434021.00'),
-(102, 22, 88, '150000.00'),
-(103, 22, 88, '250000.00'),
-(104, 23, 90, '284021.00'),
-(105, 24, 90, '119154.00'),
-(106, 25, 88, '40193.51'),
-(107, 25, 89, '300000.00'),
-(108, 26, 25, '4631.34'),
-(109, 26, 27, '80000.00'),
-(110, 26, 26, '5000.00'),
-(111, 27, 36, '353471.81'),
-(112, 28, 63, '1000000.00'),
-(113, 28, 64, '2034604.59'),
-(114, 28, 65, '400000.00');
-
---
--- Disparadores `detalle_ingreso`
---
-DELIMITER $$
-CREATE TRIGGER `tr_actualizar_disponible` AFTER INSERT ON `detalle_ingreso` FOR EACH ROW BEGIN
-    UPDATE presupuesto_disponible SET fondos_disponibles = fondos_disponibles + NEW.monto
-    WHERE presupuesto_disponible.idpresupuesto_disponible = NEW.idpresupuesto_disponible;
-END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -819,44 +690,12 @@ INSERT INTO `factura_orden` (`idfactura_orden`, `idadministrar_ordenes`, `num_fa
 CREATE TABLE `ingreso` (
   `idingreso` int(11) NOT NULL,
   `idusuario` int(11) DEFAULT NULL,
+  `tipo_presupuesto` varchar(60) NOT NULL,
   `fecha_hora` datetime DEFAULT NULL,
   `numf01` int(11) DEFAULT NULL,
   `total_importe` decimal(11,2) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `ingreso`
---
-
-INSERT INTO `ingreso` (`idingreso`, `idusuario`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
-(1, 1, '2019-03-07 00:00:00', 363, '153559.42', 'Aceptado'),
-(2, 1, '2019-05-07 00:00:00', 364, '5000.00', 'Aceptado'),
-(3, 1, '2019-03-07 00:00:00', 385, '61889.18', 'Aceptado'),
-(4, 1, '2019-05-15 00:00:00', 195, '5171195.03', 'Aceptado'),
-(6, 1, '2019-03-07 00:00:00', 364, '89131.94', 'Aceptado'),
-(7, 1, '2019-02-14 00:00:00', 190, '518092.81', 'Aceptado'),
-(8, 1, '2019-02-14 00:00:00', 187, '910000.00', 'Aceptado'),
-(9, 1, '2019-03-14 00:00:00', 184, '3500000.00', 'Aceptado'),
-(10, 1, '2019-02-14 00:00:00', 186, '1500000.00', 'Aceptado'),
-(11, 1, '2019-02-14 00:00:00', 193, '4150000.00', 'Aceptado'),
-(12, 1, '2019-03-07 00:00:00', 389, '749052.59', 'Aceptado'),
-(13, 1, '2019-02-12 00:00:00', 126, '800000.00', 'Aceptado'),
-(14, 1, '2019-02-12 00:00:00', 128, '663000.00', 'Aceptado'),
-(15, 1, '2019-02-12 00:00:00', 131, '3817.93', 'Aceptado'),
-(16, 1, '2019-02-14 00:00:00', 179, '62751.40', 'Aceptado'),
-(17, 1, '2019-02-14 00:00:00', 191, '4292.89', 'Aceptado'),
-(18, 1, '2019-02-14 00:00:00', 192, '145588.48', 'Aceptado'),
-(19, 1, '2019-03-07 00:00:00', 364, '4662.53', 'Aceptado'),
-(20, 1, '2019-02-15 00:00:00', 194, '2919589.95', 'Aceptado'),
-(21, 1, '2019-02-12 00:00:00', 130, '434021.00', 'Aceptado'),
-(22, 1, '2019-03-07 00:00:00', 396, '400000.00', 'Aceptado'),
-(23, 1, '2019-03-07 00:00:00', 398, '284021.00', 'Aceptado'),
-(24, 1, '2019-05-05 00:00:00', 794, '119154.00', 'Aceptado'),
-(25, 1, '2019-04-05 00:00:00', 842, '340193.51', 'Aceptado'),
-(26, 1, '2019-04-08 00:00:00', 870, '89631.34', 'Aceptado'),
-(27, 1, '2019-04-09 00:00:00', 877, '353471.81', 'Aceptado'),
-(28, 1, '2019-03-07 00:00:00', 392, '3434604.59', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -897,9 +736,6 @@ CREATE TABLE `presupuesto_disponible` (
   `grupo` int(11) NOT NULL,
   `subgrupo` int(11) NOT NULL,
   `codigo` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `pres_vigente` decimal(11,2) NOT NULL,
-  `pres_ejecutar` decimal(11,2) NOT NULL,
-  `pres_ejecutado` decimal(11,2) NOT NULL,
   `condicion` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -907,99 +743,98 @@ CREATE TABLE `presupuesto_disponible` (
 -- Volcado de datos para la tabla `presupuesto_disponible`
 --
 
-INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `pres_vigente`, `pres_ejecutar`, `pres_ejecutado`, `condicion`) VALUES
-(1, 'Sueldos Basicos', 11, 111, '11100', '0.00', '0.00', '0.00', 1),
-(2, 'Adicionales', 11, 114, '11400', '0.00', '0.00', '0.00', 1),
-(3, 'Decimotercer Mes', 11, 115, '11510', '0.00', '0.00', '0.00', 1),
-(4, 'Decimocuarto Mes', 11, 115, '11520', '0.00', '0.00', '0.00', 1),
-(5, 'Complementos', 11, 116, '11600', '0.00', '0.00', '0.00', 1),
-(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 117, '11731', '0.00', '0.00', '0.00', 1),
-(7, 'Contribuciones al Instituto de Previsión Militar - Regimen de Riesgos Especiales', 11, 117, '11732', '0.00', '0.00', '0.00', 1),
-(8, 'Contribuciones al Instituto de Previsión Militar - Reserva Laboral', 11, 117, '11733', '0.00', '0.00', '0.00', 1),
-(9, 'Beneficios y Compensaciones', 16, 161, '16100', '0.00', '0.00', '0.00', 1),
-(10, 'Energía Eléctrica', 21, 211, '21100', '0.00', '0.00', '0.00', 1),
-(11, 'Agua', 21, 212, '21200', '0.00', '0.00', '0.00', 1),
-(12, 'Correo Postal', 21, 214, '21410', '0.00', '0.00', '0.00', 1),
-(13, 'Telefonía Fija', 21, 214, '21420', '0.00', '0.00', '0.00', 1),
-(14, 'Alquiler de Equipos de Transporte, Tracción y Elevación', 22, 222, '22220', '0.00', '0.00', '0.00', 1),
-(15, 'Alquiler de Tierras y Terrenos', 22, 223, '22300', '0.00', '0.00', '0.00', 1),
-(16, 'Otros Alquileres', 22, 229, '22900', '0.00', '0.00', '0.00', 1),
-(17, 'Mantenimiento y Reparación de Edificios y Locales', 23, 231, '23100', '0.00', '0.00', '0.00', 1),
-(18, 'Mantenimiento y Reparacion de Equipos y Medios de Transporte', 23, 232, '23200', '0.00', '0.00', '0.00', 1),
-(19, 'Mantenimiento y Reparacion de Equipos Sanitarios y de Laboratorio', 23, 233, '23330', '0.00', '0.00', '0.00', 1),
-(20, 'Mantenimiento y Reparación de Equipo para Computación', 23, 233, '23350', '0.00', '0.00', '0.00', 1),
-(21, 'Mantenimiento y Reparación de Equipo de Oficina y Muebles', 23, 233, '23360', '0.00', '0.00', '0.00', 1),
-(22, 'Mantenimiento y Reparación de Otros Equipos', 23, 233, '23390', '0.00', '0.00', '0.00', 1),
-(23, 'Mantenimiento y Reparación de Obras Civiles e Instalaciones Varias', 23, 234, '23400', '0.00', '0.00', '0.00', 1),
-(24, 'Limpieza, Aseo y Fumigacion', 23, 235, '23500', '0.00', '0.00', '0.00', 1),
-(25, 'Servicios de Capacitación', 24, 245, '24500', '0.00', '0.00', '0.00', 1),
-(26, 'Servicios de Informatica y Sistemas Computarizados', 24, 246, '24600', '0.00', '0.00', '0.00', 1),
-(27, 'Servicios de Consultoria de Gestión Administrativa, Financiera y Actividades Conexas', 24, 247, '24710', '0.00', '0.00', '0.00', 1),
-(28, 'Servicio de Transporte', 25, 251, '25100', '0.00', '0.00', '0.00', 1),
-(29, 'Servicio de Imprenta, Publicaciones y Reproducciones', 25, 253, '25300', '0.00', '0.00', '0.00', 1),
-(30, 'Primas y Gastos de Seguro', 25, 254, '25400', '0.00', '0.00', '0.00', 1),
-(31, 'Comisiones y Gastos Bancarios', 25, 255, '25500', '0.00', '0.00', '0.00', 1),
-(32, 'Publicidad y Propaganda', 25, 256, '25600', '0.00', '0.00', '0.00', 1),
-(33, 'Servicio de Internet', 25, 257, '25700', '0.00', '0.00', '0.00', 1),
-(34, 'Otros Servicios Comerciales y Financieros', 25, 259, '25900', '0.00', '0.00', '0.00', 1),
-(35, 'Pasajes Nacionales', 26, 261, '26110', '0.00', '0.00', '0.00', 1),
-(36, 'Pasajes al Exterior', 26, 261, '26120', '0.00', '0.00', '0.00', 1),
-(37, 'Viáticos Nacionales', 26, 262, '26210', '0.00', '0.00', '0.00', 1),
-(38, 'Viáticos al Exterior', 26, 262, '26220', '0.00', '0.00', '0.00', 1),
-(39, 'Gastos Juridicos ', 27, 275, '27500', '0.00', '0.00', '0.00', 1),
-(40, 'Impuesto sobre Venta- 12%', 27, 271, '27114', '0.00', '0.00', '0.00', 1),
-(41, 'Impuesto sobre Venta- 15%', 27, 271, '27115', '0.00', '0.00', '0.00', 1),
-(42, 'Ceremonial y Protocolo', 29, 291, '29100', '0.00', '0.00', '0.00', 1),
-(43, 'Alimentos y Bebidas para Personas', 31, 311, '31100', '0.00', '0.00', '0.00', 1),
-(44, 'Madera, Corcho y sus Manufacturas', 31, 315, '31500', '0.00', '0.00', '0.00', 1),
-(45, 'Hilados y Telas', 32, 321, '32100', '0.00', '0.00', '0.00', 1),
-(46, 'Confecciones Textiles', 32, 322, '32200', '0.00', '0.00', '0.00', 1),
-(47, 'Prendas de Vestir', 32, 323, '32310', '0.00', '0.00', '0.00', 1),
-(48, 'Calzados', 32, 234, '32400', '0.00', '0.00', '0.00', 1),
-(49, 'Papel de Escritorio', 33, 331, '33100', '0.00', '0.00', '0.00', 1),
-(50, 'Papel para Computación', 33, 332, '33200', '0.00', '0.00', '0.00', 1),
-(51, 'Productos de Artes Gráficas', 33, 333, '33300', '0.00', '0.00', '0.00', 1),
-(52, 'Productos de Papel y Cartón', 33, 334, '33400', '0.00', '0.00', '0.00', 1),
-(53, 'Libros, Revistas y Periódicos', 33, 335, '33500', '0.00', '0.00', '0.00', 1),
-(54, 'Textos de Enseñanza', 33, 336, '33600', '0.00', '0.00', '0.00', 1),
-(55, 'Cueros y Pieles', 34, 341, '34100', '0.00', '0.00', '0.00', 1),
-(56, 'Artículos de Cuero', 34, 342, '34200', '0.00', '0.00', '0.00', 1),
-(57, 'Articulos de Caucho', 34, 343, '34300', '0.00', '0.00', '0.00', 1),
-(58, 'Llantas y Camaras de Aire', 34, 344, '34400', '0.00', '0.00', '0.00', 1),
-(59, 'Productos Químicos', 35, 351, '35100', '0.00', '0.00', '0.00', 1),
-(60, 'Productos Farmacéuticos y Medicinales Varios', 35, 352, '35210', '0.00', '0.00', '0.00', 1),
-(61, 'Insecticidas, Fumigantes y Otros', 35, 354, '35400', '0.00', '0.00', '0.00', 1),
-(62, 'Tintas, Pinturas y Colorantes', 35, 355, '35500', '0.00', '0.00', '0.00', 1),
-(63, 'Gasolina', 35, 356, '35610', '0.00', '0.00', '0.00', 1),
-(64, 'Diesel', 35, 356, '35620', '0.00', '0.00', '0.00', 1),
-(65, 'Aceites y Grasas Lubricantes', 35, 356, '35650', '0.00', '0.00', '0.00', 1),
-(66, 'Productos de Material Plástico', 35, 358, '35800', '0.00', '0.00', '0.00', 1),
-(67, 'Productos Químicos de Uso Personal', 35, 359, '35930', '0.00', '0.00', '0.00', 1),
-(68, 'Productos Ferrosos', 36, 361, '36100', '0.00', '0.00', '0.00', 1),
-(69, 'Productos no Ferrosos', 36, 362, '36200', '0.00', '0.00', '0.00', 1),
-(70, 'Estructuras Metálicas Acabadas', 36, 363, '36300', '0.00', '0.00', '0.00', 1),
-(71, 'Herramientas Menores', 36, 364, '36400', '0.00', '0.00', '0.00', 1),
-(72, 'Material de Guerra y Seguridad', 36, 365, '36500', '0.00', '0.00', '0.00', 1),
-(73, 'Accesorios de Metal', 36, 369, '36920', '0.00', '0.00', '0.00', 1),
-(74, 'Elementos de Ferretería', 36, 369, '36930', '0.00', '0.00', '0.00', 1),
-(75, 'Productos de Vidrio', 37, 372, '37200', '0.00', '0.00', '0.00', 1),
-(76, 'Productos de Loza y Porcelana', 37, 373, '37300', '0.00', '0.00', '0.00', 1),
-(77, 'Productos de Cemento, Asbesto , Yeso y otros', 37, 371, '37100', '0.00', '0.00', '0.00', 1),
-(78, 'Cemento, Cal y Yeso', 37, 375, '37500', '0.00', '0.00', '0.00', 1),
-(79, 'Piedra, Arcilla y Arena', 38, 384, '38400', '0.00', '0.00', '0.00', 1),
-(80, 'Elementos de Limpieza y Aseo Personal', 39, 391, '39100', '0.00', '0.00', '0.00', 1),
-(81, 'Útiles de Escritorio, Oficina y Enseñanza', 39, 392, '39200', '0.00', '0.00', '0.00', 1),
-(82, 'Útiles y Materiales Eléctricos', 39, 393, '39300', '0.00', '0.00', '0.00', 1),
-(83, 'Utensilios de Cocina y Comedor', 39, 394, '39400', '0.00', '0.00', '0.00', 1),
-(84, 'Instrumental Medico Quirúrgico Menor', 39, 395, '39510', '0.00', '0.00', '0.00', 1),
-(85, 'Repuestos y Accesorios', 39, 396, '39600', '0.00', '0.00', '0.00', 1),
-(86, 'Repuestos y Accesorios Fondos Propios', 39, 396, '39600', '0.00', '0.00', '0.00', 0),
-(87, 'Embarcaciones Marítimas', 42, 423, '42330', '0.00', '0.00', '0.00', 1),
-(88, 'Becas Nacionales', 51, 512, '51211', '0.00', '0.00', '0.00', 1),
-(89, 'Becas Externas', 51, 512, '51212', '0.00', '0.00', '0.00', 1),
-(90, 'Otras Transferencias', 51, 512, '51230', '0.00', '0.00', '0.00', 1),
-(91, 'Mantenimiento y reparacion de equipos de traccion y elevacion', 11, 233, '23320', '0.00', '0.00', '0.00', 1),
-(92, 'abanty', 0, 0, 'bghf', '0.00', '0.00', '0.00', 1);
+INSERT INTO `presupuesto_disponible` (`idpresupuesto_disponible`, `nombre_objeto`, `grupo`, `subgrupo`, `codigo`, `condicion`) VALUES
+(1, 'Sueldos Basicos', 11, 111, '11100', 1),
+(2, 'Adicionales', 11, 114, '11400', 1),
+(3, 'Decimotercer Mes', 11, 115, '11510', 1),
+(4, 'Decimocuarto Mes', 11, 115, '11520', 1),
+(5, 'Complementos', 11, 116, '11600', 1),
+(6, 'Contribuciones al Instituto de Previsión Militar - Cuota Patronal', 11, 117, '11731', 1),
+(7, 'Contribuciones al Instituto de Previsión Militar - Regimen de Riesgos Especiales', 11, 117, '11732', 1),
+(8, 'Contribuciones al Instituto de Previsión Militar - Reserva Laboral', 11, 117, '11733', 1),
+(9, 'Beneficios y Compensaciones', 16, 161, '16100', 1),
+(10, 'Energía Eléctrica', 21, 211, '21100', 1),
+(11, 'Agua', 21, 212, '21200', 1),
+(12, 'Correo Postal', 21, 214, '21410', 1),
+(13, 'Telefonía Fija', 21, 214, '21420', 1),
+(14, 'Alquiler de Equipos de Transporte, Tracción y Elevación', 22, 222, '22220', 1),
+(15, 'Alquiler de Tierras y Terrenos', 22, 223, '22300', 1),
+(16, 'Otros Alquileres', 22, 229, '22900', 1),
+(17, 'Mantenimiento y Reparación de Edificios y Locales', 23, 231, '23100', 1),
+(18, 'Mantenimiento y Reparacion de Equipos y Medios de Transporte', 23, 232, '23200', 1),
+(19, 'Mantenimiento y Reparacion de Equipos Sanitarios y de Laboratorio', 23, 233, '23330', 1),
+(20, 'Mantenimiento y Reparación de Equipo para Computación', 23, 233, '23350', 1),
+(21, 'Mantenimiento y Reparación de Equipo de Oficina y Muebles', 23, 233, '23360', 1),
+(22, 'Mantenimiento y Reparación de Otros Equipos', 23, 233, '23390', 1),
+(23, 'Mantenimiento y Reparación de Obras Civiles e Instalaciones Varias', 23, 234, '23400', 1),
+(24, 'Limpieza, Aseo y Fumigacion', 23, 235, '23500', 1),
+(25, 'Servicios de Capacitación', 24, 245, '24500', 1),
+(26, 'Servicios de Informatica y Sistemas Computarizados', 24, 246, '24600', 1),
+(27, 'Servicios de Consultoria de Gestión Administrativa, Financiera y Actividades Conexas', 24, 247, '24710', 1),
+(28, 'Servicio de Transporte', 25, 251, '25100', 1),
+(29, 'Servicio de Imprenta, Publicaciones y Reproducciones', 25, 253, '25300', 1),
+(30, 'Primas y Gastos de Seguro', 25, 254, '25400', 1),
+(31, 'Comisiones y Gastos Bancarios', 25, 255, '25500', 1),
+(32, 'Publicidad y Propaganda', 25, 256, '25600', 1),
+(33, 'Servicio de Internet', 25, 257, '25700', 1),
+(34, 'Otros Servicios Comerciales y Financieros', 25, 259, '25900', 1),
+(35, 'Pasajes Nacionales', 26, 261, '26110', 1),
+(36, 'Pasajes al Exterior', 26, 261, '26120', 1),
+(37, 'Viáticos Nacionales', 26, 262, '26210', 1),
+(38, 'Viáticos al Exterior', 26, 262, '26220', 1),
+(39, 'Gastos Juridicos ', 27, 275, '27500', 1),
+(40, 'Impuesto sobre Venta- 12%', 27, 271, '27114', 1),
+(41, 'Impuesto sobre Venta- 15%', 27, 271, '27115', 1),
+(42, 'Ceremonial y Protocolo', 29, 291, '29100', 1),
+(43, 'Alimentos y Bebidas para Personas', 31, 311, '31100', 1),
+(44, 'Madera, Corcho y sus Manufacturas', 31, 315, '31500', 1),
+(45, 'Hilados y Telas', 32, 321, '32100', 1),
+(46, 'Confecciones Textiles', 32, 322, '32200', 1),
+(47, 'Prendas de Vestir', 32, 323, '32310', 1),
+(48, 'Calzados', 32, 234, '32400', 1),
+(49, 'Papel de Escritorio', 33, 331, '33100', 1),
+(50, 'Papel para Computación', 33, 332, '33200', 1),
+(51, 'Productos de Artes Gráficas', 33, 333, '33300', 1),
+(52, 'Productos de Papel y Cartón', 33, 334, '33400', 1),
+(53, 'Libros, Revistas y Periódicos', 33, 335, '33500', 1),
+(54, 'Textos de Enseñanza', 33, 336, '33600', 1),
+(55, 'Cueros y Pieles', 34, 341, '34100', 1),
+(56, 'Artículos de Cuero', 34, 342, '34200', 1),
+(57, 'Articulos de Caucho', 34, 343, '34300', 1),
+(58, 'Llantas y Camaras de Aire', 34, 344, '34400', 1),
+(59, 'Productos Químicos', 35, 351, '35100', 1),
+(60, 'Productos Farmacéuticos y Medicinales Varios', 35, 352, '35210', 1),
+(61, 'Insecticidas, Fumigantes y Otros', 35, 354, '35400', 1),
+(62, 'Tintas, Pinturas y Colorantes', 35, 355, '35500', 1),
+(63, 'Gasolina', 35, 356, '35610', 1),
+(64, 'Diesel', 35, 356, '35620', 1),
+(65, 'Aceites y Grasas Lubricantes', 35, 356, '35650', 1),
+(66, 'Productos de Material Plástico', 35, 358, '35800', 1),
+(67, 'Productos Químicos de Uso Personal', 35, 359, '35930', 1),
+(68, 'Productos Ferrosos', 36, 361, '36100', 1),
+(69, 'Productos no Ferrosos', 36, 362, '36200', 1),
+(70, 'Estructuras Metálicas Acabadas', 36, 363, '36300', 1),
+(71, 'Herramientas Menores', 36, 364, '36400', 1),
+(72, 'Material de Guerra y Seguridad', 36, 365, '36500', 1),
+(73, 'Accesorios de Metal', 36, 369, '36920', 1),
+(74, 'Elementos de Ferretería', 36, 369, '36930', 1),
+(75, 'Productos de Vidrio', 37, 372, '37200', 1),
+(76, 'Productos de Loza y Porcelana', 37, 373, '37300', 1),
+(77, 'Productos de Cemento, Asbesto , Yeso y otros', 37, 371, '37100', 1),
+(78, 'Cemento, Cal y Yeso', 37, 375, '37500', 1),
+(79, 'Piedra, Arcilla y Arena', 38, 384, '38400', 1),
+(80, 'Elementos de Limpieza y Aseo Personal', 39, 391, '39100', 1),
+(81, 'Útiles de Escritorio, Oficina y Enseñanza', 39, 392, '39200', 1),
+(82, 'Útiles y Materiales Eléctricos', 39, 393, '39300', 1),
+(83, 'Utensilios de Cocina y Comedor', 39, 394, '39400', 1),
+(84, 'Instrumental Medico Quirúrgico Menor', 39, 395, '39510', 1),
+(85, 'Repuestos y Accesorios', 39, 396, '39600', 1),
+(86, 'Repuestos y Accesorios Fondos Propios', 39, 396, '39600', 0),
+(87, 'Embarcaciones Marítimas', 42, 423, '42330', 1),
+(88, 'Becas Nacionales', 51, 512, '51211', 1),
+(89, 'Becas Externas', 51, 512, '51212', 1),
+(90, 'Otras Transferencias', 51, 512, '51230', 1),
+(91, 'Mantenimiento y reparacion de equipos de traccion y elevacion', 11, 233, '23320', 1);
 
 -- --------------------------------------------------------
 
@@ -1503,7 +1338,7 @@ CREATE TABLE `usuario` (
   `login` varchar(20) NOT NULL,
   `clave` varchar(64) NOT NULL,
   `imagen` varchar(50) NOT NULL,
-  `condicion` tinyint(1) NOT NULL DEFAULT 1
+  `condicion` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1852,7 +1687,7 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
@@ -1882,7 +1717,7 @@ ALTER TABLE `factura_orden`
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
@@ -1894,7 +1729,7 @@ ALTER TABLE `permiso`
 -- AUTO_INCREMENT de la tabla `presupuesto_disponible`
 --
 ALTER TABLE `presupuesto_disponible`
-  MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `idpresupuesto_disponible` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
@@ -1972,6 +1807,13 @@ ALTER TABLE `crear_acuerdo`
 ALTER TABLE `detalle_compromisos`
   ADD CONSTRAINT `fk_dc_idcompromisos` FOREIGN KEY (`idcompromisos`) REFERENCES `compromisos` (`idcompromisos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_dc_idpresupuesto_disponible` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `detalle_ingreso`
+--
+ALTER TABLE `detalle_ingreso`
+  ADD CONSTRAINT `fk_idingreso` FOREIGN KEY (`idingreso`) REFERENCES `ingreso` (`idingreso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_pres_dis` FOREIGN KEY (`idpresupuesto_disponible`) REFERENCES `presupuesto_disponible` (`idpresupuesto_disponible`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `detalle_orden`
