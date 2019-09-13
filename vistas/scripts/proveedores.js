@@ -18,7 +18,7 @@ function init(){
 
 		var rtn = $('#rtn').val();
 
-		if (datos.includes(num_fact)) {
+		if (datos.includes(rtn)) {
 			alert('Dato ya existe en la bd, digite otro por favor');
 			$('#rtn').val("");
 			$("#rtn").focus();
