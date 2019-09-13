@@ -55,6 +55,8 @@ if ($_SESSION['siafi']==1)
                               <option data-icon="fas fa-dollar-sign" value="presanual">Presupuesto Anual</option>
                               <option data-icon="fas fa-dollar-sign" value="dismin">Disminuciones</option>
                               <option data-icon="fas fa-dollar-sign" value="aument">Aumentos</option>
+                              <option data-icon="fas fa-dollar-sign" value="siafi">Siafi</option>
+
                             </select>
                           </div>
 
@@ -194,7 +196,6 @@ if ($_SESSION['siafi']==1)
               <th>Opciones</th>
                <th>Nombre Objeto</th>
               <th>Código</th>
-              <th>Fondos Vigentes</th>
           </thead>
           <tbody>
 
@@ -204,7 +205,6 @@ if ($_SESSION['siafi']==1)
               <th>Opciones</th>
                <th>Nombre Objeto</th>
               <th>Código</th>
-              <th>Fondos Vigentes</th>
           </tfoot>
         </table>
       </div>

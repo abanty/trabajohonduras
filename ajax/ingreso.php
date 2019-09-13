@@ -94,8 +94,7 @@ case 'listarDetalle':
  			$data[]=array(
  				"0"=>'<button class="btn btn-warning" onclick="agregarDetalle('.$reg->idpresupuesto_disponible.',\''.$reg->codigo.'\')"><span class="fas fa-plus-circle"></span></button>',
  				"1"=>$reg->nombre_objeto,
- 				"2"=>$reg->codigo,
- 				"3"=>$reg->presupuesto_vigente
+ 				"2"=>$reg->codigo 		
  				);
  		}
  		$results = array(

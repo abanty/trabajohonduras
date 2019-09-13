@@ -25,29 +25,29 @@ Class Ingreso
 		{
 			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,actividad,monto)
 			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$actividad[$num_elementos]','$monto[$num_elementos]')";
+		// 
+		// switch ($tipo_presupuesto) {
+		// 	case 'siafi':
+		// 	  $var = 'p.pres_ejecutado';
+		// 	break;
+		//
+		// 	case 'presinit':
+		// 		$var = 'p.pres_ejecutar';
+		// 	break;
+		//
+		// 	case 'congelamientos':
+		// 		$var = 'p.pres_ejecutar';
+		// 	break;
+		//
+		// 	default:
+		// 		// code...
+		// 		break;
+		// }
 
-		switch ($tipo_presupuesto) {
-			case 'siafi':
-			  $var = 'p.pres_ejecutado';
-			break;
-
-			case 'presinit':
-				$var = 'p.pres_ejecutar';
-			break;
-
-			case 'congelamientos':
-				$var = 'p.pres_ejecutar';
-			break;
-
-			default:
-				// code...
-				break;
-		}
-
-			$sql2="UPDATE presupuesto_disponible p INNER JOIN detalle_ingreso di ON p.idpresupuesto_disponible = di.idpresupuesto_disponible
-			LEFT JOIN ingreso i ON di.idingreso = i.idingreso SET $var = $var + '$monto[$num_elementos]' WHERE p.idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'
-			AND i.fecha_hora = '$fecha_hora'";
-			ejecutarConsulta($sql2);
+			// $sql2="UPDATE presupuesto_disponible p INNER JOIN detalle_ingreso di ON p.idpresupuesto_disponible = di.idpresupuesto_disponible
+			// LEFT JOIN ingreso i ON di.idingreso = i.idingreso SET $var = $var + '$monto[$num_elementos]' WHERE p.idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'
+			// AND i.fecha_hora = '$fecha_hora'";
+			// ejecutarConsulta($sql2);
 
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
