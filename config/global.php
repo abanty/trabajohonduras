@@ -2,7 +2,7 @@
 //Ip de la pc servidor de base de datos
 define("DB_HOST","localhost");
 //Nombre de la base de datos
-define("DB_NAME", "sistemacfn3");
+define("DB_NAME", "sistemac_fnh");
 //Usuario de la base de datos
 define("DB_USERNAME", "root");
 //Contraseña del usuario de la base de datos
