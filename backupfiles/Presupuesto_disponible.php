@@ -11,18 +11,18 @@ Class Presupuesto_disponible
 	}
 
 	//Implementamos un método para insertar registros
-	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo)
+	public function insertar($nombre_objeto,$grupo,$subgrupo,$codigo,$pres_vigente,$pres_ejecutar,$pres_ejecutado)
 	{
-		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,condicion)
-		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','1')";
+		$sql="INSERT INTO presupuesto_disponible (nombre_objeto,grupo,subgrupo,codigo,pres_vigente,pres_ejecutar,pres_ejecutado,condicion)
+		VALUES ('$nombre_objeto','$grupo','$subgrupo','$codigo','$pres_vigente','$pres_ejecutar','$pres_ejecutado','1')";
 		return ejecutarConsulta($sql);
 	}
 
 	//Implementamos un método para editar registros
-	public function editar($idpresupuesto_disponible,$nombre_objeto,$grupo,$subgrupo,$codigo)
+	public function editar($idpresupuesto_disponible,$nombre_objeto,$grupo,$subgrupo,$codigo,$pres_aprobado,$pres_modificado,$presupuesto_anual,$fondos_disponibles)
 	{
-		$sql="UPDATE presupuesto_disponible SET nombre_objeto='$nombre_objeto', grupo='$grupo', subgrupo='$subgrupo', codigo='$codigo'
-		WHERE idpresupuesto_disponible='$idpresupuesto_disponible'";
+		$sql="UPDATE presupuesto_disponible SET nombre_objeto='$nombre_objeto', grupo='$grupo', subgrupo='$subgrupo', codigo='$codigo',pres_aprobado='$pres_aprobado',pres_modificado='$pres_modificado',
+		presupuesto_anual='$presupuesto_anual', fondos_disponibles='$fondos_disponibles' WHERE idpresupuesto_disponible='$idpresupuesto_disponible'";
 		return ejecutarConsulta($sql);
 	}
 
@@ -51,7 +51,8 @@ Class Presupuesto_disponible
 //Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT idpresupuesto_disponible, nombre_objeto, codigo, grupo, subgrupo, condicion
+		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo,subgrupo,FORMAT( pres_vigente, 2) as presupuesto_vigente,
+		FORMAT( pres_ejecutar, 2) as presupuesto_ejecutar,		FORMAT( pres_ejecutado, 2) as presupuesto_ejecutado,	condicion
 		FROM presupuesto_disponible";
 		return ejecutarConsulta($sql);
 	}
@@ -59,7 +60,9 @@ Class Presupuesto_disponible
 		//Implementar un método para listar los registros activos
 	public function listarPresupuestoActivos()
 	{
-		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo, subgrupo, condicion
+		$sql="SELECT idpresupuesto_disponible,	nombre_objeto,	codigo,	grupo,subgrupo,FORMAT( pres_vigente, 2) as presupuesto_vigente,
+		FORMAT( pres_ejecutar, 2) as presupuesto_ejecutar,		FORMAT( pres_ejecutado, 2) as presupuesto_ejecutado,	condicion
+		condicion
 		FROM presupuesto_disponible
 		WHERE condicion='1'";
 		return ejecutarConsulta($sql);
@@ -72,12 +75,7 @@ Class Presupuesto_disponible
 		nombre_objeto,
 		codigo,
 		fondos_disponibles,
-		    (SELECT monto
-					FROM detalle_ingreso
-					WHERE idpresupuesto_disponible=a.idpresupuesto_disponible
-					ORDER BY iddetalle_ingreso
-					DESC LIMIT 0,1) as monto, 
-		c.nombre_objeto,c.codigo,a.condicion FROM presupuesto_disponible a INNER JOIN presupuesto_anual c ON a.idpresupuesto_anual=c.idpresupuesto_anual WHERE a.condicion='1'";
+		    (SELECT monto FROM detalle_ingreso WHERE idpresupuesto_disponible=a.idpresupuesto_disponible order by iddetalle_ingreso desc limit 0,1) as monto, c.nombre_objeto,c.codigo,a.condicion FROM presupuesto_disponible a INNER JOIN presupuesto_anual c ON a.idpresupuesto_anual=c.idpresupuesto_anual WHERE a.condicion='1'";
 		return ejecutarConsulta($sql);
 	}
 }

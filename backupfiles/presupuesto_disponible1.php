@@ -44,6 +44,10 @@ form#formulario .help-block {
                                 <th>Opciones</th>
                                 <th>Nombre Objeto</th>
                                 <th>Codigo</th>
+                                <th>Pres. Vigente</th>
+                                <!-- <th>Pres Disminuciones</th> -->
+                                <th>Pres. Por Ejecutar</th>
+                                <th>Pres. Ejecutado Siafi</th>
                                 <th>Estado</th>
                               </thead>
                               <tbody>
@@ -81,6 +85,25 @@ form#formulario .help-block {
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                   <label for="codigo">Codigo:(*)</label>
                                   <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="Digita Codigo...">
+                                  <div class="messages"></div>
+                                </div>
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="presupuesto_anual">Vigente:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="pres_vigente" id="pres_vigente" required>
+                                  <div class="messages"></div>
+                                </div>
+
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="presupuesto_anual">Pres. Por Ejecutar:</label>
+                                  <input type="text" class="form-control input-sm decimal" name="pres_ejecutar" id="pres_ejecutar" required>
+                                  <div class="messages"></div>
+                                </div>
+
+                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                  <label for="fondos_disponibles">Pres. SIAFI Ejecutado:</label>
+                                  <input type="text" class="form-control input-sm decimal"  name="pres_ejecutado" id="pres_ejecutado" required>
                                   <div class="messages"></div>
                                 </div>
 
