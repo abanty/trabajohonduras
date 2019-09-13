@@ -2,7 +2,7 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init() {
- 
+
 	$(document).on('focusout', '.update', function() {
 
 		var id = $(this).data("id");
@@ -208,7 +208,7 @@ function listar() {
 			}
 		},
 		"bDestroy": true,
-		"iDisplayLength": 10, //Paginación
+		"iDisplayLength": 15, //Paginación
 		"order": [
 			[0, "desc"]
 		] //Ordenar (columna,orden)
