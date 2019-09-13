@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 13-09-2019 a las 05:16:29
+-- Tiempo de generación: 13-09-2019 a las 06:03:05
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.19
 
@@ -421,8 +421,20 @@ CREATE TABLE `detalle_ingreso` (
   `idingreso` int(11) DEFAULT NULL,
   `idpresupuesto_disponible` int(11) DEFAULT NULL,
   `actividad` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `pres_inicial` decimal(11,2) DEFAULT '0.00',
+  `pres_siafi` decimal(11,2) DEFAULT '0.00',
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `detalle_ingreso`
+--
+
+INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `actividad`, `pres_inicial`, `pres_siafi`, `monto`) VALUES
+(3, 5, 1, 'actividad1', '0.00', '50.00', '50.00'),
+(4, 6, 1, 'actividad2', '0.00', '22.33', '22.33'),
+(5, 7, 1, 'actividad5', '0.00', '1500.00', '1500.00'),
+(6, 8, 1, 'actividad1', '1500.00', '0.00', '1500.00');
 
 -- --------------------------------------------------------
 
@@ -696,6 +708,16 @@ CREATE TABLE `ingreso` (
   `total_importe` decimal(11,2) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ingreso`
+--
+
+INSERT INTO `ingreso` (`idingreso`, `idusuario`, `tipo_presupuesto`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
+(5, 1, '', '2019-09-13 00:00:00', 4156, '50.00', 'Aceptado'),
+(6, 1, 'siafi', '2019-09-13 00:00:00', 1111, '22.33', 'Aceptado'),
+(7, 1, 'siafi', '2019-09-13 00:00:00', 1122, '1500.00', 'Aceptado'),
+(8, 1, 'presinit', '2019-09-13 00:00:00', 5555, '1500.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1687,7 +1709,7 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
@@ -1717,7 +1739,7 @@ ALTER TABLE `factura_orden`
 -- AUTO_INCREMENT de la tabla `ingreso`
 --
 ALTER TABLE `ingreso`
-  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `permiso`
