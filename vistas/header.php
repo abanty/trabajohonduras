@@ -394,7 +394,7 @@ if (strlen(session_id()) < 1)
        <a href="#">
 
          <i class="fas fa-grip-vertical fa-lg"></i><span>POA</span>
-     
+
            <i class="fal fa-angle-left pull-right"></i>
          </span>
        </a>
@@ -477,18 +477,7 @@ if (strlen(session_id()) < 1)
           </li>';
             }
             ?>
-            <li>
-              <a href="#">
-                <i class="fa fa-plus-square fa-lg"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle fa-lg"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li>
+
 
           </ul>
         </section>

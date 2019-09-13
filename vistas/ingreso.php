@@ -14,16 +14,8 @@ require 'header.php';
 if ($_SESSION['siafi']==1)
 {
 ?>
-<style media="screen">
-  .lead{
-    color:#43567d;
 
-  }
-</style>
-<!--Contenido-->
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Main content -->
+    <div class="content-wrapper">
         <section class="content-header">
           <h1>
             Administrar Ingreso de Presupuesto
@@ -34,115 +26,153 @@ if ($_SESSION['siafi']==1)
           </ol>
         </section>
         <section class="content">
-            <div class="row">
+          <div class="row" id="formularioregistros">
               <div class="col-md-12">
-                  <div class="box">
+
                    <div class="box box-primary">
-                    <div class="box-header with-border">
-                          <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fas fa-plus-circle"></i> Agregar</button></h1>
-                        <div class="box-tools pull-right">
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- centro -->
-                    <div class="panel-body table-responsive" id="listadoregistros">
-                        <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover"width="100%">
-                          <thead style="background-color:#d2d6de">
-                            <th>Opciones</th>
-                            <th>Fecha</th>
-                            <th>Usuario</th>
-                            <th>Número F01</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                          </thead>
-                          <tbody>
-                          </tbody>
-                          <tfoot style="background-color:#d2d6de">
-                            <th>Opciones</th>
-                            <th>Fecha</th>
-                            <th>Usuario</th>
-                            <th>Número F01</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                          </tfoot>
-                        </table>
-                    </div>
-                    <div class="panel-body" style="height: 100%;" id="formularioregistros">
-                        <form name="formulario" id="formulario" method="POST">
+                     <div class="box-header with-border">
+                        <h3 class="box-title mytext"><i class="fas fa-chalkboard-teacher"></i> Formulario Ingresos Presupuestales</h3>
+                     </div>
 
+                    <div class="panel-body">
+                      <form name="formulario" id="formulario" method="POST">
 
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Fecha(*):</label>
+                             <input type="hidden" name="idingreso" id="idingreso">
+                             <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
+                          </div>
 
+                          <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <label>Número F01(*):</label>
+                            <input type="text" class="form-control input-sm" name="numf01" id="numf01" maxlength="25" placeholder="Número" required="">
+                          </div>
 
-                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                              <label>Fecha(*):</label>
-                               <input type="hidden" name="idingreso" id="idingreso">
-                               <input type="date" class="form-control input-sm" name="fecha_hora" id="fecha_hora" required="">
-                            </div>
-
-                            <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                              <label>Número F01(*):</label>
-                              <input type="text" class="form-control input-sm" name="numf01" id="numf01" maxlength="25" placeholder="Número" required="">
-                            </div>
-
-                            <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
-                              <label>Tipo Presupuesto(*):</label>
-                              <select class="form-control selectpicker" name="idpresupuesto" id="idpresupuesto"  multiple data-max-options="1" data-style="btn-default btn-sm" data-title="Elige un presupuesto" required>
-                                <option data-icon="fas fa-dollar-sign" value="presinit">Presupuesto Inicial</option>
-                                <option data-icon="fas fa-dollar-sign" value="presanual">Presupuesto Anual</option>
-                                <option data-icon="fas fa-dollar-sign" value="dismin">Disminuciones</option>
-                                <option data-icon="fas fa-dollar-sign" value="aument">Aumentos</option>
-                              </select>
-                            </div>
-
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <a data-toggle="modal" href="#myModal">
-                                <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Presupuesto</button>
-                              </a>
-                            </div>
-
-
-                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                            <!-- <div class="panel panel-primary"> -->
-                              <!-- <div class="panel-heading">
-                                <h3 class="panel-title">Detalles de Ingresos presupuestales :</h3>
-                              </div> -->
-                              <table id="detalles" class="table table-striped table-bordered table-condensed table-hover" width="100%">
-                                <thead style="background-color:#d2d6de">
-                                      <th>Opciones</th>
-                                      <th>Nombre Objeto</th>
-                                      <th>Actividad</th>
-                                      <th>Valor</th>
-                                      <th>Subtotal</th>
-                                  </thead>
-                                  <tbody>
-                                  </tbody>
-                                  <tfoot>
-                                      <th></th>
-                                      <th></th>
-                                      <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
-                                      <th><h4 id="total">Lps. 0.00</h4><input type="hidden" name="total_importe" id="total_importe" step"0.01">
-                                      </th>
-                                  </tfoot>
-                              </table>
-                            <!-- </div> -->
-                        </div>
-
+                          <div class="form-group col-lg-4 col-md-2 col-sm-6 col-xs-12">
+                            <label>Tipo Presupuesto(*):</label>
+                            <select class="form-control selectpicker" name="idpresupuesto" id="idpresupuesto"  multiple data-max-options="1" data-style="btn-default btn-sm" data-title="Elige un presupuesto" required>
+                              <option data-icon="fas fa-dollar-sign" value="presinit">Presupuesto Inicial</option>
+                              <option data-icon="fas fa-dollar-sign" value="presanual">Presupuesto Anual</option>
+                              <option data-icon="fas fa-dollar-sign" value="dismin">Disminuciones</option>
+                              <option data-icon="fas fa-dollar-sign" value="aument">Aumentos</option>
+                            </select>
+                          </div>
 
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
-
-                            <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
+                            <a data-toggle="modal" href="#myModal">
+                              <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fas fa-cart-plus"></span> Agregar Presupuesto</button>
+                            </a>
                           </div>
-                        </form>
+
+                      <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+
+                            <table id="detalles" class="table table-striped table-bordered table-condensed table-hover" width="100%">
+                              <thead style="background-color:#d2d6de">
+                                    <th>Opciones</th>
+                                    <th>Nombre Objeto</th>
+                                    <th>Actividad</th>
+                                    <th>Valor</th>
+                                    <th>Subtotal</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <th></th>
+                                    <th></th>
+                                    <th><h4><strong style="color:#727375;">TOTAL :</strong></h4></th>
+                                    <th><h4 id="total">Lps. 0.00</h4><input type="hidden" name="total_importe" id="total_importe" step"0.01">
+                                    </th>
+                                </tfoot>
+                            </table>
+                      </div>
+
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
+                          <button id="btnCancelar" class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
+                        </div>
+                      </form>
+
                     </div>
-                    <!--Fin centro -->
                   </div><!-- /.box -->
               </div><!-- /.col -->
-          </div><!-- /.row -->
-      </section><!-- /.content -->
+            </div><!-- /.row -->
 
-    </div><!-- /.content-wrapper -->
-  <!--Fin-Contenido-->
+          <div class="row" id="listadoregistros">
+            <div class="col-md-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                      <h1 class="box-title"><button class="btn btn-success" id="btnagregar" onclick="mostrarform(true)"><i class="fas fa-plus-circle"></i> Agregar</button></h1>
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <div class="box-group" id="accordion">
+                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                    <div class="panel box box-primary">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                           INGRESO GENERAL
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="box-body">
+                          <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover"width="100%">
+                            <thead style="background-color:#d2d6de">
+                              <th>Opciones</th>
+                              <th>Fecha</th>
+                              <th>Usuario</th>
+                              <th>Número F01</th>
+                              <th>Total</th>
+                              <th>Estado</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot style="background-color:#d2d6de">
+                              <th>Opciones</th>
+                              <th>Fecha</th>
+                              <th>Usuario</th>
+                              <th>Número F01</th>
+                              <th>Total</th>
+                              <th>Estado</th>
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel box box-danger">
+                      <div class="box-header with-border">
+                        <h4 class="box-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            INGRESO DETALLE PRESUPUESTALES
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="box-body">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+                          wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                          eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
+                          assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
+                          nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
+                          farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+                          labore sustainable VHS.
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+          </div>
+      </section>
+
 
 <!--   Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -187,7 +217,7 @@ if ($_SESSION['siafi']==1)
 </div>
 <!--   Fin modal -->
 
-
+  </div>
 <?php
 }
 else
