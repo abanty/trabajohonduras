@@ -44,6 +44,8 @@ form#formulario .help-block {
                                 <th>Opciones</th>
                                 <th>Nombre Objeto</th>
                                 <th>Codigo</th>
+                                <th>Grupo</th>
+                                <th>SubGrupo</th>
                                 <th>Estado</th>
                               </thead>
                               <tbody>
@@ -55,10 +57,16 @@ form#formulario .help-block {
 
                               <div class="row">
 
-                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                   <label for="nombre_objeto">Objeto:(*)</label>
                                   <input type="hidden" name="idpresupuesto_disponible" id="idpresupuesto_disponible">
                                   <input type="text" class="form-control input-sm" name="nombre_objeto" id="nombre_objeto" maxlength="100"  placeholder="Nombre de Objeto...">
+                                  <div class="messages"></div>
+                                </div>
+
+                               <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                  <label for="codigo">Codigo:(*)</label>
+                                  <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="Digita Codigo...">
                                   <div class="messages"></div>
                                 </div>
 
@@ -73,17 +81,6 @@ form#formulario .help-block {
                                   <input type="text" class="form-control input-sm"  name="subgrupo" id="subgrupo" maxlength="45" placeholder="Ingresa Sub Grupo...">
                                   <div class="messages"></div>
                                 </div>
-
-                              </div>
-
-                             <div class="row">
-
-                                <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                  <label for="codigo">Codigo:(*)</label>
-                                  <input type="text" class="form-control input-sm" name="codigo" id="codigo" maxlength="45" placeholder="Digita Codigo...">
-                                  <div class="messages"></div>
-                                </div>
-
                              </div>
 
                             </div>

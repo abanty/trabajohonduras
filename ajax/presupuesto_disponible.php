@@ -63,7 +63,9 @@ switch ($_GET["op"]){
  					' <button class="btn btn-primary btn-sm" onclick="activar('.$reg->idpresupuesto_disponible.')"><i class="fas fa-check"></i></button>',
  				"1"=>$reg->nombre_objeto,
  				"2"=>$reg->codigo,
- 				"3"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
+				"3"=>'<span style="color:blue; font-weight: bold;">'.$reg->grupo.'</span>',
+				"4"=>'<span style="color:green; font-weight: bold;">'.$reg->subgrupo.'</span>',
+ 				"5"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
  				'<span class="label bg-red">Desactivado</span>'
  				);
  		}

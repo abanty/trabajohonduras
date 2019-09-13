@@ -76,7 +76,7 @@ Class Presupuesto_disponible
 					FROM detalle_ingreso
 					WHERE idpresupuesto_disponible=a.idpresupuesto_disponible
 					ORDER BY iddetalle_ingreso
-					DESC LIMIT 0,1) as monto, 
+					DESC LIMIT 0,1) as monto,
 		c.nombre_objeto,c.codigo,a.condicion FROM presupuesto_disponible a INNER JOIN presupuesto_anual c ON a.idpresupuesto_anual=c.idpresupuesto_anual WHERE a.condicion='1'";
 		return ejecutarConsulta($sql);
 	}

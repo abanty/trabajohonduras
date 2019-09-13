@@ -41,51 +41,27 @@ function init() {
 
     grupo: {
       // Email is required
-      presence: true
+      presence: true,
+      format: {
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+        message: ", No puede ser texto, igual o menor a 0"
+      }
     },
 
     subgrupo: {
       // Email is required
-      presence: true
+      presence: true,
+      format: {
+        pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
+        message: ", No puede ser texto, igual o menor a 0"
+      }
     },
 
     codigo: {
       // Email is required
       presence: true
     },
-
-    pres_vigente: {
-      // Email is required
-      presence: true,
-
-      // format: {
-      //   pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-      //   message: ", No puede ser igual o menor a 0"
-      // }
-    },
-
-    pres_ejecutar: {
-      // Email is required
-      presence: true,
-
-      // format: {
-      //   pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-      //   message: ", No puede ser igual o menor a 0"
-      // }
-    },
-
-    pres_ejecutado: {
-      // Email is required
-      presence: true,
-
-      // format: {
-      //   pattern: "^(0*[1-9][0-9,]*(\.[0-9,]+)?|0+\.[0-9]*[1-9][0-9,]*)$",
-      //   message: ", No puede ser igual o menor a 0"
-      // }
-    }
   };
-
-
 
   // Enlace el formulario
   var form = document.querySelector("form#formulario");
@@ -215,25 +191,6 @@ function showSuccess() {
   // alert("Success!");
 }
 
-/*------------------------------------------*
-| FUNCION PARA REALIZAR CALCULOS DE ADICION |
-.------------------------------------------*/
-function sumarcampos() {
-
-  var form = document.querySelector("form#formulario");
-  var errors = validate(form, constraints);
-    _.each(form.querySelectorAll(".decimal"), function(input) {
-      // Dado que los errores pueden ser nulos si no se encontraron errores, debemos manejar este metodo
-      showErrorsForInput(input, errors && errors[input.name]);
-    });
-
-  var suma1 = $('#pres_aprobado').val();
-  var suma1replace = parseFloat(suma1.replace(/,/g, ''));
-  var suma2 = $('#pres_modificado').val();
-  var suma2replace = parseFloat(suma2.replace(/,/g, ''));
-  var sumatotal = number_format((suma1replace - suma2replace), 2, '.', ',');
-  $('#presupuesto_anual').val(sumatotal);
-}
 
 /*------------------------------------------*
 | FUNCION PARA REALIZAR CALCULOS DE ADICION |
@@ -256,9 +213,6 @@ function limpiar() {
   $("#grupo").val("");
   $("#subgrupo").val("");
   $("#codigo").val("");
-  $("#pres_vigente").val("0");
-  $("#pres_ejecutar").val("0");
-  $("#pres_ejecutado").val("0");
   $("#idpresupuesto_disponible").val("");
 }
 
@@ -277,17 +231,10 @@ function limpiar_campos_validados() {
 | FUNCION MOSTRAR FORMULARIO |
 .---------------------------*/
 function mostrarform(flag) {
-	limpiar_campos_validados();
-  //Transformando inputs a libreria MASKMONEY.
-  $(function() {
-    $('.decimal').maskMoney({
-      thousands: ',',
-      decimal: '.',
-      allowZero: true
-    });
-  });
 
+	limpiar_campos_validados();
   limpiar();
+
   if (flag) {
     $("#listadoregistros").hide();
 		$(".mytext").show();
@@ -335,9 +282,9 @@ function listar() {
       }
     },
     "bDestroy": true,
-    "iDisplayLength": 10, //Paginación
+    "iDisplayLength": 10,
     "order": [
-      [0, "desc"]
+      [0, "asc"]
     ] //Ordenar (columna,orden)
   }).DataTable();
 }
@@ -360,7 +307,7 @@ function guardaryeditar() {
     success: function(datos) {
       bootbox.alert(datos);
       mostrarform(false);
-      tabla.ajax.reload();
+      tabla.ajax.reload(null, false);
     }
 
   });
@@ -381,53 +328,23 @@ function mostrar(idpresupuesto_disponible) {
     $("#grupo").val(data.grupo);
     $("#subgrupo").val(data.subgrupo);
     $("#codigo").val(data.codigo);
-    $("#pres_aprobado").val(number_format(data.pres_aprobado, 2, '.', ','));
-    $("#pres_modificado").val(number_format(data.pres_modificado, 2, '.', ','));
-    $("#presupuesto_anual").val(number_format(data.presupuesto_anual, 2, '.', ','));
-    $("#fondos_disponibles").val(number_format(data.fondos_disponibles, 2, '.', ','));
     $("#idpresupuesto_disponible").val(data.idpresupuesto_disponible);
 
   })
 }
 
-/*---------------------------------------------*
-| FUNCION CONVERTIR ENTEROS A MILLARES FORMATO |
-.----------------------------------------------*/
-function number_format(number, decimals, dec_point, thousands_sep) {
-  // Strip all characters but numerical ones.
-  number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-  var n = !isFinite(+number) ? 0 : +number,
-    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-    s = '',
-    toFixedFix = function(n, prec) {
-      var k = Math.pow(10, prec);
-      return '' + Math.round(n * k) / k;
-    };
-  // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-  s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-  if (s[0].length > 3) {
-    s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-  }
-  if ((s[1] || '').length < prec) {
-    s[1] = s[1] || '';
-    s[1] += new Array(prec - s[1].length + 1).join('0');
-  }
-  return s.join(dec);
-}
 
 /*----------------------------------*
 | FUNCION PARA DESACTIVAR REGISTROS |
 .----------------------------------*/
 function desactivar(idpresupuesto_disponible) {
-  bootbox.confirm("¿Está Seguro de desactivar el artículo?", function(result) {
+  bootbox.confirm("¿Está Seguro de desactivar el Renglon Presupuestario?", function(result) {
     if (result) {
       $.post("../ajax/presupuesto_disponible.php?op=desactivar", {
         idpresupuesto_disponible: idpresupuesto_disponible
       }, function(e) {
         bootbox.alert(e);
-        tabla.ajax.reload();
+        tabla.ajax.reload(null, false);
       });
     }
   })
@@ -437,13 +354,13 @@ function desactivar(idpresupuesto_disponible) {
 | FUNCION PARA ACTIVAR REGISTROS |
 .-------------------------------*/
 function activar(idpresupuesto_disponible) {
-  bootbox.confirm("¿Está Seguro de activar el Artículo?", function(result) {
+  bootbox.confirm("¿Está Seguro de activar el Renglon Presupuestario?", function(result) {
     if (result) {
       $.post("../ajax/presupuesto_disponible.php?op=activar", {
         idpresupuesto_disponible: idpresupuesto_disponible
       }, function(e) {
         bootbox.alert(e);
-        tabla.ajax.reload();
+        tabla.ajax.reload(null, false);
       });
     }
   })
