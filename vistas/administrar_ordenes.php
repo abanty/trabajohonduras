@@ -45,9 +45,9 @@ if ($_SESSION['admonoc']==1)
 
           <div class="box-body this" id="listadoregistros">
             <div class="panel-body table-responsive thispan">
-              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" style="font-size:13px;">
+              <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
                 <thead style="background-color:#d2d6de">
-                  <th>Opciones</th>
+                  <th width="100%">Opciones</th>
                   <th>Fecha</th>
                   <th>Proveedor</th>
                   <th>Usuario</th>

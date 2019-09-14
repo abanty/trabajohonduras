@@ -148,19 +148,19 @@ switch ($_GET["op"]){
 		 		$data= Array();
 		 		while ($reg=$rspta->fetch_object()){
 		 			$data[]=array(
-		 				"0"=>($reg->condicion==0)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
-		 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+		 				"0"=>($reg->condicion==0)?'<button data-toggle="tooltip" title="Mostrar!" data-placement="right" class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+		 					' <button data-toggle="tooltip" title="Eliminar!" data-placement="right" class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
 							' <button data-toggle="tooltip" title="Realizar pago!" data-placement="right" class="btn btn-success btn-sm" onclick="pagado('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
 		 					:
-							(($reg->condicion==1)?'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
-							' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
+							(($reg->condicion==1)?'<button data-toggle="tooltip" title="Mostrar!" data-placement="right"class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							' <button data-toggle="tooltip" title="Eliminar!" data-placement="right" class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
 							' <button data-toggle="tooltip" title="Realizar pago con retencion!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
 							:
 							(($reg->condicion==2)?'<button class="btn btn-warning btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 							' <button class="btn btn-danger btn-sm" onclick="elminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
 							' <button  data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
 							:
-							(($reg->condicion==3)?'<button class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
+							(($reg->condicion==3)?'<button data-toggle="tooltip" title="Mostrar!" data-placement="right" class="btn btn-primary btn-sm" onclick="mostrar('.$reg->idcompromisos.')"><i class="fas fa-pen"></i></button>'.
 							' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idcompromisos.')"><i class="fas fa-trash"></i></button>'.
 							' <button data-toggle="tooltip" title="Pago realizado!" data-placement="right" class="btn btn-success btn-sm red-tooltip" onclick="tramitar('.$reg->idcompromisos.')" disabled><i class="fas fa-coins"></i></button>'
 							:''))),

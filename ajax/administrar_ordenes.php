@@ -138,7 +138,7 @@ if (empty($idadministrar_ordenes)){
 .-------------------------------------*/
 	case 'anular':
 		$rspta=$admin_ord->anular($idadministrar_ordenes);
- 		echo $rspta ? "Orden de compra anulada" : "Orden de compra no se puede anular";
+ 		echo $rspta ? "Documento Anulado" : "El documento no se pudo anular";
 	break;
 
   /*---------------------------*
@@ -289,11 +289,13 @@ if (empty($idadministrar_ordenes)){
       };
  			$data[]=array(
  				"0"=>(($reg->estado=='Pendiente')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
- 					' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>'.
-          ' <button class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.'  ,  \''.limpiarCadena($reg->tipo_documento).'\'  ,  \''.$reg->retencion_isv.'\'  ,  \''.$reg->retencion_isr.'\')"><i class="fas fa-coins"></i></button>':
-          (($reg->estado=='Pagado')?'<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
+ 					' <button data-toggle="tooltip" title="Eliminar!" data-placement="right" class="btn btn-danger btn-sm"  onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>'.
+          ' <button data-toggle="tooltip" title="Anular!" data-placement="right" class="btn btn-danger btn-sm" onclick="anular('.$reg->idadministrar_ordenes.')"><i class="fa fa-times"></i></button>'.
+          // ' <button data-toggle="tooltip" title="Realizar pago con retencion!" data-placement="right" class="btn btn-success btn-sm" onclick="tramitar('.$reg->idcompromisos.')"><i class="fas fa-coins"></i></button>'
+          ' <button data-toggle="tooltip" title="Pagar!" data-placement="right" class="btn btn-primary btn-sm" onclick="pagar('.$reg->idadministrar_ordenes.'  ,  \''.limpiarCadena($reg->tipo_documento).'\'  ,  \''.$reg->retencion_isv.'\'  ,  \''.$reg->retencion_isr.'\')"><i class="fas fa-coins"></i></button>':
+          (($reg->estado=='Pagado')?'<button data-toggle="tooltip" title="Mostrar!" data-placement="right"class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>'.
           ' <button class="btn btn-danger btn-sm" onclick="eliminar('.$reg->idadministrar_ordenes.')"><i class="far fa-trash-alt"></i></button>':
-        '<button class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
+        '<button data-toggle="tooltip" title="Mostrar!" data-placement="right"class="btn btn-warning btn-sm" onclick="orden_mostrar('.$reg->idadministrar_ordenes.')"><i class="fas fa-eye"></i></button>')).
 
 
           '<li style="list-style:none; display: inline-block; margin-left: 4px;" class="dropdown">
