@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 13-09-2019 a las 06:03:05
+-- Tiempo de generación: 14-09-2019 a las 01:07:19
 -- Versión del servidor: 5.7.24
 -- Versión de PHP: 7.2.19
 
@@ -423,6 +423,9 @@ CREATE TABLE `detalle_ingreso` (
   `actividad` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
   `pres_inicial` decimal(11,2) DEFAULT '0.00',
   `pres_siafi` decimal(11,2) DEFAULT '0.00',
+  `pres_congelamientos` decimal(11,2) DEFAULT '0.00',
+  `pres_aumentos` decimal(11,2) DEFAULT '0.00',
+  `pres_disminuciones` decimal(11,2) DEFAULT '0.00',
   `monto` decimal(12,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -430,11 +433,21 @@ CREATE TABLE `detalle_ingreso` (
 -- Volcado de datos para la tabla `detalle_ingreso`
 --
 
-INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `actividad`, `pres_inicial`, `pres_siafi`, `monto`) VALUES
-(3, 5, 1, 'actividad1', '0.00', '50.00', '50.00'),
-(4, 6, 1, 'actividad2', '0.00', '22.33', '22.33'),
-(5, 7, 1, 'actividad5', '0.00', '1500.00', '1500.00'),
-(6, 8, 1, 'actividad1', '1500.00', '0.00', '1500.00');
+INSERT INTO `detalle_ingreso` (`iddetalle_ingreso`, `idingreso`, `idpresupuesto_disponible`, `actividad`, `pres_inicial`, `pres_siafi`, `pres_congelamientos`, `pres_aumentos`, `pres_disminuciones`, `monto`) VALUES
+(1, 1, 1, 'actividad1', '150.00', '0.00', '0.00', '0.00', '0.00', '150.00'),
+(2, 1, 3, 'actividad2', '200.00', '0.00', '0.00', '0.00', '0.00', '200.00'),
+(3, 1, 2, 'actividad3', '350.00', '0.00', '0.00', '0.00', '0.00', '350.00'),
+(4, 2, 1, 'actividad1', '10.00', '0.00', '0.00', '0.00', '0.00', '10.00'),
+(5, 2, 2, 'actividad2', '20.00', '0.00', '0.00', '0.00', '0.00', '20.00'),
+(6, 2, 3, 'actividad3', '30.00', '0.00', '0.00', '0.00', '0.00', '30.00'),
+(7, 3, 1, 'actividad1', '100.00', '0.00', '0.00', '0.00', '0.00', '100.00'),
+(8, 3, 2, 'actividad1', '200.00', '0.00', '0.00', '0.00', '0.00', '200.00'),
+(9, 3, 3, 'actividad1', '300.00', '0.00', '0.00', '0.00', '0.00', '300.00'),
+(10, 4, 1, 'actividad1', '300.00', '0.00', '0.00', '0.00', '0.00', '300.00'),
+(11, 5, 1, 'actividad2', '40.00', '0.00', '0.00', '0.00', '0.00', '40.00'),
+(12, 6, 2, 'actividad1', '30.00', '0.00', '0.00', '0.00', '0.00', '30.00'),
+(13, 7, 3, 'actividad1', '70.00', '0.00', '0.00', '0.00', '0.00', '70.00'),
+(14, 8, 1, 'actividad1', '50.00', '0.00', '0.00', '0.00', '0.00', '50.00');
 
 -- --------------------------------------------------------
 
@@ -714,10 +727,14 @@ CREATE TABLE `ingreso` (
 --
 
 INSERT INTO `ingreso` (`idingreso`, `idusuario`, `tipo_presupuesto`, `fecha_hora`, `numf01`, `total_importe`, `estado`) VALUES
-(5, 1, '', '2019-09-13 00:00:00', 4156, '50.00', 'Aceptado'),
-(6, 1, 'siafi', '2019-09-13 00:00:00', 1111, '22.33', 'Aceptado'),
-(7, 1, 'siafi', '2019-09-13 00:00:00', 1122, '1500.00', 'Aceptado'),
-(8, 1, 'presinit', '2019-09-13 00:00:00', 5555, '1500.00', 'Aceptado');
+(1, 1, 'inicial', '2019-09-13 00:00:00', 343, '700.00', 'Aceptado'),
+(2, 1, 'inicial', '2019-09-13 00:00:00', 589, '60.00', 'Aceptado'),
+(3, 1, 'inicial', '2018-09-13 00:00:00', 454, '600.00', 'Aceptado'),
+(4, 1, 'inicial', '2019-09-13 00:00:00', 4654, '300.00', 'Aceptado'),
+(5, 1, 'inicial', '2019-09-13 00:00:00', 566, '40.00', 'Aceptado'),
+(6, 1, 'inicial', '2019-09-13 00:00:00', 487, '30.00', 'Aceptado'),
+(7, 1, 'inicial', '2019-09-13 00:00:00', 111, '70.00', 'Aceptado'),
+(8, 1, 'inicial', '2019-10-13 00:00:00', 857, '50.00', 'Aceptado');
 
 -- --------------------------------------------------------
 
@@ -1709,7 +1726,7 @@ ALTER TABLE `detalle_crear_acuerdo`
 -- AUTO_INCREMENT de la tabla `detalle_ingreso`
 --
 ALTER TABLE `detalle_ingreso`
-  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `iddetalle_ingreso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
