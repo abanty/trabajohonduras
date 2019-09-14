@@ -14,7 +14,11 @@ require 'header.php';
 if ($_SESSION['siafi']==1)
 {
 ?>
-
+ <style media="screen">
+ table.dataTable tr.group td {
+  background-color: #bbd1de !important;
+}
+ </style>
     <div class="content-wrapper">
         <section class="content-header">
           <h1>

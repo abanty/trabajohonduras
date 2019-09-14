@@ -149,7 +149,7 @@ function listar_pres_detallado()
 	    "order": [[ 0, "desc" ]],//Ordenar (columna,orden)
 			rowGroup: {
 						startRender: function ( rows, group ) {
-								return 'Fecha y Hora de Lote -' + group + ' ('+rows.count()+' productos)';
+								return '<div style="text-align:center;padding-top: 10px;">Año de Detallado : ' + group + ' ( ' +rows.count()+ ' Renglones Gestionado )</div>';
 						},
 					 dataSrc: 0
 			 }

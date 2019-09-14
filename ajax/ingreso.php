@@ -91,7 +91,7 @@ case 'listarDetalle':
 
     while ($reg=$rspta->fetch_object()){
       $data[]=array(
-        "0"=>$reg->fecha_hora,
+        "0"=>date('Y',strtotime($reg->fecha_hora)),
         "1"=>$reg->nombre_objeto,
         "2"=>$reg->grupo,
         "3"=>$reg->subgrupo,
