@@ -149,7 +149,7 @@ function listar_pres_detallado()
 	    "order": [[ 0, "desc" ]],//Ordenar (columna,orden)
 			rowGroup: {
 						startRender: function ( rows, group ) {
-								return '<div style="text-align:center;padding-top: 10px;">AÑO DE DETALLADO : ' + group + ' ( ' +rows.count()+ ' Renglones Gestionado )</div>';
+								return '<div style="text-align:center;padding-top: 10px;">AÑO DE DETALLADO : <strong>' + group + '</strong></div>';
 						},
 					 dataSrc: 0
 			 }

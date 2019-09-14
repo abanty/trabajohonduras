@@ -172,18 +172,7 @@ if ($_SESSION['siafi']==1)
                             </thead>
                             <tbody>
                             </tbody>
-                            <tfoot style="background-color:#d2d6de">
-                              <th>Fecha</th>
-                              <th>Objeto</th>
-                              <th>Grupo</th>
-                              <th>Subgrupo</th>
-                              <th>Pres Inicial</th>
-                              <th>Pres Siafi</th>
-                              <th>Pres Congelamientos</th>
-                              <th>Pres Aumentos</th>
-                              <th>Pres Disminuciones</th>
-                              <th>Monto</th>
-                            </tfoot>
+                          
                           </table>
                         </div>
                       </div>
