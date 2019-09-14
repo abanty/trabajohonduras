@@ -92,15 +92,15 @@ case 'listarDetalle':
     while ($reg=$rspta->fetch_object()){
       $data[]=array(
         "0"=>date('Y',strtotime($reg->fecha_hora)),
-        "1"=>$reg->nombre_objeto,
-        "2"=>$reg->grupo,
-        "3"=>$reg->subgrupo,
-        "4"=>$reg->pres_init,
-        "5"=>$reg->pres_siafi,
-        "6"=>$reg->pres_cong,
-        "7"=>$reg->pres_aum,
-        "8"=>$reg->pres_dis,
-        "9"=>$reg->monto
+        "1"=>'<span style="color:black; font-weight: bold;">'.$reg->nombre_objeto.'</span>',
+        "2"=>'<span style="color:black; font-weight: bold;">'.$reg->grupo.'</span>',
+        "3"=>'<span style="color:black; font-weight: bold;">'.$reg->subgrupo.'</span>',
+        "4"=>'<span style="color:blue; font-weight: bold;">'.$reg->pres_init.'</span>',
+        "5"=>'<span style="color:blue; font-weight: bold;">'.$reg->pres_siafi.'</span>',
+        "6"=>'<span style="color:blue; font-weight: bold;">'.$reg->pres_cong.'</span>',
+        "7"=>'<span style="color:blue; font-weight: bold;">'.$reg->pres_aum.'</span>',
+        "8"=>'<span style="color:blue; font-weight: bold;">'.$reg->pres_dis.'</span>',
+        "9"=>'<span style="color:blue; font-weight: bold;">'.$reg->monto.'</span>'
         );
     }
     $results = array(

@@ -118,7 +118,7 @@ if ($_SESSION['siafi']==1)
                       <div class="box-header with-border">
                         <h4 class="box-title">
                           <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                           INGRESO GENERAL
+                           INGRESO GENERAL <small>(click aqui)</small>
                           </a>
                         </h4>
                       </div>
@@ -151,7 +151,7 @@ if ($_SESSION['siafi']==1)
                       <div class="box-header with-border">
                         <h4 class="box-title">
                           <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            INGRESO DETALLE PRESUPUESTALES
+                            INGRESO DETALLE PRESUPUESTALES <small>(click aqui)</small>
                           </a>
                         </h4>
                       </div>
