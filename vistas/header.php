@@ -38,6 +38,7 @@ if (strlen(session_id()) < 1)
     <link rel="stylesheet" href="../public/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../public/datatables.net-bs/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="../public/datatables/rowGroup.dataTables.min.css">
 
   </head>
   <style media="screen">

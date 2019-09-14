@@ -11,6 +11,7 @@ function init(){
 
 	mostrarform(false);
 	listar();
+	listar_pres_detallado();
 	fechanow();
 	$("#detalles tbody").html('<td id="mynewtd" colspan="5" style="text-align: center; padding: 25px;"> -- Ningun registro en la tabla -- </td>');
 	$(document).on("keypress", 'form', function (e) {
@@ -118,6 +119,44 @@ function listar()
 	}).DataTable();
 }
 
+function listar_pres_detallado()
+{
+	tabla=$('#tbllistado_detallado').dataTable(
+	{
+		"aProcessing": true,//Activamos el procesamiento del datatables
+	    "aServerSide": true,//Paginación y filtrado realizados por el servidor
+	    dom: 'Bfrtip',//Definimos los elementos del control de tabla
+	    buttons: [
+		            'copyHtml5',
+		            'excelHtml5',
+		            'csvHtml5',
+		            'pdf'
+		        ],
+		 columnDefs:[
+								{"visible": false, "targets":0}
+						],
+		"ajax":
+				{
+					url: '../ajax/ingreso.php?op=listar_Presupuesto_Detallado',
+					type : "get",
+					dataType : "json",
+					error: function(e){
+						console.log(e.responseText);
+					}
+				},
+		"bDestroy": true,
+		// "iDisplayLength": 10,//Paginación
+	    "order": [[ 0, "desc" ]],//Ordenar (columna,orden)
+			rowGroup: {
+						startRender: function ( rows, group ) {
+								return '<div style="text-align:center;padding-top: 10px;">AÑO DE DETALLADO : <strong>' + group + '</strong></div>';
+						},
+					 dataSrc: 0
+			 }
+	}).DataTable();
+}
+
+
 
 
 //Función Listar presupuesto_disponible
@@ -167,7 +206,7 @@ function guardaryeditar(e)
 	    {
 	          bootbox.alert(datos);
 	          mostrarform(false);
-	          listar();
+						$('#tbllistado_detallado').DataTable().ajax.reload(null, false);
 	    }
 
 	});
