@@ -206,7 +206,7 @@ function guardaryeditar(e)
 	    {
 	          bootbox.alert(datos);
 	          mostrarform(false);
-	          listar();
+						$('#tbllistado_detallado').DataTable().ajax.reload(null, false);
 	    }
 
 	});
