@@ -26,8 +26,20 @@ Class Ingreso
 				$var = 'pres_siafi';
 			break;
 
-			case 'presinit':
+			case 'inicial':
 				$var = 'pres_inicial';
+			break;
+
+			case 'disminuciones':
+				$var = 'pres_disminuciones';
+			break;
+
+			case 'congelamientos':
+				$var = 'pres_congelamientos';
+			break;
+
+			case 'aumentos':
+				$var = '	pres_aumentos';
 			break;
 
 			default:
@@ -40,17 +52,10 @@ Class Ingreso
 			$sql_detalle = "INSERT INTO detalle_ingreso(idingreso,idpresupuesto_disponible,$var,actividad,monto)
 			VALUES ('$idingresonew','$idpresupuesto_disponible[$num_elementos]','$anypres[$num_elementos]','$actividad[$num_elementos]','$monto[$num_elementos]')";
 
-			// $sql2="UPDATE presupuesto_disponible p INNER JOIN detalle_ingreso di ON p.idpresupuesto_disponible = di.idpresupuesto_disponible
-			// LEFT JOIN ingreso i ON di.idingreso = i.idingreso SET $var = $var + '$monto[$num_elementos]' WHERE p.idpresupuesto_disponible = '$idpresupuesto_disponible[$num_elementos]'
-			// AND i.fecha_hora = '$fecha_hora'";
-			// ejecutarConsulta($sql2);
-
 			ejecutarConsulta($sql_detalle) or $sw = false;
 			$num_elementos=$num_elementos + 1;
 
 		}
-
-
 
 		return $sw;
 	}
@@ -94,6 +99,18 @@ Class Ingreso
 		FROM detalle_ingreso di INNER JOIN presupuesto_disponible a on
 		di.idpresupuesto_disponible=a.idpresupuesto_disponible
 		where di.idingreso='$idingreso'";
+		return ejecutarConsulta($sql);
+	}
+
+
+	public function listaPresupuestoDetallado(){
+		$sql="SELECT di.idpresupuesto_disponible,i.fecha_hora,pd.nombre_objeto,pd.grupo,pd.subgrupo,pd.codigo,sum(di.pres_inicial) as pres_init,
+		sum(di.pres_siafi) as pres_siafi,sum(di.pres_congelamientos) as pres_cong,sum(di.pres_aumentos) as pres_aum,
+		sum(di.pres_disminuciones) as pres_dis,sum(di.monto) as monto
+		FROM detalle_ingreso di INNER JOIN ingreso i ON di.idingreso = i.idingreso
+		INNER JOIN presupuesto_disponible pd ON di.idpresupuesto_disponible = pd.idpresupuesto_disponible
+		GROUP BY di.idpresupuesto_disponible,i.fecha_hora
+		ORDER BY `i`.`fecha_hora` DESC";
 		return ejecutarConsulta($sql);
 	}
 

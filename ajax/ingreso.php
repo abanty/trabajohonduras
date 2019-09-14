@@ -83,6 +83,36 @@ case 'listarDetalle':
 
 	break;
 
+
+  case 'listar_Presupuesto_Detallado':
+    $rspta=$ingreso->listaPresupuestoDetallado();
+    //Vamos a declarar un array
+    $data= Array();
+
+    while ($reg=$rspta->fetch_object()){
+      $data[]=array(
+        "0"=>$reg->fecha_hora,
+        "1"=>$reg->nombre_objeto,
+        "2"=>$reg->grupo,
+        "3"=>$reg->subgrupo,
+        "4"=>$reg->pres_init,
+        "5"=>$reg->pres_siafi,
+        "6"=>$reg->pres_cong,
+        "7"=>$reg->pres_aum,
+        "8"=>$reg->pres_dis,
+        "9"=>$reg->monto
+        );
+    }
+    $results = array(
+      "sEcho"=>1, //Información para el datatables
+      "iTotalRecords"=>count($data), //enviamos el total registros al datatable
+      "iTotalDisplayRecords"=>count($data), //enviamos el total registros a visualizar
+      "aaData"=>$data);
+    echo json_encode($results);
+
+  break;
+
+
 	case 'listar_Presupuesto_disponible':
 		require_once "../modelos/Presupuesto_disponible.php";
 		$predis=new Presupuesto_disponible();

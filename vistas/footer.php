@@ -37,6 +37,7 @@
 
     <script src="../public/datatables/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="../public/datatables/dataTables.rowGroup.min.js"></script>
     <!-- <script src="../public/js/jquery.mockjax.min.js"></script> -->
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="../public/iCheck/icheck.min.js"></script>
