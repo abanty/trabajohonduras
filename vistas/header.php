@@ -430,7 +430,7 @@ if (strlen(session_id()) < 1)
               <ul class="treeview-menu">
               <li><a href="proveedores.php"><i class="far fa-dot-circle text-blue"></i> Proveedores</a></li>
               <li><a href="programa.php"><i class="far fa-dot-circle text-blue"></i> Cargar Programa</a></li>
-              <li><a href="configuracion.php"><i class="far fa-dot-circle text-blue"></i> Configuracion</a></li>
+              <li><a href="firmas.php"><i class="far fa-dot-circle text-blue"></i> Firmas </a></li>
               <li><a href="ctasbancarias.php"><i class="far fa-dot-circle text-blue"></i> Cuentas Bancarias PG</a></li>
               <li><a href="categoria.php"><i class="far fa-dot-circle text-blue"></i> Objetos Gasto</a></li>
 

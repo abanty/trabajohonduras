@@ -16,15 +16,15 @@ if ($_SESSION['configuraciones']==1)
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">        
+      <div class="content-wrapper">
         <!-- Main content -->
         <section class="content-header">
-          <h1> 
-            Administrar Configuraciones
+          <h1>
+            Administrar Firmas
           </h1>
           <ol class="breadcrumb">
             <li><a href="escritorio.php"><i class="fa fa-tachometer-alt"></i> Inicio</a></li>
-            <li class="active">Administrar Configuraciones</li>
+            <li class="active">Administrar Firmas</li>
           </ol>
         </section>
         <section class="content">
@@ -43,18 +43,20 @@ if ($_SESSION['configuraciones']==1)
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover" width="100%">
                           <thead style="background-color:#3c8dbc">
                             <th>Opciones</th>
-                            <th>Rango</th>
+                            <th>Grado</th>
                             <th>Nombre</th>
-                            <th>cargo</th>                          
+                            <th>Cargo</th>
+                            <th>Serie Personal</th>
                             <th>Estado</th>
                           </thead>
-                          <tbody>                            
+                          <tbody>
                           </tbody>
                           <tfoot>
                             <th>Opciones</th>
-                            <th>Rango</th>
+                            <th>Grado</th>
                             <th>Nombre</th>
-                            <th>cargo</th>                          
+                            <th>Cargo</th>
+                            <th>Serie Personal</th>
                             <th>Estado</th>
                           </tfoot>
                         </table>
@@ -62,12 +64,10 @@ if ($_SESSION['configuraciones']==1)
                     <div class="panel-body" style="height: 100%;" id="formularioregistros">
                         <form name="formulario" id="formulario" method="POST">
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Rango:</label>
-                            <input type="hidden" name="idconfiguracion" id="idconfiguracion">
-                            <input type="text" class="form-control" name="rango" id="rango" maxlength="50" placeholder="Rango" required>
+                            <label>Grado:</label>
+                            <input type="hidden" name="idfirmas" id="idfirmas">
+                            <input type="text" class="form-control" name="grado" id="grado" maxlength="50" placeholder="grado">
                           </div>
-
-
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Nombre :</label>
                             <input type="text" class="form-control" name="nombre" id="nombre" maxlength="50" placeholder="Nombre">
@@ -75,7 +75,11 @@ if ($_SESSION['configuraciones']==1)
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label>Cargo:</label>
                             <input type="text" class="form-control" name="cargo" id="cargo" maxlength="100" placeholder="Cargo">
-                          </div>                          
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label>Serie Persobal:</label>
+                            <input type="text" class="form-control" name="serie" id="serie" maxlength="100" placeholder="serie">
+                          </div>
                           <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
 
@@ -100,8 +104,8 @@ else
 
 require 'footer.php';
 ?>
-<script type="text/javascript" src="scripts/configuracion.js"></script>
-<?php 
+<script type="text/javascript" src="scripts/firmas.js"></script>
+<?php
 }
 ob_end_flush();
 ?>
