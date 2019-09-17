@@ -265,24 +265,29 @@ $("#btnGuardar").hide();
 
 function agregarDetalle(idpresupuesto_disponible,presupuesto_disponible,codigo)
   {
-
     var monto=0.00;
 
     if (idpresupuesto_disponible!="")
     {
     	var subtotal=monto;
 
-
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">x</button></td>'+
     	'<td><input type="hidden" class="form-control input-sm" name="any[]" value=""><input type="hidden" class="form-control input-sm" name="idpresupuesto_disponible[]" value="'+idpresupuesto_disponible+'">'+presupuesto_disponible+'</td>'+
-	    '<td><input type="text" class="form-control input-sm" name="actividad[]" value=""></td>'+
+			'<td><select class="form-control selectpicker" name="actividad[]" id="actividad"  multiple data-max-options="1" data-style="btn-default btn-sm" data-title="Elige una actividad" required>'+
+			'<option data-icon="fas fa-angle-right" value="act1">Actividad 1</option>'+
+			'<option data-icon="fas fa-angle-right" value="act2">Actividad 2</option>'+
+			'<option data-icon="fas fa-angle-right" value="act3">Actividad 3</option>'+
+			'<option data-icon="fas fa-angle-right" value="act4">Actividad 4</option>'+
+			'<option data-icon="fas fa-angle-right" value="act5">Actividad 5</option>'+
+			'</select></td>'+
 			'<td><input type="text" class="form-control input-sm prec" step="0.1" name="monto[]" onchange="modificarSubototales()" onkeyup="modificarSubototales()" value="'+monto+'"></td>'+
     	'<td><span name="subtotal" id="subtotal'+cont+'">'+subtotal+'</span></td>'+
     	'</tr>';
     	cont++;
     	detalles=detalles+1;
 			$(function() {
+				$('#actividad').selectpicker();
 				$('.prec').maskMoney({thousands:',', decimal:'.', allowZero:true});
 			});
     	$('#detalles').append(fila);
