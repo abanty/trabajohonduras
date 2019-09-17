@@ -124,7 +124,7 @@ if ($_SESSION['compromisosp']==1)
                                     <th>TOTAL</th>
                                     <th></th>
                                     <th></th>
-                                    <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_compra" id="total_compra"></th>
+                                    <th><h4 id="total">L. 0.00</h4><input type="hidden" name="total_compra" id="total_compra"></th>
                                 </tfoot>
                                 <tbody>
 
