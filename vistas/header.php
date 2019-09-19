@@ -403,7 +403,7 @@ if (strlen(session_id()) < 1)
        </a>
 
           <ul class="treeview-menu">
-         <li><a href="proyeccion.php"><i class="far fa-dot-circle text-blue"></i> Programacion Anual</a></li>
+         <li><a href="produccion_anual.php"><i class="far fa-dot-circle text-blue"></i> Programacion Anual</a></li>
          <li><a href="ejecucion_poa.php"><i class="far fa-dot-circle text-blue"></i>Ejecucion Mensual</a></li>
          <li><a href="reportes_poa.php"><i class="far fa-dot-circle text-blue"></i>Reportes</a></li>
 
