@@ -4,6 +4,11 @@
   <option value="PF3">PF3</option>
   <option value="PF4">PF4</option>
   <option value="PF5">PF5</option>
+  <option value="PF6">PF6</option>
+  <option value="PF7">PF7</option>
+  <option value="PF8">PF8</option>
+  <option value="PF9">PF9</option>
+  <option value="PF10">PF10</option>
   <option value="PI1">PI1</option>
   <option value="PI2">PI2</option>
   <option value="PI3">PI3</option>
@@ -17,4 +22,10 @@
   <option value="PI11">PI11</option>
   <option value="PI12">PI12</option>
   <option value="PI13">PI13</option>
+  <option value="PI14">PI14</option>
+  <option value="PI15">PI15</option>
+  <option value="PI16">PI16</option>
+  <option value="PI17">PI18</option>
+  <option value="PI19">PI19</option>
+  <option value="PI20">PI20</option>
 </select>
