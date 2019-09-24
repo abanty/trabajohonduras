@@ -12,30 +12,13 @@ function init(){
 	listar();
 
 	$("#formulario").on("submit",function(e)
-	//Cargamos los items al select categoria
-	$.post("../ajax/proveedores.php?op=ValidarNumRtn", function(datos) {
-		datos = JSON.parse(datos);
-
-		var rtn = $('#rtn').val();
-
-		if (datos.includes(rtn)) {
-			alert('Dato ya existe en la bd, digite otro por favor');
-			$('#rtn').val("");
-			$("#rtn").focus();
-
-		} else {
-			guardaryeditar(e);
+	{
+		guardaryeditar(e);
 	})
 
 	$("#imagenmuestra").hide();
 }
-});
-return false;
-})
 
-$('#idproveedores').change(function() {
-verpres();
-});
 //Función limpiar
 function limpiar()
 {
